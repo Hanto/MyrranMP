@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MyrranCliente/MyrranCliente.iml" filepath="$PROJECT_DIR$/MyrranCliente/MyrranCliente.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MyrranMP.iml" filepath="$PROJECT_DIR$/MyrranMP.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MyrranServidor/MyrranServidor.iml" filepath="$PROJECT_DIR$/MyrranServidor/MyrranServidor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MyrranMP.iml" filepath="$PROJECT_DIR$/.idea/MyrranMP.iml" />
     </modules>
   </component>
 </project>
