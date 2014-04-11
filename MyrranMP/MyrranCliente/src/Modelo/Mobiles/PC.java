@@ -7,7 +7,7 @@ public class PC extends AbstractModel implements PCModel
     protected float x;                      //Coordenadas X:
     protected float y;                      //Coordenadas Y:
 
-
+    protected int numAnimacion = 5;
 
     @Override public int getConnectionID()  { return connectionID; }
     @Override public float getX()           { return x; }
@@ -24,6 +24,14 @@ public class PC extends AbstractModel implements PCModel
         this.x = x; this.y = y;
         Object posicionDTO = new DTO.PCPosition(this, x, y);
         notificarActualizacion("setPosition", null, posicionDTO);
+    }
+
+    public void setAnimacion (int numAnimacion)
+    {
+        this.numAnimacion = numAnimacion;
+        Object AnimacionDTO = new PlayerDTO.PlayerAnimacion(numAnimacion);
+        notificarActualizacion("setAnimacion", null, AnimacionDTO);
+        System.out.println("model animacion a ["+numAnimacion+"]");
     }
 
     public void eliminar()

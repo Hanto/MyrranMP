@@ -1,9 +1,9 @@
 package View.Actores;// Created by Hanto on 10/04/2014.
 
-import Controller.Input.ControladorCliente;
-import Controller.Network.Net;
-import Modelo.Mobiles.DTO;
-import Modelo.Mobiles.MundoModel;
+import Controller.ControladorCliente;
+import Controller.Network.DTO;
+import Modelo.Mobiles.MundoModelC;
+import Modelo.Mobiles.PlayerDTO;
 import Modelo.Mobiles.PlayerModel;
 import View.Graficos.PixiePC;
 import View.Vista;
@@ -18,7 +18,7 @@ public class PlayerView extends Group implements PropertyChangeListener
     public Vista vista;
     public ControladorCliente controlador;
     //Datos derivados:
-    public MundoModel mundo;
+    public MundoModelC mundo;
 
     public int connectionID;
     public PixiePC actor;
@@ -50,18 +50,35 @@ public class PlayerView extends Group implements PropertyChangeListener
 
     @Override public void setPosition (float x, float y)
     {
-        super.setPosition(x, y);
-        Net.MoverPC moverPlayer = new Net.MoverPC(player.getConnectionID(), getX(), getY());
-        controlador.getNetIO().enviarAServidor(moverPlayer);
+        if (Math.abs(this.getX()-x) >= 1f || Math.abs(this.getY()-y) >= 1f)
+        {
+            super.setPosition(x, y);
+            DTO.MoverPC moverPlayer = new DTO.MoverPC(player.getConnectionID(), getX(), getY());
+            controlador.getNetIO().enviarAServidor(moverPlayer);
+        }
+    }
+
+    public void setAnimacion (int numAnimacion)
+    {
+        actor.setAnimacion(numAnimacion, false);
+        DTO.CambiarAnimacionPC cambiarAnimacionPC = new DTO.CambiarAnimacionPC(player.getConnectionID(), numAnimacion);
+        controlador.getNetIO().enviarAServidor(cambiarAnimacionPC);
+        System.out.println("Player ID["+cambiarAnimacionPC.connectionID + "]Animacion["+cambiarAnimacionPC.numAnimacion+"]");
     }
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof DTO.PlayerPosition)
+        if (evt.getNewValue() instanceof PlayerDTO.PlayerPosition)
         {
-            float x = ((DTO.PlayerPosition) evt.getNewValue()).x;
-            float y = ((DTO.PlayerPosition) evt.getNewValue()).y;
+            float x = ((PlayerDTO.PlayerPosition) evt.getNewValue()).x;
+            float y = ((PlayerDTO.PlayerPosition) evt.getNewValue()).y;
             setPosition(x, y);
+        }
+
+        if (evt.getNewValue() instanceof PlayerDTO.PlayerAnimacion)
+        {
+            int numAnimacion = ((PlayerDTO.PlayerAnimacion) evt.getNewValue()).numAnimacion;
+            setAnimacion(numAnimacion);
         }
     }
 }

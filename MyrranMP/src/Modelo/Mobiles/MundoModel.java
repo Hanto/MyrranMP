@@ -4,17 +4,13 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 public interface MundoModel
-{
-    //GET:
+{   //GET:
     public ArrayList<? extends PCModel> listaPlayers();
-    public PlayerModel getPlayer();
     //SET(Controlador)
-    public void añadirPlayer(int connectionID);
-    public void eliminarPlayer();
-    public void moverPlayer(float x, float y);
     public void añadirPC(int connectionID, float x, float y);
     public void eliminarPC(int connectionID);
     public void moverPC(int connectionID, float x, float y);
+    public void cambiarAnimacionPC(int connectionID, int numAnimacion);
     //OBSERVADOR:
     public void añadirObservador(PropertyChangeListener observador);
     public void eliminarObservador(PropertyChangeListener observador);

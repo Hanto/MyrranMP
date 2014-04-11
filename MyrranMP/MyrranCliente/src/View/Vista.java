@@ -1,10 +1,7 @@
 package View;// Created by Hanto on 08/04/2014.
 
-import Controller.Input.ControladorCliente;
-import Modelo.Mobiles.DTO;
-import Modelo.Mobiles.MundoModel;
-import Modelo.Mobiles.PCModel;
-import Modelo.Mobiles.PlayerModel;
+import Controller.ControladorCliente;
+import Modelo.Mobiles.*;
 import View.Actores.PCView;
 import View.Actores.PlayerView;
 import com.badlogic.gdx.Gdx;
@@ -20,7 +17,7 @@ import java.beans.PropertyChangeListener;
 public class Vista implements PropertyChangeListener
 {
     public ControladorCliente controlador;
-    public MundoModel mundo;
+    public MundoModelC mundo;
 
     public PlayerView playerView;
     public Array<PCView> listaPCViews = new Array<>();
@@ -31,7 +28,7 @@ public class Vista implements PropertyChangeListener
     public OrthographicCamera camara;
 
 
-    public Vista (ControladorCliente controlador, MundoModel mundo)
+    public Vista (ControladorCliente controlador, MundoModelC mundo)
     {
         this.controlador = controlador;
         this.mundo = mundo;
@@ -41,6 +38,9 @@ public class Vista implements PropertyChangeListener
         stageMundo = new Stage();
         stageUI = new Stage();
 
+        controlador.addInputProcessor(stageUI);
+        controlador.addInputProcessor(stageMundo);
+
         stageMundo.getViewport().setCamera(camara);
         mundo.añadirObservador(this);
     }
@@ -49,6 +49,8 @@ public class Vista implements PropertyChangeListener
     {
         Gdx.gl.glClearColor(0/2.55f, 0/2.55f, 0/2.55f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        mundo.getPlayer().actualizar(delta);
 
         //camara.position.x = player.getX();
         //camara.position.y = player.getY();
@@ -80,9 +82,9 @@ public class Vista implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof  DTO.MundoAñadirPlayer)
+        if (evt.getNewValue() instanceof  PlayerDTO.MundoAñadirPlayer)
         {
-            PlayerModel player = ((DTO.MundoAñadirPlayer) evt.getNewValue()).player;
+            PlayerModel player = ((PlayerDTO.MundoAñadirPlayer) evt.getNewValue()).player;
             playerView = new PlayerView(player, this, controlador);
         }
 

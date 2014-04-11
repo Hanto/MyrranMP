@@ -12,11 +12,6 @@ public class Mundo extends AbstractModel implements MundoModel
 
 
     @Override public ArrayList<? extends PCModel> listaPlayers()    { return listaPlayers; }
-    @Override public PlayerModel getPlayer()                        { return null; }
-
-    @Override public void añadirPlayer(int connectionID) {}
-    @Override public void eliminarPlayer() {}
-    @Override public void moverPlayer(float x, float y) {}
 
     @Override public void añadirPC (int connectionID, float x, float y)
     {
@@ -33,11 +28,15 @@ public class Mundo extends AbstractModel implements MundoModel
         PC pc = mapaPlayers.get(connectionID);
         listaPlayers.remove(pc);
         mapaPlayers.remove(connectionID);
-        //Object eliminarPC = new Net.MundoEliminarPC(pc);
+        //Object eliminarPC = new DTO.MundoEliminarPC(pc);
         //notificarActualizacion("eliminarPC", null, eliminarPC);
         pc.eliminar();
     }
 
     @Override public void moverPC (int connectionID, float x, float y)
     {   mapaPlayers.get(connectionID).setPosition(x, y); }
+
+    @Override public void cambiarAnimacionPC(int connectionID, int numAnimacion)
+    {   mapaPlayers.get(connectionID).setAnimacion(numAnimacion); }
+
 }

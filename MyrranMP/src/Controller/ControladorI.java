@@ -10,5 +10,7 @@ public interface ControladorI
     public void añadirPC (int connectionID, float x, float y);
     public void eliminarPC (int connectionID);
     public void moverPC (int connectionID, float x, float y);
+    public void cambiarAnimacionPC (int connectionID, int numAnimacion);
+
     public void netUpdater ();
 }

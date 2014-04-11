@@ -5,7 +5,7 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
 import zMain.MiscData;
 
-public class Net
+public class DTO
 {
     public static final int puerto = MiscData.NETWORK_Puerto_Servidor;
     public static final int timeout = MiscData.NETWORK_Client_Timeout;
@@ -14,6 +14,7 @@ public class Net
     {
         Kryo kryo = endPoint.getKryo();
         kryo.register(MoverPC.class);
+        kryo.register(CambiarAnimacionPC.class);
         kryo.register(AñadirPC.class);
         kryo.register(EliminarPC.class);
     }
@@ -28,6 +29,15 @@ public class Net
         public MoverPC () {}
         public MoverPC(int connectionID, float x, float y)
         {   this.connectionID = connectionID; this.x = x; this.y = y; }
+    }
+
+    public static class CambiarAnimacionPC
+    {
+        public int connectionID;
+        public int numAnimacion;
+        public CambiarAnimacionPC() {}
+        public CambiarAnimacionPC(int connectionID, int numAnimacion)
+        {   this.connectionID = connectionID; this.numAnimacion = numAnimacion; }
     }
 
     public static class AñadirPC

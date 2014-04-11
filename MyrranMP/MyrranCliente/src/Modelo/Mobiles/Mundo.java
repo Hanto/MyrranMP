@@ -3,7 +3,7 @@ package Modelo.Mobiles;// Created by Hanto on 08/04/2014.
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Mundo extends AbstractModel implements MundoModel
+public class Mundo extends AbstractModel implements MundoModelC
 {
     public Player player;
     public ArrayList<PC> listaPlayers = new ArrayList<>();
@@ -18,7 +18,7 @@ public class Mundo extends AbstractModel implements MundoModel
     @Override public void añadirPlayer (int connectionID)
     {
         player = new Player(connectionID);
-        Object añadirPlayer = new DTO.MundoAñadirPlayer(player);
+        Object añadirPlayer = new PlayerDTO.MundoAñadirPlayer(player);
         notificarActualizacion("añadirPlayer", null, añadirPlayer);
     }
 
@@ -44,6 +44,9 @@ public class Mundo extends AbstractModel implements MundoModel
 
     @Override public void moverPC (int connectionID, float x, float y)
     {   mapaPlayers.get(connectionID).setPosition(x, y); }
+
+    @Override public void cambiarAnimacionPC(int connectionID, int numAnimacion)
+    {   mapaPlayers.get(connectionID).setAnimacion(numAnimacion); }
 
     @Override public void moverPlayer(float x, float y)
     {   player.setPosition(x, y); }

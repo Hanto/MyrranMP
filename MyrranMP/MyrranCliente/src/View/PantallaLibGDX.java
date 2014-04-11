@@ -7,7 +7,6 @@ import View.Actores.Recursos.LoadRecursos;
 import View.Graficos.Atlas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
 import zMain.MyrranClient;
 
 
@@ -15,8 +14,6 @@ public class PantallaLibGDX implements Screen
 {
     private MyrranClient myrranCliente;
     private Controlador controlador;
-
-    public static final Texture texture = new Texture(Gdx.files.internal("Images/Spell Icons/FireBall.png"));
 
     public String getNombrePantalla()           { return ((Object)this).getClass().getSimpleName(); }
 
@@ -33,14 +30,12 @@ public class PantallaLibGDX implements Screen
     @Override public void show()
     {   Gdx.app.log( myrranCliente.LOG, "SHOW (Inicializando Screen): " + getNombrePantalla()); }
 
-    @Override
-    public void render(float delta)
+    @Override public void render(float delta)
     {
         controlador.render(delta);
     }
 
-    @Override
-    public void resize(int anchura, int altura)
+    @Override public void resize(int anchura, int altura)
     {   Gdx.app.log( myrranCliente.LOG, "RESIZE (Redimensionando Screen): "+ getNombrePantalla() +" a: "+anchura+" x "+altura); }
 
     @Override public void pause()
@@ -61,6 +56,5 @@ public class PantallaLibGDX implements Screen
     {
         Gdx.app.log( myrranCliente.LOG, "DISPOSE (Liberando memoria): "+ getNombrePantalla());
         controlador.dispose();
-        //Antes de liberar los recursos nos aseguramos que esten llenos, si no, da error
     }
 }

@@ -1,6 +1,6 @@
 package Controller;// Created by Hanto on 08/04/2014.
 
-import Controller.Network.Net;
+import Controller.Network.DTO;
 import Controller.Network.NetClient;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
@@ -15,7 +15,7 @@ public class Cliente extends Client implements NetClient
     {
         controlador = controladorI;
 
-        Net.register(this);
+        DTO.register(this);
         this.start();
 
         this.addListener(new Listener.ThreadedListener(new Listener()
@@ -28,33 +28,41 @@ public class Cliente extends Client implements NetClient
         host = "localhost";
         //(String) JOptionPane.showInputDialog(null, "Host:", "Connect to server", JOptionPane.QUESTION_MESSAGE, null, null, "localhost");
 
-        try { this.connect(Net.timeout, host, Net.puerto); }
+        try { this.connect(DTO.timeout, host, DTO.puerto); }
         catch (Exception IOException) { System.out.println("ERROR: Imposible conectar cliente: "+IOException); }
     }
 
     public void procesarMensajeServidor (Connection con, Object obj)
     {
-        if (obj instanceof Net.MoverPC)
+        if (obj instanceof DTO.MoverPC)
         {
-            int conID = ((Net.MoverPC) obj).connectionID;
-            float x = ((Net.MoverPC) obj).x;
-            float y = ((Net.MoverPC) obj).y;
+            int conID = ((DTO.MoverPC) obj).connectionID;
+            float x = ((DTO.MoverPC) obj).x;
+            float y = ((DTO.MoverPC) obj).y;
 
             controlador.moverPC(conID, x, y);
         }
 
-        if (obj instanceof Net.AñadirPC)
+        if (obj instanceof DTO.CambiarAnimacionPC)
         {
-            int conID = ((Net.AñadirPC) obj).connectionID;
-            float x = ((Net.AñadirPC) obj).x;
-            float y = ((Net.AñadirPC) obj).y;
+            int conID = ((DTO.CambiarAnimacionPC) obj).connectionID;
+            int numAnimacion = ((DTO.CambiarAnimacionPC) obj).numAnimacion;
+
+            controlador.cambiarAnimacionPC(conID, numAnimacion);
+        }
+
+        if (obj instanceof DTO.AñadirPC)
+        {
+            int conID = ((DTO.AñadirPC) obj).connectionID;
+            float x = ((DTO.AñadirPC) obj).x;
+            float y = ((DTO.AñadirPC) obj).y;
             System.out.println("recibido añadir Player con ID: "+conID);
             controlador.añadirPC(conID, x, y);
         }
 
-        if (obj instanceof Net.EliminarPC)
+        if (obj instanceof DTO.EliminarPC)
         {
-            int conID = ((Net.EliminarPC) obj).connectionID;
+            int conID = ((DTO.EliminarPC) obj).connectionID;
             controlador.eliminarPC(conID);
         }
     }

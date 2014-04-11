@@ -25,6 +25,8 @@ public class Controlador implements ControladorServidor
     @Override public void añadirPC (int connectionID, float x, float y) { mundo.añadirPC(connectionID, x, y); }
     @Override public void moverPC (int connectionID, float x, float y)  { mundo.moverPC(connectionID, x, y); }
     @Override public void eliminarPC (int connectionID)                 { mundo.eliminarPC(connectionID); }
+    @Override public void cambiarAnimacionPC(int connectionID, int numAnimacion)
+    {   mundo.cambiarAnimacionPC(connectionID, numAnimacion);}
 
     @Override public void netUpdater ()                                 { vista.netUpdate(); }
 }

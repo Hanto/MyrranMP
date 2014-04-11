@@ -1,12 +1,16 @@
 package View.Actores;// Created by Hanto on 08/04/2014.
 
-import Controller.Input.ControladorCliente;
+import Controller.ControladorCliente;
 import Modelo.Mobiles.DTO;
-import Modelo.Mobiles.MundoModel;
+import Modelo.Mobiles.MundoModelC;
 import Modelo.Mobiles.PCModel;
+import Modelo.Mobiles.PlayerDTO;
 import View.Graficos.PixiePC;
 import View.Vista;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import zMain.MiscData;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -17,7 +21,7 @@ public class PCView extends Group implements PropertyChangeListener
     public Vista vista;
     public ControladorCliente controlador;
     //Datos derivados:
-    public MundoModel mundo;
+    public MundoModelC mundo;
 
     public int connectionID;
     public PixiePC actor;
@@ -53,8 +57,13 @@ public class PCView extends Group implements PropertyChangeListener
         vista.listaPCViews.removeValue(this, true);
     }
 
-    @Override public void setPosition (float x, float y)
-    {   super.setPosition(x, y); }
+    public void mover(float x, float y)
+    {   this.addAction(Actions.moveTo(x, y, MiscData.NETWORK_Update_Time / 1000f, Interpolation.linear));
+        //setPosition(x,y);
+    }
+
+    public void setAnimacion (int numAnimacion)
+    {   actor.setAnimacion(numAnimacion, false); }
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
@@ -62,7 +71,13 @@ public class PCView extends Group implements PropertyChangeListener
         {
             float x = ((DTO.PCPosition) evt.getNewValue()).x;
             float y = ((DTO.PCPosition) evt.getNewValue()).y;
-            setPosition(x, y);
+            mover(x, y);
+        }
+
+        if (evt.getNewValue() instanceof PlayerDTO.PlayerAnimacion)
+        {
+            int numAnimacion = ((PlayerDTO.PlayerAnimacion) evt.getNewValue()).numAnimacion;
+            setAnimacion(numAnimacion);
         }
 
         if (evt.getNewValue() instanceof DTO.PCEliminar)

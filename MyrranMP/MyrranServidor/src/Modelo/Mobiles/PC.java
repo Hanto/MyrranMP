@@ -9,6 +9,8 @@ public class PC extends AbstractModel implements PCModel
     protected float oldPosX;                    //Coordenadas X, de la ultima posicion X segura
     protected float oldPosY;                    //Coordenadas Y, de la ultima posicion Y segura
 
+    protected int numAnimacion = 5;
+
     //Velocidad y Direccion:
     protected double velocidadMod=1;            //Modificadores de Velocidad: debido a Snares, a Sprints, Roots
     protected double velocidadMax;              //Velocidad Maxima:
@@ -54,6 +56,16 @@ public class PC extends AbstractModel implements PCModel
         this.x = x; this.y = y;
         Object posicionDTO = new DTO.PCPosition(this, x, y);
         notificarActualizacion("setPosition", null, posicionDTO);
+    }
+
+    public void setAnimacion(int numAnimacion)
+    {
+        if (this.numAnimacion != numAnimacion)
+        {
+            this.numAnimacion = numAnimacion;
+            Object animacionDTO = new DTO.PCAnimacion(numAnimacion);
+            notificarActualizacion("setAnimacion", null, animacionDTO);
+        }
     }
 
     public void eliminar()
