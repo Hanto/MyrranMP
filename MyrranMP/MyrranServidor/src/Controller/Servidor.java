@@ -1,6 +1,6 @@
 package Controller;// Created by Hanto on 07/04/2014.
 
-import Controller.Network.DTO;
+import DTOs.NetDTO;
 import Controller.Network.NetServer;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -14,7 +14,7 @@ public class Servidor extends Server implements NetServer
     {
         controlador = controladorI;
 
-        DTO.register(this);
+        NetDTO.register(this);
         this.start();
 
         this.addListener(new Listener.ThreadedListener(new Listener()
@@ -24,25 +24,25 @@ public class Servidor extends Server implements NetServer
             public void received (Connection con, Object obj)   { procesarMensajeCliente(con, obj); }
         }));
 
-        try { this.bind(DTO.puerto); }
+        try { this.bind(NetDTO.puerto); }
         catch (Exception e) { System.out.println("ERROR: Inicio Servidor: "+e); }
     }
 
     public void procesarMensajeCliente(Connection con, Object obj)
     {
-        if (obj instanceof DTO.MoverPC)
+        if (obj instanceof NetDTO.MoverPC)
         {
             int conID = con.getID();
-            float x = ((DTO.MoverPC) obj).x;
-            float y = ((DTO.MoverPC) obj).y;
+            float x = ((NetDTO.MoverPC) obj).x;
+            float y = ((NetDTO.MoverPC) obj).y;
 
             controlador.moverPC(conID, x, y);
         }
 
-        if (obj instanceof DTO.CambiarAnimacionPC)
+        if (obj instanceof NetDTO.CambiarAnimacionPC)
         {
-            int conID = ((DTO.CambiarAnimacionPC) obj).connectionID;
-            int numAnimacion = ((DTO.CambiarAnimacionPC) obj).numAnimacion;
+            int conID = ((NetDTO.CambiarAnimacionPC) obj).connectionID;
+            int numAnimacion = ((NetDTO.CambiarAnimacionPC) obj).numAnimacion;
             controlador.cambiarAnimacionPC(conID, numAnimacion);
         }
     }

@@ -1,10 +1,10 @@
 package View.Actores;// Created by Hanto on 08/04/2014.
 
 import Controller.ControladorCliente;
-import Modelo.Mobiles.DTO;
-import Modelo.Mobiles.MundoModelC;
-import Modelo.Mobiles.PCModel;
-import Modelo.Mobiles.PlayerDTO;
+import DTOs.ActorDTO;
+import Modelo.DTO.ClientDTO;
+import Modelo.Models.MundoModelC;
+import Models.PCModel;
 import View.Graficos.PixiePC;
 import View.Vista;
 import com.badlogic.gdx.math.Interpolation;
@@ -48,6 +48,7 @@ public class PCView extends Group implements PropertyChangeListener
         actor = new PixiePC("Golem");
         this.addActor(actor);
         vista.stageMundo.addActor(this);
+        actor.setAnimacion(5, false);
     }
 
     public void eliminar()
@@ -67,20 +68,20 @@ public class PCView extends Group implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof DTO.PCPosition)
+        if (evt.getNewValue() instanceof ActorDTO.MoverPC)
         {
-            float x = ((DTO.PCPosition) evt.getNewValue()).x;
-            float y = ((DTO.PCPosition) evt.getNewValue()).y;
+            float x = ((ActorDTO.MoverPC) evt.getNewValue()).x;
+            float y = ((ActorDTO.MoverPC) evt.getNewValue()).y;
             mover(x, y);
         }
 
-        if (evt.getNewValue() instanceof PlayerDTO.PlayerAnimacion)
+        if (evt.getNewValue() instanceof ClientDTO.CambiarAnimacionPlayer)
         {
-            int numAnimacion = ((PlayerDTO.PlayerAnimacion) evt.getNewValue()).numAnimacion;
+            int numAnimacion = ((ClientDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
             setAnimacion(numAnimacion);
         }
 
-        if (evt.getNewValue() instanceof DTO.PCEliminar)
+        if (evt.getNewValue() instanceof ActorDTO.EliminarPC)
         {   eliminar(); }
     }
 }

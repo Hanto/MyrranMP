@@ -1,6 +1,7 @@
-package Modelo.Mobiles;// Created by Hanto on 10/04/2014.
+package Modelo.Models;// Created by Hanto on 10/04/2014.
 
 import Controller.Input.PlayerIO;
+import Models.PCModel;
 
 public interface PlayerModel extends PCModel
 {

@@ -1,5 +1,9 @@
 package Modelo.Mobiles;// Created by Hanto on 07/04/2014.
 
+import DTOs.ActorDTO;
+import Models.AbstractModel;
+import Models.PCModel;
+
 public class PC extends AbstractModel implements PCModel
 {
     protected int connectionID;                 //ID de la conexion con el servidor
@@ -54,7 +58,7 @@ public class PC extends AbstractModel implements PCModel
     public void setPosition(float x, float y)
     {
         this.x = x; this.y = y;
-        Object posicionDTO = new DTO.PCPosition(this, x, y);
+        Object posicionDTO = new ActorDTO.MoverPC(this, x, y);
         notificarActualizacion("setPosition", null, posicionDTO);
     }
 
@@ -63,14 +67,14 @@ public class PC extends AbstractModel implements PCModel
         if (this.numAnimacion != numAnimacion)
         {
             this.numAnimacion = numAnimacion;
-            Object animacionDTO = new DTO.PCAnimacion(numAnimacion);
+            Object animacionDTO = new ActorDTO.CambiarAnimacionPC(numAnimacion);
             notificarActualizacion("setAnimacion", null, animacionDTO);
         }
     }
 
     public void eliminar()
     {
-        Object eliminarDTO = new DTO.PCEliminar(this);
+        Object eliminarDTO = new ActorDTO.EliminarPC(this);
         notificarActualizacion("eliminar", null, eliminarDTO);
     }
 }

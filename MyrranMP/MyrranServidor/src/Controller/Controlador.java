@@ -2,7 +2,7 @@ package Controller;// Created by Hanto on 07/04/2014.
 
 import Controller.Network.NetServer;
 import Controller.Network.NetUpdater;
-import Modelo.Mobiles.MundoModel;
+import Models.MundoModel;
 import View.Vista;
 
 public class Controlador implements ControladorServidor

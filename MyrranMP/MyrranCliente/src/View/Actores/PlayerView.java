@@ -1,10 +1,10 @@
 package View.Actores;// Created by Hanto on 10/04/2014.
 
 import Controller.ControladorCliente;
-import Controller.Network.DTO;
-import Modelo.Mobiles.MundoModelC;
-import Modelo.Mobiles.PlayerDTO;
-import Modelo.Mobiles.PlayerModel;
+import DTOs.NetDTO;
+import Modelo.DTO.ClientDTO;
+import Modelo.Models.MundoModelC;
+import Modelo.Models.PlayerModel;
 import View.Graficos.PixiePC;
 import View.Vista;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -46,6 +46,7 @@ public class PlayerView extends Group implements PropertyChangeListener
         System.out.println("añadiendo Actor:");
         vista.stageMundo.addActor(this);
         System.out.println("numero Actores: "+vista.stageMundo.getActors().size);
+        actor.setAnimacion(5, false);
     }
 
     @Override public void setPosition (float x, float y)
@@ -53,7 +54,7 @@ public class PlayerView extends Group implements PropertyChangeListener
         if (Math.abs(this.getX()-x) >= 1f || Math.abs(this.getY()-y) >= 1f)
         {
             super.setPosition(x, y);
-            DTO.MoverPC moverPlayer = new DTO.MoverPC(player.getConnectionID(), getX(), getY());
+            NetDTO.MoverPC moverPlayer = new NetDTO.MoverPC(player.getConnectionID(), getX(), getY());
             controlador.getNetIO().enviarAServidor(moverPlayer);
         }
     }
@@ -61,23 +62,23 @@ public class PlayerView extends Group implements PropertyChangeListener
     public void setAnimacion (int numAnimacion)
     {
         actor.setAnimacion(numAnimacion, false);
-        DTO.CambiarAnimacionPC cambiarAnimacionPC = new DTO.CambiarAnimacionPC(player.getConnectionID(), numAnimacion);
+        NetDTO.CambiarAnimacionPC cambiarAnimacionPC = new NetDTO.CambiarAnimacionPC(player.getConnectionID(), numAnimacion);
         controlador.getNetIO().enviarAServidor(cambiarAnimacionPC);
         System.out.println("Player ID["+cambiarAnimacionPC.connectionID + "]Animacion["+cambiarAnimacionPC.numAnimacion+"]");
     }
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof PlayerDTO.PlayerPosition)
+        if (evt.getNewValue() instanceof ClientDTO.MoverPlayer)
         {
-            float x = ((PlayerDTO.PlayerPosition) evt.getNewValue()).x;
-            float y = ((PlayerDTO.PlayerPosition) evt.getNewValue()).y;
+            float x = ((ClientDTO.MoverPlayer) evt.getNewValue()).x;
+            float y = ((ClientDTO.MoverPlayer) evt.getNewValue()).y;
             setPosition(x, y);
         }
 
-        if (evt.getNewValue() instanceof PlayerDTO.PlayerAnimacion)
+        if (evt.getNewValue() instanceof ClientDTO.CambiarAnimacionPlayer)
         {
-            int numAnimacion = ((PlayerDTO.PlayerAnimacion) evt.getNewValue()).numAnimacion;
+            int numAnimacion = ((ClientDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
             setAnimacion(numAnimacion);
         }
     }

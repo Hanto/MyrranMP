@@ -1,6 +1,6 @@
 package Controller;// Created by Hanto on 07/04/2014.
 
-import Modelo.Mobiles.MundoModel;
+import Models.MundoModel;
 
 public interface ControladorI
 {

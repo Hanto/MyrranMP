@@ -1,6 +1,8 @@
 package Modelo.Mobiles;// Created by Hanto on 07/04/2014.
 
-import Modelo.Mobiles.DTO.*;
+import DTOs.ActorDTO.*;
+import Models.AbstractModel;
+import Models.ProyectilModel;
 
 public class Proyectil extends AbstractModel implements ProyectilModel
 {
@@ -33,7 +35,7 @@ public class Proyectil extends AbstractModel implements ProyectilModel
     public void setPosicion (float x, float y)
     {
         this.x = x; this.y = y;
-        Object posicionDTO = new ProyectilPosition(this, x, y);
+        Object posicionDTO = new MoverProyectil(this, x, y);
         notificarActualizacion("setPosicion",null, posicionDTO);
     }
 

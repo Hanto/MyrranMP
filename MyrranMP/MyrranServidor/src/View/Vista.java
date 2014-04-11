@@ -1,10 +1,10 @@
 package View;// Created by Hanto on 07/04/2014.
 
 import Controller.ControladorServidor;
-import Modelo.Mobiles.DTO;
-import Modelo.Mobiles.DTO.MundoAñadirPC;
-import Modelo.Mobiles.MundoModel;
-import Modelo.Mobiles.PCModel;
+import DTOs.ActorDTO;
+import DTOs.ActorDTO.MundoAñadirPC;
+import Models.MundoModel;
+import Models.PCModel;
 import View.Actores.PCView;
 
 import java.beans.PropertyChangeEvent;
@@ -33,7 +33,7 @@ public class Vista implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof DTO.MundoAñadirPC)
+        if (evt.getNewValue() instanceof ActorDTO.MundoAñadirPC)
         {
             PCModel pc = ((MundoAñadirPC) evt.getNewValue()).pc;
             PCView pcView = new PCView(pc, this);

@@ -1,6 +1,9 @@
 package Modelo.Mobiles;// Created by Hanto on 07/04/2014.
 
-import Modelo.Mobiles.DTO.MundoAñadirPC;
+import DTOs.ActorDTO.MundoAñadirPC;
+import Models.AbstractModel;
+import Models.MundoModel;
+import Models.PCModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +31,7 @@ public class Mundo extends AbstractModel implements MundoModel
         PC pc = mapaPlayers.get(connectionID);
         listaPlayers.remove(pc);
         mapaPlayers.remove(connectionID);
-        //Object eliminarPC = new DTO.MundoEliminarPC(pc);
+        //Object eliminarPC = new ActorDTO.MundoEliminarPC(pc);
         //notificarActualizacion("eliminarPC", null, eliminarPC);
         pc.eliminar();
     }

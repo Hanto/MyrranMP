@@ -1,6 +1,8 @@
-package Modelo.Mobiles;// Created by Hanto on 11/04/2014.
+package Modelo.DTO;// Created by Hanto on 11/04/2014.
 
-public class PlayerDTO
+import Modelo.Models.PlayerModel;
+
+public class ClientDTO
 {
     public static class MundoAñadirPlayer
     {
@@ -9,19 +11,19 @@ public class PlayerDTO
         {   this.player = player; }
     }
 
-    public static class PlayerPosition
+    public static class MoverPlayer
     {
         public PlayerModel player;
         public float x;
         public float y;
-        public PlayerPosition(PlayerModel player, float x, float y)
+        public MoverPlayer(PlayerModel player, float x, float y)
         {   this.player = player; this.x = x; this.y = y; }
     }
 
-    public static class PlayerAnimacion
+    public static class CambiarAnimacionPlayer
     {
         public int numAnimacion;
-        public PlayerAnimacion (int numAnimacion)
+        public CambiarAnimacionPlayer(int numAnimacion)
         {   this.numAnimacion = numAnimacion; }
     }
 }

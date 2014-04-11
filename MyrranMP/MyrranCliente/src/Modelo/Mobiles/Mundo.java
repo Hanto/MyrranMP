@@ -1,5 +1,11 @@
 package Modelo.Mobiles;// Created by Hanto on 08/04/2014.
 
+import DTOs.ActorDTO;
+import Modelo.DTO.ClientDTO;
+import Modelo.Models.MundoModelC;
+import Models.AbstractModel;
+import Models.PCModel;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,7 +24,7 @@ public class Mundo extends AbstractModel implements MundoModelC
     @Override public void añadirPlayer (int connectionID)
     {
         player = new Player(connectionID);
-        Object añadirPlayer = new PlayerDTO.MundoAñadirPlayer(player);
+        Object añadirPlayer = new ClientDTO.MundoAñadirPlayer(player);
         notificarActualizacion("añadirPlayer", null, añadirPlayer);
     }
 
@@ -29,7 +35,7 @@ public class Mundo extends AbstractModel implements MundoModelC
         pc.setPosition(x, y);
         listaPlayers.add(pc);
         mapaPlayers.put(pc.getConnectionID(), pc);
-        Object añadirPC = new DTO.MundoAñadirPC(pc, pc.getX(), pc.getY());
+        Object añadirPC = new ActorDTO.MundoAñadirPC(pc, pc.getX(), pc.getY());
         notificarActualizacion("añadirPC", null, añadirPC);
     }
 

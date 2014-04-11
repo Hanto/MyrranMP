@@ -1,4 +1,6 @@
-package Modelo.Mobiles;// Created by Hanto on 11/04/2014.
+package Modelo.Models;// Created by Hanto on 11/04/2014.
+
+import Models.MundoModel;
 
 public interface MundoModelC extends MundoModel
 {
