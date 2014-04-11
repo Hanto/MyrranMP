@@ -2,9 +2,9 @@ package View;// Created by Hanto on 08/04/2014.
 
 import Controller.ControladorCliente;
 import DTOs.ActorDTO;
-import Modelo.DTO.ClientDTO;
-import Modelo.Models.MundoModelC;
-import Modelo.Models.PlayerModel;
+import Modelo.DTO.ClienteDTO;
+import Modelo.Mobiles.MundoModelC;
+import Modelo.Mobiles.PlayerModel;
 import Models.PCModel;
 import View.Actores.PCView;
 import View.Actores.PlayerView;
@@ -56,8 +56,8 @@ public class Vista implements PropertyChangeListener
 
         mundo.getPlayer().actualizar(delta);
 
-        //camara.position.x = player.getX();
-        //camara.position.y = player.getY();
+        camara.position.x = playerView.getX();
+        camara.position.y = playerView.getY();
         camara.update();
 
         //stageMundo.ordenarPorProfundidad();
@@ -86,9 +86,9 @@ public class Vista implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof  ClientDTO.MundoAñadirPlayer)
+        if (evt.getNewValue() instanceof  ClienteDTO.MundoAñadirPlayer)
         {
-            PlayerModel player = ((ClientDTO.MundoAñadirPlayer) evt.getNewValue()).player;
+            PlayerModel player = ((ClienteDTO.MundoAñadirPlayer) evt.getNewValue()).player;
             playerView = new PlayerView(player, this, controlador);
         }
 

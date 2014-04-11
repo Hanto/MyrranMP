@@ -2,8 +2,8 @@ package View.Actores;// Created by Hanto on 08/04/2014.
 
 import Controller.ControladorCliente;
 import DTOs.ActorDTO;
-import Modelo.DTO.ClientDTO;
-import Modelo.Models.MundoModelC;
+import Modelo.DTO.ClienteDTO;
+import Modelo.Mobiles.MundoModelC;
 import Models.PCModel;
 import View.Graficos.PixiePC;
 import View.Vista;
@@ -75,9 +75,9 @@ public class PCView extends Group implements PropertyChangeListener
             mover(x, y);
         }
 
-        if (evt.getNewValue() instanceof ClientDTO.CambiarAnimacionPlayer)
+        if (evt.getNewValue() instanceof ClienteDTO.CambiarAnimacionPlayer)
         {
-            int numAnimacion = ((ClientDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
+            int numAnimacion = ((ClienteDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
             setAnimacion(numAnimacion);
         }
 

@@ -219,7 +219,7 @@ public class PlayerEstado
             //if (contadorPolvo >= 1)
             //{
                 //contadorPolvo = 0;
-                //Pixie polvo = new Pixie(Recursos.polvoPasos);
+                //Pixie polvo = new Pixie(RSC.polvoPasos);
                 //polvo.setPosition(playerE.player.getX(), playerE.player.getY());
                 //polvo.setAnimacion(0, true);
                 //playerE.player.getActor().getStage().addActor(polvo);

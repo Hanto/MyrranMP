@@ -1,8 +1,7 @@
 package Modelo.Mobiles;// Created by Hanto on 08/04/2014.
 
 import DTOs.ActorDTO;
-import Modelo.DTO.ClientDTO;
-import Modelo.Models.MundoModelC;
+import Modelo.DTO.ClienteDTO;
 import Models.AbstractModel;
 import Models.PCModel;
 
@@ -24,7 +23,7 @@ public class Mundo extends AbstractModel implements MundoModelC
     @Override public void añadirPlayer (int connectionID)
     {
         player = new Player(connectionID);
-        Object añadirPlayer = new ClientDTO.MundoAñadirPlayer(player);
+        Object añadirPlayer = new ClienteDTO.MundoAñadirPlayer(player);
         notificarActualizacion("añadirPlayer", null, añadirPlayer);
     }
 

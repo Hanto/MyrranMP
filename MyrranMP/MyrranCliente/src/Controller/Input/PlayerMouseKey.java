@@ -25,7 +25,7 @@ public class PlayerMouseKey implements InputProcessor
         if (keycode == playerI.teclaIzquierda)  playerI.irIzquierda = true;
         if (keycode == playerI.teclaDerecha)    playerI.irDerecha = true;
         playerE.procesarInput();
-        controlador.aplicarPlayerIO();
+        controlador.aplicarInputAPlayer();
         return false;
     }
     
@@ -36,7 +36,7 @@ public class PlayerMouseKey implements InputProcessor
         if (keycode == playerI.teclaIzquierda)  playerI.irIzquierda = false;
         if (keycode == playerI.teclaDerecha)    playerI.irDerecha = false;
         playerE.procesarInput();
-        controlador.aplicarPlayerIO();
+        controlador.aplicarInputAPlayer();
         return false;
     }
     

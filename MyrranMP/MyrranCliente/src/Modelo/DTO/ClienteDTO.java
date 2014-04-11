@@ -1,8 +1,8 @@
 package Modelo.DTO;// Created by Hanto on 11/04/2014.
 
-import Modelo.Models.PlayerModel;
+import Modelo.Mobiles.PlayerModel;
 
-public class ClientDTO
+public class ClienteDTO
 {
     public static class MundoAñadirPlayer
     {

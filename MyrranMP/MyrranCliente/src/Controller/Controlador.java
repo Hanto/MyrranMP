@@ -5,8 +5,7 @@ import Controller.Input.PlayerGestures;
 import Controller.Input.PlayerIO;
 import Controller.Input.PlayerMouseKey;
 import Controller.Network.NetClient;
-import Models.MundoModel;
-import Modelo.Models.MundoModelC;
+import Modelo.Mobiles.MundoModelC;
 import View.Vista;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -20,11 +19,10 @@ public class Controlador implements ControladorCliente
     protected MundoModelC mundo;
     protected Vista vista;
 
+    //Input:
     protected PlayerIO playerInput = new PlayerIO();
     protected PlayerIO playerOutput = new PlayerIO();
-
     protected PlayerEstado playerEstado = new PlayerEstado(playerInput, playerOutput);
-
     protected InputMultiplexer inputMultiplexer = new InputMultiplexer();
 
     public Controlador (MundoModelC mundo)
@@ -44,14 +42,12 @@ public class Controlador implements ControladorCliente
     public void render (float delta)                                    { vista.render(delta); }
     public void dispose()                                               { vista.dispose(); }
 
-    @Override public MundoModel getMundo()                              { return mundo; }
     @Override public NetClient getNetIO()                               { return cliente; }
-    @Override public PlayerIO getPlayerIO()                             { return playerOutput; }
 
     @Override public void añadirPlayer(int connectionID)                { mundo.añadirPlayer(connectionID);}
     @Override public void eliminarPlayer()                              { mundo.eliminarPlayer();}
     @Override public void moverPlayer(float x, float y)                 { mundo.moverPlayer(x, y);}
-    @Override public void aplicarPlayerIO()                             { mundo.getPlayer().setInput(playerOutput); }
+    @Override public void aplicarInputAPlayer()                         { mundo.getPlayer().setInput(playerOutput); }
 
     @Override public void añadirPC(int connectionID, float x, float y)  { mundo.añadirPC(connectionID, x, y); }
     @Override public void eliminarPC(int connectionID)                  { mundo.eliminarPC(connectionID); }

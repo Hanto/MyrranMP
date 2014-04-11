@@ -11,12 +11,12 @@ public class MiscData
     public static final int GDX_Window_Horizontal_Resolution = 1600;
     public static final int GDX_Window_Vertical_Resolution = 900;
 
-    //Recursos:
+    //RSC:
     public final static String RECURSOS_Atlas_Carpeta_Imagenes_Origen = "images/";
     public final static String RECURSOS_Atlas_Carpeta_Imagenes_Destino = "atlas/";
     public final static String RECURSOS_Atlas_Atlas_Extension = "atlas";
 
-    //Actor Recursos:
+    //Actor RSC:
     public final static String ATLAS_PlayerSprites_LOC = "Player Sprites/";
     public final static String ATLAS_Armaduras_LOC = "Armaduras/";
 

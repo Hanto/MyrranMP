@@ -2,8 +2,8 @@ package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
 import Modelo.Mobiles.Mundo;
-import View.Actores.Recursos.ActorRecursos;
-import View.Actores.Recursos.LoadRecursos;
+import View.Actores.ActorRecursos;
+import zMain.LoadActores;
 import View.Graficos.Atlas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -22,7 +22,7 @@ public class PantallaLibGDX implements Screen
         this.myrranCliente = myrranCliente;
 
         ActorRecursos.get().setAtlas(Atlas.get().atlas);
-        LoadRecursos.cargarRecursos();
+        LoadActores.cargarRecursos();
 
         controlador = new Controlador(new Mundo());
     }

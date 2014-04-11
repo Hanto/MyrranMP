@@ -1,4 +1,4 @@
-package View.Actores.Recursos;// Created by Hanto on 11/04/2014.
+package View.Actores;// Created by Hanto on 11/04/2014.
 
 import View.Graficos.Pixie;
  import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -28,6 +28,9 @@ public class ActorRecursos
          public HashMap<String,Pixie>listaDeCapasTraseras = new HashMap<>();
          public HashMap<String,Pixie>listaDeCapasFrontales = new HashMap<>();
      }
+
+     public TextureRegion nameplateTotal;
+     public TextureRegion nameplateActual;
 
      public void setAtlas(TextureAtlas atlas)               { this.atlas = atlas; }
 

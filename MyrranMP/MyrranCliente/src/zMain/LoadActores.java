@@ -1,6 +1,8 @@
-package View.Actores.Recursos;// Created by Hanto on 11/04/2014.
+package zMain;// Created by Hanto on 11/04/2014.
 
-public class LoadRecursos
+import View.Actores.ActorRecursos;
+
+public class LoadActores
 {
     public static void cargarRecursos ()
     {

@@ -2,9 +2,9 @@ package View.Actores;// Created by Hanto on 10/04/2014.
 
 import Controller.ControladorCliente;
 import DTOs.NetDTO;
-import Modelo.DTO.ClientDTO;
-import Modelo.Models.MundoModelC;
-import Modelo.Models.PlayerModel;
+import Modelo.DTO.ClienteDTO;
+import Modelo.Mobiles.MundoModelC;
+import Modelo.Mobiles.PlayerModel;
 import View.Graficos.PixiePC;
 import View.Vista;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -69,16 +69,16 @@ public class PlayerView extends Group implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof ClientDTO.MoverPlayer)
+        if (evt.getNewValue() instanceof ClienteDTO.MoverPlayer)
         {
-            float x = ((ClientDTO.MoverPlayer) evt.getNewValue()).x;
-            float y = ((ClientDTO.MoverPlayer) evt.getNewValue()).y;
+            float x = ((ClienteDTO.MoverPlayer) evt.getNewValue()).x;
+            float y = ((ClienteDTO.MoverPlayer) evt.getNewValue()).y;
             setPosition(x, y);
         }
 
-        if (evt.getNewValue() instanceof ClientDTO.CambiarAnimacionPlayer)
+        if (evt.getNewValue() instanceof ClienteDTO.CambiarAnimacionPlayer)
         {
-            int numAnimacion = ((ClientDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
+            int numAnimacion = ((ClienteDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
             setAnimacion(numAnimacion);
         }
     }

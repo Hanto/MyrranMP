@@ -19,7 +19,6 @@ public class Controlador implements ControladorServidor
         netUpdater = new NetUpdater(this);
     }
 
-    @Override public MundoModel getMundo()                              { return mundo; }
     @Override public NetServer getNetIO()                               { return servidor; }
 
     @Override public void añadirPC (int connectionID, float x, float y) { mundo.añadirPC(connectionID, x, y); }

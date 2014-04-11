@@ -1,7 +1,7 @@
 package Modelo.Mobiles;// Created by Hanto on 08/04/2014.
 
 import DTOs.ActorDTO;
-import Modelo.DTO.ClientDTO;
+import Modelo.DTO.ClienteDTO;
 import Models.AbstractModel;
 import Models.PCModel;
 
@@ -34,7 +34,7 @@ public class PC extends AbstractModel implements PCModel
     public void setAnimacion (int numAnimacion)
     {
         this.numAnimacion = numAnimacion;
-        Object AnimacionDTO = new ClientDTO.CambiarAnimacionPlayer(numAnimacion);
+        Object AnimacionDTO = new ClienteDTO.CambiarAnimacionPlayer(numAnimacion);
         notificarActualizacion("setAnimacion", null, AnimacionDTO);
         System.out.println("model animacion a ["+numAnimacion+"]");
     }
