@@ -347,7 +347,7 @@ atlas11.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Player Sprites/Cabeza1
+Player Sprites/Desnudo
   rotate: false
   xy: 2, 651
   size: 432, 288

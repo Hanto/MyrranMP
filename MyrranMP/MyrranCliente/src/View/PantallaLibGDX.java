@@ -2,14 +2,16 @@ package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
 import Modelo.Mobiles.Mundo;
-import View.Graficos.Recursos;
+import View.Actores.Recursos.ActorRecursos;
+import View.Actores.Recursos.LoadRecursos;
+import View.Graficos.Atlas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import zMain.MyrranClient;
 
 
-public class PantallaJuego implements Screen
+public class PantallaLibGDX implements Screen
 {
     private MyrranClient myrranCliente;
     private Controlador controlador;
@@ -18,12 +20,14 @@ public class PantallaJuego implements Screen
 
     public String getNombrePantalla()           { return ((Object)this).getClass().getSimpleName(); }
 
-    public PantallaJuego (MyrranClient myrranCliente)
+    public PantallaLibGDX(MyrranClient myrranCliente)
     {
         this.myrranCliente = myrranCliente;
-        controlador = new Controlador(new Mundo());
 
-        Recursos.get().crearAtlas();
+        ActorRecursos.get().setAtlas(Atlas.get().atlas);
+        LoadRecursos.cargarRecursos();
+
+        controlador = new Controlador(new Mundo());
     }
 
     @Override public void show()

@@ -1,6 +1,6 @@
 package zMain;// Created by Hanto on 08/04/2014.
 
-import View.PantallaJuego;
+import View.PantallaLibGDX;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
@@ -37,9 +37,9 @@ public class MyrranClient extends Game
         Screen screen;
         switch (pantalla)
         {
-            case pantallaMenu:  screen = new PantallaJuego(this); break;
-            case pantallaJuego: screen = new PantallaJuego(this); break;
-            default:            screen = new PantallaJuego(this); break;
+            case pantallaMenu:  screen = new PantallaLibGDX(this); break;
+            case pantallaJuego: screen = new PantallaLibGDX(this); break;
+            default:            screen = new PantallaLibGDX(this); break;
         }
         setScreen(screen);
     }

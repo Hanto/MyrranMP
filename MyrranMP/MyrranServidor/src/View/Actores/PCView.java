@@ -39,8 +39,8 @@ public class PCView implements PropertyChangeListener
         y = pc.getY();
 
         vista.listaPCViews.add(this);
-        pc.eliminarObservador(vista);
         pc.añadirObservador(this);
+        pc.eliminarObservador(vista);
     }
 
     public void netUpdate()
@@ -77,6 +77,7 @@ public class PCView implements PropertyChangeListener
                     if (!listaPCsCercanos.contains(pcCercano))
                     {
                         listaPCsCercanos.add(pcCercano);
+                        System.out.println("Añadido PC ID: "+pc.getConnectionID());
                         Net.AñadirPC añadirPC = new Net.AñadirPC(pc);
                         servidor.enviarACliente(pcCercano.getConnectionID(), añadirPC);
                     }

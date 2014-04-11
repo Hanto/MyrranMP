@@ -4,10 +4,9 @@ import Controller.Input.ControladorCliente;
 import Modelo.Mobiles.DTO;
 import Modelo.Mobiles.MundoModel;
 import Modelo.Mobiles.PCModel;
-import View.PantallaJuego;
+import View.Graficos.PixiePC;
 import View.Vista;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -21,7 +20,7 @@ public class PCView extends Group implements PropertyChangeListener
     public MundoModel mundo;
 
     public int connectionID;
-    public Image actor;
+    public PixiePC actor;
 
     public PCView (PCModel pc, Vista vista, ControladorCliente controlador)
     {
@@ -35,21 +34,27 @@ public class PCView extends Group implements PropertyChangeListener
 
         vista.listaPCViews.add(this);
         pc.eliminarObservador(vista);
-        crearActor();
         pc.añadirObservador(this);
+
+        crearActor();
     }
 
     public void crearActor ()
     {
-        actor = new Image(PantallaJuego.texture);
+        actor = new PixiePC("Golem");
         this.addActor(actor);
         vista.stageMundo.addActor(this);
     }
 
-    @Override public void setPosition (float x, float y)
+    public void eliminar()
     {
-        super.setPosition(x, y);
+        pc.eliminarObservador(this);
+        vista.stageMundo.getRoot().removeActor(this);
+        vista.listaPCViews.removeValue(this, true);
     }
+
+    @Override public void setPosition (float x, float y)
+    {   super.setPosition(x, y); }
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
@@ -61,10 +66,6 @@ public class PCView extends Group implements PropertyChangeListener
         }
 
         if (evt.getNewValue() instanceof DTO.PCEliminar)
-        {
-            pc.eliminarObservador(this);
-            vista.stageMundo.getRoot().removeActor(this);
-            vista.listaPCViews.removeValue(this, true);
-        }
+        {   eliminar(); }
     }
 }

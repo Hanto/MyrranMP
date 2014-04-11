@@ -4,8 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import zMain.MiscData;
 
-public class Recursos
+public class Atlas
 {
+    private static class Singleton  { private static final Atlas get = new Atlas(); }
+    public static Atlas get()       { return Singleton.get; }
+
     public TextureAtlas atlas;
 
     public void crearAtlas()
@@ -15,6 +18,6 @@ public class Recursos
         atlas = new TextureAtlas(Gdx.files.internal(MiscData.RECURSOS_Atlas_Carpeta_Imagenes_Destino + MiscData.RECURSOS_Atlas_Atlas_Extension +".atlas"));
     }
 
-    private static class Singleton  { private static final Recursos get = new Recursos(); }
-    public static Recursos get()    { return Singleton.get; }
+    //Constructor:
+    public Atlas() { crearAtlas(); }
 }

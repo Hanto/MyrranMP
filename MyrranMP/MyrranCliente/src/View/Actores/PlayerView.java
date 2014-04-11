@@ -2,12 +2,12 @@ package View.Actores;// Created by Hanto on 10/04/2014.
 
 import Controller.Input.ControladorCliente;
 import Controller.Network.Net;
+import Modelo.Mobiles.DTO;
 import Modelo.Mobiles.MundoModel;
 import Modelo.Mobiles.PlayerModel;
-import View.PantallaJuego;
+import View.Graficos.PixiePC;
 import View.Vista;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -21,7 +21,7 @@ public class PlayerView extends Group implements PropertyChangeListener
     public MundoModel mundo;
 
     public int connectionID;
-    public Image actor;
+    public PixiePC actor;
 
     public PlayerView (PlayerModel player, Vista vista, ControladorCliente controlador)
     {
@@ -33,15 +33,19 @@ public class PlayerView extends Group implements PropertyChangeListener
         connectionID = player.getConnectionID();
         this.setPosition(player.getX(), player.getY());
 
+        player.eliminarObservador(vista);
         player.añadirObservador(this);
+
         crearActor();
     }
 
     public void crearActor ()
     {
-        actor = new Image(PantallaJuego.texture);
+        actor = new PixiePC("Golem");
         this.addActor(actor);
+        System.out.println("añadiendo Actor:");
         vista.stageMundo.addActor(this);
+        System.out.println("numero Actores: "+vista.stageMundo.getActors().size);
     }
 
     @Override public void setPosition (float x, float y)
@@ -53,10 +57,10 @@ public class PlayerView extends Group implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof Modelo.Mobiles.DTO.PlayerPosition)
+        if (evt.getNewValue() instanceof DTO.PlayerPosition)
         {
-            float x = ((Modelo.Mobiles.DTO.PlayerPosition) evt.getNewValue()).x;
-            float y = ((Modelo.Mobiles.DTO.PlayerPosition) evt.getNewValue()).y;
+            float x = ((DTO.PlayerPosition) evt.getNewValue()).x;
+            float y = ((DTO.PlayerPosition) evt.getNewValue()).y;
             setPosition(x, y);
         }
     }

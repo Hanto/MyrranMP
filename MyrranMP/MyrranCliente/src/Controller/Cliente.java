@@ -6,8 +6,6 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
-import javax.swing.*;
-
 public class Cliente extends Client implements NetClient
 {
     public ControladorI controlador;
@@ -27,7 +25,8 @@ public class Cliente extends Client implements NetClient
             public void disconnected (Connection con) { }
         }));
 
-        host = (String) JOptionPane.showInputDialog(null, "Host:", "Connect to server", JOptionPane.QUESTION_MESSAGE, null, null, "localhost");
+        host = "localhost";
+        //(String) JOptionPane.showInputDialog(null, "Host:", "Connect to server", JOptionPane.QUESTION_MESSAGE, null, null, "localhost");
 
         try { this.connect(Net.timeout, host, Net.puerto); }
         catch (Exception IOException) { System.out.println("ERROR: Imposible conectar cliente: "+IOException); }
@@ -49,6 +48,7 @@ public class Cliente extends Client implements NetClient
             int conID = ((Net.AñadirPC) obj).connectionID;
             float x = ((Net.AñadirPC) obj).x;
             float y = ((Net.AñadirPC) obj).y;
+            System.out.println("recibido añadir Player con ID: "+conID);
             controlador.añadirPC(conID, x, y);
         }
 

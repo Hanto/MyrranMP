@@ -33,7 +33,7 @@ public class Mundo extends AbstractModel implements MundoModel
         notificarActualizacion("añadirPC", null, añadirPC);
     }
 
-    @Override public void eliminarPlayer()                          {}
+    @Override public void eliminarPlayer()                          { }
     @Override public void eliminarPC (int connectionID)
     {
         PC pc = mapaPlayers.get(connectionID);
