@@ -1,24 +1,24 @@
 package DTO;// Created by Hanto on 09/04/2014.
 
-import Modelo.Mobiles.PCModel;
+import Modelo.Mobiles.PcModel;
 
-public class MobDTO
+public class PcDTO
 {
     public static class MundoAñadirPC
     {
-        public PCModel pcModel;
+        public PcModel pcModel;
         public float x;
         public float y;
-        public MundoAñadirPC(PCModel pcModel, float x, float y)
+        public MundoAñadirPC(PcModel pcModel, float x, float y)
         {   this.pcModel = pcModel; this.x = x; this.y = y; }
     }
 
     public static class MoverPC
     {
-        public PCModel pcModel;
+        public PcModel pcModel;
         public float x;
         public float y;
-        public MoverPC(PCModel pcModel, float x, float y)
+        public MoverPC(PcModel pcModel, float x, float y)
         {   this.pcModel = pcModel; this.x = x; this.y = y; }
     }
 
@@ -31,8 +31,8 @@ public class MobDTO
 
     public static class EliminarPC
     {
-        public PCModel pcModel;
-        public EliminarPC(PCModel pcModel)
+        public PcModel pcModel;
+        public EliminarPC(PcModel pcModel)
         {   this.pcModel = pcModel; }
     }
 }

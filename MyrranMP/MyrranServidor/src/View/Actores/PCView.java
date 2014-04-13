@@ -1,9 +1,9 @@
 package View.Actores;// Created by Hanto on 07/04/2014.
 
 import Controller.Controlador;
-import DTO.MobDTO;
+import DTO.PcDTO;
 import Modelo.Mobiles.MundoModel;
-import Modelo.Mobiles.PCModel;
+import Modelo.Mobiles.PcModel;
 import DTO.NetDTO;
 import View.Vista;
 import zMain.MiscData;
@@ -14,12 +14,12 @@ import java.util.ArrayList;
 
 public class PCView implements PropertyChangeListener
 {
-    public PCModel pcModel;
+    public PcModel pcModel;
     public Vista vista;
     public MundoModel mundoModel;
     public Controlador controlador;
 
-    private ArrayList<PCModel>listaPCsCercanos = new ArrayList<>();
+    private ArrayList<PcModel>listaPCsCercanos = new ArrayList<>();
 
     public boolean visible = false;
 
@@ -29,7 +29,7 @@ public class PCView implements PropertyChangeListener
     public boolean positionChanged = false;
     public int numAnimacion = 0;
 
-    public PCView (PCModel pcModel, Vista vista)
+    public PCView (PcModel pcModel, Vista vista)
     {
         this.pcModel = pcModel;
         this.vista = vista;
@@ -61,7 +61,7 @@ public class PCView implements PropertyChangeListener
 
     public void actualizarPlayersCercanos (Object obj)
     {
-        for (PCModel pcModelCercanos : listaPCsCercanos)
+        for (PcModel pcModelCercanos : listaPCsCercanos)
             controlador.enviarACliente(pcModelCercanos.getConnectionID(), obj);
     }
 
@@ -69,7 +69,7 @@ public class PCView implements PropertyChangeListener
     {
         for (PCView pcCercanos : vista.listaPCViews)
         {
-            PCModel pcModelCercano = pcCercanos.pcModel;
+            PcModel pcModelCercano = pcCercanos.pcModel;
 
             if (pcModelCercano.getConnectionID() != pcModel.getConnectionID())
             {
@@ -79,7 +79,7 @@ public class PCView implements PropertyChangeListener
                     if (!listaPCsCercanos.contains(pcModelCercano))
                     {
                         listaPCsCercanos.add(pcModelCercano);
-                        System.out.println("Añadido PCModel ID: "+ pcModel.getConnectionID());
+                        System.out.println("Añadido PcModel ID: "+ pcModel.getConnectionID());
                         NetDTO.AñadirPC añadirPC = new NetDTO.AñadirPC(pcModel);
                         controlador.enviarACliente(pcModelCercano.getConnectionID(), añadirPC);
                     }
@@ -118,16 +118,16 @@ public class PCView implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof MobDTO.MoverPC)
+        if (evt.getNewValue() instanceof PcDTO.MoverPC)
         {
-            x = ((MobDTO.MoverPC) evt.getNewValue()).x;
-            y = ((MobDTO.MoverPC) evt.getNewValue()).y;
+            x = ((PcDTO.MoverPC) evt.getNewValue()).x;
+            y = ((PcDTO.MoverPC) evt.getNewValue()).y;
             setPosition(x, y);
         }
 
-        if (evt.getNewValue() instanceof MobDTO.EliminarPC)
+        if (evt.getNewValue() instanceof PcDTO.EliminarPC)
         {
-            PCModel pcModel = ((MobDTO.EliminarPC) evt.getNewValue()).pcModel;
+            PcModel pcModel = ((PcDTO.EliminarPC) evt.getNewValue()).pcModel;
             NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(pcModel);
             pcModel.eliminarObservador(this);
             vista.listaPCViews.remove(this);
@@ -136,9 +136,9 @@ public class PCView implements PropertyChangeListener
 
         if (visible)
         {
-            if (evt.getNewValue() instanceof MobDTO.CambiarAnimacionPC)
+            if (evt.getNewValue() instanceof PcDTO.CambiarAnimacionPC)
             {
-                int numAnimacion = ((MobDTO.CambiarAnimacionPC) evt.getNewValue()).numAnimacion;
+                int numAnimacion = ((PcDTO.CambiarAnimacionPC) evt.getNewValue()).numAnimacion;
                 setAnimacion(numAnimacion);
             }
         }

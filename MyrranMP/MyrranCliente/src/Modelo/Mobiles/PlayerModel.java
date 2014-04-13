@@ -1,8 +1,8 @@
 package Modelo.Mobiles;// Created by Hanto on 10/04/2014.
 
 import Controller.Input.PlayerIO;
+import DTO.PlayerDTO;
 import Modelo.AbstractModel;
-import DTO.MobDTO;
 
 public class PlayerModel extends AbstractModel
 {
@@ -46,7 +46,7 @@ public class PlayerModel extends AbstractModel
     public void setPosition (float x, float y)
     {
         this.x = x; this.y = y;
-        Object posicionDTO = new MobDTO.MoverPlayer(this, x, y);
+        Object posicionDTO = new PlayerDTO.MoverPlayer(this, x, y);
         notificarActualizacion("setPosition", null, posicionDTO);
     }
 
@@ -55,7 +55,7 @@ public class PlayerModel extends AbstractModel
         if (this.numAnimacion != numAnimacion)
         {
             this.numAnimacion = numAnimacion;
-            Object AnimacionDTO = new MobDTO.CambiarAnimacionPlayer(numAnimacion);
+            Object AnimacionDTO = new PlayerDTO.CambiarAnimacionPlayer(numAnimacion);
             notificarActualizacion("setAnimacion", null, AnimacionDTO);
         }
     }

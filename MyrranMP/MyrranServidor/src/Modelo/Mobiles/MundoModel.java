@@ -1,32 +1,32 @@
 package Modelo.Mobiles;// Created by Hanto on 07/04/2014.
 
+import DTO.PcDTO;
 import Modelo.AbstractModel;
-import DTO.MobDTO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MundoModel extends AbstractModel
 {
-    public ArrayList<PCModel> listaPlayers = new ArrayList<>();
-    public HashMap<Integer, PCModel> mapaPlayers = new HashMap<>();
+    public ArrayList<PcModel> listaPlayers = new ArrayList<>();
+    public HashMap<Integer, PcModel> mapaPlayers = new HashMap<>();
 
 
-    public ArrayList<? extends PCModel> listaPlayers()    { return listaPlayers; }
+    public ArrayList<? extends PcModel> listaPlayers()    { return listaPlayers; }
 
     public void añadirPC (int connectionID, float x, float y)
     {
-        PCModel pcModel = new PCModel(connectionID);
+        PcModel pcModel = new PcModel(connectionID);
         pcModel.setPosition(x, y);
         listaPlayers.add(pcModel);
         mapaPlayers.put(pcModel.getConnectionID(), pcModel);
-        Object añadirPC = new MobDTO.MundoAñadirPC(pcModel, pcModel.getX(), pcModel.getY());
+        Object añadirPC = new PcDTO.MundoAñadirPC(pcModel, pcModel.getX(), pcModel.getY());
         notificarActualizacion("añadirPC", null, añadirPC);
     }
 
     public void eliminarPC (int connectionID)
     {
-        PCModel pcModel = mapaPlayers.get(connectionID);
+        PcModel pcModel = mapaPlayers.get(connectionID);
         listaPlayers.remove(pcModel);
         mapaPlayers.remove(connectionID);
         pcModel.eliminar();

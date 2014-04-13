@@ -1,6 +1,6 @@
 package DTO;// Created by Hanto on 07/04/2014.
 
-import Modelo.Mobiles.PCModel;
+import Modelo.Mobiles.PcModel;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
 import zMain.MiscData;
@@ -28,7 +28,7 @@ public class NetDTO
         public float y;
 
         public AñadirPC () {}
-        public AñadirPC (PCModel pcModel)
+        public AñadirPC (PcModel pcModel)
         { connectionID = pcModel.getConnectionID(); x = pcModel.getX(); y = pcModel.getY(); }
         public AñadirPC (int connectionID)
         {   this.connectionID = connectionID; }
@@ -59,7 +59,7 @@ public class NetDTO
         public int connectionID;
 
         public EliminarPC () {}
-        public EliminarPC (PCModel pcModel)
+        public EliminarPC (PcModel pcModel)
         {   connectionID = pcModel.getConnectionID(); }
         public EliminarPC (int connectionID)
         {   this.connectionID = connectionID; }

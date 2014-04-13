@@ -1,8 +1,8 @@
 package View.Actores;// Created by Hanto on 10/04/2014.
 
 import Controller.Controlador;
-import DTO.MobDTO;
 import DTO.NetDTO;
+import DTO.PlayerDTO;
 import Modelo.Mobiles.MundoModel;
 import Modelo.Mobiles.PlayerModel;
 import View.Graficos.PixiePC;
@@ -69,16 +69,16 @@ public class PlayerView extends Group implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof MobDTO.MoverPlayer)
+        if (evt.getNewValue() instanceof PlayerDTO.MoverPlayer)
         {
-            float x = ((MobDTO.MoverPlayer) evt.getNewValue()).x;
-            float y = ((MobDTO.MoverPlayer) evt.getNewValue()).y;
+            float x = ((PlayerDTO.MoverPlayer) evt.getNewValue()).x;
+            float y = ((PlayerDTO.MoverPlayer) evt.getNewValue()).y;
             setPosition(x, y);
         }
 
-        if (evt.getNewValue() instanceof MobDTO.CambiarAnimacionPlayer)
+        if (evt.getNewValue() instanceof PlayerDTO.CambiarAnimacionPlayer)
         {
-            int numAnimacion = ((MobDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
+            int numAnimacion = ((PlayerDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
             setAnimacion(numAnimacion);
         }
     }

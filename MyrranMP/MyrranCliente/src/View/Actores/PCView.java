@@ -1,9 +1,10 @@
 package View.Actores;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
-import DTO.MobDTO;
+import DTO.PcDTO;
+import DTO.PlayerDTO;
 import Modelo.Mobiles.MundoModel;
-import Modelo.Mobiles.PCModel;
+import Modelo.Mobiles.PcModel;
 import View.Graficos.PixiePC;
 import View.Vista;
 import com.badlogic.gdx.math.Interpolation;
@@ -16,7 +17,7 @@ import java.beans.PropertyChangeListener;
 
 public class PCView extends Group implements PropertyChangeListener
 {
-    public PCModel pcModel;
+    public PcModel pcModel;
     public Vista vista;
     public Controlador controlador;
     public MundoModel mundoModel;
@@ -24,7 +25,7 @@ public class PCView extends Group implements PropertyChangeListener
     public int connectionID;
     public PixiePC actor;
 
-    public PCView (PCModel pcModel, Vista vista, Controlador controlador)
+    public PCView (PcModel pcModel, Vista vista, Controlador controlador)
     {
         this.pcModel = pcModel;
         this.vista = vista;
@@ -68,20 +69,20 @@ public class PCView extends Group implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof MobDTO.MoverPC)
+        if (evt.getNewValue() instanceof PcDTO.MoverPC)
         {
-            float x = ((MobDTO.MoverPC) evt.getNewValue()).x;
-            float y = ((MobDTO.MoverPC) evt.getNewValue()).y;
+            float x = ((PcDTO.MoverPC) evt.getNewValue()).x;
+            float y = ((PcDTO.MoverPC) evt.getNewValue()).y;
             mover(x, y);
         }
 
-        if (evt.getNewValue() instanceof MobDTO.CambiarAnimacionPlayer)
+        if (evt.getNewValue() instanceof PlayerDTO.CambiarAnimacionPlayer)
         {
-            int numAnimacion = ((MobDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
+            int numAnimacion = ((PlayerDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
             setAnimacion(numAnimacion);
         }
 
-        if (evt.getNewValue() instanceof MobDTO.EliminarPC)
+        if (evt.getNewValue() instanceof PcDTO.EliminarPC)
         {   eliminar(); }
     }
 }
