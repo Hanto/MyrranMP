@@ -1,11 +1,10 @@
 package View;// Created by Hanto on 08/04/2014.
 
-import Controller.ControladorCliente;
-import DTOs.ActorDTO;
-import Modelo.DTO.ClienteDTO;
-import Modelo.Mobiles.MundoModelC;
+import Controller.Controlador;
+import DTO.MobDTO;
+import Modelo.Mobiles.MundoModel;
+import Modelo.Mobiles.PCModel;
 import Modelo.Mobiles.PlayerModel;
-import Models.PCModel;
 import View.Actores.PCView;
 import View.Actores.PlayerView;
 import com.badlogic.gdx.Gdx;
@@ -20,8 +19,8 @@ import java.beans.PropertyChangeListener;
 
 public class Vista implements PropertyChangeListener
 {
-    public ControladorCliente controlador;
-    public MundoModelC mundo;
+    public Controlador controlador;
+    public MundoModel mundoModel;
 
     public PlayerView playerView;
     public Array<PCView> listaPCViews = new Array<>();
@@ -32,10 +31,10 @@ public class Vista implements PropertyChangeListener
     public OrthographicCamera camara;
 
 
-    public Vista (ControladorCliente controlador, MundoModelC mundo)
+    public Vista (Controlador controlador, MundoModel mundoModel)
     {
         this.controlador = controlador;
-        this.mundo = mundo;
+        this.mundoModel = mundoModel;
 
         camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch = new SpriteBatch();
@@ -46,7 +45,7 @@ public class Vista implements PropertyChangeListener
         controlador.addInputProcessor(stageMundo);
 
         stageMundo.getViewport().setCamera(camara);
-        mundo.añadirObservador(this);
+        mundoModel.añadirObservador(this);
     }
 
     public void render (float delta)
@@ -54,7 +53,7 @@ public class Vista implements PropertyChangeListener
         Gdx.gl.glClearColor(0/2.55f, 0/2.55f, 0/2.55f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        mundo.getPlayer().actualizar(delta);
+        mundoModel.getPlayerModel().actualizar(delta);
 
         camara.position.x = playerView.getX();
         camara.position.y = playerView.getY();
@@ -86,16 +85,16 @@ public class Vista implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof  ClienteDTO.MundoAñadirPlayer)
+        if (evt.getNewValue() instanceof MobDTO.MundoAñadirPlayer)
         {
-            PlayerModel player = ((ClienteDTO.MundoAñadirPlayer) evt.getNewValue()).player;
-            playerView = new PlayerView(player, this, controlador);
+            PlayerModel playerModel = ((MobDTO.MundoAñadirPlayer) evt.getNewValue()).playerModel;
+            playerView = new PlayerView(playerModel, this, controlador);
         }
 
-        if (evt.getNewValue() instanceof ActorDTO.MundoAñadirPC)
+        if (evt.getNewValue() instanceof MobDTO.MundoAñadirPC)
         {
-            PCModel pc = ((ActorDTO.MundoAñadirPC) evt.getNewValue()).pc;
-            PCView pcView = new PCView(pc, this, controlador);
+            PCModel pcModel = ((MobDTO.MundoAñadirPC) evt.getNewValue()).pcModel;
+            PCView pcView = new PCView(pcModel, this, controlador);
         }
     }
 }

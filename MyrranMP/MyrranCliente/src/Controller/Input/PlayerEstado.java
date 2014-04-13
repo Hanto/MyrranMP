@@ -4,16 +4,16 @@ package Controller.Input;
 public class PlayerEstado
 {
     protected Estado estado;                    //Estado actual, hace que mismos inputs produzcan diferentes resultados
-    protected PlayerIO playerI;          //Player al que hace referencia, para poder consultar sus datos facilmente
+    protected PlayerIO playerI;          //PlayerModel al que hace referencia, para poder consultar sus datos facilmente
     protected PlayerIO playerO;
 
     protected int iDEstado=0;
 
 
-    //Clase ESTADO: define cada uno de los estados en los que puede estar un player:
+    //Clase ESTADO: define cada uno de los estados en los que puede estar un playerModel:
     public interface Estado 
     {   public void procesarInput(PlayerEstado playerE);   //reacciona a los diferentes inputs segun el estado en el que estemos
-        public void actualizar(PlayerEstado playerE);      //se ejecuta cada ciclo de update del player
+        public void actualizar(PlayerEstado playerE);      //se ejecuta cada ciclo de update del playerModel
     }
     //Constructor:
     public PlayerEstado(PlayerIO playerI, PlayerIO playerO)
@@ -220,9 +220,9 @@ public class PlayerEstado
             //{
                 //contadorPolvo = 0;
                 //Pixie polvo = new Pixie(RSC.polvoPasos);
-                //polvo.setPosition(playerE.player.getX(), playerE.player.getY());
+                //polvo.setPosition(playerE.playerModel.getX(), playerE.playerModel.getY());
                 //polvo.setAnimacion(0, true);
-                //playerE.player.getActor().getStage().addActor(polvo);
+                //playerE.playerModel.getActor().getStage().addActor(polvo);
             //}
         }
     }

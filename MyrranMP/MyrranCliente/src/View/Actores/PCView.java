@@ -1,10 +1,9 @@
 package View.Actores;// Created by Hanto on 08/04/2014.
 
-import Controller.ControladorCliente;
-import DTOs.ActorDTO;
-import Modelo.DTO.ClienteDTO;
-import Modelo.Mobiles.MundoModelC;
-import Models.PCModel;
+import Controller.Controlador;
+import DTO.MobDTO;
+import Modelo.Mobiles.MundoModel;
+import Modelo.Mobiles.PCModel;
 import View.Graficos.PixiePC;
 import View.Vista;
 import com.badlogic.gdx.math.Interpolation;
@@ -17,28 +16,27 @@ import java.beans.PropertyChangeListener;
 
 public class PCView extends Group implements PropertyChangeListener
 {
-    public PCModel pc;
+    public PCModel pcModel;
     public Vista vista;
-    public ControladorCliente controlador;
-    //Datos derivados:
-    public MundoModelC mundo;
+    public Controlador controlador;
+    public MundoModel mundoModel;
 
     public int connectionID;
     public PixiePC actor;
 
-    public PCView (PCModel pc, Vista vista, ControladorCliente controlador)
+    public PCView (PCModel pcModel, Vista vista, Controlador controlador)
     {
-        this.pc = pc;
+        this.pcModel = pcModel;
         this.vista = vista;
         this.controlador = controlador;
-        this.mundo = vista.mundo;
+        this.mundoModel = vista.mundoModel;
 
-        connectionID = pc.getConnectionID();
-        this.setPosition(pc.getX(), pc.getY());
+        connectionID = pcModel.getConnectionID();
+        this.setPosition(pcModel.getX(), pcModel.getY());
 
         vista.listaPCViews.add(this);
-        pc.eliminarObservador(vista);
-        pc.añadirObservador(this);
+        pcModel.eliminarObservador(vista);
+        pcModel.añadirObservador(this);
 
         crearActor();
     }
@@ -53,13 +51,15 @@ public class PCView extends Group implements PropertyChangeListener
 
     public void eliminar()
     {
-        pc.eliminarObservador(this);
+        pcModel.eliminarObservador(this);
         vista.stageMundo.getRoot().removeActor(this);
         vista.listaPCViews.removeValue(this, true);
     }
 
     public void mover(float x, float y)
-    {   this.addAction(Actions.moveTo(x, y, MiscData.NETWORK_Update_Time / 1000f, Interpolation.linear));
+    {
+        //TODO hay que hacerlo por setPosition y en cambio mover el model interpoladamente
+        this.addAction(Actions.moveTo(x, y, MiscData.NETWORK_Update_Time / 1000f, Interpolation.linear));
         //setPosition(x,y);
     }
 
@@ -68,20 +68,20 @@ public class PCView extends Group implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof ActorDTO.MoverPC)
+        if (evt.getNewValue() instanceof MobDTO.MoverPC)
         {
-            float x = ((ActorDTO.MoverPC) evt.getNewValue()).x;
-            float y = ((ActorDTO.MoverPC) evt.getNewValue()).y;
+            float x = ((MobDTO.MoverPC) evt.getNewValue()).x;
+            float y = ((MobDTO.MoverPC) evt.getNewValue()).y;
             mover(x, y);
         }
 
-        if (evt.getNewValue() instanceof ClienteDTO.CambiarAnimacionPlayer)
+        if (evt.getNewValue() instanceof MobDTO.CambiarAnimacionPlayer)
         {
-            int numAnimacion = ((ClienteDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
+            int numAnimacion = ((MobDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
             setAnimacion(numAnimacion);
         }
 
-        if (evt.getNewValue() instanceof ActorDTO.EliminarPC)
+        if (evt.getNewValue() instanceof MobDTO.EliminarPC)
         {   eliminar(); }
     }
 }

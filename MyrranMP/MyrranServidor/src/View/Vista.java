@@ -1,10 +1,9 @@
 package View;// Created by Hanto on 07/04/2014.
 
-import Controller.ControladorServidor;
-import DTOs.ActorDTO;
-import DTOs.ActorDTO.MundoAñadirPC;
-import Models.MundoModel;
-import Models.PCModel;
+import Controller.Controlador;
+import DTO.MobDTO;
+import Modelo.Mobiles.MundoModel;
+import Modelo.Mobiles.PCModel;
 import View.Actores.PCView;
 
 import java.beans.PropertyChangeEvent;
@@ -13,16 +12,17 @@ import java.util.ArrayList;
 
 public class Vista implements PropertyChangeListener
 {
-    public ControladorServidor controlador;
-    public MundoModel mundo;
+    public Controlador controlador;
+    public MundoModel mundoModel;
 
     public ArrayList<PCView>listaPCViews = new ArrayList<>();
 
     //Constructor:
-    public Vista (ControladorServidor controlador, MundoModel mundo)
+    public Vista (Controlador controlador, MundoModel mundoModel)
     {
-        mundo.añadirObservador(this);
-        this.controlador = controlador; this.mundo = mundo;
+        mundoModel.añadirObservador(this);
+        this.controlador = controlador;
+        this.mundoModel = mundoModel;
     }
 
     public void netUpdate()
@@ -33,10 +33,10 @@ public class Vista implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof ActorDTO.MundoAñadirPC)
+        if (evt.getNewValue() instanceof MobDTO.MundoAñadirPC)
         {
-            PCModel pc = ((MundoAñadirPC) evt.getNewValue()).pc;
-            PCView pcView = new PCView(pc, this);
+            PCModel pcModel = ((MobDTO.MundoAñadirPC) evt.getNewValue()).pcModel;
+            PCView pcView = new PCView(pcModel, this);
 
             for ( PCView gente: listaPCViews)
             {   gente.quienMeVe(); }

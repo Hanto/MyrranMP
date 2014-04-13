@@ -1,17 +1,17 @@
 package Controller.Input;
 // @author Ivan Delgado Huerta
 
-import Controller.ControladorCliente;
+import Controller.Controlador;
 import com.badlogic.gdx.InputProcessor;
 
 public class PlayerMouseKey implements InputProcessor
 {
     private PlayerEstado playerE;
     private PlayerIO playerI;
-    private ControladorCliente controlador;
+    private Controlador controlador;
 
     //CONSTRUCTOR:
-    public PlayerMouseKey(PlayerEstado playerEstado, ControladorCliente controlador)
+    public PlayerMouseKey(PlayerEstado playerEstado, Controlador controlador)
     {
         playerE = playerEstado;
         playerI = playerE.playerI;

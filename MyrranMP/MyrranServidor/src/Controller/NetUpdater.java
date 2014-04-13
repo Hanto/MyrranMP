@@ -1,13 +1,12 @@
-package Controller.Network;// Created by Hanto on 09/04/2014.
+package Controller;// Created by Hanto on 09/04/2014.
 
-import Controller.ControladorI;
 import zMain.MiscData;
 
 public class NetUpdater implements Runnable
 {
-    ControladorI controlador;
+    Controlador controlador;
 
-    public NetUpdater(ControladorI controlador)
+    public NetUpdater(Controlador controlador)
     {
         this.controlador = controlador;
         new Thread(this).start();

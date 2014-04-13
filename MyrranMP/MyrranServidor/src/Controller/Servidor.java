@@ -1,21 +1,23 @@
 package Controller;// Created by Hanto on 07/04/2014.
 
-import DTOs.NetDTO;
-import Controller.Network.NetServer;
+import DTO.NetDTO;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
-public class Servidor extends Server implements NetServer
+public class Servidor extends Server
 {
-    public ControladorI controlador;
+    public Controlador controlador;
 
-    public Servidor (ControladorI controladorI)
+    public Servidor (Controlador control)
     {
-        controlador = controladorI;
+        this.controlador = control;
 
         NetDTO.register(this);
         this.start();
+
+        //Para activar el log completo de mensajes:
+        //Log.TRACE();
 
         this.addListener(new Listener.ThreadedListener(new Listener()
         {
@@ -28,7 +30,7 @@ public class Servidor extends Server implements NetServer
         catch (Exception e) { System.out.println("ERROR: Inicio Servidor: "+e); }
     }
 
-    public void procesarMensajeCliente(Connection con, Object obj)
+    private void procesarMensajeCliente(Connection con, Object obj)
     {
         if (obj instanceof NetDTO.MoverPC)
         {
@@ -47,12 +49,12 @@ public class Servidor extends Server implements NetServer
         }
     }
 
-    @Override public void enviarACliente(int connectionID, Object obj)
+    public void enviarACliente(int connectionID, Object obj)
     {   this.sendToTCP(connectionID, obj); }
 
-    @Override public void enviarATodosClientes(Object obj)
+    public void enviarATodosClientes(Object obj)
     {   this.sendToAllTCP(obj); }
 
-    @Override public void enviarATodosClientesMenosUno(int connectionID, Object obj)
+    public void enviarATodosClientesMenosUno(int connectionID, Object obj)
     {   this.sendToAllExceptTCP(connectionID, obj);}
 }

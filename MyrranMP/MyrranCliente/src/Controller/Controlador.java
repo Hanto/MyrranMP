@@ -4,8 +4,7 @@ import Controller.Input.PlayerEstado;
 import Controller.Input.PlayerGestures;
 import Controller.Input.PlayerIO;
 import Controller.Input.PlayerMouseKey;
-import Controller.Network.NetClient;
-import Modelo.Mobiles.MundoModelC;
+import Modelo.Mobiles.MundoModel;
 import View.Vista;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -13,10 +12,10 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 //CLIENTE:
-public class Controlador implements ControladorCliente
+public class Controlador
 {
-    protected NetClient cliente;
-    protected MundoModelC mundo;
+    protected Cliente cliente;
+    protected MundoModel mundoModel;
     protected Vista vista;
 
     //Input:
@@ -25,10 +24,10 @@ public class Controlador implements ControladorCliente
     protected PlayerEstado playerEstado = new PlayerEstado(playerInput, playerOutput);
     protected InputMultiplexer inputMultiplexer = new InputMultiplexer();
 
-    public Controlador (MundoModelC mundo)
+    public Controlador (MundoModel mundoModel)
     {
-        this.mundo = mundo;
-        vista = new Vista(this, mundo);
+        this.mundoModel = mundoModel;
+        vista = new Vista(this, mundoModel);
 
         inputMultiplexer.addProcessor(new GestureDetector(new PlayerGestures()));
         inputMultiplexer.addProcessor(new PlayerMouseKey(playerEstado, this));
@@ -42,22 +41,17 @@ public class Controlador implements ControladorCliente
     public void render (float delta)                                    { vista.render(delta); }
     public void dispose()                                               { vista.dispose(); }
 
-    @Override public NetClient getNetIO()                               { return cliente; }
+    public void enviarAServidor(Object o)                               { cliente.enviarAServidor(o); }
 
-    @Override public void añadirPlayer(int connectionID)                { mundo.añadirPlayer(connectionID);}
-    @Override public void eliminarPlayer()                              { mundo.eliminarPlayer();}
-    @Override public void moverPlayer(float x, float y)                 { mundo.moverPlayer(x, y);}
-    @Override public void aplicarInputAPlayer()                         { mundo.getPlayer().setInput(playerOutput); }
+    public void añadirPlayer(int connectionID)                          { mundoModel.añadirPlayer(connectionID);}
+    public void eliminarPlayer()                                        { mundoModel.eliminarPlayer();}
+    public void moverPlayer(float x, float y)                           { mundoModel.moverPlayer(x, y);}
+    public void aplicarInputAPlayer()                                   { mundoModel.getPlayerModel().setInput(playerOutput); }
 
-    @Override public void añadirPC(int connectionID, float x, float y)  { mundo.añadirPC(connectionID, x, y); }
-    @Override public void eliminarPC(int connectionID)                  { mundo.eliminarPC(connectionID); }
-    @Override public void moverPC(int connectionID, float x, float y)   { mundo.moverPC(connectionID, x, y); }
+    public void añadirPC(int connectionID, float x, float y)            { mundoModel.añadirPC(connectionID, x, y); }
+    public void eliminarPC(int connectionID)                            { mundoModel.eliminarPC(connectionID); }
+    public void moverPC(int connectionID, float x, float y)             { mundoModel.moverPC(connectionID, x, y); }
+    public void cambiarAnimacionPC(int connectionID, int numAnimacion)  { mundoModel.cambiarAnimacionPC(connectionID, numAnimacion); }
 
-    @Override public void cambiarAnimacionPC(int connectionID, int numAnimacion)
-    {   mundo.cambiarAnimacionPC(connectionID, numAnimacion); }
-
-    @Override public void addInputProcessor(Stage stage)                { inputMultiplexer.addProcessor(stage); }
-    @Override public void netUpdater()                                  { }
-
-
+    public void addInputProcessor(Stage stage)                          { inputMultiplexer.addProcessor(stage); }
 }

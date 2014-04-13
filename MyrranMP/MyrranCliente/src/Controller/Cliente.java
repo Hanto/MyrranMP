@@ -1,22 +1,25 @@
 package Controller;// Created by Hanto on 08/04/2014.
 
-import DTOs.NetDTO;
-import Controller.Network.NetClient;
+import DTO.NetDTO;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
+import com.esotericsoftware.minlog.Log;
 
-public class Cliente extends Client implements NetClient
+public class Cliente extends Client
 {
-    public ControladorI controlador;
+    public Controlador controlador;
     public String host;
 
-    public Cliente (ControladorI controladorI)
+    public Cliente (Controlador controlador)
     {
-        controlador = controladorI;
+        this.controlador = controlador;
 
         NetDTO.register(this);
         this.start();
+
+        //Para activar el log completo de mensajes:
+        Log.TRACE();
 
         this.addListener(new Listener.ThreadedListener(new Listener()
         {
@@ -32,7 +35,7 @@ public class Cliente extends Client implements NetClient
         catch (Exception IOException) { System.out.println("ERROR: Imposible conectar cliente: "+IOException); }
     }
 
-    public void procesarMensajeServidor (Connection con, Object obj)
+    private void procesarMensajeServidor (Connection con, Object obj)
     {
         if (obj instanceof NetDTO.MoverPC)
         {
@@ -56,7 +59,7 @@ public class Cliente extends Client implements NetClient
             int conID = ((NetDTO.AñadirPC) obj).connectionID;
             float x = ((NetDTO.AñadirPC) obj).x;
             float y = ((NetDTO.AñadirPC) obj).y;
-            System.out.println("recibido añadir Player con ID: "+conID);
+            System.out.println("recibido añadir PlayerModel con ID: "+conID);
             controlador.añadirPC(conID, x, y);
         }
 
@@ -67,6 +70,6 @@ public class Cliente extends Client implements NetClient
         }
     }
 
-    @Override public void enviarAServidor(Object obj)
+    public void enviarAServidor(Object obj)
     {   this.sendTCP(obj); }
 }

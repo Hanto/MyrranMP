@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="KryoNet">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Librerias/KryoNet/jars/debug/onejar/kryonet-2.21-all.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../../Librerias/KryoNet/javadoc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../Librerias/KryoNet/java/src" />
+      <root url="file://$PROJECT_DIR$/../../Librerias/KryoNet/java/test" />
+      <root url="file://$PROJECT_DIR$/../../Librerias/KryoNet/java/examples" />
+    </SOURCES>
+  </library>
+</component>

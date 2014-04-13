@@ -7,10 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Java Kryonet" level="application" />
+    <orderEntry type="library" name="LibGDX" level="project" />
+    <orderEntry type="library" name="KryoNet" level="project" />
     <orderEntry type="module" module-name="MyrranMP" />
-    <orderEntry type="library" name="LibGDX" level="application" />
-    <orderEntry type="library" name="gdx-tools" level="application" />
   </component>
 </module>
 

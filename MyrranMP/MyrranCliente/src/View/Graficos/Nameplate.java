@@ -10,12 +10,10 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 public class Nameplate extends Group
 {
     //NAMEPLATES
-    protected Sprite barraVidaTotal;                //Imagen que contiene el nameplateTotal de la vida del Player
-    protected Sprite barraVidaActual;               //Imagen que contiene el fondo de la vida del nameplateTotal del Player
-    protected float ultimosHPsRenderizados;
+    protected Sprite barraVidaTotal;                //Imagen que contiene el nameplateTotal de la vida del PlayerModel
+    protected Sprite barraVidaActual;               //Imagen que contiene el fondo de la vida del nameplateTotal del PlayerModel
     protected Sprite barraCasteoTotal;
     protected Sprite barraCasteoActual;
-    protected float ultimoCasteoRenderizado;
         
     public Nameplate()
     {

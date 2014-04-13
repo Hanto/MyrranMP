@@ -1,10 +1,10 @@
 package View.Actores;// Created by Hanto on 07/04/2014.
 
-import DTOs.NetDTO;
-import Controller.Network.NetServer;
-import DTOs.ActorDTO;
-import Models.MundoModel;
-import Models.PCModel;
+import Controller.Controlador;
+import DTO.MobDTO;
+import Modelo.Mobiles.MundoModel;
+import Modelo.Mobiles.PCModel;
+import DTO.NetDTO;
 import View.Vista;
 import zMain.MiscData;
 
@@ -14,10 +14,10 @@ import java.util.ArrayList;
 
 public class PCView implements PropertyChangeListener
 {
-    public PCModel pc;
+    public PCModel pcModel;
     public Vista vista;
-    public MundoModel mundo;
-    public NetServer servidor;
+    public MundoModel mundoModel;
+    public Controlador controlador;
 
     private ArrayList<PCModel>listaPCsCercanos = new ArrayList<>();
 
@@ -29,20 +29,20 @@ public class PCView implements PropertyChangeListener
     public boolean positionChanged = false;
     public int numAnimacion = 0;
 
-    public PCView (PCModel pc, Vista vista)
+    public PCView (PCModel pcModel, Vista vista)
     {
-        this.pc = pc;
+        this.pcModel = pcModel;
         this.vista = vista;
-        mundo = vista.mundo;
-        servidor = vista.controlador.getNetIO();
+        this.controlador = vista.controlador;
+        mundoModel = vista.mundoModel;
 
-        connectionID = pc.getConnectionID();
-        x = pc.getX();
-        y = pc.getY();
+        connectionID = pcModel.getConnectionID();
+        x = pcModel.getX();
+        y = pcModel.getY();
 
         vista.listaPCViews.add(this);
-        pc.añadirObservador(this);
-        pc.eliminarObservador(vista);
+        pcModel.añadirObservador(this);
+        pcModel.eliminarObservador(vista);
     }
 
     public void netUpdate()
@@ -61,36 +61,36 @@ public class PCView implements PropertyChangeListener
 
     public void actualizarPlayersCercanos (Object obj)
     {
-        for (PCModel pcCercanos: listaPCsCercanos)
-            servidor.enviarACliente(pcCercanos.getConnectionID(), obj);
+        for (PCModel pcModelCercanos : listaPCsCercanos)
+            controlador.enviarACliente(pcModelCercanos.getConnectionID(), obj);
     }
 
     public void quienMeVe()
     {
         for (PCView pcCercanos : vista.listaPCViews)
         {
-            PCModel pcCercano = pcCercanos.pc;
+            PCModel pcModelCercano = pcCercanos.pcModel;
 
-            if (pcCercano.getConnectionID() != pc.getConnectionID())
+            if (pcModelCercano.getConnectionID() != pcModel.getConnectionID())
             {
-                if (Math.abs(pcCercano.getX()-pc.getX()) <= 2*MiscData.GDX_Window_Horizontal_Resolution &&
-                    Math.abs(pcCercano.getY()-pc.getY()) <= 2*MiscData.GDX_Window_Vertical_Resolution     )
+                if (Math.abs(pcModelCercano.getX()- pcModel.getX()) <= 2*MiscData.GDX_Window_Horizontal_Resolution &&
+                    Math.abs(pcModelCercano.getY()- pcModel.getY()) <= 2*MiscData.GDX_Window_Vertical_Resolution     )
                 {
-                    if (!listaPCsCercanos.contains(pcCercano))
+                    if (!listaPCsCercanos.contains(pcModelCercano))
                     {
-                        listaPCsCercanos.add(pcCercano);
-                        System.out.println("Añadido PC ID: "+pc.getConnectionID());
-                        NetDTO.AñadirPC añadirPC = new NetDTO.AñadirPC(pc);
-                        servidor.enviarACliente(pcCercano.getConnectionID(), añadirPC);
+                        listaPCsCercanos.add(pcModelCercano);
+                        System.out.println("Añadido PCModel ID: "+ pcModel.getConnectionID());
+                        NetDTO.AñadirPC añadirPC = new NetDTO.AñadirPC(pcModel);
+                        controlador.enviarACliente(pcModelCercano.getConnectionID(), añadirPC);
                     }
                 }
                 else
                 {
-                    if (listaPCsCercanos.contains(pcCercano))
+                    if (listaPCsCercanos.contains(pcModelCercano))
                     {
-                        listaPCsCercanos.remove(pcCercano);
-                        NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(pc);
-                        servidor.enviarACliente(pcCercano.getConnectionID(), eliminarPC);
+                        listaPCsCercanos.remove(pcModelCercano);
+                        NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(pcModel);
+                        controlador.enviarACliente(pcModelCercano.getConnectionID(), eliminarPC);
                     }
                 }
             }
@@ -118,27 +118,27 @@ public class PCView implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof ActorDTO.MoverPC)
+        if (evt.getNewValue() instanceof MobDTO.MoverPC)
         {
-            x = ((ActorDTO.MoverPC) evt.getNewValue()).x;
-            y = ((ActorDTO.MoverPC) evt.getNewValue()).y;
+            x = ((MobDTO.MoverPC) evt.getNewValue()).x;
+            y = ((MobDTO.MoverPC) evt.getNewValue()).y;
             setPosition(x, y);
         }
 
-        if (evt.getNewValue() instanceof ActorDTO.EliminarPC)
+        if (evt.getNewValue() instanceof MobDTO.EliminarPC)
         {
-            PCModel pc = ((ActorDTO.EliminarPC) evt.getNewValue()).pc;
-            NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(pc);
-            pc.eliminarObservador(this);
+            PCModel pcModel = ((MobDTO.EliminarPC) evt.getNewValue()).pcModel;
+            NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(pcModel);
+            pcModel.eliminarObservador(this);
             vista.listaPCViews.remove(this);
             actualizarPlayersCercanos(eliminarPC);
         }
 
         if (visible)
         {
-            if (evt.getNewValue() instanceof ActorDTO.CambiarAnimacionPC)
+            if (evt.getNewValue() instanceof MobDTO.CambiarAnimacionPC)
             {
-                int numAnimacion = ((ActorDTO.CambiarAnimacionPC) evt.getNewValue()).numAnimacion;
+                int numAnimacion = ((MobDTO.CambiarAnimacionPC) evt.getNewValue()).numAnimacion;
                 setAnimacion(numAnimacion);
             }
         }
