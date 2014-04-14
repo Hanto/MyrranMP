@@ -1,7 +1,9 @@
 package Controller;// Created by Hanto on 07/04/2014.
 
+import Modelo.DAO.DAOFactory.PcDBFactory;
+import Modelo.DAO.DAOFactory.TerrenoDBFactory;
 import Modelo.DAO.PcDAO;
-import Modelo.DAO.PcDBFactory;
+import Modelo.DAO.TerrenoDAO;
 import Modelo.Mobiles.MundoModel;
 import View.Vista;
 
@@ -11,6 +13,7 @@ public class Controlador
     protected NetUpdater netUpdater;
 
     protected PcDAO pcDAO = PcDBFactory.LOCAL.newInstance();
+    protected TerrenoDAO terrenoDAO = TerrenoDBFactory.LOCAL.newInstance();
 
     protected MundoModel mundoModel;
     protected Vista vista;

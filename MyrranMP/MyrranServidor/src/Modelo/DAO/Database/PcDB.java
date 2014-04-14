@@ -15,16 +15,13 @@ public class PcDB implements PcDAO
     public ArrayList<PcModel> listaPCDB = new ArrayList<PcModel>();
 
 
-
     public PcDB()
-    {
-        cargarListaPCDB();
-    }
+    {   cargarListaPCDB();}
 
-    @Override public void añadirPC(PcModel pc)      { listaPCDB.add(pc); salvarListaPCDB(); }
+    @Override public void añadirPC(PcModel pc)      { }
     @Override public PcModel getPC(int iD)          { return null; }
     @Override public void salvarPC()                { }
-    @Override public void eliminarPC(PcModel pc)    { listaPCDB.remove(pc); salvarListaPCDB(); }
+    @Override public void eliminarPC(PcModel pc)    { }
 
     public void salvarListaPCDB()
     {
