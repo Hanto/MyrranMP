@@ -1,7 +1,8 @@
 package Modelo.Mobiles;// Created by Hanto on 08/04/2014.
 
+import Modelo.DTO.PcDTO;
+import Modelo.DTO.PlayerDTO;
 import Modelo.AbstractModel;
-import DTO.MobDTO;
 
 public class PCModel extends AbstractModel
 {
@@ -10,7 +11,6 @@ public class PCModel extends AbstractModel
     protected Float x;                      //Coordenadas X:
     protected Float y;                      //Coordenadas Y:
     protected int numAnimacion = 5;
-
 
 
     public int getConnectionID()            { return connectionID; }
@@ -26,21 +26,21 @@ public class PCModel extends AbstractModel
     public void setPosition (float x, float y)
     {
         this.x = x; this.y = y;
-        Object posicionDTO = new MobDTO.MoverPC(this, x, y);
+        Object posicionDTO = new PcDTO.PositionPC(this, x, y);
         notificarActualizacion("setPosition", null, posicionDTO);
     }
 
     public void setAnimacion (int numAnimacion)
     {
         this.numAnimacion = numAnimacion;
-        Object AnimacionDTO = new MobDTO.CambiarAnimacionPlayer(numAnimacion);
+        Object AnimacionDTO = new PlayerDTO.AnimacionPlayer(numAnimacion);
         notificarActualizacion("setAnimacion", null, AnimacionDTO);
         System.out.println("model animacion a ["+numAnimacion+"]");
     }
 
     public void eliminar()
     {
-        Object eliminarPC = new MobDTO.EliminarPC(this);
+        Object eliminarPC = new PcDTO.EliminarPC(this);
         notificarActualizacion("eliminarPC", null, eliminarPC);
     }
 }

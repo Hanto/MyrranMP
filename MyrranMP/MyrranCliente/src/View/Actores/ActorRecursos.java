@@ -1,11 +1,13 @@
 package View.Actores;// Created by Hanto on 11/04/2014.
 
 import View.Graficos.Pixie;
- import com.badlogic.gdx.graphics.g2d.TextureAtlas;
- import com.badlogic.gdx.graphics.g2d.TextureRegion;
- import zMain.MiscData;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import zMain.MiscData;
 
- import java.util.HashMap;
+import java.util.HashMap;
 
 public class ActorRecursos
  {
@@ -32,7 +34,13 @@ public class ActorRecursos
      public TextureRegion nameplateTotal;
      public TextureRegion nameplateActual;
 
-     public void setAtlas(TextureAtlas atlas)               { this.atlas = atlas; }
+     public BitmapFont font14;
+
+     public void setAtlas(TextureAtlas atlas)
+     {
+         this.atlas = atlas;
+         font14 = new BitmapFont(Gdx.files.internal("fonts/14.fnt"), false);
+     }
 
      public void añadirRazaPC(String iDRaza)
      {

@@ -1,15 +1,19 @@
 package Modelo.Mobiles;// Created by Hanto on 10/04/2014.
 
 import Controller.Input.PlayerIO;
-import DTO.PlayerDTO;
+import Modelo.DTO.PlayerDTO;
 import Modelo.AbstractModel;
 
 public class PlayerModel extends AbstractModel
 {
     protected Integer connectionID;
+    protected String nombre;
+    protected Integer nivel;
+    protected Float actualHPs;
+    protected Float maxHPs;
     //Posicion:
-    protected Float x;                      //Coordenadas X:
-    protected Float y;                      //Coordenadas Y:
+    protected Float x = 0.0f;                      //Coordenadas X:
+    protected Float y = 0.0f;                      //Coordenadas Y:
 
     protected Integer numAnimacion = 5;
 
@@ -22,10 +26,17 @@ public class PlayerModel extends AbstractModel
     protected Float velocidadMax = 80.0f;
     protected Float velocidadMod = 1.0f;
 
-
+    //GET:
     public int getConnectionID()            { return connectionID; }
+    public String getNombre()               { return nombre; }
+    public Integer getNivel()               { return nivel; }
+    public Float getActualHPs()             { return actualHPs; }
+    public Float getMaxHPs()                { return maxHPs; }
     public float getX()                     { return x; }
     public float getY()                     { return y; }
+
+    //SET:
+
 
     public PlayerModel(int connectionID)
     {
@@ -43,21 +54,50 @@ public class PlayerModel extends AbstractModel
         setAnimacion (playerInput.numAnimacion);
     }
 
-    public void setPosition (float x, float y)
-    {
-        this.x = x; this.y = y;
-        Object posicionDTO = new PlayerDTO.MoverPlayer(this, x, y);
-        notificarActualizacion("setPosition", null, posicionDTO);
-    }
-
     private void setAnimacion (int numAnimacion)
     {
         if (this.numAnimacion != numAnimacion)
         {
             this.numAnimacion = numAnimacion;
-            Object AnimacionDTO = new PlayerDTO.CambiarAnimacionPlayer(numAnimacion);
+            Object AnimacionDTO = new PlayerDTO.AnimacionPlayer(numAnimacion);
             notificarActualizacion("setAnimacion", null, AnimacionDTO);
         }
+    }
+
+    public void setPosition (float x, float y)
+    {
+        this.x = x; this.y = y;
+        Object posicionDTO = new PlayerDTO.PositionPlayer(this, x, y);
+        notificarActualizacion("setPosition", null, posicionDTO);
+    }
+
+    public void setNombre (String nombre)
+    {
+        this.nombre = nombre;
+        Object nombreDTO = new PlayerDTO.NombrePlayer(nombre);
+        notificarActualizacion("setNombre", null, nombreDTO);
+    }
+
+    public void setNivel (int nivel)
+    {
+        this.nivel = nivel;
+        Object nivelDTO = new PlayerDTO.NivelPlayer(nivel);
+        notificarActualizacion("setNivel", null, nivelDTO);
+
+    }
+
+    public void setActualHPs (float hps)
+    {
+        actualHPs = hps;
+        Object HPsDTO = new PlayerDTO.ActualHPsPlayer(hps);
+        notificarActualizacion("setActualHPs", null, HPsDTO);
+    }
+
+    public void setMaxHPs (float mHps)
+    {
+        maxHPs = mHps;
+        Object mHPsDTO = new PlayerDTO.MaxHPs(mHps);
+        notificarActualizacion("setMaxHPs", null, mHPsDTO);
     }
 
     private void moverse (float delta)

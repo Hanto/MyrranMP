@@ -1,10 +1,9 @@
 package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
-import DTO.PcDTO;
-import DTO.PlayerDTO;
+import Modelo.DTO.MundoDTO;
 import Modelo.Mobiles.MundoModel;
-import Modelo.Mobiles.PcModel;
+import Modelo.Mobiles.PCModel;
 import Modelo.Mobiles.PlayerModel;
 import View.Actores.PCView;
 import View.Actores.PlayerView;
@@ -86,15 +85,15 @@ public class Vista implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof PlayerDTO.MundoAñadirPlayer)
+        if (evt.getNewValue() instanceof MundoDTO.AñadirPlayer)
         {
-            PlayerModel playerModel = ((PlayerDTO.MundoAñadirPlayer) evt.getNewValue()).playerModel;
+            PlayerModel playerModel = ((MundoDTO.AñadirPlayer) evt.getNewValue()).playerModel;
             playerView = new PlayerView(playerModel, this, controlador);
         }
 
-        if (evt.getNewValue() instanceof PcDTO.MundoAñadirPC)
+        if (evt.getNewValue() instanceof MundoDTO.AñadirPC)
         {
-            PcModel pcModel = ((PcDTO.MundoAñadirPC) evt.getNewValue()).pcModel;
+            PCModel pcModel = ((MundoDTO.AñadirPC) evt.getNewValue()).pcModel;
             PCView pcView = new PCView(pcModel, this, controlador);
         }
     }

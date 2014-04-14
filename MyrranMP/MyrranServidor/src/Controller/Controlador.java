@@ -1,5 +1,7 @@
 package Controller;// Created by Hanto on 07/04/2014.
 
+import Modelo.DAO.PcDAO;
+import Modelo.DAO.PcDBFactory;
 import Modelo.Mobiles.MundoModel;
 import View.Vista;
 
@@ -7,6 +9,9 @@ public class Controlador
 {
     protected Servidor servidor = new Servidor(this);                  //Input principal de la simulacion
     protected NetUpdater netUpdater;
+
+    protected PcDAO pcDAO = PcDBFactory.LOCAL.newInstance();
+
     protected MundoModel mundoModel;
     protected Vista vista;
 

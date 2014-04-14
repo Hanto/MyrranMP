@@ -4,6 +4,7 @@ import Controller.Input.PlayerEstado;
 import Controller.Input.PlayerGestures;
 import Controller.Input.PlayerIO;
 import Controller.Input.PlayerMouseKey;
+import Modelo.DTO.NetDTO;
 import Modelo.Mobiles.MundoModel;
 import View.Vista;
 import com.badlogic.gdx.Gdx;
@@ -44,6 +45,7 @@ public class Controlador
     public void enviarAServidor(Object o)                               { cliente.enviarAServidor(o); }
 
     public void añadirPlayer(int connectionID)                          { mundoModel.añadirPlayer(connectionID);}
+    public void actualizarPlayer(NetDTO.ActualizarPlayer updatePlayer)  { mundoModel.actualizarPlayer (updatePlayer); }
     public void eliminarPlayer()                                        { mundoModel.eliminarPlayer();}
     public void moverPlayer(float x, float y)                           { mundoModel.moverPlayer(x, y);}
     public void aplicarInputAPlayer()                                   { mundoModel.getPlayerModel().setInput(playerOutput); }

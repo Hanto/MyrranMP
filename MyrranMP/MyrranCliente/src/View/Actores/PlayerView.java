@@ -1,13 +1,16 @@
 package View.Actores;// Created by Hanto on 10/04/2014.
 
 import Controller.Controlador;
-import DTO.NetDTO;
-import DTO.PlayerDTO;
+import Modelo.DTO.NetDTO;
+import Modelo.DTO.PlayerDTO;
 import Modelo.Mobiles.MundoModel;
 import Modelo.Mobiles.PlayerModel;
 import View.Graficos.PixiePC;
+import View.Graficos.Texto;
 import View.Vista;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -20,7 +23,10 @@ public class PlayerView extends Group implements PropertyChangeListener
     //Datos derivados:
     public MundoModel mundoModel;
 
-    public int connectionID;
+    public Integer connectionID;
+    public Texto nombre;
+    public Integer nivel;
+
     public PixiePC actor;
 
     public PlayerView (PlayerModel playerModel, Vista vista, Controlador controlador)
@@ -49,6 +55,14 @@ public class PlayerView extends Group implements PropertyChangeListener
         actor.setAnimacion(5, false);
     }
 
+    public void setNombre (String nuevoNombre)
+    {
+        this.removeActor(nombre);
+        nombre = new Texto(nuevoNombre, ActorRecursos.get().font14, Color.WHITE, Color.BLACK, actor.getWidth()/2, 0, Align.center, Align.bottom, 1);
+        nombre.setPosition(0, actor.getHeight()+12);
+        this.addActor(nombre);
+    }
+
     @Override public void setPosition (float x, float y)
     {
         if (Math.abs(this.getX()-x) >= 1.0f || Math.abs(this.getY()-y) >= 1.0f)
@@ -69,17 +83,25 @@ public class PlayerView extends Group implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof PlayerDTO.MoverPlayer)
+        if (evt.getNewValue() instanceof PlayerDTO.PositionPlayer)
         {
-            float x = ((PlayerDTO.MoverPlayer) evt.getNewValue()).x;
-            float y = ((PlayerDTO.MoverPlayer) evt.getNewValue()).y;
+            float x = ((PlayerDTO.PositionPlayer) evt.getNewValue()).x;
+            float y = ((PlayerDTO.PositionPlayer) evt.getNewValue()).y;
             setPosition(x, y);
         }
 
-        if (evt.getNewValue() instanceof PlayerDTO.CambiarAnimacionPlayer)
+        if (evt.getNewValue() instanceof PlayerDTO.AnimacionPlayer)
         {
-            int numAnimacion = ((PlayerDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
+            int numAnimacion = ((PlayerDTO.AnimacionPlayer) evt.getNewValue()).numAnimacion;
             setAnimacion(numAnimacion);
         }
+
+        if (evt.getNewValue() instanceof PlayerDTO.NombrePlayer)
+        {   String nuevoNombre = ((PlayerDTO.NombrePlayer) evt.getNewValue()).nombre;
+            setNombre(nuevoNombre);
+        }
+
+        if (evt.getNewValue() instanceof PlayerDTO.NivelPlayer)
+        {   nivel = ((PlayerDTO.NivelPlayer) evt.getNewValue()).nivel; }
     }
 }

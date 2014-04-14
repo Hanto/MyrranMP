@@ -1,21 +1,22 @@
 package View;// Created by Hanto on 07/04/2014.
 
 import Controller.Controlador;
-import DTO.PcDTO;
+import Modelo.DTO.MundoDTO;
 import Modelo.Mobiles.MundoModel;
 import Modelo.Mobiles.PcModel;
-import View.Actores.PCView;
+import View.Actores.PcView;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Vista implements PropertyChangeListener
 {
     public Controlador controlador;
     public MundoModel mundoModel;
 
-    public ArrayList<PCView>listaPCViews = new ArrayList<>();
+    public List<PcView> listaPcViews = new ArrayList<>();
 
     //Constructor:
     public Vista (Controlador controlador, MundoModel mundoModel)
@@ -27,18 +28,18 @@ public class Vista implements PropertyChangeListener
 
     public void netUpdate()
     {
-        for (PCView pcView: listaPCViews)
+        for (PcView pcView: listaPcViews)
             pcView.netUpdate();
     }
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof PcDTO.MundoAñadirPC)
+        if (evt.getNewValue() instanceof MundoDTO.AñadirPC)
         {
-            PcModel pcModel = ((PcDTO.MundoAñadirPC) evt.getNewValue()).pcModel;
-            PCView pcView = new PCView(pcModel, this);
+            PcModel pcModel = ((MundoDTO.AñadirPC) evt.getNewValue()).pcModel;
+            PcView pcView = new PcView(pcModel, this);
 
-            for ( PCView gente: listaPCViews)
+            for ( PcView gente: listaPcViews)
             {   gente.quienMeVe(); }
         }
     }

@@ -1,10 +1,10 @@
 package View.Actores;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
-import DTO.PcDTO;
-import DTO.PlayerDTO;
+import Modelo.DTO.PcDTO;
+import Modelo.DTO.PlayerDTO;
 import Modelo.Mobiles.MundoModel;
-import Modelo.Mobiles.PcModel;
+import Modelo.Mobiles.PCModel;
 import View.Graficos.PixiePC;
 import View.Vista;
 import com.badlogic.gdx.math.Interpolation;
@@ -17,7 +17,7 @@ import java.beans.PropertyChangeListener;
 
 public class PCView extends Group implements PropertyChangeListener
 {
-    public PcModel pcModel;
+    public PCModel pcModel;
     public Vista vista;
     public Controlador controlador;
     public MundoModel mundoModel;
@@ -25,7 +25,7 @@ public class PCView extends Group implements PropertyChangeListener
     public int connectionID;
     public PixiePC actor;
 
-    public PCView (PcModel pcModel, Vista vista, Controlador controlador)
+    public PCView (PCModel pcModel, Vista vista, Controlador controlador)
     {
         this.pcModel = pcModel;
         this.vista = vista;
@@ -69,16 +69,16 @@ public class PCView extends Group implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof PcDTO.MoverPC)
+        if (evt.getNewValue() instanceof PcDTO.PositionPC)
         {
-            float x = ((PcDTO.MoverPC) evt.getNewValue()).x;
-            float y = ((PcDTO.MoverPC) evt.getNewValue()).y;
+            float x = ((PcDTO.PositionPC) evt.getNewValue()).x;
+            float y = ((PcDTO.PositionPC) evt.getNewValue()).y;
             mover(x, y);
         }
 
-        if (evt.getNewValue() instanceof PlayerDTO.CambiarAnimacionPlayer)
+        if (evt.getNewValue() instanceof PlayerDTO.AnimacionPlayer)
         {
-            int numAnimacion = ((PlayerDTO.CambiarAnimacionPlayer) evt.getNewValue()).numAnimacion;
+            int numAnimacion = ((PlayerDTO.AnimacionPlayer) evt.getNewValue()).numAnimacion;
             setAnimacion(numAnimacion);
         }
 

@@ -1,18 +1,20 @@
 package Modelo.Mobiles;// Created by Hanto on 07/04/2014.
 
-import DTO.PcDTO;
 import Modelo.AbstractModel;
+import Modelo.DTO.MundoDTO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MundoModel extends AbstractModel
 {
-    public ArrayList<PcModel> listaPlayers = new ArrayList<>();
-    public HashMap<Integer, PcModel> mapaPlayers = new HashMap<>();
+    public List<PcModel> listaPlayers = new ArrayList<>();
+    public Map<Integer, PcModel> mapaPlayers = new HashMap<>();
 
 
-    public ArrayList<? extends PcModel> listaPlayers()    { return listaPlayers; }
+    public List<? extends PcModel> listaPlayers()    { return listaPlayers; }
 
     public void añadirPC (int connectionID, float x, float y)
     {
@@ -20,7 +22,7 @@ public class MundoModel extends AbstractModel
         pcModel.setPosition(x, y);
         listaPlayers.add(pcModel);
         mapaPlayers.put(pcModel.getConnectionID(), pcModel);
-        Object añadirPC = new PcDTO.MundoAñadirPC(pcModel, pcModel.getX(), pcModel.getY());
+        Object añadirPC = new MundoDTO.AñadirPC(pcModel, pcModel.getX(), pcModel.getY());
         notificarActualizacion("añadirPC", null, añadirPC);
     }
 

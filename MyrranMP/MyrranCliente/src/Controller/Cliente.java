@@ -1,10 +1,9 @@
 package Controller;// Created by Hanto on 08/04/2014.
 
-import DTO.NetDTO;
+import Modelo.DTO.NetDTO;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
-import com.esotericsoftware.minlog.Log;
 
 public class Cliente extends Client
 {
@@ -19,7 +18,7 @@ public class Cliente extends Client
         this.start();
 
         //Para activar el log completo de mensajes:
-        Log.TRACE();
+        //Log.TRACE();
 
         this.addListener(new Listener.ThreadedListener(new Listener()
         {
@@ -28,8 +27,7 @@ public class Cliente extends Client
             public void disconnected (Connection con) { }
         }));
 
-        host = "localhost";
-        //(String) JOptionPane.showInputDialog(null, "Host:", "Connect to server", JOptionPane.QUESTION_MESSAGE, null, null, "localhost");
+        host = "localhost"; //(String) JOptionPane.showInputDialog(null, "Host:", "Connect to server", JOptionPane.QUESTION_MESSAGE, null, null, "localhost");
 
         try { this.connect(NetDTO.timeout, host, NetDTO.puerto); }
         catch (Exception IOException) { System.out.println("ERROR: Imposible conectar cliente: "+IOException); }
@@ -37,6 +35,11 @@ public class Cliente extends Client
 
     private void procesarMensajeServidor (Connection con, Object obj)
     {
+        if (obj instanceof NetDTO.ActualizarPlayer)
+        {
+            controlador.actualizarPlayer((NetDTO.ActualizarPlayer)obj);
+        }
+
         if (obj instanceof NetDTO.MoverPC)
         {
             int conID = ((NetDTO.MoverPC) obj).connectionID;

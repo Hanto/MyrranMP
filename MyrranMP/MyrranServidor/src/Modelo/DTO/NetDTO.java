@@ -1,4 +1,4 @@
-package DTO;// Created by Hanto on 07/04/2014.
+package Modelo.DTO;// Created by Hanto on 07/04/2014.
 
 import Modelo.Mobiles.PcModel;
 import com.esotericsoftware.kryo.Kryo;
@@ -13,6 +13,7 @@ public class NetDTO
     public static void register (EndPoint endPoint)
     {
         Kryo kryo = endPoint.getKryo();
+        kryo.register(ActualizarPlayer.class);
         kryo.register(MoverPC.class);
         kryo.register(CambiarAnimacionPC.class);
         kryo.register(AñadirPC.class);
@@ -20,6 +21,27 @@ public class NetDTO
     }
 
     //Network DTOs:
+
+    public static class ActualizarPlayer
+    {
+        public int connectionID;
+        public String nombre;
+        public Integer nivel;
+        public Float actualHPs;
+        public Float maxHPs;
+        public float x;
+        public float y;
+        public ActualizarPlayer() {}
+        public ActualizarPlayer(PcModel pcModel)
+        {   connectionID = pcModel.getConnectionID();
+            nombre = pcModel.getNombre();
+            nivel = pcModel.getNivel();
+            actualHPs = pcModel.getActualHPs();
+            maxHPs = pcModel.getMaxHPs();
+            x = pcModel.getX();
+            y = pcModel.getY();
+        }
+    }
 
     public static class AñadirPC
     {
