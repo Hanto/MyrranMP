@@ -1,10 +1,6 @@
 package Controller;// Created by Hanto on 07/04/2014.
 
-import Modelo.DAO.DAOFactory.PcDBFactory;
-import Modelo.DAO.DAOFactory.TerrenoDBFactory;
-import Modelo.DAO.PcDAO;
-import Modelo.DAO.TerrenoDAO;
-import Modelo.Mobiles.MundoModel;
+import Model.Mobiles.MundoModel;
 import View.Vista;
 
 public class Controlador
@@ -12,11 +8,9 @@ public class Controlador
     protected Servidor servidor = new Servidor(this);                  //Input principal de la simulacion
     protected NetUpdater netUpdater;
 
-    protected PcDAO pcDAO = PcDBFactory.LOCAL.newInstance();
-    protected TerrenoDAO terrenoDAO = TerrenoDBFactory.LOCAL.newInstance();
-
     protected MundoModel mundoModel;
     protected Vista vista;
+
 
     public Controlador (MundoModel mundoModel)
     {

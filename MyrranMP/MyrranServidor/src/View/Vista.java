@@ -1,10 +1,10 @@
 package View;// Created by Hanto on 07/04/2014.
 
 import Controller.Controlador;
-import Modelo.DTO.MundoDTO;
-import Modelo.Mobiles.MundoModel;
-import Modelo.Mobiles.PcModel;
-import View.Actores.PcView;
+import Model.DTO.MundoDTO;
+import Model.Mobiles.MundoModel;
+import Model.Mobiles.PcModel;
+import View.Mobiles.PcView;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

@@ -1,16 +1,17 @@
 package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
-import Modelo.DTO.MundoDTO;
-import Modelo.Mobiles.MundoModel;
-import Modelo.Mobiles.PCModel;
-import Modelo.Mobiles.PlayerModel;
-import View.Actores.PCView;
-import View.Actores.PlayerView;
+import Model.DTO.MundoDTO;
+import Model.Mobiles.MundoModel;
+import Model.Mobiles.PCModel;
+import View.Geo.MapaVista;
+import View.Mobiles.PCView;
+import View.Mobiles.PlayerView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 
@@ -29,7 +30,9 @@ public class Vista implements PropertyChangeListener
     public Stage stageUI;
     public SpriteBatch batch;
     public OrthographicCamera camara;
+    public OrthogonalTiledMapRenderer mapRenderer;
 
+    public MapaVista mapaVista;
 
     public Vista (Controlador controlador, MundoModel mundoModel)
     {
@@ -40,6 +43,9 @@ public class Vista implements PropertyChangeListener
         batch = new SpriteBatch();
         stageMundo = new Stage();
         stageUI = new Stage();
+        playerView = new PlayerView(mundoModel.playerModel, this, controlador);
+        mapaVista = new MapaVista(this);
+        mapRenderer = new OrthogonalTiledMapRenderer(mapaVista);
 
         controlador.addInputProcessor(stageUI);
         controlador.addInputProcessor(stageMundo);
@@ -63,9 +69,10 @@ public class Vista implements PropertyChangeListener
 
         batch.setProjectionMatrix(camara.combined);
         //rayHandler.setCombinedMatrix(camara.combined);
-        //mapRenderer.setView(camara);
 
-        //mapRenderer.render();
+        mapRenderer.setView(camara);
+        mapRenderer.render();
+
         batch.begin();
         batch.end();
         stageMundo.act(delta);
@@ -85,12 +92,6 @@ public class Vista implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof MundoDTO.AñadirPlayer)
-        {
-            PlayerModel playerModel = ((MundoDTO.AñadirPlayer) evt.getNewValue()).playerModel;
-            playerView = new PlayerView(playerModel, this, controlador);
-        }
-
         if (evt.getNewValue() instanceof MundoDTO.AñadirPC)
         {
             PCModel pcModel = ((MundoDTO.AñadirPC) evt.getNewValue()).pcModel;

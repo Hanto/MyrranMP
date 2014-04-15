@@ -1,6 +1,6 @@
 package View.Graficos;
 
-import View.Actores.ActorRecursos;
+import View.Mobiles.MobilesRecursos;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
@@ -29,7 +29,7 @@ public class PixiePC extends Actor
     //protected Sprite sombra;                        //Imagen que Contiene la sombra del personaje
     
     public int getNumAnimacion()                    { return numAnimacion; }
-    private HashMap<String, ActorRecursos.EquipoPC> listaDePCRazas;
+    private HashMap<String, MobilesRecursos.EquipoPC> listaDePCRazas;
 
     
     //CONSTRUCTOR: inicializa y crea la animacion base, con el cuerpo de humano y el set desnudo
@@ -37,7 +37,7 @@ public class PixiePC extends Actor
     {
         this.iDRaza = iDRaza;
 
-        listaDePCRazas = ActorRecursos.get().listaDePCRazas;
+        listaDePCRazas = MobilesRecursos.get().listaDePCRazas;
 
         cuerpo = new Pixie(listaDePCRazas.get(iDRaza).listaDeCuerpos.get(iDRaza));
         cabeza = new Pixie(listaDePCRazas.get(iDRaza).listaDeCabezas.get("Desnudo"));

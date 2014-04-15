@@ -1,6 +1,7 @@
 package zMain;// Created by Hanto on 08/04/2014.
 
 import View.PantallaLibGDX;
+import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
@@ -23,7 +24,7 @@ public class MyrranClient extends Game
         //cfg.useGL30 = true;
         cfg.width = MiscData.GDX_Window_Horizontal_Resolution;
         cfg.height = MiscData.GDX_Window_Vertical_Resolution;
-        //cfg.addIcon("Images/Spell Icons/FireBall.png", Files.FileType.Internal);
+        cfg.addIcon("Images/Spell Icons/FireBall.png", Files.FileType.Internal);
         new LwjglApplication(new MyrranClient(), cfg);
     }
 

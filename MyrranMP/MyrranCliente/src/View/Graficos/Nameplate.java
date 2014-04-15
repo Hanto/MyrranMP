@@ -1,6 +1,6 @@
 package View.Graficos;
 
-import View.Actores.ActorRecursos;
+import View.Mobiles.MobilesRecursos;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -17,10 +17,10 @@ public class Nameplate extends Group
         
     public Nameplate()
     {
-        barraVidaTotal = new Sprite(ActorRecursos.get().nameplateTotal);
-        barraVidaActual = new Sprite(ActorRecursos.get().nameplateActual);
-        barraCasteoTotal = new Sprite(ActorRecursos.get().nameplateTotal);
-        barraCasteoActual = new Sprite(ActorRecursos.get().nameplateActual);
+        barraVidaTotal = new Sprite(MobilesRecursos.get().nameplateTotal);
+        barraVidaActual = new Sprite(MobilesRecursos.get().nameplateActual);
+        barraCasteoTotal = new Sprite(MobilesRecursos.get().nameplateTotal);
+        barraCasteoActual = new Sprite(MobilesRecursos.get().nameplateActual);
         barraVidaTotal.setColor(Color.GREEN);
         barraCasteoTotal.setColor(Color.RED);
 

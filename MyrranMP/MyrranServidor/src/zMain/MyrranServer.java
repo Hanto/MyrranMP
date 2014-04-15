@@ -1,7 +1,7 @@
 package zMain;
 
 import Controller.Controlador;
-import Modelo.Mobiles.MundoModel;
+import Model.Mobiles.MundoModel;
 
 public class MyrranServer
 {

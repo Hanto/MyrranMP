@@ -1,12 +1,13 @@
 package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
-import Modelo.Mobiles.MundoModel;
-import View.Actores.ActorRecursos;
-import zMain.LoadActores;
+import Model.Mobiles.MundoModel;
+import View.Geo.GeoRecursos;
+import View.Mobiles.MobilesRecursos;
 import View.Graficos.Atlas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import zMain.LoadData;
 import zMain.MyrranClient;
 
 
@@ -21,8 +22,9 @@ public class PantallaLibGDX implements Screen
     {
         this.myrranCliente = myrranCliente;
 
-        ActorRecursos.get().setAtlas(Atlas.get().atlas);
-        LoadActores.cargarRecursos();
+        MobilesRecursos.get().setAtlas(Atlas.get().atlas);
+        GeoRecursos.get().setAtlas(Atlas.get().atlas);
+        LoadData.cargarTodo();
 
         controlador = new Controlador(new MundoModel());
     }
