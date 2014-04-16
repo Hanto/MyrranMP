@@ -11,7 +11,7 @@ public class Nameplate extends Group
 {
     //NAMEPLATES
     protected Sprite barraVidaTotal;                //Imagen que contiene el nameplateTotal de la vida del PlayerModel
-    protected Sprite barraVidaActual;               //Imagen que contiene el MapaVistas de la vida del nameplateTotal del PlayerModel
+    protected Sprite barraVidaActual;               //Imagen que contiene el MapaVista de la vida del nameplateTotal del PlayerModel
     protected Sprite barraCasteoTotal;
     protected Sprite barraCasteoActual;
         

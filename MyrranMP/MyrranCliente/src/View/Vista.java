@@ -4,7 +4,7 @@ import Controller.Controlador;
 import Model.DTO.MundoDTO;
 import Model.Mobiles.MundoModel;
 import Model.Mobiles.PCModel;
-import View.Geo.MapaVistas;
+import View.Geo.MapaVista;
 import View.Graficos.Texto;
 import View.Mobiles.MobilesRecursos;
 import View.Mobiles.PCView;
@@ -34,7 +34,7 @@ public class Vista implements PropertyChangeListener
     public Stage stageUI;
     public SpriteBatch batch;
 
-    public MapaVistas mapaVistas;
+    public MapaVista mapaVista;
 
     private Texto fps;
 
@@ -49,7 +49,7 @@ public class Vista implements PropertyChangeListener
         stageUI = new Stage();
         playerView = new PlayerView(mundoModel.player, this, controlador);
 
-        mapaVistas = new MapaVistas(this);
+        mapaVista = new MapaVista(this);
 
         controlador.addInputProcessor(stageUI);
         controlador.addInputProcessor(stageMundo);
@@ -76,7 +76,7 @@ public class Vista implements PropertyChangeListener
         batch.setProjectionMatrix(camara.combined);
         //rayHandler.setCombinedMatrix(camara.combined);
 
-        mapaVistas.render();
+        mapaVista.render();
 
         batch.begin();
         batch.end();
@@ -95,7 +95,7 @@ public class Vista implements PropertyChangeListener
         stageUI.dispose();
         batch.dispose();
 
-        mapaVistas.dispose();
+        mapaVista.dispose();
     }
 
 
