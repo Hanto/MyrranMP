@@ -4,13 +4,18 @@ import Controller.Controlador;
 import Model.DTO.MundoDTO;
 import Model.Mobiles.MundoModel;
 import Model.Mobiles.PCModel;
+import View.Geo.MapaVistas;
+import View.Graficos.Texto;
+import View.Mobiles.MobilesRecursos;
 import View.Mobiles.PCView;
 import View.Mobiles.PlayerView;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 import java.beans.PropertyChangeEvent;
@@ -29,7 +34,9 @@ public class Vista implements PropertyChangeListener
     public Stage stageUI;
     public SpriteBatch batch;
 
-    public Fondo fondo;
+    public MapaVistas mapaVistas;
+
+    private Texto fps;
 
     public Vista (Controlador controlador, MundoModel mundoModel)
     {
@@ -42,13 +49,16 @@ public class Vista implements PropertyChangeListener
         stageUI = new Stage();
         playerView = new PlayerView(mundoModel.player, this, controlador);
 
-        fondo = new Fondo(this);
+        mapaVistas = new MapaVistas(this);
 
         controlador.addInputProcessor(stageUI);
         controlador.addInputProcessor(stageMundo);
 
         stageMundo.getViewport().setCamera(camara);
         mundoModel.añadirObservador(this);
+
+        fps = new Texto("fps", MobilesRecursos.get().font14, Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
+        stageUI.addActor(fps);
     }
 
     public void render (float delta)
@@ -66,7 +76,7 @@ public class Vista implements PropertyChangeListener
         batch.setProjectionMatrix(camara.combined);
         //rayHandler.setCombinedMatrix(camara.combined);
 
-        fondo.render();
+        mapaVistas.render();
 
         batch.begin();
         batch.end();
@@ -75,6 +85,8 @@ public class Vista implements PropertyChangeListener
         //rayHandler.updateAndRender();
         stageUI.act(delta);
         stageUI.draw();
+
+        fps.setTexto(Integer.toString(Gdx.graphics.getFramesPerSecond())+"fps");
     }
 
     public void dispose ()
@@ -83,7 +95,7 @@ public class Vista implements PropertyChangeListener
         stageUI.dispose();
         batch.dispose();
 
-        fondo.dispose();
+        mapaVistas.dispose();
     }
 
 

@@ -11,7 +11,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import zMain.MiscData;
 
-public class MapaVista extends TiledMap
+public class SubMapaVista extends TiledMap
 {
     private Vista vista;
     private MapaModel mapa;
@@ -32,7 +32,7 @@ public class MapaVista extends TiledMap
     public void setView(OrthographicCamera camara)  { mapRenderer.setView(camara); }
 
 
-    public MapaVista(Vista vista, int OrigenX, int OrigenY)
+    public SubMapaVista(Vista vista, int OrigenX, int OrigenY)
     {
         this.vista = vista;
         this.mapa = vista.mundoModel.mapa;
