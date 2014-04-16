@@ -39,7 +39,7 @@ public class MobilesRecursos
      public void setAtlas(TextureAtlas atlas)
      {
          this.atlas = atlas;
-         font14 = new BitmapFont(Gdx.files.internal("fonts/14.fnt"), false);
+         font14 = new BitmapFont(Gdx.files.internal(MiscData.ATLAS_Fuentes_LOC +"14.fnt"), false);
      }
 
      public void añadirRazaPC(String iDRaza)

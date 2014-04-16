@@ -3,9 +3,11 @@ package View.Geo;// Created by Hanto on 15/04/2014.
 import Model.DTO.TerrenoDTO;
 import Model.Geo.MapaModel;
 import View.Vista;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import zMain.MiscData;
 
@@ -13,16 +15,55 @@ public class MapaVista extends TiledMap
 {
     private Vista vista;
     private MapaModel mapa;
+    private OrthogonalTiledMapRenderer mapRenderer;
 
-    public MapaVista(Vista vista)
+    private int x;
+    private int y;
+
+    private int origenX;
+    private int origenY;
+    private int finalX;
+    private int finalY;
+
+    //GET:
+    public int getX()                               { return x; }
+    public int getY()                               { return y; }
+    //SET:
+    public void setView(OrthographicCamera camara)  { mapRenderer.setView(camara); }
+
+
+    public MapaVista(Vista vista, int OrigenX, int OrigenY)
     {
         this.vista = vista;
         this.mapa = vista.mundoModel.mapa;
-        crearTiledMap();
+        this.mapRenderer = new OrthogonalTiledMapRenderer(this);
+        crearTiledMap(OrigenX, OrigenY);
     }
 
-    public void crearTiledMap()
+    public void ajustarCoordenadas(int origenX, int origenY)
     {
+        this.x = origenX; this.y = origenY;
+
+        if (origenX < 0) this.origenX = 0; else this.origenX = origenX;
+        if (origenY < 0) this.origenY = 0; else this.origenY = origenY;
+
+        finalX = origenX + MiscData.MAPAVIEW_Max_X;
+        if (finalX > MiscData.MAPA_Max_X) finalX = MiscData.MAPA_Max_X;
+        finalY = origenY + MiscData.MAPAVIEW_MAX_Y;
+        if (finalY > MiscData.MAPA_Max_Y) finalY = MiscData.MAPA_Max_Y;
+    }
+
+    private void borrarTodosLosLayers ()
+    {
+        while (getLayers().getCount()>0)
+            getLayers().remove(0);
+    }
+
+    public void crearTiledMap(int OrigenX, int OrigenY)
+    {
+        ajustarCoordenadas(OrigenX, OrigenY);
+        borrarTodosLosLayers();
+
         Cell cell;
         StaticTiledMapTile tileNO, tileNE, tileSO, tileSE;
         TerrenoDTO.Adyacencias adyacencias;
@@ -30,10 +71,12 @@ public class MapaVista extends TiledMap
 
         for (int numCapa = 0; numCapa< MiscData.MAPA_Max_Capas_Terreno; numCapa++)
         {
-            TiledMapTileLayer suelo = new TiledMapTileLayer(MiscData.MAPA_Max_X*2, MiscData.MAPA_Max_Y *2, MiscData.TILESIZE/2, MiscData.TILESIZE/2);
-            for (int x = 0; x < MiscData.MAPA_Max_X; x++)
+            TiledMapTileLayer suelo =
+                new TiledMapTileLayer(MiscData.MAPAVIEW_Max_X*2, MiscData.MAPAVIEW_MAX_Y*2, MiscData.TILESIZE/2, MiscData.TILESIZE/2);
+
+            for (int x = origenX; x < finalX; x++)
             {
-                for (int y = 0; y < MiscData.MAPA_Max_Y; y++)
+                for (int y = origenY; y < finalY; y++)
                 {
                     if (mapa.getTerreno(x, y, numCapa) != null)
                     {
@@ -47,19 +90,19 @@ public class MapaVista extends TiledMap
 
                         cell = new TiledMapTileLayer.Cell();
                         cell.setTile(tileNO);
-                        suelo.setCell(x*2, y*2+1, cell);
+                        suelo.setCell((x-origenX)*2, (y-origenY)*2+1, cell);
 
                         cell = new TiledMapTileLayer.Cell();
                         cell.setTile(tileNE);
-                        suelo.setCell(x*2+1, y*2+1, cell);
+                        suelo.setCell((x-origenX)*2+1, (y-origenY)*2+1, cell);
 
                         cell = new TiledMapTileLayer.Cell();
                         cell.setTile(tileSO);
-                        suelo.setCell(x*2, y*2, cell);
+                        suelo.setCell((x-origenX)*2, (y-origenY)*2, cell);
 
                         cell = new TiledMapTileLayer.Cell();
                         cell.setTile(tileSE);
-                        suelo.setCell(x*2+1, y*2, cell);
+                        suelo.setCell((x-origenX)*2+1, (y-origenY)*2, cell);
                     }
                 }
             }
@@ -70,6 +113,7 @@ public class MapaVista extends TiledMap
     private TerrenoDTO.Adyacencias calcularAdyacencias (int X, int Y, int capa)
     {
         TerrenoDTO.Adyacencias ad = new TerrenoDTO.Adyacencias();
+        ad.iDTerreno = mapa.getTerreno(X,Y,capa).getNombre();
 
         if      (Y+1 >= MiscData.MAPA_Max_Y)                { ad.NOarriba = false; ad.NEarriba = false; }
         else if (mapa.getTerreno(X,Y,capa) ==
@@ -108,7 +152,18 @@ public class MapaVista extends TiledMap
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X+1,Y-1,capa)))            { ad.SEdiagonal = true; }
 
-        ad.iDTerreno = mapa.getTerreno(X,Y,capa).getNombre();
+
         return ad;
+    }
+
+    @Override public void dispose()
+    {
+        mapRenderer.dispose();
+        super.dispose();
+    }
+
+    public void render()
+    {
+        mapRenderer.render();
     }
 }

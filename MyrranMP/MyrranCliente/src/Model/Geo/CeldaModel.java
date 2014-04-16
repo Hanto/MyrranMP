@@ -14,11 +14,8 @@ public class CeldaModel implements KryoSerializable
 
 
     //CONSTRUCTOR:
-    public CeldaModel()
-    {
-        //TerrenoDAO terrenoDAO = MiscData.terrenoDAO.newInstance();
-        //Arrays.fill(listaTerrenos, terrenoDAO.getTerreno(0));
-    }
+    public CeldaModel() {}
+
     //CONSTRUCTOR COPIA:
     public CeldaModel (CeldaModel celdaOrigen)
     {

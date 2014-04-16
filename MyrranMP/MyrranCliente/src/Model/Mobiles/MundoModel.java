@@ -4,29 +4,31 @@ import Model.AbstractModel;
 import Model.DTO.MundoDTO;
 import Model.DTO.NetDTO;
 import Model.Geo.MapaModel;
+import zMain.MiscData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MundoModel extends AbstractModel
 {
-    public PlayerModel playerModel = new PlayerModel();
+    public PlayerModel player = new PlayerModel();
     public ArrayList<PCModel> listaPlayers = new ArrayList<>();
     public HashMap<Integer,PCModel> mapaPlayers = new HashMap<>();
     public MapaModel mapa = new MapaModel();
 
     //Get:
     public ArrayList<? extends PCModel> listaPlayers()  { return listaPlayers; }
-    public PlayerModel getPlayerModel()                 { return playerModel; }
+    public PlayerModel getPlayer()                      { return player; }
 
     public MundoModel()
     {
-        mapa.setTerreno(0, 0, 0, 0);
-        mapa.setTerreno(18,11, 0, 1);
-        mapa.setTerreno(10,12, 0, 2);
-        mapa.setTerreno(22,13, 0, 3);
-
-
+        for (int x = 0; x< MiscData.MAPA_Max_X; x++)
+        {
+            for (int y = 0; y< MiscData.MAPA_Max_Y; y++)
+            {
+                mapa.setTerreno(x,y,0,0);
+            }
+        }
     }
 
     //SE NOTIFICA:
@@ -40,7 +42,7 @@ public class MundoModel extends AbstractModel
         notificarActualizacion("añadirPC", null, añadirPC);
     }
 
-    public void añadirPlayer (int connectionID)         { playerModel.setConnectionID(connectionID); }
+    public void añadirPlayer (int connectionID)         { player.setConnectionID(connectionID); }
     public void eliminarPlayer()                        { }
     public void eliminarPC (int connectionID)
     {
@@ -52,11 +54,11 @@ public class MundoModel extends AbstractModel
 
     public void actualizarPlayer (NetDTO.ActualizarPlayer updatePlayer)
     {
-        playerModel.setNombre(updatePlayer.nombre);
-        playerModel.setNivel(updatePlayer.nivel);
-        playerModel.setActualHPs(updatePlayer.actualHPs);
-        playerModel.setMaxHPs(updatePlayer.maxHPs);
-        playerModel.setPosition(updatePlayer.x, updatePlayer.y);
+        player.setNombre(updatePlayer.nombre);
+        player.setNivel(updatePlayer.nivel);
+        player.setActualHPs(updatePlayer.actualHPs);
+        player.setMaxHPs(updatePlayer.maxHPs);
+        player.setPosition(updatePlayer.x, updatePlayer.y);
     }
 
     public void moverPC (int connectionID, float x, float y)
@@ -66,6 +68,6 @@ public class MundoModel extends AbstractModel
     {   mapaPlayers.get(connectionID).setAnimacion(numAnimacion); }
 
     public void moverPlayer(float x, float y)
-    {   playerModel.setPosition(x, y); }
+    {   player.setPosition(x, y); }
 
 }
