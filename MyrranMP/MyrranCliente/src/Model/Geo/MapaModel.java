@@ -2,8 +2,6 @@ package Model.Geo;// Created by Hanto on 14/04/2014.
 
 import zMain.MiscData;
 
-import java.util.Arrays;
-
 public class MapaModel
 {
     private CeldaModel[][] matriz = new CeldaModel[MiscData.MAPA_Max_X][MiscData.MAPA_Max_Y];
@@ -11,7 +9,9 @@ public class MapaModel
     public MapaModel()
     {
         for (CeldaModel[] fila: matriz)
-        {   Arrays.fill(fila, new CeldaModel());}
+        {   for (int i=0; i<fila.length; i++)
+            {   fila[i] = new CeldaModel(); }
+        }
     }
 
     public TerrenoModel getTerreno (int x, int y, int numCapa)

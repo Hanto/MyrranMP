@@ -572,23 +572,30 @@ Terrenos/Arena1
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Baldosas1
+Terrenos/Arena2
   rotate: false
   xy: 198, 174
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Baldosas2
+Terrenos/Baldosas1
   rotate: false
   xy: 52, 28
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Baldosas3
+Terrenos/Baldosas2
   rotate: false
   xy: 248, 174
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
+Terrenos/Baldosas3
+  rotate: false
+  xy: 102, 28
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
@@ -602,21 +609,21 @@ Terrenos/Cesped.OLD
   index: -1
 Terrenos/Cesped1
   rotate: false
-  xy: 102, 28
+  xy: 298, 174
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Cesped2
   rotate: false
-  xy: 298, 174
+  xy: 348, 174
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Cesped4
   rotate: false
-  xy: 298, 174
+  xy: 348, 174
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
@@ -630,14 +637,14 @@ Terrenos/Cesped2.OLD
   index: -1
 Terrenos/Cesped3
   rotate: false
-  xy: 348, 174
+  xy: 398, 174
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Cesped5
   rotate: false
-  xy: 398, 174
+  xy: 448, 174
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
@@ -658,26 +665,19 @@ Terrenos/Suelo2
   index: -1
 Terrenos/Tierra1
   rotate: false
-  xy: 448, 174
+  xy: 198, 100
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Tierra2
   rotate: false
-  xy: 198, 100
-  size: 48, 72
-  orig: 48, 72
-  offset: 0, 0
-  index: -1
-Terrenos/Tierra3
-  rotate: false
   xy: 248, 100
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Tierra4
+Terrenos/Tierra3
   rotate: false
   xy: 298, 100
   size: 48, 72

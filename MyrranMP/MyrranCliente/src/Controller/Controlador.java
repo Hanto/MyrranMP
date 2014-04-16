@@ -49,7 +49,7 @@ public class Controlador
     public void actualizarPlayer(NetDTO.ActualizarPlayer updatePlayer)  { mundoModel.actualizarPlayer (updatePlayer); }
     public void eliminarPlayer()                                        { mundoModel.eliminarPlayer();}
     public void moverPlayer(float x, float y)                           { mundoModel.moverPlayer(x, y);}
-    public void aplicarInputAPlayer()                                   { mundoModel.getPlayerModel().setInput(playerOutput); }
+    public void aplicarInputAPlayer()                                   { mundoModel.getPlayer().setInput(playerOutput); }
 
     public void añadirPC(int connectionID, float x, float y)            { mundoModel.añadirPC(connectionID, x, y); }
     public void eliminarPC(int connectionID)                            { mundoModel.eliminarPC(connectionID); }

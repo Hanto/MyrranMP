@@ -35,6 +35,7 @@ public class LoadData
     {
         TerrenoDAO terrenoDAO = TerrenoDAOFactory.LOCAL.newInstance();
         terrenoDAO.añadirTerreno(new TerrenoModel("Arena1",      false));
+        terrenoDAO.añadirTerreno(new TerrenoModel("Arena2",     false));
         terrenoDAO.añadirTerreno(new TerrenoModel("Baldosas1",     false));
         terrenoDAO.añadirTerreno(new TerrenoModel("Baldosas2",     false));
         terrenoDAO.añadirTerreno(new TerrenoModel("Baldosas3",      false));
@@ -48,12 +49,12 @@ public class LoadData
         terrenoDAO.añadirTerreno(new TerrenoModel("Tierra1",     false));
         terrenoDAO.añadirTerreno(new TerrenoModel("Tierra2",     false));
         terrenoDAO.añadirTerreno(new TerrenoModel("Tierra3",     false));
-        terrenoDAO.añadirTerreno(new TerrenoModel("Tierra4",     false));
     }
 
     public static void cargarTerrenosRecursos()
     {
         GeoRecursos.get().salvarTexturaTerreno("Arena1");
+        GeoRecursos.get().salvarTexturaTerreno("Arena2");
         GeoRecursos.get().salvarTexturaTerreno("Baldosas1");
         GeoRecursos.get().salvarTexturaTerreno("Baldosas2");
         GeoRecursos.get().salvarTexturaTerreno("Baldosas3");
@@ -67,6 +68,5 @@ public class LoadData
         GeoRecursos.get().salvarTexturaTerreno("Tierra1");
         GeoRecursos.get().salvarTexturaTerreno("Tierra2");
         GeoRecursos.get().salvarTexturaTerreno("Tierra3");
-        GeoRecursos.get().salvarTexturaTerreno("Tierra4");
     }
 }

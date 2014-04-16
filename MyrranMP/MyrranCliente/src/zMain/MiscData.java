@@ -20,14 +20,16 @@ public class MiscData
     public static final int GDX_Window_Vertical_Resolution = 900;
 
     //Recursos:
-    public final static String RECURSOS_Atlas_Carpeta_Imagenes_Origen = "images/";
-    public final static String RECURSOS_Atlas_Carpeta_Imagenes_Destino = "atlas/";
+    public final static String RECURSOS_Atlas_Carpeta_Imagenes_Origen = "Images/";
+    public final static String RECURSOS_Atlas_Carpeta_Imagenes_Destino = "Atlas/";
     public final static String RECURSOS_Atlas_Atlas_Extension = "atlas";
+
 
     //Mobiles Recursos:
     public final static String ATLAS_PlayerSprites_LOC = "Player Sprites/";
     public final static String ATLAS_Armaduras_LOC = "Armaduras/";
     public final static String ATLAS_Terrenos_LOC = "Terrenos/";
+    public final static String ATLAS_Fuentes_LOC = "Fonts/";
 
     //Pixie:
     public final static int PIXIE_Player_numFilas = 7;
@@ -35,6 +37,8 @@ public class MiscData
 
     //Mapa:
     public final static int MAPA_Max_Capas_Terreno = 3;
-    public final static int MAPA_Max_X = 50;
-    public final static int MAPA_Max_Y = 50;
+    public final static int MAPA_Max_X = 500;
+    public final static int MAPA_Max_Y = 500;
+    public final static int MAPAVIEW_Max_X = 5;
+    public final static int MAPAVIEW_MAX_Y = 5;
 }
