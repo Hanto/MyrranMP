@@ -45,5 +45,10 @@ public class PlayerMouseKey implements InputProcessor
     @Override public boolean touchUp(int screenX, int screenY, int pointer, int button)     { return true; }
     @Override public boolean touchDragged(int screenX, int screenY, int pointer)            { return false; }
     @Override public boolean mouseMoved(int screenX, int screenY)                           { return false; }
-    @Override public boolean scrolled(int amount)                                           { return false; }
+    @Override public boolean scrolled(int amount)
+    {
+        if (amount>0)   { controlador.aplicarZoom(1); }
+        if (amount <0)  { controlador.aplicarZoom(-1); }
+        return false;
+    }
 }

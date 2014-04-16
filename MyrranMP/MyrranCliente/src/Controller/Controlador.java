@@ -56,5 +56,6 @@ public class Controlador
     public void moverPC(int connectionID, float x, float y)             { mundoModel.moverPC(connectionID, x, y); }
     public void cambiarAnimacionPC(int connectionID, int numAnimacion)  { mundoModel.cambiarAnimacionPC(connectionID, numAnimacion); }
 
+    public void aplicarZoom(int incrementoZoom)                         { vista.aplicarZoom(incrementoZoom); }
     public void addInputProcessor(Stage stage)                          { inputMultiplexer.addProcessor(stage); }
 }

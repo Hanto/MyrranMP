@@ -10,9 +10,9 @@ import java.util.HashMap;
 //* @author Ivan Delgado Huerta
 public class PixiePC extends Actor
 {
-    //protected PcModel pcModel;                                //Personaje que se esta dibujando, se necesita para acceder a los HPs, por ej
+    //protected PcModel pcModel;                    //Personaje que se esta dibujando, se necesita para acceder a los HPs, por ej
     //DATOS Animacion:
-    protected String iDRaza;                          //Raza a la que pertecenen las animaciones del jugador (cuerpos y equipo)
+    protected String iDRaza;                        //Raza a la que pertecenen las animaciones del jugador (cuerpos y equipo)
     protected int numAnimacion;                     //Animacion que se esta ejecutando en este momento
     //PIXIES PARTES DEL CUERPO:
     protected Pixie cuerpo;                         //Pixie que contiene las animaciones del cuerpo;

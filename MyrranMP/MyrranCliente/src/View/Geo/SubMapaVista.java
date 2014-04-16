@@ -49,7 +49,7 @@ public class SubMapaVista extends TiledMap
 
         finalX = origenX + MiscData.MAPAVIEW_Max_X;
         if (finalX > MiscData.MAPA_Max_X) finalX = MiscData.MAPA_Max_X;
-        finalY = origenY + MiscData.MAPAVIEW_MAX_Y;
+        finalY = origenY + MiscData.MAPAVIEW_Max_Y;
         if (finalY > MiscData.MAPA_Max_Y) finalY = MiscData.MAPA_Max_Y;
     }
 
@@ -72,7 +72,7 @@ public class SubMapaVista extends TiledMap
         for (int numCapa = 0; numCapa< MiscData.MAPA_Max_Capas_Terreno; numCapa++)
         {
             TiledMapTileLayer suelo =
-                new TiledMapTileLayer(MiscData.MAPAVIEW_Max_X*2, MiscData.MAPAVIEW_MAX_Y*2, MiscData.TILESIZE/2, MiscData.TILESIZE/2);
+                new TiledMapTileLayer(MiscData.MAPAVIEW_Max_X*2, MiscData.MAPAVIEW_Max_Y *2, MiscData.TILESIZE/2, MiscData.TILESIZE/2);
 
             for (int x = origenX; x < finalX; x++)
             {

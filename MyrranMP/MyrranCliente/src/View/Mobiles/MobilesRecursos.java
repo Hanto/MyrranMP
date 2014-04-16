@@ -20,7 +20,7 @@ public class MobilesRecursos
      public HashMap<String, EquipoPC>listaDePCRazas = new HashMap<>();
      public static class EquipoPC
      {
-         public Map<String,Pixie> listaDeCuerpos = new HashMap<>();
+         public Map<String,Pixie>listaDeCuerpos = new HashMap<>();
          public Map<String,Pixie>listaDeCabezas = new HashMap<>();
          public Map<String,Pixie>listaDeYelmos = new HashMap<>();
          public Map<String,Pixie>listaDePetos = new HashMap<>();

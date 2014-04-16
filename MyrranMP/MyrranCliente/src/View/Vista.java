@@ -37,6 +37,7 @@ public class Vista implements PropertyChangeListener
     public MapaVista mapaVista;
 
     private Texto fps;
+    private int nivelDeZoom = 0;
 
     public Vista (Controlador controlador, MundoModel mundoModel)
     {
@@ -94,10 +95,19 @@ public class Vista implements PropertyChangeListener
         stageMundo.dispose();
         stageUI.dispose();
         batch.dispose();
-
         mapaVista.dispose();
     }
 
+    public void aplicarZoom(int incrementoZoom)
+    {
+        nivelDeZoom += incrementoZoom;
+
+        float zoom = 1f;
+        if (nivelDeZoom < 0) zoom = 1f/(Math.abs(nivelDeZoom)+1f);
+        if (nivelDeZoom ==0) zoom = 1f;
+        if (nivelDeZoom > 0) zoom = 1f+ nivelDeZoom *0.2f;
+        camara.zoom = zoom;
+    }
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {

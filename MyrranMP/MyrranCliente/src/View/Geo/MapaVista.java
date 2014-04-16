@@ -28,27 +28,28 @@ public class MapaVista
     {
         this.vista = vista;
 
-        camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camara = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         mapa = new SubMapaVista(vista,0,0);
         mapaE = new SubMapaVista(vista, MiscData.MAPAVIEW_Max_X,0);
         mapaO = new SubMapaVista(vista, -MiscData.MAPAVIEW_Max_X, 0);
 
-        mapaNO = new SubMapaVista(vista,-MiscData.MAPAVIEW_Max_X, MiscData.MAPAVIEW_MAX_Y);
-        mapaN = new SubMapaVista(vista, 0,MiscData.MAPAVIEW_MAX_Y);
-        mapaNE = new SubMapaVista(vista, MiscData.MAPAVIEW_Max_X, MiscData.MAPAVIEW_MAX_Y);
+        mapaNO = new SubMapaVista(vista,-MiscData.MAPAVIEW_Max_X, MiscData.MAPAVIEW_Max_Y);
+        mapaN = new SubMapaVista(vista, 0,MiscData.MAPAVIEW_Max_Y);
+        mapaNE = new SubMapaVista(vista, MiscData.MAPAVIEW_Max_X, MiscData.MAPAVIEW_Max_Y);
 
-        mapaSO = new SubMapaVista(vista,-MiscData.MAPAVIEW_Max_X, -MiscData.MAPAVIEW_MAX_Y);
-        mapaS = new SubMapaVista(vista, 0,-MiscData.MAPAVIEW_MAX_Y);
-        mapaSE = new SubMapaVista(vista, MiscData.MAPAVIEW_Max_X, -MiscData.MAPAVIEW_MAX_Y);
+        mapaSO = new SubMapaVista(vista,-MiscData.MAPAVIEW_Max_X, -MiscData.MAPAVIEW_Max_Y);
+        mapaS = new SubMapaVista(vista, 0,-MiscData.MAPAVIEW_Max_Y);
+        mapaSE = new SubMapaVista(vista, MiscData.MAPAVIEW_Max_X, -MiscData.MAPAVIEW_Max_Y);
     }
 
-    public void setView (SubMapaVista mapavista)
+    public void setView (SubMapaVista subMapaVista)
     {
-        camara.position.x = vista.camara.position.x - mapavista.getX() *MiscData.TILESIZE;
-        camara.position.y = vista.camara.position.y - mapavista.getY() *MiscData.TILESIZE;
+        camara.zoom = vista.camara.zoom;
+        camara.position.x = vista.camara.position.x - subMapaVista.getX() *MiscData.TILESIZE;
+        camara.position.y = vista.camara.position.y - subMapaVista.getY() *MiscData.TILESIZE;
         camara.update();
-        mapavista.setView(camara);
+        subMapaVista.setView(camara);
     }
 
     public void render()
@@ -116,15 +117,15 @@ public class MapaVista
             subMapaVista.crearTiledMap(newOrigenX, subMapaVista.getY());
 
         }
-        if (y > (subMapaVista.getY() + 2*MiscData.MAPAVIEW_MAX_Y) * MiscData.TILESIZE )
+        if (y > (subMapaVista.getY() + 2*MiscData.MAPAVIEW_Max_Y) * MiscData.TILESIZE )
         {
-            int newOrigenY = subMapaVista.getY() + MiscData.MAPAVIEW_MAX_Y*3;
+            int newOrigenY = subMapaVista.getY() + MiscData.MAPAVIEW_Max_Y *3;
             subMapaVista.ajustarCoordenadas(subMapaVista.getX(), newOrigenY);
             subMapaVista.crearTiledMap(subMapaVista.getX(), newOrigenY);
         }
-        if (y < (subMapaVista.getY() - MiscData.MAPAVIEW_MAX_Y) * MiscData.TILESIZE)
+        if (y < (subMapaVista.getY() - MiscData.MAPAVIEW_Max_Y) * MiscData.TILESIZE)
         {
-            int newOrigenY = subMapaVista.getY() - MiscData.MAPAVIEW_MAX_Y*3;
+            int newOrigenY = subMapaVista.getY() - MiscData.MAPAVIEW_Max_Y *3;
             subMapaVista.ajustarCoordenadas(subMapaVista.getX(), newOrigenY);
             subMapaVista.crearTiledMap(subMapaVista.getX(), newOrigenY);
         }

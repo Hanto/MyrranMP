@@ -40,5 +40,5 @@ public class MiscData
     public final static int MAPA_Max_X = 500;
     public final static int MAPA_Max_Y = 500;
     public final static int MAPAVIEW_Max_X = GDX_Window_Horizontal_Resolution/2/TILESIZE+1;
-    public final static int MAPAVIEW_MAX_Y = GDX_Window_Vertical_Resolution/2/TILESIZE+1;
+    public final static int MAPAVIEW_Max_Y = GDX_Window_Vertical_Resolution/2/TILESIZE+1;
 }
