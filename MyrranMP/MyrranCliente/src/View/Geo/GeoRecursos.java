@@ -13,7 +13,7 @@ public class GeoRecursos
     public static GeoRecursos get()     { return Singleton.get; }
 
     private TextureAtlas atlas;
-    private Map<String, TextureRegion> listaDeTexturasTerreno = new HashMap<>();
+    private Map<Integer, TextureRegion> listaDeTexturasTerreno = new HashMap<>();
 
 
     public void setAtlas(TextureAtlas atlas)
@@ -23,21 +23,21 @@ public class GeoRecursos
 
 
 
-    public TextureRegion getTexturaTerreno (String iDTerreno)
+    public TextureRegion getTexturaTerreno (int iDTerreno)
     {
         if ( atlas == null ) { System.out.println("ERROR Atlas no especificado"); return null; }
         return listaDeTexturasTerreno.get(iDTerreno);
     }
 
-    public void salvarTexturaTerreno (String iDTerreno)
+    public void salvarTexturaTerreno (int iDTerreno, String nombreTextura)
     {
         if ( atlas == null) { System.out.println("ERROR Atlas no especificado"); return; }
         try
         {
-            TextureRegion texture = new TextureRegion(atlas.findRegion(MiscData.ATLAS_Terrenos_LOC + iDTerreno));
-            listaDeTexturasTerreno.put(iDTerreno,texture);
+            TextureRegion texture = new TextureRegion(atlas.findRegion(MiscData.ATLAS_Terrenos_LOC + nombreTextura));
+            listaDeTexturasTerreno.put(iDTerreno, texture);
         }
-        catch (Exception e) { System.out.println("ERROR Textura Terreno: ["+iDTerreno+"] no encontrada."); }
+        catch (Exception e) { System.out.println("ERROR Textura Terreno: ["+nombreTextura+"] no encontrada."); }
     }
 }
 

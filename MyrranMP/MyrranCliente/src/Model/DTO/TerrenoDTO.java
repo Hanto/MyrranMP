@@ -4,7 +4,7 @@ public class TerrenoDTO
 {
     public static class Adyacencias
     {
-        public String iDTerreno;
+        public int iDTerreno;
 
         public boolean NOizquierda = false;
         public boolean NOdiagonal = false;

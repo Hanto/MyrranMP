@@ -10,7 +10,7 @@ public class TerrenoLocal implements TerrenoDAO
     private Map<Integer, TerrenoModel> listaDeTerrenos = TerrenoLocalDB.get().listaDeTerrenos;
 
 
-    @Override public void añadirTerreno(TerrenoModel terreno)
+    @Override public int añadirTerreno(TerrenoModel terreno)
     {
         int iDMenor;
         for (iDMenor=0; iDMenor< listaDeTerrenos.size(); iDMenor++)
@@ -18,6 +18,7 @@ public class TerrenoLocal implements TerrenoDAO
 
         terreno.setId(iDMenor);
         listaDeTerrenos.put(terreno.getID(), terreno);
+        return (iDMenor);
     }
 
     @Override public void salvarTerreno(TerrenoModel terreno)

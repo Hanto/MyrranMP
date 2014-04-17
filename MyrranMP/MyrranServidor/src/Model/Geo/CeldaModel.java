@@ -10,14 +10,16 @@ import zMain.MiscData;
 public class CeldaModel implements KryoSerializable
 {
     //private Integer[] terrenosID = new Integer[MiscData.MAPA_Max_Capas_Terreno];
-    private TerrenoModel[] listaTerrenos = new TerrenoModel[MiscData.MAPA_Max_Capas_Terreno];
+    private Integer[] listaTerrenos = new Integer[MiscData.MAPA_Max_Capas_Terreno];
 
 
     //CONSTRUCTOR:
     public CeldaModel()
     {
-        //Arrays.fill(terrenosID, -1);
+        for (int i=0; i<MiscData.MAPA_Max_Capas_Terreno; i++)
+        {   listaTerrenos[i] = -1;}
     }
+
     //CONSTRUCTOR COPIA:
     public CeldaModel (CeldaModel celdaOrigen)
     {
@@ -25,27 +27,39 @@ public class CeldaModel implements KryoSerializable
         {   listaTerrenos[i] = celdaOrigen.getTerrenoID(i); }
     }
 
-    public TerrenoModel getTerrenoID(int numCapa)
-    {   //return terrenosID[numCapa];
+    public int getTerrenoID(int numCapa)
+    {
         return listaTerrenos[numCapa];
+    }
+
+    public TerrenoModel getTerreno(int numCapa)
+    {
+        TerrenoDAO terrenoDAO = MiscData.terrenoDAO.newInstance();
+        return terrenoDAO.getTerreno(listaTerrenos[numCapa]);
     }
 
     public void setTerreno(int numCapa, TerrenoModel terreno)
     {
-        listaTerrenos[numCapa] = terreno;
+        listaTerrenos[numCapa] = terreno.getID();
     }
 
+    public boolean setTerreno(int numCapa, int terrenoID)
+    {
+        TerrenoDAO terrenoDAO = MiscData.terrenoDAO.newInstance();
+        if (terrenoDAO.getTerreno(terrenoID) == null) { return false; }
+        else { listaTerrenos[numCapa] = terrenoID; return true; }
+    }
+
+    //KryoSerializable:
     @Override public void write(Kryo kryo, Output output)
     {
         for (int i=0; i<MiscData.MAPA_Max_Capas_Terreno; i++)
-            output.writeInt(listaTerrenos[i].getID());
+            output.writeInt(listaTerrenos[i]);
     }
 
     @Override public void read(Kryo kryo, Input input)
     {
-        TerrenoDAO terrenoDAO = MiscData.terrenoDAO.newInstance();
-
         for (int i=0; i<MiscData.MAPA_Max_Capas_Terreno; i++)
-            setTerreno(i, terrenoDAO.getTerreno(input.readInt()));
+            setTerreno(i, input.readInt());
     }
 }

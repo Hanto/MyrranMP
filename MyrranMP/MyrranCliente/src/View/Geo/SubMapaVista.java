@@ -78,7 +78,7 @@ public class SubMapaVista extends TiledMap
             {
                 for (int y = origenY; y < finalY; y++)
                 {
-                    if (mapa.getTerreno(x, y, numCapa) != null)
+                    if (mapa.getTerrenoID(x, y, numCapa) >= 0)
                     {
                         adyacencias = calcularAdyacencias(x,y,numCapa);
                         terrenoView = new TerrenoView(adyacencias);
@@ -113,7 +113,8 @@ public class SubMapaVista extends TiledMap
     private TerrenoDTO.Adyacencias calcularAdyacencias (int X, int Y, int capa)
     {
         TerrenoDTO.Adyacencias ad = new TerrenoDTO.Adyacencias();
-        ad.iDTerreno = mapa.getTerreno(X,Y,capa).getNombre();
+
+        ad.iDTerreno = mapa.getTerrenoID(X,Y,capa);
 
         if      (Y+1 >= MiscData.MAPA_Max_Y)                { ad.NOarriba = false; ad.NEarriba = false; }
         else if (mapa.getTerreno(X,Y,capa) ==
