@@ -1,12 +1,7 @@
 package zMain;// Created by Hanto on 07/04/2014.
 
-import Model.DAO.Terreno.TerrenoDAOFactory;
-
 public class MiscData
 {
-    //DAOFactory
-    public static final TerrenoDAOFactory terrenoDAO = TerrenoDAOFactory.LOCAL;
-
     //Network:
     public static final int NETWORK_Puerto_Servidor = 54555;
     public static final int NETWORK_Client_Timeout = 5000*100;

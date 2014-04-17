@@ -1,5 +1,6 @@
 package Model.Geo;// Created by Hanto on 14/04/2014.
 
+import Model.DAO.DAO;
 import Model.DAO.Terreno.TerrenoDAO;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
@@ -34,7 +35,7 @@ public class Celda implements KryoSerializable
 
     public Terreno getTerreno(int numCapa)
     {
-        TerrenoDAO terrenoDAO = MiscData.terrenoDAO.newInstance();
+        TerrenoDAO terrenoDAO = DAO.terrenoDAO.newInstance();
         return terrenoDAO.getTerreno(listaTerrenos[numCapa]);
     }
 
@@ -45,7 +46,7 @@ public class Celda implements KryoSerializable
 
     public boolean setTerreno(int numCapa, int terrenoID)
     {
-        TerrenoDAO terrenoDAO = MiscData.terrenoDAO.newInstance();
+        TerrenoDAO terrenoDAO = DAO.terrenoDAO.newInstance();
         if (terrenoDAO.getTerreno(terrenoID) == null) { return false; }
         else { listaTerrenos[numCapa] = terrenoID; return true; }
     }

@@ -1,6 +1,7 @@
 package Model.Geo;// Created by Hanto on 14/04/2014.
 
 import Interfaces.MapaI;
+import Model.DAO.DAO;
 import Model.DAO.Terreno.TerrenoDAO;
 import zMain.MiscData;
 
@@ -18,7 +19,7 @@ public class Mapa implements MapaI
 
     public Terreno getTerreno (int x, int y, int numCapa)
     {
-        TerrenoDAO terrenoDAO = MiscData.terrenoDAO.newInstance();
+        TerrenoDAO terrenoDAO = DAO.terrenoDAO.newInstance();
         return terrenoDAO.getTerreno(matriz[x][y].getTerrenoID(numCapa));
     }
 
