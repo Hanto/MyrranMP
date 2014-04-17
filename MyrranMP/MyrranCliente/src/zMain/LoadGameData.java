@@ -8,7 +8,7 @@ import Model.Geo.TerrenoModel;
 import View.Geo.GeoRecursos;
 import View.Mobiles.MobilesRecursos;
 
-public class LoadData
+public class LoadGameData
 {
     public static void cargarTodo ()
     {

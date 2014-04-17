@@ -2,8 +2,8 @@ package View;// Created by Hanto on 07/04/2014.
 
 import Controller.Controlador;
 import Model.DTO.MundoDTO;
-import Model.Mobiles.MundoModel;
-import Model.Mobiles.PcModel;
+import Model.Mobiles.Mundo;
+import Model.Mobiles.PC;
 import View.Mobiles.PcView;
 
 import java.beans.PropertyChangeEvent;
@@ -14,16 +14,16 @@ import java.util.List;
 public class Vista implements PropertyChangeListener
 {
     public Controlador controlador;
-    public MundoModel mundoModel;
+    public Mundo mundo;
 
     public List<PcView> listaPcViews = new ArrayList<>();
 
     //Constructor:
-    public Vista (Controlador controlador, MundoModel mundoModel)
+    public Vista (Controlador controlador, Mundo mundo)
     {
-        mundoModel.añadirObservador(this);
+        mundo.añadirObservador(this);
         this.controlador = controlador;
-        this.mundoModel = mundoModel;
+        this.mundo = mundo;
     }
 
     public void netUpdate()
@@ -36,8 +36,8 @@ public class Vista implements PropertyChangeListener
     {
         if (evt.getNewValue() instanceof MundoDTO.AñadirPC)
         {
-            PcModel pcModel = ((MundoDTO.AñadirPC) evt.getNewValue()).pcModel;
-            PcView pcView = new PcView(pcModel, this);
+            PC PC = ((MundoDTO.AñadirPC) evt.getNewValue()).PC;
+            PcView pcView = new PcView(PC, this);
 
             for ( PcView gente: listaPcViews)
             {   gente.quienMeVe(); }

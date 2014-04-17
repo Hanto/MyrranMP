@@ -1,7 +1,7 @@
 package Model.DTO;// Created by Hanto on 09/04/2014.
 
 
-import Model.Mobiles.PcModel;
+import Model.Mobiles.PC;
 
 public class PcDTO
 {
@@ -22,8 +22,8 @@ public class PcDTO
 
     public static class EliminarPC
     {
-        public PcModel pcModel;
-        public EliminarPC(PcModel pcModel)
-        {   this.pcModel = pcModel; }
+        public PC PC;
+        public EliminarPC(PC PC)
+        {   this.PC = PC; }
     }
 }

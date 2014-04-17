@@ -10,7 +10,7 @@ public class MiscData
     //Network:
     public static final int NETWORK_Puerto_Servidor = 54555;
     public static final int NETWORK_Client_Timeout = 5000*100;
-    public static final int NETWORK_Update_Time = 50;
+    public static final float NETWORK_Update_Time = 50f;
 
     //LibGDX:
     public static final int GDX_Window_Horizontal_Resolution = 1600;

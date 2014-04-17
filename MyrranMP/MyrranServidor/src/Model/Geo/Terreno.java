@@ -3,14 +3,14 @@ package Model.Geo;// Created by Hanto on 14/04/2014.
 import java.io.Serializable;
 
 //Clase que define los tipos de terreno
-public class TerrenoModel implements Serializable
+public class Terreno implements Serializable
 {
     private Integer id;                             //ID del tipo de Terreno para poder cargar su template
     private String nombre;                          //Nombre del Terreno ("Jungla", "Camino", "Cesped"...
-    private Boolean isSolido = false;               //Flag que controla si el terreno es solido o no, y por tanto atravesable por los objetos que pueblan el mundo
+    private Boolean isSolido = false;               //Flag que controla si el terreno es solido o no, y por tanto atravesable por los objetos que pueblan el mapaI
 
-    public TerrenoModel() {}
-    public TerrenoModel(String nombre, Boolean isSolido)
+    public Terreno() {}
+    public Terreno(String nombre, Boolean isSolido)
     {   this.nombre = nombre; this.isSolido = isSolido; }
 
     //SET:

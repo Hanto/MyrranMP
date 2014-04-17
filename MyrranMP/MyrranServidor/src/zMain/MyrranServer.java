@@ -1,13 +1,15 @@
 package zMain;
 
 import Controller.Controlador;
-import Model.Mobiles.MundoModel;
+import Model.Mobiles.Mundo;
 
 public class MyrranServer
 {
     public static void main (String[] arg)
     {
-        Controlador controlador = new Controlador(new MundoModel());
+        LoadGameData.cargarTodo();
+
+        Controlador controlador = new Controlador(new Mundo());
         while (true)
         {
 

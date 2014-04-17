@@ -8,16 +8,20 @@ import zMain.MiscData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MundoModel extends AbstractModel
 {
     public PlayerModel player = new PlayerModel();
-    public ArrayList<PCModel> listaPlayers = new ArrayList<>();
-    public HashMap<Integer,PCModel> mapaPlayers = new HashMap<>();
+
+    public List<PCModel> listaPlayers = new ArrayList<>();
+    public Map<Integer,PCModel> mapaPlayers = new HashMap<>();
+
     public MapaModel mapa = new MapaModel();
 
     //Get:
-    public ArrayList<? extends PCModel> listaPlayers()  { return listaPlayers; }
+    public List<? extends PCModel> listaPlayers()       { return listaPlayers; }
     public PlayerModel getPlayer()                      { return player; }
 
     public MundoModel()

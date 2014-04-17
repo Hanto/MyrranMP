@@ -2,11 +2,11 @@ package Controller;// Created by Hanto on 09/04/2014.
 
 import zMain.MiscData;
 
-public class NetUpdater implements Runnable
+public class Updater implements Runnable
 {
     Controlador controlador;
 
-    public NetUpdater(Controlador controlador)
+    public Updater(Controlador controlador)
     {
         this.controlador = controlador;
         new Thread(this).start();
@@ -16,11 +16,13 @@ public class NetUpdater implements Runnable
     {
         while (true)
         {
-            update();
-            try { Thread.sleep(MiscData.NETWORK_Update_Time); }
+            mundoUpdate();
+            netUpdate();
+            try { Thread.sleep((int)MiscData.NETWORK_Update_Time); }
             catch (InterruptedException e) { System.out.println("ERROR: Updateando la red: "+e); return; }
         }
     }
 
-    public void update()    { controlador.netUpdater(); }
+    public void mundoUpdate()   { controlador.mundoUpdate(); }
+    public void netUpdate()     { controlador.netUpdater(); }
 }

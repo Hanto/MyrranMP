@@ -2,7 +2,7 @@ package Model.Mobiles;// Created by Hanto on 07/04/2014.
 
 import Model.AbstractModel;
 
-public class ProyectilModel extends AbstractModel
+public class Proyectil extends AbstractModel
 {
     //Posicion:
     protected Float x=0.0f;                 //Coordenadas X:
@@ -25,7 +25,7 @@ public class ProyectilModel extends AbstractModel
     public float getX()                     { return x; }
     public float getY()                     { return y; }
 
-    public ProyectilModel()
+    public Proyectil()
     {
 
     }

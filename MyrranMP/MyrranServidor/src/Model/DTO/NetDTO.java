@@ -1,6 +1,6 @@
 package Model.DTO;// Created by Hanto on 07/04/2014.
 
-import Model.Mobiles.PcModel;
+import Model.Mobiles.PC;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
 import zMain.MiscData;
@@ -32,14 +32,14 @@ public class NetDTO
         public float x;
         public float y;
         public ActualizarPlayer() {}
-        public ActualizarPlayer(PcModel pcModel)
-        {   connectionID = pcModel.getConnectionID();
-            nombre = pcModel.getNombre();
-            nivel = pcModel.getNivel();
-            actualHPs = pcModel.getActualHPs();
-            maxHPs = pcModel.getMaxHPs();
-            x = pcModel.getX();
-            y = pcModel.getY();
+        public ActualizarPlayer(PC PC)
+        {   connectionID = PC.getConnectionID();
+            nombre = PC.getNombre();
+            nivel = PC.getNivel();
+            actualHPs = PC.getActualHPs();
+            maxHPs = PC.getMaxHPs();
+            x = PC.getX();
+            y = PC.getY();
         }
     }
 
@@ -50,8 +50,8 @@ public class NetDTO
         public float y;
 
         public AñadirPC () {}
-        public AñadirPC (PcModel pcModel)
-        { connectionID = pcModel.getConnectionID(); x = pcModel.getX(); y = pcModel.getY(); }
+        public AñadirPC (PC PC)
+        { connectionID = PC.getConnectionID(); x = PC.getX(); y = PC.getY(); }
         public AñadirPC (int connectionID)
         {   this.connectionID = connectionID; }
     }
@@ -81,8 +81,8 @@ public class NetDTO
         public int connectionID;
 
         public EliminarPC () {}
-        public EliminarPC (PcModel pcModel)
-        {   connectionID = pcModel.getConnectionID(); }
+        public EliminarPC (PC PC)
+        {   connectionID = PC.getConnectionID(); }
         public EliminarPC (int connectionID)
         {   this.connectionID = connectionID; }
     }

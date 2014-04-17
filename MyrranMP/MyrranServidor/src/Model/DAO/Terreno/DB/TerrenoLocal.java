@@ -1,16 +1,16 @@
 package Model.DAO.Terreno.DB;// Created by Hanto on 15/04/2014.
 
 import Model.DAO.Terreno.TerrenoDAO;
-import Model.Geo.TerrenoModel;
+import Model.Geo.Terreno;
 
 import java.util.Map;
 
 public class TerrenoLocal implements TerrenoDAO
 {
-    private Map<Integer, TerrenoModel> listaDeTerrenos = TerrenoLocalDB.get().listaDeTerrenos;
+    private Map<Integer, Terreno> listaDeTerrenos = TerrenoLocalDB.get().listaDeTerrenos;
 
 
-    @Override public int añadirTerreno(TerrenoModel terreno)
+    @Override public int añadirTerreno(Terreno terreno)
     {
         int iDMenor;
         for (iDMenor=0; iDMenor< listaDeTerrenos.size(); iDMenor++)
@@ -21,7 +21,7 @@ public class TerrenoLocal implements TerrenoDAO
         return iDMenor;
     }
 
-    @Override public void salvarTerreno(TerrenoModel terreno)
+    @Override public void salvarTerreno(Terreno terreno)
     {
         if (listaDeTerrenos.containsKey(terreno.getID()))
         {   listaDeTerrenos.put(terreno.getID(), terreno); }
@@ -34,6 +34,6 @@ public class TerrenoLocal implements TerrenoDAO
         {   listaDeTerrenos.remove(terrenoID); }
     }
 
-    @Override public TerrenoModel getTerreno(int terrenoID)
+    @Override public Terreno getTerreno(int terrenoID)
     {   return listaDeTerrenos.get(terrenoID); }
 }

@@ -9,7 +9,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 public class MyrranClient extends Game
 {
-    public static String LOG = MyrranClient.class.getSimpleName();
+    public String LOG = MyrranClient.class.getSimpleName();
     public enum tipoPantalla { pantallaMenu, pantallaJuego }
 
     public static void main (String[] arg)

@@ -1,30 +1,31 @@
 package Controller;// Created by Hanto on 07/04/2014.
 
-import Model.Mobiles.MundoModel;
+import Model.Mobiles.Mundo;
 import View.Vista;
 
 public class Controlador
 {
     protected Servidor servidor = new Servidor(this);                  //Input principal de la simulacion
-    protected NetUpdater netUpdater;
+    protected Updater updater;
 
-    protected MundoModel mundoModel;
+    protected Mundo mundo;
     protected Vista vista;
 
 
-    public Controlador (MundoModel mundoModel)
+    public Controlador (Mundo mundo)
     {
-        this.mundoModel = mundoModel;
-        vista = new Vista(this, mundoModel);
-        netUpdater = new NetUpdater(this);
+        this.mundo = mundo;
+        vista = new Vista(this, mundo);
+        updater = new Updater(this);
     }
 
     public void enviarACliente(int connectionID, Object obj)            { servidor.enviarACliente(connectionID, obj); }
 
-    public void añadirPC (int connectionID, float x, float y)           { mundoModel.añadirPC(connectionID, x, y); }
-    public void moverPC (int connectionID, float x, float y)            { mundoModel.moverPC(connectionID, x, y); }
-    public void eliminarPC (int connectionID)                           { mundoModel.eliminarPC(connectionID); }
-    public void cambiarAnimacionPC(int connectionID, int numAnimacion)  { mundoModel.cambiarAnimacionPC(connectionID, numAnimacion);}
+    public void añadirPC (int connectionID, float x, float y)           { mundo.añadirPC(connectionID, x, y); }
+    public void moverPC (int connectionID, float x, float y)            { mundo.moverPC(connectionID, x, y); }
+    public void eliminarPC (int connectionID)                           { mundo.eliminarPC(connectionID); }
+    public void cambiarAnimacionPC(int connectionID, int numAnimacion)  { mundo.cambiarAnimacionPC(connectionID, numAnimacion);}
 
+    public void mundoUpdate()                                           { mundo.mundoUpdate(); }
     public void netUpdater ()                                           { vista.netUpdate(); }
 }

@@ -3,8 +3,8 @@ package View.Mobiles;// Created by Hanto on 07/04/2014.
 import Controller.Controlador;
 import Model.DTO.NetDTO;
 import Model.DTO.PcDTO;
-import Model.Mobiles.MundoModel;
-import Model.Mobiles.PcModel;
+import Model.Mobiles.Mundo;
+import Model.Mobiles.PC;
 import View.Vista;
 import zMain.MiscData;
 
@@ -15,12 +15,12 @@ import java.util.List;
 
 public class PcView implements PropertyChangeListener
 {
-    public PcModel pcModel;
+    public PC PC;
     public Vista vista;
-    public MundoModel mundoModel;
+    public Mundo mundo;
     public Controlador controlador;
 
-    private List<PcModel> listaPCsCercanos = new ArrayList<>();
+    private List<PC> listaPCsCercanos = new ArrayList<>();
 
     public boolean visible = false;
 
@@ -30,22 +30,22 @@ public class PcView implements PropertyChangeListener
     public boolean positionChanged = false;
     public int numAnimacion = 0;
 
-    public PcView(PcModel pcModel, Vista vista)
+    public PcView(PC PC, Vista vista)
     {
-        this.pcModel = pcModel;
+        this.PC = PC;
         this.vista = vista;
         this.controlador = vista.controlador;
-        mundoModel = vista.mundoModel;
+        mundo = vista.mundo;
 
-        connectionID = pcModel.getConnectionID();
-        x = pcModel.getX();
-        y = pcModel.getY();
+        connectionID = PC.getConnectionID();
+        x = PC.getX();
+        y = PC.getY();
 
         vista.listaPcViews.add(this);
-        pcModel.añadirObservador(this);
-        pcModel.eliminarObservador(vista);
+        PC.añadirObservador(this);
+        PC.eliminarObservador(vista);
 
-        NetDTO.ActualizarPlayer actualizarPlayer = new NetDTO.ActualizarPlayer(pcModel);
+        NetDTO.ActualizarPlayer actualizarPlayer = new NetDTO.ActualizarPlayer(PC);
         controlador.enviarACliente(connectionID, actualizarPlayer);
     }
 
@@ -65,36 +65,36 @@ public class PcView implements PropertyChangeListener
 
     public void actualizarPlayersCercanos (Object obj)
     {
-        for (PcModel pcModelCercanos : listaPCsCercanos)
-            controlador.enviarACliente(pcModelCercanos.getConnectionID(), obj);
+        for (PC PCCercanos : listaPCsCercanos)
+            controlador.enviarACliente(PCCercanos.getConnectionID(), obj);
     }
 
     public void quienMeVe()
     {
         for (PcView pcCercanos : vista.listaPcViews)
         {
-            PcModel pcModelCercano = pcCercanos.pcModel;
+            PC PCCercano = pcCercanos.PC;
 
-            if (pcModelCercano.getConnectionID() != pcModel.getConnectionID())
+            if (PCCercano.getConnectionID() != PC.getConnectionID())
             {
-                if (Math.abs(pcModelCercano.getX()- pcModel.getX()) <= 2*MiscData.GDX_Window_Horizontal_Resolution &&
-                    Math.abs(pcModelCercano.getY()- pcModel.getY()) <= 2*MiscData.GDX_Window_Vertical_Resolution     )
+                if (Math.abs(PCCercano.getX()- PC.getX()) <= 2*MiscData.GDX_Window_Horizontal_Resolution &&
+                    Math.abs(PCCercano.getY()- PC.getY()) <= 2*MiscData.GDX_Window_Vertical_Resolution     )
                 {
-                    if (!listaPCsCercanos.contains(pcModelCercano))
+                    if (!listaPCsCercanos.contains(PCCercano))
                     {
-                        listaPCsCercanos.add(pcModelCercano);
-                        System.out.println("Añadido PcModel ID: "+ pcModel.getConnectionID());
-                        NetDTO.AñadirPC añadirPC = new NetDTO.AñadirPC(pcModel);
-                        controlador.enviarACliente(pcModelCercano.getConnectionID(), añadirPC);
+                        listaPCsCercanos.add(PCCercano);
+                        System.out.println("Añadido PC ID: "+ PC.getConnectionID());
+                        NetDTO.AñadirPC añadirPC = new NetDTO.AñadirPC(PC);
+                        controlador.enviarACliente(PCCercano.getConnectionID(), añadirPC);
                     }
                 }
                 else
                 {
-                    if (listaPCsCercanos.contains(pcModelCercano))
+                    if (listaPCsCercanos.contains(PCCercano))
                     {
-                        listaPCsCercanos.remove(pcModelCercano);
-                        NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(pcModel);
-                        controlador.enviarACliente(pcModelCercano.getConnectionID(), eliminarPC);
+                        listaPCsCercanos.remove(PCCercano);
+                        NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(PC);
+                        controlador.enviarACliente(PCCercano.getConnectionID(), eliminarPC);
                     }
                 }
             }
@@ -131,9 +131,9 @@ public class PcView implements PropertyChangeListener
 
         if (evt.getNewValue() instanceof PcDTO.EliminarPC)
         {
-            PcModel pcModel = ((PcDTO.EliminarPC) evt.getNewValue()).pcModel;
-            NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(pcModel);
-            pcModel.eliminarObservador(this);
+            PC PC = ((PcDTO.EliminarPC) evt.getNewValue()).PC;
+            NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(PC);
+            PC.eliminarObservador(this);
             vista.listaPcViews.remove(this);
             actualizarPlayersCercanos(eliminarPC);
         }

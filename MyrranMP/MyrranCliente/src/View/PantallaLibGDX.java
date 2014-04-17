@@ -7,7 +7,7 @@ import View.Mobiles.MobilesRecursos;
 import View.Graficos.Atlas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import zMain.LoadData;
+import zMain.LoadGameData;
 import zMain.MyrranClient;
 
 
@@ -24,7 +24,7 @@ public class PantallaLibGDX implements Screen
 
         MobilesRecursos.get().setAtlas(Atlas.get().atlas);
         GeoRecursos.get().setAtlas(Atlas.get().atlas);
-        LoadData.cargarTodo();
+        LoadGameData.cargarTodo();
 
         controlador = new Controlador(new MundoModel());
     }
