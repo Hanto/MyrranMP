@@ -3,28 +3,28 @@ package Model.Mobiles;// Created by Hanto on 08/04/2014.
 import Model.AbstractModel;
 import Model.DTO.MundoDTO;
 import Model.DTO.NetDTO;
-import Model.Geo.MapaModel;
-import zMain.MiscData;
+import Model.Geo.Mapa;
+import Data.MiscData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MundoModel extends AbstractModel
+public class Mundo extends AbstractModel
 {
-    public PlayerModel player = new PlayerModel();
+    public Player player = new Player();
 
-    public List<PCModel> listaPlayers = new ArrayList<>();
-    public Map<Integer,PCModel> mapaPlayers = new HashMap<>();
+    public List<PC> listaPlayers = new ArrayList<>();
+    public Map<Integer,PC> mapaPlayers = new HashMap<>();
 
-    public MapaModel mapa = new MapaModel();
+    public Mapa mapa = new Mapa();
 
     //Get:
-    public List<? extends PCModel> listaPlayers()       { return listaPlayers; }
-    public PlayerModel getPlayer()                      { return player; }
+    public List<? extends PC> listaPlayers()       { return listaPlayers; }
+    public Player getPlayer()                      { return player; }
 
-    public MundoModel()
+    public Mundo()
     {
         for (int x = 0; x< MiscData.MAPA_Max_X; x++)
         {
@@ -38,11 +38,11 @@ public class MundoModel extends AbstractModel
     //SE NOTIFICA:
     public void añadirPC (int connectionID, float x, float y)
     {
-        PCModel pcModel = new PCModel(connectionID);
-        pcModel.setPosition(x, y);
-        listaPlayers.add(pcModel);
-        mapaPlayers.put(pcModel.getConnectionID(), pcModel);
-        Object añadirPC = new MundoDTO.AñadirPC(pcModel, pcModel.getX(), pcModel.getY());
+        PC pc = new PC(connectionID);
+        pc.setPosition(x, y);
+        listaPlayers.add(pc);
+        mapaPlayers.put(pc.getConnectionID(), pc);
+        Object añadirPC = new MundoDTO.AñadirPC(pc, pc.getX(), pc.getY());
         notificarActualizacion("añadirPC", null, añadirPC);
     }
 
@@ -50,10 +50,10 @@ public class MundoModel extends AbstractModel
     public void eliminarPlayer()                        { }
     public void eliminarPC (int connectionID)
     {
-        PCModel pcModel = mapaPlayers.get(connectionID);
-        listaPlayers.remove(pcModel);
+        PC pc = mapaPlayers.get(connectionID);
+        listaPlayers.remove(pc);
         mapaPlayers.remove(connectionID);
-        pcModel.eliminar();
+        pc.eliminar();
     }
 
     public void actualizarPlayer (NetDTO.ActualizarPlayer updatePlayer)

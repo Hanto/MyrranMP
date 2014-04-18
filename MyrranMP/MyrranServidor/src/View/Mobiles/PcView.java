@@ -1,12 +1,12 @@
 package View.Mobiles;// Created by Hanto on 07/04/2014.
 
 import Controller.Controlador;
+import Data.MiscData;
 import Model.DTO.NetDTO;
 import Model.DTO.PcDTO;
 import Model.Mobiles.Mundo;
 import Model.Mobiles.PC;
 import View.Vista;
-import zMain.MiscData;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -77,7 +77,7 @@ public class PcView implements PropertyChangeListener
 
             if (PCCercano.getConnectionID() != PC.getConnectionID())
             {
-                if (Math.abs(PCCercano.getX()- PC.getX()) <= 2*MiscData.GDX_Window_Horizontal_Resolution &&
+                if (Math.abs(PCCercano.getX()- PC.getX()) <= 2* MiscData.GDX_Window_Horizontal_Resolution &&
                     Math.abs(PCCercano.getY()- PC.getY()) <= 2*MiscData.GDX_Window_Vertical_Resolution     )
                 {
                     if (!listaPCsCercanos.contains(PCCercano))

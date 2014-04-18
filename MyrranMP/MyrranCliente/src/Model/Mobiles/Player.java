@@ -4,7 +4,7 @@ import Controller.Input.PlayerIO;
 import Model.DTO.PlayerDTO;
 import Model.AbstractModel;
 
-public class PlayerModel extends AbstractModel
+public class Player extends AbstractModel
 {
     protected Integer connectionID;
     protected String nombre;

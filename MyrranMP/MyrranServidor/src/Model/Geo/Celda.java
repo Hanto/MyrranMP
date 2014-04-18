@@ -1,12 +1,12 @@
 package Model.Geo;// Created by Hanto on 14/04/2014.
 
+import Data.MiscData;
 import Model.DAO.DAO;
 import Model.DAO.Terreno.TerrenoDAO;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import zMain.MiscData;
 
 public class Celda implements KryoSerializable
 {
@@ -17,7 +17,7 @@ public class Celda implements KryoSerializable
     //CONSTRUCTOR:
     public Celda()
     {
-        for (int i=0; i<MiscData.MAPA_Max_Capas_Terreno; i++)
+        for (int i=0; i< MiscData.MAPA_Max_Capas_Terreno; i++)
         {   listaTerrenos[i] = -1;}
     }
 

@@ -1,7 +1,7 @@
 package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
-import Model.Mobiles.MundoModel;
+import Model.Mobiles.Mundo;
 import View.Geo.GeoRecursos;
 import View.Mobiles.MobilesRecursos;
 import View.Graficos.Atlas;
@@ -26,7 +26,7 @@ public class PantallaLibGDX implements Screen
         GeoRecursos.get().setAtlas(Atlas.get().atlas);
         LoadGameData.cargarTodo();
 
-        controlador = new Controlador(new MundoModel());
+        controlador = new Controlador(new Mundo());
     }
 
     @Override public void show()

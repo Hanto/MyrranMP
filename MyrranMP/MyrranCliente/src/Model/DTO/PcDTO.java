@@ -1,16 +1,16 @@
 package Model.DTO;// Created by Hanto on 09/04/2014.
 
-import Model.Mobiles.PCModel;
+import Model.Mobiles.PC;
 
 public class PcDTO
 {
     public static class PositionPC
     {
-        public PCModel pcModel;
+        public PC pc;
         public float x;
         public float y;
-        public PositionPC(PCModel pcModel, float x, float y)
-        {   this.pcModel = pcModel; this.x = x; this.y = y; }
+        public PositionPC(PC pc, float x, float y)
+        {   this.pc = pc; this.x = x; this.y = y; }
     }
 
     public static class AnimacionPC
@@ -22,8 +22,8 @@ public class PcDTO
 
     public static class EliminarPC
     {
-        public PCModel pcModel;
-        public EliminarPC(PCModel pcModel)
-        {   this.pcModel = pcModel; }
+        public PC pc;
+        public EliminarPC(PC pc)
+        {   this.pc = pc; }
     }
 }

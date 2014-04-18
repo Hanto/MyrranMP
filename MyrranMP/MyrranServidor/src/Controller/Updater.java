@@ -1,14 +1,19 @@
 package Controller;// Created by Hanto on 09/04/2014.
 
-import zMain.MiscData;
+import Data.MiscData;
+import Model.Mobiles.Mundo;
+import Model.Mobiles.PC;
 
 public class Updater implements Runnable
 {
-    Controlador controlador;
+    private Controlador controlador;
+    private Mundo mundo;
 
-    public Updater(Controlador controlador)
+    public Updater(Controlador controlador, Mundo mundo)
     {
         this.controlador = controlador;
+        this.mundo = mundo;
+
         new Thread(this).start();
     }
 
@@ -18,11 +23,18 @@ public class Updater implements Runnable
         {
             mundoUpdate();
             netUpdate();
-            try { Thread.sleep((int)MiscData.NETWORK_Update_Time); }
+            try { Thread.sleep((int) MiscData.NETWORK_Update_Time); }
             catch (InterruptedException e) { System.out.println("ERROR: Updateando la red: "+e); return; }
         }
     }
 
-    public void mundoUpdate()   { controlador.mundoUpdate(); }
-    public void netUpdate()     { controlador.netUpdater(); }
+    public void netUpdate()
+    {   controlador.netUpdater(); }
+
+    public void mundoUpdate()
+    {
+        //actualizar PCs
+        for (PC players: mundo.listaPlayers)
+        {   players.actualizar(); }
+    }
 }

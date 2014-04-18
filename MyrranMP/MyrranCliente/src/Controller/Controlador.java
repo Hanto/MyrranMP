@@ -5,7 +5,7 @@ import Controller.Input.PlayerGestures;
 import Controller.Input.PlayerIO;
 import Controller.Input.PlayerMouseKey;
 import Model.DTO.NetDTO;
-import Model.Mobiles.MundoModel;
+import Model.Mobiles.Mundo;
 import View.Vista;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class Controlador
 {
     protected Cliente cliente;
-    protected MundoModel mundoModel;
+    protected Mundo mundo;
     protected Vista vista;
 
     //Input:
@@ -25,10 +25,10 @@ public class Controlador
     protected PlayerEstado playerEstado = new PlayerEstado(playerInput, playerOutput);
     protected InputMultiplexer inputMultiplexer = new InputMultiplexer();
 
-    public Controlador (MundoModel mundoModel)
+    public Controlador (Mundo mundo)
     {
-        this.mundoModel = mundoModel;
-        vista = new Vista(this, mundoModel);
+        this.mundo = mundo;
+        vista = new Vista(this, mundo);
 
         inputMultiplexer.addProcessor(new GestureDetector(new PlayerGestures()));
         inputMultiplexer.addProcessor(new PlayerMouseKey(playerEstado, this));
@@ -45,16 +45,16 @@ public class Controlador
     public void enviarAServidor(Object o)                               { cliente.enviarAServidor(o); }
     public int  getConnID()                                             { return cliente.getID(); }
 
-    public void añadirPlayer(int connectionID)                          { mundoModel.añadirPlayer(connectionID);}
-    public void actualizarPlayer(NetDTO.ActualizarPlayer updatePlayer)  { mundoModel.actualizarPlayer (updatePlayer); }
-    public void eliminarPlayer()                                        { mundoModel.eliminarPlayer();}
-    public void moverPlayer(float x, float y)                           { mundoModel.moverPlayer(x, y);}
-    public void aplicarInputAPlayer()                                   { mundoModel.getPlayer().setInput(playerOutput); }
+    public void añadirPlayer(int connectionID)                          { mundo.añadirPlayer(connectionID);}
+    public void actualizarPlayer(NetDTO.ActualizarPlayer updatePlayer)  { mundo.actualizarPlayer (updatePlayer); }
+    public void eliminarPlayer()                                        { mundo.eliminarPlayer();}
+    public void moverPlayer(float x, float y)                           { mundo.moverPlayer(x, y);}
+    public void aplicarInputAPlayer()                                   { mundo.getPlayer().setInput(playerOutput); }
 
-    public void añadirPC(int connectionID, float x, float y)            { mundoModel.añadirPC(connectionID, x, y); }
-    public void eliminarPC(int connectionID)                            { mundoModel.eliminarPC(connectionID); }
-    public void moverPC(int connectionID, float x, float y)             { mundoModel.moverPC(connectionID, x, y); }
-    public void cambiarAnimacionPC(int connectionID, int numAnimacion)  { mundoModel.cambiarAnimacionPC(connectionID, numAnimacion); }
+    public void añadirPC(int connectionID, float x, float y)            { mundo.añadirPC(connectionID, x, y); }
+    public void eliminarPC(int connectionID)                            { mundo.eliminarPC(connectionID); }
+    public void moverPC(int connectionID, float x, float y)             { mundo.moverPC(connectionID, x, y); }
+    public void cambiarAnimacionPC(int connectionID, int numAnimacion)  { mundo.cambiarAnimacionPC(connectionID, numAnimacion); }
 
     public void aplicarZoom(int incrementoZoom)                         { vista.aplicarZoom(incrementoZoom); }
     public void addInputProcessor(Stage stage)                          { inputMultiplexer.addProcessor(stage); }

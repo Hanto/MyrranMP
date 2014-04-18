@@ -5,5 +5,5 @@ import Interfaces.Caster;
 public interface TipoSpellInterface
 {
     public void inicializarSkillStats();
-    public void ejecutarCasteo(Spell spell, Caster caster, float targetX, float targetY);
+    public void ejecutarCasteo(Spell spell, Caster caster, int targetX, int targetY);
 }

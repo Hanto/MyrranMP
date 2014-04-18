@@ -3,7 +3,7 @@ package View.Geo;// Created by Hanto on 16/04/2014.
 import View.Vista;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import zMain.MiscData;
+import Data.MiscData;
 
 public class MapaVista
 {

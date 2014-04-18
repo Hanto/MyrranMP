@@ -1,6 +1,6 @@
 package Model.Mobiles;// Created by Hanto on 08/04/2014.
 
-public class ProyectilModel
+public class Proyectil
 {
     //Posicion:
     protected Float x = 0.0f;                      //Coordenadas X:

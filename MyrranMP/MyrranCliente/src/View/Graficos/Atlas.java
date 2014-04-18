@@ -2,7 +2,7 @@ package View.Graficos;// Created by Hanto on 10/04/2014.
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import zMain.MiscData;
+import Data.MiscData;
 
 public class Atlas
 {

@@ -1,27 +1,28 @@
 package Model.Geo;// Created by Hanto on 14/04/2014.
 
+import Model.DAO.DAO;
 import Model.DAO.Terreno.TerrenoDAO;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import zMain.MiscData;
+import Data.MiscData;
 
-public class CeldaModel implements KryoSerializable
+public class Celda implements KryoSerializable
 {
     //private Integer[] terrenosID = new Integer[MiscData.MAPA_Max_Capas_Terreno];
     private Integer[] listaTerrenos = new Integer[MiscData.MAPA_Max_Capas_Terreno];
 
 
     //CONSTRUCTOR:
-    public CeldaModel()
+    public Celda()
     {
         for (int i=0; i<MiscData.MAPA_Max_Capas_Terreno; i++)
         {   listaTerrenos[i] = -1;}
     }
 
     //CONSTRUCTOR COPIA:
-    public CeldaModel (CeldaModel celdaOrigen)
+    public Celda(Celda celdaOrigen)
     {
         for (int i=0; i<MiscData.MAPA_Max_Capas_Terreno; i++)
         {   listaTerrenos[i] = celdaOrigen.getTerrenoID(i); }
@@ -32,20 +33,20 @@ public class CeldaModel implements KryoSerializable
         return listaTerrenos[numCapa];
     }
 
-    public TerrenoModel getTerreno(int numCapa)
+    public Terreno getTerreno(int numCapa)
     {
-        TerrenoDAO terrenoDAO = MiscData.terrenoDAO.newInstance();
+        TerrenoDAO terrenoDAO = DAO.terrenoDAO.newInstance();
         return terrenoDAO.getTerreno(listaTerrenos[numCapa]);
     }
 
-    public void setTerreno(int numCapa, TerrenoModel terreno)
+    public void setTerreno(int numCapa, Terreno terreno)
     {
         listaTerrenos[numCapa] = terreno.getID();
     }
 
     public boolean setTerreno(int numCapa, int terrenoID)
     {
-        TerrenoDAO terrenoDAO = MiscData.terrenoDAO.newInstance();
+        TerrenoDAO terrenoDAO = DAO.terrenoDAO.newInstance();
         if (terrenoDAO.getTerreno(terrenoID) == null) { return false; }
         else { listaTerrenos[numCapa] = terrenoID; return true; }
     }

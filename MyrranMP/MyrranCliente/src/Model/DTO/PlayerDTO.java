@@ -1,6 +1,6 @@
 package Model.DTO;
 
-import Model.Mobiles.PlayerModel;
+import Model.Mobiles.Player;
 
 /**
  * Created by Ivan Delgado Huerta on 13/04/2014.
@@ -9,11 +9,11 @@ public class PlayerDTO
 {
     public static class PositionPlayer
     {
-        public PlayerModel playerModel;
+        public Player player;
         public float x;
         public float y;
-        public PositionPlayer(PlayerModel playerModel, float x, float y)
-        {   this.playerModel = playerModel; this.x = x; this.y = y; }
+        public PositionPlayer(Player player, float x, float y)
+        {   this.player = player; this.x = x; this.y = y; }
     }
 
     public static class AnimacionPlayer

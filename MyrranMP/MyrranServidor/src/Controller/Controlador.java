@@ -16,7 +16,7 @@ public class Controlador
     {
         this.mundo = mundo;
         vista = new Vista(this, mundo);
-        updater = new Updater(this);
+        updater = new Updater(this, mundo);
     }
 
     public void enviarACliente(int connectionID, Object obj)            { servidor.enviarACliente(connectionID, obj); }
@@ -26,6 +26,5 @@ public class Controlador
     public void eliminarPC (int connectionID)                           { mundo.eliminarPC(connectionID); }
     public void cambiarAnimacionPC(int connectionID, int numAnimacion)  { mundo.cambiarAnimacionPC(connectionID, numAnimacion);}
 
-    public void mundoUpdate()                                           { mundo.mundoUpdate(); }
     public void netUpdater ()                                           { vista.netUpdate(); }
 }

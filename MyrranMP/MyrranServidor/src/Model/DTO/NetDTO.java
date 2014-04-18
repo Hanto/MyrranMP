@@ -1,9 +1,9 @@
 package Model.DTO;// Created by Hanto on 07/04/2014.
 
+import Data.MiscData;
 import Model.Mobiles.PC;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
-import zMain.MiscData;
 
 public class NetDTO
 {

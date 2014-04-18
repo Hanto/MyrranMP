@@ -1,10 +1,10 @@
 package Model.DTO;// Created by Hanto on 07/04/2014.
 
-import Model.Mobiles.PCModel;
-import Model.Mobiles.PlayerModel;
+import Model.Mobiles.PC;
+import Model.Mobiles.Player;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
-import zMain.MiscData;
+import Data.MiscData;
 
 public class NetDTO
 {
@@ -33,7 +33,7 @@ public class NetDTO
         public float x;
         public float y;
         public ActualizarPlayer() {}
-        public ActualizarPlayer(PlayerModel pcModel)
+        public ActualizarPlayer(Player pcModel)
         {   connectionID = pcModel.getConnectionID();
             nombre = pcModel.getNombre();
             nivel = pcModel.getNivel();
@@ -51,8 +51,8 @@ public class NetDTO
         public float y;
 
         public AñadirPC () {}
-        public AñadirPC (PCModel pcModel)
-        { connectionID = pcModel.getConnectionID(); x = pcModel.getX(); y = pcModel.getY(); }
+        public AñadirPC (PC pc)
+        { connectionID = pc.getConnectionID(); x = pc.getX(); y = pc.getY(); }
         public AñadirPC (int connectionID)
         {   this.connectionID = connectionID; }
     }
@@ -82,8 +82,8 @@ public class NetDTO
         public int connectionID;
 
         public EliminarPC () {}
-        public EliminarPC (PCModel pcModel)
-        {   connectionID = pcModel.getConnectionID(); }
+        public EliminarPC (PC pc)
+        {   connectionID = pc.getConnectionID(); }
         public EliminarPC (int connectionID)
         {   this.connectionID = connectionID; }
     }

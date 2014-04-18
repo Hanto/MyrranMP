@@ -1,7 +1,7 @@
 package View.Geo;// Created by Hanto on 15/04/2014.
 
 import Model.DTO.TerrenoDTO;
-import Model.Geo.MapaModel;
+import Model.Geo.Mapa;
 import View.Vista;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -9,12 +9,12 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
-import zMain.MiscData;
+import Data.MiscData;
 
 public class SubMapaVista extends TiledMap
 {
     private Vista vista;
-    private MapaModel mapa;
+    private Mapa mapa;
     private OrthogonalTiledMapRenderer mapRenderer;
 
     private int x;
@@ -35,7 +35,7 @@ public class SubMapaVista extends TiledMap
     public SubMapaVista(Vista vista, int OrigenX, int OrigenY)
     {
         this.vista = vista;
-        this.mapa = vista.mundoModel.mapa;
+        this.mapa = vista.mundo.mapa;
         this.mapRenderer = new OrthogonalTiledMapRenderer(this);
         crearTiledMap(OrigenX, OrigenY);
     }

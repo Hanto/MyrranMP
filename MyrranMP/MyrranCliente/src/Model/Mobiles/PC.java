@@ -4,7 +4,7 @@ import Model.DTO.PcDTO;
 import Model.DTO.PlayerDTO;
 import Model.AbstractModel;
 
-public class PCModel extends AbstractModel
+public class PC extends AbstractModel
 {
     protected Integer connectionID;
     //Posicion:
@@ -18,7 +18,7 @@ public class PCModel extends AbstractModel
     public float getY()                     { return y; }
 
 
-    public PCModel(int connectionID)
+    public PC(int connectionID)
     {
         this.connectionID = connectionID;
     }

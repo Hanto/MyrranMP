@@ -1,10 +1,8 @@
 package Model.Mobiles;// Created by Hanto on 07/04/2014.
 
-import Interfaces.Caster;
 import Model.AbstractModel;
 import Model.DTO.MundoDTO;
 import Model.Geo.Mapa;
-import zMain.MiscData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,42 +42,4 @@ public class Mundo extends AbstractModel
 
     public void cambiarAnimacionPC(int connectionID, int numAnimacion)
     {   mapaPlayers.get(connectionID).setAnimacion(numAnimacion); }
-
-
-
-
-
-    //AI:
-
-    public void mundoUpdate()
-    {
-        for (PC players: listaPlayers)
-        {   if (players instanceof Caster)
-            {
-                actualizarCastingTime(players);
-                castear(players);
-            }
-        }
-    }
-
-    public void actualizarCastingTime(Caster caster)
-    {
-        if (caster.isCasteando())
-        {
-            caster.setActualCastingTime(caster.getActualCastingTime() + MiscData.NETWORK_Update_Time);
-            if (caster.getActualCastingTime() >= caster.getTotalCastingTime())
-            {
-                caster.setTotalCastingTime(0f);
-                caster.setIsCasteando(false);
-            }
-        }
-    }
-
-    public void castear(PC caster)
-    {
-        if (!caster.isCasteando() )
-        {
-
-        }
-    }
 }

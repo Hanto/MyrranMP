@@ -3,8 +3,8 @@ package View.Mobiles;// Created by Hanto on 10/04/2014.
 import Controller.Controlador;
 import Model.DTO.NetDTO;
 import Model.DTO.PlayerDTO;
-import Model.Mobiles.MundoModel;
-import Model.Mobiles.PlayerModel;
+import Model.Mobiles.Mundo;
+import Model.Mobiles.Player;
 import View.Graficos.PixiePC;
 import View.Graficos.Texto;
 import View.Vista;
@@ -17,28 +17,28 @@ import java.beans.PropertyChangeListener;
 
 public class PlayerView extends Group implements PropertyChangeListener
 {
-    public PlayerModel playerModel;
+    public Player player;
     public Vista vista;
     public Controlador controlador;
     //Datos derivados:
-    public MundoModel mundoModel;
+    public Mundo mundo;
 
     public Texto nombre;
     public Integer nivel;
 
     public PixiePC actor;
 
-    public PlayerView (PlayerModel playerModel, Vista vista, Controlador controlador)
+    public PlayerView (Player player, Vista vista, Controlador controlador)
     {
-        this.playerModel = playerModel;
+        this.player = player;
         this.vista = vista;
         this.controlador = controlador;
-        mundoModel = vista.mundoModel;
+        mundo = vista.mundo;
 
-        this.setPosition(playerModel.getX(), playerModel.getY());
+        this.setPosition(player.getX(), player.getY());
 
-        playerModel.eliminarObservador(vista);
-        playerModel.añadirObservador(this);
+        player.eliminarObservador(vista);
+        player.añadirObservador(this);
 
         crearActor();
     }
@@ -66,7 +66,7 @@ public class PlayerView extends Group implements PropertyChangeListener
         if (Math.abs(this.getX()-x) >= 1.0f || Math.abs(this.getY()-y) >= 1.0f)
         {
             super.setPosition(x, y);
-            NetDTO.MoverPC moverPlayer = new NetDTO.MoverPC(playerModel.getConnectionID(), getX(), getY());
+            NetDTO.MoverPC moverPlayer = new NetDTO.MoverPC(player.getConnectionID(), getX(), getY());
             controlador.enviarAServidor(moverPlayer);
         }
     }
@@ -74,9 +74,9 @@ public class PlayerView extends Group implements PropertyChangeListener
     public void setAnimacion (int numAnimacion)
     {
         actor.setAnimacion(numAnimacion, false);
-        NetDTO.CambiarAnimacionPC cambiarAnimacionPC = new NetDTO.CambiarAnimacionPC(playerModel.getConnectionID(), numAnimacion);
+        NetDTO.CambiarAnimacionPC cambiarAnimacionPC = new NetDTO.CambiarAnimacionPC(player.getConnectionID(), numAnimacion);
         controlador.enviarAServidor(cambiarAnimacionPC);
-        System.out.println("PlayerModel ID["+cambiarAnimacionPC.connectionID + "]Animacion["+cambiarAnimacionPC.numAnimacion+"]");
+        System.out.println("Player ID["+cambiarAnimacionPC.connectionID + "]Animacion["+cambiarAnimacionPC.numAnimacion+"]");
     }
 
     @Override public void propertyChange(PropertyChangeEvent evt)

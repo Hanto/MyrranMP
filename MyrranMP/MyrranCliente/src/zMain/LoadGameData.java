@@ -4,7 +4,7 @@ import Data.GameDataDTO;
 import Data.GameData;
 import Model.DAO.Terreno.TerrenoDAO;
 import Model.DAO.Terreno.TerrenoDAOFactory;
-import Model.Geo.TerrenoModel;
+import Model.Geo.Terreno;
 import View.Geo.GeoRecursos;
 import View.Mobiles.MobilesRecursos;
 
@@ -38,7 +38,7 @@ public class LoadGameData
         int iDTerreno;
         for (GameDataDTO.TerrenoDTO terrenoDTO : GameData.get().listaDeTerrenoDTO)
         {
-            iDTerreno = terrenoDAO.añadirTerreno(new TerrenoModel(terrenoDTO.nombre, terrenoDTO.isSolido));
+            iDTerreno = terrenoDAO.añadirTerreno(new Terreno(terrenoDTO.nombre, terrenoDTO.isSolido));
             GeoRecursos.get().salvarTexturaTerreno(iDTerreno, terrenoDTO.nombreTextura);
         }
     }

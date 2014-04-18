@@ -2,7 +2,7 @@ package View.Geo;// Created by Hanto on 15/04/2014.
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import zMain.MiscData;
+import Data.MiscData;
 
 import java.util.HashMap;
 import java.util.Map;

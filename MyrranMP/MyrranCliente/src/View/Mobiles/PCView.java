@@ -3,41 +3,41 @@ package View.Mobiles;// Created by Hanto on 08/04/2014.
 import Controller.Controlador;
 import Model.DTO.PcDTO;
 import Model.DTO.PlayerDTO;
-import Model.Mobiles.MundoModel;
-import Model.Mobiles.PCModel;
+import Model.Mobiles.Mundo;
+import Model.Mobiles.PC;
 import View.Graficos.PixiePC;
 import View.Vista;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import zMain.MiscData;
+import Data.MiscData;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class PCView extends Group implements PropertyChangeListener
 {
-    public PCModel pcModel;
+    public PC pc;
     public Vista vista;
     public Controlador controlador;
-    public MundoModel mundoModel;
+    public Mundo mundo;
 
     public int connectionID;
     public PixiePC actor;
 
-    public PCView (PCModel pcModel, Vista vista, Controlador controlador)
+    public PCView (PC pc, Vista vista, Controlador controlador)
     {
-        this.pcModel = pcModel;
+        this.pc = pc;
         this.vista = vista;
         this.controlador = controlador;
-        this.mundoModel = vista.mundoModel;
+        this.mundo = vista.mundo;
 
-        connectionID = pcModel.getConnectionID();
-        this.setPosition(pcModel.getX(), pcModel.getY());
+        connectionID = pc.getConnectionID();
+        this.setPosition(pc.getX(), pc.getY());
 
         vista.listaPCViews.add(this);
-        pcModel.eliminarObservador(vista);
-        pcModel.añadirObservador(this);
+        pc.eliminarObservador(vista);
+        pc.añadirObservador(this);
 
         crearActor();
     }
@@ -52,7 +52,7 @@ public class PCView extends Group implements PropertyChangeListener
 
     public void eliminar()
     {
-        pcModel.eliminarObservador(this);
+        pc.eliminarObservador(this);
         vista.stageMundo.getRoot().removeActor(this);
         vista.listaPCViews.removeValue(this, true);
     }

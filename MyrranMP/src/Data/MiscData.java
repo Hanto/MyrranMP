@@ -1,14 +1,9 @@
-package zMain;// Created by Hanto on 07/04/2014.
-
-import Model.DAO.Terreno.TerrenoDAOFactory;
+package Data;// Created by Hanto on 07/04/2014.
 
 public class MiscData
 {
     //General
     public static final int TILESIZE = 24;
-
-    //DAOFactory
-    public static final TerrenoDAOFactory terrenoDAO = TerrenoDAOFactory.LOCAL;
 
     //Network:
     public static final int NETWORK_Puerto_Servidor = 54555;

@@ -2,8 +2,8 @@ package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
 import Model.DTO.MundoDTO;
-import Model.Mobiles.MundoModel;
-import Model.Mobiles.PCModel;
+import Model.Mobiles.Mundo;
+import Model.Mobiles.PC;
 import View.Geo.MapaVista;
 import View.Graficos.Texto;
 import View.Mobiles.MobilesRecursos;
@@ -24,7 +24,7 @@ import java.beans.PropertyChangeListener;
 public class Vista implements PropertyChangeListener
 {
     public Controlador controlador;
-    public MundoModel mundoModel;
+    public Mundo mundo;
 
     public PlayerView playerView;
     public Array<PCView> listaPCViews = new Array<>();
@@ -39,16 +39,16 @@ public class Vista implements PropertyChangeListener
     private Texto fps;
     private int nivelDeZoom = 0;
 
-    public Vista (Controlador controlador, MundoModel mundoModel)
+    public Vista (Controlador controlador, Mundo mundo)
     {
         this.controlador = controlador;
-        this.mundoModel = mundoModel;
+        this.mundo = mundo;
 
         camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch = new SpriteBatch();
         stageMundo = new Stage();
         stageUI = new Stage();
-        playerView = new PlayerView(mundoModel.player, this, controlador);
+        playerView = new PlayerView(mundo.player, this, controlador);
 
         mapaVista = new MapaVista(this);
 
@@ -56,7 +56,7 @@ public class Vista implements PropertyChangeListener
         controlador.addInputProcessor(stageMundo);
 
         stageMundo.getViewport().setCamera(camara);
-        mundoModel.añadirObservador(this);
+        mundo.añadirObservador(this);
 
         fps = new Texto("fps", MobilesRecursos.get().font14, Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
         stageUI.addActor(fps);
@@ -67,7 +67,7 @@ public class Vista implements PropertyChangeListener
         Gdx.gl.glClearColor(0/2.55f, 0/2.55f, 0/2.55f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        mundoModel.getPlayer().actualizar(delta);
+        mundo.getPlayer().actualizar(delta);
 
         camara.position.x = playerView.getX();
         camara.position.y = playerView.getY();
@@ -113,8 +113,8 @@ public class Vista implements PropertyChangeListener
     {
         if (evt.getNewValue() instanceof MundoDTO.AñadirPC)
         {
-            PCModel pcModel = ((MundoDTO.AñadirPC) evt.getNewValue()).pcModel;
-            PCView pcView = new PCView(pcModel, this, controlador);
+            PC pc = ((MundoDTO.AñadirPC) evt.getNewValue()).pc;
+            PCView pcView = new PCView(pc, this, controlador);
         }
     }
 }

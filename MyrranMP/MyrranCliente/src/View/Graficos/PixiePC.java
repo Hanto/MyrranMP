@@ -10,7 +10,7 @@ import java.util.HashMap;
 //* @author Ivan Delgado Huerta
 public class PixiePC extends Actor
 {
-    //protected PcModel pcModel;                    //Personaje que se esta dibujando, se necesita para acceder a los HPs, por ej
+    //protected PcModel pc;                    //Personaje que se esta dibujando, se necesita para acceder a los HPs, por ej
     //DATOS Animacion:
     protected String iDRaza;                        //Raza a la que pertecenen las animaciones del jugador (cuerpos y equipo)
     protected int numAnimacion;                     //Animacion que se esta ejecutando en este momento
@@ -73,7 +73,7 @@ public class PixiePC extends Actor
         capaFrontal.setAnimacion(numAnimacion, forzarAnimacion);
     }
     
-    //VESTIR SLOT ARMADURA: Metodos para vestirse un slot de armadura, carga esa armadura de la lista de armadura de MundoModel, creando una copia de la pieza que deseamos
+    //VESTIR SLOT ARMADURA: Metodos para vestirse un slot de armadura, carga esa armadura de la lista de armadura de Mundo, creando una copia de la pieza que deseamos
     //Luego la movemos a la posicion donde esta el personaje, le damos los datos del offset y se tercia, y si debe usar las coordenadas de la camara para el caso que sea un Pixie seguido por esta
     //para finalmente activar la animacion que esta ejecutando todo el cuerpo, con booleano de forzarSincronizacion, para que reinicien todas las animaciones, y asi todas empiecen por el mismo frame
     public void setCuerpo (String iDSlot)           //CUERPO:
