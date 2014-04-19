@@ -14,6 +14,7 @@ public class PC extends AbstractModel
 
 
     public int getConnectionID()            { return connectionID; }
+    public int getNumAnimacion()            { return numAnimacion; }
     public float getX()                     { return x; }
     public float getY()                     { return y; }
 

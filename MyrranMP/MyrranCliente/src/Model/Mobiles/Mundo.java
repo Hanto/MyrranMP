@@ -23,6 +23,7 @@ public class Mundo extends AbstractModel
     //Get:
     public List<? extends PC> listaPlayers()       { return listaPlayers; }
     public Player getPlayer()                      { return player; }
+    public PC getPC (int connectionID)             { return mapaPlayers.get(connectionID); }
 
     public Mundo()
     {
@@ -64,14 +65,4 @@ public class Mundo extends AbstractModel
         player.setMaxHPs(updatePlayer.maxHPs);
         player.setPosition(updatePlayer.x, updatePlayer.y);
     }
-
-    public void moverPC (int connectionID, float x, float y)
-    {   mapaPlayers.get(connectionID).setPosition(x, y); }
-
-    public void cambiarAnimacionPC(int connectionID, int numAnimacion)
-    {   mapaPlayers.get(connectionID).setAnimacion(numAnimacion); }
-
-    public void moverPlayer(float x, float y)
-    {   player.setPosition(x, y); }
-
 }

@@ -52,6 +52,7 @@ public class PC extends AbstractModel implements Mob, Caster, Vulnerable
 
     //GET:
     public int getConnectionID ()                               { return connectionID; }
+    public int getNumAnimacion()                                { return numAnimacion; }
     public String getNombre()                                   { return nombre; }
     public int getNivel()                                       { return nivel; }
 

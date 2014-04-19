@@ -49,13 +49,25 @@ public class Controlador
     public void añadirPlayer(int connectionID)                          { mundo.añadirPlayer(connectionID);}
     public void actualizarPlayer(NetDTO.ActualizarPlayer updatePlayer)  { mundo.actualizarPlayer (updatePlayer); }
     public void eliminarPlayer()                                        { mundo.eliminarPlayer();}
-    public void moverPlayer(float x, float y)                           { mundo.moverPlayer(x, y);}
-    public void aplicarInputAPlayer()                                   { mundo.getPlayer().setInput(playerOutput); }
+    public void aplicarInputAPlayer()
+    {   mundo.getPlayer().setInput(playerOutput); }
 
-    public void añadirPC(int connectionID, float x, float y)            { mundo.añadirPC(connectionID, x, y); }
-    public void eliminarPC(int connectionID)                            { mundo.eliminarPC(connectionID); }
-    public void moverPC(int connectionID, float x, float y)             { mundo.moverPC(connectionID, x, y); }
-    public void cambiarAnimacionPC(int connectionID, int numAnimacion)  { mundo.cambiarAnimacionPC(connectionID, numAnimacion); }
+    public void moverPlayer(float x, float y)
+    {   mundo.getPlayer().setPosition(x, y); }
+
+    public void añadirPC(int connectionID, float x, float y, int numAnimacion)
+    {   mundo.añadirPC(connectionID, x, y);
+        mundo.getPC(connectionID).setAnimacion(numAnimacion);
+    }
+    public void eliminarPC(int connectionID)
+    { mundo.eliminarPC(connectionID); }
+
+    public void moverPC(int connectionID, float x, float y)
+    {   mundo.getPC(connectionID).setPosition(x, y); }
+
+    public void cambiarAnimacionPC(int connectionID, int numAnimacion)
+    {   mundo.getPC(connectionID).setAnimacion(numAnimacion); }
+
 
     public void aplicarZoom(int incrementoZoom)                         { vista.aplicarZoom(incrementoZoom); }
     public void addInputProcessor(Stage stage)                          { inputMultiplexer.addProcessor(stage); }

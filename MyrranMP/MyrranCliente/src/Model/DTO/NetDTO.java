@@ -50,12 +50,11 @@ public class NetDTO
         public int connectionID;
         public float x;
         public float y;
+        public int numAnimacion;
 
         public AñadirPC () {}
-        public AñadirPC (PC pc)
-        { connectionID = pc.getConnectionID(); x = pc.getX(); y = pc.getY(); }
-        public AñadirPC (int connectionID)
-        {   this.connectionID = connectionID; }
+        public AñadirPC (PC pc, int numAnimacion)
+        { connectionID = pc.getConnectionID(); x = pc.getX(); y = pc.getY(); this.numAnimacion = numAnimacion; }
     }
 
     public static class MoverPC

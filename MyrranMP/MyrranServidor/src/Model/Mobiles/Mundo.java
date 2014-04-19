@@ -37,9 +37,6 @@ public class Mundo extends AbstractModel
         PC.eliminar();
     }
 
-    public void moverPC (int connectionID, float x, float y)
-    {   mapaPlayers.get(connectionID).setPosition(x, y); }
-
     public PC getPC (int connectionID)
     {   return mapaPlayers.get(connectionID); }
 }

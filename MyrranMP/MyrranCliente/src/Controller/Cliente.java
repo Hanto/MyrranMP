@@ -62,8 +62,9 @@ public class Cliente extends Client
             int conID = ((NetDTO.AñadirPC) obj).connectionID;
             float x = ((NetDTO.AñadirPC) obj).x;
             float y = ((NetDTO.AñadirPC) obj).y;
+            int numAnimacion = ((NetDTO.AñadirPC) obj).numAnimacion;
             System.out.println("recibido añadir Player con ID: "+conID);
-            controlador.añadirPC(conID, x, y);
+            controlador.añadirPC(conID, x, y, numAnimacion);
         }
 
         if (obj instanceof NetDTO.EliminarPC)

@@ -22,8 +22,10 @@ public class Controlador
     public void enviarACliente(int connectionID, Object obj)            { servidor.enviarACliente(connectionID, obj); }
 
     public void añadirPC (int connectionID, float x, float y)           { mundo.añadirPC(connectionID, x, y); }
-    public void moverPC (int connectionID, float x, float y)            { mundo.moverPC(connectionID, x, y); }
     public void eliminarPC (int connectionID)                           { mundo.eliminarPC(connectionID); }
+
+    public void moverPC (int connectionID, float x, float y)
+    {   mundo.getPC(connectionID).setPosition(x, y);}
 
     public void cambiarAnimacionPC(int connectionID, int numAnimacion)
     {   mundo.getPC(connectionID).setAnimacion(numAnimacion); }
