@@ -2,6 +2,7 @@ package Interfaces;// Created by Ladrim on 18/04/2014.
 
 public interface Mob
 {
+
     //GET:
     public float getX();
     public float getY();
@@ -9,6 +10,8 @@ public interface Mob
     public float getVelocidadMax();
     public float getVelocidad();
     public double getDireccion();
+
+    public int getNumAnimacion();
 
     //SET:
     public void setPosition(float x, float y);

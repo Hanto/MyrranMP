@@ -2,17 +2,14 @@ package Model.Mobiles;// Created by Hanto on 07/04/2014.
 
 
 import Data.MiscData;
-import Interfaces.Caster;
-import Interfaces.MapaI;
-import Interfaces.Mob;
-import Interfaces.Vulnerable;
+import Interfaces.*;
 import Model.AbstractModel;
 import Model.DAO.DAO;
 import Model.DTO.PcDTO;
 import Model.Geo.Mapa;
 import Model.Skill.Spell.Spell;
 
-public class PC extends AbstractModel implements Mob, Caster, Vulnerable
+public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
 {
     protected int connectionID;                                 //ID de la conexion con el servidor
     protected MapaI mapaI;                                      //mapaI al que pertecene el Player
@@ -51,8 +48,7 @@ public class PC extends AbstractModel implements Mob, Caster, Vulnerable
 
 
     //GET:
-    public int getConnectionID ()                               { return connectionID; }
-    public int getNumAnimacion()                                { return numAnimacion; }
+    @Override public int getConnectionID ()                     { return connectionID; }
     public String getNombre()                                   { return nombre; }
     public int getNivel()                                       { return nivel; }
 
@@ -73,6 +69,7 @@ public class PC extends AbstractModel implements Mob, Caster, Vulnerable
     @Override public void setSpellIDSeleccionado(int spellID)   { spellIDSeleccionado = spellID; }
 
     //MOB:
+    @Override public int getNumAnimacion()                      { return numAnimacion; }
     @Override public float getX()                               { return x; }
     @Override public float getY()                               { return y; }
     @Override public float getVelocidadMod()                    { return velocidadMod; }
