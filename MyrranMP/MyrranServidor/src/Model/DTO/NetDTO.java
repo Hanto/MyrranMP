@@ -18,6 +18,7 @@ public class NetDTO
         kryo.register(CambiarAnimacionPC.class);
         kryo.register(AñadirPC.class);
         kryo.register(EliminarPC.class);
+        kryo.register(CastearPC.class);
     }
 
     //Network DTOs:
@@ -85,5 +86,15 @@ public class NetDTO
         {   connectionID = PC.getConnectionID(); }
         public EliminarPC (int connectionID)
         {   this.connectionID = connectionID; }
+    }
+
+    public static class CastearPC
+    {
+        public Boolean castear;
+        public int targetX;
+        public int targetY;
+        public CastearPC () {}
+        public CastearPC(Boolean castear, int x, int y)
+        {   this.castear = castear; targetX = x; targetY = y; }
     }
 }

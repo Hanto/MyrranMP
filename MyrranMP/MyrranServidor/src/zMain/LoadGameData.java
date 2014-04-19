@@ -35,6 +35,8 @@ public class LoadGameData
     public static void cargarSpells()
     {
         SpellDAO spellDAO = DAO.spellDAO.newInstance();
+
         Spell spell = new Spell(0);
+        spellDAO.añadirSpell(spell);
     }
 }

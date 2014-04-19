@@ -79,6 +79,13 @@ public class PlayerView extends Group implements PropertyChangeListener
         System.out.println("Player ID["+cambiarAnimacionPC.connectionID + "]Animacion["+cambiarAnimacionPC.numAnimacion+"]");
     }
 
+    public void setCastear (boolean castear, int targetX, int targetY)
+    {
+        NetDTO.CastearPC castearNDTO = new NetDTO.CastearPC(castear, targetX, targetY);
+        controlador.enviarAServidor(castearNDTO);
+        System.out.println("Casteando en: ["+targetX+"]["+targetY+"]");
+    }
+
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
         if (evt.getNewValue() instanceof PlayerDTO.PositionPlayer)
@@ -101,5 +108,14 @@ public class PlayerView extends Group implements PropertyChangeListener
 
         if (evt.getNewValue() instanceof PlayerDTO.NivelPlayer)
         {   nivel = ((PlayerDTO.NivelPlayer) evt.getNewValue()).nivel; }
+
+        if (evt.getNewValue() instanceof PlayerDTO.Castear)
+        {
+            boolean castear = ((PlayerDTO.Castear) evt.getNewValue()).castear;
+            int targetX = ((PlayerDTO.Castear) evt.getNewValue()).targetX;
+            int targetY = ((PlayerDTO.Castear) evt.getNewValue()).targetY;
+            setCastear(castear, targetX, targetY);
+
+        }
     }
 }

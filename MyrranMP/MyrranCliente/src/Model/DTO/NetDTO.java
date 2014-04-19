@@ -1,10 +1,10 @@
 package Model.DTO;// Created by Hanto on 07/04/2014.
 
+import Data.MiscData;
 import Model.Mobiles.PC;
 import Model.Mobiles.Player;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
-import Data.MiscData;
 
 public class NetDTO
 {
@@ -19,6 +19,7 @@ public class NetDTO
         kryo.register(CambiarAnimacionPC.class);
         kryo.register(AñadirPC.class);
         kryo.register(EliminarPC.class);
+        kryo.register(CastearPC.class);
     }
 
     //Network DTOs:
@@ -86,5 +87,15 @@ public class NetDTO
         {   connectionID = pc.getConnectionID(); }
         public EliminarPC (int connectionID)
         {   this.connectionID = connectionID; }
+    }
+
+    public static class CastearPC
+    {
+        public Boolean castear;
+        public int targetX;
+        public int targetY;
+        public CastearPC () {}
+        public CastearPC(Boolean castear, int x, int y)
+        {   this.castear = castear; targetX = x; targetY = y; }
     }
 }

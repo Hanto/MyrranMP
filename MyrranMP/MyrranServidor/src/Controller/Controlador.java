@@ -24,7 +24,13 @@ public class Controlador
     public void añadirPC (int connectionID, float x, float y)           { mundo.añadirPC(connectionID, x, y); }
     public void moverPC (int connectionID, float x, float y)            { mundo.moverPC(connectionID, x, y); }
     public void eliminarPC (int connectionID)                           { mundo.eliminarPC(connectionID); }
-    public void cambiarAnimacionPC(int connectionID, int numAnimacion)  { mundo.cambiarAnimacionPC(connectionID, numAnimacion);}
+
+    public void cambiarAnimacionPC(int connectionID, int numAnimacion)
+    {   mundo.getPC(connectionID).setAnimacion(numAnimacion); }
+
+    public void castear(int connectionID, boolean castear, int targetX, int targetY)
+    {   mundo.getPC(connectionID).setCastear(targetX, targetY); }
+
 
     public void netUpdater ()                                           { vista.netUpdate(); }
 }

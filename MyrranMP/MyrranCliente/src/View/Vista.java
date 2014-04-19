@@ -14,6 +14,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Array;
@@ -107,6 +109,13 @@ public class Vista implements PropertyChangeListener
         if (nivelDeZoom ==0) zoom = 1f;
         if (nivelDeZoom > 0) zoom = 1f+ nivelDeZoom *0.2f;
         camara.zoom = zoom;
+    }
+
+    public Vector2 convertirCoordenadasPantallaAMundo (int screenX, int screenY)
+    {
+        Vector3 destino = new Vector3(screenX, screenY, 0);
+        camara.unproject(destino);
+        return new Vector2(destino.x, destino.y);
     }
 
     @Override public void propertyChange(PropertyChangeEvent evt)

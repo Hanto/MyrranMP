@@ -30,7 +30,7 @@ public class PlayerEstado
     //cada estado dispone tambien de un metodo de Update, por si hay que actualizar barras de carga, o power ups, etc...
     
     //Estado QUIETO:
-    //Cualquier accion que ejecutemos que no sea la de castear implicara un cambio de estado. Castear no es un estado en si
+    //Cualquier accion que ejecutemos que no sea la de castear implicara un cambio de estado. CastearPC no es un estado en si
     //puesto que no dura nada, es instanteo, no es un estado. Todas las demas acciones duran tanto tiempo como se mantengan
     //el Casteo en cambio no, es una accion instantanea, por eso se decide no hacer de ella un Estado. Para que la animacion
     //del casteo se ejecute hasta el final se flagea como ininterrumpible, y para que no loopee sin parar, se le pone como respaldo
@@ -47,6 +47,9 @@ public class PlayerEstado
         }
         @Override public void procesarInput(PlayerEstado playerE)
         {
+            playerE.playerO.castear = playerE.playerI.castear;
+            playerE.playerO.click.set(playerE.playerI.click);
+
             if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irDerecha)      { playerE.estado = new Este(playerE); return; }
             if (playerE.playerI.irIzquierda)    { playerE.estado = new Oeste(playerE); return; }
@@ -73,7 +76,11 @@ public class PlayerEstado
             playerE.iDEstado = 6;
         }
         @Override public void procesarInput(PlayerEstado playerE)
-        {   if (playerE.playerI.disparar)
+        {
+            playerE.playerO.castear = playerE.playerI.castear;
+            playerE.playerO.click.set(playerE.playerI.click);
+
+            if (playerE.playerI.disparar)
             {
                 playerE.playerO.numAnimacion =6;
                 playerE.iDEstado = 6;
@@ -109,7 +116,11 @@ public class PlayerEstado
             playerE.iDEstado = 2;
         }
         @Override public void procesarInput(PlayerEstado playerE)
-        {   if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
+        {
+            playerE.playerO.castear = playerE.playerI.castear;
+            playerE.playerO.click.set(playerE.playerI.click);
+
+            if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irAbajo)        { playerE.estado = new Sur(playerE); return; }
             if (!playerE.playerI.irArriba)
             {   
@@ -138,7 +149,11 @@ public class PlayerEstado
             playerE.iDEstado = 3;
         }
         @Override public void procesarInput(PlayerEstado playerE)
-        {   if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
+        {
+            playerE.playerO.castear = playerE.playerI.castear;
+            playerE.playerO.click.set(playerE.playerI.click);
+
+            if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irArriba)       { playerE.estado = new Norte(playerE); return; }
             else if (!playerE.playerI.irAbajo)
             {
@@ -167,7 +182,11 @@ public class PlayerEstado
             playerE.iDEstado = 0;
         }
         @Override public void procesarInput(PlayerEstado playerE)
-        {   if (playerE.playerI.disparar)        { playerE.estado = new Disparando(playerE); return; }
+        {
+            playerE.playerO.castear = playerE.playerI.castear;
+            playerE.playerO.click.set(playerE.playerI.click);
+
+            if (playerE.playerI.disparar)        { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irDerecha)       { playerE.estado = new Este(playerE); return; }
             else if (!playerE.playerI.irIzquierda)
             {
@@ -196,7 +215,11 @@ public class PlayerEstado
             playerE.iDEstado = 1;
         }
         @Override public void procesarInput(PlayerEstado playerE)
-        {   if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
+        {
+            playerE.playerO.castear = playerE.playerI.castear;
+            playerE.playerO.click.set(playerE.playerI.click);
+
+            if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irIzquierda)    { playerE.estado = new Oeste(playerE); return; }
             else if (!playerE.playerI.irDerecha)
             {

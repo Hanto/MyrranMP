@@ -10,6 +10,7 @@ import View.Vista;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 //CLIENTE:
@@ -58,4 +59,7 @@ public class Controlador
 
     public void aplicarZoom(int incrementoZoom)                         { vista.aplicarZoom(incrementoZoom); }
     public void addInputProcessor(Stage stage)                          { inputMultiplexer.addProcessor(stage); }
+
+    public Vector2 convertirCoordenadasPantallaAMundo(int screenX, int screenY)
+    {   return vista.convertirCoordenadasPantallaAMundo(screenX, screenY); }
 }

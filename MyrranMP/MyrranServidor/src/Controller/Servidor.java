@@ -47,6 +47,15 @@ public class Servidor extends Server
             int numAnimacion = ((NetDTO.CambiarAnimacionPC) obj).numAnimacion;
             controlador.cambiarAnimacionPC(conID, numAnimacion);
         }
+
+        if (obj instanceof NetDTO.CastearPC)
+        {
+            int conID = con.getID();
+            boolean castear = ((NetDTO.CastearPC) obj).castear;
+            int targetX = ((NetDTO.CastearPC) obj).targetX;
+            int targetY = ((NetDTO.CastearPC) obj).targetY;
+            controlador.castear(conID, castear, targetX, targetY);
+        }
     }
 
     public void enviarACliente(int connectionID, Object obj)

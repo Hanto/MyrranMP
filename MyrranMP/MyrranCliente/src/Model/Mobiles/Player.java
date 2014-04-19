@@ -3,6 +3,7 @@ package Model.Mobiles;// Created by Hanto on 10/04/2014.
 import Controller.Input.PlayerIO;
 import Model.DTO.PlayerDTO;
 import Model.AbstractModel;
+import com.badlogic.gdx.math.Vector2;
 
 public class Player extends AbstractModel
 {
@@ -21,7 +22,11 @@ public class Player extends AbstractModel
     protected Boolean irAbajo = false;
     protected Boolean irDerecha = false;
     protected Boolean irIzquierda = false;
+
+    protected Boolean castear = false;
     protected Boolean disparar = false;
+
+    protected Vector2 target = new Vector2();
 
     protected Float velocidadMax = 80.0f;
     protected Float velocidadMod = 1.0f;
@@ -47,9 +52,11 @@ public class Player extends AbstractModel
         irAbajo = playerInput.irAbajo;
         irDerecha = playerInput.irDerecha;
         irIzquierda = playerInput.irIzquierda;
+
         disparar = playerInput.disparar;
 
         setAnimacion (playerInput.numAnimacion);
+        setCastear (playerInput.castear, playerInput.click);
     }
 
     private void setAnimacion (int numAnimacion)
@@ -132,6 +139,26 @@ public class Player extends AbstractModel
           X = ((float)(x+ (Math.cos(Math.toRadians(315d))*velocidadMax)*velocidadMod*delta)); }
 
         setPosition(X,Y);
+    }
+
+    //Solo salvamos los cambios del estado castear, para no desperdiciar ancho de banda:
+    private void setCastear(Boolean doCastear, Vector2 target)
+    {
+        if (!castear && doCastear)
+        {
+            castear = true;
+            this.target.set(target);
+            Object castearDTO = new PlayerDTO.Castear(castear, this.target);
+            notificarActualizacion("setCastear", null, castearDTO);
+
+        }
+        if (castear && !doCastear)
+        {
+            castear = false;
+            this.target.set(target);
+            Object castearDTO = new PlayerDTO.Castear(castear, this.target);
+            notificarActualizacion("setCastear", null, castearDTO);
+        }
     }
 
     public void actualizar (float delta)

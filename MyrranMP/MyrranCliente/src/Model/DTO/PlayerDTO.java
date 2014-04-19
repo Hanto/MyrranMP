@@ -1,6 +1,7 @@
 package Model.DTO;
 
 import Model.Mobiles.Player;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * Created by Ivan Delgado Huerta on 13/04/2014.
@@ -49,5 +50,14 @@ public class PlayerDTO
         public float maxHPs;
         public MaxHPs(float mHPs)
         {   maxHPs = mHPs; }
+    }
+
+    public static class Castear
+    {
+        public Boolean castear;
+        public int targetX;
+        public int targetY;
+        public Castear (Boolean castear, Vector2 target)
+        {   this.castear = castear; targetX = (int)target.x; targetY = (int)target.y; }
     }
 }

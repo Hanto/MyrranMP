@@ -40,6 +40,6 @@ public class Mundo extends AbstractModel
     public void moverPC (int connectionID, float x, float y)
     {   mapaPlayers.get(connectionID).setPosition(x, y); }
 
-    public void cambiarAnimacionPC(int connectionID, int numAnimacion)
-    {   mapaPlayers.get(connectionID).setAnimacion(numAnimacion); }
+    public PC getPC (int connectionID)
+    {   return mapaPlayers.get(connectionID); }
 }

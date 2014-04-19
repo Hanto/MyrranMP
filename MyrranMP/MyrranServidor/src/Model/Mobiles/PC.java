@@ -36,8 +36,8 @@ public class PC extends AbstractModel implements Mob, Caster, Vulnerable
     protected Float maxHPs=2000f;
 
     protected Boolean castear = false;
-    protected Integer castearX = 0;
-    protected Integer castearY = 0;
+    protected Integer targetX = 0;
+    protected Integer targetY = 0;
     protected Float actualCastingTime = 0.0f;
     protected Float totalCastingTime = 0.0f;
 
@@ -67,7 +67,7 @@ public class PC extends AbstractModel implements Mob, Caster, Vulnerable
     @Override public float getActualCastingTime()               { return actualCastingTime; }
     @Override public float getTotalCastingTime()                { return totalCastingTime; }
     @Override public int getSpellIDSeleccionado()               { return spellIDSeleccionado; }
-    @Override public void setCastear (int targetX, int targetY) { castear = true; castearX = targetX; castearY = targetY; }
+    @Override public void setCastear (int targetX, int targetY) { castear = true; this.targetX = targetX; this.targetY = targetY; }
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0f; totalCastingTime = castingTime;}
     @Override public void setSpellIDSeleccionado(int spellID)   { spellIDSeleccionado = spellID; }
 
@@ -127,6 +127,8 @@ public class PC extends AbstractModel implements Mob, Caster, Vulnerable
     {
         if (!isCasteando())
         {
+            spellIDSeleccionado = 0;
+
             Spell spell = DAO.spellDAO.newInstance().getSpell(spellIDSeleccionado);
             if (spell != null)
             {   spell.castear(this, castearX, castearY); }
@@ -136,6 +138,6 @@ public class PC extends AbstractModel implements Mob, Caster, Vulnerable
     public void actualizar()
     {
         actualizarCastingTime();
-        if (castear) castear(castearX, castearY);
+        if (castear) castear(targetX, targetY);
     }
 }

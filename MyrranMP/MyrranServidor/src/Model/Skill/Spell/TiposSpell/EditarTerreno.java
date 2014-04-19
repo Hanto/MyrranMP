@@ -29,6 +29,7 @@ public class EditarTerreno extends TipoSpell
         int numCapa = caster.getCapaTerrenoSeleccionada();
         String iDTerreno = Mundo.get().player.getTerrenoSeleccionado();
 */
+        System.out.println("Editando Terreno: ["+tileX+"]["+tileY+"]");
         caster.getMapa().setTerreno(tileX, tileY, 0, 2);
     }
 }
