@@ -14,7 +14,7 @@ public abstract class TipoSpell implements TipoSpellInterface
     protected SkillStat[] skillStats;
     
     //SET
-    public void setID(int id)                          { this.id = id; }
+    public void setID(int id)                           { this.id = id; }
     public void setNombre (String nombre)               { this.nombre = nombre; }
     public void setDescripcion (String descripcion)     { this.descripcion = descripcion; }
     //GET

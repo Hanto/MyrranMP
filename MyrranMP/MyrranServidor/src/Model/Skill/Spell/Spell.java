@@ -11,9 +11,9 @@ public class Spell
     protected String nombre;
     protected String descripcion;
     
-    protected TipoSpell tipoSpell;                                      //Command Pattern: Codigo que se ejecuta al castear el skill
+    protected TipoSpell tipoSpell;                      //Command Pattern: Codigo que se ejecuta al castear el skill
     
-    protected SkillStat[] skillStats;                                   //Stats concretos del skill
+    protected SkillStat[] skillStats;                   //Stats concretos del skill
 
     //SET
     public void setID(int id)                           { this.id = id; }

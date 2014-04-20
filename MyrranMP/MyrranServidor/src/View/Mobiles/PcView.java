@@ -2,6 +2,7 @@ package View.Mobiles;// Created by Hanto on 07/04/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
+import Interfaces.MobPC;
 import Model.DTO.NetDTO;
 import Model.DTO.PcDTO;
 import Model.Mobiles.Mundo;
@@ -20,7 +21,7 @@ public class PcView implements PropertyChangeListener
     public Mundo mundo;
     public Controlador controlador;
 
-    private List<PC> listaPCsCercanos = new ArrayList<>();
+    private List<MobPC> listaPCsCercanos = new ArrayList<>();
 
     public boolean visible = false;
 
@@ -64,7 +65,7 @@ public class PcView implements PropertyChangeListener
 
     public void actualizarPlayersCercanos (Object obj)
     {
-        for (PC PCCercanos : listaPCsCercanos)
+        for (MobPC PCCercanos : listaPCsCercanos)
             controlador.enviarACliente(PCCercanos.getConnectionID(), obj);
     }
 
@@ -72,7 +73,7 @@ public class PcView implements PropertyChangeListener
     {
         for (PcView pcCercanos : vista.listaPcViews)
         {
-            PC PCCercano = pcCercanos.PC;
+            MobPC PCCercano = pcCercanos.PC;
 
             if (PCCercano.getConnectionID() != PC.getConnectionID())
             {

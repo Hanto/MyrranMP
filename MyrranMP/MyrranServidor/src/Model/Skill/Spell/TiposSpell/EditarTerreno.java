@@ -10,8 +10,6 @@ import Model.Skill.Spell.TipoSpell;
 
 public class EditarTerreno extends TipoSpell
 {
-    public EditarTerreno()                         { }
-    
     @Override public void inicializarSkillStats() 
     {
         skillStats = new SkillStat[1]; SkillStat stat;
