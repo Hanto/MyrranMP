@@ -3,9 +3,9 @@ package Model.Skill.Spell.TiposSpell;
 
 import Data.Spell.TipoSpellsData;
 import Model.Skill.SkillStat;
-import Model.Skill.Spell.Spell;
+import Model.Skill.Spell.TipoSpell;
 
-public class EditarTerreno extends Spell
+public class EditarTerreno extends TipoSpell
 {
     @Override public void inicializarSkillStats()
     {

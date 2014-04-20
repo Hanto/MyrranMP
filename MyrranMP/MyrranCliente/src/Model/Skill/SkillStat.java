@@ -11,6 +11,7 @@ public class SkillStat
     
     //GET:
     public boolean isMejorable()                    { return isMejorable; }
+    public void setIsMejorable(boolean b)           { isMejorable = b; }
     
     //CONSTRUCTOR:
     public SkillStat(String nombre, float valor)

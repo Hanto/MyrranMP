@@ -8,17 +8,17 @@ public enum TerrenoDAOFactory
     KRYO("KRYO")
     {
         @Override
-        public TerrenoDAO newInstance()
+        public TerrenoDAO nuevo()
         {   return new TerrenoKryo(); }
     },
     LOCAL("LOCAL")
     {
         @Override
-        public TerrenoDAO newInstance()
+        public TerrenoDAO nuevo()
         {   return new TerrenoLocal(); }
     };
 
-    public abstract TerrenoDAO newInstance();
+    public abstract TerrenoDAO nuevo();
     private TerrenoDAOFactory(String nombre)
     {}
 }

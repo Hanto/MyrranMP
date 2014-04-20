@@ -35,7 +35,7 @@ public class Celda implements KryoSerializable
 
     public Terreno getTerreno(int numCapa)
     {
-        TerrenoDAO terrenoDAO = DAO.terrenoDAO.newInstance();
+        TerrenoDAO terrenoDAO = DAO.terrenoDAO.nuevo();
         return terrenoDAO.getTerreno(listaTerrenos[numCapa]);
     }
 
@@ -46,7 +46,7 @@ public class Celda implements KryoSerializable
 
     public boolean setTerreno(int numCapa, int terrenoID)
     {
-        TerrenoDAO terrenoDAO = DAO.terrenoDAO.newInstance();
+        TerrenoDAO terrenoDAO = DAO.terrenoDAO.nuevo();
         if (terrenoDAO.getTerreno(terrenoID) == null) { return false; }
         else { listaTerrenos[numCapa] = terrenoID; return true; }
     }

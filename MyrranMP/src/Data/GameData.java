@@ -1,5 +1,7 @@
 package Data;
 
+import Data.Spell.SpellsData;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class GameData
 
 
     public List<GameDataDTO.TerrenoDTO>listaDeTerrenoDTO = new ArrayList<>();
+    public List<GameDataDTO.SpellDTO>listaDeSpellsDTO = new ArrayList<>();
 
     public GameData()
     {
@@ -30,5 +33,11 @@ public class GameData
         listaDeTerrenoDTO.add(new GameDataDTO.TerrenoDTO("Tierra2",     false, "Tierra2"));
         listaDeTerrenoDTO.add(new GameDataDTO.TerrenoDTO("Tierra3",     false, "Tierra3"));
 
+        GameDataDTO.SpellDTO spellDTO = new GameDataDTO.SpellDTO(1);
+        spellDTO.tipoSpell = GameDataDTO.TipoSpell.EDITARTERRENO;
+        spellDTO.nombre = SpellsData.TERRAFORMAR_Nombre;
+        spellDTO.descripcion = SpellsData.TERRAFORMAR_Descripcion;
+        spellDTO.skillStats[0].setValor(0.5f);
+        listaDeSpellsDTO.add(spellDTO);
     }
 }

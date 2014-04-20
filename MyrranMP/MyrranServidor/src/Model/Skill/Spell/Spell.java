@@ -32,7 +32,10 @@ public class Spell
     public Spell (TipoSpell tipospell)
     {   //Se vincula el objeto que ejecutara los metodos de este tipo de Spell
         tipoSpell = tipospell;
-        
+
+        nombre = tipospell.getNombre();
+        descripcion = tipospell.getDescripcion();
+
         //y se copian sus Stats base:
         skillStats = new SkillStat[tipospell.skillStat().length];
         for (int i=0; i<skillStats.length;i++)
@@ -44,9 +47,12 @@ public class Spell
 
     public Spell (int tipoSpellID)
     {
-        tipoSpell = DAO.tipoSpellDAO.newInstance().getTipoSpell(tipoSpellID);
+        tipoSpell = DAO.tipoSpellDAO.nuevo().getTipoSpell(tipoSpellID);
 
         if (tipoSpell == null) { System.out.println("ERROR: spellID no encontrado"); return; }
+
+        nombre = tipoSpell.getNombre();
+        descripcion = tipoSpell.getDescripcion();
 
         skillStats = new SkillStat[tipoSpell.skillStat().length];
         for (int i=0; i<skillStats.length;i++)

@@ -19,7 +19,7 @@ public class Mapa implements MapaI
 
     public Terreno getTerreno (int x, int y, int numCapa)
     {
-        TerrenoDAO terrenoDAO = DAO.terrenoDAO.newInstance();
+        TerrenoDAO terrenoDAO = DAO.terrenoDAO.nuevo();
         return terrenoDAO.getTerreno(matriz[x][y].getTerrenoID(numCapa));
     }
 
