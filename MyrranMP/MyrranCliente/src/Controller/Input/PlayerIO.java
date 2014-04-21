@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class PlayerIO
 {
-    public Vector2 click = new Vector2();
+    public Vector2 screenClick = new Vector2();
 
     public int teclaArriba = Input.Keys.W;
     public int teclaAbajo = Input.Keys.S;
@@ -18,6 +18,7 @@ public class PlayerIO
     public boolean irIzquierda = false;
     public boolean disparar = false;
     public boolean castear = false;
+    public boolean stopCastear = false;
 
     public int numAnimacion = 5;
 

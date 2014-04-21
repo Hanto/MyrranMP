@@ -29,8 +29,8 @@ public class Player extends AbstractModel implements Caster
 
     protected Boolean castear = false;
 
-    protected Integer targetX = 0;
-    protected Integer targetY = 0;
+    protected Integer screenX = 0;
+    protected Integer screenY = 0;
     protected Float actualCastingTime = 0.0f;
     protected Float totalCastingTime = 0.0f;
     protected Integer spellIDSeleccionado = -1;
@@ -58,23 +58,56 @@ public class Player extends AbstractModel implements Caster
     @Override public int getSpellIDSeleccionado()               { return spellIDSeleccionado; }
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0f; totalCastingTime = castingTime;}
     @Override public void setSpellIDSeleccionado(int spellID)   { spellIDSeleccionado = spellID; }
-    @Override public void setCastear(boolean doCastear, int targetX, int targetY)
+    @Override public void setCastear(boolean doCastear, int clickX, int clickY)
     {   //Solo salvamos los cambios del estado castear, para no desperdiciar ancho de banda:
         if (doCastear)
         {
             castear = true;
-            this.targetX = targetX;
-            this.targetY = targetY;
+            screenX = clickX;
+            screenY = clickY;
             castear();
         }
-        if (!doCastear)
+        if (castear && !doCastear)
         {
             castear = false;
-            this.targetX = targetX;
-            this.targetY = targetY;
-            Object castearDTO = new PlayerDTO.Castear(castear, targetX, targetY);
-            notificarActualizacion("setCastear", null, castearDTO);
+            screenX = clickX;
+            screenY = clickY;
+            stopCastear();
         }
+    }
+
+    private void actualizarCastingTime(float delta)
+    {
+        if (isCasteando())
+        {
+            actualCastingTime += delta;
+            if (actualCastingTime >= totalCastingTime)
+            {   setTotalCastingTime(0f); }
+        }
+    }
+
+    private void castear()
+    {
+        if (!isCasteando())
+        {
+            spellIDSeleccionado = 0;
+
+            Spell spell = DAO.spellDAO.nuevo().getSpell(spellIDSeleccionado);
+            if (spell != null)
+            {
+                spell.castear(this, screenX, screenY);
+
+                Object castearDTO = new PlayerDTO.Castear(castear, screenX, screenY);
+                notificarActualizacion("setCastear", null, castearDTO);
+                actualCastingTime += 0.01f;
+            }
+        }
+    }
+
+    private void stopCastear()
+    {
+        Object castearDTO = new PlayerDTO.Castear(castear, screenX, screenY);
+        notificarActualizacion("setCastear", null, castearDTO);
     }
 
     //SET:
@@ -93,7 +126,7 @@ public class Player extends AbstractModel implements Caster
         disparar = playerInput.disparar;
 
         setAnimacion (playerInput.numAnimacion);
-        setCastear (playerInput.castear, (int)playerInput.click.x, (int)playerInput.click.y);
+        setCastear (playerInput.castear, (int)playerInput.screenClick.x, (int)playerInput.screenClick.y);
     }
 
     private void setAnimacion (int numAnimacion)
@@ -176,31 +209,6 @@ public class Player extends AbstractModel implements Caster
           X = ((float)(x+ (Math.cos(Math.toRadians(315d))*velocidadMax)*velocidadMod*delta)); }
 
         setPosition(X,Y);
-    }
-
-    private void actualizarCastingTime(float delta)
-    {
-        if (isCasteando())
-        {
-            actualCastingTime += delta;
-            if (actualCastingTime >= totalCastingTime)
-            {   setTotalCastingTime(0f); }
-        }
-    }
-
-    private void castear()
-    {
-        if (!isCasteando())
-        {
-            spellIDSeleccionado = 0;
-
-            Spell spell = DAO.spellDAO.nuevo().getSpell(spellIDSeleccionado);
-            if (spell != null)
-            {   spell.castear(this, targetX, targetY); }
-            Object castearDTO = new PlayerDTO.Castear(castear, targetX, targetY);
-            notificarActualizacion("setCastear", null, castearDTO);
-            actualCastingTime += 0.01f;
-        }
     }
 
     public void actualizar (float delta)

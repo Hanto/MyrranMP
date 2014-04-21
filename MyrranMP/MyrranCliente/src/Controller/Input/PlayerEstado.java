@@ -48,7 +48,8 @@ public class PlayerEstado
         @Override public void procesarInput(PlayerEstado playerE)
         {
             playerE.playerO.castear = playerE.playerI.castear;
-            playerE.playerO.click.set(playerE.playerI.click);
+            playerE.playerO.stopCastear = playerE.playerI.stopCastear;
+            playerE.playerO.screenClick.set(playerE.playerI.screenClick);
 
             if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irDerecha)      { playerE.estado = new Este(playerE); return; }
@@ -78,7 +79,8 @@ public class PlayerEstado
         @Override public void procesarInput(PlayerEstado playerE)
         {
             playerE.playerO.castear = playerE.playerI.castear;
-            playerE.playerO.click.set(playerE.playerI.click);
+            playerE.playerO.stopCastear = playerE.playerI.stopCastear;
+            playerE.playerO.screenClick.set(playerE.playerI.screenClick);
 
             if (playerE.playerI.disparar)
             {
@@ -118,7 +120,8 @@ public class PlayerEstado
         @Override public void procesarInput(PlayerEstado playerE)
         {
             playerE.playerO.castear = playerE.playerI.castear;
-            playerE.playerO.click.set(playerE.playerI.click);
+            playerE.playerO.stopCastear = playerE.playerI.stopCastear;
+            playerE.playerO.screenClick.set(playerE.playerI.screenClick);
 
             if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irAbajo)        { playerE.estado = new Sur(playerE); return; }
@@ -151,7 +154,8 @@ public class PlayerEstado
         @Override public void procesarInput(PlayerEstado playerE)
         {
             playerE.playerO.castear = playerE.playerI.castear;
-            playerE.playerO.click.set(playerE.playerI.click);
+            playerE.playerO.stopCastear = playerE.playerI.stopCastear;
+            playerE.playerO.screenClick.set(playerE.playerI.screenClick);
 
             if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irArriba)       { playerE.estado = new Norte(playerE); return; }
@@ -184,7 +188,8 @@ public class PlayerEstado
         @Override public void procesarInput(PlayerEstado playerE)
         {
             playerE.playerO.castear = playerE.playerI.castear;
-            playerE.playerO.click.set(playerE.playerI.click);
+            playerE.playerO.stopCastear = playerE.playerI.stopCastear;
+            playerE.playerO.screenClick.set(playerE.playerI.screenClick);
 
             if (playerE.playerI.disparar)        { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irDerecha)       { playerE.estado = new Este(playerE); return; }
@@ -217,7 +222,8 @@ public class PlayerEstado
         @Override public void procesarInput(PlayerEstado playerE)
         {
             playerE.playerO.castear = playerE.playerI.castear;
-            playerE.playerO.click.set(playerE.playerI.click);
+            playerE.playerO.stopCastear = playerE.playerI.stopCastear;
+            playerE.playerO.screenClick.set(playerE.playerI.screenClick);
 
             if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irIzquierda)    { playerE.estado = new Oeste(playerE); return; }

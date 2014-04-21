@@ -54,9 +54,9 @@ public class PlayerDTO
     public static class Castear
     {
         public Boolean castear;
-        public int targetX;
-        public int targetY;
-        public Castear (Boolean castear, int targetX, int targetY)
-        {   this.castear = castear; this.targetX = targetX; this.targetY = targetY; }
+        public int screenX;
+        public int screenY;
+        public Castear (Boolean castear, int screenX, int screenY)
+        {   this.castear = castear; this.screenX = screenX; this.screenY = screenY; }
     }
 }

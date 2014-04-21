@@ -2,7 +2,10 @@ package Model.Mobiles;// Created by Hanto on 07/04/2014.
 
 
 import Data.MiscData;
-import Interfaces.*;
+import Interfaces.Caster;
+import Interfaces.MapaI;
+import Interfaces.MobPC;
+import Interfaces.Vulnerable;
 import Model.AbstractModel;
 import Model.DAO.DAO;
 import Model.DTO.PcDTO;
@@ -65,7 +68,12 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0f; totalCastingTime = castingTime;}
     @Override public void setSpellIDSeleccionado(int spellID)   { spellIDSeleccionado = spellID; }
     @Override public void setCastear (boolean castear, int targetX, int targetY)
-    {   this.castear = castear; this.targetX = targetX; this.targetY = targetY; }
+    {
+        this.castear = castear;
+        this.targetX = targetX;
+        this.targetY = targetY;
+        if (castear) castear();
+    }
 
     //MOB:
     @Override public int getNumAnimacion()                      { return numAnimacion; }
@@ -109,11 +117,11 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
         notificarActualizacion("eliminar", null, eliminarDTO);
     }
 
-    private void actualizarCastingTime()
+    private void actualizarCastingTime(float delta)
     {
         if (isCasteando())
         {
-            actualCastingTime += MiscData.NETWORK_Update_Time/1000f;
+            actualCastingTime += delta;
             if (actualCastingTime >= totalCastingTime)
             {   setTotalCastingTime(0f); }
             //NOTIFICAR ACTUALIZACION CASTING TIME
@@ -128,14 +136,16 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
 
             Spell spell = DAO.spellDAO.nuevo().getSpell(spellIDSeleccionado);
             if (spell != null)
-            {   spell.castear(this, targetX, targetY); }
-            actualCastingTime += 0.01f;
+            {
+                spell.castear(this, targetX, targetY);
+                actualCastingTime += 0.01f;
+            }
         }
     }
 
     public void actualizar()
     {
-        actualizarCastingTime();
+        actualizarCastingTime(MiscData.SERVIDOR_Delta_Time);
         if (castear) castear();
     }
 }

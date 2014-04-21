@@ -85,7 +85,7 @@ public class PlayerView extends Group implements PropertyChangeListener
         Vector2 targetMundo = vista.convertirCoordenadasPantallaAMundo(targetX, targetY);
         NetDTO.CastearPC castearNDTO = new NetDTO.CastearPC(castear, (int)targetMundo.x, (int)targetMundo.y);
         controlador.enviarAServidor(castearNDTO);
-        System.out.println("Casteando en: ["+targetX+"]["+targetY+"]");
+        System.out.println("Casteando "+castear+" en: ["+targetX+"]["+targetY+"]");
     }
 
     @Override public void propertyChange(PropertyChangeEvent evt)
@@ -114,10 +114,9 @@ public class PlayerView extends Group implements PropertyChangeListener
         if (evt.getNewValue() instanceof PlayerDTO.Castear)
         {
             boolean castear = ((PlayerDTO.Castear) evt.getNewValue()).castear;
-            int targetX = ((PlayerDTO.Castear) evt.getNewValue()).targetX;
-            int targetY = ((PlayerDTO.Castear) evt.getNewValue()).targetY;
+            int targetX = ((PlayerDTO.Castear) evt.getNewValue()).screenX;
+            int targetY = ((PlayerDTO.Castear) evt.getNewValue()).screenY;
             setCastear(castear, targetX, targetY);
-
         }
     }
 }
