@@ -28,6 +28,7 @@ public class Player extends AbstractModel implements Caster
     protected Float maxHPs;
 
     protected Boolean castear = false;
+    protected Boolean castearInterrumpible = false;
 
     protected Integer screenX = 0;
     protected Integer screenY = 0;
@@ -59,34 +60,26 @@ public class Player extends AbstractModel implements Caster
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0f; totalCastingTime = castingTime;}
     @Override public void setSpellIDSeleccionado(int spellID)   { spellIDSeleccionado = spellID; }
     @Override public void setCastear(boolean doCastear, int clickX, int clickY)
-    {   //Solo salvamos los cambios del estado castear, para no desperdiciar ancho de banda:
-        if (doCastear)
-        {
-            castear = true;
-            screenX = clickX;
-            screenY = clickY;
-            castear();
-        }
-        if (castear && !doCastear)
-        {
-            castear = false;
-            screenX = clickX;
-            screenY = clickY;
-            stopCastear();
-        }
-    }
-
-    private void actualizarCastingTime(float delta)
     {
-        if (isCasteando())
+        castear = doCastear;
+        screenX = clickX;
+        screenY = clickY;
+
+        if (castear) startCastear();
+        else stopCastear();
+    }
+
+    private void stopCastear()
+    {
+        if (castearInterrumpible)
         {
-            actualCastingTime += delta;
-            if (actualCastingTime >= totalCastingTime)
-            {   setTotalCastingTime(0f); }
+            Object castearDTO = new PlayerDTO.Castear(castear, screenX, screenY);
+            notificarActualizacion("setCastear", null, castearDTO);
+            castearInterrumpible = false;
         }
     }
 
-    private void castear()
+    private void startCastear()
     {
         if (!isCasteando())
         {
@@ -100,21 +93,24 @@ public class Player extends AbstractModel implements Caster
                 Object castearDTO = new PlayerDTO.Castear(castear, screenX, screenY);
                 notificarActualizacion("setCastear", null, castearDTO);
                 actualCastingTime += 0.01f;
+                castearInterrumpible = true;
             }
         }
     }
 
-    private void stopCastear()
+    private void actualizarCastingTime(float delta)
     {
-        Object castearDTO = new PlayerDTO.Castear(castear, screenX, screenY);
-        notificarActualizacion("setCastear", null, castearDTO);
+        if (isCasteando())
+        {
+            actualCastingTime += delta;
+            if (actualCastingTime >= totalCastingTime)
+            {   setTotalCastingTime(0f); }
+        }
     }
 
     //SET:
     public void setConnectionID (int connectionID)
-    {
-        this.connectionID = connectionID;
-    }
+    {   this.connectionID = connectionID; }
 
     public void setInput (PlayerIO playerInput)
     {
@@ -126,7 +122,9 @@ public class Player extends AbstractModel implements Caster
         disparar = playerInput.disparar;
 
         setAnimacion (playerInput.numAnimacion);
-        setCastear (playerInput.castear, (int)playerInput.screenClick.x, (int)playerInput.screenClick.y);
+
+        if (playerInput.stopCastear) setCastear(false, playerInput.screenX, playerInput.screenY);
+        else if (playerInput.startCastear) setCastear (true, playerInput.screenX, playerInput.screenY);
     }
 
     private void setAnimacion (int numAnimacion)
@@ -215,6 +213,6 @@ public class Player extends AbstractModel implements Caster
     {
         moverse(delta);
         actualizarCastingTime(delta);
-        if (castear) castear();
+        if (castear) startCastear();
     }
 }

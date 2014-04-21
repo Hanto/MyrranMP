@@ -30,7 +30,7 @@ public class PlayerEstado
     //cada estado dispone tambien de un metodo de Update, por si hay que actualizar barras de carga, o power ups, etc...
     
     //Estado QUIETO:
-    //Cualquier accion que ejecutemos que no sea la de castear implicara un cambio de estado. CastearPC no es un estado en si
+    //Cualquier accion que ejecutemos que no sea la de startCastear implicara un cambio de estado. CastearPC no es un estado en si
     //puesto que no dura nada, es instanteo, no es un estado. Todas las demas acciones duran tanto tiempo como se mantengan
     //el Casteo en cambio no, es una accion instantanea, por eso se decide no hacer de ella un Estado. Para que la animacion
     //del casteo se ejecute hasta el final se flagea como ininterrumpible, y para que no loopee sin parar, se le pone como respaldo
@@ -47,9 +47,14 @@ public class PlayerEstado
         }
         @Override public void procesarInput(PlayerEstado playerE)
         {
-            playerE.playerO.castear = playerE.playerI.castear;
+            playerE.playerO.startCastear = playerE.playerI.startCastear;
+            playerE.playerI.startCastear = false;
+
             playerE.playerO.stopCastear = playerE.playerI.stopCastear;
-            playerE.playerO.screenClick.set(playerE.playerI.screenClick);
+            playerE.playerI.stopCastear = false;
+
+            playerE.playerO.screenX = playerE.playerI.screenX;
+            playerE.playerO.screenY = playerE.playerI.screenY;
 
             if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irDerecha)      { playerE.estado = new Este(playerE); return; }
@@ -63,7 +68,7 @@ public class PlayerEstado
     //Estado DISPARANDO:
     //Mantenemos el estado actual mientras se mantenga el boton de Disparar, pero antes de mostrar la animacion
     //de disparar, miramos si casteamos, por que la animacion de casteo tiene preferencia visualmente
-    //Si, es así, cargamos primero la de casteo, y luego como respaldo la de disparo, de no castear solo se cargaria
+    //Si, es así, cargamos primero la de casteo, y luego como respaldo la de disparo, de no startCastear solo se cargaria
     //la de disparo, que como no tiene fin, no necesita respaldo.
     //En caso de no disparar, hay que cambiar de estado:
     public static class Disparando implements Estado
@@ -78,9 +83,14 @@ public class PlayerEstado
         }
         @Override public void procesarInput(PlayerEstado playerE)
         {
-            playerE.playerO.castear = playerE.playerI.castear;
+            playerE.playerO.startCastear = playerE.playerI.startCastear;
+            playerE.playerI.startCastear = false;
+
             playerE.playerO.stopCastear = playerE.playerI.stopCastear;
-            playerE.playerO.screenClick.set(playerE.playerI.screenClick);
+            playerE.playerI.stopCastear = false;
+
+            playerE.playerO.screenX = playerE.playerI.screenX;
+            playerE.playerO.screenY = playerE.playerI.screenY;
 
             if (playerE.playerI.disparar)
             {
@@ -119,9 +129,14 @@ public class PlayerEstado
         }
         @Override public void procesarInput(PlayerEstado playerE)
         {
-            playerE.playerO.castear = playerE.playerI.castear;
+            playerE.playerO.startCastear = playerE.playerI.startCastear;
+            playerE.playerI.startCastear = false;
+
             playerE.playerO.stopCastear = playerE.playerI.stopCastear;
-            playerE.playerO.screenClick.set(playerE.playerI.screenClick);
+            playerE.playerI.stopCastear = false;
+
+            playerE.playerO.screenX = playerE.playerI.screenX;
+            playerE.playerO.screenY = playerE.playerI.screenY;
 
             if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irAbajo)        { playerE.estado = new Sur(playerE); return; }
@@ -153,9 +168,14 @@ public class PlayerEstado
         }
         @Override public void procesarInput(PlayerEstado playerE)
         {
-            playerE.playerO.castear = playerE.playerI.castear;
+            playerE.playerO.startCastear = playerE.playerI.startCastear;
+            playerE.playerI.startCastear = false;
+
             playerE.playerO.stopCastear = playerE.playerI.stopCastear;
-            playerE.playerO.screenClick.set(playerE.playerI.screenClick);
+            playerE.playerI.stopCastear = false;
+
+            playerE.playerO.screenX = playerE.playerI.screenX;
+            playerE.playerO.screenY = playerE.playerI.screenY;
 
             if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irArriba)       { playerE.estado = new Norte(playerE); return; }
@@ -187,9 +207,15 @@ public class PlayerEstado
         }
         @Override public void procesarInput(PlayerEstado playerE)
         {
-            playerE.playerO.castear = playerE.playerI.castear;
+            playerE.playerO.startCastear = playerE.playerI.startCastear;
+            playerE.playerI.startCastear = false;
+
             playerE.playerO.stopCastear = playerE.playerI.stopCastear;
-            playerE.playerO.screenClick.set(playerE.playerI.screenClick);
+            playerE.playerI.stopCastear = false;
+
+            playerE.playerO.screenX = playerE.playerI.screenX;
+            playerE.playerO.screenY = playerE.playerI.screenY;
+
 
             if (playerE.playerI.disparar)        { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irDerecha)       { playerE.estado = new Este(playerE); return; }
@@ -221,9 +247,14 @@ public class PlayerEstado
         }
         @Override public void procesarInput(PlayerEstado playerE)
         {
-            playerE.playerO.castear = playerE.playerI.castear;
+            playerE.playerO.startCastear = playerE.playerI.startCastear;
+            playerE.playerI.startCastear = false;
+
             playerE.playerO.stopCastear = playerE.playerI.stopCastear;
-            playerE.playerO.screenClick.set(playerE.playerI.screenClick);
+            playerE.playerI.stopCastear = false;
+
+            playerE.playerO.screenX = playerE.playerI.screenX;
+            playerE.playerO.screenY = playerE.playerI.screenY;
 
             if (playerE.playerI.disparar)       { playerE.estado = new Disparando(playerE); return; }
             if (playerE.playerI.irIzquierda)    { playerE.estado = new Oeste(playerE); return; }
