@@ -57,7 +57,7 @@ public class MobilesRecursos
          pixieCuerpo.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
          pixieCuerpo.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
          pixieCuerpo.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
-         pixieCuerpo.añadirAnimacion("startCastear",      new int []{12,13,14},   0.15f, false);
+         pixieCuerpo.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
          pixieCuerpo.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
          pixieCuerpo.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
          pixieCuerpo.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
@@ -80,7 +80,7 @@ public class MobilesRecursos
          pixieCuerpo.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
          pixieCuerpo.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
          pixieCuerpo.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
-         pixieCuerpo.añadirAnimacion("startCastear",      new int []{12,13,14},   0.15f, false);
+         pixieCuerpo.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
          pixieCuerpo.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
          pixieCuerpo.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
          pixieCuerpo.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
@@ -103,7 +103,7 @@ public class MobilesRecursos
          pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
          pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
          pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
-         pixieArmadura.añadirAnimacion("startCastear",      new int []{12,13,14},   0.15f, false);
+         pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
          pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
          pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
          pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
@@ -126,7 +126,7 @@ public class MobilesRecursos
          pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
          pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
          pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
-         pixieArmadura.añadirAnimacion("startCastear",      new int []{12,13,14},   0.15f, false);
+         pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
          pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
          pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
          pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
@@ -149,7 +149,7 @@ public class MobilesRecursos
          pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
          pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
          pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
-         pixieArmadura.añadirAnimacion("startCastear",      new int []{12,13,14},   0.15f, false);
+         pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
          pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
          pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
          pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
@@ -172,7 +172,7 @@ public class MobilesRecursos
          pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
          pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
          pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
-         pixieArmadura.añadirAnimacion("startCastear",      new int []{12,13,14},   0.15f, false);
+         pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
          pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
          pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
          pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
@@ -195,7 +195,7 @@ public class MobilesRecursos
          pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
          pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
          pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
-         pixieArmadura.añadirAnimacion("startCastear",      new int []{12,13,14},   0.15f, false);
+         pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
          pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
          pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
          pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
@@ -218,7 +218,7 @@ public class MobilesRecursos
          pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
          pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
          pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
-         pixieArmadura.añadirAnimacion("startCastear",      new int []{12,13,14},   0.15f, false);
+         pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
          pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
          pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
          pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
@@ -241,7 +241,7 @@ public class MobilesRecursos
          pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
          pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
          pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
-         pixieArmadura.añadirAnimacion("startCastear",      new int []{12,13,14},   0.15f, false);
+         pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
          pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
          pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
          pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
@@ -264,7 +264,7 @@ public class MobilesRecursos
          pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
          pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
          pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
-         pixieArmadura.añadirAnimacion("startCastear",      new int []{12,13,14},   0.15f, false);
+         pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
          pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
          pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
          pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);

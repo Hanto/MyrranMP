@@ -59,9 +59,9 @@ public class Player extends AbstractModel implements Caster
     @Override public int getSpellIDSeleccionado()               { return spellIDSeleccionado; }
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0f; totalCastingTime = castingTime;}
     @Override public void setSpellIDSeleccionado(int spellID)   { spellIDSeleccionado = spellID; }
-    @Override public void setCastear(boolean doCastear, int clickX, int clickY)
+    @Override public void setCastear(boolean intentaCastear, int clickX, int clickY)
     {
-        castear = doCastear;
+        castear = intentaCastear;
         screenX = clickX;
         screenY = clickY;
 
