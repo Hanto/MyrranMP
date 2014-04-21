@@ -31,7 +31,7 @@ public class Controlador
     {   mundo.getPC(connectionID).setAnimacion(numAnimacion); }
 
     public void castear(int connectionID, boolean castear, int targetX, int targetY)
-    {   mundo.getPC(connectionID).setCastear(targetX, targetY); }
+    {   mundo.getPC(connectionID).setCastear(castear, targetX, targetY); }
 
 
     public void netUpdater ()                                           { vista.netUpdate(); }

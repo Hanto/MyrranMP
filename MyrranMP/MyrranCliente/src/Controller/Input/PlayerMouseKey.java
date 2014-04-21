@@ -43,7 +43,8 @@ public class PlayerMouseKey implements InputProcessor
     @Override public boolean keyTyped(char character)                                       { return false; }
     @Override public boolean touchDown(int screenX, int screenY, int pointer, int button)
     {
-        playerI.click = controlador.convertirCoordenadasPantallaAMundo(screenX, screenY);
+        playerI.click.x = screenX;
+        playerI.click.y = screenY;
         playerI.castear = true;
         playerE.procesarInput();
         controlador.aplicarInputAPlayer();
@@ -52,7 +53,8 @@ public class PlayerMouseKey implements InputProcessor
 
     @Override public boolean touchUp(int screenX, int screenY, int pointer, int button)
     {
-        playerI.click = controlador.convertirCoordenadasPantallaAMundo(screenX, screenY);
+        playerI.click.x = screenX;
+        playerI.click.y = screenY;
         playerI.castear = false;
         playerE.procesarInput();
         controlador.aplicarInputAPlayer();
@@ -61,7 +63,8 @@ public class PlayerMouseKey implements InputProcessor
 
     @Override public boolean touchDragged(int screenX, int screenY, int pointer)
     {
-        playerI.click = controlador.convertirCoordenadasPantallaAMundo(screenX, screenY);
+        playerI.click.x = screenX;
+        playerI.click.y = screenY;
         playerI.castear = true;
         playerE.procesarInput();
         controlador.aplicarInputAPlayer();

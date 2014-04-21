@@ -2,6 +2,7 @@ package Model.Skill.Spell;
 // @author Ivan Delgado Huerta
 
 import Interfaces.Caster;
+import Model.DAO.DAO;
 import Model.Skill.SkillStat;
 
 public class Spell
@@ -41,6 +42,23 @@ public class Spell
         for (int i=0; i<skillStats.length;i++)
         {
             SkillStat statSkill = new SkillStat(tipospell.skillStat()[i]);
+            skillStats[i] = statSkill;
+        }
+    }
+
+    public Spell (int tipoSpellID)
+    {
+        tipoSpell = DAO.tipoSpellDAO.nuevo().getTipoSpell(tipoSpellID);
+
+        if (tipoSpell == null) { System.out.println("ERROR: spellID no encontrado"); return; }
+
+        nombre = tipoSpell.getNombre();
+        descripcion = tipoSpell.getDescripcion();
+
+        skillStats = new SkillStat[tipoSpell.skillStat().length];
+        for (int i=0; i<skillStats.length;i++)
+        {
+            SkillStat statSkill = new SkillStat(tipoSpell.skillStat()[i]);
             skillStats[i] = statSkill;
         }
     }

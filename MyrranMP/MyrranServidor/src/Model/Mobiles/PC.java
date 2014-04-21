@@ -11,7 +11,7 @@ import Model.Skill.Spell.Spell;
 
 public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
 {
-    protected int connectionID;                                 //ID de la conexion con el servidor
+    protected Integer connectionID;                             //ID de la conexion con el servidor
     protected MapaI mapaI;                                      //mapaI al que pertecene el Player
 
     protected Float x=0.0f;                                     //Coordenadas X:
@@ -45,8 +45,6 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     protected String iDraza;                                    //id de la raza;
 
 
-
-
     //GET:
     @Override public int getConnectionID ()                     { return connectionID; }
     public String getNombre()                                   { return nombre; }
@@ -64,9 +62,10 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     @Override public float getActualCastingTime()               { return actualCastingTime; }
     @Override public float getTotalCastingTime()                { return totalCastingTime; }
     @Override public int getSpellIDSeleccionado()               { return spellIDSeleccionado; }
-    @Override public void setCastear (int targetX, int targetY) { castear = true; this.targetX = targetX; this.targetY = targetY; }
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0f; totalCastingTime = castingTime;}
     @Override public void setSpellIDSeleccionado(int spellID)   { spellIDSeleccionado = spellID; }
+    @Override public void setCastear (boolean castear, int targetX, int targetY)
+    {   this.castear = castear; this.targetX = targetX; this.targetY = targetY; }
 
     //MOB:
     @Override public int getNumAnimacion()                      { return numAnimacion; }
@@ -114,14 +113,14 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     {
         if (isCasteando())
         {
-            actualCastingTime += MiscData.NETWORK_Update_Time;
+            actualCastingTime += MiscData.NETWORK_Update_Time/1000f;
             if (actualCastingTime >= totalCastingTime)
             {   setTotalCastingTime(0f); }
             //NOTIFICAR ACTUALIZACION CASTING TIME
         }
     }
 
-    private void castear(int castearX, int castearY)
+    private void castear()
     {
         if (!isCasteando())
         {
@@ -129,13 +128,14 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
 
             Spell spell = DAO.spellDAO.nuevo().getSpell(spellIDSeleccionado);
             if (spell != null)
-            {   spell.castear(this, castearX, castearY); }
+            {   spell.castear(this, targetX, targetY); }
+            actualCastingTime += 0.01f;
         }
     }
 
     public void actualizar()
     {
         actualizarCastingTime();
-        if (castear) castear(targetX, targetY);
+        if (castear) castear();
     }
 }

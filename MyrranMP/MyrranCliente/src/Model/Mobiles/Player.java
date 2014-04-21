@@ -1,44 +1,81 @@
 package Model.Mobiles;// Created by Hanto on 10/04/2014.
 
 import Controller.Input.PlayerIO;
-import Model.DTO.PlayerDTO;
+import Interfaces.Caster;
+import Interfaces.MapaI;
 import Model.AbstractModel;
-import com.badlogic.gdx.math.Vector2;
+import Model.DAO.DAO;
+import Model.DTO.PlayerDTO;
+import Model.Skill.Spell.Spell;
 
-public class Player extends AbstractModel
+public class Player extends AbstractModel implements Caster
 {
     protected Integer connectionID;
-    protected String nombre;
-    protected Integer nivel;
-    protected Float actualHPs;
-    protected Float maxHPs;
-    //Posicion:
+    protected MapaI mapaI;                                      //mapaI al que pertecene el Player
+
     protected Float x = 0.0f;                      //Coordenadas X:
     protected Float y = 0.0f;                      //Coordenadas Y:
 
     protected Integer numAnimacion = 5;
 
+    protected Float velocidadMax = 80.0f;
+    protected Float velocidadMod = 1.0f;
+
+    protected String nombre;
+    protected Integer nivel;
+
+    protected Float actualHPs;
+    protected Float maxHPs;
+
+    protected Boolean castear = false;
+
+    protected Integer targetX = 0;
+    protected Integer targetY = 0;
+    protected Float actualCastingTime = 0.0f;
+    protected Float totalCastingTime = 0.0f;
+    protected Integer spellIDSeleccionado = -1;
+
     protected Boolean irArriba = false;
     protected Boolean irAbajo = false;
     protected Boolean irDerecha = false;
     protected Boolean irIzquierda = false;
-
-    protected Boolean castear = false;
     protected Boolean disparar = false;
 
-    protected Vector2 target = new Vector2();
-
-    protected Float velocidadMax = 80.0f;
-    protected Float velocidadMod = 1.0f;
-
     //GET:
-    public int getConnectionID()            { return connectionID; }
-    public String getNombre()               { return nombre; }
-    public Integer getNivel()               { return nivel; }
-    public Float getActualHPs()             { return actualHPs; }
-    public Float getMaxHPs()                { return maxHPs; }
-    public float getX()                     { return x; }
-    public float getY()                     { return y; }
+    public int getConnectionID()                                { return connectionID; }
+    public String getNombre()                                   { return nombre; }
+    public Integer getNivel()                                   { return nivel; }
+    public Float getActualHPs()                                 { return actualHPs; }
+    public Float getMaxHPs()                                    { return maxHPs; }
+    public float getX()                                         { return x; }
+    public float getY()                                         { return y; }
+
+    //CASTER:
+    @Override public MapaI getMapa()                            { return mapaI; }
+    @Override public boolean isCasteando()                      { if (actualCastingTime >0) return true; else return false; }
+    @Override public float getActualCastingTime()               { return actualCastingTime; }
+    @Override public float getTotalCastingTime()                { return totalCastingTime; }
+    @Override public int getSpellIDSeleccionado()               { return spellIDSeleccionado; }
+    @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0f; totalCastingTime = castingTime;}
+    @Override public void setSpellIDSeleccionado(int spellID)   { spellIDSeleccionado = spellID; }
+    @Override public void setCastear(boolean doCastear, int targetX, int targetY)
+    {   //Solo salvamos los cambios del estado castear, para no desperdiciar ancho de banda:
+        if (doCastear)
+        {
+            castear = true;
+            this.targetX = targetX;
+            this.targetY = targetY;
+            castear();
+        }
+        if (!doCastear)
+        {
+            castear = false;
+            this.targetX = targetX;
+            this.targetY = targetY;
+            Object castearDTO = new PlayerDTO.Castear(castear, targetX, targetY);
+            notificarActualizacion("setCastear", null, castearDTO);
+        }
+    }
 
     //SET:
     public void setConnectionID (int connectionID)
@@ -56,7 +93,7 @@ public class Player extends AbstractModel
         disparar = playerInput.disparar;
 
         setAnimacion (playerInput.numAnimacion);
-        setCastear (playerInput.castear, playerInput.click);
+        setCastear (playerInput.castear, (int)playerInput.click.x, (int)playerInput.click.y);
     }
 
     private void setAnimacion (int numAnimacion)
@@ -141,28 +178,35 @@ public class Player extends AbstractModel
         setPosition(X,Y);
     }
 
-    //Solo salvamos los cambios del estado castear, para no desperdiciar ancho de banda:
-    private void setCastear(Boolean doCastear, Vector2 target)
+    private void actualizarCastingTime(float delta)
     {
-        if (!castear && doCastear)
+        if (isCasteando())
         {
-            castear = true;
-            this.target.set(target);
-            Object castearDTO = new PlayerDTO.Castear(castear, this.target);
-            notificarActualizacion("setCastear", null, castearDTO);
-
+            actualCastingTime += delta;
+            if (actualCastingTime >= totalCastingTime)
+            {   setTotalCastingTime(0f); }
         }
-        if (castear && !doCastear)
+    }
+
+    private void castear()
+    {
+        if (!isCasteando())
         {
-            castear = false;
-            this.target.set(target);
-            Object castearDTO = new PlayerDTO.Castear(castear, this.target);
+            spellIDSeleccionado = 0;
+
+            Spell spell = DAO.spellDAO.nuevo().getSpell(spellIDSeleccionado);
+            if (spell != null)
+            {   spell.castear(this, targetX, targetY); }
+            Object castearDTO = new PlayerDTO.Castear(castear, targetX, targetY);
             notificarActualizacion("setCastear", null, castearDTO);
+            actualCastingTime += 0.01f;
         }
     }
 
     public void actualizar (float delta)
     {
         moverse(delta);
+        actualizarCastingTime(delta);
+        if (castear) castear();
     }
 }

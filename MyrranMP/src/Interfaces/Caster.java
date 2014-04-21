@@ -11,7 +11,7 @@ public interface Caster
     public int getSpellIDSeleccionado();
 
     //SET:
-    public void setCastear(int targetX, int targetY);
+    public void setCastear(boolean castear, int targetX, int targetY);
     public void setTotalCastingTime(float castingTime);
     public void setSpellIDSeleccionado(int spellID);
 }
