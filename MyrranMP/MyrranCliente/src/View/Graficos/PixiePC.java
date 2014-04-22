@@ -134,7 +134,7 @@ public class PixiePC extends Actor
     public void act (float delta)
     {
         super.act(delta);
-        //sombra.setPosition(this.getX()+8, this.getY()-5);
+        //sombra.setPosition(this.getMapTileX()+8, this.getMapTileY()-5);
     }
     
     @Override

@@ -7,7 +7,7 @@ import Data.MiscData;
 
 public class Mapa extends AbstractModel
 {
-    private Celda[][] matriz = new Celda[MiscData.MAPA_Max_X][MiscData.MAPA_Max_Y];
+    private Celda[][] matriz = new Celda[MiscData.MAPA_Max_TilesX][MiscData.MAPA_Max_TilesY];
 
     public Mapa()
     {
@@ -30,7 +30,7 @@ public class Mapa extends AbstractModel
 
     public boolean setTerreno (int x, int y, int numCapa, Terreno terreno)
     {
-        if (x<0 || y<0 || x> MiscData.MAPA_Max_X || y> MiscData.MAPA_Max_Y) return false;
+        if (x<0 || y<0 || x> MiscData.MAPA_Max_TilesX || y> MiscData.MAPA_Max_TilesY) return false;
         else
         {
             matriz[x][y].setTerreno(numCapa, terreno);
@@ -40,7 +40,7 @@ public class Mapa extends AbstractModel
 
     public boolean setTerreno (int x, int y, int numCapa, int iDTerreno)
     {
-        if (x<0 || y<0 || x> MiscData.MAPA_Max_X || y> MiscData.MAPA_Max_Y) return false;
+        if (x<0 || y<0 || x> MiscData.MAPA_Max_TilesX || y> MiscData.MAPA_Max_TilesY) return false;
         else { return matriz[x][y].setTerreno(numCapa, iDTerreno); }
     }
 }

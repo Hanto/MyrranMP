@@ -280,7 +280,7 @@ public class PlayerEstado
             //{
                 //contadorPolvo = 0;
                 //Pixie polvo = new Pixie(RSC.polvoPasos);
-                //polvo.setPosition(playerE.player.getX(), playerE.player.getY());
+                //polvo.setPosition(playerE.player.getMapTileX(), playerE.player.getMapTileY());
                 //polvo.setAnimacion(0, true);
                 //playerE.player.getActor().getStage().addActor(polvo);
             //}

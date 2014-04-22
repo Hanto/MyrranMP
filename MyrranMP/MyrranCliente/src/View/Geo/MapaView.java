@@ -23,45 +23,47 @@ public class MapaView
     private SubMapaView mapaS;
     private SubMapaView mapaSE;
 
-    private float x;
-    private float y;
+    private int mapTileActualX;
+    private int mapTileActualY;
 
     public MapaView(Mapa mapaModel, float posInicialX, float posInicialY, Vista vista)
     {
         this.mapaModel = mapaModel;
         this.vista = vista;
 
-        int inicialX = (int)(posInicialX/MiscData.TILESIZE - MiscData.MAPAVIEW_Max_X/2);
-        int inicialY = (int)(posInicialY/MiscData.TILESIZE + MiscData.MAPAVIEW_Max_Y/2);
+        int mapTileX = (int)(posInicialX / (MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE));
+        int mapTileY = (int)(posInicialY / (MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE));
 
         camara = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        mapaO = new SubMapaView(this.mapaModel, inicialX-MiscData.MAPAVIEW_Max_X,   inicialY);
-        mapa = new SubMapaView(this.mapaModel,  inicialX,                           inicialY);
-        mapaE = new SubMapaView(this.mapaModel, inicialX+MiscData.MAPAVIEW_Max_X,   inicialY);
+        mapaO = new SubMapaView(this.mapaModel, mapTileX-1,    mapTileY);
+        mapa = new SubMapaView(this.mapaModel,  mapTileX  ,    mapTileY);
+        mapaE = new SubMapaView(this.mapaModel, mapTileX+1,    mapTileY);
 
-        mapaNO = new SubMapaView(this.mapaModel,inicialX-MiscData.MAPAVIEW_Max_X,   inicialY+MiscData.MAPAVIEW_Max_Y);
-        mapaN = new SubMapaView(this.mapaModel, inicialX,                           inicialY+MiscData.MAPAVIEW_Max_Y);
-        mapaNE = new SubMapaView(this.mapaModel,inicialX+MiscData.MAPAVIEW_Max_X,   inicialY+MiscData.MAPAVIEW_Max_Y);
+        mapaNO = new SubMapaView(this.mapaModel,mapTileX-1,    mapTileY+1);
+        mapaN = new SubMapaView(this.mapaModel, mapTileX,      mapTileY+1);
+        mapaNE = new SubMapaView(this.mapaModel,mapTileX+1,    mapTileY+1);
 
-        mapaSO = new SubMapaView(this.mapaModel,inicialX-MiscData.MAPAVIEW_Max_X,   inicialY-MiscData.MAPAVIEW_Max_Y);
-        mapaS = new SubMapaView(this.mapaModel, inicialX,                           inicialY-MiscData.MAPAVIEW_Max_Y);
-        mapaSE = new SubMapaView(this.mapaModel,inicialX+MiscData.MAPAVIEW_Max_X,   inicialY-MiscData.MAPAVIEW_Max_Y);
+        mapaSO = new SubMapaView(this.mapaModel,mapTileX-1,    mapTileY-1);
+        mapaS = new SubMapaView(this.mapaModel, mapTileX,      mapTileY-1);
+        mapaSE = new SubMapaView(this.mapaModel,mapTileX+1,    mapTileY-1);
     }
 
     public void setView (SubMapaView subMapaView)
     {
         camara.zoom = vista.camara.zoom;
-        camara.position.x = vista.camara.position.x - subMapaView.getX() *MiscData.TILESIZE;
-        camara.position.y = vista.camara.position.y - subMapaView.getY() *MiscData.TILESIZE;
+        camara.position.x = vista.camara.position.x - subMapaView.getMapTileX() *MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE;
+        camara.position.y = vista.camara.position.y - subMapaView.getMapTileY() *MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE;
         camara.update();
         subMapaView.setView(camara);
     }
 
     public void render()
     {
-        x = vista.camara.position.x + 24; //TODO mitad ancho personaje
-        y = vista.camara.position.y + 24; //TODO mitad alto personaje
+        //TODO mitad ancho personaje
+        //TODO mitad alto personaje
+        mapTileActualX = (int)((vista.camara.position.x + 24) / (MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE));
+        mapTileActualY = (int)((vista.camara.position.y + 24) / (MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE));
 
         mapaVistaLoader(mapa);
         mapaVistaLoader(mapaE);
@@ -109,31 +111,16 @@ public class MapaView
 
     public void mapaVistaLoader(SubMapaView subMapaView)
     {
+        if (mapTileActualX > (subMapaView.getMapTileX() + 1))
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() + 3,    subMapaView.getMapTileY()    ); }
 
-        if (x > (subMapaView.getX() + 2*MiscData.MAPAVIEW_Max_X) * MiscData.TILESIZE )
-        {
-            int newOrigenX = subMapaView.getX() + MiscData.MAPAVIEW_Max_X*3;
-            subMapaView.ajustarCoordenadas(newOrigenX, subMapaView.getY());
-            subMapaView.crearTiledMap(newOrigenX, subMapaView.getY());
-        }
-        if (x < (subMapaView.getX() - MiscData.MAPAVIEW_Max_X) * MiscData.TILESIZE)
-        {
-            int newOrigenX = subMapaView.getX() - MiscData.MAPAVIEW_Max_X*3;
-            subMapaView.ajustarCoordenadas(newOrigenX, subMapaView.getY());
-            subMapaView.crearTiledMap(newOrigenX, subMapaView.getY());
+        if (mapTileActualX < (subMapaView.getMapTileX() - 1))
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() - 3,    subMapaView.getMapTileY()    ); }
 
-        }
-        if (y > (subMapaView.getY() + 2*MiscData.MAPAVIEW_Max_Y) * MiscData.TILESIZE )
-        {
-            int newOrigenY = subMapaView.getY() + MiscData.MAPAVIEW_Max_Y *3;
-            subMapaView.ajustarCoordenadas(subMapaView.getX(), newOrigenY);
-            subMapaView.crearTiledMap(subMapaView.getX(), newOrigenY);
-        }
-        if (y < (subMapaView.getY() - MiscData.MAPAVIEW_Max_Y) * MiscData.TILESIZE)
-        {
-            int newOrigenY = subMapaView.getY() - MiscData.MAPAVIEW_Max_Y *3;
-            subMapaView.ajustarCoordenadas(subMapaView.getX(), newOrigenY);
-            subMapaView.crearTiledMap(subMapaView.getX(), newOrigenY);
-        }
+        if (mapTileActualY > (subMapaView.getMapTileY() + 1 ))
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()    ,    subMapaView.getMapTileY() + 3); }
+
+        if (mapTileActualY < (subMapaView.getMapTileY() - 1))
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()    ,    subMapaView.getMapTileY() - 3); }
     }
 }

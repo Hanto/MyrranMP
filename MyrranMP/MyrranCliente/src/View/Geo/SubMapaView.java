@@ -15,45 +15,37 @@ public class SubMapaView extends TiledMap
     private Mapa mapa;
     private OrthogonalTiledMapRenderer mapRenderer;
 
-    private int x;
-    private int y;
-
-    private int origenX;
-    private int finalX;
-
-    private int origenY;
-    private int finalY;
+    //mapTile, cuadrante que se renderiza
+    private int mapTileX;
+    private int mapTileY;
+    //tile origen y final que lo componen
+    private int tileOrigenX;
+    private int tileFinalX;
+    private int tileOrigenY;
+    private int tileFinalY;
 
     //GET:
-    public int getX()                               { return x; }
-    public int getY()                               { return y; }
+    public int getMapTileX()                               { return mapTileX; }
+    public int getMapTileY()                               { return mapTileY; }
     //SET:
     public void setView(OrthographicCamera camara)  { mapRenderer.setView(camara); }
 
 
-    public SubMapaView(Mapa mapaModel, int OrigenX, int OrigenY)
+    public SubMapaView(Mapa mapaModel, int mapTileOrigenX, int mapTileOrigenY)
     {
         this.mapa = mapaModel;
         this.mapRenderer = new OrthogonalTiledMapRenderer(this);
-        crearTiledMap(OrigenX, OrigenY);
+        crearTiledMap(mapTileOrigenX, mapTileOrigenY);
     }
 
-    public void ajustarCoordenadas(int origenX, int origenY)
+    public void ajustarCoordenadas(int mapTileOrigenX, int mapTileOrigenY)
     {
-        this.x = origenX; this.y = origenY;
+        this.mapTileX = mapTileOrigenX; this.mapTileY = mapTileOrigenY;
 
-        this.origenX = origenX;
-        this.origenY = origenY;
-        this.finalX = origenX + MiscData.MAPAVIEW_Max_X;
-        this.finalY = origenY + MiscData.MAPAVIEW_Max_Y;
-
-        /*if (origenX < 0) this.origenX = 0; else this.origenX = origenX;
-        if (origenY < 0) this.origenY = 0; else this.origenY = origenY;
-
-        finalX = origenX + MiscData.MAPAVIEW_Max_X;
-        if (finalX > MiscData.MAPA_Max_X) finalX = MiscData.MAPA_Max_X;
-        finalY = origenY + MiscData.MAPAVIEW_Max_Y;
-        if (finalY > MiscData.MAPA_Max_Y) finalY = MiscData.MAPA_Max_Y;*/
+        this.tileOrigenX = mapTileOrigenX * MiscData.MAPAVIEW_Max_TilesX;
+        this.tileOrigenY = mapTileOrigenY * MiscData.MAPAVIEW_Max_TilesY;
+        this.tileFinalX = mapTileOrigenX * MiscData.MAPAVIEW_Max_TilesX + MiscData.MAPAVIEW_Max_TilesX;
+        this.tileFinalY = mapTileOrigenY * MiscData.MAPAVIEW_Max_TilesY + MiscData.MAPAVIEW_Max_TilesY;
     }
 
     private void borrarTodosLosLayers ()
@@ -62,9 +54,9 @@ public class SubMapaView extends TiledMap
             getLayers().remove(0);
     }
 
-    public void crearTiledMap(int OrigenX, int OrigenY)
+    public void crearTiledMap(int mapTileOrigenX, int mapTileOrigenY)
     {
-        ajustarCoordenadas(OrigenX, OrigenY);
+        ajustarCoordenadas(mapTileOrigenX, mapTileOrigenY);
         borrarTodosLosLayers();
 
         Cell cell;
@@ -74,14 +66,14 @@ public class SubMapaView extends TiledMap
 
         for (int numCapa = 0; numCapa< MiscData.MAPA_Max_Capas_Terreno; numCapa++)
         {
-            TiledMapTileLayer suelo =
-                new TiledMapTileLayer(MiscData.MAPAVIEW_Max_X*2, MiscData.MAPAVIEW_Max_Y *2, MiscData.TILESIZE/2, MiscData.TILESIZE/2);
+            TiledMapTileLayer suelo = new TiledMapTileLayer
+                (MiscData.MAPAVIEW_Max_TilesX *2, MiscData.MAPAVIEW_Max_TilesY *2, MiscData.TILESIZE/2, MiscData.TILESIZE/2);
 
-            for (int x = origenX; x < finalX; x++)
+            for (int x = this.tileOrigenX; x < tileFinalX; x++)
             {
-                for (int y = origenY; y < finalY; y++)
+                for (int y = this.tileOrigenY; y < tileFinalY; y++)
                 {
-                    if (x < 0 || y < 0 || x > MiscData.MAPA_Max_X || y > MiscData.MAPA_Max_Y) {}
+                    if (x < 0 || y < 0 || x > MiscData.MAPA_Max_TilesX || y > MiscData.MAPA_Max_TilesY) { break; }
                     else if (mapa.getTerrenoID(x, y, numCapa) >= 0)
                     {
                         adyacencias = calcularAdyacencias(x,y,numCapa);
@@ -94,24 +86,25 @@ public class SubMapaView extends TiledMap
 
                         cell = new TiledMapTileLayer.Cell();
                         cell.setTile(tileNO);
-                        suelo.setCell((x-origenX)*2, (y-origenY)*2+1, cell);
+                        suelo.setCell((x- tileOrigenX)*2, (y- tileOrigenY)*2+1, cell);
 
                         cell = new TiledMapTileLayer.Cell();
                         cell.setTile(tileNE);
-                        suelo.setCell((x-origenX)*2+1, (y-origenY)*2+1, cell);
+                        suelo.setCell((x- tileOrigenX)*2+1, (y- tileOrigenY)*2+1, cell);
 
                         cell = new TiledMapTileLayer.Cell();
                         cell.setTile(tileSO);
-                        suelo.setCell((x-origenX)*2, (y-origenY)*2, cell);
+                        suelo.setCell((x- tileOrigenX)*2, (y- tileOrigenY)*2, cell);
 
                         cell = new TiledMapTileLayer.Cell();
                         cell.setTile(tileSE);
-                        suelo.setCell((x-origenX)*2+1, (y-origenY)*2, cell);
+                        suelo.setCell((x- tileOrigenX)*2+1, (y- tileOrigenY)*2, cell);
                     }
                 }
             }
             getLayers().add(suelo);
         }
+        addGrid();
     }
 
     private TerrenoDTO.Adyacencias calcularAdyacencias (int X, int Y, int capa)
@@ -120,7 +113,7 @@ public class SubMapaView extends TiledMap
 
         ad.iDTerreno = mapa.getTerrenoID(X,Y,capa);
 
-        if      (Y+1 >= MiscData.MAPA_Max_Y)                { ad.NOarriba = false; ad.NEarriba = false; }
+        if      (Y+1 >= MiscData.MAPA_Max_TilesY)                { ad.NOarriba = false; ad.NEarriba = false; }
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X,Y+1,capa)))              { ad.NOarriba = true; ad.NEarriba = true; }
 
@@ -132,12 +125,12 @@ public class SubMapaView extends TiledMap
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X-1,Y,capa)))              { ad.NOizquierda = true; ad.SOizquierda = true; }
 
-        if      (X+1 >= MiscData.MAPA_Max_X)                { ad.NEderecha = false; ad.SEderecha = false; }
+        if      (X+1 >= MiscData.MAPA_Max_TilesX)                { ad.NEderecha = false; ad.SEderecha = false; }
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X+1,Y,capa)))              { ad.NEderecha = true; ad.SEderecha = true; }
 
-        if      (X+1 >= MiscData.MAPA_Max_X ||
-                 Y+1 >= MiscData.MAPA_Max_Y)                { ad.NEdiagonal = false; }
+        if      (X+1 >= MiscData.MAPA_Max_TilesX ||
+                 Y+1 >= MiscData.MAPA_Max_TilesY)                { ad.NEdiagonal = false; }
 
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X+1,Y+1,capa)))            { ad.NEdiagonal = true; }
@@ -147,12 +140,12 @@ public class SubMapaView extends TiledMap
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X-1,Y-1,capa)))            { ad.SOdiagonal = true; }
 
-        if      (X-1 <0 || Y+1 >= MiscData.MAPA_Max_Y)      { ad.NOdiagonal = false; }
+        if      (X-1 <0 || Y+1 >= MiscData.MAPA_Max_TilesY)      { ad.NOdiagonal = false; }
 
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X-1,Y+1,capa)))            { ad.NOdiagonal = true; }
 
-        if      (X+1 >= MiscData.MAPA_Max_X || Y-1<0)       { ad.SEdiagonal = false; }
+        if      (X+1 >= MiscData.MAPA_Max_TilesX || Y-1<0)       { ad.SEdiagonal = false; }
 
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X+1,Y-1,capa)))            { ad.SEdiagonal = true; }
@@ -160,6 +153,28 @@ public class SubMapaView extends TiledMap
 
         return ad;
     }
+
+    private void addGrid ()
+    {
+        TiledMapTileLayer layerGrid = new TiledMapTileLayer
+            (MiscData.MAPAVIEW_Max_TilesX, MiscData.MAPAVIEW_Max_TilesY, MiscData.TILESIZE, MiscData.TILESIZE);
+
+        StaticTiledMapTile grid = new StaticTiledMapTile(GeoRecursos.get().grid);
+
+        TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
+        for (int x = 0; x < MiscData.MAPAVIEW_Max_TilesX; x++)
+        {
+            for (int y = 0; y < MiscData.MAPAVIEW_Max_TilesY; y++)
+            {
+                cell.setTile(grid);
+                layerGrid.setCell(x, y, cell);
+            }
+        }
+        layerGrid.setName("LayerGrid");
+        getLayers().add(layerGrid);
+
+    }
+
 
     @Override public void dispose()
     {

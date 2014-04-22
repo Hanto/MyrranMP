@@ -15,10 +15,12 @@ public class GeoRecursos
     private TextureAtlas atlas;
     private Map<Integer, TextureRegion> listaDeTexturasTerreno = new HashMap<>();
 
+    public TextureRegion grid;
 
     public void setAtlas(TextureAtlas atlas)
     {
         this.atlas = atlas;
+        grid = new TextureRegion(atlas.findRegion(MiscData.ATLAS_Terrenos_LOC + "grid"));
     }
 
 
