@@ -2,10 +2,11 @@ package Model.Skill.Spell;
 // @author Ivan Delgado Huerta
 
 import Interfaces.Caster;
+import Model.AbstractModel;
 import Model.DAO.DAO;
 import Model.Skill.SkillStat;
 
-public class Spell
+public class Spell extends AbstractModel
 {
     public static final int STAT_Cast = 0;
 

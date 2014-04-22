@@ -48,6 +48,8 @@ public class PlayerView extends Group implements PropertyChangeListener
     {
         actor = new PixiePC("Golem");
         this.addActor(actor);
+        this.setWidth(actor.getWidth());
+        this.setHeight(actor.getHeight());
         System.out.println("añadiendo Actor:");
         vista.stageMundo.addActor(this);
         System.out.println("numero Mobiles: "+vista.stageMundo.getActors().size);

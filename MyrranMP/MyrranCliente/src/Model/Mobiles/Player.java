@@ -11,7 +11,7 @@ import Model.Skill.Spell.Spell;
 public class Player extends AbstractModel implements Caster
 {
     protected Integer connectionID;
-    protected MapaI mapaI;                                      //mapaI al que pertecene el Player
+    protected MapaI mapaI;                         //mapaI al que pertecene el Player
 
     protected Float x = 0.0f;                      //Coordenadas X:
     protected Float y = 0.0f;                      //Coordenadas Y:
@@ -57,7 +57,7 @@ public class Player extends AbstractModel implements Caster
     @Override public float getActualCastingTime()               { return actualCastingTime; }
     @Override public float getTotalCastingTime()                { return totalCastingTime; }
     @Override public int getSpellIDSeleccionado()               { return spellIDSeleccionado; }
-    @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0f; totalCastingTime = castingTime;}
+    @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0.01f; totalCastingTime = castingTime;}
     @Override public void setSpellIDSeleccionado(int spellID)   { spellIDSeleccionado = spellID; }
     @Override public void setCastear(boolean intentaCastear, int clickX, int clickY)
     {
@@ -92,7 +92,7 @@ public class Player extends AbstractModel implements Caster
 
                 Object castearDTO = new PlayerDTO.Castear(castear, screenX, screenY);
                 notificarActualizacion("setCastear", null, castearDTO);
-                actualCastingTime += 0.01f;
+                //actualCastingTime += 0.01f;
                 castearInterrumpible = true;
             }
         }
@@ -104,7 +104,10 @@ public class Player extends AbstractModel implements Caster
         {
             actualCastingTime += delta;
             if (actualCastingTime >= totalCastingTime)
-            {   setTotalCastingTime(0f); }
+            {
+                actualCastingTime = 0f;
+                totalCastingTime = 0f;
+            }
         }
     }
 

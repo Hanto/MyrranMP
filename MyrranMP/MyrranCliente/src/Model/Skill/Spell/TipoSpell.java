@@ -1,9 +1,10 @@
 package Model.Skill.Spell;
 // @author Ivan Delgado Huerta
 
+import Model.AbstractModel;
 import Model.Skill.SkillStat;
 
-public abstract class TipoSpell implements TipoSpellInterface
+public abstract class TipoSpell extends AbstractModel implements TipoSpellInterface
 {
     public static final int STAT_Cast = 0;
     

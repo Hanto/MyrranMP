@@ -65,7 +65,7 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     @Override public float getActualCastingTime()               { return actualCastingTime; }
     @Override public float getTotalCastingTime()                { return totalCastingTime; }
     @Override public int getSpellIDSeleccionado()               { return spellIDSeleccionado; }
-    @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0f; totalCastingTime = castingTime;}
+    @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0.01f; totalCastingTime = castingTime;}
     @Override public void setSpellIDSeleccionado(int spellID)   { spellIDSeleccionado = spellID; }
     @Override public void setCastear (boolean castear, int targetX, int targetY)
     {
@@ -123,7 +123,10 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
         {
             actualCastingTime += delta;
             if (actualCastingTime >= totalCastingTime)
-            {   setTotalCastingTime(0f); }
+            {
+                actualCastingTime = 0f;
+                totalCastingTime = 0f;
+            }
             //NOTIFICAR ACTUALIZACION CASTING TIME
         }
     }
@@ -138,7 +141,7 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
             if (spell != null)
             {
                 spell.castear(this, targetX, targetY);
-                actualCastingTime += 0.01f;
+                //actualCastingTime += 0.01f;
             }
         }
     }

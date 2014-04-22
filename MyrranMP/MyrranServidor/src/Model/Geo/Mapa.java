@@ -2,10 +2,11 @@ package Model.Geo;// Created by Hanto on 14/04/2014.
 
 import Data.MiscData;
 import Interfaces.MapaI;
+import Model.AbstractModel;
 import Model.DAO.DAO;
 import Model.DAO.Terreno.TerrenoDAO;
 
-public class Mapa implements MapaI
+public class Mapa extends AbstractModel implements MapaI
 {
     private Celda[][] matriz = new Celda[MiscData.MAPA_Max_X][MiscData.MAPA_Max_Y];
 

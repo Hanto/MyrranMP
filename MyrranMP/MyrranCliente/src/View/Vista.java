@@ -2,9 +2,10 @@ package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
 import Model.DTO.MundoDTO;
+import Model.Geo.Mapa;
 import Model.Mobiles.Mundo;
 import Model.Mobiles.PC;
-import View.Geo.MapaVista;
+import View.Geo.MapaView;
 import View.Graficos.Texto;
 import View.Mobiles.MobilesRecursos;
 import View.Mobiles.PCView;
@@ -27,16 +28,16 @@ public class Vista implements PropertyChangeListener
 {
     public Controlador controlador;
     public Mundo mundo;
-
     public PlayerView playerView;
-    public Array<PCView> listaPCViews = new Array<>();
+    public Mapa mapa;
 
-    public OrthographicCamera camara;
+    public Array<PCView> listaPCViews = new Array<>();
+    public MapaView mapaView;
+
     public Stage stageMundo;
     public Stage stageUI;
+    public OrthographicCamera camara;
     public SpriteBatch batch;
-
-    public MapaVista mapaVista;
 
     private Texto fps;
     private int nivelDeZoom = 0;
@@ -45,6 +46,7 @@ public class Vista implements PropertyChangeListener
     {
         this.controlador = controlador;
         this.mundo = mundo;
+        this.mapa = mundo.mapa;
 
         camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch = new SpriteBatch();
@@ -52,7 +54,7 @@ public class Vista implements PropertyChangeListener
         stageUI = new Stage();
         playerView = new PlayerView(mundo.player, this, controlador);
 
-        mapaVista = new MapaVista(this);
+        mapaView = new MapaView(mapa, playerView.getX(), playerView.getY(), this);
 
         controlador.addInputProcessor(stageUI);
         controlador.addInputProcessor(stageMundo);
@@ -79,7 +81,7 @@ public class Vista implements PropertyChangeListener
         batch.setProjectionMatrix(camara.combined);
         //rayHandler.setCombinedMatrix(camara.combined);
 
-        mapaVista.render();
+        mapaView.render();
 
         batch.begin();
         batch.end();
@@ -97,7 +99,7 @@ public class Vista implements PropertyChangeListener
         stageMundo.dispose();
         stageUI.dispose();
         batch.dispose();
-        mapaVista.dispose();
+        mapaView.dispose();
     }
 
     public void aplicarZoom(int incrementoZoom)

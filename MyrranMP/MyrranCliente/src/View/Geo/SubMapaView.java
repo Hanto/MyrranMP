@@ -1,19 +1,17 @@
 package View.Geo;// Created by Hanto on 15/04/2014.
 
+import Data.MiscData;
 import Model.DTO.TerrenoDTO;
 import Model.Geo.Mapa;
-import View.Vista;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
-import Data.MiscData;
 
-public class SubMapaVista extends TiledMap
+public class SubMapaView extends TiledMap
 {
-    private Vista vista;
     private Mapa mapa;
     private OrthogonalTiledMapRenderer mapRenderer;
 
@@ -21,8 +19,9 @@ public class SubMapaVista extends TiledMap
     private int y;
 
     private int origenX;
-    private int origenY;
     private int finalX;
+
+    private int origenY;
     private int finalY;
 
     //GET:
@@ -32,10 +31,9 @@ public class SubMapaVista extends TiledMap
     public void setView(OrthographicCamera camara)  { mapRenderer.setView(camara); }
 
 
-    public SubMapaVista(Vista vista, int OrigenX, int OrigenY)
+    public SubMapaView(Mapa mapaModel, int OrigenX, int OrigenY)
     {
-        this.vista = vista;
-        this.mapa = vista.mundo.mapa;
+        this.mapa = mapaModel;
         this.mapRenderer = new OrthogonalTiledMapRenderer(this);
         crearTiledMap(OrigenX, OrigenY);
     }
@@ -44,13 +42,18 @@ public class SubMapaVista extends TiledMap
     {
         this.x = origenX; this.y = origenY;
 
-        if (origenX < 0) this.origenX = 0; else this.origenX = origenX;
+        this.origenX = origenX;
+        this.origenY = origenY;
+        this.finalX = origenX + MiscData.MAPAVIEW_Max_X;
+        this.finalY = origenY + MiscData.MAPAVIEW_Max_Y;
+
+        /*if (origenX < 0) this.origenX = 0; else this.origenX = origenX;
         if (origenY < 0) this.origenY = 0; else this.origenY = origenY;
 
         finalX = origenX + MiscData.MAPAVIEW_Max_X;
         if (finalX > MiscData.MAPA_Max_X) finalX = MiscData.MAPA_Max_X;
         finalY = origenY + MiscData.MAPAVIEW_Max_Y;
-        if (finalY > MiscData.MAPA_Max_Y) finalY = MiscData.MAPA_Max_Y;
+        if (finalY > MiscData.MAPA_Max_Y) finalY = MiscData.MAPA_Max_Y;*/
     }
 
     private void borrarTodosLosLayers ()
@@ -78,7 +81,8 @@ public class SubMapaVista extends TiledMap
             {
                 for (int y = origenY; y < finalY; y++)
                 {
-                    if (mapa.getTerrenoID(x, y, numCapa) >= 0)
+                    if (x < 0 || y < 0 || x > MiscData.MAPA_Max_X || y > MiscData.MAPA_Max_Y) {}
+                    else if (mapa.getTerrenoID(x, y, numCapa) >= 0)
                     {
                         adyacencias = calcularAdyacencias(x,y,numCapa);
                         terrenoView = new TerrenoView(adyacencias);
