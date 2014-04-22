@@ -25,33 +25,16 @@ public class SubMapaView extends TiledMap
     private int tileFinalY;
 
     //GET:
-    public int getMapTileX()                               { return mapTileX; }
-    public int getMapTileY()                               { return mapTileY; }
+    public int getMapTileX()                        { return mapTileX; }
+    public int getMapTileY()                        { return mapTileY; }
     //SET:
     public void setView(OrthographicCamera camara)  { mapRenderer.setView(camara); }
 
 
-    public SubMapaView(Mapa mapaModel, int mapTileOrigenX, int mapTileOrigenY)
+    public SubMapaView(Mapa mapaModel)
     {
         this.mapa = mapaModel;
         this.mapRenderer = new OrthogonalTiledMapRenderer(this);
-        crearTiledMap(mapTileOrigenX, mapTileOrigenY);
-    }
-
-    public void ajustarCoordenadas(int mapTileOrigenX, int mapTileOrigenY)
-    {
-        this.mapTileX = mapTileOrigenX; this.mapTileY = mapTileOrigenY;
-
-        this.tileOrigenX = mapTileOrigenX * MiscData.MAPAVIEW_Max_TilesX;
-        this.tileOrigenY = mapTileOrigenY * MiscData.MAPAVIEW_Max_TilesY;
-        this.tileFinalX = mapTileOrigenX * MiscData.MAPAVIEW_Max_TilesX + MiscData.MAPAVIEW_Max_TilesX;
-        this.tileFinalY = mapTileOrigenY * MiscData.MAPAVIEW_Max_TilesY + MiscData.MAPAVIEW_Max_TilesY;
-    }
-
-    private void borrarTodosLosLayers ()
-    {
-        while (getLayers().getCount()>0)
-            getLayers().remove(0);
     }
 
     public void crearTiledMap(int mapTileOrigenX, int mapTileOrigenY)
@@ -105,6 +88,22 @@ public class SubMapaView extends TiledMap
             getLayers().add(suelo);
         }
         addGrid();
+    }
+
+    private void ajustarCoordenadas(int mapTileOrigenX, int mapTileOrigenY)
+    {
+        this.mapTileX = mapTileOrigenX; this.mapTileY = mapTileOrigenY;
+
+        this.tileOrigenX = mapTileOrigenX * MiscData.MAPAVIEW_Max_TilesX;
+        this.tileOrigenY = mapTileOrigenY * MiscData.MAPAVIEW_Max_TilesY;
+        this.tileFinalX = mapTileOrigenX * MiscData.MAPAVIEW_Max_TilesX + MiscData.MAPAVIEW_Max_TilesX;
+        this.tileFinalY = mapTileOrigenY * MiscData.MAPAVIEW_Max_TilesY + MiscData.MAPAVIEW_Max_TilesY;
+    }
+
+    private void borrarTodosLosLayers ()
+    {
+        while (getLayers().getCount()>0)
+            getLayers().remove(0);
     }
 
     private TerrenoDTO.Adyacencias calcularAdyacencias (int X, int Y, int capa)

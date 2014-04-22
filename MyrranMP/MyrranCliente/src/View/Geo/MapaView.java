@@ -30,23 +30,39 @@ public class MapaView
     {
         this.mapaModel = mapaModel;
         this.vista = vista;
-
-        int mapTileX = (int)(posInicialX / (MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE));
-        int mapTileY = (int)(posInicialY / (MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE));
-
         camara = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        mapaO = new SubMapaView(this.mapaModel, mapTileX-1,    mapTileY);
-        mapa = new SubMapaView(this.mapaModel,  mapTileX  ,    mapTileY);
-        mapaE = new SubMapaView(this.mapaModel, mapTileX+1,    mapTileY);
+        mapaO = new SubMapaView(this.mapaModel);
+        mapa = new SubMapaView(this.mapaModel);
+        mapaE = new SubMapaView(this.mapaModel);
 
-        mapaNO = new SubMapaView(this.mapaModel,mapTileX-1,    mapTileY+1);
-        mapaN = new SubMapaView(this.mapaModel, mapTileX,      mapTileY+1);
-        mapaNE = new SubMapaView(this.mapaModel,mapTileX+1,    mapTileY+1);
+        mapaNO = new SubMapaView(this.mapaModel);
+        mapaN = new SubMapaView(this.mapaModel);
+        mapaNE = new SubMapaView(this.mapaModel);
 
-        mapaSO = new SubMapaView(this.mapaModel,mapTileX-1,    mapTileY-1);
-        mapaS = new SubMapaView(this.mapaModel, mapTileX,      mapTileY-1);
-        mapaSE = new SubMapaView(this.mapaModel,mapTileX+1,    mapTileY-1);
+        mapaSO = new SubMapaView(this.mapaModel);
+        mapaS = new SubMapaView(this.mapaModel);
+        mapaSE = new SubMapaView(this.mapaModel);
+
+        setPosition(posInicialX, posInicialY);
+    }
+
+    public void setPosition(float x, float y)
+    {
+        int mapTileX = (int)(x / (MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE));
+        int mapTileY = (int)(y / (MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE));
+
+        mapaO.crearTiledMap(mapTileX-1,    mapTileY);
+        mapa.crearTiledMap (mapTileX  ,    mapTileY);
+        mapaE.crearTiledMap(mapTileX+1,    mapTileY);
+
+        mapaNO.crearTiledMap(mapTileX-1,   mapTileY+1);
+        mapaN.crearTiledMap (mapTileX  ,   mapTileY+1);
+        mapaNE.crearTiledMap(mapTileX+1,   mapTileY+1);
+
+        mapaSO.crearTiledMap(mapTileX-1,   mapTileY-1);
+        mapaS.crearTiledMap (mapTileX  ,   mapTileY-1);
+        mapaSE.crearTiledMap(mapTileX+1,   mapTileY-1);
     }
 
     public void setView (SubMapaView subMapaView)
