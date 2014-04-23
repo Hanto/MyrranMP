@@ -4,7 +4,6 @@ import Data.MiscData;
 import Model.DTO.MapaDTO;
 import Model.Geo.Mapa;
 import View.Vista;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import java.beans.PropertyChangeEvent;
@@ -18,50 +17,62 @@ public class MapaView implements PropertyChangeListener
     private OrthographicCamera camara;
 
     private SubMapaView[] listaSubMapas;
-    private int tamaño;
 
-    private int xActual;
+    private int xActual;                            //Coordenadas del centro de vision
     private int yActual;
 
-    private int bordeE;
-    private int bordeO;
-    private int bordeN;
-    private int bordeS;
+    private int mapTileBordeE;                      //MapTile que hay justo a la derecha del limite de vision
+    private int mapTileBordeO;                      //MapTile que hay justo a la izquierda del limite de vision
+    private int mapTileBordeN;                      //MapTile que hay justo arriba del limite de vision
+    private int mapTileBordeS;                      //MapTile que hay justo abajo del limtie de vision
 
-    public MapaView(Mapa mapaModel, float posInicialX, float posInicialY, int size, Vista vista)
+    private int tamañoX;                            //numero de subMapas en el ejeX
+    private int tamañoY;                            //numero de subMapas en el ejeY
+
+    private int numTilesX;                          //numero de Tiles de ancho de cada submapa
+    private int numTilesY;                          //numero de Tiles de alto de cada submapa
+
+    public MapaView(Mapa mapaModel, float posInicialX, float posInicialY, int tamañoX, int tamañoY, Vista vista)
     {
         this.mapaModel = mapaModel;
         this.vista = vista;
+        this.tamañoX = tamañoX;
+        this.tamañoY = tamañoY;
         this.mapaModel.añadirObservador(this);
 
-        camara = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        if (size <=0) size = 1;
-        tamaño = 3*(int)Math.pow(2,size-1);
+        this.numTilesX = (int)Math.ceil((double)MiscData.GDX_Window_Horizontal_Resolution/(double)(tamañoX -1)/(double)MiscData.TILESIZE);
+        this.numTilesY = (int)Math.ceil((double)MiscData.GDX_Window_Vertical_Resolution/(double)(tamañoY -1)/(double)MiscData.TILESIZE);
 
-        listaSubMapas = new SubMapaView[tamaño*tamaño];
+        camara = new OrthographicCamera(MiscData.GDX_Window_Horizontal_Resolution, MiscData.GDX_Window_Vertical_Resolution);
+
+        listaSubMapas = new SubMapaView[tamañoX * tamañoY];
         for (int i=0; i<listaSubMapas.length;i++)
-        {   listaSubMapas[i] = new SubMapaView(this.mapaModel); }
+        {   listaSubMapas[i] = new SubMapaView(this.mapaModel, numTilesX, numTilesY); }
 
         setPosition(posInicialX, posInicialY);
     }
 
     public void setPosition(float posX, float posY)
     {
-        int mapTileInicialX = (int)(posX / (MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE));
-        int mapTileInicialY = (int)(posY / (MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE));
+        int mapTileInicialX = (int)(posX / (numTilesX *MiscData.TILESIZE));
+        int mapTileInicialY = (int)(posY / (numTilesY *MiscData.TILESIZE));
 
         int xInicial, xFinal, yInicial;
 
-        if (tamaño == 3)
-        {   xInicial = -1;
-            xFinal = 1;
-            yInicial = 1;
+        //tamañoX Par:
+        if (tamañoX %2 > 0)
+        {   xInicial = -(tamañoX -1)/2;
+            xFinal = (tamañoX -1)/2;
         }
+        //tamañoX Impar:
         else
-        {   xInicial = -tamaño/2;
-            xFinal = tamaño/2-1;
-            yInicial = tamaño/2-1;
+        {   xInicial = -tamañoX /2;
+            xFinal = tamañoX /2-1;
         }
+        //TamañoY Par/Impar:
+        if (tamañoY%2 >0) yInicial = (tamañoY -1)/2;
+        else  yInicial = tamañoY /2-1;
+
 
         int x = xInicial; int y = yInicial;
 
@@ -76,8 +87,8 @@ public class MapaView implements PropertyChangeListener
     public void setView (SubMapaView subMapaView)
     {
         camara.zoom = vista.camara.zoom;
-        camara.position.x = vista.camara.position.x - subMapaView.getMapTileX() *MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE;
-        camara.position.y = vista.camara.position.y - subMapaView.getMapTileY() *MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE;
+        camara.position.x = vista.camara.position.x - subMapaView.getMapTileX() * numTilesX *MiscData.TILESIZE;
+        camara.position.y = vista.camara.position.y - subMapaView.getMapTileY() * numTilesY *MiscData.TILESIZE;
         camara.update();
         subMapaView.setView(camara);
     }
@@ -104,28 +115,28 @@ public class MapaView implements PropertyChangeListener
 
     public void mapaVistaLoader(SubMapaView subMapaView)
     {
-        bordeE = (xActual+Gdx.graphics.getWidth()/2) / (MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE);
-        bordeO = (xActual-Gdx.graphics.getWidth()/2) / (MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE);
-        bordeN = (yActual+Gdx.graphics.getHeight()/2) / (MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE);
-        bordeS = (yActual-Gdx.graphics.getHeight()/2) / (MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE);
+        mapTileBordeE = (xActual + MiscData.GDX_Window_Horizontal_Resolution /2) /  (numTilesX *MiscData.TILESIZE);
+        mapTileBordeO = (xActual - MiscData.GDX_Window_Horizontal_Resolution /2) /  (numTilesX *MiscData.TILESIZE);
+        mapTileBordeN = (yActual + MiscData.GDX_Window_Vertical_Resolution /2) /    (numTilesY *MiscData.TILESIZE);
+        mapTileBordeS = (yActual - MiscData.GDX_Window_Vertical_Resolution /2) /    (numTilesY *MiscData.TILESIZE);
 
-        if (bordeE >= (subMapaView.getMapTileX() + tamaño))
-        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() + tamaño,    subMapaView.getMapTileY()); }
+        if (mapTileBordeE >= (subMapaView.getMapTileX() + tamañoX))
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() + tamañoX,    subMapaView.getMapTileY()); }
 
-        if (bordeO <= (subMapaView.getMapTileX() - tamaño))
-        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() - tamaño,    subMapaView.getMapTileY()); }
+        if (mapTileBordeO <= (subMapaView.getMapTileX() - tamañoX))
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() - tamañoX,    subMapaView.getMapTileY()); }
 
-        if (bordeN >= (subMapaView.getMapTileY() + tamaño))
-        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()         ,    subMapaView.getMapTileY() + tamaño); }
+        if (mapTileBordeN >= (subMapaView.getMapTileY() + tamañoY))
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()         ,    subMapaView.getMapTileY() + tamañoY); }
 
-        if (bordeS <= (subMapaView.getMapTileY() - tamaño))
-        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()         ,    subMapaView.getMapTileY() - tamaño); }
+        if (mapTileBordeS <= (subMapaView.getMapTileY() - tamañoY))
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()         ,    subMapaView.getMapTileY() - tamañoY); }
     }
 
     public void crearTile(int celdaX, int celdaY, int numCapa)
     {
-        int mapTileX = celdaX/MiscData.MAPAVIEW_Max_TilesX;
-        int mapTileY = celdaY/MiscData.MAPAVIEW_Max_TilesY;
+        int mapTileX = celdaX/ numTilesX;
+        int mapTileY = celdaY/ numTilesY;
 
         for (SubMapaView subMapaView: listaSubMapas)
         {

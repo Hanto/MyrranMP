@@ -38,7 +38,9 @@ public class PantallaLibGDX implements Screen
     }
 
     @Override public void resize(int anchura, int altura)
-    {   Gdx.app.log( myrranCliente.LOG, "RESIZE (Redimensionando Screen): "+ getNombrePantalla() +" a: "+anchura+" x "+altura); }
+    {   Gdx.app.log( myrranCliente.LOG, "RESIZE (Redimensionando Screen): "+ getNombrePantalla() +" a: "+anchura+" x "+altura);
+        controlador.resize(anchura, altura);
+    }
 
     @Override public void pause()
     {   Gdx.app.log( myrranCliente.LOG, "PAUSE (Pausando pantalla): " + getNombrePantalla()); }

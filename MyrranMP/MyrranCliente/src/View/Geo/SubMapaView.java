@@ -23,6 +23,9 @@ public class SubMapaView extends TiledMap
     private int tileFinalX;
     private int tileOrigenY;
     private int tileFinalY;
+    //numero de Tiles de ancho y alto
+    private int tamañoX;
+    private int tamañoY;
 
     //GET:
     public int getMapTileX()                        { return mapTileX; }
@@ -31,10 +34,12 @@ public class SubMapaView extends TiledMap
     public void setView(OrthographicCamera camara)  { mapRenderer.setView(camara); }
 
 
-    public SubMapaView(Mapa mapaModel)
+    public SubMapaView(Mapa mapaModel, int tamañoX, int tamañoY)
     {
         this.mapa = mapaModel;
         this.mapRenderer = new OrthogonalTiledMapRenderer(this);
+        this.tamañoX = tamañoX;
+        this.tamañoY = tamañoY;
     }
 
     public void crearTiledMap(int mapTileOrigenX, int mapTileOrigenY)
@@ -50,7 +55,7 @@ public class SubMapaView extends TiledMap
         for (int numCapa = 0; numCapa< MiscData.MAPA_Max_Capas_Terreno; numCapa++)
         {
             TiledMapTileLayer suelo = new TiledMapTileLayer
-                (MiscData.MAPAVIEW_Max_TilesX *2, MiscData.MAPAVIEW_Max_TilesY *2, MiscData.TILESIZE/2, MiscData.TILESIZE/2);
+                (tamañoX *2, tamañoY *2, MiscData.TILESIZE/2, MiscData.TILESIZE/2);
 
             for (int x = this.tileOrigenX; x < tileFinalX; x++)
             {
@@ -94,10 +99,10 @@ public class SubMapaView extends TiledMap
     {
         this.mapTileX = mapTileOrigenX; this.mapTileY = mapTileOrigenY;
 
-        this.tileOrigenX = mapTileOrigenX * MiscData.MAPAVIEW_Max_TilesX;
-        this.tileOrigenY = mapTileOrigenY * MiscData.MAPAVIEW_Max_TilesY;
-        this.tileFinalX = mapTileOrigenX * MiscData.MAPAVIEW_Max_TilesX + MiscData.MAPAVIEW_Max_TilesX;
-        this.tileFinalY = mapTileOrigenY * MiscData.MAPAVIEW_Max_TilesY + MiscData.MAPAVIEW_Max_TilesY;
+        this.tileOrigenX = mapTileOrigenX * tamañoX;
+        this.tileOrigenY = mapTileOrigenY * tamañoY;
+        this.tileFinalX = mapTileOrigenX * tamañoX + tamañoX;
+        this.tileFinalY = mapTileOrigenY * tamañoY + tamañoY;
     }
 
     private void borrarTodosLosLayers ()
@@ -156,14 +161,14 @@ public class SubMapaView extends TiledMap
     private void addGrid ()
     {
         TiledMapTileLayer layerGrid = new TiledMapTileLayer
-            (MiscData.MAPAVIEW_Max_TilesX, MiscData.MAPAVIEW_Max_TilesY, MiscData.TILESIZE, MiscData.TILESIZE);
+            (tamañoX, tamañoY, MiscData.TILESIZE, MiscData.TILESIZE);
 
         StaticTiledMapTile grid = new StaticTiledMapTile(GeoRecursos.get().grid);
 
         TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
-        for (int x = 0; x < MiscData.MAPAVIEW_Max_TilesX; x++)
+        for (int x = 0; x < tamañoX; x++)
         {
-            for (int y = 0; y < MiscData.MAPAVIEW_Max_TilesY; y++)
+            for (int y = 0; y < tamañoY; y++)
             {
                 cell.setTile(grid);
                 layerGrid.setCell(x, y, cell);

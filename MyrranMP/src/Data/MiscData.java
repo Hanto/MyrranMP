@@ -36,9 +36,6 @@ public class MiscData
     public final static int MAPA_Max_TilesX = 500;
     public final static int MAPA_Max_TilesY = 500;
 
-    public final static int MAPAVIEW_Size = 1;
-    public final static int MAPAVIEW_Tamaño = 3*(int)Math.pow(2,MAPAVIEW_Size-1);
-
-    public final static int MAPAVIEW_Max_TilesX = GDX_Window_Horizontal_Resolution/(MAPAVIEW_Tamaño-1)/TILESIZE+1; //GDX_Window_Horizontal_Resolution/2/TILESIZE+2;
-    public final static int MAPAVIEW_Max_TilesY = GDX_Window_Vertical_Resolution/(MAPAVIEW_Tamaño-1)/TILESIZE+1; //GDX_Window_Vertical_Resolution/2/TILESIZE+2;
+    public final static int MAPAVIEW_TamañoX = 3;//18;
+    public final static int MAPAVIEW_TamañoY = 3;//20;
 }

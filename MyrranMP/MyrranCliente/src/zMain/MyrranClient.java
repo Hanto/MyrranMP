@@ -23,8 +23,10 @@ public class MyrranClient extends Game
         cfg.vSyncEnabled = false;
         cfg.foregroundFPS = 5000;
         //cfg.useGL30 = true;
+        cfg.fullscreen = false;
         cfg.width = MiscData.GDX_Window_Horizontal_Resolution;
         cfg.height = MiscData.GDX_Window_Vertical_Resolution;
+
         cfg.addIcon("Images/Spell Icons/FireBall.png", Files.FileType.Internal);
         new LwjglApplication(new MyrranClient(), cfg);
     }

@@ -41,6 +41,7 @@ public class Controlador
 
     public void render (float delta)                                    { vista.render(delta); }
     public void dispose()                                               { vista.dispose(); }
+    public void resize(int anchura, int altura)                         { vista.resize(anchura, altura);}
 
     public void enviarAServidor(Object o)                               { cliente.enviarAServidor(o); }
     public int  getConnID()                                             { return cliente.getID(); }

@@ -58,7 +58,7 @@ public class Vista implements PropertyChangeListener
         stageUI = new Stage();
         playerView = new PlayerView(mundo.player, this, controlador);
 
-        mapaView = new MapaView(mapa, playerView.getX(), playerView.getY(), MiscData.MAPAVIEW_Size, this);
+        mapaView = new MapaView(mapa, playerView.getX(), playerView.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY, this);
 
         controlador.addInputProcessor(stageUI);
         controlador.addInputProcessor(stageMundo);
@@ -101,26 +101,23 @@ public class Vista implements PropertyChangeListener
         dibujarVision();
     }
 
+    public void resize (int anchura, int altura)
+    {
+        camara.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        stageMundo.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        //stageUI.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    }
+
     public void dibujarVision()
     {
         shape.setProjectionMatrix(camara.combined);
         shape.setColor(Color.RED);
         shape.begin(ShapeRenderer.ShapeType.Line);
 
-        shape.line( playerView.getCenterX()-Gdx.graphics.getWidth()/2, playerView.getCenterY()+Gdx.graphics.getHeight()/2,
-                    playerView.getCenterX()+Gdx.graphics.getWidth()/2, playerView.getCenterY()+Gdx.graphics.getHeight()/2);
-
-        shape.line( playerView.getCenterX()-Gdx.graphics.getWidth()/2, playerView.getCenterY()-Gdx.graphics.getHeight()/2,
-                    playerView.getCenterX()+Gdx.graphics.getWidth()/2, playerView.getCenterY()-Gdx.graphics.getHeight()/2);
-
-        shape.line( playerView.getCenterX()-Gdx.graphics.getWidth()/2, playerView.getCenterY()+Gdx.graphics.getHeight()/2,
-                    playerView.getCenterX()+Gdx.graphics.getWidth()/2, playerView.getCenterY()+Gdx.graphics.getHeight()/2);
-
-        shape.line( playerView.getCenterX()-Gdx.graphics.getWidth()/2, playerView.getCenterY()+Gdx.graphics.getHeight()/2,
-                    playerView.getCenterX()-Gdx.graphics.getWidth()/2, playerView.getCenterY()-Gdx.graphics.getHeight()/2);
-
-        shape.line( playerView.getCenterX()+Gdx.graphics.getWidth()/2, playerView.getCenterY()+Gdx.graphics.getHeight()/2,
-                    playerView.getCenterX()+Gdx.graphics.getWidth()/2, playerView.getCenterY()-Gdx.graphics.getHeight()/2);
+        shape.rect( playerView.getCenterX()-MiscData.GDX_Window_Horizontal_Resolution/2-1,
+                    playerView.getCenterY()-MiscData.GDX_Window_Vertical_Resolution/2-1,
+                    MiscData.GDX_Window_Horizontal_Resolution+2,
+                    MiscData.GDX_Window_Vertical_Resolution+2);
 
         shape.end();
     }
