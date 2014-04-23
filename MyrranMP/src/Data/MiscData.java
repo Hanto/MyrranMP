@@ -35,6 +35,10 @@ public class MiscData
     public final static int MAPA_Max_Capas_Terreno = 3;
     public final static int MAPA_Max_TilesX = 500;
     public final static int MAPA_Max_TilesY = 500;
-    public final static int MAPAVIEW_Max_TilesX = 4; //GDX_Window_Horizontal_Resolution/2/TILESIZE+2; //Math.round(MiscData.GDX_Window_Horizontal_Resolution/MiscData.TILESIZE/3);
-    public final static int MAPAVIEW_Max_TilesY = 4; //GDX_Window_Vertical_Resolution/2/TILESIZE+2; //Math.round(MiscData.GDX_Window_Vertical_Resolution/MiscData.TILESIZE/3);
+
+    public final static int MAPAVIEW_Size = 1;
+    public final static int MAPAVIEW_Tamaño = 3*(int)Math.pow(2,MAPAVIEW_Size-1);
+
+    public final static int MAPAVIEW_Max_TilesX = GDX_Window_Horizontal_Resolution/(MAPAVIEW_Tamaño-1)/TILESIZE+1; //GDX_Window_Horizontal_Resolution/2/TILESIZE+2;
+    public final static int MAPAVIEW_Max_TilesY = GDX_Window_Vertical_Resolution/(MAPAVIEW_Tamaño-1)/TILESIZE+1; //GDX_Window_Vertical_Resolution/2/TILESIZE+2;
 }

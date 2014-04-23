@@ -1,6 +1,7 @@
 package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
+import Data.MiscData;
 import Model.DTO.MundoDTO;
 import Model.Geo.Mapa;
 import Model.Mobiles.Mundo;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -42,6 +44,8 @@ public class Vista implements PropertyChangeListener
     private Texto fps;
     private int nivelDeZoom = 0;
 
+    private ShapeRenderer shape = new ShapeRenderer();
+
     public Vista (Controlador controlador, Mundo mundo)
     {
         this.controlador = controlador;
@@ -54,7 +58,7 @@ public class Vista implements PropertyChangeListener
         stageUI = new Stage();
         playerView = new PlayerView(mundo.player, this, controlador);
 
-        mapaView = new MapaView(mapa, playerView.getX(), playerView.getY(), this);
+        mapaView = new MapaView(mapa, playerView.getX(), playerView.getY(), MiscData.MAPAVIEW_Size, this);
 
         controlador.addInputProcessor(stageUI);
         controlador.addInputProcessor(stageMundo);
@@ -93,6 +97,32 @@ public class Vista implements PropertyChangeListener
         stageUI.draw();
 
         fps.setTexto(Integer.toString(Gdx.graphics.getFramesPerSecond())+"fps");
+
+        dibujarVision();
+    }
+
+    public void dibujarVision()
+    {
+        shape.setProjectionMatrix(camara.combined);
+        shape.setColor(Color.RED);
+        shape.begin(ShapeRenderer.ShapeType.Line);
+
+        shape.line( playerView.getCenterX()-Gdx.graphics.getWidth()/2, playerView.getCenterY()+Gdx.graphics.getHeight()/2,
+                    playerView.getCenterX()+Gdx.graphics.getWidth()/2, playerView.getCenterY()+Gdx.graphics.getHeight()/2);
+
+        shape.line( playerView.getCenterX()-Gdx.graphics.getWidth()/2, playerView.getCenterY()-Gdx.graphics.getHeight()/2,
+                    playerView.getCenterX()+Gdx.graphics.getWidth()/2, playerView.getCenterY()-Gdx.graphics.getHeight()/2);
+
+        shape.line( playerView.getCenterX()-Gdx.graphics.getWidth()/2, playerView.getCenterY()+Gdx.graphics.getHeight()/2,
+                    playerView.getCenterX()+Gdx.graphics.getWidth()/2, playerView.getCenterY()+Gdx.graphics.getHeight()/2);
+
+        shape.line( playerView.getCenterX()-Gdx.graphics.getWidth()/2, playerView.getCenterY()+Gdx.graphics.getHeight()/2,
+                    playerView.getCenterX()-Gdx.graphics.getWidth()/2, playerView.getCenterY()-Gdx.graphics.getHeight()/2);
+
+        shape.line( playerView.getCenterX()+Gdx.graphics.getWidth()/2, playerView.getCenterY()+Gdx.graphics.getHeight()/2,
+                    playerView.getCenterX()+Gdx.graphics.getWidth()/2, playerView.getCenterY()-Gdx.graphics.getHeight()/2);
+
+        shape.end();
     }
 
     public void dispose ()
@@ -101,6 +131,7 @@ public class Vista implements PropertyChangeListener
         stageUI.dispose();
         batch.dispose();
         mapaView.dispose();
+        shape.dispose();
     }
 
     public void aplicarZoom(int incrementoZoom)

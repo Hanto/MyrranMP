@@ -17,58 +17,60 @@ public class MapaView implements PropertyChangeListener
 
     private OrthographicCamera camara;
 
-    private SubMapaView mapaE;
-    private SubMapaView mapa;
-    private SubMapaView mapaO;
-    private SubMapaView mapaNO;
-    private SubMapaView mapaN;
-    private SubMapaView mapaNE;
-    private SubMapaView mapaSO;
-    private SubMapaView mapaS;
-    private SubMapaView mapaSE;
+    private SubMapaView[] listaSubMapas;
+    private int tamaño;
 
-    private int mapTileActualX;
-    private int mapTileActualY;
+    private int xActual;
+    private int yActual;
 
-    public MapaView(Mapa mapaModel, float posInicialX, float posInicialY, Vista vista)
+    private int bordeE;
+    private int bordeO;
+    private int bordeN;
+    private int bordeS;
+
+    public MapaView(Mapa mapaModel, float posInicialX, float posInicialY, int size, Vista vista)
     {
         this.mapaModel = mapaModel;
         this.vista = vista;
-        mapaModel.añadirObservador(this);
+        this.mapaModel.añadirObservador(this);
 
         camara = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        if (size <=0) size = 1;
+        tamaño = 3*(int)Math.pow(2,size-1);
 
-        mapaO = new SubMapaView(this.mapaModel);
-        mapa = new SubMapaView(this.mapaModel);
-        mapaE = new SubMapaView(this.mapaModel);
-
-        mapaNO = new SubMapaView(this.mapaModel);
-        mapaN = new SubMapaView(this.mapaModel);
-        mapaNE = new SubMapaView(this.mapaModel);
-
-        mapaSO = new SubMapaView(this.mapaModel);
-        mapaS = new SubMapaView(this.mapaModel);
-        mapaSE = new SubMapaView(this.mapaModel);
+        listaSubMapas = new SubMapaView[tamaño*tamaño];
+        for (int i=0; i<listaSubMapas.length;i++)
+        {   listaSubMapas[i] = new SubMapaView(this.mapaModel); }
 
         setPosition(posInicialX, posInicialY);
     }
 
-    public void setPosition(float x, float y)
+    public void setPosition(float posX, float posY)
     {
-        int mapTileX = (int)(x / (MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE));
-        int mapTileY = (int)(y / (MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE));
+        int mapTileInicialX = (int)(posX / (MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE));
+        int mapTileInicialY = (int)(posY / (MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE));
 
-        mapaO.crearTiledMap(mapTileX - 1, mapTileY);
-        mapa.crearTiledMap(mapTileX, mapTileY);
-        mapaE.crearTiledMap(mapTileX + 1, mapTileY);
+        int xInicial, xFinal, yInicial;
 
-        mapaNO.crearTiledMap(mapTileX - 1, mapTileY + 1);
-        mapaN.crearTiledMap(mapTileX, mapTileY + 1);
-        mapaNE.crearTiledMap(mapTileX + 1, mapTileY + 1);
+        if (tamaño == 3)
+        {   xInicial = -1;
+            xFinal = 1;
+            yInicial = 1;
+        }
+        else
+        {   xInicial = -tamaño/2;
+            xFinal = tamaño/2-1;
+            yInicial = tamaño/2-1;
+        }
 
-        mapaSO.crearTiledMap(mapTileX - 1, mapTileY - 1);
-        mapaS.crearTiledMap(mapTileX, mapTileY - 1);
-        mapaSE.crearTiledMap(mapTileX + 1, mapTileY - 1);
+        int x = xInicial; int y = yInicial;
+
+        for (int i=0; i<listaSubMapas.length;i++)
+        {
+            listaSubMapas[i].crearTiledMap(x +mapTileInicialX, y +mapTileInicialY);
+            x++;
+            if (x > xFinal) {x = xInicial; y--;}
+        }
     }
 
     public void setView (SubMapaView subMapaView)
@@ -82,68 +84,42 @@ public class MapaView implements PropertyChangeListener
 
     public void render()
     {
-        //TODO mitad ancho personaje
-        //TODO mitad alto personaje
-        mapTileActualX = (int)((vista.camara.position.x + 24) / (MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE));
-        mapTileActualY = (int)((vista.camara.position.y + 24) / (MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE));
+        xActual = (int)((vista.camara.position.x ));
+        yActual = (int)((vista.camara.position.y ));
 
-        mapaVistaLoader(mapa);
-        mapaVistaLoader(mapaE);
-        mapaVistaLoader(mapaO);
-        mapaVistaLoader(mapaNO);
-        mapaVistaLoader(mapaN);
-        mapaVistaLoader(mapaNE);
-        mapaVistaLoader(mapaSO);
-        mapaVistaLoader(mapaS);
-        mapaVistaLoader(mapaSE);
-
-        setView(mapa);
-        setView(mapaE);
-        setView(mapaO);
-        setView(mapaNO);
-        setView(mapaN);
-        setView(mapaNE);
-        setView(mapaSO);
-        setView(mapaS);
-        setView(mapaSE);
-
-        mapa.render();
-        mapaO.render();
-        mapaE.render();
-        mapaNO.render();
-        mapaN.render();
-        mapaNE.render();
-        mapaSO.render();
-        mapaS.render();
-        mapaSE.render();
+        for (SubMapaView subMapaView: listaSubMapas)
+        {
+            mapaVistaLoader(subMapaView);
+            setView(subMapaView);
+            subMapaView.render();
+        }
     }
 
     public void dispose()
     {
-        mapa.dispose();
-        mapaE.dispose();
-        mapaO.dispose();
-        mapaNO.dispose();
-        mapaN.dispose();
-        mapaNE.dispose();
-        mapaSO.dispose();
-        mapaS.dispose();
-        mapaSE.dispose();
+        for (SubMapaView subMapaView: listaSubMapas)
+        {   subMapaView.dispose(); }
+
     }
 
     public void mapaVistaLoader(SubMapaView subMapaView)
     {
-        if (mapTileActualX > (subMapaView.getMapTileX() + 1))
-        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() + 3,    subMapaView.getMapTileY()    ); }
+        bordeE = (xActual+Gdx.graphics.getWidth()/2) / (MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE);
+        bordeO = (xActual-Gdx.graphics.getWidth()/2) / (MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE);
+        bordeN = (yActual+Gdx.graphics.getHeight()/2) / (MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE);
+        bordeS = (yActual-Gdx.graphics.getHeight()/2) / (MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE);
 
-        if (mapTileActualX < (subMapaView.getMapTileX() - 1))
-        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() - 3,    subMapaView.getMapTileY()    ); }
+        if (bordeE >= (subMapaView.getMapTileX() + tamaño))
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() + tamaño,    subMapaView.getMapTileY()); }
 
-        if (mapTileActualY > (subMapaView.getMapTileY() + 1 ))
-        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()    ,    subMapaView.getMapTileY() + 3); }
+        if (bordeO <= (subMapaView.getMapTileX() - tamaño))
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() - tamaño,    subMapaView.getMapTileY()); }
 
-        if (mapTileActualY < (subMapaView.getMapTileY() - 1))
-        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()    ,    subMapaView.getMapTileY() - 3); }
+        if (bordeN >= (subMapaView.getMapTileY() + tamaño))
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()         ,    subMapaView.getMapTileY() + tamaño); }
+
+        if (bordeS <= (subMapaView.getMapTileY() - tamaño))
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()         ,    subMapaView.getMapTileY() - tamaño); }
     }
 
     public void crearTile(int celdaX, int celdaY, int numCapa)
@@ -151,15 +127,11 @@ public class MapaView implements PropertyChangeListener
         int mapTileX = celdaX/MiscData.MAPAVIEW_Max_TilesX;
         int mapTileY = celdaY/MiscData.MAPAVIEW_Max_TilesY;
 
-        if (mapa.getMapTileX() == mapTileX && mapa.getMapTileY() == mapTileY) mapa.crearTile(celdaX, celdaY, numCapa);
-        if (mapaE.getMapTileX() == mapTileX && mapaE.getMapTileY() == mapTileY) mapaE.crearTile(celdaX, celdaY, numCapa);
-        if (mapaO.getMapTileX() == mapTileX && mapaO.getMapTileY() == mapTileY) mapaO.crearTile(celdaX, celdaY, numCapa);
-        if (mapaN.getMapTileX() == mapTileX && mapaN.getMapTileY() == mapTileY) mapaN.crearTile(celdaX, celdaY, numCapa);
-        if (mapaNE.getMapTileX() == mapTileX && mapaNE.getMapTileY() == mapTileY) mapaNE.crearTile(celdaX, celdaY, numCapa);
-        if (mapaNO.getMapTileX() == mapTileX && mapaNO.getMapTileY() == mapTileY) mapaNO.crearTile(celdaX, celdaY, numCapa);
-        if (mapaS.getMapTileX() == mapTileX && mapaS.getMapTileY() == mapTileY) mapaS.crearTile(celdaX, celdaY, numCapa);
-        if (mapaSE.getMapTileX() == mapTileX && mapaSE.getMapTileY() == mapTileY) mapaSE.crearTile(celdaX, celdaY, numCapa);
-        if (mapaSO.getMapTileX() == mapTileX && mapaSO.getMapTileY() == mapTileY) mapaSO.crearTile(celdaX, celdaY, numCapa);
+        for (SubMapaView subMapaView: listaSubMapas)
+        {
+            if (subMapaView.getMapTileX() == mapTileX && subMapaView.getMapTileY() == mapTileY)
+            {   subMapaView.crearTile(celdaX, celdaY, numCapa); }
+        }
     }
 
     public void setTerreno(int x, int y, int numCapa)
