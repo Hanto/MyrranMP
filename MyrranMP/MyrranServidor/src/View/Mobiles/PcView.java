@@ -3,6 +3,7 @@ package View.Mobiles;// Created by Hanto on 07/04/2014.
 import Controller.Controlador;
 import Data.MiscData;
 import Interfaces.MobPC;
+import Model.DTO.MapaDTO;
 import Model.DTO.NetDTO;
 import Model.DTO.PcDTO;
 import Model.Mobiles.Mundo;
@@ -43,6 +44,7 @@ public class PcView implements PropertyChangeListener
         y = PC.getY();
 
         vista.listaPcViews.add(this);
+        mundo.mapa.añadirObservador(this);
         PC.añadirObservador(this);
         PC.eliminarObservador(vista);
 
@@ -130,9 +132,27 @@ public class PcView implements PropertyChangeListener
         }
     }
 
+    public void eliminar()
+    {
+        NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(PC);
+        actualizarPlayersCercanos(eliminarPC);
+
+        mundo.mapa.eliminarObservador(this);
+        PC.eliminarObservador(this);
+        vista.listaPcViews.remove(this);
+
+    }
+
+    public void cambioTerreno (int x, int y, int numCapa, int iDTerreno)
+    {
+        NetDTO.SetTerreno setTerreno = new NetDTO.SetTerreno(x,y,numCapa,iDTerreno);
+        controlador.enviarACliente(PC.getConnectionID(), setTerreno);
+    }
+
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
+        //MOBILES:
         if (evt.getNewValue() instanceof PcDTO.PositionPC)
         {
             x = ((PcDTO.PositionPC) evt.getNewValue()).x;
@@ -141,13 +161,7 @@ public class PcView implements PropertyChangeListener
         }
 
         if (evt.getNewValue() instanceof PcDTO.EliminarPC)
-        {
-            PC PC = ((PcDTO.EliminarPC) evt.getNewValue()).PC;
-            NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(PC);
-            PC.eliminarObservador(this);
-            vista.listaPcViews.remove(this);
-            actualizarPlayersCercanos(eliminarPC);
-        }
+        {   eliminar(); }
 
         if (visible)
         {
@@ -156,6 +170,16 @@ public class PcView implements PropertyChangeListener
                 int numAnimacion = ((PcDTO.AnimacionPC) evt.getNewValue()).numAnimacion;
                 setAnimacion(numAnimacion);
             }
+        }
+
+        //TERRENOS:
+        if (evt.getNewValue() instanceof MapaDTO.SetTerreno)
+        {
+            int celdaX = ((MapaDTO.SetTerreno) evt.getNewValue()).celdaX;
+            int celdaY = ((MapaDTO.SetTerreno) evt.getNewValue()).celdaY;
+            int numCapa = ((MapaDTO.SetTerreno) evt.getNewValue()).numCapa;
+            int iDTerreno = ((MapaDTO.SetTerreno) evt.getNewValue()).iDTerreno;
+            cambioTerreno(celdaX, celdaY, numCapa, iDTerreno);
         }
     }
 }

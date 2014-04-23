@@ -73,8 +73,8 @@ public class Vista implements PropertyChangeListener
 
         mundo.getPlayer().actualizar(delta);
 
-        camara.position.x = playerView.getX();
-        camara.position.y = playerView.getY();
+        camara.position.x = playerView.getCenterX();
+        camara.position.y = playerView.getCenterY();
         camara.update();
 
         //stageMundo.ordenarPorProfundidad();
@@ -82,6 +82,7 @@ public class Vista implements PropertyChangeListener
         //rayHandler.setCombinedMatrix(camara.combined);
 
         mapaView.render();
+
 
         batch.begin();
         batch.end();

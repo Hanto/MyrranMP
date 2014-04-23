@@ -5,8 +5,8 @@ import java.io.Serializable;
 //Clase que define los tipos de terreno
 public class Terreno implements Serializable
 {
-    private Integer id;                             //ID del tipo de Terreno para poder cargar su template
-    private String nombre;                          //Nombre del Terreno ("Jungla", "Camino", "Cesped"...
+    private Integer id;                             //ID del tipo de SetTerreno para poder cargar su template
+    private String nombre;                          //Nombre del SetTerreno ("Jungla", "Camino", "Cesped"...
     private Boolean isSolido = false;               //Flag que controla si el terreno es solido o no, y por tanto atravesable por los objetos que pueblan el mapaI
 
     public Terreno() {}

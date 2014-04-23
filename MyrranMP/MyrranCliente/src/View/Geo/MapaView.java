@@ -1,12 +1,16 @@
 package View.Geo;// Created by Hanto on 16/04/2014.
 
 import Data.MiscData;
+import Model.DTO.MapaDTO;
 import Model.Geo.Mapa;
 import View.Vista;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
-public class MapaView
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class MapaView implements PropertyChangeListener
 {
     private Vista vista;
     private Mapa mapaModel;
@@ -30,6 +34,8 @@ public class MapaView
     {
         this.mapaModel = mapaModel;
         this.vista = vista;
+        mapaModel.añadirObservador(this);
+
         camara = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         mapaO = new SubMapaView(this.mapaModel);
@@ -52,17 +58,17 @@ public class MapaView
         int mapTileX = (int)(x / (MiscData.MAPAVIEW_Max_TilesX*MiscData.TILESIZE));
         int mapTileY = (int)(y / (MiscData.MAPAVIEW_Max_TilesY*MiscData.TILESIZE));
 
-        mapaO.crearTiledMap(mapTileX-1,    mapTileY);
-        mapa.crearTiledMap (mapTileX  ,    mapTileY);
-        mapaE.crearTiledMap(mapTileX+1,    mapTileY);
+        mapaO.crearTiledMap(mapTileX - 1, mapTileY);
+        mapa.crearTiledMap(mapTileX, mapTileY);
+        mapaE.crearTiledMap(mapTileX + 1, mapTileY);
 
-        mapaNO.crearTiledMap(mapTileX-1,   mapTileY+1);
-        mapaN.crearTiledMap (mapTileX  ,   mapTileY+1);
-        mapaNE.crearTiledMap(mapTileX+1,   mapTileY+1);
+        mapaNO.crearTiledMap(mapTileX - 1, mapTileY + 1);
+        mapaN.crearTiledMap(mapTileX, mapTileY + 1);
+        mapaNE.crearTiledMap(mapTileX + 1, mapTileY + 1);
 
-        mapaSO.crearTiledMap(mapTileX-1,   mapTileY-1);
-        mapaS.crearTiledMap (mapTileX  ,   mapTileY-1);
-        mapaSE.crearTiledMap(mapTileX+1,   mapTileY-1);
+        mapaSO.crearTiledMap(mapTileX - 1, mapTileY - 1);
+        mapaS.crearTiledMap(mapTileX, mapTileY - 1);
+        mapaSE.crearTiledMap(mapTileX + 1, mapTileY - 1);
     }
 
     public void setView (SubMapaView subMapaView)
@@ -138,5 +144,45 @@ public class MapaView
 
         if (mapTileActualY < (subMapaView.getMapTileY() - 1))
         {   subMapaView.crearTiledMap(subMapaView.getMapTileX()    ,    subMapaView.getMapTileY() - 3); }
+    }
+
+    public void crearTile(int celdaX, int celdaY, int numCapa)
+    {
+        int mapTileX = celdaX/MiscData.MAPAVIEW_Max_TilesX;
+        int mapTileY = celdaY/MiscData.MAPAVIEW_Max_TilesY;
+
+        if (mapa.getMapTileX() == mapTileX && mapa.getMapTileY() == mapTileY) mapa.crearTile(celdaX, celdaY, numCapa);
+        if (mapaE.getMapTileX() == mapTileX && mapaE.getMapTileY() == mapTileY) mapaE.crearTile(celdaX, celdaY, numCapa);
+        if (mapaO.getMapTileX() == mapTileX && mapaO.getMapTileY() == mapTileY) mapaO.crearTile(celdaX, celdaY, numCapa);
+        if (mapaN.getMapTileX() == mapTileX && mapaN.getMapTileY() == mapTileY) mapaN.crearTile(celdaX, celdaY, numCapa);
+        if (mapaNE.getMapTileX() == mapTileX && mapaNE.getMapTileY() == mapTileY) mapaNE.crearTile(celdaX, celdaY, numCapa);
+        if (mapaNO.getMapTileX() == mapTileX && mapaNO.getMapTileY() == mapTileY) mapaNO.crearTile(celdaX, celdaY, numCapa);
+        if (mapaS.getMapTileX() == mapTileX && mapaS.getMapTileY() == mapTileY) mapaS.crearTile(celdaX, celdaY, numCapa);
+        if (mapaSE.getMapTileX() == mapTileX && mapaSE.getMapTileY() == mapTileY) mapaSE.crearTile(celdaX, celdaY, numCapa);
+        if (mapaSO.getMapTileX() == mapTileX && mapaSO.getMapTileY() == mapTileY) mapaSO.crearTile(celdaX, celdaY, numCapa);
+    }
+
+    public void setTerreno(int x, int y, int numCapa)
+    {
+        crearTile(x - 1, y - 1, numCapa);
+        crearTile(x - 1, y + 0, numCapa);
+        crearTile(x - 1, y + 1, numCapa);
+        crearTile(x + 0, y - 1, numCapa);
+        crearTile(x + 0, y + 0, numCapa);
+        crearTile(x + 0, y + 1, numCapa);
+        crearTile(x + 1, y - 1, numCapa);
+        crearTile(x + 1, y + 0, numCapa);
+        crearTile(x + 1, y + 1, numCapa);
+    }
+
+    @Override public void propertyChange(PropertyChangeEvent evt)
+    {
+        if (evt.getNewValue() instanceof MapaDTO.SetTerreno)
+        {
+            int celdaX = ((MapaDTO.SetTerreno) evt.getNewValue()).celdaX;
+            int celdaY = ((MapaDTO.SetTerreno) evt.getNewValue()).celdaY;
+            int numCapa = ((MapaDTO.SetTerreno) evt.getNewValue()).numCapa;
+            setTerreno(celdaX, celdaY, numCapa);
+        }
     }
 }

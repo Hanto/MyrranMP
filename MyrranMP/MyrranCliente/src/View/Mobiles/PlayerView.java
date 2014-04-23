@@ -29,6 +29,9 @@ public class PlayerView extends Group implements PropertyChangeListener
 
     public PixiePC actor;
 
+    public float getCenterX()               { return (this.getX()+this.getWidth()/2); }
+    public float getCenterY()               { return (this.getY()+this.getHeight()/2); }
+
     public PlayerView (Player player, Vista vista, Controlador controlador)
     {
         this.player = player;

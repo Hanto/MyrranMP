@@ -5,6 +5,7 @@ import Interfaces.MapaI;
 import Model.AbstractModel;
 import Model.DAO.DAO;
 import Model.DAO.Terreno.TerrenoDAO;
+import Model.DTO.MapaDTO;
 
 public class Mapa extends AbstractModel implements MapaI
 {
@@ -35,6 +36,8 @@ public class Mapa extends AbstractModel implements MapaI
         else
         {
             matriz[x][y].setTerreno(numCapa, terreno);
+            MapaDTO.SetTerreno setTerreno = new MapaDTO.SetTerreno(x,y,numCapa,terreno.getID());
+            notificarActualizacion("setTerreno", null, setTerreno);
             return true;
         }
     }
@@ -42,6 +45,15 @@ public class Mapa extends AbstractModel implements MapaI
     @Override public boolean setTerreno (int x, int y, int numCapa, int iDTerreno)
     {
         if (x<0 || y<0 || x> MiscData.MAPA_Max_TilesX || y> MiscData.MAPA_Max_TilesY) return false;
-        else { return matriz[x][y].setTerreno(numCapa, iDTerreno); }
+        else
+        {
+            if (matriz[x][y].setTerreno(numCapa, iDTerreno))
+            {
+                MapaDTO.SetTerreno setTerreno = new MapaDTO.SetTerreno(x,y,numCapa,iDTerreno);
+                notificarActualizacion("setTerreno", null, setTerreno);
+                return true;
+            }
+            else return false;
+        }
     }
 }

@@ -72,6 +72,15 @@ public class Cliente extends Client
             int conID = ((NetDTO.EliminarPC) obj).connectionID;
             controlador.eliminarPC(conID);
         }
+
+        if (obj instanceof NetDTO.SetTerreno)
+        {
+            int celdaX = ((NetDTO.SetTerreno) obj).celdaX;
+            int celdaY = ((NetDTO.SetTerreno) obj).celdaY;
+            int numCapa = ((NetDTO.SetTerreno) obj).numCapa;
+            int iDTerreno = ((NetDTO.SetTerreno) obj).iDTerreno;
+            controlador.setTerreno(celdaX, celdaY, numCapa, iDTerreno);
+        }
     }
 
     public void enviarAServidor(Object obj)

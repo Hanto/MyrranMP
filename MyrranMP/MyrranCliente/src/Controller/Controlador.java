@@ -67,6 +67,8 @@ public class Controlador
     public void cambiarAnimacionPC(int connectionID, int numAnimacion)
     {   mundo.getPC(connectionID).setAnimacion(numAnimacion); }
 
+    public void setTerreno(int celdaX, int celdaY, int numCapa, int iDTerreno)
+    {   mundo.mapa.setTerreno(celdaX, celdaY, numCapa, iDTerreno); }
 
     public void aplicarZoom(int incrementoZoom)                         { vista.aplicarZoom(incrementoZoom); }
     public void addInputProcessor(Stage stage)                          { inputMultiplexer.addProcessor(stage); }

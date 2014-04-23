@@ -37,7 +37,7 @@ public class GameData
         spellDTO.tipoSpell = GameDataDTO.TipoSpell.EDITARTERRENO;
         spellDTO.nombre = SpellsData.TERRAFORMAR_Nombre;
         spellDTO.descripcion = SpellsData.TERRAFORMAR_Descripcion;
-        spellDTO.skillStats[0].setValor(1.0f);
+        spellDTO.skillStats[0].setValor(0.03f);
         listaDeSpellsDTO.add(spellDTO);
     }
 }

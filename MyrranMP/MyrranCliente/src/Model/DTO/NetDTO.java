@@ -20,6 +20,7 @@ public class NetDTO
         kryo.register(AñadirPC.class);
         kryo.register(EliminarPC.class);
         kryo.register(CastearPC.class);
+        kryo.register(SetTerreno.class);
     }
 
     //Network DTOs:
@@ -96,5 +97,16 @@ public class NetDTO
         public CastearPC () {}
         public CastearPC(Boolean castear, int x, int y)
         {   this.castear = castear; targetX = x; targetY = y; }
+    }
+
+    public static class SetTerreno
+    {
+        public int celdaX;
+        public int celdaY;
+        public int numCapa;
+        public int iDTerreno;
+        public SetTerreno() {}
+        public SetTerreno(int celdaX, int celdaY, int numCapa, int iDTerreno)
+        {   this.celdaX = celdaX; this.celdaY = celdaY; this.numCapa = numCapa; this.iDTerreno = iDTerreno; }
     }
 }

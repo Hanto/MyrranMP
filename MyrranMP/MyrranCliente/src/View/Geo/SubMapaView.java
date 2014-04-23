@@ -67,19 +67,19 @@ public class SubMapaView extends TiledMap
                         tileSO = new StaticTiledMapTile(terrenoView.cuadranteSO);
                         tileSE = new StaticTiledMapTile(terrenoView.cuadranteSE);
 
-                        cell = new TiledMapTileLayer.Cell();
+                        cell = new Cell();
                         cell.setTile(tileNO);
                         suelo.setCell((x- tileOrigenX)*2, (y- tileOrigenY)*2+1, cell);
 
-                        cell = new TiledMapTileLayer.Cell();
+                        cell = new Cell();
                         cell.setTile(tileNE);
                         suelo.setCell((x- tileOrigenX)*2+1, (y- tileOrigenY)*2+1, cell);
 
-                        cell = new TiledMapTileLayer.Cell();
+                        cell = new Cell();
                         cell.setTile(tileSO);
                         suelo.setCell((x- tileOrigenX)*2, (y- tileOrigenY)*2, cell);
 
-                        cell = new TiledMapTileLayer.Cell();
+                        cell = new Cell();
                         cell.setTile(tileSE);
                         suelo.setCell((x- tileOrigenX)*2+1, (y- tileOrigenY)*2, cell);
                     }
@@ -112,7 +112,7 @@ public class SubMapaView extends TiledMap
 
         ad.iDTerreno = mapa.getTerrenoID(X,Y,capa);
 
-        if      (Y+1 >= MiscData.MAPA_Max_TilesY)                { ad.NOarriba = false; ad.NEarriba = false; }
+        if      (Y+1 >= MiscData.MAPA_Max_TilesY)           { ad.NOarriba = false; ad.NEarriba = false; }
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X,Y+1,capa)))              { ad.NOarriba = true; ad.NEarriba = true; }
 
@@ -124,12 +124,12 @@ public class SubMapaView extends TiledMap
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X-1,Y,capa)))              { ad.NOizquierda = true; ad.SOizquierda = true; }
 
-        if      (X+1 >= MiscData.MAPA_Max_TilesX)                { ad.NEderecha = false; ad.SEderecha = false; }
+        if      (X+1 >= MiscData.MAPA_Max_TilesX)           { ad.NEderecha = false; ad.SEderecha = false; }
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X+1,Y,capa)))              { ad.NEderecha = true; ad.SEderecha = true; }
 
         if      (X+1 >= MiscData.MAPA_Max_TilesX ||
-                 Y+1 >= MiscData.MAPA_Max_TilesY)                { ad.NEdiagonal = false; }
+                 Y+1 >= MiscData.MAPA_Max_TilesY)           { ad.NEdiagonal = false; }
 
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X+1,Y+1,capa)))            { ad.NEdiagonal = true; }
@@ -139,12 +139,12 @@ public class SubMapaView extends TiledMap
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X-1,Y-1,capa)))            { ad.SOdiagonal = true; }
 
-        if      (X-1 <0 || Y+1 >= MiscData.MAPA_Max_TilesY)      { ad.NOdiagonal = false; }
+        if      (X-1 <0 || Y+1 >= MiscData.MAPA_Max_TilesY) { ad.NOdiagonal = false; }
 
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X-1,Y+1,capa)))            { ad.NOdiagonal = true; }
 
-        if      (X+1 >= MiscData.MAPA_Max_TilesX || Y-1<0)       { ad.SEdiagonal = false; }
+        if      (X+1 >= MiscData.MAPA_Max_TilesX || Y-1<0)  { ad.SEdiagonal = false; }
 
         else if (mapa.getTerreno(X,Y,capa) ==
                 (mapa.getTerreno(X+1,Y-1,capa)))            { ad.SEdiagonal = true; }
@@ -172,6 +172,51 @@ public class SubMapaView extends TiledMap
         layerGrid.setName("LayerGrid");
         getLayers().add(layerGrid);
 
+    }
+
+    private void borrarTile (int tileX, int tileY, int numCapa)
+    {
+        TiledMapTileLayer suelo = (TiledMapTileLayer)getLayers().get(numCapa);
+        suelo.setCell(tileX*2, tileY*2+1, null);
+        suelo.setCell(tileX*2+1, tileY*2+1, null);
+        suelo.setCell(tileX*2, tileY*2, null);
+        suelo.setCell(tileX*2+1, tileY*2, null);
+    }
+
+
+    public void crearTile (int tileX, int tileY, int numCapa)
+    {
+        if (tileX<0 || tileY<0 || tileX> MiscData.MAPA_Max_TilesX || tileY> MiscData.MAPA_Max_TilesY) { return; }
+
+        if (mapa.getTerrenoID(tileX, tileY, numCapa) >= 0)
+        {
+            TerrenoDTO.Adyacencias adyacencias = calcularAdyacencias(tileX,tileY,numCapa);
+            TerrenoView terrenoView = new TerrenoView(adyacencias);
+
+            StaticTiledMapTile tileNO = new StaticTiledMapTile(terrenoView.cuadranteNO);
+            StaticTiledMapTile tileNE = new StaticTiledMapTile(terrenoView.cuadranteNE);
+            StaticTiledMapTile tileSO = new StaticTiledMapTile(terrenoView.cuadranteSO);
+            StaticTiledMapTile tileSE = new StaticTiledMapTile(terrenoView.cuadranteSE);
+
+            TiledMapTileLayer suelo = (TiledMapTileLayer)getLayers().get(numCapa);
+            Cell cell;
+
+            cell = new Cell();
+            cell.setTile(tileNO);
+            suelo.setCell((tileX- tileOrigenX)*2, (tileY- tileOrigenY)*2+1, cell);
+
+            cell = new Cell();
+            cell.setTile(tileNE);
+            suelo.setCell((tileX- tileOrigenX)*2+1, (tileY- tileOrigenY)*2+1, cell);
+
+            cell = new Cell();
+            cell.setTile(tileSO);
+            suelo.setCell((tileX- tileOrigenX)*2, (tileY- tileOrigenY)*2, cell);
+
+            cell = new Cell();
+            cell.setTile(tileSE);
+            suelo.setCell((tileX- tileOrigenX)*2+1, (tileY- tileOrigenY)*2, cell);
+        }
     }
 
 
