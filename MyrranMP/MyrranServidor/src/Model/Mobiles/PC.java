@@ -137,7 +137,7 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
         {
             spellIDSeleccionado = 0;
 
-            Spell spell = DAO.spellDAO.nuevo().getSpell(spellIDSeleccionado);
+            Spell spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellIDSeleccionado);
             if (spell != null)
             {
                 spell.castear(this, targetX, targetY);

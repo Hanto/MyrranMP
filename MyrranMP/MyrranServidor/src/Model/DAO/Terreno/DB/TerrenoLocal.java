@@ -10,15 +10,12 @@ public class TerrenoLocal implements TerrenoDAO
     private Map<Integer, Terreno> listaDeTerrenos = TerrenoLocalDB.get().listaDeTerrenos;
 
 
-    @Override public int añadirTerreno(Terreno terreno)
+    @Override public boolean añadirTerreno(Terreno terreno)
     {
-        int iDMenor;
-        for (iDMenor=0; iDMenor< listaDeTerrenos.size(); iDMenor++)
-        {   if (!listaDeTerrenos.containsKey(iDMenor)) break; }
+        if (listaDeTerrenos.containsKey(terreno.getID()))
+        {   System.out.println("ERROR: ya existe un terreno con este ID["+terreno.getID()+"]");  return false; }
+        else {  listaDeTerrenos.put(terreno.getID(), terreno); return true; }
 
-        terreno.setId(iDMenor);
-        listaDeTerrenos.put(terreno.getID(), terreno);
-        return iDMenor;
     }
 
     @Override public void salvarTerreno(Terreno terreno)

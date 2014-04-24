@@ -10,8 +10,8 @@ public class Terreno implements Serializable
     private Boolean isSolido = false;               //Flag que controla si el terreno es solido o no, y por tanto atravesable por los objetos que pueblan el mapaI
 
     public Terreno() {}
-    public Terreno(String nombre, Boolean isSolido)
-    {   this.nombre = nombre; this.isSolido = isSolido; }
+    public Terreno(int id, String nombre, Boolean isSolido)
+    {   this.id = id; this.nombre = nombre; this.isSolido = isSolido; }
 
     //SET:
     public void setId (Integer i)                   { id = i ; }

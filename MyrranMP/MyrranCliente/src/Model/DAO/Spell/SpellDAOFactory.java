@@ -7,11 +7,11 @@ public enum SpellDAOFactory
     LOCAL("LOCAL")
     {
         @Override
-        public SpellDAO nuevo()
+        public SpellDAO getSpellDAO()
         {   return new SpellLocal(); }
     };
 
-    public abstract SpellDAO nuevo();
+    public abstract SpellDAO getSpellDAO();
     private SpellDAOFactory(String nombre)
     {}
 }

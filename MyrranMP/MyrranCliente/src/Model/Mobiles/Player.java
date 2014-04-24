@@ -85,7 +85,7 @@ public class Player extends AbstractModel implements Caster
         {
             spellIDSeleccionado = 0;
 
-            Spell spell = DAO.spellDAO.nuevo().getSpell(spellIDSeleccionado);
+            Spell spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellIDSeleccionado);
             if (spell != null)
             {
                 spell.castear(this, screenX, screenY);

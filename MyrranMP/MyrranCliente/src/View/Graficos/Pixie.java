@@ -189,7 +189,7 @@ public class Pixie extends Actor
     //Metodo que carga la animacion y todos sus parametros de entre todas las disponibles en el array de animaciones
     //Si intentamos cargar la misma animacion que se esta mostrando no debe hacer nada, puesto que se trata de lo mismo
     //a no ser que activemos el booleano de forzarAnimacion, en cuyo caso no se volveria a cargar pero se reiniciaria
-    //Esto se usa sobre todo en PixiePC al vestir un Item nuevo, para resincronizar todas las animaciones.
+    //Esto se usa sobre todo en PixiePC al vestir un Item getTipoSpellDAO, para resincronizar todas las animaciones.
     //Si no la forzamos, tampoco debe hacer nada si intentamos cargar una animacion mientras se reproduce una ininterrumpible,
     //en cuyo caso la marcariamos como siguienteNumAnimacion, para mostrarse una vez acabe la que estamos mostrando.
     

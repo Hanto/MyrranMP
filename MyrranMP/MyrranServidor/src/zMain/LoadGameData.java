@@ -23,15 +23,15 @@ public class LoadGameData
 
     public static void cargarTerrenos()
     {
-        TerrenoDAO terrenoDAO = DAO.terrenoDAO.nuevo();
+        TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
 
         for (GameDataDTO.TerrenoDTO terrenoDTO : GameData.get().listaDeTerrenoDTO)
-        {   terrenoDAO.añadirTerreno(new Terreno(terrenoDTO.nombre, terrenoDTO.isSolido));}
+        {   terrenoDAO.añadirTerreno(new Terreno(terrenoDTO.id, terrenoDTO.nombre, terrenoDTO.isSolido));}
     }
 
     public static void cargarTipoSpells()
     {
-        TipoSpellDAO tipoSpellDAO = DAO.tipoSpellDAO.nuevo();
+        TipoSpellDAO tipoSpellDAO = DAO.tipoSpellDAOFactory.getTipoSpellDAO();
 
         for (TipoSpellFactory tipoSpell: TipoSpellFactory.values())
         {   tipoSpellDAO.añadirTipoSpell(tipoSpell.nuevo()); }
@@ -39,7 +39,7 @@ public class LoadGameData
 
     public static void cargarSpells()
     {
-        SpellDAO spellDAO = DAO.spellDAO.nuevo();
+        SpellDAO spellDAO = DAO.spellDAOFactory.getSpellDAO();
 
         Spell spell;
         TipoSpell tipoSpell;

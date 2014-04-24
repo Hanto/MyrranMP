@@ -10,16 +10,11 @@ public class TerrenoKryo implements TerrenoDAO
     private Map<Integer, Terreno> listaDeTerrenos = TerrenoKryoDB.get().listaDeTerrenos;
 
 
-    @Override public int añadirTerreno(Terreno terreno)
+    @Override public boolean añadirTerreno(Terreno terreno)
     {
-        int iDMenor;
-        for (iDMenor=0; iDMenor< listaDeTerrenos.size(); iDMenor++)
-        {   if (!listaDeTerrenos.containsKey(iDMenor)) break; }
-
-        terreno.setId(iDMenor);
-        listaDeTerrenos.put(terreno.getID(), terreno);
-        TerrenoKryoDB.get().salvarTerrenoDB();
-        return iDMenor;
+        if (listaDeTerrenos.containsKey(terreno.getID()))
+        {   System.out.println("ERROR: ya existe un terreno con este ID["+terreno.getID()+"]");  return false; }
+        else {  listaDeTerrenos.put(terreno.getID(), terreno); return true; }
     }
 
     @Override public void salvarTerreno(Terreno terreno)

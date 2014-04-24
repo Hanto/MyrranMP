@@ -6,7 +6,7 @@ import Model.DAO.TipoSpell.TipoSpellDAOFactory;
 
 public class DAO
 {
-    public static final TerrenoDAOFactory terrenoDAO = TerrenoDAOFactory.LOCAL;
-    public static final TipoSpellDAOFactory tipoSpellDAO = TipoSpellDAOFactory.LOCAL;
-    public static final SpellDAOFactory spellDAO = SpellDAOFactory.LOCAL;
+    public static final TerrenoDAOFactory terrenoDAOFactory = TerrenoDAOFactory.LOCAL;
+    public static final TipoSpellDAOFactory tipoSpellDAOFactory = TipoSpellDAOFactory.LOCAL;
+    public static final SpellDAOFactory spellDAOFactory = SpellDAOFactory.LOCAL;
 }

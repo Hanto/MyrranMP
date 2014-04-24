@@ -92,7 +92,7 @@ public class SubMapaView extends TiledMap
             }
             getLayers().add(suelo);
         }
-        addGrid();
+        //addGrid();
     }
 
     private void ajustarCoordenadas(int mapTileOrigenX, int mapTileOrigenY)
@@ -157,13 +157,13 @@ public class SubMapaView extends TiledMap
 
         return ad;
     }
-
+/*
     private void addGrid ()
     {
         TiledMapTileLayer layerGrid = new TiledMapTileLayer
             (tamañoX, tamañoY, MiscData.TILESIZE, MiscData.TILESIZE);
 
-        StaticTiledMapTile grid = new StaticTiledMapTile(GeoRecursos.get().grid);
+        StaticTiledMapTile grid = new StaticTiledMapTile(TerrenoRSCLocalDB.get().grid);
 
         TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
         for (int x = 0; x < tamañoX; x++)
@@ -177,7 +177,7 @@ public class SubMapaView extends TiledMap
         layerGrid.setName("LayerGrid");
         getLayers().add(layerGrid);
 
-    }
+    }*/
 
     private void borrarTile (int tileX, int tileY, int numCapa)
     {

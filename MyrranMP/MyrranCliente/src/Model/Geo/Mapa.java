@@ -20,7 +20,7 @@ public class Mapa extends AbstractModel
 
     public Terreno getTerreno (int x, int y, int numCapa)
     {
-        TerrenoDAO terrenoDAO = DAO.terrenoDAO.nuevo();
+        TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
         return terrenoDAO.getTerreno(matriz[x][y].getTerrenoID(numCapa));
     }
 

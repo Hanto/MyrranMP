@@ -7,11 +7,11 @@ public enum TipoSpellDAOFactory
     LOCAL("LOCAL")
             {
                 @Override
-                public TipoSpellDAO nuevo()
+                public TipoSpellDAO getTipoSpellDAO()
                 {   return new TipoSpellLocal(); }
             };
 
-    public abstract TipoSpellDAO nuevo();
+    public abstract TipoSpellDAO getTipoSpellDAO();
     private TipoSpellDAOFactory(String nombre)
     {}
 }

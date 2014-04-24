@@ -5,19 +5,23 @@ import Data.GameDataDTO;
 import Model.DAO.DAO;
 import Model.DAO.Spell.SpellDAO;
 import Model.DAO.Terreno.TerrenoDAO;
-import Model.DAO.Terreno.TerrenoDAOFactory;
 import Model.DAO.TipoSpell.TipoSpellDAO;
 import Model.Geo.Terreno;
 import Model.Skill.SkillStat;
 import Model.Skill.Spell.Spell;
 import Model.Skill.Spell.TipoSpell;
 import Model.Skill.Spell.TipoSpellFactory;
-import View.Geo.GeoRecursos;
+import View.Graficos.Atlas;
 import View.Mobiles.MobilesRecursos;
+import View.Recursos.RSC;
+import View.Recursos.TerrenoRSC.TerrenoRSC;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class LoadGameData
 {
-    public static void cargarTodo ()
+    private TextureAtlas atlas = Atlas.get().atlas;
+
+    public void cargarTodo ()
     {
         cargarRecursos();
         cargarTerrenos();
@@ -41,28 +45,29 @@ public class LoadGameData
         MobilesRecursos.get().salvarCapasTraserasPC     ("Golem",    "Desnudo");
     }
 
-    public static void cargarTerrenos()
+    public void cargarTerrenos()
     {
-        TerrenoDAO terrenoDAO = TerrenoDAOFactory.LOCAL.nuevo();
-        int iDTerreno;
+        TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
+        TerrenoRSC terrenoRSC = RSC.terrenoRecursoDAO.getTerrenoRecursoDAO();
+
         for (GameDataDTO.TerrenoDTO terrenoDTO : GameData.get().listaDeTerrenoDTO)
         {
-            iDTerreno = terrenoDAO.añadirTerreno(new Terreno(terrenoDTO.nombre, terrenoDTO.isSolido));
-            GeoRecursos.get().salvarTexturaTerreno(iDTerreno, terrenoDTO.nombreTextura);
+            terrenoDAO.añadirTerreno(new Terreno(terrenoDTO.id, terrenoDTO.nombre, terrenoDTO.isSolido));
+            terrenoRSC.salvarTextura(terrenoDTO.id, terrenoDTO.nombreTextura, atlas);
         }
     }
 
-    public static void cargarTipoSpells()
+    public void cargarTipoSpells()
     {
-        TipoSpellDAO tipoSpellDAO = DAO.tipoSpellDAO.nuevo();
+        TipoSpellDAO tipoSpellDAO = DAO.tipoSpellDAOFactory.getTipoSpellDAO();
 
         for (TipoSpellFactory tipoSpell: TipoSpellFactory.values())
         {   tipoSpellDAO.añadirTipoSpell(tipoSpell.nuevo()); }
     }
 
-    public static void cargarSpells()
+    public void cargarSpells()
     {
-        SpellDAO spellDAO = DAO.spellDAO.nuevo();
+        SpellDAO spellDAO = DAO.spellDAOFactory.getSpellDAO();
 
         Spell spell;
         TipoSpell tipoSpell;

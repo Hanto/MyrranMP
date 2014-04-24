@@ -91,7 +91,7 @@ public class Texto extends Group
     {   
         textoNormal.setText(texto);
         textoSombra.setText(texto);
-        //por algun motivo si cambiamos el texto su tamaño no se actualiza, así que tenemos que generar un label nuevo con ese texto para calcular el tamaño
+        //por algun motivo si cambiamos el texto su tamaño no se actualiza, así que tenemos que generar un label getTipoSpellDAO con ese texto para calcular el tamaño
         Label ltexto = new Label(texto, estiloNormal);
         textoNormal.setWidth(ltexto.getWidth());
         textoSombra.setWidth(ltexto.getWidth());
