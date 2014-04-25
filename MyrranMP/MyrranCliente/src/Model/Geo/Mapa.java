@@ -2,9 +2,9 @@ package Model.Geo;// Created by Hanto on 14/04/2014.
 
 import Data.MiscData;
 import Model.AbstractModel;
-import Model.DAO.DAO;
-import Model.DAO.Terreno.TerrenoDAO;
-import Model.DTO.MapaDTO;
+import DAO.DAO;
+import DAO.Terreno.TerrenoDAO;
+import DTO.MapaDTO;
 
 public class Mapa extends AbstractModel
 {

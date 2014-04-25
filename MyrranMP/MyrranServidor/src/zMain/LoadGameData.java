@@ -2,10 +2,10 @@ package zMain;// Created by Hanto on 11/04/2014.
 
 import Data.GameData;
 import Data.GameDataDTO;
-import Model.DAO.DAO;
-import Model.DAO.Spell.SpellDAO;
-import Model.DAO.Terreno.TerrenoDAO;
-import Model.DAO.TipoSpell.TipoSpellDAO;
+import DAO.DAO;
+import DAO.Spell.SpellDAO;
+import DAO.Terreno.TerrenoDAO;
+import DAO.TipoSpell.TipoSpellDAO;
 import Model.Geo.Terreno;
 import Model.Skill.SkillStat;
 import Model.Skill.Spell.Spell;

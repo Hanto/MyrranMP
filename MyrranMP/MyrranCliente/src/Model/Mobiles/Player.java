@@ -4,8 +4,8 @@ import Controller.Input.PlayerIO;
 import Interfaces.Caster;
 import Interfaces.MapaI;
 import Model.AbstractModel;
-import Model.DAO.DAO;
-import Model.DTO.PlayerDTO;
+import DAO.DAO;
+import DTO.PlayerDTO;
 import Model.Skill.Spell.Spell;
 
 public class Player extends AbstractModel implements Caster
@@ -210,7 +210,7 @@ public class Player extends AbstractModel implements Caster
           X += +0.707f*velocidadMax*velocidadMod*delta;
         }
 
-        setPosition(X,Y);
+        setPosition(X, Y);
     }
 
     public void actualizar (float delta)

@@ -10,6 +10,7 @@ public class MiscData
     public static final int NETWORK_Client_Timeout = 5000*100;
     public static final int NETWORK_Update_Time = 50;
     public static final float SERVIDOR_Delta_Time = NETWORK_Update_Time/1000f;
+    public static final float SERVIDOR_DistanciaVisionMobs = 1.2f;
 
     //LibGDX:
     public static final int GDX_Window_Horizontal_Resolution = 1600;
@@ -33,8 +34,8 @@ public class MiscData
 
     //Mapa:
     public final static int MAPA_Max_Capas_Terreno = 3;
-    public final static int MAPA_Max_TilesX = 500;
-    public final static int MAPA_Max_TilesY = 500;
+    public final static int MAPA_Max_TilesX = 1000;
+    public final static int MAPA_Max_TilesY = 1000;
 
     public final static int MAPAVIEW_TamañoX = 3;//18;
     public final static int MAPAVIEW_TamañoY = 3;//20;

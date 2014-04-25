@@ -3,7 +3,7 @@ package Model.Skill.Spell;
 
 import Interfaces.Caster;
 import Model.AbstractModel;
-import Model.DAO.DAO;
+import DAO.DAO;
 import Model.Skill.SkillStat;
 
 public class Spell extends AbstractModel

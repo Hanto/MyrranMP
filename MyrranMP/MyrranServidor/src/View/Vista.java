@@ -1,7 +1,7 @@
 package View;// Created by Hanto on 07/04/2014.
 
 import Controller.Controlador;
-import Model.DTO.MundoDTO;
+import DTO.MundoDTO;
 import Model.Mobiles.Mundo;
 import Model.Mobiles.PC;
 import View.Mobiles.PcView;

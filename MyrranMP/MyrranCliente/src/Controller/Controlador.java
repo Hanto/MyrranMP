@@ -4,7 +4,7 @@ import Controller.Input.PlayerEstado;
 import Controller.Input.PlayerGestures;
 import Controller.Input.PlayerIO;
 import Controller.Input.PlayerMouseKey;
-import Model.DTO.NetDTO;
+import DTO.NetDTO;
 import Model.Mobiles.Mundo;
 import View.Vista;
 import com.badlogic.gdx.Gdx;

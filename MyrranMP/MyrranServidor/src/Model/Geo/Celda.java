@@ -1,8 +1,8 @@
 package Model.Geo;// Created by Hanto on 14/04/2014.
 
 import Data.MiscData;
-import Model.DAO.DAO;
-import Model.DAO.Terreno.TerrenoDAO;
+import DAO.DAO;
+import DAO.Terreno.TerrenoDAO;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;

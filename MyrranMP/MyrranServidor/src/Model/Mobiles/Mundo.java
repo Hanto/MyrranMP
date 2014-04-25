@@ -1,7 +1,7 @@
 package Model.Mobiles;// Created by Hanto on 07/04/2014.
 
 import Model.AbstractModel;
-import Model.DTO.MundoDTO;
+import DTO.MundoDTO;
 import Model.Geo.Mapa;
 
 import java.util.ArrayList;

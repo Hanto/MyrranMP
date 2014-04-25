@@ -2,7 +2,7 @@ package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
-import Model.DTO.MundoDTO;
+import DTO.MundoDTO;
 import Model.Geo.Mapa;
 import Model.Mobiles.Mundo;
 import Model.Mobiles.PC;
@@ -118,6 +118,18 @@ public class Vista implements PropertyChangeListener
                     playerView.getCenterY()-MiscData.GDX_Window_Vertical_Resolution/2-1,
                     MiscData.GDX_Window_Horizontal_Resolution+2,
                     MiscData.GDX_Window_Vertical_Resolution+2);
+
+        shape.setColor(Color.YELLOW);
+        shape.rect( playerView.getCenterX()-MiscData.GDX_Window_Horizontal_Resolution*MiscData.SERVIDOR_DistanciaVisionMobs/2,
+                    playerView.getCenterY()-MiscData.GDX_Window_Vertical_Resolution*MiscData.SERVIDOR_DistanciaVisionMobs/2,
+                    MiscData.GDX_Window_Horizontal_Resolution*MiscData.SERVIDOR_DistanciaVisionMobs,
+                    MiscData.GDX_Window_Vertical_Resolution*MiscData.SERVIDOR_DistanciaVisionMobs);
+
+        shape.setColor(Color.GRAY);
+        shape.rect( playerView.getCenterX()-MiscData.MAPA_Max_TilesX*MiscData.TILESIZE/2,
+                    playerView.getCenterY()-MiscData.MAPA_Max_TilesY*MiscData.TILESIZE/2,
+                    MiscData.MAPA_Max_TilesX*MiscData.TILESIZE,
+                    MiscData.MAPA_Max_TilesY*MiscData.TILESIZE);
 
         shape.end();
     }

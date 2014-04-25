@@ -1,7 +1,7 @@
 package View.Geo;// Created by Hanto on 16/04/2014.
 
 import Data.MiscData;
-import Model.DTO.MapaDTO;
+import DTO.MapaDTO;
 import Model.Geo.Mapa;
 import View.Vista;
 import com.badlogic.gdx.Gdx;

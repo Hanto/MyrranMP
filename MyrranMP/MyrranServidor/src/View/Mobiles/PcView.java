@@ -3,9 +3,9 @@ package View.Mobiles;// Created by Hanto on 07/04/2014.
 import Controller.Controlador;
 import Data.MiscData;
 import Interfaces.MobPC;
-import Model.DTO.MapaDTO;
-import Model.DTO.NetDTO;
-import Model.DTO.PcDTO;
+import DTO.MapaDTO;
+import DTO.NetDTO;
+import DTO.PcDTO;
 import Model.Mobiles.Mundo;
 import Model.Mobiles.PC;
 import View.Vista;
@@ -79,8 +79,8 @@ public class PcView implements PropertyChangeListener
 
             if (PCCercano.getConnectionID() != PC.getConnectionID())
             {
-                if (Math.abs(PCCercano.getX()- PC.getX()) <=  1.5*MiscData.GDX_Window_Horizontal_Resolution/2 &&
-                    Math.abs(PCCercano.getY()- PC.getY()) <=  1.5*MiscData.GDX_Window_Vertical_Resolution/2     )
+                if (Math.abs(PCCercano.getX()- PC.getX()) <=  MiscData.SERVIDOR_DistanciaVisionMobs*MiscData.GDX_Window_Horizontal_Resolution/2 &&
+                    Math.abs(PCCercano.getY()- PC.getY()) <=  MiscData.SERVIDOR_DistanciaVisionMobs*MiscData.GDX_Window_Vertical_Resolution/2     )
                 {
                     añadirPCVisible(pcCercanos);
                     pcCercanos.añadirPCVisible(this);

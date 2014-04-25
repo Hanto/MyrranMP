@@ -1,8 +1,8 @@
 package View.Mobiles;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
-import Model.DTO.PcDTO;
-import Model.DTO.PlayerDTO;
+import DTO.PcDTO;
+import DTO.PlayerDTO;
 import Model.Mobiles.Mundo;
 import Model.Mobiles.PC;
 import View.Graficos.PixiePC;

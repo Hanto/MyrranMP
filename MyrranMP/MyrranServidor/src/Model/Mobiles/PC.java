@@ -7,8 +7,8 @@ import Interfaces.MapaI;
 import Interfaces.MobPC;
 import Interfaces.Vulnerable;
 import Model.AbstractModel;
-import Model.DAO.DAO;
-import Model.DTO.PcDTO;
+import DAO.DAO;
+import DTO.PcDTO;
 import Model.Geo.Mapa;
 import Model.Skill.Spell.Spell;
 

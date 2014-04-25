@@ -1,7 +1,7 @@
 package Model.Mobiles;// Created by Hanto on 08/04/2014.
 
-import Model.DTO.PcDTO;
-import Model.DTO.PlayerDTO;
+import DTO.PcDTO;
+import DTO.PlayerDTO;
 import Model.AbstractModel;
 
 public class PC extends AbstractModel

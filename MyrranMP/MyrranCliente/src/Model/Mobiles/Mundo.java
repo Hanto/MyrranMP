@@ -1,8 +1,8 @@
 package Model.Mobiles;// Created by Hanto on 08/04/2014.
 
 import Model.AbstractModel;
-import Model.DTO.MundoDTO;
-import Model.DTO.NetDTO;
+import DTO.MundoDTO;
+import DTO.NetDTO;
 import Model.Geo.Mapa;
 import Data.MiscData;
 
