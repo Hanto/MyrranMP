@@ -19,6 +19,7 @@ public class GameDataDTO
     public static class SpellDTO
     {
         public TipoSpell tipoSpell;
+        public String id;
         public String nombre;
         public String descripcion;
         public SkillStat [] skillStats;

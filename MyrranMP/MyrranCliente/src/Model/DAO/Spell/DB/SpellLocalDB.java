@@ -10,5 +10,5 @@ public class SpellLocalDB
     private static class Singleton      { private static final SpellLocalDB get = new SpellLocalDB(); }
     public static SpellLocalDB get()    { return Singleton.get; }
 
-    public Map<Integer, Spell> listaDeSpells = new HashMap<>();
+    public Map<String, Spell> listaDeSpells = new HashMap<>();
 }

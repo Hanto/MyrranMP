@@ -4,8 +4,8 @@ import Model.Skill.Spell.Spell;
 
 public interface SpellDAO
 {
-    public int añadirSpell(Spell spell);
+    public boolean añadirSpell(Spell spell);
     public void salvarSpell(Spell spell);
-    public void eliminarSpell(int spellID);
-    public Spell getSpell(int spellID);
+    public void eliminarSpell(String spellID);
+    public Spell getSpell(String spellID);
 }

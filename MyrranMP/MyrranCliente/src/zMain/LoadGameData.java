@@ -61,8 +61,12 @@ public class LoadGameData
     {
         TipoSpellDAO tipoSpellDAO = DAO.tipoSpellDAOFactory.getTipoSpellDAO();
 
-        for (TipoSpellFactory tipoSpell: TipoSpellFactory.values())
-        {   tipoSpellDAO.añadirTipoSpell(tipoSpell.nuevo()); }
+        for (TipoSpellFactory tipoSpellFactory: TipoSpellFactory.values())
+        {
+            TipoSpell tipoSpell = tipoSpellFactory.nuevo();
+            tipoSpell.setID(tipoSpellFactory.name());
+            tipoSpellDAO.añadirTipoSpell(tipoSpell);
+        }
     }
 
     public void cargarSpells()
@@ -80,6 +84,7 @@ public class LoadGameData
             if (spell.skillStats().length != spellDTO.skillStats.length)
                 System.out.println("ERROR importando spell: [" + spell.getNombre() + "], numero de stats difiere del tipo");
 
+            spell.setID(spellDTO.id);
             spell.setNombre(spellDTO.nombre);
             spell.setDescripcion(spellDTO.descripcion);
 

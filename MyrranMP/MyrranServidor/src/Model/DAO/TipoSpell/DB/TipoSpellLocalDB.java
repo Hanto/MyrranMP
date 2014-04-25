@@ -10,5 +10,5 @@ public class TipoSpellLocalDB
     private static class Singleton          { private static final TipoSpellLocalDB get = new TipoSpellLocalDB(); }
     public static TipoSpellLocalDB get()    { return Singleton.get; }
 
-    public Map<Integer, TipoSpell>  listaDeTipoSpells = new HashMap<>();
+    public Map<String, TipoSpell>  listaDeTipoSpells = new HashMap<>();
 }

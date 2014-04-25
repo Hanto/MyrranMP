@@ -7,18 +7,14 @@ import java.util.Map;
 
 public class TipoSpellLocal implements TipoSpellDAO
 {
-    private Map<Integer, TipoSpell> listaDeTipoSpells = TipoSpellLocalDB.get().listaDeTipoSpells;
+    private Map<String, TipoSpell> listaDeTipoSpells = TipoSpellLocalDB.get().listaDeTipoSpells;
 
 
-    @Override public int añadirTipoSpell(TipoSpell tipoSpell)
+    @Override public boolean añadirTipoSpell(TipoSpell tipoSpell)
     {
-        int iDMenor;
-        for (iDMenor=0; iDMenor< listaDeTipoSpells.size(); iDMenor++)
-        {   if (!listaDeTipoSpells.containsKey(iDMenor)) break; }
-
-        tipoSpell.setID(iDMenor);
-        listaDeTipoSpells.put(tipoSpell.getID(), tipoSpell);
-        return iDMenor;
+        if (listaDeTipoSpells.containsKey(tipoSpell.getID()))
+        {   System.out.println("ERROR: ya existe un TipoSpell con este ID["+tipoSpell.getID()+"]");  return false; }
+        else {  listaDeTipoSpells.put(tipoSpell.getID(), tipoSpell); return true; }
     }
 
     @Override public void salvarTipoSpell(TipoSpell tipoSpell)
@@ -27,14 +23,12 @@ public class TipoSpellLocal implements TipoSpellDAO
         {   listaDeTipoSpells.put(tipoSpell.getID(), tipoSpell); }
     }
 
-    @Override
-    public void eliminarTipoSpell(int tipoSpellID)
+    @Override public void eliminarTipoSpell(String tipoSpellID)
     {
         if (listaDeTipoSpells.containsKey(tipoSpellID))
         {   listaDeTipoSpells.remove(tipoSpellID); }
     }
 
-    @Override
-    public TipoSpell getTipoSpell(int tipoSpellID)
+    @Override public TipoSpell getTipoSpell(String tipoSpellID)
     {   return listaDeTipoSpells.get(tipoSpellID); }
 }

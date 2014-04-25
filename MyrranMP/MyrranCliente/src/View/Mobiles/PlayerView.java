@@ -67,15 +67,19 @@ public class PlayerView extends Group implements PropertyChangeListener
         this.addActor(nombre);
     }
 
-    @Override public void setPosition (float x, float y)
+    public void setPosition (int x, int y)
     {
-        if (Math.abs(this.getX()-x) >= 1.0f || Math.abs(this.getY()-y) >= 1.0f)
+        if (Math.abs(this.getX()-x) >= 1 || Math.abs(this.getY()-y) >= 1)
         {
             super.setPosition(x, y);
             NetDTO.MoverPC moverPlayer = new NetDTO.MoverPC(player.getConnectionID(), getX(), getY());
             controlador.enviarAServidor(moverPlayer);
         }
     }
+
+    //Muy importante, la posicion en pantalla que sea en Pixels siempre, o sea sin decimales, o el sprite parpadea
+    @Override public void setPosition (float x, float y)
+    {   setPosition((int)x, (int)y);}
 
     public void setAnimacion (int numAnimacion)
     {

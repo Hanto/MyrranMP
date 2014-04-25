@@ -4,8 +4,8 @@ import Model.Skill.Spell.TipoSpell;
 
 public interface TipoSpellDAO
 {
-    public int añadirTipoSpell(TipoSpell tipoSpell);
+    public boolean añadirTipoSpell(TipoSpell tipoSpell);
     public void salvarTipoSpell(TipoSpell tipoSpell);
-    public void eliminarTipoSpell(int tipoSpellID);
-    public TipoSpell getTipoSpell(int tipoSpellID);
+    public void eliminarTipoSpell(String tipoSpellID);
+    public TipoSpell getTipoSpell(String tipoSpellID);
 }

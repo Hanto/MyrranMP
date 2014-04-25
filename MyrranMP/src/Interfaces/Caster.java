@@ -8,10 +8,10 @@ public interface Caster
     public boolean isCasteando();
     public float getActualCastingTime();
     public float getTotalCastingTime();
-    public int getSpellIDSeleccionado();
+    public String getSpellIDSeleccionado();
 
     //SET:
     public void setCastear(boolean castear, int targetX, int targetY);
     public void setTotalCastingTime(float castingTime);
-    public void setSpellIDSeleccionado(int spellID);
+    public void setSpellIDSeleccionado(String spellID);
 }

@@ -8,7 +8,7 @@ import Model.Skill.SkillStat;
 
 public class Spell extends AbstractModel
 {
-    protected int id;
+    protected String id;
     protected String nombre;
     protected String descripcion;
     
@@ -17,11 +17,11 @@ public class Spell extends AbstractModel
     protected SkillStat[] skillStats;                   //Stats concretos del skill
 
     //SET
-    public void setID(int id)                           { this.id = id; }
+    public void setID(String id)                        { this.id = id; }
     public void setNombre (String nombre)               { this.nombre = nombre; }
     public void setDescripcion (String descripcion)     { this.descripcion = descripcion; }
     //GET:
-    public int getID()                                  { return id; }
+    public String getID()                               { return id; }
     public String getNombre ()                          { return nombre; }
     public String getDescripcion ()                     { return descripcion; }
     
@@ -46,7 +46,7 @@ public class Spell extends AbstractModel
         }
     }
 
-    public Spell (int tipoSpellID)
+    public Spell (String tipoSpellID)
     {
         tipoSpell = DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(tipoSpellID);
 

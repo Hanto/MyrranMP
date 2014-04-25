@@ -7,17 +7,13 @@ import java.util.Map;
 
 public class SpellLocal implements SpellDAO
 {
-    private Map<Integer, Spell> listaDeSpells = SpellLocalDB.get().listaDeSpells;
+    private Map<String, Spell> listaDeSpells = SpellLocalDB.get().listaDeSpells;
 
-    @Override public int añadirSpell(Spell spell)
+    @Override public boolean añadirSpell(Spell spell)
     {
-        int iDMenor;
-        for (iDMenor=0; iDMenor< listaDeSpells.size(); iDMenor++)
-        {   if (!listaDeSpells.containsKey(iDMenor)) break; }
-
-        spell.setID(iDMenor);
-        listaDeSpells.put(spell.getID(), spell);
-        return iDMenor;
+        if (listaDeSpells.containsKey(spell.getID()))
+        {   System.out.println("ERROR: ya existe un Spell con este ID["+spell.getID()+"]");  return false; }
+        else {  listaDeSpells.put(spell.getID(), spell); return true; }
     }
 
     @Override public void salvarSpell(Spell spell)
@@ -26,13 +22,12 @@ public class SpellLocal implements SpellDAO
         {   listaDeSpells.put(spell.getID(), spell); }
     }
 
-    @Override public void eliminarSpell(int spellID)
+    @Override public void eliminarSpell(String spellID)
     {
         if (listaDeSpells.containsKey(spellID))
         {   listaDeSpells.remove(spellID); }
     }
 
-    @Override
-    public Spell getSpell(int spellID)
+    @Override public Spell getSpell(String spellID)
     {   return listaDeSpells.get(spellID); }
 }

@@ -35,6 +35,7 @@ public class GameData
 
         GameDataDTO.SpellDTO spellDTO = new GameDataDTO.SpellDTO(1);
         spellDTO.tipoSpell = GameDataDTO.TipoSpell.EDITARTERRENO;
+        spellDTO.id = SpellsData.TERRAFORMAR_ID;
         spellDTO.nombre = SpellsData.TERRAFORMAR_Nombre;
         spellDTO.descripcion = SpellsData.TERRAFORMAR_Descripcion;
         spellDTO.skillStats[0].setValor(0.03f);

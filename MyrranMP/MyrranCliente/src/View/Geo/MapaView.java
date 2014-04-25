@@ -4,6 +4,7 @@ import Data.MiscData;
 import Model.DTO.MapaDTO;
 import Model.Geo.Mapa;
 import View.Vista;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import java.beans.PropertyChangeEvent;
@@ -18,8 +19,8 @@ public class MapaView implements PropertyChangeListener
 
     private SubMapaView[] listaSubMapas;
 
-    private int xActual;                            //Coordenadas del centro de vision
-    private int yActual;
+    private float xActual;                            //Coordenadas del centro de vision
+    private float yActual;
 
     private int mapTileBordeE;                      //MapTile que hay justo a la derecha del limite de vision
     private int mapTileBordeO;                      //MapTile que hay justo a la izquierda del limite de vision
@@ -43,7 +44,7 @@ public class MapaView implements PropertyChangeListener
         this.numTilesX = (int)Math.ceil((double)MiscData.GDX_Window_Horizontal_Resolution/(double)(tamañoX -1)/(double)MiscData.TILESIZE);
         this.numTilesY = (int)Math.ceil((double)MiscData.GDX_Window_Vertical_Resolution/(double)(tamañoY -1)/(double)MiscData.TILESIZE);
 
-        camara = new OrthographicCamera(MiscData.GDX_Window_Horizontal_Resolution, MiscData.GDX_Window_Vertical_Resolution);
+        camara = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         listaSubMapas = new SubMapaView[tamañoX * tamañoY];
         for (int i=0; i<listaSubMapas.length;i++)
@@ -90,13 +91,14 @@ public class MapaView implements PropertyChangeListener
         camara.position.x = vista.camara.position.x - subMapaView.getMapTileX() * numTilesX *MiscData.TILESIZE;
         camara.position.y = vista.camara.position.y - subMapaView.getMapTileY() * numTilesY *MiscData.TILESIZE;
         camara.update();
+
         subMapaView.setView(camara);
     }
 
     public void render()
     {
-        xActual = (int)((vista.camara.position.x ));
-        yActual = (int)((vista.camara.position.y ));
+        xActual = (vista.camara.position.x );
+        yActual = (vista.camara.position.y );
 
         for (SubMapaView subMapaView: listaSubMapas)
         {
@@ -115,10 +117,10 @@ public class MapaView implements PropertyChangeListener
 
     public void mapaVistaLoader(SubMapaView subMapaView)
     {
-        mapTileBordeE = (xActual + MiscData.GDX_Window_Horizontal_Resolution /2) /  (numTilesX *MiscData.TILESIZE);
-        mapTileBordeO = (xActual - MiscData.GDX_Window_Horizontal_Resolution /2) /  (numTilesX *MiscData.TILESIZE);
-        mapTileBordeN = (yActual + MiscData.GDX_Window_Vertical_Resolution /2) /    (numTilesY *MiscData.TILESIZE);
-        mapTileBordeS = (yActual - MiscData.GDX_Window_Vertical_Resolution /2) /    (numTilesY *MiscData.TILESIZE);
+        mapTileBordeE = (int)(xActual + MiscData.GDX_Window_Horizontal_Resolution /2) /  (numTilesX *MiscData.TILESIZE);
+        mapTileBordeO = (int)(xActual - MiscData.GDX_Window_Horizontal_Resolution /2) /  (numTilesX *MiscData.TILESIZE);
+        mapTileBordeN = (int)(yActual + MiscData.GDX_Window_Vertical_Resolution /2) /    (numTilesY *MiscData.TILESIZE);
+        mapTileBordeS = (int)(yActual - MiscData.GDX_Window_Vertical_Resolution /2) /    (numTilesY *MiscData.TILESIZE);
 
         if (mapTileBordeE >= (subMapaView.getMapTileX() + tamañoX))
         {   subMapaView.crearTiledMap(subMapaView.getMapTileX() + tamañoX,    subMapaView.getMapTileY()); }

@@ -3,6 +3,7 @@ package View.Geo;// Created by Hanto on 15/04/2014.
 import Data.MiscData;
 import Model.DTO.TerrenoDTO;
 import Model.Geo.Mapa;
+import View.Recursos.TerrenoRSC.DB.TerrenoRSCLocalDB;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -92,7 +93,7 @@ public class SubMapaView extends TiledMap
             }
             getLayers().add(suelo);
         }
-        //addGrid();
+        addGrid();
     }
 
     private void ajustarCoordenadas(int mapTileOrigenX, int mapTileOrigenY)
@@ -157,7 +158,7 @@ public class SubMapaView extends TiledMap
 
         return ad;
     }
-/*
+
     private void addGrid ()
     {
         TiledMapTileLayer layerGrid = new TiledMapTileLayer
@@ -177,7 +178,7 @@ public class SubMapaView extends TiledMap
         layerGrid.setName("LayerGrid");
         getLayers().add(layerGrid);
 
-    }*/
+    }
 
     private void borrarTile (int tileX, int tileY, int numCapa)
     {

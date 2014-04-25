@@ -4,7 +4,7 @@ import Model.Skill.Spell.TiposSpell.EditarTerreno;
 
 public enum TipoSpellFactory
 {
-    EDITARTERRENO("Editar SetTerreno")
+    EDITARTERRENO("EditarTerreno")
     {
         @Override
         public TipoSpell nuevo()
@@ -13,6 +13,5 @@ public enum TipoSpellFactory
 
     public abstract TipoSpell nuevo();
 
-    private String nombre;
-    private TipoSpellFactory(String nombre) { this.nombre = nombre; }
+    private TipoSpellFactory(String nombre) { }
 }

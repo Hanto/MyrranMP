@@ -87,9 +87,9 @@ public class Vista implements PropertyChangeListener
 
         mapaView.render();
 
-
         batch.begin();
         batch.end();
+
         stageMundo.act(delta);
         stageMundo.draw();
         //rayHandler.updateAndRender();

@@ -57,9 +57,9 @@ public class PCView extends Group implements PropertyChangeListener
         vista.listaPCViews.removeValue(this, true);
     }
 
-    public void mover(float x, float y)
+    public void mover(int x, int y)
     {
-        //TODO hay que hacerlo por setPosition y en cambio mover el model interpoladamente
+        //TODO hay que hacerlo por setPosition y en cambio mover el model interpoladamente, el destino sin decimales
         this.addAction(Actions.moveTo(x, y, MiscData.NETWORK_Update_Time / 1000f, Interpolation.linear));
         //setPosition(x,y);
     }
@@ -73,7 +73,7 @@ public class PCView extends Group implements PropertyChangeListener
         {
             float x = ((PcDTO.PositionPC) evt.getNewValue()).x;
             float y = ((PcDTO.PositionPC) evt.getNewValue()).y;
-            mover(x, y);
+            mover((int)x, (int)y);
         }
 
         if (evt.getNewValue() instanceof PlayerDTO.AnimacionPlayer)

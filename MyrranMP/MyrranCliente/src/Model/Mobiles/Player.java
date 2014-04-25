@@ -34,7 +34,7 @@ public class Player extends AbstractModel implements Caster
     protected Integer screenY = 0;
     protected Float actualCastingTime = 0.0f;
     protected Float totalCastingTime = 0.0f;
-    protected Integer spellIDSeleccionado = -1;
+    protected String spellIDSeleccionado = null;
 
     protected Boolean irArriba = false;
     protected Boolean irAbajo = false;
@@ -56,9 +56,9 @@ public class Player extends AbstractModel implements Caster
     @Override public boolean isCasteando()                      { if (actualCastingTime >0) return true; else return false; }
     @Override public float getActualCastingTime()               { return actualCastingTime; }
     @Override public float getTotalCastingTime()                { return totalCastingTime; }
-    @Override public int getSpellIDSeleccionado()               { return spellIDSeleccionado; }
+    @Override public String getSpellIDSeleccionado()            { return spellIDSeleccionado; }
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0.01f; totalCastingTime = castingTime;}
-    @Override public void setSpellIDSeleccionado(int spellID)   { spellIDSeleccionado = spellID; }
+    @Override public void setSpellIDSeleccionado(String spellID){ spellIDSeleccionado = spellID; }
     @Override public void setCastear(boolean intentaCastear, int clickX, int clickY)
     {
         castear = intentaCastear;
@@ -83,7 +83,7 @@ public class Player extends AbstractModel implements Caster
     {
         if (!isCasteando())
         {
-            spellIDSeleccionado = 0;
+            spellIDSeleccionado = "Terraformar";
 
             Spell spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellIDSeleccionado);
             if (spell != null)
@@ -182,32 +182,33 @@ public class Player extends AbstractModel implements Caster
         float Y=y;
 
         if (irAbajo && !irDerecha && !irIzquierda)
-        { Y = ((float)(y+ -(Math.sin(Math.toRadians(90d))*velocidadMax)*velocidadMod*delta)); }
+        { Y += -velocidadMax*velocidadMod*delta; }
         //Norte
         else if (irArriba && !irDerecha && !irIzquierda)
-        { Y = ((float)(y+ -(Math.sin(Math.toRadians(270d))*velocidadMax)*velocidadMod*delta)); }
+        { Y += +velocidadMax*velocidadMod*delta; }
         //Este
         else if (irDerecha && !irArriba && !irAbajo)
-        { X = ((float)(x+ (Math.cos(Math.toRadians(0d))*velocidadMax)*velocidadMod*delta)); }
+        { X += +velocidadMax*velocidadMod*delta; }
         //Oeste
         else if (irIzquierda && !irArriba && !irAbajo)
-        { X = ((float)(x+ (Math.cos(Math.toRadians(180d))*velocidadMax)*velocidadMod*delta)); }
+        { X += -velocidadMax*velocidadMod*delta; }
         //SurOeste
         else if (irAbajo&& irIzquierda)
-        { Y = ((float)(y+ -(Math.sin(Math.toRadians(135d))*velocidadMax)*velocidadMod*delta));
-          X = ((float)(x+ (Math.cos(Math.toRadians(135d))*velocidadMax)*velocidadMod*delta)); }
+        { Y += -0.707f*velocidadMax*velocidadMod*delta;;
+          X += -0.707f*velocidadMax*velocidadMod*delta; }
         //SurEste
         else if (irAbajo && irDerecha)
-        { Y = ((float)(y+ -(Math.sin(Math.toRadians(45d))*velocidadMax)*velocidadMod*delta));
-          X = ((float)(x+ (Math.cos(Math.toRadians(45d))*velocidadMax)*velocidadMod*delta)); }
+        { Y += -0.707f*velocidadMax*velocidadMod*delta;
+          X += +0.707f*velocidadMax*velocidadMod*delta;; }
         //NorOeste
         else if (irArriba && irIzquierda)
-        { Y = ((float)(y+ -(Math.sin(Math.toRadians(225d))*velocidadMax)*velocidadMod*delta));
-          X = ((float)(x+ (Math.cos(Math.toRadians(225d))*velocidadMax)*velocidadMod*delta)); }
+        { Y += +0.707f*velocidadMax*velocidadMod*delta;
+          X += -0.707f*velocidadMax*velocidadMod*delta; }
         //NorEste
         else if (irArriba && irDerecha)
-        { Y = ((float)(y+ -(Math.sin(Math.toRadians(315d))*velocidadMax)*velocidadMod*delta));
-          X = ((float)(x+ (Math.cos(Math.toRadians(315d))*velocidadMax)*velocidadMod*delta)); }
+        { Y += +0.707f*velocidadMax*velocidadMod*delta;
+          X += +0.707f*velocidadMax*velocidadMod*delta;
+        }
 
         setPosition(X,Y);
     }
