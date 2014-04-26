@@ -1,5 +1,6 @@
 package zMain;// Created by Hanto on 11/04/2014.
 
+import DAO.TerrenoView.TerrenoViewDAO;
 import Data.GameData;
 import Data.GameDataDTO;
 import DAO.DAO;
@@ -14,7 +15,6 @@ import Model.Skill.Spell.TipoSpellFactory;
 import View.Graficos.Atlas;
 import View.Mobiles.MobilesRecursos;
 import DAO.RSC;
-import DAO.TerrenoRSC.TerrenoRSC;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class LoadGameData
@@ -48,12 +48,12 @@ public class LoadGameData
     public void cargarTerrenos()
     {
         TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
-        TerrenoRSC terrenoRSC = RSC.terrenoRecursoDAO.getTerrenoRecursoDAO();
+        TerrenoViewDAO terrenoViewDAO = RSC.terrenoViewDAO.getTerrenoViewDAO();
 
         for (GameDataDTO.TerrenoDTO terrenoDTO : GameData.get().listaDeTerrenoDTO)
         {
             terrenoDAO.añadirTerreno(new Terreno(terrenoDTO.id, terrenoDTO.nombre, terrenoDTO.isSolido));
-            terrenoRSC.salvarTextura(terrenoDTO.id, terrenoDTO.nombreTextura, atlas);
+            terrenoViewDAO.salvarTextura(terrenoDTO.id, terrenoDTO.nombreTextura, atlas);
         }
     }
 
@@ -78,7 +78,7 @@ public class LoadGameData
 
         for (GameDataDTO.SpellDTO spellDTO : GameData.get().listaDeSpellsDTO)
         {
-            tipoSpell = TipoSpellFactory.valueOf(spellDTO.tipoSpell.name()).nuevo();
+            tipoSpell = DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(spellDTO.tipoSpell.name());
             spell = new Spell(tipoSpell);
 
             if (spell.skillStats().length != spellDTO.skillStats.length)

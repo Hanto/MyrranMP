@@ -1,8 +1,8 @@
 package DAO;// Created by Ladrim on 24/04/2014.
 
-import DAO.TerrenoRSC.TerrenoRSCFactory;
+import DAO.TerrenoView.TerrenoViewDAOFactory;
 
 public class RSC
 {
-    public static final TerrenoRSCFactory terrenoRecursoDAO = TerrenoRSCFactory.LOCAL;
+    public static final TerrenoViewDAOFactory terrenoViewDAO = TerrenoViewDAOFactory.LOCAL;
 }

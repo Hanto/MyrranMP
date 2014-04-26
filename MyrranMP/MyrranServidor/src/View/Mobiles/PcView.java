@@ -147,6 +147,7 @@ public class PcView implements PropertyChangeListener
     {
         NetDTO.SetTerreno setTerreno = new NetDTO.SetTerreno(x,y,numCapa,iDTerreno);
         controlador.enviarACliente(PC.getConnectionID(), setTerreno);
+        System.out.println("Editando SetTerreno: ["+x+"]["+y+"]");
     }
 
 

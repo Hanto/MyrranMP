@@ -1,15 +1,15 @@
-package DAO.TerrenoRSC.DB;// Created by Ladrim on 24/04/2014.
+package DAO.TerrenoView.DB;// Created by Ladrim on 24/04/2014.
 
+import DAO.TerrenoView.TerrenoViewDAO;
 import Data.MiscData;
-import DAO.TerrenoRSC.TerrenoRSC;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import java.util.Map;
 
-public class TerrenoRSCLocal implements TerrenoRSC
+public class TerrenoViewLocal implements TerrenoViewDAO
 {
-    private Map<Integer, TextureRegion> listaDeTexturasTerreno = TerrenoRSCLocalDB.get().listaDeTexturasTerreno;
+    private Map<Integer, TextureRegion> listaDeTexturasTerreno = TerrenoViewLocalDB.get().listaDeTexturasTerreno;
 
 
     @Override public TextureRegion getTextura(int iDTerreno)

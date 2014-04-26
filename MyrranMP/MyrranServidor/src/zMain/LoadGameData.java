@@ -50,7 +50,7 @@ public class LoadGameData
 
         for (GameDataDTO.SpellDTO spellDTO : GameData.get().listaDeSpellsDTO)
         {
-            tipoSpell = TipoSpellFactory.valueOf(spellDTO.tipoSpell.name()).nuevo();
+            tipoSpell = DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(spellDTO.tipoSpell.name());
             spell = new Spell(tipoSpell);
 
             if (spell.skillStats().length != spellDTO.skillStats.length)

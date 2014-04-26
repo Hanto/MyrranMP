@@ -6,7 +6,9 @@ import DAO.RSC;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class TerrenoView
-{
+{   //Textura BASE:
+    private TextureRegion terreno;
+
     public TextureRegion cuadranteNO;
     public TextureRegion cuadranteNE;
     public TextureRegion cuadranteSE;
@@ -22,7 +24,7 @@ public class TerrenoView
 
     public void generarTextura()
     {
-        TextureRegion terreno = RSC.terrenoRecursoDAO.getTerrenoRecursoDAO().getTextura(ad.iDTerreno);
+        terreno = RSC.terrenoViewDAO.getTerrenoViewDAO().getTextura(ad.iDTerreno);
         if (terreno != null)
         {
             generarTexturaNO(terreno);

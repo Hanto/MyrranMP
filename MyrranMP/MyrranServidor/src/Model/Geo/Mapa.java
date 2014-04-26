@@ -33,19 +33,20 @@ public class Mapa extends AbstractModel implements MapaI
     public boolean setTerreno (int x, int y, int numCapa, Terreno terreno)
     {
         if (x<0 || y<0 || x> MiscData.MAPA_Max_TilesX || y> MiscData.MAPA_Max_TilesY) return false;
-        else
+        else if (matriz[x][y].getTerreno(numCapa) != terreno)
         {
             matriz[x][y].setTerreno(numCapa, terreno);
             MapaDTO.SetTerreno setTerreno = new MapaDTO.SetTerreno(x,y,numCapa,terreno.getID());
             notificarActualizacion("setTerreno", null, setTerreno);
             return true;
         }
+        else return true;
     }
 
     @Override public boolean setTerreno (int x, int y, int numCapa, int iDTerreno)
     {
         if (x<0 || y<0 || x> MiscData.MAPA_Max_TilesX || y> MiscData.MAPA_Max_TilesY) return false;
-        else
+        else if (matriz[x][y].getTerrenoID(numCapa) != iDTerreno)
         {
             if (matriz[x][y].setTerreno(numCapa, iDTerreno))
             {
@@ -55,5 +56,6 @@ public class Mapa extends AbstractModel implements MapaI
             }
             else return false;
         }
+        else return true;
     }
 }
