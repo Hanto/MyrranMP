@@ -16,6 +16,7 @@ import Recursos.Classes.AtlasRecursos;
 import Recursos.Classes.SpellRecursos;
 import Recursos.Classes.TerrenoRecursos;
 import Recursos.DAO.FuentesRecursos.FuentesRecursosDAO;
+import Recursos.DAO.MiscRecursos.MiscRecursosDAO;
 import Recursos.DAO.PixiePCRecursos.PixiePCRecursosDAO;
 import Recursos.DAO.RSC;
 import Recursos.DAO.SkillRecursos.SkillRecursosDAO;
@@ -51,6 +52,7 @@ public class LoadGameData
         cargarSpells();
 
         cargarFuentes();
+        cargarMiscRecursos();
     }
 
     public void cargarRazasPC()
@@ -240,5 +242,11 @@ public class LoadGameData
     {
         FuentesRecursosDAO fuentesDAO = RSC.fuenteRecursosDAO.getFuentesRecursosDAO();
         fuentesDAO.salvarFuente(MiscData.FUENTE_Nombres, "14.fnt", atlas);
+    }
+
+    public void cargarMiscRecursos()
+    {
+        MiscRecursosDAO miscRecursosDAO = RSC.miscRecusosDAO.getMiscRecursosDAO();
+        miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_Textura_Casillero, "UI/Casillero", atlas);
     }
 }

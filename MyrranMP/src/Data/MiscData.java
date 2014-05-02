@@ -45,4 +45,9 @@ public class MiscData
     //Fuentes
     public final static String FUENTE_Nombres = "14";
 
+    //Barra Spells:
+    public final static int BARRASPELLS_Ancho_Casilla = 32;
+    public final static int BARRASPELLS_Alto_Casilla = 32;
+    public final static String BARRASPELLS_Textura_Casillero = "Casillero";
+
 }
