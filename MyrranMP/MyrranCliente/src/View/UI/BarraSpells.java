@@ -7,7 +7,6 @@ import View.Graficos.Texto;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -16,9 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
 public class BarraSpells extends Group
 {
-    private Table tablaSpells = new Table().bottom().left();
+    private Table tablaSpells;
     private Casilla[] barraSpells;
-    private DragAndDrop dad = new DragAndDrop();
+    private DragAndDrop dad;
 
     private int numFilas;
     private int numColumnas;
@@ -34,10 +33,14 @@ public class BarraSpells extends Group
 
     public BarraSpells (int filas, int columnas)
     {
+        tablaSpells = new Table().bottom().left();
+        barraSpells = new Casilla[filas*columnas];
+        dad = new DragAndDrop();
+
         dad.setDragTime(0);
         numFilas = filas;
         numColumnas = columnas;
-        barraSpells = new Casilla[numFilas*numColumnas];
+
 
         for (int i=0; i< barraSpells.length; i++)
         {
@@ -50,13 +53,6 @@ public class BarraSpells extends Group
 
             tablaSpells.add(casilla.apariencia).left().height(MiscData.BARRASPELLS_Alto_Casilla + 2).width(MiscData.BARRASPELLS_Ancho_Casilla+2);
             if ((i+1)%numColumnas == 0) tablaSpells.row();
-
-
-            casilla.apariencia.addListener(new InputListener()
-
-
-
-            );
 
             dad.addSource (new DragAndDrop.Source(casilla.apariencia)
             {
@@ -99,7 +95,6 @@ public class BarraSpells extends Group
         this.addActor(tablaSpells);
         this.setWidth(numColumnas*(MiscData.BARRASPELLS_Ancho_Casilla+2));
         this.setHeight(numFilas*(MiscData.BARRASPELLS_Alto_Casilla+2));
-
     }
 
     public void setApariencia (Casilla casilla, Group group)
@@ -115,7 +110,7 @@ public class BarraSpells extends Group
         }
         else
         {
-            Image casillaIcono = new Image(RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRSC(casilla.spellID).getIcono());
+            Image casillaIcono = new Image(RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRecursos(casilla.spellID).getIcono());
             casillaIcono.setBounds(0,0,MiscData.BARRASPELLS_Ancho_Casilla, MiscData.BARRASPELLS_Alto_Casilla);
             group.addActor(casillaIcono);
         }

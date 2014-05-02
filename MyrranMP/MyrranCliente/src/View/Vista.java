@@ -65,7 +65,7 @@ public class Vista implements PropertyChangeListener
         mapaView = new MapaView(mapa, playerView.getX(), playerView.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY, this);
         barraSpells = new BarraSpells(2, 10);
         stageUI.addActor(barraSpells);
-        barraSpells.setPosition(MiscData.GDX_Window_Horizontal_Resolution/2-barraSpells.getWidth()/2,0);
+        barraSpells.setPosition(MiscData.GDX_Window_Horizontal_Resolution/2-barraSpells.getWidth()/2,5);
         barraSpells.setSkill(3, DAO.spellDAOFactory.getSpellDAO().getSpell(SpellsData.TERRAFORMAR_ID));
         barraSpells.setSkill(9, DAO.spellDAOFactory.getSpellDAO().getSpell(SpellsData.TERRAFORMAR_ID));
 

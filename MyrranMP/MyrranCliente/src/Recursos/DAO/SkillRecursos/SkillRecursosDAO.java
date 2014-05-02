@@ -15,9 +15,9 @@ public interface SkillRecursosDAO
     public void salvarAnimacionProyectil(String nombreAnimacion, String nombrePixie, TextureAtlas atlas);
     public Pixie getAnimacion (String nombreAnimacion);
 
-    public void salvarTipoSpellRSC(TipoSpellRecursos tipoSpellRecursos);
-    public TipoSpellRecursos getTipoSpellRSC (String TipoSpellID);
+    public void salvarTipoSpellRecursos(TipoSpellRecursos tipoSpellRecursos);
+    public TipoSpellRecursos getTipoSpellRecursos(String TipoSpellID);
 
-    public void salvarSpellRSC(SpellRecursos spellRecursos);
-    public SpellRecursos getSpellRSC (String spellID);
+    public void salvarSpellRecursos(SpellRecursos spellRecursos);
+    public SpellRecursos getSpellRecursos(String spellID);
 }

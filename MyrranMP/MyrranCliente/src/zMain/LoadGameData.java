@@ -234,7 +234,7 @@ public class LoadGameData
             for (int i = 0; i < spellDTO.listaIDAnimaciones.length; i++)
             {   spellRecursos.setTipoAnimacion(i, skillRecursosDAO.getAnimacion(spellDTO.listaIDAnimaciones[i])); }
 
-            skillRecursosDAO.salvarSpellRSC(spellRecursos);
+            skillRecursosDAO.salvarSpellRecursos(spellRecursos);
         }
     }
 

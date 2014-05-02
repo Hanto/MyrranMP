@@ -51,17 +51,17 @@ public class SkillRecursosLocal implements SkillRecursosDAO
 
 
 
-    @Override public void salvarTipoSpellRSC(TipoSpellRecursos tipoSpellRecursos)
+    @Override public void salvarTipoSpellRecursos(TipoSpellRecursos tipoSpellRecursos)
     {   listaTipoSpell.put(tipoSpellRecursos.getID(), tipoSpellRecursos); }
 
-    @Override public TipoSpellRecursos getTipoSpellRSC(String tipoSpellID)
+    @Override public TipoSpellRecursos getTipoSpellRecursos(String tipoSpellID)
     {   return listaTipoSpell.get(tipoSpellID);}
 
 
 
-    @Override public void salvarSpellRSC(SpellRecursos spellRecursos)
+    @Override public void salvarSpellRecursos(SpellRecursos spellRecursos)
     {   listaSpell.put(spellRecursos.getID(), spellRecursos); }
 
-    @Override public SpellRecursos getSpellRSC(String spellID)
+    @Override public SpellRecursos getSpellRecursos(String spellID)
     {   return listaSpell.get(spellID); }
 }
