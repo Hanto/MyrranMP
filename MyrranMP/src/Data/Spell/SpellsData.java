@@ -4,6 +4,13 @@ package Data.Spell;
 public class SpellsData 
 {
     //SPELLS:
+
+    //Terraformar
+    public static final String TERRAFORMAR_ID = "Terraformar";
+    public static final String TERRAFORMAR_Nombre = "Terra";
+    public static final String TERRAFORMAR_Descripcion = "Terraforma el terreno";
+    public static final float  TERRAFORMAR_CastingTime = 0.01f;
+    public static final String TERRAFORMAR_Icono = TipoSpellsData.ICONO_Editar;
     //FIREBOLT:
     public static final String FIREBOLT_ID = "Firebolt";
     public static final String FIREBOLT_Icono = "FireBall";
@@ -19,12 +26,6 @@ public class SpellsData
     public static final String FROSTBOLT_Descripcion = "Poderosa rafaga de energia concentrada en una bola de calor que abrasara a los enemigos del conjurador";
     public static final String FROSTBOLT_Pixie_Casteo = "FrostBolt01";
     public static final String FROSTBOLT_Pixie_Proyectil = "FrostBolt02";
-    
-    //Terraformar
-    public static final String TERRAFORMAR_ID = "Terraformar";
-    public static final String TERRAFORMAR_Icono = "Editar";
-    public static final String TERRAFORMAR_Nombre = "Terra";
-    public static final String TERRAFORMAR_Descripcion = "Terraforma el terreno";
     
     //Muroformar
     public static final String MUROFORMAR_ID = "Muroformar";

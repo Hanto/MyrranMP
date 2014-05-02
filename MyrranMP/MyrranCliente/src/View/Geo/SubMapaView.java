@@ -1,9 +1,9 @@
 package View.Geo;// Created by Hanto on 15/04/2014.
 
-import DAO.TerrenoView.DB.TerrenoViewLocalDB;
+import Recursos.DAO.TerrenoRecursos.DB.TerrenoRecursosLocalDB;
 import Data.MiscData;
-import DTO.TerrenoDTO;
-import Model.Geo.Mapa;
+import Model.DTO.TerrenoDTO;
+import Model.Classes.Geo.Mapa;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -164,7 +164,7 @@ public class SubMapaView extends TiledMap
         TiledMapTileLayer layerGrid = new TiledMapTileLayer
             (tamañoX, tamañoY, MiscData.TILESIZE, MiscData.TILESIZE);
 
-        StaticTiledMapTile grid = new StaticTiledMapTile(TerrenoViewLocalDB.get().grid);
+        StaticTiledMapTile grid = new StaticTiledMapTile(TerrenoRecursosLocalDB.get().grid);
 
         TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
         for (int x = 0; x < tamañoX; x++)

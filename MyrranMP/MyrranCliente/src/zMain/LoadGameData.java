@@ -1,60 +1,182 @@
 package zMain;// Created by Hanto on 11/04/2014.
 
-import DAO.TerrenoView.TerrenoViewDAO;
 import Data.GameData;
 import Data.GameDataDTO;
-import DAO.DAO;
-import DAO.Spell.SpellDAO;
-import DAO.Terreno.TerrenoDAO;
-import DAO.TipoSpell.TipoSpellDAO;
-import Model.Geo.Terreno;
-import Model.Skill.SkillStat;
-import Model.Skill.Spell.Spell;
-import Model.Skill.Spell.TipoSpell;
-import Model.Skill.Spell.TipoSpellFactory;
-import View.Graficos.Atlas;
-import View.Mobiles.MobilesRecursos;
-import DAO.RSC;
+import Data.MiscData;
+import Model.Classes.Geo.Terreno;
+import Model.Classes.Skill.SkillStat;
+import Model.Classes.Skill.Spell.Spell;
+import Model.Classes.Skill.Spell.TipoSpell;
+import Model.Classes.Skill.Spell.TipoSpellFactory;
+import Model.DAO.DAO;
+import Model.DAO.Spell.SpellDAO;
+import Model.DAO.Terreno.TerrenoDAO;
+import Model.DAO.TipoSpell.TipoSpellDAO;
+import Recursos.Classes.AtlasRecursos;
+import Recursos.Classes.SpellRecursos;
+import Recursos.Classes.TerrenoRecursos;
+import Recursos.DAO.FuentesRecursos.FuentesRecursosDAO;
+import Recursos.DAO.PixiePCRecursos.PixiePCRecursosDAO;
+import Recursos.DAO.RSC;
+import Recursos.DAO.SkillRecursos.SkillRecursosDAO;
+import Recursos.DAO.TerrenoRecursos.TerrenoRecursosDAO;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class LoadGameData
 {
-    private TextureAtlas atlas = Atlas.get().atlas;
+    private TextureAtlas atlas = AtlasRecursos.get().atlas;
 
     public void cargarTodo ()
     {
-        cargarRecursos();
+        cargarRazasPC();
+        cargarCuerposPC();
+        cargarCabezasPC();
+        cargarYelmosPC();
+        cargarBotasPC();
+        cargarGuantesPC();
+        cargarHombrerasPC();
+        cargarPantalonesPC();
+        cargarPetosPC();
+        cargarCapasFrontalesPC();
+        cargarCapasTraserasPC();
+
+        cargarTexturasTerrenos();
         cargarTerrenos();
+
+        cargarSpellIconos();
+        cargarSpellCasteos();
+        cargarSpellProyectiles();
+
         cargarTipoSpells();
         cargarSpells();
+
+        cargarFuentes();
     }
 
-    public static void cargarRecursos ()
+    public void cargarRazasPC()
     {
-        MobilesRecursos.get().añadirRazaPC              ("Golem");
-        MobilesRecursos.get().salvarCuerpoPC            ("Golem",    "Golem");
+        PixiePCRecursosDAO pixiePCDAO = RSC.pixiePCRecursosDAO.getPixiePCRecursosDAO();
+        for (GameDataDTO.PixiePCRazaDTO razaDTO: GameData.get().listaDePCRazas)
+        {   pixiePCDAO.salvarRazaPC(razaDTO.iDRaza);}
+    }
 
-        MobilesRecursos.get().salvarYelmoPC             ("Golem",    "Desnudo");
-        MobilesRecursos.get().salvarCabezaPC            ("Golem",    "Desnudo");
-        MobilesRecursos.get().salvarBotasPC             ("Golem",    "Desnudo");
-        MobilesRecursos.get().salvarGuantesPC           ("Golem",    "Desnudo");
-        MobilesRecursos.get().salvarHombrerasPC         ("Golem",    "Desnudo");
-        MobilesRecursos.get().salvarPantalonesPC        ("Golem",    "Desnudo");
-        MobilesRecursos.get().salvarPetoPC              ("Golem",    "Desnudo");
-        MobilesRecursos.get().salvarCapasFrontalesPC    ("Golem",    "Desnudo");
-        MobilesRecursos.get().salvarCapasTraserasPC     ("Golem",    "Desnudo");
+    public void cargarCuerposPC()
+    {
+        PixiePCRecursosDAO pixiePCDAO = RSC.pixiePCRecursosDAO.getPixiePCRecursosDAO();
+        for (GameDataDTO.PixiePCCuerpoDTO cuerpoDTO: GameData.get().listaDePCCuerpos)
+        {   pixiePCDAO.salvarCuerpoPC(cuerpoDTO.iDRaza, cuerpoDTO.nombreTextura, atlas); }
+    }
+
+    public void cargarCabezasPC()
+    {
+        PixiePCRecursosDAO pixiePCDAO = RSC.pixiePCRecursosDAO.getPixiePCRecursosDAO();
+        for (GameDataDTO.PixiePCCabezaDTO cabezaDTO: GameData.get().listaDePCCabezas)
+        {   pixiePCDAO.salvarCabezaPC(cabezaDTO.iDRaza, cabezaDTO.nombreTextura, atlas); }
+    }
+
+    public void cargarYelmosPC()
+    {
+        PixiePCRecursosDAO pixiePCDAO = RSC.pixiePCRecursosDAO.getPixiePCRecursosDAO();
+        for (GameDataDTO.PixiePCYelmoDTO yelmoDTO: GameData.get().listaDePCYelmos)
+        {   pixiePCDAO.salvarYelmoPC(yelmoDTO.iDRaza, yelmoDTO.nombreTextura, atlas); }
+    }
+
+    public void cargarBotasPC()
+    {
+        PixiePCRecursosDAO pixiePCDAO = RSC.pixiePCRecursosDAO.getPixiePCRecursosDAO();
+        for (GameDataDTO.PixiePCBotasDTO botasDTO: GameData.get().listaDePCBotas)
+        {   pixiePCDAO.salvarBotasPC(botasDTO.iDRaza, botasDTO.nombreTextura, atlas); }
+    }
+
+    public void cargarGuantesPC()
+    {
+        PixiePCRecursosDAO pixiePCDAO = RSC.pixiePCRecursosDAO.getPixiePCRecursosDAO();
+        for (GameDataDTO.PixiePCGuantesDTO guantesPC: GameData.get().listaDePCGuantes)
+        {   pixiePCDAO.salvarGuantesPC(guantesPC.iDRaza, guantesPC.nombreTextura, atlas); }
+    }
+
+    public void cargarHombrerasPC()
+    {
+        PixiePCRecursosDAO pixiePCDAO = RSC.pixiePCRecursosDAO.getPixiePCRecursosDAO();
+        for (GameDataDTO.PixiePCHombrerasDTO hombrerasPC: GameData.get().listaDePCHombreras)
+        {   pixiePCDAO.salvarHombrerasPC(hombrerasPC.iDRaza, hombrerasPC.nombreTextura, atlas); }
+    }
+
+    public void cargarPantalonesPC()
+    {
+        PixiePCRecursosDAO pixiePCDAO = RSC.pixiePCRecursosDAO.getPixiePCRecursosDAO();
+        for (GameDataDTO.PixiePCPantalonesDTO pantalonesPC: GameData.get().listaDePCPantalones)
+        {   pixiePCDAO.salvarPantalonesPC(pantalonesPC.iDRaza, pantalonesPC.nombreTextura, atlas);}
+    }
+
+    public void cargarPetosPC()
+    {
+        PixiePCRecursosDAO pixiePCDAO = RSC.pixiePCRecursosDAO.getPixiePCRecursosDAO();
+        for (GameDataDTO.PixiePCPetoDTO petosPC: GameData.get().listaDePCPetos)
+        {   pixiePCDAO.salvarPetoPC(petosPC.iDRaza, petosPC.nombreTextura, atlas); }
+    }
+
+    public void cargarCapasFrontalesPC()
+    {
+        PixiePCRecursosDAO pixiePCDAO = RSC.pixiePCRecursosDAO.getPixiePCRecursosDAO();
+        for (GameDataDTO.PixiePCCapasFrontalesDTO capasFrontalesPC: GameData.get().listaDePCCapasFrontales)
+        {   pixiePCDAO.salvarCapasFrontalesPC(capasFrontalesPC.iDRaza, capasFrontalesPC.nombreTextura, atlas); }
+    }
+
+    public void cargarCapasTraserasPC()
+    {
+        PixiePCRecursosDAO pixiePCDAO = RSC.pixiePCRecursosDAO.getPixiePCRecursosDAO();
+        for (GameDataDTO.PixiePCCapasTraserasDTO capaTraseraPC: GameData.get().listaDePCCapasTraseras)
+        {   pixiePCDAO.salvarCapasTraserasPC(capaTraseraPC.iDRaza, capaTraseraPC.nombreTextura, atlas); }
+    }
+
+
+
+
+    public void cargarTexturasTerrenos()
+    {
+        TerrenoRecursosDAO terrenoRecursosDAO = RSC.terrenoRecursosDAO.getTerrenoRecursosDAO();
+        for (GameDataDTO.TerrenoRSCDTO terrenoRSC : GameData.get().listaTerrenoRSC)
+        {   terrenoRecursosDAO.salvarTextura(terrenoRSC.iDTerreno, terrenoRSC.nombreTextura, atlas); }
     }
 
     public void cargarTerrenos()
     {
         TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
-        TerrenoViewDAO terrenoViewDAO = RSC.terrenoViewDAO.getTerrenoViewDAO();
+        TerrenoRecursosDAO terrenoRecursosDAO = RSC.terrenoRecursosDAO.getTerrenoRecursosDAO();
 
-        for (GameDataDTO.TerrenoDTO terrenoDTO : GameData.get().listaDeTerrenoDTO)
+        for (GameDataDTO.TerrenoDTO terrenoDTO : GameData.get().listaDeTerrenos)
         {
             terrenoDAO.añadirTerreno(new Terreno(terrenoDTO.id, terrenoDTO.nombre, terrenoDTO.isSolido));
-            terrenoViewDAO.salvarTextura(terrenoDTO.id, terrenoDTO.nombreTextura, atlas);
+            terrenoRecursosDAO.salvarTerrenoRSC(new TerrenoRecursos(terrenoDTO.id, terrenoRecursosDAO.getTextura(terrenoDTO.nombreTextura)));
         }
+    }
+
+
+
+
+    public void cargarSpellIconos ()
+    {
+        SkillRecursosDAO skillRecursosDAO = RSC.skillRecursosDAO.getSpellRecursosDAO();
+
+        for (GameDataDTO.SpellRSCIconosDTO spellIconoDTO: GameData.get().listaDeSpellRSCIconos)
+        {   skillRecursosDAO.salvarIcono(spellIconoDTO.iDIcono, spellIconoDTO.nombreTextura, atlas);}
+    }
+
+    public void cargarSpellCasteos()
+    {
+        SkillRecursosDAO skillRecursosDAO = RSC.skillRecursosDAO.getSpellRecursosDAO();
+
+        for (GameDataDTO.SpellRSCCasteoDTO spellCasteoDTO: GameData.get().listaDeSpellRSCCasteos)
+        {   skillRecursosDAO.salvarAnimacionCasteo(spellCasteoDTO.iDCasteo, spellCasteoDTO.nombreTextura, atlas);}
+    }
+
+    public void cargarSpellProyectiles()
+    {
+        SkillRecursosDAO skillRecursosDAO = RSC.skillRecursosDAO.getSpellRecursosDAO();
+
+        for (GameDataDTO.SpellRSCProyectilDTO spellRSCProyectilDTO : GameData.get().listaDeSpellRSCProyectiles)
+        {   skillRecursosDAO.salvarAnimacionProyectil(spellRSCProyectilDTO.iDCasteo, spellRSCProyectilDTO.nombreTextura, atlas); }
     }
 
     public void cargarTipoSpells()
@@ -72,11 +194,13 @@ public class LoadGameData
     public void cargarSpells()
     {
         SpellDAO spellDAO = DAO.spellDAOFactory.getSpellDAO();
+        SkillRecursosDAO skillRecursosDAO = RSC.skillRecursosDAO.getSpellRecursosDAO();
 
         Spell spell;
+        SpellRecursos spellRecursos;
         TipoSpell tipoSpell;
 
-        for (GameDataDTO.SpellDTO spellDTO : GameData.get().listaDeSpellsDTO)
+        for (GameDataDTO.SpellDTO spellDTO : GameData.get().listaDeSpells)
         {
             tipoSpell = DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(spellDTO.tipoSpell.name());
             spell = new Spell(tipoSpell);
@@ -100,8 +224,21 @@ public class LoadGameData
                 if (statModificado.getHayTalentoMaximo()) statOriginal.talentoMaximo = statModificado.getTalentoMaximo();
                 if (statModificado.getHayIsMejorable()) statOriginal.setIsMejorable(statModificado.getisMejorable());
             }
-
             spellDAO.añadirSpell(spell);
+
+            spellRecursos = new SpellRecursos(spellDTO.id, spellDTO.listaIDAnimaciones.length);
+            spellRecursos.setIcono(skillRecursosDAO.getIcono(spellDTO.iDIcono));
+
+            for (int i = 0; i < spellDTO.listaIDAnimaciones.length; i++)
+            {   spellRecursos.setTipoAnimacion(i, skillRecursosDAO.getAnimacion(spellDTO.listaIDAnimaciones[i])); }
+
+            skillRecursosDAO.salvarSpellRSC(spellRecursos);
         }
+    }
+
+    public void cargarFuentes()
+    {
+        FuentesRecursosDAO fuentesDAO = RSC.fuenteRecursosDAO.getFuentesRecursosDAO();
+        fuentesDAO.salvarFuente(MiscData.FUENTE_Nombres, "14.fnt", atlas);
     }
 }

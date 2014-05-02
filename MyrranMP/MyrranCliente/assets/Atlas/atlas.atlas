@@ -422,6 +422,74 @@ atlas12.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+Spell Animations/Fireball01
+  rotate: false
+  xy: 388, 494
+  size: 144, 48
+  orig: 144, 48
+  offset: 0, 0
+  index: -1
+Spell Animations/Fireball02
+  rotate: false
+  xy: 2, 2
+  size: 72, 24
+  orig: 72, 24
+  offset: 0, 0
+  index: -1
+Spell Animations/FrostBolt01
+  rotate: false
+  xy: 774, 752
+  size: 144, 48
+  orig: 144, 48
+  offset: 0, 0
+  index: -1
+Spell Animations/FrostBolt02
+  rotate: false
+  xy: 388, 468
+  size: 72, 24
+  orig: 72, 24
+  offset: 0, 0
+  index: -1
+Spell Animations/Frostball
+  rotate: false
+  xy: 534, 518
+  size: 72, 24
+  orig: 72, 24
+  offset: 0, 0
+  index: -1
+Spell Animations/SpellBalls_01n
+  rotate: false
+  xy: 2, 544
+  size: 384, 256
+  orig: 384, 256
+  offset: 0, 0
+  index: -1
+Spell Animations/SpellBalls_02n
+  rotate: false
+  xy: 2, 286
+  size: 384, 256
+  orig: 384, 256
+  offset: 0, 0
+  index: -1
+Spell Animations/SpellBalls_03n
+  rotate: false
+  xy: 388, 544
+  size: 384, 256
+  orig: 384, 256
+  offset: 0, 0
+  index: -1
+Spell Animations/SpellBalls_04n
+  rotate: false
+  xy: 2, 28
+  size: 384, 256
+  orig: 384, 256
+  offset: 0, 0
+  index: -1
+
+atlas13.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
 Spell Icons/Editar
   rotate: false
   xy: 2, 2
@@ -490,74 +558,6 @@ Spell Icons/PoisonBolt
   xy: 308, 2
   size: 32, 32
   orig: 32, 32
-  offset: 0, 0
-  index: -1
-
-atlas13.png
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-Spell Sprites/Fireball01
-  rotate: false
-  xy: 388, 494
-  size: 144, 48
-  orig: 144, 48
-  offset: 0, 0
-  index: -1
-Spell Sprites/Fireball02
-  rotate: false
-  xy: 2, 2
-  size: 72, 24
-  orig: 72, 24
-  offset: 0, 0
-  index: -1
-Spell Sprites/FrostBolt01
-  rotate: false
-  xy: 774, 752
-  size: 144, 48
-  orig: 144, 48
-  offset: 0, 0
-  index: -1
-Spell Sprites/FrostBolt02
-  rotate: false
-  xy: 388, 468
-  size: 72, 24
-  orig: 72, 24
-  offset: 0, 0
-  index: -1
-Spell Sprites/Frostball
-  rotate: false
-  xy: 534, 518
-  size: 72, 24
-  orig: 72, 24
-  offset: 0, 0
-  index: -1
-Spell Sprites/SpellBalls_01n
-  rotate: false
-  xy: 2, 544
-  size: 384, 256
-  orig: 384, 256
-  offset: 0, 0
-  index: -1
-Spell Sprites/SpellBalls_02n
-  rotate: false
-  xy: 2, 286
-  size: 384, 256
-  orig: 384, 256
-  offset: 0, 0
-  index: -1
-Spell Sprites/SpellBalls_03n
-  rotate: false
-  xy: 388, 544
-  size: 384, 256
-  orig: 384, 256
-  offset: 0, 0
-  index: -1
-Spell Sprites/SpellBalls_04n
-  rotate: false
-  xy: 2, 28
-  size: 384, 256
-  orig: 384, 256
   offset: 0, 0
   index: -1
 

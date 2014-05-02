@@ -1,8 +1,8 @@
 package View.Geo;// Created by Hanto on 16/04/2014.
 
 import Data.MiscData;
-import DTO.MapaDTO;
-import Model.Geo.Mapa;
+import Model.DTO.MapaDTO;
+import Model.Classes.Geo.Mapa;
 import View.Vista;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;

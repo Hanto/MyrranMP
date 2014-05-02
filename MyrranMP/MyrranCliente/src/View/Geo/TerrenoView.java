@@ -1,13 +1,14 @@
 package View.Geo;// Created by Hanto on 15/04/2014.
 
 import Data.MiscData;
-import DTO.TerrenoDTO;
-import DAO.RSC;
+import Model.DTO.TerrenoDTO;
+import Recursos.DAO.RSC;
+import Recursos.Classes.TerrenoRecursos;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class TerrenoView
 {   //Textura BASE:
-    private TextureRegion terreno;
+    private TerrenoRecursos terreno;
 
     public TextureRegion cuadranteNO;
     public TextureRegion cuadranteNE;
@@ -24,13 +25,13 @@ public class TerrenoView
 
     public void generarTextura()
     {
-        terreno = RSC.terrenoViewDAO.getTerrenoViewDAO().getTextura(ad.iDTerreno);
+        terreno = RSC.terrenoRecursosDAO.getTerrenoRecursosDAO().getTerrenoRSC(ad.iDTerreno);
         if (terreno != null)
         {
-            generarTexturaNO(terreno);
-            generarTexturaNE(terreno);
-            generarTexturaSO(terreno);
-            generarTexturaSE(terreno);
+            generarTexturaNO(terreno.getTextura());
+            generarTexturaNE(terreno.getTextura());
+            generarTexturaSO(terreno.getTextura());
+            generarTexturaSE(terreno.getTextura());
         }
     }
 

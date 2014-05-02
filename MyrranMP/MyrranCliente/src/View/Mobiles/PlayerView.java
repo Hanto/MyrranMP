@@ -1,10 +1,12 @@
 package View.Mobiles;// Created by Hanto on 10/04/2014.
 
 import Controller.Controlador;
-import DTO.NetDTO;
-import DTO.PlayerDTO;
-import Model.Mobiles.Mundo;
-import Model.Mobiles.Player;
+import Data.MiscData;
+import Model.Classes.Mobiles.Mundo;
+import Model.Classes.Mobiles.Player;
+import Model.DTO.NetDTO;
+import Model.DTO.PlayerDTO;
+import Recursos.DAO.RSC;
 import View.Graficos.PixiePC;
 import View.Graficos.Texto;
 import View.Vista;
@@ -62,7 +64,7 @@ public class PlayerView extends Group implements PropertyChangeListener
     public void setNombre (String nuevoNombre)
     {
         this.removeActor(nombre);
-        nombre = new Texto(nuevoNombre, MobilesRecursos.get().font14, Color.WHITE, Color.BLACK, actor.getWidth()/2, 0, Align.center, Align.bottom, 1);
+        nombre = new Texto(nuevoNombre, RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.WHITE, Color.BLACK, actor.getWidth()/2, 0, Align.center, Align.bottom, 1);
         nombre.setPosition(0, actor.getHeight()+12);
         this.addActor(nombre);
     }

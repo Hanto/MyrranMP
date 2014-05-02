@@ -1,9 +1,7 @@
 package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
-import Model.Mobiles.Mundo;
-import View.Graficos.Atlas;
-import View.Mobiles.MobilesRecursos;
+import Model.Classes.Mobiles.Mundo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import zMain.LoadGameData;
@@ -21,7 +19,6 @@ public class PantallaLibGDX implements Screen
     {
         this.myrranCliente = myrranCliente;
 
-        MobilesRecursos.get().setAtlas(Atlas.get().atlas);
         new LoadGameData().cargarTodo();
 
         controlador = new Controlador(new Mundo());

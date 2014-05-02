@@ -2,13 +2,13 @@ package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
-import DTO.MundoDTO;
-import Model.Geo.Mapa;
-import Model.Mobiles.Mundo;
-import Model.Mobiles.PC;
+import Model.Classes.Geo.Mapa;
+import Model.Classes.Mobiles.Mundo;
+import Model.Classes.Mobiles.PC;
+import Model.DTO.MundoDTO;
+import Recursos.DAO.RSC;
 import View.Geo.MapaView;
 import View.Graficos.Texto;
-import View.Mobiles.MobilesRecursos;
 import View.Mobiles.PCView;
 import View.Mobiles.PlayerView;
 import com.badlogic.gdx.Gdx;
@@ -66,7 +66,8 @@ public class Vista implements PropertyChangeListener
         stageMundo.getViewport().setCamera(camara);
         mundo.añadirObservador(this);
 
-        fps = new Texto("fps", MobilesRecursos.get().font14, Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
+        fps = new Texto("fps", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
+                        Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
         stageUI.addActor(fps);
     }
 
@@ -126,10 +127,7 @@ public class Vista implements PropertyChangeListener
                     MiscData.GDX_Window_Vertical_Resolution*MiscData.SERVIDOR_DistanciaVisionMobs);
 
         shape.setColor(Color.GRAY);
-        shape.rect( playerView.getCenterX()-MiscData.MAPA_Max_TilesX*MiscData.TILESIZE/2,
-                    playerView.getCenterY()-MiscData.MAPA_Max_TilesY*MiscData.TILESIZE/2,
-                    MiscData.MAPA_Max_TilesX*MiscData.TILESIZE,
-                    MiscData.MAPA_Max_TilesY*MiscData.TILESIZE);
+        shape.rect( 0, 0, MiscData.MAPA_Max_TilesX*MiscData.TILESIZE,MiscData.MAPA_Max_TilesY*MiscData.TILESIZE);
 
         shape.end();
     }

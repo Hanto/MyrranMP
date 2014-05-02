@@ -1,8 +1,8 @@
 package Controller;// Created by Hanto on 09/04/2014.
 
 import Data.MiscData;
-import Model.Mobiles.Mundo;
-import Model.Mobiles.PC;
+import Model.Classes.Mobiles.Mundo;
+import Model.Classes.Mobiles.PC;
 
 public class Updater implements Runnable
 {

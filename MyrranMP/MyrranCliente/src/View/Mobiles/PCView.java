@@ -1,10 +1,10 @@
 package View.Mobiles;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
-import DTO.PcDTO;
-import DTO.PlayerDTO;
-import Model.Mobiles.Mundo;
-import Model.Mobiles.PC;
+import Model.DTO.PcDTO;
+import Model.DTO.PlayerDTO;
+import Model.Classes.Mobiles.Mundo;
+import Model.Classes.Mobiles.PC;
 import View.Graficos.PixiePC;
 import View.Vista;
 import com.badlogic.gdx.math.Interpolation;

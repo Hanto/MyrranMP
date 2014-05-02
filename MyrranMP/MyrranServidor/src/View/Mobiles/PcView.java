@@ -3,11 +3,11 @@ package View.Mobiles;// Created by Hanto on 07/04/2014.
 import Controller.Controlador;
 import Data.MiscData;
 import Interfaces.MobPC;
-import DTO.MapaDTO;
-import DTO.NetDTO;
-import DTO.PcDTO;
-import Model.Mobiles.Mundo;
-import Model.Mobiles.PC;
+import Model.DTO.MapaDTO;
+import Model.DTO.NetDTO;
+import Model.DTO.PcDTO;
+import Model.Classes.Mobiles.Mundo;
+import Model.Classes.Mobiles.PC;
 import View.Vista;
 
 import java.beans.PropertyChangeEvent;

@@ -2,15 +2,15 @@ package zMain;// Created by Hanto on 11/04/2014.
 
 import Data.GameData;
 import Data.GameDataDTO;
-import DAO.DAO;
-import DAO.Spell.SpellDAO;
-import DAO.Terreno.TerrenoDAO;
-import DAO.TipoSpell.TipoSpellDAO;
-import Model.Geo.Terreno;
-import Model.Skill.SkillStat;
-import Model.Skill.Spell.Spell;
-import Model.Skill.Spell.TipoSpell;
-import Model.Skill.Spell.TipoSpellFactory;
+import Model.DAO.DAO;
+import Model.DAO.Spell.SpellDAO;
+import Model.DAO.Terreno.TerrenoDAO;
+import Model.DAO.TipoSpell.TipoSpellDAO;
+import Model.Classes.Geo.Terreno;
+import Model.Classes.Skill.SkillStat;
+import Model.Classes.Skill.Spell.Spell;
+import Model.Classes.Skill.Spell.TipoSpell;
+import Model.Classes.Skill.Spell.TipoSpellFactory;
 
 public class LoadGameData
 {
@@ -25,7 +25,7 @@ public class LoadGameData
     {
         TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
 
-        for (GameDataDTO.TerrenoDTO terrenoDTO : GameData.get().listaDeTerrenoDTO)
+        for (GameDataDTO.TerrenoDTO terrenoDTO : GameData.get().listaDeTerrenos)
         {   terrenoDAO.añadirTerreno(new Terreno(terrenoDTO.id, terrenoDTO.nombre, terrenoDTO.isSolido));}
     }
 
@@ -48,7 +48,7 @@ public class LoadGameData
         Spell spell;
         TipoSpell tipoSpell;
 
-        for (GameDataDTO.SpellDTO spellDTO : GameData.get().listaDeSpellsDTO)
+        for (GameDataDTO.SpellDTO spellDTO : GameData.get().listaDeSpells)
         {
             tipoSpell = DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(spellDTO.tipoSpell.name());
             spell = new Spell(tipoSpell);

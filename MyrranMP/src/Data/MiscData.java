@@ -27,6 +27,8 @@ public class MiscData
     public final static String ATLAS_Armaduras_LOC = "Armaduras/";
     public final static String ATLAS_Terrenos_LOC = "Terrenos/";
     public final static String ATLAS_Fuentes_LOC = "Fonts/";
+    public final static String ATLAS_Spell_Iconos_Loc = "Spell Icons/";
+    public final static String ATLAS_Spell_Animations_LOC = "Spell Animations/";
 
     //Pixie:
     public final static int PIXIE_Player_numFilas = 7;
@@ -39,4 +41,8 @@ public class MiscData
 
     public final static int MAPAVIEW_TamañoX = 3;//18;
     public final static int MAPAVIEW_TamañoY = 3;//20;
+
+    //Fuentes
+    public final static String FUENTE_Nombres = "14";
+
 }
