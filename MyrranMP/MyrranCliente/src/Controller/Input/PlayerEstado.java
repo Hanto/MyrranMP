@@ -4,10 +4,13 @@ package Controller.Input;
 public class PlayerEstado
 {
     protected Estado estado;                    //Estado actual, hace que mismos inputs produzcan diferentes resultados
-    protected PlayerIO playerI;          //Player al que hace referencia, para poder consultar sus datos facilmente
+    protected PlayerIO playerI;                 //Player al que hace referencia, para poder consultar sus datos facilmente
     protected PlayerIO playerO;
 
     protected int iDEstado=0;
+
+    public PlayerIO getPlayerI()                { return playerI; }
+    public PlayerIO getPlayerO()                { return playerO; }
 
 
     //Clase ESTADO: define cada uno de los estados en los que puede estar un player:

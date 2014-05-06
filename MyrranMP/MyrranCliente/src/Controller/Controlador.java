@@ -1,11 +1,13 @@
 package Controller;// Created by Hanto on 08/04/2014.
 
+import Controller.Input.Binds.Keybinds;
 import Controller.Input.PlayerEstado;
 import Controller.Input.PlayerGestures;
 import Controller.Input.PlayerIO;
-import Controller.Input.PlayerMouseKey;
-import Model.DTO.NetDTO;
+import Controller.Input.PlayerMouseKeyI;
 import Model.Classes.Mobiles.Mundo;
+import Model.Classes.UI.BarraAcciones;
+import Model.DTO.NetDTO;
 import View.Vista;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -20,6 +22,8 @@ public class Controlador
     protected Vista vista;
 
     //Input:
+    protected Keybinds keybinds;
+    protected BarraAcciones barraAcciones;
     protected PlayerIO playerInput = new PlayerIO();
     protected PlayerIO playerOutput = new PlayerIO();
     protected PlayerEstado playerEstado = new PlayerEstado(playerInput, playerOutput);
@@ -28,10 +32,15 @@ public class Controlador
     public Controlador (Mundo mundo)
     {
         this.mundo = mundo;
-        vista = new Vista(this, mundo);
+
+        keybinds = new Keybinds(playerEstado);
+        barraAcciones = new BarraAcciones(10, 2, keybinds);
+        barraAcciones.setAccion(0, keybinds.listaDeAcciones.get("Terraformar"));
+
+        vista = new Vista(this, mundo, barraAcciones);
 
         inputMultiplexer.addProcessor(new GestureDetector(new PlayerGestures()));
-        inputMultiplexer.addProcessor(new PlayerMouseKey(playerEstado, this));
+        inputMultiplexer.addProcessor(new PlayerMouseKeyI(playerEstado, this));
         Gdx.input.setInputProcessor(inputMultiplexer);
 
         cliente = new Cliente(this);

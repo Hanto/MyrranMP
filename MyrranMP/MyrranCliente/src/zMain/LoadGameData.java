@@ -53,6 +53,8 @@ public class LoadGameData
 
         cargarFuentes();
         cargarMiscRecursos();
+
+        cargarKeyBinds();
     }
 
     public void cargarRazasPC()
@@ -248,5 +250,12 @@ public class LoadGameData
     {
         MiscRecursosDAO miscRecursosDAO = RSC.miscRecusosDAO.getMiscRecursosDAO();
         miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_Textura_Casillero, "UI/Casillero", atlas);
+    }
+
+
+
+    public void cargarKeyBinds()
+    {
+
     }
 }

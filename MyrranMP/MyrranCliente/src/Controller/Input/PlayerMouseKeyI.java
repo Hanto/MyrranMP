@@ -4,14 +4,14 @@ package Controller.Input;
 import Controller.Controlador;
 import com.badlogic.gdx.InputProcessor;
 
-public class PlayerMouseKey implements InputProcessor
+public class PlayerMouseKeyI implements InputProcessor
 {
     private PlayerEstado playerE;
     private PlayerIO playerI;
     private Controlador controlador;
 
     //CONSTRUCTOR:
-    public PlayerMouseKey(PlayerEstado playerEstado, Controlador controlador)
+    public PlayerMouseKeyI(PlayerEstado playerEstado, Controlador controlador)
     {
         playerE = playerEstado;
         playerI = playerE.playerI;

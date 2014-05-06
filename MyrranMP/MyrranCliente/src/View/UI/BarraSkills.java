@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
 
-public class BarraSpells extends Group
+public class BarraSkills extends Group
 {
     private Table tablaSpells;
     private Casilla[] barraSpells;
@@ -31,7 +31,7 @@ public class BarraSpells extends Group
         public Group apariencia = new Group();
     }
 
-    public BarraSpells (int filas, int columnas)
+    public BarraSkills(int filas, int columnas)
     {
         tablaSpells = new Table().bottom().left();
         barraSpells = new Casilla[filas*columnas];

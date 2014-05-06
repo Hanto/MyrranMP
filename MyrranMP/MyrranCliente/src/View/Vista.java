@@ -1,19 +1,18 @@
 package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
+import Model.Classes.UI.BarraAcciones;
+import View.UI.BarraAccionesView;
 import Data.MiscData;
-import Data.Spell.SpellsData;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.Mundo;
 import Model.Classes.Mobiles.PC;
-import Model.DAO.DAO;
 import Model.DTO.MundoDTO;
 import Recursos.DAO.RSC;
 import View.Geo.MapaView;
 import View.Graficos.Texto;
 import View.Mobiles.PCView;
 import View.Mobiles.PlayerView;
-import View.UI.BarraSpells;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -38,7 +37,8 @@ public class Vista implements PropertyChangeListener
 
     public Array<PCView> listaPCViews = new Array<>();
     public MapaView mapaView;
-    public BarraSpells barraSpells;
+    //public BarraAcciones barraAcciones;
+    public BarraAccionesView barraAccionesView;
 
     public Stage stageMundo;
     public Stage stageUI;
@@ -50,7 +50,7 @@ public class Vista implements PropertyChangeListener
 
     private ShapeRenderer shape = new ShapeRenderer();
 
-    public Vista (Controlador controlador, Mundo mundo)
+    public Vista (Controlador controlador, Mundo mundo, BarraAcciones barraAcciones)
     {
         this.controlador = controlador;
         this.mundo = mundo;
@@ -63,11 +63,13 @@ public class Vista implements PropertyChangeListener
         playerView = new PlayerView(mundo.player, this, controlador);
 
         mapaView = new MapaView(mapa, playerView.getX(), playerView.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY, this);
-        barraSpells = new BarraSpells(2, 10);
-        stageUI.addActor(barraSpells);
-        barraSpells.setPosition(MiscData.GDX_Window_Horizontal_Resolution/2-barraSpells.getWidth()/2,5);
-        barraSpells.setSkill(3, DAO.spellDAOFactory.getSpellDAO().getSpell(SpellsData.TERRAFORMAR_ID));
-        barraSpells.setSkill(9, DAO.spellDAOFactory.getSpellDAO().getSpell(SpellsData.TERRAFORMAR_ID));
+        barraAccionesView = new BarraAccionesView(barraAcciones);
+        stageUI.addActor(barraAccionesView);
+        //barraAcciones = new BarraAcciones(2, 10);
+        //stageUI.addActor(barraAcciones);
+        //barraAcciones.setPosition(MiscData.GDX_Window_Horizontal_Resolution/2-barraAcciones.getWidth()/2,5);
+        //barraAcciones.setSkill(3, DAO.spellDAOFactory.getSpellDAO().getSpell(SpellsData.TERRAFORMAR_ID));
+        //barraAcciones.setSkill(9, DAO.spellDAOFactory.getSpellDAO().getSpell(SpellsData.TERRAFORMAR_ID));
 
         controlador.addInputProcessor(stageUI);
         controlador.addInputProcessor(stageMundo);
