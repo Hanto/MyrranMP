@@ -1,6 +1,6 @@
 package Model.Classes.Mobiles;// Created by Hanto on 10/04/2014.
 
-import Controller.Input.PlayerIO;
+import Model.Classes.UIO.PlayerIO;
 import Interfaces.Caster;
 import Interfaces.MapaI;
 import Model.Classes.AbstractModel;

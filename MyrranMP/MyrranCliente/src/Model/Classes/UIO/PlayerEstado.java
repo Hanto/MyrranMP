@@ -1,4 +1,4 @@
-package Controller.Input;
+package Model.Classes.UIO;
 // @author Ivan Delgado Huertaimp
 
 public class PlayerEstado

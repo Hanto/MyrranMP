@@ -2,7 +2,7 @@ package View.Mobiles;// Created by Hanto on 10/04/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
-import Model.Classes.Mobiles.Mundo;
+import Model.Classes.GameState.Mundo;
 import Model.Classes.Mobiles.Player;
 import Model.DTO.NetDTO;
 import Model.DTO.PlayerDTO;

@@ -1,7 +1,8 @@
 package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
-import Model.Classes.Mobiles.Mundo;
+import Model.Classes.GameState.Mundo;
+import Model.Classes.Mobiles.Player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import zMain.LoadGameData;
@@ -21,7 +22,9 @@ public class PantallaLibGDX implements Screen
 
         new LoadGameData().cargarTodo();
 
-        controlador = new Controlador(new Mundo());
+
+        Mundo mundo = new Mundo();
+        controlador = new Controlador(new Player(), mundo);
     }
 
     @Override public void show()

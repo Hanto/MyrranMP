@@ -1,18 +1,19 @@
 package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
-import Model.Classes.UI.BarraAcciones;
-import View.UI.BarraAccionesView;
 import Data.MiscData;
 import Model.Classes.Geo.Mapa;
-import Model.Classes.Mobiles.Mundo;
+import Model.Classes.GameState.Mundo;
 import Model.Classes.Mobiles.PC;
+import Model.Classes.Mobiles.Player;
+import Model.Classes.GameState.UI;
 import Model.DTO.MundoDTO;
 import Recursos.DAO.RSC;
 import View.Geo.MapaView;
 import View.Graficos.Texto;
 import View.Mobiles.PCView;
 import View.Mobiles.PlayerView;
+import View.UI.BarraAccionesView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -31,13 +32,16 @@ import java.beans.PropertyChangeListener;
 public class Vista implements PropertyChangeListener
 {
     public Controlador controlador;
+    public Player player;
+    public UI ui;
     public Mundo mundo;
-    public PlayerView playerView;
+
     public Mapa mapa;
 
+
+    public PlayerView playerView;
     public Array<PCView> listaPCViews = new Array<>();
     public MapaView mapaView;
-    //public BarraAcciones barraAcciones;
     public BarraAccionesView barraAccionesView;
 
     public Stage stageMundo;
@@ -50,9 +54,11 @@ public class Vista implements PropertyChangeListener
 
     private ShapeRenderer shape = new ShapeRenderer();
 
-    public Vista (Controlador controlador, Mundo mundo, BarraAcciones barraAcciones)
+    public Vista (Controlador controlador, Player player, UI ui, Mundo mundo)
     {
         this.controlador = controlador;
+        this.player = player;
+        this.ui = ui;
         this.mundo = mundo;
         this.mapa = mundo.mapa;
 
@@ -60,16 +66,13 @@ public class Vista implements PropertyChangeListener
         batch = new SpriteBatch();
         stageMundo = new Stage();
         stageUI = new Stage();
-        playerView = new PlayerView(mundo.player, this, controlador);
+        playerView = new PlayerView(this.player, this, controlador);
 
         mapaView = new MapaView(mapa, playerView.getX(), playerView.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY, this);
-        barraAccionesView = new BarraAccionesView(barraAcciones);
+
+        barraAccionesView = new BarraAccionesView(ui.listaDeBarraAcciones.first());
+        barraAccionesView.setPosition(MiscData.GDX_Window_Horizontal_Resolution/2-barraAccionesView.getWidth()/2,0);
         stageUI.addActor(barraAccionesView);
-        //barraAcciones = new BarraAcciones(2, 10);
-        //stageUI.addActor(barraAcciones);
-        //barraAcciones.setPosition(MiscData.GDX_Window_Horizontal_Resolution/2-barraAcciones.getWidth()/2,5);
-        //barraAcciones.setSkill(3, DAO.spellDAOFactory.getSpellDAO().getSpell(SpellsData.TERRAFORMAR_ID));
-        //barraAcciones.setSkill(9, DAO.spellDAOFactory.getSpellDAO().getSpell(SpellsData.TERRAFORMAR_ID));
 
         controlador.addInputProcessor(stageUI);
         controlador.addInputProcessor(stageMundo);
@@ -87,7 +90,7 @@ public class Vista implements PropertyChangeListener
         Gdx.gl.glClearColor(0/2.55f, 0/2.55f, 0/2.55f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        mundo.getPlayer().actualizar(delta);
+        player.actualizar(delta);
 
         camara.position.x = playerView.getCenterX();
         camara.position.y = playerView.getCenterY();
@@ -104,13 +107,15 @@ public class Vista implements PropertyChangeListener
 
         stageMundo.act(delta);
         stageMundo.draw();
+
+        dibujarVision();
         //rayHandler.updateAndRender();
         stageUI.act(delta);
         stageUI.draw();
 
         fps.setTexto(Integer.toString(Gdx.graphics.getFramesPerSecond())+"fps");
 
-        dibujarVision();
+
     }
 
     public void resize (int anchura, int altura)

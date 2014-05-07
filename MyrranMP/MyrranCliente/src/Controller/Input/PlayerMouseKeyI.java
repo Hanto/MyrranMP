@@ -6,68 +6,73 @@ import com.badlogic.gdx.InputProcessor;
 
 public class PlayerMouseKeyI implements InputProcessor
 {
-    private PlayerEstado playerE;
-    private PlayerIO playerI;
+    //private PlayerEstado playerE;
+    //private PlayerIO playerI;
     private Controlador controlador;
 
     //CONSTRUCTOR:
-    public PlayerMouseKeyI(PlayerEstado playerEstado, Controlador controlador)
+    public PlayerMouseKeyI(Controlador controlador)
     {
-        playerE = playerEstado;
-        playerI = playerE.playerI;
+        //playerE = playerEstado;
+        //playerI = playerE.getPlayerI();
         this.controlador = controlador;
     }
 
     @Override public boolean keyDown(int keycode)
     {
-        if (keycode == playerI.teclaArriba)     playerI.irArriba = true;
-        if (keycode == playerI.teclaAbajo)      playerI.irAbajo = true;
-        if (keycode == playerI.teclaIzquierda)  playerI.irIzquierda = true;
-        if (keycode == playerI.teclaDerecha)    playerI.irDerecha = true;
-        playerE.procesarInput();
-        controlador.aplicarInputAPlayer();
+        controlador.procesarKeyDown(keycode);
+        //if (keycode == playerI.teclaArriba)     playerI.irArriba = true;
+        //if (keycode == playerI.teclaAbajo)      playerI.irAbajo = true;
+        //if (keycode == playerI.teclaIzquierda)  playerI.irIzquierda = true;
+        //if (keycode == playerI.teclaDerecha)    playerI.irDerecha = true;
+        //playerE.procesarInput();
+        //controlador.aplicarInputAPlayer();
         return false;
     }
     
     @Override public boolean keyUp(int keycode)                                             
     {
-        if (keycode == playerI.teclaArriba)     playerI.irArriba = false;
-        if (keycode == playerI.teclaAbajo)      playerI.irAbajo = false;
-        if (keycode == playerI.teclaIzquierda)  playerI.irIzquierda = false;
-        if (keycode == playerI.teclaDerecha)    playerI.irDerecha = false;
-        playerE.procesarInput();
-        controlador.aplicarInputAPlayer();
+        controlador.procesarKeyUp(keycode);
+        //if (keycode == playerI.teclaArriba)     playerI.irArriba = false;
+        //if (keycode == playerI.teclaAbajo)      playerI.irAbajo = false;
+        //if (keycode == playerI.teclaIzquierda)  playerI.irIzquierda = false;
+        //if (keycode == playerI.teclaDerecha)    playerI.irDerecha = false;
+        //playerE.procesarInput();
+        //controlador.aplicarInputAPlayer();
         return false;
     }
     
     @Override public boolean keyTyped(char character)                                       { return false; }
     @Override public boolean touchDown(int screenX, int screenY, int pointer, int button)
     {
-        playerI.screenX = screenX;
+        controlador.procesarTouchDown(screenX, screenY, pointer, button);
+        /*playerI.screenX = screenX;
         playerI.screenY = screenY;
         playerI.startCastear = true;
         playerE.procesarInput();
-        controlador.aplicarInputAPlayer();
+        controlador.aplicarInputAPlayer();*/
         return true;
     }
 
     @Override public boolean touchUp(int screenX, int screenY, int pointer, int button)
     {
-        playerI.screenX = screenX;
+        controlador.procesarTouchUp(screenX, screenY, pointer, button);
+        /*playerI.screenX = screenX;
         playerI.screenY = screenY;
         playerI.stopCastear = true;
         playerE.procesarInput();
-        controlador.aplicarInputAPlayer();
+        controlador.aplicarInputAPlayer();*/
         return true;
     }
 
     @Override public boolean touchDragged(int screenX, int screenY, int pointer)
     {
-        playerI.screenX = screenX;
+        controlador.procesarTouchDragged(screenX, screenY, pointer);
+        /*playerI.screenX = screenX;
         playerI.screenY = screenY;
         playerI.startCastear = true;
         playerE.procesarInput();
-        controlador.aplicarInputAPlayer();
+        controlador.aplicarInputAPlayer();*/
         return false;
     }
 

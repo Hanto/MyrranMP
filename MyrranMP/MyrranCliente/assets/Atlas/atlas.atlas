@@ -3,6 +3,39 @@ atlas.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+Acciones/IrEste
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Acciones/IrNorte
+  rotate: false
+  xy: 36, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Acciones/IrOeste
+  rotate: false
+  xy: 70, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Acciones/IrSur
+  rotate: false
+  xy: 104, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+
+atlas2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
 Arboles/BolaGrande2
   rotate: false
   xy: 2, 85
@@ -53,7 +86,7 @@ Arboles/Tronco2
   offset: 0, 0
   index: -1
 
-atlas2.png
+atlas3.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -100,7 +133,7 @@ Armaduras/PetoGolem01
   offset: 0, 0
   index: -1
 
-atlas3.png
+atlas4.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -126,7 +159,7 @@ Aura Icons/Snare
   offset: 0, 0
   index: -1
 
-atlas4.png
+atlas5.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -173,7 +206,7 @@ BAK/Armaduras/Peto1
   offset: 0, 0
   index: -1
 
-atlas5.png
+atlas6.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -185,7 +218,7 @@ BAK/Armaduras/CapaFrontal1
   offset: 0, 0
   index: -1
 
-atlas6.png
+atlas7.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -197,7 +230,7 @@ BAK/Armaduras/CapaTrasera1
   offset: 0, 0
   index: -1
 
-atlas7.png
+atlas8.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -209,7 +242,7 @@ BAK/Armaduras/Casco1
   offset: 0, 0
   index: -1
 
-atlas8.png
+atlas9.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -291,7 +324,7 @@ BAK/Player Sprites/Sombra
   offset: 0, 0
   index: -1
 
-atlas9.png
+atlas10.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -317,7 +350,7 @@ Muros/MuroTecho
   offset: 0, 0
   index: -1
 
-atlas10.png
+atlas11.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -343,7 +376,7 @@ NPC Sprites/Momia
   offset: 0, 0
   index: -1
 
-atlas11.png
+atlas12.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -418,7 +451,7 @@ Player Sprites/Sombra
   offset: 0, 0
   index: -1
 
-atlas12.png
+atlas13.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -486,7 +519,7 @@ Spell Animations/SpellBalls_04n
   offset: 0, 0
   index: -1
 
-atlas13.png
+atlas14.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -561,7 +594,7 @@ Spell Icons/PoisonBolt
   offset: 0, 0
   index: -1
 
-atlas14.png
+atlas15.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -692,7 +725,7 @@ Terrenos/grid
   offset: 0, 0
   index: -1
 
-atlas15.png
+atlas16.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none

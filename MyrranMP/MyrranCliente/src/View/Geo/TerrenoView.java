@@ -25,7 +25,7 @@ public class TerrenoView
 
     public void generarTextura()
     {
-        terreno = RSC.terrenoRecursosDAO.getTerrenoRecursosDAO().getTerrenoRSC(ad.iDTerreno);
+        terreno = RSC.terrenoRecursosDAO.getTerrenoRecursosDAO().getTerrenoRecurso(ad.iDTerreno);
         if (terreno != null)
         {
             generarTexturaNO(terreno.getTextura());

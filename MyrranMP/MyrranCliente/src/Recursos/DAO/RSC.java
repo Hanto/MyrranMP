@@ -1,5 +1,6 @@
 package Recursos.DAO;// Created by Ladrim on 24/04/2014.
 
+import Recursos.DAO.AccionRecursos.AccionRecursosDAOFactory;
 import Recursos.DAO.FuentesRecursos.FuentesRecursosDAOFactory;
 import Recursos.DAO.MiscRecursos.MiscRecursosDAOFactory;
 import Recursos.DAO.PixiePCRecursos.PixiePCRecursosDAOFactory;
@@ -13,4 +14,5 @@ public class RSC
     public static final PixiePCRecursosDAOFactory pixiePCRecursosDAO = PixiePCRecursosDAOFactory.LOCAL;
     public static final FuentesRecursosDAOFactory fuenteRecursosDAO = FuentesRecursosDAOFactory.LOCAL;
     public static final MiscRecursosDAOFactory miscRecusosDAO = MiscRecursosDAOFactory.LOCAL;
+    public static final AccionRecursosDAOFactory AccionRecursosDAO = AccionRecursosDAOFactory.LOCAL;
 }

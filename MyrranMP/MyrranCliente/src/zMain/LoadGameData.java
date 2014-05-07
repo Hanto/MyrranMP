@@ -3,18 +3,23 @@ package zMain;// Created by Hanto on 11/04/2014.
 import Data.GameData;
 import Data.GameDataDTO;
 import Data.MiscData;
+import Model.Classes.Acciones.Accion;
+import Model.Classes.Acciones.TiposAccion.*;
 import Model.Classes.Geo.Terreno;
 import Model.Classes.Skill.SkillStat;
 import Model.Classes.Skill.Spell.Spell;
 import Model.Classes.Skill.Spell.TipoSpell;
 import Model.Classes.Skill.Spell.TipoSpellFactory;
+import Model.DAO.Accion.AccionDAO;
 import Model.DAO.DAO;
 import Model.DAO.Spell.SpellDAO;
 import Model.DAO.Terreno.TerrenoDAO;
 import Model.DAO.TipoSpell.TipoSpellDAO;
+import Recursos.Classes.AccionRecursos;
 import Recursos.Classes.AtlasRecursos;
 import Recursos.Classes.SpellRecursos;
 import Recursos.Classes.TerrenoRecursos;
+import Recursos.DAO.AccionRecursos.AccionRecursosDAO;
 import Recursos.DAO.FuentesRecursos.FuentesRecursosDAO;
 import Recursos.DAO.MiscRecursos.MiscRecursosDAO;
 import Recursos.DAO.PixiePCRecursos.PixiePCRecursosDAO;
@@ -54,7 +59,8 @@ public class LoadGameData
         cargarFuentes();
         cargarMiscRecursos();
 
-        cargarKeyBinds();
+        cargarTexturasAcciones();
+        cargarAcciones();
     }
 
     public void cargarRazasPC()
@@ -152,7 +158,7 @@ public class LoadGameData
         for (GameDataDTO.TerrenoDTO terrenoDTO : GameData.get().listaDeTerrenos)
         {
             terrenoDAO.añadirTerreno(new Terreno(terrenoDTO.id, terrenoDTO.nombre, terrenoDTO.isSolido));
-            terrenoRecursosDAO.salvarTerrenoRSC(new TerrenoRecursos(terrenoDTO.id, terrenoRecursosDAO.getTextura(terrenoDTO.nombreTextura)));
+            terrenoRecursosDAO.salvarTerrenoRecurso(new TerrenoRecursos(terrenoDTO.id, terrenoRecursosDAO.getTextura(terrenoDTO.nombreTextura)));
         }
     }
 
@@ -240,6 +246,9 @@ public class LoadGameData
         }
     }
 
+
+
+
     public void cargarFuentes()
     {
         FuentesRecursosDAO fuentesDAO = RSC.fuenteRecursosDAO.getFuentesRecursosDAO();
@@ -254,8 +263,46 @@ public class LoadGameData
 
 
 
-    public void cargarKeyBinds()
-    {
 
+    public void cargarTexturasAcciones()
+    {
+        AccionRecursosDAO accionRecursosDAO = RSC.AccionRecursosDAO.getAccionRecursosDAO();
+        accionRecursosDAO.salvarTextura("IrNorte",  "IrNorte",  atlas);
+        accionRecursosDAO.salvarTextura("IrSur",    "IrSur",    atlas);
+        accionRecursosDAO.salvarTextura("IrEste",   "IrEste",   atlas);
+        accionRecursosDAO.salvarTextura("IrOeste",  "IrOeste",  atlas);
+    }
+
+
+    public void cargarAcciones()
+    {
+        cargarAccion(new IrNorte());
+        cargarAccion(new IrSur());
+        cargarAccion(new IrOeste());
+        cargarAccion(new IrEste());
+
+        AccionDAO accionDAO = DAO.accionDAOFactory.getAccionDAO();
+        AccionRecursosDAO accionRecursosDAO = RSC.AccionRecursosDAO.getAccionRecursosDAO();
+
+        AccionRecursos accionRecurso;
+        Accion accion;
+
+        for (GameDataDTO.SpellDTO spellDTO : GameData.get().listaDeSpells)
+        {
+            accion = new SeleccionarSpell(DAO.spellDAOFactory.getSpellDAO().getSpell(spellDTO.id));
+            accionDAO.salvarAccion(accion);
+
+            accionRecurso = new AccionRecursos(accion.getID(), RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRecursos(spellDTO.id).getIcono());
+            accionRecursosDAO.salvarAccionRecurso(accionRecurso);
+        }
+    }
+
+    public void cargarAccion(Accion accion)
+    {
+        AccionDAO accionDAO = DAO.accionDAOFactory.getAccionDAO();
+        AccionRecursosDAO accionRecursosDAO = RSC.AccionRecursosDAO.getAccionRecursosDAO();
+
+        accionDAO.salvarAccion(accion);
+        accionRecursosDAO.salvarAccionRecurso(new AccionRecursos(accion.getID(), accionRecursosDAO.getTextura(accion.getID())));
     }
 }

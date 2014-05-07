@@ -1,12 +1,10 @@
 package Controller;// Created by Hanto on 08/04/2014.
 
-import Controller.Input.Binds.Keybinds;
-import Controller.Input.PlayerEstado;
 import Controller.Input.PlayerGestures;
-import Controller.Input.PlayerIO;
 import Controller.Input.PlayerMouseKeyI;
-import Model.Classes.Mobiles.Mundo;
-import Model.Classes.UI.BarraAcciones;
+import Model.Classes.GameState.Mundo;
+import Model.Classes.GameState.UI;
+import Model.Classes.Mobiles.Player;
 import Model.DTO.NetDTO;
 import View.Vista;
 import com.badlogic.gdx.Gdx;
@@ -18,29 +16,30 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class Controlador
 {
     protected Cliente cliente;
+    protected Player player;
+    protected UI ui;
     protected Mundo mundo;
     protected Vista vista;
 
     //Input:
-    protected Keybinds keybinds;
-    protected BarraAcciones barraAcciones;
-    protected PlayerIO playerInput = new PlayerIO();
-    protected PlayerIO playerOutput = new PlayerIO();
-    protected PlayerEstado playerEstado = new PlayerEstado(playerInput, playerOutput);
     protected InputMultiplexer inputMultiplexer = new InputMultiplexer();
 
-    public Controlador (Mundo mundo)
+    /*protected PlayerIO playerInput = new PlayerIO();
+    protected PlayerIO playerOutput = new PlayerIO();
+    protected PlayerEstado playerEstado = new PlayerEstado(playerInput, playerOutput);*/
+
+
+    public Controlador (Player player, Mundo mundo)
     {
+        this.player = player;
         this.mundo = mundo;
 
-        keybinds = new Keybinds(playerEstado);
-        barraAcciones = new BarraAcciones(10, 2, keybinds);
-        barraAcciones.setAccion(0, keybinds.listaDeAcciones.get("Terraformar"));
+        ui = new UI(player);
 
-        vista = new Vista(this, mundo, barraAcciones);
+        vista = new Vista(this, player, ui, mundo);
 
         inputMultiplexer.addProcessor(new GestureDetector(new PlayerGestures()));
-        inputMultiplexer.addProcessor(new PlayerMouseKeyI(playerEstado, this));
+        inputMultiplexer.addProcessor(new PlayerMouseKeyI(this));
         Gdx.input.setInputProcessor(inputMultiplexer);
 
         cliente = new Cliente(this);
@@ -55,14 +54,23 @@ public class Controlador
     public void enviarAServidor(Object o)                               { cliente.enviarAServidor(o); }
     public int  getConnID()                                             { return cliente.getID(); }
 
-    public void añadirPlayer(int connectionID)                          { mundo.añadirPlayer(connectionID);}
-    public void actualizarPlayer(NetDTO.ActualizarPlayer updatePlayer)  { mundo.actualizarPlayer (updatePlayer); }
-    public void eliminarPlayer()                                        { mundo.eliminarPlayer();}
-    public void aplicarInputAPlayer()
-    {   mundo.getPlayer().setInput(playerOutput); }
+    public void añadirPlayer(int connectionID)
+    {   player.setConnectionID(connectionID);}
+
+    public void actualizarPlayer(NetDTO.ActualizarPlayer updatePlayer)
+    {
+        player.setNombre(updatePlayer.nombre);
+        player.setNivel(updatePlayer.nivel);
+        player.setActualHPs(updatePlayer.actualHPs);
+        player.setMaxHPs(updatePlayer.maxHPs);
+        player.setPosition(updatePlayer.x, updatePlayer.y);
+    }
+
+    /*public void aplicarInputAPlayer()
+    {   player.setInput(playerOutput); }*/
 
     public void moverPlayer(float x, float y)
-    {   mundo.getPlayer().setPosition(x, y); }
+    {   player.setPosition(x, y); }
 
     public void añadirPC(int connectionID, float x, float y, int numAnimacion)
     {   mundo.añadirPC(connectionID, x, y);
@@ -82,4 +90,14 @@ public class Controlador
 
     public void aplicarZoom(int incrementoZoom)                         { vista.aplicarZoom(incrementoZoom); }
     public void addInputProcessor(Stage stage)                          { inputMultiplexer.addProcessor(stage); }
+
+    public void procesarKeyDown(int keycode)                            { ui.keybinds.keyDown(keycode); }
+    public void procesarKeyUp(int keycode)                              { ui.keybinds.keyUp(keycode); }
+    public void procesarTouchDown(int screenX, int screenY, int pointer, int button)
+    {   ui.keybinds.touchDown(screenX, screenY, pointer, button); }
+    public void procesarTouchUp(int screenX, int screenY, int pointer, int button)
+    {   ui.keybinds.touchUp(screenX, screenY, pointer, button); }
+    public void procesarTouchDragged(int screenX, int screenY, int pointer)
+    {   ui.keybinds.touchDragged(screenX, screenY, pointer); }
+
 }

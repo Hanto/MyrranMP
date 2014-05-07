@@ -3,7 +3,7 @@ package View.Mobiles;// Created by Hanto on 08/04/2014.
 import Controller.Controlador;
 import Model.DTO.PcDTO;
 import Model.DTO.PlayerDTO;
-import Model.Classes.Mobiles.Mundo;
+import Model.Classes.GameState.Mundo;
 import Model.Classes.Mobiles.PC;
 import View.Graficos.PixiePC;
 import View.Vista;

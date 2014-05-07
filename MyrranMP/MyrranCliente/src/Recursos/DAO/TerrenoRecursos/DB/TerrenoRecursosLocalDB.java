@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class TerrenoRecursosLocalDB
 {
-    private static class Singleton      { private static final TerrenoRecursosLocalDB get = new TerrenoRecursosLocalDB(); }
-    public static TerrenoRecursosLocalDB get()     { return Singleton.get; }
+    private static class Singleton              { private static final TerrenoRecursosLocalDB get = new TerrenoRecursosLocalDB(); }
+    public static TerrenoRecursosLocalDB get()  { return Singleton.get; }
 
     public Map<String, TextureRegion> listaDeTexturasTerreno = new HashMap<>();
     public Map<Integer, TerrenoRecursos> listaDeTerrenos = new HashMap<>();

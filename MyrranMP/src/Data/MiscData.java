@@ -29,6 +29,7 @@ public class MiscData
     public final static String ATLAS_Fuentes_LOC = "Fonts/";
     public final static String ATLAS_Spell_Iconos_Loc = "Spell Icons/";
     public final static String ATLAS_Spell_Animations_LOC = "Spell Animations/";
+    public final static String ATLAS_Acciones_LOC = "Acciones/";
 
     //Pixie:
     public final static int PIXIE_Player_numFilas = 7;

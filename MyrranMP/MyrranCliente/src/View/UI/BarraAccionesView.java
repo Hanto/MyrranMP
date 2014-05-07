@@ -1,8 +1,7 @@
 package View.UI;// Created by Hanto on 06/05/2014.
 
-import Model.Classes.Acciones.IconoInterface;
 import Data.MiscData;
-import Model.Classes.UI.BarraAcciones;
+import Model.Classes.UIO.BarraAcciones;
 import Recursos.DAO.RSC;
 import View.Graficos.Texto;
 import com.badlogic.gdx.graphics.Color;
@@ -13,10 +12,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
-public class BarraAccionesView extends Table
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class BarraAccionesView extends Table implements PropertyChangeListener
 {
     private BarraAcciones barraModel;  //MODEL
-
     private DragAndDrop dad;
 
     public static class Icono
@@ -36,7 +37,7 @@ public class BarraAccionesView extends Table
 
         dad.setDragTime(0);
 
-        for (int i=0 ; i< barraModel.barraSpells.length; i++)
+        for (int i=0 ; i< barraModel.getTamaño(); i++)
         {
             final Icono icono = new Icono(i, getApariencia(i));
 
@@ -73,6 +74,7 @@ public class BarraAccionesView extends Table
                 }
             });
         }
+        this.setWidth(10*(MiscData.BARRASPELLS_Ancho_Casilla+2));
     }
 
 
@@ -80,7 +82,7 @@ public class BarraAccionesView extends Table
     {
         group.clearChildren();
 
-        if (barraModel.barraSpells[i].accion == null)
+        if (barraModel.getAccion(i) == null)
         {
             Image casillaVacia = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_Textura_Casillero));
             casillaVacia.setColor(0, 0, 0, 0.1f);
@@ -89,13 +91,13 @@ public class BarraAccionesView extends Table
         }
         else
         {
-            Image casillaIcono = new Image (((IconoInterface) barraModel.barraSpells[i].accion).getImagen());
+            Image casillaIcono = new Image (RSC.AccionRecursosDAO.getAccionRecursosDAO().getAccionRecurso(barraModel.getAccion(i).getID()).getTextura());
             casillaIcono.setBounds(0,0,MiscData.BARRASPELLS_Ancho_Casilla, MiscData.BARRASPELLS_Alto_Casilla);
             group.addActor(casillaIcono);
         }
-        if (barraModel.barraSpells[i].keybind != null)
+        if (barraModel.getKeybind(i) != null)
         {
-            Texto.printTexto(String.valueOf(barraModel.barraSpells[i].keybind), RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
+            Texto.printTexto(String.valueOf(barraModel.getKeybind(i)), RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
                     Color.ORANGE, Color.BLACK, 0, 20, Align.left, Align.bottom, 2, group);
         }
     }
@@ -108,5 +110,12 @@ public class BarraAccionesView extends Table
         Group group = new Group();
         setApariencia(i, group);
         return group;
+    }
+
+    //TODO falta esto:
+    @Override public void propertyChange(PropertyChangeEvent evt)
+    {
+
+
     }
 }

@@ -1,10 +1,10 @@
-package Model.Classes.Mobiles;// Created by Hanto on 08/04/2014.
+package Model.Classes.GameState;// Created by Hanto on 08/04/2014.
 
-import Model.Classes.AbstractModel;
-import Model.DTO.MundoDTO;
-import Model.DTO.NetDTO;
-import Model.Classes.Geo.Mapa;
 import Data.MiscData;
+import Model.Classes.AbstractModel;
+import Model.Classes.Geo.Mapa;
+import Model.Classes.Mobiles.PC;
+import Model.DTO.MundoDTO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,8 +13,6 @@ import java.util.Map;
 
 public class Mundo extends AbstractModel
 {
-    public Player player = new Player();
-
     public List<PC> listaPlayers = new ArrayList<>();
     public Map<Integer,PC> mapaPlayers = new HashMap<>();
 
@@ -22,7 +20,6 @@ public class Mundo extends AbstractModel
 
     //Get:
     public List<? extends PC> listaPlayers()       { return listaPlayers; }
-    public Player getPlayer()                      { return player; }
     public PC getPC (int connectionID)             { return mapaPlayers.get(connectionID); }
 
     public Mundo()
@@ -47,22 +44,11 @@ public class Mundo extends AbstractModel
         notificarActualizacion("añadirPC", null, añadirPC);
     }
 
-    public void añadirPlayer (int connectionID)         { player.setConnectionID(connectionID); }
-    public void eliminarPlayer()                        { }
     public void eliminarPC (int connectionID)
     {
         PC pc = mapaPlayers.get(connectionID);
         listaPlayers.remove(pc);
         mapaPlayers.remove(connectionID);
         pc.eliminar();
-    }
-
-    public void actualizarPlayer (NetDTO.ActualizarPlayer updatePlayer)
-    {
-        player.setNombre(updatePlayer.nombre);
-        player.setNivel(updatePlayer.nivel);
-        player.setActualHPs(updatePlayer.actualHPs);
-        player.setMaxHPs(updatePlayer.maxHPs);
-        player.setPosition(updatePlayer.x, updatePlayer.y);
     }
 }

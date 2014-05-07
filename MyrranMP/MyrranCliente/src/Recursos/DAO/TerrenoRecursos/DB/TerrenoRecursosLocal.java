@@ -28,10 +28,10 @@ public class TerrenoRecursosLocal implements TerrenoRecursosDAO
 
 
 
-    @Override public void salvarTerrenoRSC (TerrenoRecursos terreno)
+    @Override public void salvarTerrenoRecurso(TerrenoRecursos terreno)
     {   listaDeTerrenos.put(terreno.getID(), terreno); }
 
-    @Override public TerrenoRecursos getTerrenoRSC (int iDTerreno)
+    @Override public TerrenoRecursos getTerrenoRecurso(int iDTerreno)
     {   return listaDeTerrenos.get(iDTerreno); }
 
 }

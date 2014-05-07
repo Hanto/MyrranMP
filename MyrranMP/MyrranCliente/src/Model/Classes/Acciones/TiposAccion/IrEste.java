@@ -1,22 +1,22 @@
-package Model.Classes.Acciones.TiposAccion;// Created by Hanto on 05/05/2014.
+package Model.Classes.Acciones.TiposAccion;// Created by Hanto on 07/05/2014.
 
 import Model.Classes.Acciones.Accion;
 import Model.Classes.Mobiles.Player;
 import Model.Classes.UIO.PlayerEstado;
 
-public class IrNorte extends Accion
+public class IrEste extends Accion
 {
-    public IrNorte()
+    public IrEste()
     {   iD = getClass().getSimpleName(); }
 
     @Override public void accionKeyDown(Player player, PlayerEstado playerE)
-    {   playerE.getPlayerI().irArriba = true;
+    {   playerE.getPlayerI().irDerecha = true;
         playerE.procesarInput();
         player.setInput(playerE.getPlayerO());
     }
 
     @Override public void accionKeyUp(Player player, PlayerEstado playerE)
-    {   playerE.getPlayerI().irArriba = false;
+    {   playerE.getPlayerI().irDerecha = false;
         playerE.procesarInput();
         player.setInput(playerE.getPlayerO());
 
