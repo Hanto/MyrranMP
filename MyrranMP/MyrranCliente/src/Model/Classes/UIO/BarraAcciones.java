@@ -1,7 +1,9 @@
 package Model.Classes.UIO;// Created by Hanto on 06/05/2014.
 
+import Data.MiscData;
 import Model.Classes.AbstractModel;
 import Model.Classes.Acciones.Accion;
+import Model.DTO.BarraAccionesDTO;
 import com.badlogic.gdx.utils.Array;
 
 public class BarraAcciones extends AbstractModel
@@ -43,22 +45,46 @@ public class BarraAcciones extends AbstractModel
     public String getKeybind (int posicion)
     {   return barraSpells.get(posicion).keybind; }
 
-    public void setKeybind (int posicion, String keybind)
-    {   barraSpells.get(posicion).keybind = keybind; }
-
     public void setKeycode (int posicion, int keycode)
-    {   barraSpells.get(posicion).keycode = keycode; }
+    {
+        for (int i=0; i<barraSpells.size; i++)
+        {
+            if (barraSpells.get(i).keycode == keycode)
+            {
+                barraSpells.get(i).keycode = 0;
+                barraSpells.get(i).keybind = "";
+                Object setKeycode = new BarraAccionesDTO.SetAccionDTO(i);
+                notificarActualizacion("setKeycode", null, setKeycode);
+            }
+        }
+
+        keybinds.listaDeBinds.remove(barraSpells.get(posicion).keycode);
+        barraSpells.get(posicion).keycode = keycode;
+        barraSpells.get(posicion).keybind = MiscData.keycodeNames.get(keycode);
+        if (barraSpells.get(posicion).accion != null) keybinds.listaDeBinds.put(keycode, barraSpells.get(posicion).accion.getID());
+
+        Object setKeycode = new BarraAccionesDTO.SetAccionDTO(posicion);
+        notificarActualizacion("setKeycode", null, setKeycode);
+    }
+
+
 
     public void setAccion(int posicion, Accion accion)
     {
         barraSpells.get(posicion).accion = accion;
         keybinds.listaDeBinds.put(barraSpells.get(posicion).keycode, accion.getID());
+
+        Object setAccionDTO = new BarraAccionesDTO.SetAccionDTO(posicion);
+        notificarActualizacion("setAccion", null, setAccionDTO);
     }
 
     public void removeAccion (int posicion)
     {
         barraSpells.get(posicion).accion = null;
         keybinds.listaDeBinds.remove(barraSpells.get(posicion).keycode);
+
+        Object removeAccionDTO = new BarraAccionesDTO.RemoveAccionDTO(posicion);
+        notificarActualizacion("removeAccion", null, removeAccionDTO);
     }
 
     public void moverAccion(int posicionOrigen, int posicionDestino)
@@ -67,12 +93,9 @@ public class BarraAcciones extends AbstractModel
         Accion accionDestino = barraSpells.get(posicionDestino).accion;
 
         if (accionDestino == null) removeAccion(posicionOrigen);
-        else keybinds.listaDeBinds.put(barraSpells.get(posicionOrigen).keycode, accionDestino.getID());
+        else setAccion(posicionOrigen, accionDestino);
 
         if (accionOrigen == null) removeAccion(posicionDestino);
-        else  keybinds.listaDeBinds.put(barraSpells.get(posicionDestino).keycode, accionOrigen.getID());
-
-        barraSpells.get(posicionOrigen).accion = accionDestino;
-        barraSpells.get(posicionDestino).accion = accionOrigen;
+        else setAccion(posicionDestino, accionOrigen);
     }
 }

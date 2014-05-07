@@ -24,11 +24,6 @@ public class Controlador
     //Input:
     protected InputMultiplexer inputMultiplexer = new InputMultiplexer();
 
-    /*protected PlayerIO playerInput = new PlayerIO();
-    protected PlayerIO playerOutput = new PlayerIO();
-    protected PlayerEstado playerEstado = new PlayerEstado(playerInput, playerOutput);*/
-
-
     public Controlador (Player player, Mundo mundo)
     {
         this.player = player;
@@ -45,6 +40,10 @@ public class Controlador
         cliente = new Cliente(this);
 
         añadirPlayer(cliente.getID());
+
+        añadirBarraAcciones(30);
+        ui.añadirAccionesEnBarra(0);
+        añadirBarraAcciones(30);
     }
 
     public void render (float delta)                                    { vista.render(delta); }
@@ -65,9 +64,6 @@ public class Controlador
         player.setMaxHPs(updatePlayer.maxHPs);
         player.setPosition(updatePlayer.x, updatePlayer.y);
     }
-
-    /*public void aplicarInputAPlayer()
-    {   player.setInput(playerOutput); }*/
 
     public void moverPlayer(float x, float y)
     {   player.setPosition(x, y); }
@@ -100,4 +96,5 @@ public class Controlador
     public void procesarTouchDragged(int screenX, int screenY, int pointer)
     {   ui.keybinds.touchDragged(screenX, screenY, pointer); }
 
+    public void añadirBarraAcciones(int tamaño)                         { ui.añadirBarraAcciones(tamaño); }
 }

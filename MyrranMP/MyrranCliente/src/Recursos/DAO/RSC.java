@@ -14,5 +14,5 @@ public class RSC
     public static final PixiePCRecursosDAOFactory pixiePCRecursosDAO = PixiePCRecursosDAOFactory.LOCAL;
     public static final FuentesRecursosDAOFactory fuenteRecursosDAO = FuentesRecursosDAOFactory.LOCAL;
     public static final MiscRecursosDAOFactory miscRecusosDAO = MiscRecursosDAOFactory.LOCAL;
-    public static final AccionRecursosDAOFactory AccionRecursosDAO = AccionRecursosDAOFactory.LOCAL;
+    public static final AccionRecursosDAOFactory accionRecursosDAO = AccionRecursosDAOFactory.LOCAL;
 }

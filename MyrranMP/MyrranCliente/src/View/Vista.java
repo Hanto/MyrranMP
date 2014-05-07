@@ -2,12 +2,14 @@ package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
-import Model.Classes.Geo.Mapa;
 import Model.Classes.GameState.Mundo;
+import Model.Classes.GameState.UI;
+import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.PC;
 import Model.Classes.Mobiles.Player;
-import Model.Classes.GameState.UI;
+import Model.Classes.UIO.BarraAcciones;
 import Model.DTO.MundoDTO;
+import Model.DTO.UIDTO;
 import Recursos.DAO.RSC;
 import View.Geo.MapaView;
 import View.Graficos.Texto;
@@ -38,11 +40,10 @@ public class Vista implements PropertyChangeListener
 
     public Mapa mapa;
 
-
     public PlayerView playerView;
     public Array<PCView> listaPCViews = new Array<>();
+    public Array<BarraAccionesView> listaBarraAccionesView = new Array<>();
     public MapaView mapaView;
-    public BarraAccionesView barraAccionesView;
 
     public Stage stageMundo;
     public Stage stageUI;
@@ -70,15 +71,13 @@ public class Vista implements PropertyChangeListener
 
         mapaView = new MapaView(mapa, playerView.getX(), playerView.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY, this);
 
-        barraAccionesView = new BarraAccionesView(ui.listaDeBarraAcciones.first());
-        barraAccionesView.setPosition(MiscData.GDX_Window_Horizontal_Resolution/2-barraAccionesView.getWidth()/2,0);
-        stageUI.addActor(barraAccionesView);
 
         controlador.addInputProcessor(stageUI);
         controlador.addInputProcessor(stageMundo);
 
         stageMundo.getViewport().setCamera(camara);
         mundo.añadirObservador(this);
+        ui.añadirObservador(this);
 
         fps = new Texto("fps", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
                         Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
@@ -181,6 +180,12 @@ public class Vista implements PropertyChangeListener
         {
             PC pc = ((MundoDTO.AñadirPC) evt.getNewValue()).pc;
             PCView pcView = new PCView(pc, this, controlador);
+        }
+
+        if (evt.getNewValue() instanceof UIDTO.AñadirBarraAccionesDTO)
+        {
+            BarraAcciones barraAcciones = ((UIDTO.AñadirBarraAccionesDTO) evt.getNewValue()).barraAcciones;
+            BarraAccionesView barraAccionesView = new BarraAccionesView(barraAcciones, this, controlador);
         }
     }
 }

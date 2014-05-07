@@ -259,6 +259,8 @@ public class LoadGameData
     {
         MiscRecursosDAO miscRecursosDAO = RSC.miscRecusosDAO.getMiscRecursosDAO();
         miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_Textura_Casillero, "UI/Casillero", atlas);
+        miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_RebindButtonON, "UI/RebindOn", atlas);
+        miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_RebindButtonOFF, "UI/RebindOff", atlas);
     }
 
 
@@ -266,7 +268,7 @@ public class LoadGameData
 
     public void cargarTexturasAcciones()
     {
-        AccionRecursosDAO accionRecursosDAO = RSC.AccionRecursosDAO.getAccionRecursosDAO();
+        AccionRecursosDAO accionRecursosDAO = RSC.accionRecursosDAO.getAccionRecursosDAO();
         accionRecursosDAO.salvarTextura("IrNorte",  "IrNorte",  atlas);
         accionRecursosDAO.salvarTextura("IrSur",    "IrSur",    atlas);
         accionRecursosDAO.salvarTextura("IrEste",   "IrEste",   atlas);
@@ -282,7 +284,7 @@ public class LoadGameData
         cargarAccion(new IrEste());
 
         AccionDAO accionDAO = DAO.accionDAOFactory.getAccionDAO();
-        AccionRecursosDAO accionRecursosDAO = RSC.AccionRecursosDAO.getAccionRecursosDAO();
+        AccionRecursosDAO accionRecursosDAO = RSC.accionRecursosDAO.getAccionRecursosDAO();
 
         AccionRecursos accionRecurso;
         Accion accion;
@@ -300,7 +302,7 @@ public class LoadGameData
     public void cargarAccion(Accion accion)
     {
         AccionDAO accionDAO = DAO.accionDAOFactory.getAccionDAO();
-        AccionRecursosDAO accionRecursosDAO = RSC.AccionRecursosDAO.getAccionRecursosDAO();
+        AccionRecursosDAO accionRecursosDAO = RSC.accionRecursosDAO.getAccionRecursosDAO();
 
         accionDAO.salvarAccion(accion);
         accionRecursosDAO.salvarAccionRecurso(new AccionRecursos(accion.getID(), accionRecursosDAO.getTextura(accion.getID())));
