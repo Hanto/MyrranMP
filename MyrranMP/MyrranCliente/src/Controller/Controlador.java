@@ -97,4 +97,8 @@ public class Controlador
     {   ui.keybinds.touchDragged(screenX, screenY, pointer); }
 
     public void añadirBarraAcciones(int tamaño)                         { ui.añadirBarraAcciones(tamaño); }
+    public void moverAccion (int numBarraOrigen, int posicionOrigen, int numBarraDestino, int posicionDestino)
+    {   ui.moverAccion (numBarraOrigen, posicionOrigen, numBarraDestino, posicionDestino);}
+    public void setKeycode (int numBarra, int posicion, int keycode)
+    {   ui.setKeyCode(numBarra, posicion, keycode);}
 }

@@ -7,7 +7,7 @@ import Model.Classes.GameState.UI;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.PC;
 import Model.Classes.Mobiles.Player;
-import Model.Classes.UIO.BarraAcciones;
+import Model.Classes.UIO.EntornoAcciones.BarraAcciones;
 import Model.DTO.MundoDTO;
 import Model.DTO.UIDTO;
 import Recursos.DAO.RSC;
@@ -26,6 +26,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
 
 import java.beans.PropertyChangeEvent;
@@ -43,6 +44,9 @@ public class Vista implements PropertyChangeListener
     public PlayerView playerView;
     public Array<PCView> listaPCViews = new Array<>();
     public Array<BarraAccionesView> listaBarraAccionesView = new Array<>();
+
+    public DragAndDrop accionesDAD = new DragAndDrop();
+
     public MapaView mapaView;
 
     public Stage stageMundo;
@@ -77,10 +81,12 @@ public class Vista implements PropertyChangeListener
 
         stageMundo.getViewport().setCamera(camara);
         mundo.añadirObservador(this);
-        ui.añadirObservador(this);
+        ui.entornoAcciones.añadirObservador(this);
 
         fps = new Texto("fps", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
                         Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
+
+        accionesDAD.setDragTime(0);
         stageUI.addActor(fps);
     }
 

@@ -2,7 +2,7 @@ package View.UI;// Created by Hanto on 06/05/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
-import Model.Classes.UIO.BarraAcciones;
+import Model.Classes.UIO.EntornoAcciones.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
 import Recursos.DAO.RSC;
 import View.Graficos.Texto;
@@ -35,14 +35,15 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
 
     public static class Icono
     {
+        public int numBarra;
         public int numIcono;
         public Group apariencia;
 
-        public Icono(int numIcono, Group group)
-        {   this.numIcono = numIcono; this.apariencia = group; }
+        public Icono(int numBarra, int numIcono, Group group)
+        {   this.numBarra= numBarra; this.numIcono = numIcono; this.apariencia = group; }
     }
 
-    public BarraAccionesView(final BarraAcciones barraAcciones, Vista vista, Controlador controlador)
+    public BarraAccionesView(final BarraAcciones barraAcciones, Vista vista, final Controlador controlador)
     {
         this.barraModel = barraAcciones;
         this.vista = vista;
@@ -55,13 +56,13 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         this.setHeight(numFilas*(MiscData.BARRASPELLS_Ancho_Casilla+2));
 
         this.bottom().left();;
-        dad = new DragAndDrop();
+        dad = vista.accionesDAD;
 
         dad.setDragTime(0);
 
         for (int i=0 ; i< barraModel.getTamaño(); i++)
         {
-            final Icono icono = new Icono(i, getApariencia(i));
+            final Icono icono = new Icono(barraModel.getID(), i, getApariencia(i));
             barraIconos.add(icono);
 
             this.add(icono.apariencia).left().height(MiscData.BARRASPELLS_Alto_Casilla + 2).width(MiscData.BARRASPELLS_Ancho_Casilla + 2);
@@ -81,7 +82,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
                 @Override public boolean keyDown (InputEvent event, int keycode)
                 {   //Solo rebindeamos los skills, si esta activado el boton de rebindear
                     if (rebindearSkills)
-                    {   barraModel.setKeycode(icono.numIcono, keycode); }
+                    {   controlador.setKeycode(icono.numBarra, icono.numIcono, keycode); }
                     return true;
                 }
             });
@@ -110,7 +111,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
                 {
                     Icono origen = ((Icono) payload.getObject());
 
-                    barraModel.moverAccion(icono.numIcono, origen.numIcono);
+                    controlador.moverAccion(origen.numBarra, origen.numIcono, icono.numBarra, icono.numIcono);
                 }
             });
         }
@@ -149,8 +150,8 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         {
             @Override public void touchDragged (InputEvent event, float x, float y, int pointer)
             {
-                int newX = (int)(BarraAccionesView.this.getX() + x);
-                int newY = (int)(BarraAccionesView.this.getY() + y);
+                int newX = (int)(BarraAccionesView.this.getX() -moverBarra.getWidth()/2 + x);
+                int newY = (int)(BarraAccionesView.this.getY() -moverBarra.getHeight()/2 + y);
                 int alto = (int)BarraAccionesView.this.getHeight();
                 int ancho = (int)BarraAccionesView.this.getWidth();
 

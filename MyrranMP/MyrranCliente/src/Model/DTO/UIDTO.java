@@ -1,6 +1,6 @@
 package Model.DTO;// Created by Hanto on 07/05/2014.
 
-import Model.Classes.UIO.BarraAcciones;
+import Model.Classes.UIO.EntornoAcciones.BarraAcciones;
 
 public class UIDTO
 {

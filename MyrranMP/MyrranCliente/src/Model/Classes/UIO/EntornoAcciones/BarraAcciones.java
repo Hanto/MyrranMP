@@ -1,13 +1,15 @@
-package Model.Classes.UIO;// Created by Hanto on 06/05/2014.
+package Model.Classes.UIO.EntornoAcciones;// Created by Hanto on 06/05/2014.
 
 import Data.MiscData;
 import Model.Classes.AbstractModel;
 import Model.Classes.Acciones.Accion;
+import Model.Classes.UIO.Keybinds;
 import Model.DTO.BarraAccionesDTO;
 import com.badlogic.gdx.utils.Array;
 
 public class BarraAcciones extends AbstractModel
 {
+    private int iD;
     private Array<Casilla> barraSpells;
     private Keybinds keybinds;
 
@@ -18,17 +20,19 @@ public class BarraAcciones extends AbstractModel
         public int keycode;
     }
 
+    public int getID()          { return iD; }
+    public void setID(int i)    { iD = i; }
+
     //CONSTRUCTOR:
-    public BarraAcciones(Keybinds keybinds, int tamaño)
+    public BarraAcciones(Keybinds keybinds, int tamaño, int id)
     {
         this.keybinds = keybinds;
         barraSpells = new Array<>(tamaño);
+        this.iD = id;
 
         for (int i=0; i< tamaño; i++)
         {
             Casilla casilla = new Casilla();
-
-            if (i<9) { casilla.keybind = String.valueOf(i+1); casilla.keycode = i+8; }
             casilla.accion = null;
 
             barraSpells.add(casilla);
@@ -65,6 +69,20 @@ public class BarraAcciones extends AbstractModel
 
         Object setKeycode = new BarraAccionesDTO.SetAccionDTO(posicion);
         notificarActualizacion("setKeycode", null, setKeycode);
+    }
+
+    public void removeKeycode (int keycode)
+    {
+        for (int i=0; i<barraSpells.size; i++)
+        {
+            if (barraSpells.get(i).keycode == keycode)
+            {
+                barraSpells.get(i).keycode = 0;
+                barraSpells.get(i).keybind = "";
+                Object setKeycode = new BarraAccionesDTO.SetAccionDTO(i);
+                notificarActualizacion("setKeycode", null, setKeycode);
+            }
+        }
     }
 
 
