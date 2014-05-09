@@ -14,7 +14,7 @@ public class Pixie extends Actor
     private Array<Animacion> animaciones = new Array<>();   //Array que contiene los datos de cada Animacion
     private Animation animation;                    //Animacion actual, de la que se extrae el frame que se dibujara
     private TextureRegion frameActual;              //Frame actual que se dibujara
-    private Vector2 Offset = new Vector2(0,0);      //Rectificacion de la posicion de la animacion
+    private Vector2 Offset = new Vector2(0,0);      //Rectificacion de la posX de la animacion
     private float stateTime = 0f;                   //es el contador que controla cuanto tiempo tiene que mostrarse cada frame     
     private int numAnimacion = -1;                  //ID de la animacion que se esta mostrando en este momento de entre las que hay en el array de Animaciones
     private int siguienteNumAnimacion = -1;         //En el caso de ejecutarse un animacion ININTERRUMPIBLE, si se cambia de animacion, esta se pone en cola como siguienteNumAnimacion

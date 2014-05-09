@@ -79,7 +79,7 @@ public class PlayerView extends Group implements PropertyChangeListener
         }
     }
 
-    //Muy importante, la posicion en pantalla que sea en Pixels siempre, o sea sin decimales, o el sprite parpadea
+    //Muy importante, la posX en pantalla que sea en Pixels siempre, o sea sin decimales, o el sprite parpadea
     @Override public void setPosition (float x, float y)
     {   setPosition((int)x, (int)y);}
 

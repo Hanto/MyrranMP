@@ -15,7 +15,7 @@ import View.Geo.MapaView;
 import View.Graficos.Texto;
 import View.Mobiles.PCView;
 import View.Mobiles.PlayerView;
-import View.UI.BarraAccionesView;
+import View.UI.EntornoAccionesView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -26,7 +26,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
-import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
 
 import java.beans.PropertyChangeEvent;
@@ -43,9 +42,7 @@ public class Vista implements PropertyChangeListener
 
     public PlayerView playerView;
     public Array<PCView> listaPCViews = new Array<>();
-    public Array<BarraAccionesView> listaBarraAccionesView = new Array<>();
-
-    public DragAndDrop accionesDAD = new DragAndDrop();
+    public EntornoAccionesView entornoAccionesView;
 
     public MapaView mapaView;
 
@@ -53,11 +50,11 @@ public class Vista implements PropertyChangeListener
     public Stage stageUI;
     public OrthographicCamera camara;
     public SpriteBatch batch;
+    private ShapeRenderer shape = new ShapeRenderer();
 
     private Texto fps;
     private int nivelDeZoom = 0;
 
-    private ShapeRenderer shape = new ShapeRenderer();
 
     public Vista (Controlador controlador, Player player, UI ui, Mundo mundo)
     {
@@ -72,6 +69,7 @@ public class Vista implements PropertyChangeListener
         stageMundo = new Stage();
         stageUI = new Stage();
         playerView = new PlayerView(this.player, this, controlador);
+        entornoAccionesView = new EntornoAccionesView(controlador, this);
 
         mapaView = new MapaView(mapa, playerView.getX(), playerView.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY, this);
 
@@ -86,7 +84,6 @@ public class Vista implements PropertyChangeListener
         fps = new Texto("fps", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
                         Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
 
-        accionesDAD.setDragTime(0);
         stageUI.addActor(fps);
     }
 
@@ -119,8 +116,6 @@ public class Vista implements PropertyChangeListener
         stageUI.draw();
 
         fps.setTexto(Integer.toString(Gdx.graphics.getFramesPerSecond())+"fps");
-
-
     }
 
     public void resize (int anchura, int altura)
@@ -185,13 +180,17 @@ public class Vista implements PropertyChangeListener
         if (evt.getNewValue() instanceof MundoDTO.AñadirPC)
         {
             PC pc = ((MundoDTO.AñadirPC) evt.getNewValue()).pc;
+
+            pc.eliminarObservador(this);
             PCView pcView = new PCView(pc, this, controlador);
+            listaPCViews.add(pcView);
         }
 
         if (evt.getNewValue() instanceof UIDTO.AñadirBarraAccionesDTO)
         {
             BarraAcciones barraAcciones = ((UIDTO.AñadirBarraAccionesDTO) evt.getNewValue()).barraAcciones;
-            BarraAccionesView barraAccionesView = new BarraAccionesView(barraAcciones, this, controlador);
+
+            entornoAccionesView.añadirBarraAccionesView(barraAcciones);
         }
     }
 }

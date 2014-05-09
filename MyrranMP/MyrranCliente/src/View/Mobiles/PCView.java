@@ -35,8 +35,6 @@ public class PCView extends Group implements PropertyChangeListener
         connectionID = pc.getConnectionID();
         this.setPosition(pc.getX(), pc.getY());
 
-        vista.listaPCViews.add(this);
-        pc.eliminarObservador(vista);
         pc.añadirObservador(this);
 
         crearActor();

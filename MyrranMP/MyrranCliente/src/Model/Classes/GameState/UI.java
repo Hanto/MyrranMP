@@ -24,13 +24,13 @@ public class UI
         entornoAcciones = new EntornoAcciones(keybinds);
     }
 
-    public void añadirBarraAcciones(int tamaño)
-    {   entornoAcciones.añadirBarraAcciones(tamaño); }
+    public void añadirBarraAcciones(int filas, int columnas)
+    {   entornoAcciones.añadirBarraAcciones(filas, columnas); }
 
-    public void moverAccion (int numBarraOrigen, int posicionOrigen, int numBarraDestino, int posicionDestino)
-    {   entornoAcciones.moverAccion (numBarraOrigen, posicionOrigen, numBarraDestino, posicionDestino); }
-    public void setKeyCode (int numBarra, int posicion, int keycode)
-    {   entornoAcciones.setKeycode(numBarra, posicion, keycode);}
+    public void moverAccion (int numBarraOrigen, int posXOrigen, int posYOrigen, int numBarraDestino, int posXDestino, int posYDestino)
+    {   entornoAcciones.moverAccion (numBarraOrigen, posXOrigen, posYOrigen, numBarraDestino, posXDestino, posYDestino); }
+    public void setKeyCode (int numBarra, int posX, int posY, int keycode)
+    {   entornoAcciones.setKeycode(numBarra, posX, posY, keycode);}
 
     //Provisional:
     public void añadirAccionesEnBarra(int numBarra)

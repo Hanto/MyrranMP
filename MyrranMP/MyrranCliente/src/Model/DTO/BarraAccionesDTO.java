@@ -6,16 +6,26 @@ public class BarraAccionesDTO
 {
     public static class SetAccionDTO
     {
-        public int posicion;
+        public int posX;
+        public int posY;
         public Accion accion;
-        public SetAccionDTO(int posicion)
-        {   this.posicion = posicion;}
+        public SetAccionDTO(int posX, int posY)
+        {   this.posX = posX; this.posY = posY;}
     }
 
-    public static class RemoveAccionDTO
+    public static class EliminarAccionDTO
     {
-        public int posicion;
-        public RemoveAccionDTO(int posicion)
-        {   this.posicion = posicion; }
+        public int posX;
+        public int posY;
+        public EliminarAccionDTO(int posX, int posY)
+        {   this.posX = posX; this.posY = posY;}
+    }
+
+    public static class EliminarCasillaDTO
+    {
+        public int posX;
+        public int posY;
+        public EliminarCasillaDTO(int posX, int posY)
+        { this.posX = posX; this.posY = posY;}
     }
 }

@@ -97,7 +97,7 @@ public class MiscData
                 keycodeNames.put(34, "F");
                 keycodeNames.put(80, "FOCUS");
                 keycodeNames.put(35, "G");
-                keycodeNames.put(68, "GRAVE");
+                keycodeNames.put(68, "Ñ");
                 keycodeNames.put(36, "H");
                 keycodeNames.put(79, "HEADSETHOOK");
                 keycodeNames.put(3, "HOME");

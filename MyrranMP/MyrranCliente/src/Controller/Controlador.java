@@ -41,9 +41,12 @@ public class Controlador
 
         añadirPlayer(cliente.getID());
 
-        añadirBarraAcciones(30);
+        añadirBarraAcciones(3, 10);
         ui.añadirAccionesEnBarra(0);
-        añadirBarraAcciones(30);
+        añadirBarraAcciones(2, 10);
+        añadirBarraAcciones(1, 3);
+
+        moverPlayer(1000,500);
     }
 
     public void render (float delta)                                    { vista.render(delta); }
@@ -96,9 +99,9 @@ public class Controlador
     public void procesarTouchDragged(int screenX, int screenY, int pointer)
     {   ui.keybinds.touchDragged(screenX, screenY, pointer); }
 
-    public void añadirBarraAcciones(int tamaño)                         { ui.añadirBarraAcciones(tamaño); }
-    public void moverAccion (int numBarraOrigen, int posicionOrigen, int numBarraDestino, int posicionDestino)
-    {   ui.moverAccion (numBarraOrigen, posicionOrigen, numBarraDestino, posicionDestino);}
-    public void setKeycode (int numBarra, int posicion, int keycode)
-    {   ui.setKeyCode(numBarra, posicion, keycode);}
+    public void añadirBarraAcciones(int filas, int columnas)            { ui.añadirBarraAcciones(filas, columnas); }
+    public void barraAccionmoverAccion(int numBarraOrigen, int posXOrigen, int posYOrigen, int numBarraDestino, int posXDestino, int posYDestino)
+    {   ui.moverAccion (numBarraOrigen, posXOrigen, posYOrigen, numBarraDestino, posXDestino, posYDestino);}
+    public void barraAccionRebindear(int numBarra, int posX, int posY, int keycode)
+    {   ui.setKeyCode(numBarra, posX, posY, keycode);}
 }
