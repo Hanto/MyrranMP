@@ -18,7 +18,7 @@ public class BarraAcciones extends AbstractModel
 
     public static class Casilla
     {
-        public Accion accion;
+        public Accion accion = null;
         public String keybind;
         public int keycode;
     }
@@ -33,17 +33,6 @@ public class BarraAcciones extends AbstractModel
     {
         this.keybinds = keybinds;
         this.iD = id;
-
-        /*for (int i=0; i< numFilas; i++)
-        {
-            for (int j=0; j< numColumnas; j++)
-            {
-                Casilla casilla = new Casilla();
-                casilla.accion = null;
-
-                barraAcciones.put(i*100+j,casilla);
-            }
-        }*/
 
         for (int i=0; i<numFilas; i++)
         {
@@ -75,16 +64,16 @@ public class BarraAcciones extends AbstractModel
     {   barraAcciones.get(posY).get(posX).keybind = MiscData.keycodeNames.get(keycode); }
 
     public void setBind (int keycode, Accion accion)
-    {   keybinds.listaDeBinds.put(keycode, accion.getID()); }
+    {   keybinds.salvarKeybind(keycode, accion.getID()); }
 
     public void eliminarBind (int keycode)
-    {   keybinds.listaDeBinds.remove(keycode); }
+    {   keybinds.eliminarKeybind(keycode); }
 
     public void setKeycode (int posX, int posY, int keycode)
     {
         eliminarKeycode(keycode);
 
-        keybinds.listaDeBinds.remove(getKeycode(posX, posY));
+        keybinds.eliminarKeybind(getKeycode(posX, posY));
         barraAcciones.get(posY).get(posX).keycode = keycode;
         setKeybind(posX, posY, keycode);
         if (getAccion(posX, posY) != null) setBind(keycode, getAccion(posX, posY));
@@ -132,22 +121,57 @@ public class BarraAcciones extends AbstractModel
     }
 
 
-/*
+
+
     public void eliminarFila()
     {
-        int posX = 0;
-        for (Iterator<Casilla> iterator = barraAcciones.iterator(); iterator.hasNext();)
-        {
-            Casilla casilla = iterator.next();
-            if (posX+numCasillas >= barraAcciones.size)
-            {
-                keybinds.listaDeBinds.remove(casilla.keycode);
-                iterator.remove();
+        if (barraAcciones.size <= 1) return;
 
-                Object eliminarCasillaDTO = new BarraAccionesDTO.EliminarCasillaDTO(posX);
-                notificarActualizacion("eliminarCasillas", null, eliminarCasillaDTO);
-            }
-            posX++;
+        Array<Casilla> array = barraAcciones.peek();
+        for (int i=0; i<array.size; i++)
+        {   keybinds.eliminarKeybind(array.get(i).keycode); }
+
+        barraAcciones.removeIndex(barraAcciones.size-1);
+
+        Object eliminarFilaDTO = new BarraAccionesDTO.EliminarFilaDTO();
+        notificarActualizacion("eliminarFila", null, eliminarFilaDTO);
+    }
+
+    public void añadirFila()
+    {
+        Array<Casilla> array = new Array<>();
+        for (int i=0; i<barraAcciones.first().size; i++)
+        {
+            Casilla casilla = new Casilla();
+            casilla.accion = null;
+            array.add(casilla);
         }
-    }*/
+        barraAcciones.add(array);
+
+        Object añadirFilaDTO = new BarraAccionesDTO.AñadirFilaDTO();
+        notificarActualizacion("añadirFila", null, añadirFilaDTO);
+    }
+
+    public void eliminarColumna()
+    {
+        if (barraAcciones.first().size <= 1) return;
+
+        for (int y=0; y<barraAcciones.size; y++)
+        {   keybinds.eliminarKeybind(barraAcciones.get(y).pop().keycode);}
+
+        Object eliminarColumnaDTO = new BarraAccionesDTO.EliminarColumnaDTO();
+        notificarActualizacion("eliminarColumna", null, eliminarColumnaDTO);
+    }
+
+    public void añadirColumna()
+    {
+        for (int y=0; y<barraAcciones.size; y++)
+        {
+            Casilla casilla = new Casilla();
+            barraAcciones.get(y).add(casilla);
+        }
+
+        Object añadirColumnaDTO = new BarraAccionesDTO.AñadirColumnaDTO();
+        notificarActualizacion("añadirColumna", null, añadirColumnaDTO);
+    }
 }

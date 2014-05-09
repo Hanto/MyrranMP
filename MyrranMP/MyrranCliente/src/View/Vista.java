@@ -56,6 +56,11 @@ public class Vista implements PropertyChangeListener
     private int nivelDeZoom = 0;
 
 
+    public Vector2 temp1 = new Vector2();
+    public Vector2 temp2 = new Vector2();
+    public boolean dibujarTemp = false;
+
+
     public Vista (Controlador controlador, Player player, UI ui, Mundo mundo)
     {
         this.controlador = controlador;
@@ -144,6 +149,14 @@ public class Vista implements PropertyChangeListener
 
         shape.setColor(Color.GRAY);
         shape.rect( 0, 0, MiscData.MAPA_Max_TilesX*MiscData.TILESIZE,MiscData.MAPA_Max_TilesY*MiscData.TILESIZE);
+
+        if (dibujarTemp)
+        {
+
+            shape.setProjectionMatrix(stageUI.getViewport().getCamera().combined);
+            shape.setColor(Color.ORANGE);
+            shape.rect(temp1.x, temp1.y, temp2.x, temp2.y);
+        }
 
         shape.end();
     }

@@ -46,6 +46,7 @@ public class Controlador
         añadirBarraAcciones(2, 10);
         añadirBarraAcciones(1, 3);
 
+
         moverPlayer(1000,500);
     }
 
@@ -104,4 +105,9 @@ public class Controlador
     {   ui.moverAccion (numBarraOrigen, posXOrigen, posYOrigen, numBarraDestino, posXDestino, posYDestino);}
     public void barraAccionRebindear(int numBarra, int posX, int posY, int keycode)
     {   ui.setKeyCode(numBarra, posX, posY, keycode);}
+    public void barraAñadirColumna(int numBarra)                        { ui.añadirColumna(numBarra); }
+    public void barraEliminarColumna(int numBarra)                      { ui.eliminarColumna(numBarra); }
+    public void barraAñadirFila (int numBarra)                          { ui.añadirFila(numBarra); }
+    public void barraEliminarFila (int numBarra)                        { ui.eliminarFila(numBarra); }
+
 }

@@ -21,11 +21,15 @@ public class BarraAccionesDTO
         {   this.posX = posX; this.posY = posY;}
     }
 
-    public static class EliminarCasillaDTO
-    {
-        public int posX;
-        public int posY;
-        public EliminarCasillaDTO(int posX, int posY)
-        { this.posX = posX; this.posY = posY;}
-    }
+    public static class EliminarFilaDTO
+    {   public EliminarFilaDTO() {} }
+
+    public static class AñadirFilaDTO
+    {   public AñadirFilaDTO() {} }
+
+    public static class EliminarColumnaDTO
+    {   public EliminarColumnaDTO() {} }
+
+    public static class AñadirColumnaDTO
+    {   public AñadirColumnaDTO() {} }
 }

@@ -57,7 +57,10 @@ public class EntornoAcciones extends AbstractModel
         listaDeBarraAcciones.get(numBarra).setAccion(2,     2,  DAO.accionDAOFactory.getAccionDAO().getAccion("IrEste"));
         listaDeBarraAcciones.get(numBarra).setAccion(0,     2,  DAO.accionDAOFactory.getAccionDAO().getAccion("IrOeste"));
 
-        //listaDeBarraAcciones.get(numBarra).eliminarCasillas(1);
+        listaDeBarraAcciones.get(numBarra).añadirFila();
+        listaDeBarraAcciones.get(numBarra).añadirFila();
+        listaDeBarraAcciones.get(numBarra).añadirColumna();
+        listaDeBarraAcciones.get(numBarra).añadirColumna();
     }
 
 
@@ -68,7 +71,6 @@ public class EntornoAcciones extends AbstractModel
 
         listaDeBarraAcciones.get(numBarra).setKeycode(posX, posY, keycode);
     }
-
     public void setAccion (int numBarra, int posX, int posY, Accion accion)
     {   listaDeBarraAcciones.get(numBarra).setAccion(posX, posY, accion); }
 
@@ -85,4 +87,13 @@ public class EntornoAcciones extends AbstractModel
         if (accionOrigen == null) removeAccion(numBarraDestino, posXDestino, posYDestino);
         else setAccion(numBarraDestino, posXDestino, posYDestino, accionOrigen);
     }
+
+    public void añadirColumna (int numBarra)
+    {   listaDeBarraAcciones.get(numBarra).añadirColumna(); }
+    public void eliminarColuna (int numBarra)
+    {   listaDeBarraAcciones.get(numBarra).eliminarColumna(); }
+    public void añadirFila (int numBarra)
+    {   listaDeBarraAcciones.get(numBarra).añadirFila(); }
+    public void eliminarFila (int numBarra)
+    {   listaDeBarraAcciones.get(numBarra).eliminarFila(); }
 }

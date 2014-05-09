@@ -17,6 +17,13 @@ public class Keybinds
     public Keybinds (Player player, PlayerEstado playerE)
     {   this.player = player; this.playerE = playerE;  }
 
+    public void eliminarKeybind (int keycode)
+    {   listaDeBinds.remove(keycode); }
+
+    public void salvarKeybind (int keycode, String iDAccion)
+    {   listaDeBinds.put(keycode, iDAccion); }
+
+
     public void keyDown(int keycode)
     {
         if (listaDeBinds.containsKey(keycode))

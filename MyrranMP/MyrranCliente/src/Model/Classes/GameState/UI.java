@@ -32,6 +32,16 @@ public class UI
     public void setKeyCode (int numBarra, int posX, int posY, int keycode)
     {   entornoAcciones.setKeycode(numBarra, posX, posY, keycode);}
 
+    public void añadirColumna (int numBarra)
+    {   entornoAcciones.añadirColumna(numBarra);}
+    public void eliminarColumna (int numBarra)
+    {   entornoAcciones.eliminarColuna(numBarra);}
+    public void añadirFila (int numBarra)
+    {   entornoAcciones.añadirFila(numBarra); }
+    public void eliminarFila (int numBarra)
+    {   entornoAcciones.eliminarFila(numBarra); }
+
+
     //Provisional:
     public void añadirAccionesEnBarra(int numBarra)
     {   entornoAcciones.añadirAccionesEnBarra(numBarra); }
