@@ -5,6 +5,7 @@ import Data.MiscData;
 import Model.Classes.UIO.EntornoAcciones.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
 import Recursos.DAO.RSC;
+import View.Graficos.Caja;
 import View.Graficos.Texto;
 import View.Vista;
 import com.badlogic.gdx.graphics.Color;
@@ -32,6 +33,8 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
 
 
     private Array<Array<Icono>> barraIconos = new Array<>();
+
+    private Caja caja = new Caja();
     private int redimensionarX;
     private int redimensionarY;
 
@@ -51,6 +54,9 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         {   this.numBarra= numBarra; this.posX = posX; this.posY = posY; this.apariencia = group; }
     }
 
+    public float getEsquinaSupIzdaX()                       { return this.getX(); }
+    public float getEsquinaSupIzdaY()                       { return this.getY() + this.getHeight(); }
+
     public BarraAccionesView(BarraAcciones barraAcciones, DragAndDrop dadAcciones, Vista view, Controlador controller)
     {
         this.barraModel = barraAcciones;
@@ -69,6 +75,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         {   añadirFila(); }
 
         recrearTabla();
+
         this.setPosition(500,0);
         vista.stageUI.addActor(this);
     }
@@ -225,7 +232,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         {
             @Override public void touchUp (InputEvent event, float x, float y, int pointer, int button)
             {
-                vista.dibujarTemp = false;
+                BarraAccionesView.this.getStage().getRoot().removeActor(caja);
 
                 int X = (int)(event.getStageX()-redimensionarX);
                 int Y = (int)(event.getStageY()-redimensionarY);
@@ -259,6 +266,10 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
 
             @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
             {
+                caja.setCaja (getEsquinaSupIzdaX(), getEsquinaSupIzdaY(),
+                              getWidth(), -getHeight());
+
+                BarraAccionesView.this.getStage().addActor(caja);
 
                 redimensionarX = (int)event.getStageX();
                 redimensionarY = (int)event.getStageY();
@@ -267,19 +278,13 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
 
             @Override public void touchDragged (InputEvent event, float x, float y, int pointer)
             {
-                int newX = (int)(redimensionarBarra.getX() -redimensionarBarra.getWidth()/2 + x);
-                int newY = (int)(redimensionarBarra.getY() -redimensionarBarra.getHeight()/2 + y);
+                float newX = redimensionarBarra.getX() -redimensionarBarra.getWidth()/2 + x;
+                float newY = redimensionarBarra.getY() -redimensionarBarra.getHeight()/2 + y;
 
                 redimensionarBarra.setPosition(newX, newY);
 
-                vista.dibujarTemp = true;
-                vista.temp1.x = BarraAccionesView.this.getX();
-                vista.temp1.y = BarraAccionesView.this.getY()+BarraAccionesView.this.getHeight();
-
-                vista.temp2.x = newX;
-                vista.temp2.y = newY-BarraAccionesView.this.getHeight()+redimensionarBarra.getHeight();
+                caja.setTamaño(newX, newY - getHeight() + redimensionarBarra.getHeight());
             }
-
         });
 
     }
