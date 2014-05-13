@@ -5,6 +5,8 @@ import Controller.Input.PlayerMouseKeyI;
 import Model.Classes.GameState.Mundo;
 import Model.Classes.GameState.UI;
 import Model.Classes.Mobiles.Player;
+import Model.Classes.UIO.EntornoAcciones.ListaAccionesBI;
+import Model.Classes.UIO.EntornoAcciones.ListaAccionesI;
 import Model.DTO.NetDTO;
 import View.Vista;
 import com.badlogic.gdx.Gdx;
@@ -43,9 +45,7 @@ public class Controlador
 
         añadirBarraAcciones(3, 10);
         ui.añadirAccionesEnBarra(0);
-        añadirBarraAcciones(2, 10);
-        añadirBarraAcciones(1, 3);
-
+        //añadirBarraAcciones(2, 10);
 
         moverPlayer(1000,500);
     }
@@ -100,14 +100,16 @@ public class Controlador
     public void procesarTouchDragged(int screenX, int screenY, int pointer)
     {   ui.keybinds.touchDragged(screenX, screenY, pointer); }
 
+    //BarrasAccion:
     public void añadirBarraAcciones(int filas, int columnas)            { ui.añadirBarraAcciones(filas, columnas); }
-    public void barraAccionmoverAccion(int numBarraOrigen, int posXOrigen, int posYOrigen, int numBarraDestino, int posXDestino, int posYDestino)
-    {   ui.moverAccion (numBarraOrigen, posXOrigen, posYOrigen, numBarraDestino, posXDestino, posYDestino);}
-    public void barraAccionRebindear(int numBarra, int posX, int posY, int keycode)
-    {   ui.setKeyCode(numBarra, posX, posY, keycode);}
-    public void barraAñadirColumna(int numBarra)                        { ui.añadirColumna(numBarra); }
-    public void barraEliminarColumna(int numBarra)                      { ui.eliminarColumna(numBarra); }
-    public void barraAñadirFila (int numBarra)                          { ui.añadirFila(numBarra); }
-    public void barraEliminarFila (int numBarra)                        { ui.eliminarFila(numBarra); }
+    public void barraAccionMoverAccion(ListaAccionesI barraOrigen, int posXOrigen, int posYOrigen, ListaAccionesI barraDestino,int posXDestino, int posYDestino)
+    {   ui.moverAccion(barraOrigen, posXOrigen, posYOrigen, barraDestino, posXDestino, posYDestino);}
+    public void barraAccionRebindear(ListaAccionesBI barra, int posX, int posY, int keycode)
+    {   ui.setKeyCode(barra, posX, posY, keycode);}
+    public void barraAñadirColumna(ListaAccionesBI barra)               { barra.añadirColumna(); }
+    public void barraAñadirFila (ListaAccionesBI barra)                 { barra.añadirFila(); }
+    public void barraEliminarColumna (ListaAccionesBI barra)            { barra.eliminarColumna(); }
+    public void barraEliminarFila (ListaAccionesBI barra)               { barra.eliminarFila(); }
+
 
 }

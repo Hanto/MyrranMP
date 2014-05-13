@@ -7,7 +7,7 @@ import Model.Classes.UIO.Keybinds;
 import Model.DTO.BarraAccionesDTO;
 import com.badlogic.gdx.utils.Array;
 
-public class BarraAcciones extends AbstractModel
+public class BarraAcciones extends AbstractModel implements ListaAccionesBI
 {
     private int iD;
     //private Map<Integer,Casilla> barraAcciones = new HashMap<>();
@@ -50,10 +50,9 @@ public class BarraAcciones extends AbstractModel
 
 
 
-    public Accion getAccion(int posX, int posY)
-    {   return barraAcciones.get(posY).get(posX).accion; }
 
-    public String getKeybind (int posX, int posY)
+
+    @Override public String getKeybind (int posX, int posY)
     {   return barraAcciones.get(posY).get(posX).keybind; }
 
     public int getKeycode (int posX, int posY)
@@ -69,7 +68,10 @@ public class BarraAcciones extends AbstractModel
     public void eliminarBind (int keycode)
     {   keybinds.eliminarKeybind(keycode); }
 
-    public void setKeycode (int posX, int posY, int keycode)
+    @Override public Accion getAccion(int posX, int posY)
+    {   return barraAcciones.get(posY).get(posX).accion; }
+
+    @Override public void setKeycode (int posX, int posY, int keycode)
     {
         eliminarKeycode(keycode);
 
@@ -82,7 +84,7 @@ public class BarraAcciones extends AbstractModel
         notificarActualizacion("barraAccionRebindear", null, setKeycode);
     }
 
-    public void eliminarKeycode(int keycode)
+    @Override public void eliminarKeycode(int keycode)
     {
         for (int y=0; y< barraAcciones.size; y++)
         {
@@ -102,7 +104,7 @@ public class BarraAcciones extends AbstractModel
 
 
 
-    public void setAccion(int posX, int posY, Accion accion)
+    @Override public void setAccion(int posX, int posY, Accion accion)
     {
         barraAcciones.get(posY).get(posX).accion = accion;
         setBind(getKeycode(posX, posY), accion);
@@ -111,7 +113,7 @@ public class BarraAcciones extends AbstractModel
         notificarActualizacion("setAccion", null, setAccionDTO);
     }
 
-    public void eliminarAccion(int posX, int posY)
+    @Override public void eliminarAccion(int posX, int posY)
     {
         barraAcciones.get(posY).get(posX).accion = null;
         eliminarBind(getKeycode(posX, posY));
@@ -123,7 +125,7 @@ public class BarraAcciones extends AbstractModel
 
 
 
-    public void eliminarFila()
+    @Override public void eliminarFila()
     {
         if (barraAcciones.size <= 1) return;
 
@@ -137,7 +139,7 @@ public class BarraAcciones extends AbstractModel
         notificarActualizacion("eliminarFila", null, eliminarFilaDTO);
     }
 
-    public void añadirFila()
+    @Override public void añadirFila()
     {
         Array<Casilla> array = new Array<>();
         for (int i=0; i<barraAcciones.first().size; i++)
@@ -152,7 +154,7 @@ public class BarraAcciones extends AbstractModel
         notificarActualizacion("añadirFila", null, añadirFilaDTO);
     }
 
-    public void eliminarColumna()
+    @Override public void eliminarColumna()
     {
         if (barraAcciones.first().size <= 1) return;
 
@@ -163,7 +165,7 @@ public class BarraAcciones extends AbstractModel
         notificarActualizacion("eliminarColumna", null, eliminarColumnaDTO);
     }
 
-    public void añadirColumna()
+    @Override public void añadirColumna()
     {
         for (int y=0; y<barraAcciones.size; y++)
         {

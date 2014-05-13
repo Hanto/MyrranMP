@@ -15,7 +15,7 @@ import View.Geo.MapaView;
 import View.Graficos.Texto;
 import View.Mobiles.PCView;
 import View.Mobiles.PlayerView;
-import View.UI.EntornoAccionesView;
+import View.UI.ConjuntoBarraAccionesView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -42,7 +42,7 @@ public class Vista implements PropertyChangeListener
 
     public PlayerView playerView;
     public Array<PCView> listaPCViews = new Array<>();
-    public EntornoAccionesView entornoAccionesView;
+    public ConjuntoBarraAccionesView conjuntoBarraAccionesView;
 
     public MapaView mapaView;
 
@@ -68,7 +68,7 @@ public class Vista implements PropertyChangeListener
         stageMundo = new Stage();
         stageUI = new Stage();
         playerView = new PlayerView(this.player, this, controlador);
-        entornoAccionesView = new EntornoAccionesView(controlador, this);
+        conjuntoBarraAccionesView = new ConjuntoBarraAccionesView(controlador, this);
 
         mapaView = new MapaView(mapa, playerView.getX(), playerView.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY, this);
 
@@ -78,7 +78,7 @@ public class Vista implements PropertyChangeListener
 
         stageMundo.getViewport().setCamera(camara);
         mundo.añadirObservador(this);
-        ui.entornoAcciones.añadirObservador(this);
+        ui.conjuntoBarraAcciones.añadirObservador(this);
 
         fps = new Texto("fps", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
                         Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
@@ -189,7 +189,7 @@ public class Vista implements PropertyChangeListener
         {
             BarraAcciones barraAcciones = ((UIDTO.AñadirBarraAccionesDTO) evt.getNewValue()).barraAcciones;
 
-            entornoAccionesView.añadirBarraAccionesView(barraAcciones);
+            conjuntoBarraAccionesView.añadirBarraAccionesView(barraAcciones);
         }
     }
 }
