@@ -88,6 +88,8 @@ public class EntornoAcciones extends AbstractModel
         else setAccion(numBarraDestino, posXDestino, posYDestino, accionOrigen);
     }
 
+
+
     public void añadirColumna (int numBarra)
     {   listaDeBarraAcciones.get(numBarra).añadirColumna(); }
     public void eliminarColuna (int numBarra)
