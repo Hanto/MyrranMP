@@ -2,7 +2,7 @@ package View.UI;// Created by Hanto on 06/05/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
-import Model.Classes.UIO.EntornoAcciones.BarraAcciones;
+import Model.Classes.UIO.ConjuntoBarraAcciones.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
 import Recursos.DAO.RSC;
 import View.Graficos.Caja;
@@ -36,8 +36,6 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
     private int redimensionarX;
     private int redimensionarY;
 
-    private boolean rebindearSkills = false;
-
     public float getEsquinaSupIzdaX()                       { return this.getX(); }
     public float getEsquinaSupIzdaY()                       { return this.getY() + this.getHeight(); }
 
@@ -54,32 +52,32 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         this.setHeight(barraModel.getNumFilas()*(MiscData.BARRASPELLS_Ancho_Casilla+2));
 
         this.bottom().left();
+        this.setPosition(500,0);
 
         for (int y=0; y< barraModel.getNumFilas(); y++)
         {   añadirFila(); }
-
         recrearTabla();
 
         vista.stageUI.addActor(this);
     }
 
-    public Icono crearIcono (int posX, int posY)
+    private Icono crearIcono (int posX, int posY)
     {
         final Icono icono = conjuntoBarraAccionesView.crearIcono(barraModel, posX, posY);
 
         icono.apariencia.addListener(new InputListener()
         {
             @Override public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
-            {   if (rebindearSkills) icono.apariencia.getStage().setKeyboardFocus(icono.apariencia); }
+            {   if (conjuntoBarraAccionesView.getRebindearSkills()) icono.apariencia.getStage().setKeyboardFocus(icono.apariencia); }
 
             //Hacemos que deje de recibir eventos de teclado, puesto que el teclado ha salido
             @Override public void exit(InputEvent event, float x, float y, int pointer, Actor fromActor)
-            {   if (rebindearSkills) icono.apariencia.getStage().setKeyboardFocus(null); }
+            {   if (conjuntoBarraAccionesView.getRebindearSkills()) icono.apariencia.getStage().setKeyboardFocus(null); }
 
             //Capturamos que tecla aprieta el player para rebindearla
             @Override public boolean keyDown (InputEvent event, int keycode)
             {   //Solo rebindeamos los skills, si esta activado el boton de rebindear
-                if (rebindearSkills)
+                if (conjuntoBarraAccionesView.getRebindearSkills())
                 {   controlador.barraAccionRebindear(barraModel, icono.posX, icono.posY, keycode); }
                 return true;
             }
@@ -88,7 +86,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         return icono;
     }
 
-    public void recrearTabla ()
+    private void recrearTabla ()
     {
         float altura = this.getHeight();
 
@@ -96,9 +94,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         this.setHeight(barraModel.getNumFilas()*(MiscData.BARRASPELLS_Ancho_Casilla+2));
 
         if (altura != this.getHeight())
-        {
-            this.setPosition(this.getX(), this.getY()-this.getHeight()+altura);
-        }
+        {   this.setPosition(this.getX(), this.getY()-this.getHeight()+altura); }
 
         this.clear();
 
@@ -112,33 +108,6 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
             this.row();
         }
 
-        final Image rebindButtonOff = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonOFF));
-        this.addActor(rebindButtonOff);
-        rebindButtonOff.setPosition(-rebindButtonOff.getWidth()-2,0);
-        rebindButtonOff.addListener(new InputListener()
-        {
-            @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
-            {   //Switch para activar y desactivar el rebindeo de Skills
-                rebindearSkills = false;
-                BarraAccionesView.this.getStage().setKeyboardFocus(null);
-                rebindButtonOff.toBack();
-                return true;
-            }
-        });
-
-        final Image rebindButtonOn = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
-        this.addActor(rebindButtonOn);
-        rebindButtonOn.setPosition(-rebindButtonOn.getWidth()-2,0);
-        rebindButtonOn.addListener(new InputListener()
-        {
-            @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
-            {   //Switch para activar y desactivar el rebindeo de Skills
-                rebindearSkills = true;
-                rebindButtonOn.toBack();
-                return true;
-            }
-        });
-
         final Image moverBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
         this.addActor(moverBarra);
         moverBarra.setPosition(-moverBarra.getWidth()-2,this.getHeight()-moverBarra.getHeight());
@@ -146,10 +115,10 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         {
             @Override public void touchDragged (InputEvent event, float x, float y, int pointer)
             {
-                int newX = (int)(BarraAccionesView.this.getX() -moverBarra.getWidth()/2 + x);
-                int newY = (int)(BarraAccionesView.this.getY() -moverBarra.getHeight()/2 + y);
-                int alto = (int)BarraAccionesView.this.getHeight();
-                int ancho = (int)BarraAccionesView.this.getWidth();
+                int newX = (int) (getX() -moverBarra.getWidth()/2 + x);
+                int newY = (int) (getY() -moverBarra.getHeight()/2 + y);
+                int alto = (int) getHeight();
+                int ancho = (int) getWidth();
 
                 if (newX - moverBarra.getWidth() < 0) newX = 0 + (int)moverBarra.getWidth();
                 if (newY < 0) newY = 0;
@@ -223,7 +192,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
 
     }
 
-    public void añadirFila()
+    private void añadirFila()
     {
         int y = barraIconos.size;
         Array<Icono>array = new Array<>();
@@ -237,7 +206,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         barraIconos.add(array);
     }
 
-    public void añadirColumna()
+    private void añadirColumna()
     {
         for (int y=0; y< barraIconos.size; y++)
         {
@@ -247,7 +216,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         }
     }
 
-    public void eliminarFila ()
+    private void eliminarFila ()
     {
         Array<Icono> array = barraIconos.peek();
         for (int i=0; i< array.size; i++)
@@ -255,7 +224,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         barraIconos.removeIndex(barraIconos.size - 1);
     }
 
-    public void eliminarColumna()
+    private void eliminarColumna()
     {
         for (int y=0; y< barraIconos.size; y++)
         {
@@ -265,16 +234,15 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
     }
 
 
-    public void setApariencia(Icono icono)
+    private void setApariencia(Icono icono)
     {
         conjuntoBarraAccionesView.setApariencia(barraModel.getAccion(icono.posX, icono.posY), icono.apariencia);
-        
-        Texto.printTexto(String.valueOf(barraModel.getKeybind(icono.posX, icono.posY)), RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
-                Color.ORANGE, Color.BLACK, 0, 20, Align.left, Align.bottom, 2, icono.apariencia);
-
+        if (barraModel.getKeybind(icono.posX, icono.posY) != null)
+        {
+            Texto.printTexto(String.valueOf(barraModel.getKeybind(icono.posX, icono.posY)), RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
+                             Color.ORANGE, Color.BLACK, 0, 20, Align.left, Align.bottom, 2, icono.apariencia);
+        }
     }
-
-
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {

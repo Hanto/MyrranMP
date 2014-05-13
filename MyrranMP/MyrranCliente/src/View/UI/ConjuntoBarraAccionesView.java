@@ -3,32 +3,37 @@ package View.UI;// Created by Hanto on 08/05/2014.
 import Controller.Controlador;
 import Data.MiscData;
 import Model.Classes.Acciones.Accion;
-import Model.Classes.UIO.EntornoAcciones.BarraAcciones;
-import Model.Classes.UIO.EntornoAcciones.ListaAccionesI;
+import Model.Classes.UIO.ConjuntoBarraAcciones.BarraAcciones;
+import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesI;
 import Recursos.DAO.RSC;
 import View.Vista;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
 
-import static com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
-import static com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
+import static com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.*;
 
 public class ConjuntoBarraAccionesView
 {
-    public Controlador controlador;
-    public Vista vista;
+    private Controlador controlador;
+    private Vista vista;
 
-    public Array<BarraAccionesView> listaBarraAccionesView = new Array<>();
-    public DragAndDrop dadAcciones = new DragAndDrop();
+    private Array<BarraAccionesView> listaBarraAccionesView = new Array<>();
+    private DragAndDrop dadAcciones = new DragAndDrop();
+
+    private boolean rebindearSkills = false;
+
+    public boolean getRebindearSkills()             { return rebindearSkills; }
 
     public static class Icono
     {
         public ListaAccionesI barra;
         public int posX;
         public int posY;
+
         public Group apariencia;
         public Source source;
         public Target target;
@@ -45,6 +50,7 @@ public class ConjuntoBarraAccionesView
         controlador = controller;
         vista = view;
         dadAcciones.setDragTime(0);
+        crearBotonesRebind();
     }
 
     public void añadirBarraAccionesView(BarraAcciones barracciones)
@@ -59,7 +65,7 @@ public class ConjuntoBarraAccionesView
 
         icono.source = new Source(icono.apariencia)
         {
-            @Override public DragAndDrop.Payload dragStart(InputEvent inputEvent, float v, float v2, int i)
+            @Override public Payload dragStart(InputEvent inputEvent, float v, float v2, int i)
             {
                 if (barra.getAccion(icono.posX, icono.posY) != null)
                 {
@@ -76,13 +82,13 @@ public class ConjuntoBarraAccionesView
 
         icono.target = new Target(icono.apariencia)
         {
-            @Override public boolean drag(Source source, DragAndDrop.Payload payload, float v, float v2, int i)
+            @Override public boolean drag(Source source, Payload payload, float v, float v2, int i)
             {   return true; }
 
-            @Override public void reset(Source source, DragAndDrop.Payload payload)
+            @Override public void reset(Source source, Payload payload)
             {   super.reset(source, payload); }
 
-            @Override public void drop(Source source, DragAndDrop.Payload payload, float v, float v2, int i)
+            @Override public void drop(Source source, Payload payload, float v, float v2, int i)
             {
                 Icono origen = ((Icono) payload.getObject());
                 controlador.barraAccionMoverAccion(origen.barra, origen.posX, origen.posY, icono.barra, icono.posX, icono.posY);
@@ -124,10 +130,39 @@ public class ConjuntoBarraAccionesView
         }
     }
 
-    public Group getApariencia (Accion accion)
+    private Group getApariencia (Accion accion)
     {
         Group group = new Group();
         setApariencia(accion, group);
         return group;
+    }
+
+    private void crearBotonesRebind()
+    {
+        final Image rebindButtonOff = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonOFF));
+        vista.stageUI.addActor(rebindButtonOff);
+        rebindButtonOff.setPosition(32,0);
+        rebindButtonOff.addListener(new InputListener()
+        {
+            @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+            {   //Switch para activar y desactivar el rebindeo de Skills
+                rebindearSkills = false;
+                rebindButtonOff.toBack();
+                return true;
+            }
+        });
+
+        final Image rebindButtonOn = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
+        vista.stageUI.addActor(rebindButtonOn);
+        rebindButtonOn.setPosition(32,0);
+        rebindButtonOn.addListener(new InputListener()
+        {
+            @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+            {   //Switch para activar y desactivar el rebindeo de Skills
+                rebindearSkills = true;
+                rebindButtonOn.toBack();
+                return true;
+            }
+        });
     }
 }

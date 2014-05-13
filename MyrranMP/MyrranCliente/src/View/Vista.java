@@ -7,7 +7,7 @@ import Model.Classes.GameState.UI;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.PC;
 import Model.Classes.Mobiles.Player;
-import Model.Classes.UIO.EntornoAcciones.BarraAcciones;
+import Model.Classes.UIO.ConjuntoBarraAcciones.BarraAcciones;
 import Model.DTO.MundoDTO;
 import Model.DTO.UIDTO;
 import Recursos.DAO.RSC;

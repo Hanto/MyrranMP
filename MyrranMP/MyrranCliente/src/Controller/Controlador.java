@@ -5,8 +5,8 @@ import Controller.Input.PlayerMouseKeyI;
 import Model.Classes.GameState.Mundo;
 import Model.Classes.GameState.UI;
 import Model.Classes.Mobiles.Player;
-import Model.Classes.UIO.EntornoAcciones.ListaAccionesBI;
-import Model.Classes.UIO.EntornoAcciones.ListaAccionesI;
+import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesBI;
+import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesI;
 import Model.DTO.NetDTO;
 import View.Vista;
 import com.badlogic.gdx.Gdx;
@@ -45,7 +45,7 @@ public class Controlador
 
         añadirBarraAcciones(3, 10);
         ui.añadirAccionesEnBarra(0);
-        //añadirBarraAcciones(2, 10);
+        añadirBarraAcciones(2, 10);
 
         moverPlayer(1000,500);
     }

@@ -1,4 +1,4 @@
-package Model.Classes.UIO.EntornoAcciones;// Created by Hanto on 08/05/2014.
+package Model.Classes.UIO.ConjuntoBarraAcciones;// Created by Hanto on 08/05/2014.
 
 import Model.Classes.AbstractModel;
 import Model.Classes.Acciones.Accion;

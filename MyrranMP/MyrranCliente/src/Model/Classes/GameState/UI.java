@@ -1,9 +1,9 @@
 package Model.Classes.GameState;// Created by Hanto on 06/05/2014.
 
 import Model.Classes.Mobiles.Player;
-import Model.Classes.UIO.EntornoAcciones.ConjuntoBarraAcciones;
-import Model.Classes.UIO.EntornoAcciones.ListaAccionesBI;
-import Model.Classes.UIO.EntornoAcciones.ListaAccionesI;
+import Model.Classes.UIO.ConjuntoBarraAcciones.ConjuntoBarraAcciones;
+import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesBI;
+import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesI;
 import Model.Classes.UIO.Keybinds;
 import Model.Classes.UIO.PlayerEstado;
 import Model.Classes.UIO.PlayerIO;
