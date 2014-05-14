@@ -1,4 +1,4 @@
-package View.UI.DragAndDrop;// Created by Hanto on 13/05/2014.
+package View.UI.ConjuntoBarraAccionView.IconoAccion;// Created by Hanto on 13/05/2014.
 
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;

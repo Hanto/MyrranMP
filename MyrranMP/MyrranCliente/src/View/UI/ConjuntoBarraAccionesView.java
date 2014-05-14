@@ -4,7 +4,7 @@ import Controller.Controlador;
 import Data.MiscData;
 import Model.Classes.UIO.ConjuntoBarraAcciones.BarraAcciones;
 import Recursos.DAO.RSC;
-import View.UI.BarraAccionesView.BarraAccionesView;
+import View.UI.ConjuntoBarraAccionView.BarraAccionesView.BarraAccionesView;
 import View.Vista;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -34,7 +34,7 @@ public class ConjuntoBarraAccionesView
 
     public void añadirBarraAccionesView(BarraAcciones barracciones)
     {
-        BarraAccionesView barraAccionesView = new BarraAccionesView(barracciones, this, vista, controlador);
+        BarraAccionesView barraAccionesView = new BarraAccionesView(barracciones, this, vista.stageUI, controlador);
         listaBarraAccionesView.add(barraAccionesView);
     }
 

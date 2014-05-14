@@ -1,5 +1,6 @@
 package Model.Classes.UIO;// Created by Hanto on 05/05/2014.
 
+import Controller.Controlador;
 import Model.Classes.Mobiles.Player;
 import Model.DAO.DAO;
 
@@ -10,12 +11,17 @@ public class Keybinds
 {
     private Player player;
     private PlayerEstado playerE;
+    private Controlador controlador;
 
     public Map<Integer, String> listaDeBinds = new HashMap<>();
 
 
-    public Keybinds (Player player, PlayerEstado playerE)
-    {   this.player = player; this.playerE = playerE;  }
+    public Keybinds (Player player, PlayerEstado playerE, Controlador controlador)
+    {
+        this.player = player;
+        this.playerE = playerE;
+        this.controlador = controlador;
+    }
 
     public void eliminarKeybind (int keycode)
     {   listaDeBinds.remove(keycode); }
@@ -29,7 +35,7 @@ public class Keybinds
         if (listaDeBinds.containsKey(keycode))
         {
             String idAccion = listaDeBinds.get(keycode);
-            DAO.accionDAOFactory.getAccionDAO().getAccion(idAccion).accionKeyDown(player, playerE);
+            DAO.accionDAOFactory.getAccionDAO().getAccion(idAccion).accionKeyDown(player, playerE, controlador);
         }
     }
 
@@ -38,7 +44,7 @@ public class Keybinds
         if (listaDeBinds.containsKey(keycode))
         {
             String idAccion = listaDeBinds.get(keycode);
-            DAO.accionDAOFactory.getAccionDAO().getAccion(idAccion).accionKeyUp(player, playerE);
+            DAO.accionDAOFactory.getAccionDAO().getAccion(idAccion).accionKeyUp(player, playerE, controlador);
         }
     }
 

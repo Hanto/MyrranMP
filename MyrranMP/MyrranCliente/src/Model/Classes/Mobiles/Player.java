@@ -18,7 +18,7 @@ public class Player extends AbstractModel implements Caster
 
     protected Integer numAnimacion = 5;
 
-    protected Float velocidadMax = 80.0f;
+    protected Float velocidadMax = 160.0f;
     protected Float velocidadMod = 1.0f;
 
     protected String nombre;

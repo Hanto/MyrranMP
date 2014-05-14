@@ -1,5 +1,6 @@
 package Model.Classes.GameState;// Created by Hanto on 06/05/2014.
 
+import Controller.Controlador;
 import Model.Classes.Mobiles.Player;
 import Model.Classes.UIO.ConjuntoBarraAcciones.ConjuntoBarraAcciones;
 import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesBI;
@@ -11,17 +12,19 @@ import Model.Classes.UIO.PlayerIO;
 
 public class UI
 {
-    public Keybinds keybinds;
-    public ConjuntoBarraAcciones conjuntoBarraAcciones;
-
+    protected Keybinds keybinds;
     protected PlayerIO playerInput = new PlayerIO();
     protected PlayerIO playerOutput = new PlayerIO();
     protected PlayerEstado playerEstado = new PlayerEstado(playerInput, playerOutput);
+    
+    public ConjuntoBarraAcciones conjuntoBarraAcciones;
 
 
-    public UI (Player player)
+
+
+    public UI (Player player, Controlador controlador)
     {
-        keybinds = new Keybinds(player, playerEstado);
+        keybinds = new Keybinds(player, playerEstado, controlador);
         conjuntoBarraAcciones = new ConjuntoBarraAcciones(keybinds);
     }
 

@@ -1,6 +1,6 @@
-package View.UI.BarraAccionesView;// Created by Hanto on 13/05/2014.
+package View.UI.ConjuntoBarraAccionView.BarraAccionesView;// Created by Hanto on 13/05/2014.
 
-import Controller.Controlador;
+import Controller.Interfaces.ControladorBarraAccionI;
 import Data.MiscData;
 import Model.Classes.UIO.ConjuntoBarraAcciones.BarraAcciones;
 import View.Graficos.Caja;
@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
 public class BarraResizeListener extends DragListener
 {
-    private Controlador controlador;
+    private ControladorBarraAccionI controlador;
     private BarraAcciones barraModel;
     private BarraAccionesView barraView;
     private Actor actor;
@@ -19,7 +19,7 @@ public class BarraResizeListener extends DragListener
     private float redimensionarY;
     private Caja caja = new Caja();
 
-    public BarraResizeListener(Actor actor, BarraAccionesView barraAccionesView, BarraAcciones barraModel, Controlador controlador)
+    public BarraResizeListener(Actor actor, BarraAccionesView barraAccionesView, BarraAcciones barraModel, ControladorBarraAccionI controlador)
     {
         this.controlador = controlador;
         this.barraModel = barraModel;

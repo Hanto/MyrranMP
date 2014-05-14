@@ -1,6 +1,6 @@
-package View.UI.DragAndDrop;// Created by Hanto on 13/05/2014.
+package View.UI.ConjuntoBarraAccionView.IconoAccion;// Created by Hanto on 13/05/2014.
 
-import Controller.Controlador;
+import Controller.Interfaces.ControladorBarraAccionI;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
 import static com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
@@ -9,9 +9,9 @@ public class AccionTarget extends Target
 {
     private IconoAccion iconoAccion;
     private DragAndDrop dad;
-    private Controlador controlador;
+    private ControladorBarraAccionI controlador;
 
-    public AccionTarget(IconoAccion iconoAccion, DragAndDrop dad, Controlador controlador)
+    public AccionTarget(IconoAccion iconoAccion, DragAndDrop dad, ControladorBarraAccionI controlador)
     {
         super(iconoAccion.getApariencia());
         this.iconoAccion = iconoAccion;

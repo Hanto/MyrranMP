@@ -1,9 +1,9 @@
-package View.UI.BarraAccionesView;// Created by Hanto on 13/05/2014.
+package View.UI.ConjuntoBarraAccionView.BarraAccionesView;// Created by Hanto on 13/05/2014.
 
-import Controller.Controlador;
+import Controller.Interfaces.ControladorBarraAccionI;
 import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesBI;
+import View.UI.ConjuntoBarraAccionView.IconoAccion.IconoAccion;
 import View.UI.ConjuntoBarraAccionesView;
-import View.UI.DragAndDrop.IconoAccion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -12,10 +12,10 @@ public class BarraRebindListener extends InputListener
 {
     private ConjuntoBarraAccionesView conjuntoBarraAccionesView;
     private IconoAccion icono;
-    private Controlador controlador;
+    private ControladorBarraAccionI controlador;
 
 
-    public BarraRebindListener(IconoAccion icono, ConjuntoBarraAccionesView conjuntoBarraAccionesView, Controlador controlador)
+    public BarraRebindListener(IconoAccion icono, ConjuntoBarraAccionesView conjuntoBarraAccionesView, ControladorBarraAccionI controlador)
     {
         this.conjuntoBarraAccionesView = conjuntoBarraAccionesView;
         this.icono = icono;

@@ -1,15 +1,15 @@
-package View.UI.BarraAccionesView;// Created by Hanto on 06/05/2014.
+package View.UI.ConjuntoBarraAccionView.BarraAccionesView;// Created by Hanto on 06/05/2014.
 
-import Controller.Controlador;
+import Controller.Interfaces.ControladorBarraAccionI;
 import Data.MiscData;
 import Model.Classes.UIO.ConjuntoBarraAcciones.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
 import Recursos.DAO.RSC;
 import View.Graficos.Texto;
+import View.UI.ConjuntoBarraAccionView.IconoAccion.IconoAccion;
 import View.UI.ConjuntoBarraAccionesView;
-import View.UI.DragAndDrop.IconoAccion;
-import View.Vista;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -22,20 +22,20 @@ import java.beans.PropertyChangeListener;
 public class BarraAccionesView extends Table implements PropertyChangeListener
 {
     private BarraAcciones barraModel;
-    private Vista vista;
-    private Controlador controlador;
+    private Stage stage;
     private DragAndDrop dad;
     private ConjuntoBarraAccionesView conjuntoBarraAccionesView;
+    private ControladorBarraAccionI controlador;
 
     private Array<Array<IconoAccion>> barraIconos = new Array<>();
 
     public float getEsquinaSupIzdaX()                       { return this.getX(); }
     public float getEsquinaSupIzdaY()                       { return this.getY() + this.getHeight(); }
 
-    public BarraAccionesView(BarraAcciones barraAcciones, ConjuntoBarraAccionesView conjuntoBarraAccionesView, Vista view, Controlador controller)
+    public BarraAccionesView(BarraAcciones barraAcciones, ConjuntoBarraAccionesView conjuntoBarraAccionesView, Stage stage, ControladorBarraAccionI controller)
     {
         this.barraModel = barraAcciones;
-        this.vista = view;
+        this.stage = stage;
         this.controlador = controller;
         this.conjuntoBarraAccionesView = conjuntoBarraAccionesView;
         this.dad = conjuntoBarraAccionesView.getDadAcciones();
@@ -52,7 +52,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         {   añadirFila(); }
         recrearTabla();
 
-        vista.stageUI.addActor(this);
+        this.stage.addActor(this);
     }
 
     private IconoAccion crearIcono (int posX, int posY)

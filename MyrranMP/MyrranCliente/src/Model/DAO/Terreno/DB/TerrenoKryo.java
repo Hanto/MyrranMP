@@ -3,6 +3,7 @@ package Model.DAO.Terreno.DB;// Created by Hanto on 14/04/2014.
 import Model.DAO.Terreno.TerrenoDAO;
 import Model.Classes.Geo.Terreno;
 
+import java.util.Iterator;
 import java.util.Map;
 
 public class TerrenoKryo implements TerrenoDAO
@@ -37,4 +38,7 @@ public class TerrenoKryo implements TerrenoDAO
 
     @Override public Terreno getTerreno(int terrenoID)
     {   return listaDeTerrenos.get(terrenoID); }
+
+    @Override public Iterator<Terreno> getIterator()
+    {   return listaDeTerrenos.values().iterator(); }
 }

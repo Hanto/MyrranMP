@@ -1,6 +1,6 @@
-package View.UI.DragAndDrop;// Created by Hanto on 13/05/2014.
+package View.UI.ConjuntoBarraAccionView.IconoAccion;// Created by Hanto on 13/05/2014.
 
-import Controller.Controlador;
+import Controller.Interfaces.ControladorBarraAccionI;
 import Data.MiscData;
 import Model.Classes.Acciones.Accion;
 import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesI;
@@ -69,13 +69,13 @@ public class IconoAccion
         dad.addSource(source);
     }
 
-    public void addTarget(DragAndDrop dad, Controlador controlador)
+    public void addTarget(DragAndDrop dad, ControladorBarraAccionI controlador)
     {
         target = new AccionTarget(this, dad, controlador);
         dad.addTarget(target);
     }
 
-    public void addDragAndDrop(DragAndDrop dad, Controlador controlador)
+    public void addDragAndDrop(DragAndDrop dad, ControladorBarraAccionI controlador)
     {
         addSource(dad);
         addTarget(dad, controlador);

@@ -2,6 +2,7 @@ package Controller;// Created by Hanto on 08/04/2014.
 
 import Controller.Input.PlayerGestures;
 import Controller.Input.PlayerMouseKeyI;
+import Controller.Interfaces.ControladorBarraAccionI;
 import Model.Classes.GameState.Mundo;
 import Model.Classes.GameState.UI;
 import Model.Classes.Mobiles.Player;
@@ -15,7 +16,7 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 //CLIENTE:
-public class Controlador
+public class Controlador implements ControladorBarraAccionI
 {
     protected Cliente cliente;
     protected Player player;
@@ -31,7 +32,7 @@ public class Controlador
         this.player = player;
         this.mundo = mundo;
 
-        ui = new UI(player);
+        ui = new UI(player, this);
 
         vista = new Vista(this, player, ui, mundo);
 
@@ -101,15 +102,16 @@ public class Controlador
     {   ui.keybinds.touchDragged(screenX, screenY, pointer); }
 
     //BarrasAccion:
-    public void añadirBarraAcciones(int filas, int columnas)            { ui.añadirBarraAcciones(filas, columnas); }
-    public void barraAccionMoverAccion(ListaAccionesI barraOrigen, int posXOrigen, int posYOrigen, ListaAccionesI barraDestino,int posXDestino, int posYDestino)
+    @Override public void añadirBarraAcciones(int filas, int columnas)            { ui.añadirBarraAcciones(filas, columnas); }
+    @Override public void barraAccionMoverAccion(ListaAccionesI barraOrigen, int posXOrigen, int posYOrigen, ListaAccionesI barraDestino,int posXDestino, int posYDestino)
     {   ui.moverAccion(barraOrigen, posXOrigen, posYOrigen, barraDestino, posXDestino, posYDestino);}
-    public void barraAccionRebindear(ListaAccionesBI barra, int posX, int posY, int keycode)
+    @Override public void barraAccionRebindear(ListaAccionesBI barra, int posX, int posY, int keycode)
     {   ui.setKeyCode(barra, posX, posY, keycode);}
-    public void barraAñadirColumna(ListaAccionesBI barra)               { barra.añadirColumna(); }
-    public void barraAñadirFila (ListaAccionesBI barra)                 { barra.añadirFila(); }
-    public void barraEliminarColumna (ListaAccionesBI barra)            { barra.eliminarColumna(); }
-    public void barraEliminarFila (ListaAccionesBI barra)               { barra.eliminarFila(); }
+    @Override public void barraAñadirColumna(ListaAccionesBI barra)               { barra.añadirColumna(); }
+    @Override public void barraAñadirFila (ListaAccionesBI barra)                 { barra.añadirFila(); }
+    @Override public void barraEliminarColumna (ListaAccionesBI barra)            { barra.eliminarColumna(); }
+    @Override public void barraEliminarFila (ListaAccionesBI barra)               { barra.eliminarFila(); }
 
-
+    public void añadirBarraTerrenos()
+    {   ui.}
 }
