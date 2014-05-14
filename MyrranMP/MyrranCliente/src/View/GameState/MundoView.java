@@ -1,4 +1,4 @@
-package View.ViewState;// Created by Hanto on 14/05/2014.
+package View.GameState;// Created by Hanto on 14/05/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
@@ -58,7 +58,6 @@ public class MundoView extends Stage implements PropertyChangeListener
         camara.zoom = zoom;
     }
 
-
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
         if (evt.getNewValue() instanceof MundoDTO.AñadirPC)
@@ -70,5 +69,4 @@ public class MundoView extends Stage implements PropertyChangeListener
             listaPCViews.add(pcView);
         }
     }
-
 }

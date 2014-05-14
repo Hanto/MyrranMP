@@ -1,6 +1,5 @@
 package Model.GameState;// Created by Hanto on 08/04/2014.
 
-import Data.MiscData;
 import Model.Classes.AbstractModel;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.PC;
@@ -23,14 +22,14 @@ public class Mundo extends AbstractModel
     public PC getPC (int connectionID)             { return mapaPlayers.get(connectionID); }
 
     public Mundo()
-    {
+    {/*
         for (int x = 0; x< MiscData.MAPA_Max_TilesX; x++)
         {
             for (int y = 0; y< MiscData.MAPA_Max_TilesY; y++)
             {
                 mapa.setTerreno(x,y,0,0);
             }
-        }
+        }*/
     }
 
     //SE NOTIFICA:

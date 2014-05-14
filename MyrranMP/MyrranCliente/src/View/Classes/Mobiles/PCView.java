@@ -6,7 +6,7 @@ import Model.Classes.Mobiles.PC;
 import Model.DTO.PcDTO;
 import Model.DTO.PlayerDTO;
 import View.Classes.Graficos.PixiePC;
-import View.ViewState.MundoView;
+import View.GameState.MundoView;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;

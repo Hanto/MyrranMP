@@ -56,8 +56,6 @@ public class GameData
         listaTerrenoRSC.add(new GameDataDTO.TerrenoRSCDTO   ("Cesped3"));
         listaTerrenoRSC.add(new GameDataDTO.TerrenoRSCDTO   ("Cesped4"));
         listaTerrenoRSC.add(new GameDataDTO.TerrenoRSCDTO   ("Cesped5"));
-        listaTerrenoRSC.add(new GameDataDTO.TerrenoRSCDTO   ("Suelo"));
-        listaTerrenoRSC.add(new GameDataDTO.TerrenoRSCDTO   ("Suelo2"));
         listaTerrenoRSC.add(new GameDataDTO.TerrenoRSCDTO   ("Tierra1"));
         listaTerrenoRSC.add(new GameDataDTO.TerrenoRSCDTO   ("Tierra2"));
         listaTerrenoRSC.add(new GameDataDTO.TerrenoRSCDTO   ("Tierra3"));
@@ -74,8 +72,6 @@ public class GameData
         listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (7, "Cesped3",      false, "Cesped3"));
         listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (8, "Cesped4",      false, "Cesped4"));
         listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (9, "Cesped5",      false, "Cesped5"));
-        listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (10, "Suelo",       false, "Suelo"));
-        listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (11, "Suelo2",      false, "Suelo2"));
         listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (12, "Tierra1",     false, "Tierra1"));
         listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (13, "Tierra2",     false, "Tierra2"));
         listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (14, "Tierra3",     false, "Tierra3"));

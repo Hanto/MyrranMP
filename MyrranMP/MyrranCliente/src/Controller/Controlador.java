@@ -3,12 +3,13 @@ package Controller;// Created by Hanto on 08/04/2014.
 import Controller.Input.PlayerGestures;
 import Controller.Input.PlayerMouseKeyI;
 import Controller.Interfaces.ControladorBarraAccionI;
-import Model.GameState.Mundo;
-import Model.GameState.UI;
 import Model.Classes.Mobiles.Player;
 import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesBI;
 import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesI;
+import Model.Classes.UIO.ConjuntoBarraAcciones.ListaRedimensionableI;
 import Model.DTO.NetDTO;
+import Model.GameState.Mundo;
+import Model.GameState.UI;
 import View.Vista;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -107,8 +108,8 @@ public class Controlador implements ControladorBarraAccionI
     {   ui.moverAccion(barraOrigen, posXOrigen, posYOrigen, barraDestino, posXDestino, posYDestino);}
     @Override public void barraAccionRebindear(ListaAccionesBI barra, int posX, int posY, int keycode)
     {   ui.setKeyCode(barra, posX, posY, keycode);}
-    @Override public void barraAñadirColumna(ListaAccionesBI barra)               { barra.añadirColumna(); }
-    @Override public void barraAñadirFila (ListaAccionesBI barra)                 { barra.añadirFila(); }
-    @Override public void barraEliminarColumna (ListaAccionesBI barra)            { barra.eliminarColumna(); }
-    @Override public void barraEliminarFila (ListaAccionesBI barra)               { barra.eliminarFila(); }
+    @Override public void barraAñadirColumna(ListaRedimensionableI barra)         { barra.añadirColumna(); }
+    @Override public void barraAñadirFila (ListaRedimensionableI barra)           { barra.añadirFila(); }
+    @Override public void barraEliminarColumna (ListaRedimensionableI barra)      { barra.eliminarColumna(); }
+    @Override public void barraEliminarFila (ListaRedimensionableI barra)         { barra.eliminarFila(); }
 }

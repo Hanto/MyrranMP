@@ -3,7 +3,7 @@ package View.Classes.Geo;// Created by Hanto on 16/04/2014.
 import Data.MiscData;
 import Model.Classes.Geo.Mapa;
 import Model.DTO.MapaDTO;
-import View.ViewState.MundoView;
+import View.GameState.MundoView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 

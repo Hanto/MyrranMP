@@ -4,7 +4,7 @@ import Controller.Controlador;
 import Model.Classes.Acciones.Accion;
 import Model.Classes.Mobiles.Player;
 import Model.Classes.Skill.Spell.Spell;
-import Model.Classes.UIO.PlayerEstado;
+import Model.Classes.UIO.Input.PlayerEstado;
 
 public class SeleccionarSpell extends Accion
 {

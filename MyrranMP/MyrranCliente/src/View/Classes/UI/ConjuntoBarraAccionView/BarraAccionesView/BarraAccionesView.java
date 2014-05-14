@@ -27,6 +27,9 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
     private ConjuntoBarraAccionesView conjuntoBarraAccionesView;
     private ControladorBarraAccionI controlador;
 
+    private Image moverBarra;
+    private Image redimensionarBarra;
+
     private Array<Array<IconoAccion>> barraIconos = new Array<>();
 
     public float getEsquinaSupIzdaX()                       { return this.getX(); }
@@ -48,9 +51,16 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         this.bottom().left();
         this.setPosition(500,0);
 
+        moverBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
+        moverBarra.addListener(new BarraMoverListener(moverBarra, this));
+        this.addActor(moverBarra);
+
+        redimensionarBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
+        redimensionarBarra.addListener(new BarraResizeListener(redimensionarBarra, this, barraModel, controlador));
+        this.addActor(redimensionarBarra);
+
         for (int y=0; y< barraModel.getNumFilas(); y++)
         {   añadirFila(); }
-        recrearTabla();
 
         this.stage.addActor(this);
     }
@@ -85,15 +95,10 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
             this.row();
         }
 
-        final Image moverBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
-        this.addActor(moverBarra);
         moverBarra.setPosition(-moverBarra.getWidth()-2,this.getHeight()-moverBarra.getHeight());
-        moverBarra.addListener(new BarraMoverListener(moverBarra, this));
-
-        final Image redimensionarBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
-        this.addActor(redimensionarBarra);
+        this.addActor(moverBarra);
         redimensionarBarra.setPosition(this.getWidth(),-redimensionarBarra.getHeight());
-        redimensionarBarra.addListener(new BarraResizeListener(redimensionarBarra, this, barraModel, controlador));
+        this.addActor(redimensionarBarra);
     }
 
     private void añadirFila()
@@ -108,6 +113,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         }
 
         barraIconos.add(array);
+        recrearTabla();
     }
 
     private void añadirColumna()
@@ -118,6 +124,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
             IconoAccion icono = crearIcono(x, y);
             barraIconos.get(y).add(icono);
         }
+        recrearTabla();
     }
 
     private void eliminarFila ()
@@ -126,6 +133,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
         for (int i=0; i< array.size; i++)
         {   array.get(i).eliminarIcono(dad); }
         barraIconos.removeIndex(barraIconos.size - 1);
+        recrearTabla();
     }
 
     private void eliminarColumna()
@@ -135,6 +143,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener
             IconoAccion icono = barraIconos.get(y).pop();
             icono.eliminarIcono(dad);
         }
+        recrearTabla();
     }
 
 

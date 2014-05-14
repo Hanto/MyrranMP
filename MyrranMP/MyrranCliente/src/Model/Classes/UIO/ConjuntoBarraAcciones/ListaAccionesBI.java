@@ -2,7 +2,7 @@ package Model.Classes.UIO.ConjuntoBarraAcciones;// Created by Hanto on 13/05/201
 
 import Model.Classes.Acciones.Accion;
 
-public interface ListaAccionesBI extends ListaAccionesI
+public interface ListaAccionesBI extends ListaAccionesI, ListaRedimensionableI
 {
     public void setAccion(int posX, int posY, Accion accion);
     public void eliminarAccion(int posX, int posY);
@@ -10,9 +10,4 @@ public interface ListaAccionesBI extends ListaAccionesI
     public String getKeybind (int posX, int posY);
     public void setKeycode (int posX, int posY, int keycode);
     public void eliminarKeycode(int keycode);
-
-    public void eliminarFila();
-    public void añadirFila();
-    public void eliminarColumna();
-    public void añadirColumna();
 }

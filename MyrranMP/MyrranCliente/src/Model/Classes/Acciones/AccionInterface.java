@@ -2,7 +2,7 @@ package Model.Classes.Acciones;// Created by Hanto on 05/05/2014.
 
 import Controller.Controlador;
 import Model.Classes.Mobiles.Player;
-import Model.Classes.UIO.PlayerEstado;
+import Model.Classes.UIO.Input.PlayerEstado;
 
 public interface AccionInterface
 {

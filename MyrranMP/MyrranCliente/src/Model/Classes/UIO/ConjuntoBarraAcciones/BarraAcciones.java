@@ -3,15 +3,13 @@ package Model.Classes.UIO.ConjuntoBarraAcciones;// Created by Hanto on 06/05/201
 import Data.MiscData;
 import Model.Classes.AbstractModel;
 import Model.Classes.Acciones.Accion;
-import Model.Classes.UIO.Keybinds;
+import Model.Classes.UIO.Input.Keybinds;
 import Model.DTO.BarraAccionesDTO;
 import com.badlogic.gdx.utils.Array;
 
 public class BarraAcciones extends AbstractModel implements ListaAccionesBI
 {
     private int iD;
-    //private Map<Integer,Casilla> barraAcciones = new HashMap<>();
-
     private Array<Array<Casilla>> barraAcciones = new Array<>();
 
     private Keybinds keybinds;
@@ -121,9 +119,6 @@ public class BarraAcciones extends AbstractModel implements ListaAccionesBI
         Object removeAccionDTO = new BarraAccionesDTO.EliminarAccionDTO(posX, posY);
         notificarActualizacion("eliminarAccion", null, removeAccionDTO);
     }
-
-
-
 
     @Override public void eliminarFila()
     {

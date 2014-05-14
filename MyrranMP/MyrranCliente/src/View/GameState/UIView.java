@@ -1,4 +1,4 @@
-package View.ViewState;// Created by Hanto on 14/05/2014.
+package View.GameState;// Created by Hanto on 14/05/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
@@ -7,6 +7,7 @@ import Model.DTO.UIDTO;
 import Model.GameState.UI;
 import Recursos.DAO.RSC;
 import View.Classes.Graficos.Texto;
+import View.Classes.UI.BarraTerrenosView.BarraTerrenosView;
 import View.Classes.UI.ConjuntoBarraAccionesView;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -20,6 +21,7 @@ public class UIView extends Stage implements PropertyChangeListener
     protected Controlador controlador;
 
     protected ConjuntoBarraAccionesView conjuntoBarraAccionesView;
+    protected BarraTerrenosView barraTerrenosView;
     protected Texto fps;
 
     public void setTextoFPS(String s)                           { fps.setTexto(s); }
@@ -28,6 +30,8 @@ public class UIView extends Stage implements PropertyChangeListener
     {
         this.controlador = controlador;
         conjuntoBarraAccionesView = new ConjuntoBarraAccionesView(this.controlador, this);
+        barraTerrenosView = new BarraTerrenosView(this.controlador, this);
+
         fps = new Texto("fps", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
                         Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
         addActor(fps);

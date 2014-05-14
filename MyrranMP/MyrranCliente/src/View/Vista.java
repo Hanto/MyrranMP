@@ -6,8 +6,8 @@ import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.Player;
 import Model.GameState.Mundo;
 import Model.GameState.UI;
-import View.ViewState.MundoView;
-import View.ViewState.UIView;
+import View.GameState.MundoView;
+import View.GameState.UIView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -69,7 +69,7 @@ public class Vista
         uiView.act(delta);
         uiView.draw();
 
-        uiView.setTextoFPS(Integer.toString(Gdx.graphics.getFramesPerSecond())+"fps");
+        uiView.setTextoFPS(Integer.toString(Gdx.graphics.getFramesPerSecond()) + "fps");
     }
 
     public void resize (int anchura, int altura)
