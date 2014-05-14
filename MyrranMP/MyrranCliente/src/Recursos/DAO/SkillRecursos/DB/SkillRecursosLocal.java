@@ -4,7 +4,7 @@ import Recursos.DAO.SkillRecursos.SkillRecursosDAO;
 import Data.MiscData;
 import Recursos.Classes.SpellRecursos;
 import Recursos.Classes.TipoSpellRecursos;
-import View.Graficos.Pixie;
+import View.Classes.Graficos.Pixie;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 

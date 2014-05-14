@@ -4,7 +4,7 @@ import Controller.Controlador;
 import Model.DTO.MundoDTO;
 import Model.Classes.Mobiles.Mundo;
 import Model.Classes.Mobiles.PC;
-import View.Mobiles.PcView;
+import View.Classes.Mobiles.PcView;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

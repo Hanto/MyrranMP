@@ -1,6 +1,6 @@
 package Recursos.Classes;// Created by Hanto on 30/04/2014.
 
-import View.Graficos.Pixie;
+import View.Classes.Graficos.Pixie;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class SpellRecursos

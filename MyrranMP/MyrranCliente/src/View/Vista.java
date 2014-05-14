@@ -2,58 +2,31 @@ package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
-import Model.Classes.GameState.Mundo;
-import Model.Classes.GameState.UI;
 import Model.Classes.Geo.Mapa;
-import Model.Classes.Mobiles.PC;
 import Model.Classes.Mobiles.Player;
-import Model.Classes.UIO.ConjuntoBarraAcciones.BarraAcciones;
-import Model.DTO.MundoDTO;
-import Model.DTO.UIDTO;
-import Recursos.DAO.RSC;
-import View.Geo.MapaView;
-import View.Graficos.Texto;
-import View.Mobiles.PCView;
-import View.Mobiles.PlayerView;
-import View.UI.ConjuntoBarraAccionesView;
+import Model.GameState.Mundo;
+import Model.GameState.UI;
+import View.ViewState.MundoView;
+import View.ViewState.UIView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
-import com.badlogic.gdx.utils.Array;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
-public class Vista implements PropertyChangeListener
+public class Vista
 {
     public Controlador controlador;
     public Player player;
     public UI ui;
     public Mundo mundo;
-
     public Mapa mapa;
 
-    public PlayerView playerView;
-    public Array<PCView> listaPCViews = new Array<>();
-    public ConjuntoBarraAccionesView conjuntoBarraAccionesView;
+    private MundoView mundoView;
+    private UIView uiView;
 
-    public MapaView mapaView;
-
-    public Stage stageMundo;
-    public Stage stageUI;
-    public OrthographicCamera camara;
     public SpriteBatch batch;
     private ShapeRenderer shape = new ShapeRenderer();
-
-    private Texto fps;
-    private int nivelDeZoom = 0;
 
     public Vista (Controlador controlador, Player player, UI ui, Mundo mundo)
     {
@@ -63,27 +36,10 @@ public class Vista implements PropertyChangeListener
         this.mundo = mundo;
         this.mapa = mundo.mapa;
 
-        camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch = new SpriteBatch();
-        stageMundo = new Stage();
-        stageUI = new Stage();
-        playerView = new PlayerView(this.player, this, controlador);
-        conjuntoBarraAccionesView = new ConjuntoBarraAccionesView(controlador, this);
 
-        mapaView = new MapaView(mapa, playerView.getX(), playerView.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY, this);
-
-
-        controlador.addInputProcessor(stageUI);
-        controlador.addInputProcessor(stageMundo);
-
-        stageMundo.getViewport().setCamera(camara);
-        mundo.añadirObservador(this);
-        ui.conjuntoBarraAcciones.añadirObservador(this);
-
-        fps = new Texto("fps", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
-                        Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
-
-        stageUI.addActor(fps);
+        mundoView = new MundoView(controlador, player, mundo);
+        uiView = new UIView(controlador, ui);
     }
 
     public void render (float delta)
@@ -93,51 +49,50 @@ public class Vista implements PropertyChangeListener
 
         player.actualizar(delta);
 
-        camara.position.x = playerView.getCenterX();
-        camara.position.y = playerView.getCenterY();
-        camara.update();
+        mundoView.camara.position.x = mundoView.getPlayerView().getCenterX();
+        mundoView.camara.position.y = mundoView.getPlayerView().getCenterY();
+        mundoView.camara.update();
 
-        //stageMundo.ordenarPorProfundidad();
-        batch.setProjectionMatrix(camara.combined);
+        batch.setProjectionMatrix(mundoView.camara.combined);
         //rayHandler.setCombinedMatrix(camara.combined);
 
-        mapaView.render();
+        mundoView.getMapaView().render();
 
         batch.begin();
         batch.end();
 
-        stageMundo.act(delta);
-        stageMundo.draw();
+        mundoView.act(delta);
+        mundoView.draw();
 
         dibujarVision();
         //rayHandler.updateAndRender();
-        stageUI.act(delta);
-        stageUI.draw();
+        uiView.act(delta);
+        uiView.draw();
 
-        fps.setTexto(Integer.toString(Gdx.graphics.getFramesPerSecond())+"fps");
+        uiView.setTextoFPS(Integer.toString(Gdx.graphics.getFramesPerSecond())+"fps");
     }
 
     public void resize (int anchura, int altura)
     {
-        camara.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        stageMundo.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        mundoView.camara.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        mundoView.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //stageUI.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
     public void dibujarVision()
     {
-        shape.setProjectionMatrix(camara.combined);
+        shape.setProjectionMatrix(mundoView.camara.combined);
         shape.setColor(Color.RED);
         shape.begin(ShapeRenderer.ShapeType.Line);
 
-        shape.rect( playerView.getCenterX()-MiscData.GDX_Window_Horizontal_Resolution/2-1,
-                    playerView.getCenterY()-MiscData.GDX_Window_Vertical_Resolution/2-1,
+        shape.rect( mundoView.getPlayerView().getCenterX()-MiscData.GDX_Window_Horizontal_Resolution/2-1,
+                    mundoView.getPlayerView().getCenterY()-MiscData.GDX_Window_Vertical_Resolution/2-1,
                     MiscData.GDX_Window_Horizontal_Resolution+2,
                     MiscData.GDX_Window_Vertical_Resolution+2);
 
         shape.setColor(Color.YELLOW);
-        shape.rect( playerView.getCenterX()-MiscData.GDX_Window_Horizontal_Resolution*MiscData.SERVIDOR_DistanciaVisionMobs/2,
-                    playerView.getCenterY()-MiscData.GDX_Window_Vertical_Resolution*MiscData.SERVIDOR_DistanciaVisionMobs/2,
+        shape.rect( mundoView.getPlayerView().getCenterX()-MiscData.GDX_Window_Horizontal_Resolution*MiscData.SERVIDOR_DistanciaVisionMobs/2,
+                    mundoView.getPlayerView().getCenterY()-MiscData.GDX_Window_Vertical_Resolution*MiscData.SERVIDOR_DistanciaVisionMobs/2,
                     MiscData.GDX_Window_Horizontal_Resolution*MiscData.SERVIDOR_DistanciaVisionMobs,
                     MiscData.GDX_Window_Vertical_Resolution*MiscData.SERVIDOR_DistanciaVisionMobs);
 
@@ -149,47 +104,13 @@ public class Vista implements PropertyChangeListener
 
     public void dispose ()
     {
-        stageMundo.dispose();
-        stageUI.dispose();
+        mundoView.dispose();
+        uiView.dispose();
         batch.dispose();
-        mapaView.dispose();
+        mundoView.getMapaView().dispose();
         shape.dispose();
     }
 
     public void aplicarZoom(int incrementoZoom)
-    {
-        nivelDeZoom += incrementoZoom;
-
-        float zoom = 1f;
-        if (nivelDeZoom < 0) zoom = 1f/(Math.abs(nivelDeZoom)+1f);
-        if (nivelDeZoom ==0) zoom = 1f;
-        if (nivelDeZoom > 0) zoom = 1f+ nivelDeZoom *0.2f;
-        camara.zoom = zoom;
-    }
-
-    public Vector2 convertirCoordenadasPantallaAMundo (int screenX, int screenY)
-    {
-        Vector3 destino = new Vector3(screenX, screenY, 0);
-        camara.unproject(destino);
-        return new Vector2(destino.x, destino.y);
-    }
-
-    @Override public void propertyChange(PropertyChangeEvent evt)
-    {
-        if (evt.getNewValue() instanceof MundoDTO.AñadirPC)
-        {
-            PC pc = ((MundoDTO.AñadirPC) evt.getNewValue()).pc;
-
-            pc.eliminarObservador(this);
-            PCView pcView = new PCView(pc, this, controlador);
-            listaPCViews.add(pcView);
-        }
-
-        if (evt.getNewValue() instanceof UIDTO.AñadirBarraAccionesDTO)
-        {
-            BarraAcciones barraAcciones = ((UIDTO.AñadirBarraAccionesDTO) evt.getNewValue()).barraAcciones;
-
-            conjuntoBarraAccionesView.añadirBarraAccionesView(barraAcciones);
-        }
-    }
+    {   mundoView.aplicarZoom(incrementoZoom); }
 }

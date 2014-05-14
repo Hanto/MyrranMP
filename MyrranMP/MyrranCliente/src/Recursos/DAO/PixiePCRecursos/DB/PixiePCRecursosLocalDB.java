@@ -1,6 +1,6 @@
 package Recursos.DAO.PixiePCRecursos.DB;// Created by Hanto on 01/05/2014.
 
-import View.Graficos.Pixie;
+import View.Classes.Graficos.Pixie;
 
 import java.util.HashMap;
 import java.util.Map;

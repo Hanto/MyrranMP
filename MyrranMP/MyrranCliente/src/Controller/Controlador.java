@@ -3,8 +3,8 @@ package Controller;// Created by Hanto on 08/04/2014.
 import Controller.Input.PlayerGestures;
 import Controller.Input.PlayerMouseKeyI;
 import Controller.Interfaces.ControladorBarraAccionI;
-import Model.Classes.GameState.Mundo;
-import Model.Classes.GameState.UI;
+import Model.GameState.Mundo;
+import Model.GameState.UI;
 import Model.Classes.Mobiles.Player;
 import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesBI;
 import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesI;
@@ -111,7 +111,4 @@ public class Controlador implements ControladorBarraAccionI
     @Override public void barraAñadirFila (ListaAccionesBI barra)                 { barra.añadirFila(); }
     @Override public void barraEliminarColumna (ListaAccionesBI barra)            { barra.eliminarColumna(); }
     @Override public void barraEliminarFila (ListaAccionesBI barra)               { barra.eliminarFila(); }
-
-    public void añadirBarraTerrenos()
-    {   ui.}
 }

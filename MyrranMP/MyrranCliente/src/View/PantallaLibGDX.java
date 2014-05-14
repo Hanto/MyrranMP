@@ -1,7 +1,7 @@
 package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
-import Model.Classes.GameState.Mundo;
+import Model.GameState.Mundo;
 import Model.Classes.Mobiles.Player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
