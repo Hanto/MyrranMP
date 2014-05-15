@@ -113,6 +113,8 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
 
     @Override public void eventoVentanaResize (int columnasAdicionales, int filasAdicionales)
     {
+        if (columnasAdicionales == 0 && filasAdicionales == 0) { eliminarBarraAccionesView(); return; }
+
         if (columnasAdicionales >0)
               { controlador.barraAñadirColumna(barraModel, columnasAdicionales); }
         else  { controlador.barraEliminarColumna(barraModel, Math.abs(columnasAdicionales)); }
@@ -187,6 +189,14 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
             AccionIcono icono = barraIconos.get(y).pop();
             icono.eliminarIcono(dad);
         }
+    }
+
+    public void eliminarBarraAccionesView()
+    {
+        controlador.eliminarBarraAcciones(barraModel);
+        conjuntoBarraAccionesView.eliminarBarraAccionesView(this);
+        barraModel.eliminarObservador(this);
+        stage.getRoot().removeActor(this);
     }
 
 

@@ -105,6 +105,7 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
 
     //BarrasAccion:
     @Override public void añadirBarraAcciones(int filas, int columnas)                          { ui.añadirBarraAcciones(filas, columnas); }
+    @Override public void eliminarBarraAcciones(ListaAccionesBI barraAcciones)                  { ui.eliminarBarraAcciones(barraAcciones); }
     @Override public void barraAccionMoverAccion(ListaAccionesI barraOrigen, int posXOrigen, int posYOrigen, ListaAccionesI barraDestino,int posXDestino, int posYDestino)
     {   ui.moverAccion(barraOrigen, posXOrigen, posYOrigen, barraDestino, posXDestino, posYDestino);}
     @Override public void barraAccionRebindear(ListaAccionesBI barra, int posX, int posY, int keycode)
@@ -115,7 +116,7 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
     @Override public void barraEliminarFila (ListaRedimensionableI barra, int numFilas)         { barra.eliminarFila(numFilas); }
 
     //BarraTerrenos:
-    @Override public void mostrarBarraTerrenos()                                { vista.getUiView().mostrarBarraTerreno(); }
-    @Override public void ocultarBarraTerrenos()                                { vista.getUiView().ocultarBarraTerreno(); }
-    @Override public void moverTerreno(int posOrigen, int posDestino)           { ui.moverTerreno(posOrigen, posDestino); }
+    @Override public void mostrarBarraTerrenos()                                                { vista.getUiView().mostrarBarraTerreno(); }
+    @Override public void ocultarBarraTerrenos()                                                { vista.getUiView().ocultarBarraTerreno(); }
+    @Override public void moverTerreno(int posOrigen, int posDestino)                           { ui.moverTerreno(posOrigen, posDestino); }
 }

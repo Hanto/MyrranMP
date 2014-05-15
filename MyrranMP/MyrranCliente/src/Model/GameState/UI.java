@@ -31,7 +31,8 @@ public class UI
 
     public void añadirBarraAcciones(int filas, int columnas)
     {   conjuntoBarraAcciones.añadirBarraAcciones(filas, columnas); }
-
+    public void eliminarBarraAcciones(ListaAccionesBI barra)
+    {   conjuntoBarraAcciones.eliminarBarraAccion(barra); }
 
     public void moverAccion (ListaAccionesI barraOrigen, int posXOrigen, int posYOrigen, ListaAccionesI barraDestino,int posXDestino, int posYDestino)
     {   conjuntoBarraAcciones.moverAccion(barraOrigen, posXOrigen, posYOrigen, barraDestino, posXDestino, posYDestino);}

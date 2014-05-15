@@ -37,6 +37,9 @@ public class ConjuntoBarraAccionesView
         listaBarraAccionesView.add(barraAccionesView);
     }
 
+    public void eliminarBarraAccionesView(BarraAccionesView barraAccionesView)
+    {   listaBarraAccionesView.removeValue(barraAccionesView, true); }
+
     private void crearBotonesRebind()
     {
         final Image rebindButtonOff = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonOFF));
@@ -71,8 +74,7 @@ public class ConjuntoBarraAccionesView
         añadirBarra.addListener(new InputListener()
         {
             @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
-            {   //Switch para activar y desactivar el rebindeo de Skills
-                controlador.añadirBarraAcciones(1, 5);
+            {   controlador.añadirBarraAcciones(2, 5);
                 return true;
             }
         });

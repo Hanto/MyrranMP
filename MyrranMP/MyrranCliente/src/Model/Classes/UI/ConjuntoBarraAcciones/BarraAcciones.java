@@ -21,10 +21,10 @@ public class BarraAcciones extends AbstractModel implements ListaAccionesBI
         public int keycode;
     }
 
-    public int getID()          { return iD; }
+    @Override public int getID()          { return iD; }
     public void setID(int i)    { iD = i; }
     public int getNumFilas()    { return barraAcciones.size; }
-    public int getNumColumnas() { return barraAcciones.first().size; }
+    public int getNumColumnas() { return (barraAcciones.size == 0) ? 0 : barraAcciones.first().size; }
 
     //CONSTRUCTOR:
     public BarraAcciones(Keybinds keybinds, int id, int numFilas, int numColumnas)
@@ -160,7 +160,7 @@ public class BarraAcciones extends AbstractModel implements ListaAccionesBI
 
     private void eliminarFila()
     {
-        if (barraAcciones.size <= 1) return;
+        //if (barraAcciones.size <= 1) return;
 
         Array<Casilla> array = barraAcciones.peek();
         for (int i=0; i<array.size; i++)
@@ -183,7 +183,7 @@ public class BarraAcciones extends AbstractModel implements ListaAccionesBI
 
     private void eliminarColumna()
     {
-        if (barraAcciones.first().size <= 1) return;
+        //if (barraAcciones.first().size <= 1) return;
 
         for (int y=0; y<barraAcciones.size; y++)
         {   keybinds.eliminarKeybind(barraAcciones.get(y).pop().keycode);}
@@ -197,4 +197,8 @@ public class BarraAcciones extends AbstractModel implements ListaAccionesBI
             barraAcciones.get(y).add(casilla);
         }
     }
+
+    @Override public void eliminar()
+    {   eliminarFila(barraAcciones.size); }
+
 }

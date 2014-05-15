@@ -33,6 +33,11 @@ public class ConjuntoBarraAcciones extends AbstractModel
         notificarActualizacion("añadirBarraAcciones", null, añadirBarraAccionesDTO);
     }
 
+    public void eliminarBarraAccion(ListaAccionesBI barraAccion)
+    {   listaDeBarraAcciones.remove(barraAccion.getID());
+        barraAccion.eliminar();
+    }
+
     //Provisional:
     public void añadirAccionesEnBarra(ListaAccionesBI barra)
     {

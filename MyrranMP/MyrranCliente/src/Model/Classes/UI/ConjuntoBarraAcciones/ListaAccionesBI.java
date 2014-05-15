@@ -4,6 +4,9 @@ import Model.Classes.Acciones.Accion;
 
 public interface ListaAccionesBI extends ListaAccionesI, ListaRedimensionableI
 {
+    public int getID();
+    public void eliminar();
+
     public void setAccion(int posX, int posY, Accion accion);
     public void eliminarAccion(int posX, int posY);
 
