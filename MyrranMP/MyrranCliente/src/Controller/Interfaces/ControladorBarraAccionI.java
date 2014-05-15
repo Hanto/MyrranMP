@@ -1,7 +1,7 @@
 package Controller.Interfaces;// Created by Hanto on 14/05/2014.
 
-import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesBI;
-import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesI;
+import Model.Classes.UI.ConjuntoBarraAcciones.ListaAccionesBI;
+import Model.Classes.UI.ConjuntoBarraAcciones.ListaAccionesI;
 
 public interface ControladorBarraAccionI extends ControladorLisTaRedimensionableI
 {

@@ -1,10 +1,11 @@
 package Model.Classes.Acciones.TiposAccion;// Created by Hanto on 05/05/2014.
 
 import Controller.Controlador;
+import Data.Spell.SpellsData;
 import Model.Classes.Acciones.Accion;
 import Model.Classes.Mobiles.Player;
 import Model.Classes.Skill.Spell.Spell;
-import Model.Classes.UIO.Input.PlayerEstado;
+import Model.Classes.UI.Input.PlayerEstado;
 
 public class SeleccionarSpell extends Accion
 {
@@ -15,8 +16,13 @@ public class SeleccionarSpell extends Accion
     }
 
     @Override public void accionKeyDown(Player player, PlayerEstado playerE, Controlador controlador)
-    {   player.setSpellIDSeleccionado((String)parametros); }
+    {
+        player.setSpellIDSeleccionado((String)parametros);
+        if (iD.equals(SpellsData.TERRAFORMAR_ID)) controlador.mostrarBarraTerrenos();
+    }
 
     @Override public void accionKeyUp(Player player, PlayerEstado playerE, Controlador controlador)
-    { }
+    {
+        if (iD.equals(SpellsData.TERRAFORMAR_ID)) controlador.ocultarBarraTerrenos();
+    }
 }

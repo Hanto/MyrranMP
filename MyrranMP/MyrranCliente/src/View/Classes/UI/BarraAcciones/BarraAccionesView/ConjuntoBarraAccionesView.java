@@ -1,10 +1,9 @@
-package View.Classes.UI;// Created by Hanto on 08/05/2014.
+package View.Classes.UI.BarraAcciones.BarraAccionesView;// Created by Hanto on 08/05/2014.
 
 import Controller.Interfaces.ControladorBarraAccionI;
 import Data.MiscData;
-import Model.Classes.UIO.ConjuntoBarraAcciones.BarraAcciones;
+import Model.Classes.UI.ConjuntoBarraAcciones.BarraAcciones;
 import Recursos.DAO.RSC;
-import View.Classes.UI.ConjuntoBarraAccionView.BarraAccionesView.BarraAccionesView;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;

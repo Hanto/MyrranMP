@@ -3,10 +3,11 @@ package Controller;// Created by Hanto on 08/04/2014.
 import Controller.Input.PlayerGestures;
 import Controller.Input.PlayerMouseKeyI;
 import Controller.Interfaces.ControladorBarraAccionI;
+import Controller.Interfaces.ControladorBarraTerrenosI;
 import Model.Classes.Mobiles.Player;
-import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesBI;
-import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesI;
-import Model.Classes.UIO.ConjuntoBarraAcciones.ListaRedimensionableI;
+import Model.Classes.UI.ConjuntoBarraAcciones.ListaAccionesBI;
+import Model.Classes.UI.ConjuntoBarraAcciones.ListaAccionesI;
+import Model.Classes.UI.ConjuntoBarraAcciones.ListaRedimensionableI;
 import Model.DTO.NetDTO;
 import Model.GameState.Mundo;
 import Model.GameState.UI;
@@ -17,7 +18,7 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 //CLIENTE:
-public class Controlador implements ControladorBarraAccionI
+public class Controlador implements ControladorBarraAccionI, ControladorBarraTerrenosI
 {
     protected Cliente cliente;
     protected Player player;
@@ -108,8 +109,13 @@ public class Controlador implements ControladorBarraAccionI
     {   ui.moverAccion(barraOrigen, posXOrigen, posYOrigen, barraDestino, posXDestino, posYDestino);}
     @Override public void barraAccionRebindear(ListaAccionesBI barra, int posX, int posY, int keycode)
     {   ui.setKeyCode(barra, posX, posY, keycode);}
-    @Override public void barraAñadirColumna(ListaRedimensionableI barra)         { barra.añadirColumna(); }
-    @Override public void barraAñadirFila (ListaRedimensionableI barra)           { barra.añadirFila(); }
-    @Override public void barraEliminarColumna (ListaRedimensionableI barra)      { barra.eliminarColumna(); }
-    @Override public void barraEliminarFila (ListaRedimensionableI barra)         { barra.eliminarFila(); }
+    @Override public void barraAñadirColumna(ListaRedimensionableI barra)       { barra.añadirColumna(); }
+    @Override public void barraAñadirFila (ListaRedimensionableI barra)         { barra.añadirFila(); }
+    @Override public void barraEliminarColumna (ListaRedimensionableI barra)    { barra.eliminarColumna(); }
+    @Override public void barraEliminarFila (ListaRedimensionableI barra)       { barra.eliminarFila(); }
+
+    //BarraTerrenos:
+    @Override public void mostrarBarraTerrenos()                                { vista.getUiView().mostrarBarraTerreno(); }
+    @Override public void ocultarBarraTerrenos()                                { vista.getUiView().ocultarBarraTerreno(); }
+    @Override public void moverTerreno(int posOrigen, int posDestino)           { ui.moverTerreno(posOrigen, posDestino); }
 }

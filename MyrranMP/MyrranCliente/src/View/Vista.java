@@ -25,8 +25,10 @@ public class Vista
     private MundoView mundoView;
     private UIView uiView;
 
-    public SpriteBatch batch;
+    private SpriteBatch batch;
     private ShapeRenderer shape = new ShapeRenderer();
+
+    public UIView getUiView()       { return uiView; }
 
     public Vista (Controlador controlador, Player player, UI ui, Mundo mundo)
     {

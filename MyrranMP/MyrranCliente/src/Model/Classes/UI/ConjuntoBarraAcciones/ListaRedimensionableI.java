@@ -1,4 +1,4 @@
-package Model.Classes.UIO.ConjuntoBarraAcciones;// Created by Hanto on 14/05/2014.
+package Model.Classes.UI.ConjuntoBarraAcciones;// Created by Hanto on 14/05/2014.
 
 public interface ListaRedimensionableI
 {

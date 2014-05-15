@@ -1,16 +1,16 @@
-package View.Classes.UI.ConjuntoBarraAccionView.BarraAccionesView;// Created by Hanto on 13/05/2014.
+package View.Classes.UI.Comun;// Created by Hanto on 13/05/2014.
 
 import Data.MiscData;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
-public class BarraMoverListener extends DragListener
+public class MoverActorListener extends DragListener
 {
     private Actor actor;
     private Actor dragActor;
 
-    public BarraMoverListener (Actor dragActor, Actor actor)
+    public MoverActorListener(Actor dragActor, Actor actor)
     {
         this.dragActor = dragActor;
         this.actor = actor;

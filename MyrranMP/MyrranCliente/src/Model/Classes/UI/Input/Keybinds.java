@@ -1,8 +1,7 @@
-package Model.Classes.UIO.Input;// Created by Hanto on 05/05/2014.
+package Model.Classes.UI.Input;// Created by Hanto on 05/05/2014.
 
 import Controller.Controlador;
 import Model.Classes.Mobiles.Player;
-import Model.Classes.UIO.Input.PlayerEstado;
 import Model.DAO.DAO;
 
 import java.util.HashMap;

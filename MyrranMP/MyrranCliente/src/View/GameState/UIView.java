@@ -2,13 +2,13 @@ package View.GameState;// Created by Hanto on 14/05/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
-import Model.Classes.UIO.ConjuntoBarraAcciones.BarraAcciones;
+import Model.Classes.UI.ConjuntoBarraAcciones.BarraAcciones;
 import Model.DTO.UIDTO;
 import Model.GameState.UI;
 import Recursos.DAO.RSC;
 import View.Classes.Graficos.Texto;
-import View.Classes.UI.BarraTerrenosView.BarraTerrenosView;
-import View.Classes.UI.ConjuntoBarraAccionesView;
+import View.Classes.UI.BarraTerrenos.BarraTerrenosView.BarraTerrenosView;
+import View.Classes.UI.BarraAcciones.BarraAccionesView.ConjuntoBarraAccionesView;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -25,12 +25,14 @@ public class UIView extends Stage implements PropertyChangeListener
     protected Texto fps;
 
     public void setTextoFPS(String s)                           { fps.setTexto(s); }
+    public void mostrarBarraTerreno()                           { barraTerrenosView.mostrarBarraTerrenos(); }
+    public void ocultarBarraTerreno()                           { barraTerrenosView.ocultarBarraTerrenos(); }
 
     public UIView(Controlador controlador, UI ui)
     {
         this.controlador = controlador;
         conjuntoBarraAccionesView = new ConjuntoBarraAccionesView(this.controlador, this);
-        barraTerrenosView = new BarraTerrenosView(this.controlador, this);
+        barraTerrenosView = new BarraTerrenosView(this.controlador, this, ui.barraTerrenos);
 
         fps = new Texto("fps", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
                         Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);

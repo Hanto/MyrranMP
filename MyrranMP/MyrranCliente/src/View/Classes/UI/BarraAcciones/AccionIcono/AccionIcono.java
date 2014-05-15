@@ -1,25 +1,32 @@
-package View.Classes.UI.ConjuntoBarraAccionView.IconoAccion;// Created by Hanto on 13/05/2014.
+package View.Classes.UI.BarraAcciones.AccionIcono;// Created by Hanto on 13/05/2014.
 
 import Controller.Interfaces.ControladorBarraAccionI;
 import Data.MiscData;
 import Model.Classes.Acciones.Accion;
-import Model.Classes.UIO.ConjuntoBarraAcciones.ListaAccionesI;
+import Model.Classes.UI.ConjuntoBarraAcciones.ListaAccionesI;
 import Recursos.DAO.RSC;
+import View.Classes.UI.Comun.Icono;
+import View.Classes.UI.Comun.IconoSource;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
-public class IconoAccion
+public class AccionIcono implements Icono
 {
-    public ListaAccionesI barra;
-    public int posX;
-    public int posY;
+    protected ListaAccionesI barra;
+    protected int posX;
+    protected int posY;
 
-    private Group apariencia = new Group();
-    public AccionSource source;
-    public AccionTarget target;
+    protected Group apariencia = new Group();
+    protected IconoSource source;
+    protected AccionTarget target;
 
-    public IconoAccion(ListaAccionesI barra, int posX, int posY)
+    public int getPosX()                { return posX; }
+    public int getPosY()                { return posY; }
+    public ListaAccionesI getBarra()    { return barra; }
+
+    //Constructor:
+    public AccionIcono(ListaAccionesI barra, int posX, int posY)
     {
         this.barra = barra;
         this.posX = posX;
@@ -29,8 +36,8 @@ public class IconoAccion
 
 
 
-    public Group getApariencia()            { return apariencia; }
-    public Group getDragActor()
+    @Override public Group getApariencia()            { return apariencia; }
+    @Override public Group getDragActor()
     {
         Group group = new Group();
         actualizarApariencia(group);
@@ -38,6 +45,12 @@ public class IconoAccion
     }
     public void actualizarApariencia()
     {   actualizarApariencia(apariencia); }
+
+    @Override public boolean tieneDatos()
+    {
+        if (barra.getAccion(posX, posY) != null) return true;
+        else return false;
+    }
 
     private void actualizarApariencia(Group group)
     {
@@ -65,7 +78,7 @@ public class IconoAccion
 
     public void addSource(DragAndDrop dad)
     {
-        source = new AccionSource(this, dad);
+        source = new IconoSource(this, dad);
         dad.addSource(source);
     }
 

@@ -1,6 +1,6 @@
 package Controller.Interfaces;// Created by Hanto on 14/05/2014.
 
-import Model.Classes.UIO.ConjuntoBarraAcciones.ListaRedimensionableI;
+import Model.Classes.UI.ConjuntoBarraAcciones.ListaRedimensionableI;
 
 public interface ControladorLisTaRedimensionableI
 {

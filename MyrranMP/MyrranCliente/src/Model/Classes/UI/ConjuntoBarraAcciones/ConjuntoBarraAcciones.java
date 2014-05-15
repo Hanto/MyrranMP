@@ -1,8 +1,8 @@
-package Model.Classes.UIO.ConjuntoBarraAcciones;// Created by Hanto on 08/05/2014.
+package Model.Classes.UI.ConjuntoBarraAcciones;// Created by Hanto on 08/05/2014.
 
 import Model.Classes.AbstractModel;
 import Model.Classes.Acciones.Accion;
-import Model.Classes.UIO.Input.Keybinds;
+import Model.Classes.UI.Input.Keybinds;
 import Model.DAO.DAO;
 import Model.DTO.UIDTO;
 

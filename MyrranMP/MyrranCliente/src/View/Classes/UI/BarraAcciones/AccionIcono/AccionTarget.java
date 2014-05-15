@@ -1,4 +1,4 @@
-package View.Classes.UI.ConjuntoBarraAccionView.IconoAccion;// Created by Hanto on 13/05/2014.
+package View.Classes.UI.BarraAcciones.AccionIcono;// Created by Hanto on 13/05/2014.
 
 import Controller.Interfaces.ControladorBarraAccionI;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
@@ -7,14 +7,14 @@ import static com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 
 public class AccionTarget extends Target
 {
-    private IconoAccion iconoAccion;
+    private AccionIcono accionIcono;
     private DragAndDrop dad;
     private ControladorBarraAccionI controlador;
 
-    public AccionTarget(IconoAccion iconoAccion, DragAndDrop dad, ControladorBarraAccionI controlador)
+    public AccionTarget(AccionIcono accionIcono, DragAndDrop dad, ControladorBarraAccionI controlador)
     {
-        super(iconoAccion.getApariencia());
-        this.iconoAccion = iconoAccion;
+        super(accionIcono.getApariencia());
+        this.accionIcono = accionIcono;
         this.dad = dad;
         this.controlador = controlador;
     }
@@ -30,7 +30,7 @@ public class AccionTarget extends Target
 
     @Override public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float v, float v2, int i)
     {
-        IconoAccion origen = ((IconoAccion) payload.getObject());
-        controlador.barraAccionMoverAccion(origen.barra, origen.posX, origen.posY, iconoAccion.barra, iconoAccion.posX, iconoAccion.posY);
+        AccionIcono origen = ((AccionIcono) payload.getObject());
+        controlador.barraAccionMoverAccion(origen.barra, origen.posX, origen.posY, accionIcono.barra, accionIcono.posX, accionIcono.posY);
     }
 }

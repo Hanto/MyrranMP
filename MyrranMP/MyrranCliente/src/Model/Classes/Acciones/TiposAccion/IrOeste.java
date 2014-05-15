@@ -3,7 +3,7 @@ package Model.Classes.Acciones.TiposAccion;// Created by Hanto on 07/05/2014.
 import Controller.Controlador;
 import Model.Classes.Acciones.Accion;
 import Model.Classes.Mobiles.Player;
-import Model.Classes.UIO.Input.PlayerEstado;
+import Model.Classes.UI.Input.PlayerEstado;
 
 public class IrOeste extends Accion
 {

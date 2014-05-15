@@ -1,11 +1,11 @@
-package View.Classes.UI.BarraTerrenosView;// Created by Hanto on 14/05/2014.
+package View.Classes.UI.BarraTerrenos.BarraTerrenosView;// Created by Hanto on 14/05/2014.
 
 import View.Classes.Graficos.Caja;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
-public class BarraTerrenosResizeListener extends DragListener
+public class BTerrenosResizeListener extends DragListener
 {
     private Actor dragActor;
     private Actor actor;
@@ -15,7 +15,7 @@ public class BarraTerrenosResizeListener extends DragListener
     private float redimensionarY;
     private Caja caja = new Caja();
 
-    public BarraTerrenosResizeListener(Actor dragActor, Actor actor, BarraTerrenosView barraTerrenos)
+    public BTerrenosResizeListener(Actor dragActor, Actor actor, BarraTerrenosView barraTerrenos)
     {
         this.dragActor = dragActor;
         this.actor = actor;
