@@ -104,15 +104,15 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
     {   ui.keybinds.touchDragged(screenX, screenY, pointer); }
 
     //BarrasAccion:
-    @Override public void añadirBarraAcciones(int filas, int columnas)            { ui.añadirBarraAcciones(filas, columnas); }
+    @Override public void añadirBarraAcciones(int filas, int columnas)                          { ui.añadirBarraAcciones(filas, columnas); }
     @Override public void barraAccionMoverAccion(ListaAccionesI barraOrigen, int posXOrigen, int posYOrigen, ListaAccionesI barraDestino,int posXDestino, int posYDestino)
     {   ui.moverAccion(barraOrigen, posXOrigen, posYOrigen, barraDestino, posXDestino, posYDestino);}
     @Override public void barraAccionRebindear(ListaAccionesBI barra, int posX, int posY, int keycode)
     {   ui.setKeyCode(barra, posX, posY, keycode);}
-    @Override public void barraAñadirColumna(ListaRedimensionableI barra)       { barra.añadirColumna(); }
-    @Override public void barraAñadirFila (ListaRedimensionableI barra)         { barra.añadirFila(); }
-    @Override public void barraEliminarColumna (ListaRedimensionableI barra)    { barra.eliminarColumna(); }
-    @Override public void barraEliminarFila (ListaRedimensionableI barra)       { barra.eliminarFila(); }
+    @Override public void barraAñadirColumna(ListaRedimensionableI barra, int numColumnas)      { barra.añadirColumna(numColumnas); }
+    @Override public void barraAñadirFila (ListaRedimensionableI barra, int numFilas)           { barra.añadirFila(numFilas); }
+    @Override public void barraEliminarColumna (ListaRedimensionableI barra, int numColumnas)   { barra.eliminarColumna(numColumnas); }
+    @Override public void barraEliminarFila (ListaRedimensionableI barra, int numFilas)         { barra.eliminarFila(numFilas); }
 
     //BarraTerrenos:
     @Override public void mostrarBarraTerrenos()                                { vista.getUiView().mostrarBarraTerreno(); }

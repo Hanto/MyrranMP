@@ -4,8 +4,8 @@ import Model.Classes.UI.ConjuntoBarraAcciones.ListaRedimensionableI;
 
 public interface ControladorLisTaRedimensionableI
 {
-    public void barraAñadirColumna(ListaRedimensionableI barra);
-    public void barraAñadirFila (ListaRedimensionableI barra);
-    public void barraEliminarColumna (ListaRedimensionableI barra);
-    public void barraEliminarFila (ListaRedimensionableI barra);
+    public void barraAñadirColumna(ListaRedimensionableI barra, int numColumnas);
+    public void barraAñadirFila (ListaRedimensionableI barra, int numFilas);
+    public void barraEliminarColumna (ListaRedimensionableI barra, int numColumnas);
+    public void barraEliminarFila (ListaRedimensionableI barra, int numFilas);
 }

@@ -120,7 +120,45 @@ public class BarraAcciones extends AbstractModel implements ListaAccionesBI
         notificarActualizacion("eliminarAccion", null, removeAccionDTO);
     }
 
-    @Override public void eliminarFila()
+
+
+    @Override public void eliminarFila(int numFilas)
+    {
+        for (int i=0; i<numFilas;i++)
+            eliminarFila();
+
+        Object eliminarFilaDTO = new BarraAccionesDTO.EliminarFilaDTO(numFilas);
+        notificarActualizacion("eliminarFila", null, eliminarFilaDTO);
+    }
+
+    @Override public void añadirFila(int numFilas)
+    {
+        for (int i=0; i<numFilas;i++)
+            añadirFila();
+
+        Object añadirFilaDTO = new BarraAccionesDTO.AñadirFilaDTO(numFilas);
+        notificarActualizacion("añadirFila", null, añadirFilaDTO);
+    }
+
+    @Override public void eliminarColumna(int numColumnas)
+    {
+        for (int i=0; i<numColumnas;i++)
+            eliminarColumna();
+
+        Object eliminarColumnaDTO = new BarraAccionesDTO.EliminarColumnaDTO(numColumnas);
+        notificarActualizacion("eliminarColumna", null, eliminarColumnaDTO);
+    }
+
+    @Override public void añadirColumna(int numColumnas)
+    {
+        for (int i=0; i<numColumnas;i++)
+            añadirColumna();
+
+        Object añadirColumnaDTO = new BarraAccionesDTO.AñadirColumnaDTO(numColumnas);
+        notificarActualizacion("añadirColumna", null, añadirColumnaDTO);
+    }
+
+    private void eliminarFila()
     {
         if (barraAcciones.size <= 1) return;
 
@@ -129,12 +167,9 @@ public class BarraAcciones extends AbstractModel implements ListaAccionesBI
         {   keybinds.eliminarKeybind(array.get(i).keycode); }
 
         barraAcciones.removeIndex(barraAcciones.size-1);
-
-        Object eliminarFilaDTO = new BarraAccionesDTO.EliminarFilaDTO();
-        notificarActualizacion("eliminarFila", null, eliminarFilaDTO);
     }
 
-    @Override public void añadirFila()
+    private void añadirFila()
     {
         Array<Casilla> array = new Array<>();
         for (int i=0; i<barraAcciones.first().size; i++)
@@ -144,31 +179,22 @@ public class BarraAcciones extends AbstractModel implements ListaAccionesBI
             array.add(casilla);
         }
         barraAcciones.add(array);
-
-        Object añadirFilaDTO = new BarraAccionesDTO.AñadirFilaDTO();
-        notificarActualizacion("añadirFila", null, añadirFilaDTO);
     }
 
-    @Override public void eliminarColumna()
+    private void eliminarColumna()
     {
         if (barraAcciones.first().size <= 1) return;
 
         for (int y=0; y<barraAcciones.size; y++)
         {   keybinds.eliminarKeybind(barraAcciones.get(y).pop().keycode);}
-
-        Object eliminarColumnaDTO = new BarraAccionesDTO.EliminarColumnaDTO();
-        notificarActualizacion("eliminarColumna", null, eliminarColumnaDTO);
     }
 
-    @Override public void añadirColumna()
+    private void añadirColumna()
     {
         for (int y=0; y<barraAcciones.size; y++)
         {
             Casilla casilla = new Casilla();
             barraAcciones.get(y).add(casilla);
         }
-
-        Object añadirColumnaDTO = new BarraAccionesDTO.AñadirColumnaDTO();
-        notificarActualizacion("añadirColumna", null, añadirColumnaDTO);
     }
 }

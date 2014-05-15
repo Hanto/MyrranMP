@@ -5,12 +5,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
-public class MoverActorListener extends DragListener
+public class VentanaMoverListener extends DragListener
 {
     private Actor actor;
     private Actor dragActor;
 
-    public MoverActorListener(Actor dragActor, Actor actor)
+    public VentanaMoverListener(Actor dragActor, Actor actor)
     {
         this.dragActor = dragActor;
         this.actor = actor;

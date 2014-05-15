@@ -1,44 +1,41 @@
-package View.Classes.UI.BarraTerrenos.BarraTerrenosView;// Created by Hanto on 14/05/2014.
+package View.Classes.UI.Comun;// Created by Hanto on 14/05/2014.
 
 import View.Classes.Graficos.Caja;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
-public class BTerrenosResizeListener extends DragListener
+public class VentanaResizeListener extends DragListener
 {
     private Actor dragActor;
     private Actor actor;
-    private BarraTerrenosView barra;
+    private Ventana ventana;
 
     private float redimensionarX;
     private float redimensionarY;
     private Caja caja = new Caja();
 
-    public BTerrenosResizeListener(Actor dragActor, Actor actor, BarraTerrenosView barraTerrenos)
+    private int columnasAdicionales;
+    private int filasAdicionales;
+
+    public VentanaResizeListener(Actor dragActor, Actor actor, Ventana ventana)
     {
         this.dragActor = dragActor;
         this.actor = actor;
-        this.barra = barraTerrenos;
+        this.ventana = ventana;
     }
 
     @Override public void touchUp (InputEvent event, float x, float y, int pointer, int button)
     {
         dragActor.getStage().getRoot().removeActor(caja);
 
-        int X = (int)(event.getStageX()-redimensionarX);
-        int Y = (int)(event.getStageY()-redimensionarY);
+        float X = (event.getStageX()-redimensionarX);
+        float Y = (event.getStageY()-redimensionarY);
 
-        int columnasAdicionales = Math.round((float)Math.abs(X)/(float)(48));
-        int filasAdicionales = Math.round((float)Math.abs(Y)/(float)(48));
+        columnasAdicionales = Math.round((float)(X)/(float)(ventana.getAnchoElemento()));
+        filasAdicionales = - Math.round((float)(Y)/(float)(ventana.getAltoElemento()));
 
-        if (X >0)   { barra.numColumnas += columnasAdicionales; }
-        else        { barra.numColumnas -= columnasAdicionales; }
-
-        if (Y<0)    { barra.numFilas += filasAdicionales; }
-        else        { barra.numFilas -= filasAdicionales; }
-
-        barra.crearTabla();
+        ventana.eventoVentanaResize(columnasAdicionales, filasAdicionales);
     }
 
     @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)

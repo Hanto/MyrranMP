@@ -6,7 +6,9 @@ import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
 import Model.DTO.BarraTerrenosDTO;
 import Recursos.DAO.RSC;
 import View.Classes.UI.BarraTerrenos.TerrenoIcono.TerrenoIcono;
-import View.Classes.UI.Comun.MoverActorListener;
+import View.Classes.UI.Comun.VentanaMoverListener;
+import View.Classes.UI.Comun.Ventana;
+import View.Classes.UI.Comun.VentanaResizeListener;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -23,7 +25,7 @@ import com.badlogic.gdx.utils.Array;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class BarraTerrenosView extends Group implements PropertyChangeListener
+public class BarraTerrenosView extends Group implements PropertyChangeListener, Ventana
 {
     protected Controlador controlador;
     protected Stage stage;
@@ -44,6 +46,9 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener
     protected int numFilas = 4;
     protected int numColumnas =2;
 
+    @Override public float getAnchoElemento()           { return barraIconos.first().getApariencia().getWidth(); }
+    @Override public float getAltoElemento()            { return barraIconos.first().getApariencia().getHeight(); }
+
     public BarraTerrenosView (Controlador controlador, Stage stage, BarraTerrenos barraTerrenos)
     {
         this.controlador = controlador;
@@ -54,11 +59,11 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener
         this.addActor(scrollPane);
 
         moverBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
-        moverBarra.addListener(new MoverActorListener(moverBarra, this));
+        moverBarra.addListener(new VentanaMoverListener(moverBarra, this));
         this.addActor(moverBarra);
 
         redimensionarBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
-        redimensionarBarra.addListener(new BTerrenosResizeListener(redimensionarBarra, this, this));
+        redimensionarBarra.addListener(new VentanaResizeListener(redimensionarBarra, this, this));
         this.addActor(redimensionarBarra);
 
         scrollPane.clearListeners();
@@ -77,7 +82,7 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener
         });
 
         crearBarraIconos();
-        crearTabla();
+        recrearTabla();
 
         setPosition(-getWidth()-redimensionarBarra.getWidth(), 500);
 
@@ -93,16 +98,19 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener
         barraIconos.clear();
 
         for (int x=0; x< barraTerrenos.getTamaño(); x++)
-        {
-            final TerrenoIcono icono = new TerrenoIcono(barraTerrenos, x);
-            icono.addDragAndDrop(dad, controlador);
-
-            barraIconos.add(icono);
-        }
+        {   barraIconos.add(crearIcono(x)); }
     }
 
-    public void crearTabla()
+    public TerrenoIcono crearIcono(int posX)
     {
+        TerrenoIcono icono = new TerrenoIcono(barraTerrenos, posX);
+        icono.addDragAndDrop(dad, controlador);
+        return icono;
+    }
+
+
+    public void recrearTabla()
+    {   //La tabla es la Vista, lo que se ve, cada vez que se redimensiona el ancho y alto de la zona de visualizacion hay que recrearla
         tablaTerrenos.clear();
 
         int columna = 0;
@@ -125,6 +133,13 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener
 
         moverBarra.setPosition(-moverBarra.getWidth()-2,this.getHeight()-moverBarra.getHeight());
         redimensionarBarra.setPosition(this.getWidth(),-redimensionarBarra.getHeight());
+    }
+
+    @Override public void eventoVentanaResize(int columnasAdicionales, int filasAdicionales)
+    {
+        numColumnas += columnasAdicionales;
+        numFilas += filasAdicionales;
+        recrearTabla();
     }
 
     public void mostrarBarraTerrenos()
