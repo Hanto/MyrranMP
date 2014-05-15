@@ -64,5 +64,17 @@ public class ConjuntoBarraAccionesView
                 return true;
             }
         });
+
+        Image añadirBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
+        stage.addActor(añadirBarra);
+        añadirBarra.setPosition(32+18,0);
+        añadirBarra.addListener(new InputListener()
+        {
+            @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+            {   //Switch para activar y desactivar el rebindeo de Skills
+                controlador.añadirBarraAcciones(1, 5);
+                return true;
+            }
+        });
     }
 }

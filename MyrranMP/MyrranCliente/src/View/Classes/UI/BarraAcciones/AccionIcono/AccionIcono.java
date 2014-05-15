@@ -61,7 +61,7 @@ public class AccionIcono implements Icono
         {
             Image casillaVacia = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_Textura_Casillero));
             casillaVacia.setColor(0, 0, 0, 0.06f);
-            casillaVacia.setBounds(0,0,MiscData.BARRASPELLS_Ancho_Casilla, MiscData.BARRASPELLS_Alto_Casilla);
+            casillaVacia.setBounds(0,0,MiscData.ICONO_Accion_Ancho, MiscData.ICONO_Accion_Alto);
             group.addActor(casillaVacia);
             group.setWidth(casillaVacia.getWidth());
             group.setHeight(casillaVacia.getHeight());
@@ -69,7 +69,7 @@ public class AccionIcono implements Icono
         else
         {
             Image casillaIcono = new Image (RSC.accionRecursosDAO.getAccionRecursosDAO().getAccionRecurso(accion.getID()).getTextura());
-            casillaIcono.setBounds(0,0,MiscData.BARRASPELLS_Ancho_Casilla, MiscData.BARRASPELLS_Alto_Casilla);
+            casillaIcono.setBounds(0,0,MiscData.ICONO_Accion_Ancho, MiscData.ICONO_Accion_Alto);
             group.addActor(casillaIcono);
             group.setWidth(casillaIcono.getWidth());
             group.setHeight(casillaIcono.getHeight());

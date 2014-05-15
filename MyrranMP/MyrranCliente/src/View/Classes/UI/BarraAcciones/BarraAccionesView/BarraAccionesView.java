@@ -36,8 +36,8 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
 
     public float getEsquinaSupIzdaX()                       { return this.getX(); }
     public float getEsquinaSupIzdaY()                       { return this.getY() + this.getHeight(); }
-    @Override public float getAnchoElemento()               { return barraIconos.first().first().getApariencia().getWidth(); }
-    @Override public float getAltoElemento()                { return barraIconos.first().first().getApariencia().getHeight(); }
+    @Override public float getAnchoElemento()               { return MiscData.BARRASPELLS_Ancho_Casilla; }
+    @Override public float getAltoElemento()                { return MiscData.BARRASPELLS_Alto_Casilla; }
 
     public BarraAccionesView(BarraAcciones barraAcciones, ConjuntoBarraAccionesView conjuntoBarraAccionesView, Stage stage, ControladorBarraAccionI controller)
     {
@@ -49,8 +49,8 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
 
         barraAcciones.añadirObservador(this);
 
-        this.setWidth(barraModel.getNumColumnas()*(MiscData.BARRASPELLS_Ancho_Casilla+2));
-        this.setHeight(barraModel.getNumFilas()*(MiscData.BARRASPELLS_Ancho_Casilla+2));
+        this.setWidth(barraModel.getNumColumnas()*(MiscData.BARRASPELLS_Ancho_Casilla));
+        this.setHeight(barraModel.getNumFilas()*(MiscData.BARRASPELLS_Ancho_Casilla));
 
         this.bottom().left();
         this.setPosition(500,0);
@@ -90,8 +90,8 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
 
         float esquinaSupIzda = getEsquinaSupIzdaY();
 
-        this.setWidth(barraModel.getNumColumnas()*(MiscData.BARRASPELLS_Ancho_Casilla+2));
-        this.setHeight(barraModel.getNumFilas()*(MiscData.BARRASPELLS_Ancho_Casilla+2));
+        this.setWidth(barraModel.getNumColumnas()*(MiscData.BARRASPELLS_Ancho_Casilla));
+        this.setHeight(barraModel.getNumFilas()*(MiscData.BARRASPELLS_Ancho_Casilla));
 
         this.setY(esquinaSupIzda-getHeight());
 
@@ -100,7 +100,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
             for (int x = 0; x < barraIconos.get(y).size; x++)
             {
                 AccionIcono icono = barraIconos.get(y).get(x);
-                this.add(icono.getApariencia()).left().height(MiscData.BARRASPELLS_Alto_Casilla + 2).width(MiscData.BARRASPELLS_Ancho_Casilla + 2);
+                this.add(icono.getApariencia()).left().height(MiscData.BARRASPELLS_Alto_Casilla).width(MiscData.BARRASPELLS_Ancho_Casilla);
             }
             this.row();
         }

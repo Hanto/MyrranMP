@@ -46,8 +46,8 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
     protected int numFilas = 4;
     protected int numColumnas =2;
 
-    @Override public float getAnchoElemento()           { return barraIconos.first().getApariencia().getWidth(); }
-    @Override public float getAltoElemento()            { return barraIconos.first().getApariencia().getHeight(); }
+    @Override public float getAnchoElemento()           { return MiscData.TILESIZE*2; }
+    @Override public float getAltoElemento()            { return MiscData.TILESIZE*2; }
 
     public BarraTerrenosView (Controlador controlador, Stage stage, BarraTerrenos barraTerrenos)
     {
@@ -74,7 +74,7 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
 
             //para que no haga scroll cuando el raton este fuera de la ventana de terrenos
             @Override public void exit(InputEvent event, float x, float y, int pointer, Actor fromActor)
-            { scrollPane.getStage().setScrollFocus(null); }
+            { if (scrollPane.getStage() != null) scrollPane.getStage().setScrollFocus(null); }
 
             //Añdimos un listener para el scroll, para configurar su velocidad, hay que parar su propagacion con event.stop() para que no salte el que esta programado de base
             @Override public boolean scrolled(InputEvent event, float x, float y, int amount)
@@ -137,9 +137,12 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
 
     @Override public void eventoVentanaResize(int columnasAdicionales, int filasAdicionales)
     {
-        numColumnas += columnasAdicionales;
-        numFilas += filasAdicionales;
-        recrearTabla();
+        if (this.getStage() != null)
+        {
+            numColumnas += columnasAdicionales;
+            numFilas += filasAdicionales;
+            recrearTabla();
+        }
     }
 
     public void mostrarBarraTerrenos()

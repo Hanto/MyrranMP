@@ -49,11 +49,15 @@ public class MiscData
     public final static String FUENTE_Nombres = "14";
 
     //Barra Spells:
-    public final static int BARRASPELLS_Ancho_Casilla = 32;
-    public final static int BARRASPELLS_Alto_Casilla = 32;
+    public final static int BARRASPELLS_Ancho_Casilla = 32+2;
+    public final static int BARRASPELLS_Alto_Casilla = 32+2;
     public final static String BARRASPELLS_Textura_Casillero = "Casillero";
     public final static String BARRASPELLS_RebindButtonON = "RebindOn";
     public final static String BARRASPELLS_RebindButtonOFF ="RebindOff";
+
+    //Icono Accion
+    public final static int ICONO_Accion_Ancho = 32;
+    public final static int ICONO_Accion_Alto = 32;
 
     //KEYCODES:
     public static final HashMap<Integer, String> keycodeNames = new HashMap<>();
