@@ -1,14 +1,13 @@
 package Model.Classes.Mobiles;// Created by Hanto on 10/04/2014.
 
-import Interfaces.Caster;
-import Interfaces.MapaI;
+import Interfaces.*;
 import Model.Classes.AbstractModel;
 import Model.Classes.Skill.Spell.Spell;
 import Model.Classes.UI.Input.PlayerIO;
 import Model.DAO.DAO;
 import Model.DTO.PlayerDTO;
 
-public class Player extends AbstractModel implements Caster
+public class Player extends AbstractModel implements Caster, MobPC
 {
     protected Integer connectionID;
     protected MapaI mapaI;                         //mapaI al que pertecene el Player
@@ -20,6 +19,8 @@ public class Player extends AbstractModel implements Caster
 
     protected Float velocidadMax = 160.0f;
     protected Float velocidadMod = 1.0f;
+    protected float velocidad;
+    protected Double direccion;
 
     protected String nombre;
     protected Integer nivel;
@@ -44,23 +45,38 @@ public class Player extends AbstractModel implements Caster
     protected Boolean disparar = false;
 
     //GET:
-    public int getConnectionID()                                { return connectionID; }
-    public String getNombre()                                   { return nombre; }
-    public Integer getNivel()                                   { return nivel; }
-    public Float getActualHPs()                                 { return actualHPs; }
-    public Float getMaxHPs()                                    { return maxHPs; }
-    public float getX()                                         { return x; }
-    public float getY()                                         { return y; }
+    @Override public int getConnectionID()                      { return connectionID; }
+    @Override public float getX()                               { return x; }
+    @Override public float getY()                               { return y; }
+    @Override public float getVelocidadMod()                    { return velocidadMod; }
+    @Override public float getVelocidadMax()                    { return velocidadMax; }
+    @Override public float getVelocidad()                       { return velocidad; }
+    @Override public double getDireccion()                      { return direccion; }
+    @Override public int getNumAnimacion()                      { return numAnimacion; }
+    @Override public String getNombre()                         { return nombre; }
+    @Override public int getNivel()                             { return nivel; }
 
-    //CASTER:
+    public float getActualHPs()                                 { return actualHPs; }
+    public float getMaxHPs()                                    { return maxHPs; }
+
     @Override public MapaI getMapa()                            { return mapaI; }
     @Override public boolean isCasteando()                      { if (actualCastingTime >0) return true; else return false; }
     @Override public float getActualCastingTime()               { return actualCastingTime; }
     @Override public float getTotalCastingTime()                { return totalCastingTime; }
     @Override public String getSpellIDSeleccionado()            { return spellIDSeleccionado; }
     @Override public Object getParametrosSpell()                { return parametrosSpell; }
-    @Override public void setParametrosSpell(Object parametros) { parametrosSpell = parametros; }
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0.01f; totalCastingTime = castingTime;}
+    @Override public void setVelocidaMod(float velocidadMod)    { this.velocidadMod = velocidadMod; }
+    @Override public void setVelocidadMax(float velocidadMax)   { this.velocidadMax = velocidadMax; }
+    @Override public void setVelocidad(float velocidad)         { this.velocidad = velocidad; }
+    @Override public void setDireccion(double direccion)        { }
+    @Override public void setParametrosSpell(Object parametros)
+    {
+        parametrosSpell = parametros;
+        Object setParametrosSpell = new PlayerDTO.SetParametrosSpell();
+        notificarActualizacion("setParametrosSpell", null, setParametrosSpell);
+    }
+
     @Override public void setCastear(boolean intentaCastear, int clickX, int clickY)
     {
         castear = intentaCastear;
@@ -188,34 +204,34 @@ public class Player extends AbstractModel implements Caster
         float X=x;
         float Y=y;
 
+        //Sur
         if (irAbajo && !irDerecha && !irIzquierda)
-        { Y += -velocidadMax*velocidadMod*delta; }
+        { Y += -velocidadMax*velocidadMod*delta; direccion = 4.71239d;}
         //Norte
         else if (irArriba && !irDerecha && !irIzquierda)
-        { Y += +velocidadMax*velocidadMod*delta; }
+        { Y += +velocidadMax*velocidadMod*delta; direccion = 1.5708d; }
         //Este
         else if (irDerecha && !irArriba && !irAbajo)
-        { X += +velocidadMax*velocidadMod*delta; }
+        { X += +velocidadMax*velocidadMod*delta; direccion =  0d; }
         //Oeste
         else if (irIzquierda && !irArriba && !irAbajo)
-        { X += -velocidadMax*velocidadMod*delta; }
+        { X += -velocidadMax*velocidadMod*delta; direccion = 3.14159d; }
         //SurOeste
         else if (irAbajo&& irIzquierda)
-        { Y += -0.707f*velocidadMax*velocidadMod*delta;;
-          X += -0.707f*velocidadMax*velocidadMod*delta; }
+        { Y += -0.707f*velocidadMax*velocidadMod*delta;
+          X += -0.707f*velocidadMax*velocidadMod*delta; direccion = 3.927d; }
         //SurEste
         else if (irAbajo && irDerecha)
         { Y += -0.707f*velocidadMax*velocidadMod*delta;
-          X += +0.707f*velocidadMax*velocidadMod*delta;; }
+          X += +0.707f*velocidadMax*velocidadMod*delta; direccion = 5.4779d; }
         //NorOeste
         else if (irArriba && irIzquierda)
         { Y += +0.707f*velocidadMax*velocidadMod*delta;
-          X += -0.707f*velocidadMax*velocidadMod*delta; }
+          X += -0.707f*velocidadMax*velocidadMod*delta; direccion = 2.35619d; }
         //NorEste
         else if (irArriba && irDerecha)
         { Y += +0.707f*velocidadMax*velocidadMod*delta;
-          X += +0.707f*velocidadMax*velocidadMod*delta;
-        }
+          X += +0.707f*velocidadMax*velocidadMod*delta; direccion = 0.7854d; }
 
         setPosition(X, Y);
     }

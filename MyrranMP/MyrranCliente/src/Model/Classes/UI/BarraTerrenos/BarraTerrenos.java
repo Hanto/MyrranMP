@@ -1,5 +1,6 @@
 package Model.Classes.UI.BarraTerrenos;// Created by Hanto on 14/05/2014.
 
+import Interfaces.Caster;
 import Model.Classes.AbstractModel;
 import Model.Classes.Geo.Terreno;
 import Model.DAO.DAO;
@@ -9,17 +10,23 @@ import com.badlogic.gdx.utils.Array;
 
 import java.util.Iterator;
 
+import static DTO.ParametrosSpellDTO.ParametrosEditarTerreno;
+
 public class BarraTerrenos extends AbstractModel
 {
     private Array<Integer>barraTerrenos = new Array<>();
+    private Caster player;
 
+    private int parametroTerrenoID = 0;
+    private int parametroNumCapa = 0;
 
     public int getTerrenoID (int posX)                  { return barraTerrenos.get(posX); }
     public int getTamaño()                              { return barraTerrenos.size; }
 
-    public BarraTerrenos ()
+    public BarraTerrenos (Caster player)
     {
         crearBarraTerrenos();
+        this.player = player;
     }
 
     public void crearBarraTerrenos()
@@ -31,6 +38,9 @@ public class BarraTerrenos extends AbstractModel
         Iterator<Terreno> iterator = terrenoDAO.getIterator();
         while (iterator.hasNext())
         {   barraTerrenos.add(iterator.next().getID()); }
+
+        Object crearBarraTerrenos = new BarraTerrenosDTO.CrearBarraTerreno();
+        notificarActualizacion("crearBarraTerrenos", null, crearBarraTerrenos);
     }
 
     public void moverTerreno(int posOrigen, int posDestino)
@@ -43,7 +53,32 @@ public class BarraTerrenos extends AbstractModel
     public void setTerreno (int posX, int terrenoID)
     {
         barraTerrenos.set(posX, terrenoID);
-        Object setTerrenoDTO = new BarraTerrenosDTO.SetTerrenoDTO(posX);
+
+        Object setTerrenoDTO = new BarraTerrenosDTO.SetTerreno(posX);
         notificarActualizacion("setTerreno", null, setTerrenoDTO);
+    }
+
+    public void setParametroTerrenoID(int terrenoID)
+    {
+        //if (player.getParametrosSpell() instanceof ParametrosEditarTerreno)
+        {
+            //ParametrosEditarTerreno editarTerreno = (ParametrosEditarTerreno)player.getParametrosSpell();
+            ParametrosEditarTerreno editarTerreno = new ParametrosEditarTerreno(parametroNumCapa, terrenoID);
+            parametroTerrenoID = terrenoID;
+            //editarTerreno.terrenoIDSeleccionado = terrenoID;
+            player.setParametrosSpell(editarTerreno);
+        }
+    }
+
+    public void setParametroNumCapa(int numCapa)
+    {
+        //if (player.getParametrosSpell() instanceof ParametrosEditarTerreno)
+        {
+            //ParametrosEditarTerreno editarTerreno = (ParametrosEditarTerreno)player.getParametrosSpell();
+            ParametrosEditarTerreno editarTerreno = new ParametrosEditarTerreno(numCapa, parametroTerrenoID);
+            parametroNumCapa = numCapa;
+            //editarTerreno.capaTerrenoSeleccionada = numCapa;
+            player.setParametrosSpell(editarTerreno);
+        }
     }
 }

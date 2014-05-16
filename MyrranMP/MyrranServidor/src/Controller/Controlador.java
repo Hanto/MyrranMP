@@ -38,6 +38,9 @@ public class Controlador
         mundo.getPC(connectionID).setParametrosSpell(parametrosSpell);
     }
 
+    public void cambiarParametrosSpell(int connectionID, Object parametrosSpell)
+    {   mundo.getPC(connectionID).setParametrosSpell(parametrosSpell); }
+
 
     public void netUpdater ()                                           { vista.netUpdate(); }
 }

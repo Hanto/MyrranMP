@@ -261,6 +261,7 @@ public class LoadGameData
         miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_Textura_Casillero, "UI/Casillero", atlas);
         miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_RebindButtonON, "UI/RebindOn", atlas);
         miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_RebindButtonOFF, "UI/RebindOff", atlas);
+        miscRecursosDAO.salvarTextura(MiscData.BARRATERRENOS_Borrar_Terreno, "UI/Borrar", atlas);
     }
 
 

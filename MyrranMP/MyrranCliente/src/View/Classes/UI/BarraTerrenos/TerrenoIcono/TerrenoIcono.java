@@ -9,6 +9,8 @@ import View.Classes.UI.Comun.Icono;
 import View.Classes.UI.Comun.IconoSource;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
@@ -27,6 +29,7 @@ public class TerrenoIcono implements Icono
         this.barraTerrenos = barraTerrenos;
         this.posX = posX;
         actualizarApariencia();
+        crearListener();
     }
 
     @Override public Group getApariencia()      { return apariencia; }
@@ -59,6 +62,17 @@ public class TerrenoIcono implements Icono
         group.addActor(image);
         group.setWidth(image.getWidth());
         group.setHeight(image.getHeight());
+    }
+
+    public void crearListener()
+    {
+        apariencia.addListener(new InputListener()
+        {
+            @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+            {   barraTerrenos.setParametroTerrenoID(barraTerrenos.getTerrenoID(posX));
+                return true;
+            }
+        });
     }
 
     public void addSource(DragAndDrop dad)

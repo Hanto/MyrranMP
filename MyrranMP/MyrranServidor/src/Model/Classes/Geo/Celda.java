@@ -47,7 +47,7 @@ public class Celda implements KryoSerializable
     public boolean setTerreno(int numCapa, int terrenoID)
     {
         TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
-        if (terrenoDAO.getTerreno(terrenoID) == null) { return false; }
+        if (terrenoDAO.getTerreno(terrenoID) == null && terrenoID != -1) { return false; }
         else { listaTerrenos[numCapa] = terrenoID; return true; }
     }
 

@@ -54,6 +54,7 @@ public class MiscData
     public final static String BARRASPELLS_Textura_Casillero = "Casillero";
     public final static String BARRASPELLS_RebindButtonON = "RebindOn";
     public final static String BARRASPELLS_RebindButtonOFF ="RebindOff";
+    public final static String BARRATERRENOS_Borrar_Terreno = "Borrar";
 
     //Icono Accion
     public final static int ICONO_Accion_Ancho = 32;

@@ -22,6 +22,9 @@ public class NetDTO
         kryo.register(CastearPC.class);
         kryo.register(SetTerreno.class);
         kryo.register(SetSpellIDSeleccionado.class);
+        kryo.register(SetParametrosSpell.class);
+
+
         kryo.register(ParametrosSpellDTO.ParametrosEditarTerreno.class);
     }
 
@@ -138,5 +141,13 @@ public class NetDTO
         public SetSpellIDSeleccionado() {}
         public SetSpellIDSeleccionado(String spellID, Object parametrosSpell)
         {   this.spellID = spellID; this.parametrosSpell = parametrosSpell; }
+    }
+
+    public static class SetParametrosSpell
+    {
+        public Object parametrosSpell;
+        public SetParametrosSpell() {}
+        public SetParametrosSpell(Object parametrosSpell)
+        {   this.parametrosSpell = parametrosSpell; }
     }
 }

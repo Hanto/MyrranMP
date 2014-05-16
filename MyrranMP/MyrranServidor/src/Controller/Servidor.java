@@ -63,6 +63,12 @@ public class Servidor extends Server
             Object parametros = ((NetDTO.SetSpellIDSeleccionado) obj).parametrosSpell;
             controlador.cambiarSpellSeleccionado(con.getID(), spellID, parametros);
         }
+
+        if (obj instanceof NetDTO.SetParametrosSpell)
+        {
+            Object parametros = ((NetDTO.SetParametrosSpell) obj).parametrosSpell;
+            controlador.cambiarParametrosSpell(con.getID(), parametros);
+        }
     }
 
     public void enviarACliente(int connectionID, Object obj)

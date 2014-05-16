@@ -183,10 +183,10 @@ public class SubMapaView extends TiledMap
     private void borrarTile (int tileX, int tileY, int numCapa)
     {
         TiledMapTileLayer suelo = (TiledMapTileLayer)getLayers().get(numCapa);
-        suelo.setCell(tileX*2, tileY*2+1, null);
-        suelo.setCell(tileX*2+1, tileY*2+1, null);
-        suelo.setCell(tileX*2, tileY*2, null);
-        suelo.setCell(tileX*2+1, tileY*2, null);
+        suelo.setCell((tileX - tileOrigenX)*2,  (tileY-tileOrigenY)*2+1, null);
+        suelo.setCell((tileX - tileOrigenX)*2+1,(tileY-tileOrigenY)*2+1, null);
+        suelo.setCell((tileX - tileOrigenX)*2,  (tileY-tileOrigenY)*2, null);
+        suelo.setCell((tileX - tileOrigenX)*2+1,(tileY-tileOrigenY)*2, null);
     }
 
 
@@ -223,6 +223,7 @@ public class SubMapaView extends TiledMap
             cell.setTile(tileSE);
             suelo.setCell((tileX- tileOrigenX)*2+1, (tileY- tileOrigenY)*2, cell);
         }
+        else borrarTile(tileX, tileY, numCapa);
     }
 
 

@@ -93,7 +93,6 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
         AccionIcono icono = new AccionIcono(barraModel, posX, posY);
         icono.addDragAndDrop(dad, controlador);
         icono.getApariencia().addListener(new BAccionesRebindListener(icono, conjuntoBarraAccionesView, controlador));
-
         return icono;
     }
 

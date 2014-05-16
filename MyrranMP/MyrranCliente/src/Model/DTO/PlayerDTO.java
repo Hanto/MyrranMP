@@ -66,4 +66,7 @@ public class PlayerDTO
         public SetSpellIDSeleccionado(String spellID)
         {   this.spellID = spellID; }
     }
+
+    public static class SetParametrosSpell
+    {   public SetParametrosSpell() {} }
 }

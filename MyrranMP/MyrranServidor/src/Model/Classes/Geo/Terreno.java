@@ -1,9 +1,7 @@
 package Model.Classes.Geo;// Created by Hanto on 14/04/2014.
 
-import java.io.Serializable;
-
 //Clase que define los tipos de terreno
-public class Terreno implements Serializable
+public class Terreno
 {
     private Integer id;                             //ID del tipo de SetTerreno para poder cargar su template
     private String nombre;                          //Nombre del SetTerreno ("Jungla", "Camino", "Cesped"...

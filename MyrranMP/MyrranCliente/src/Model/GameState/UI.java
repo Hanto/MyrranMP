@@ -19,7 +19,7 @@ public class UI
     protected PlayerEstado playerEstado = new PlayerEstado(playerInput, playerOutput);
 
     public ConjuntoBarraAcciones conjuntoBarraAcciones;
-    public BarraTerrenos barraTerrenos = new BarraTerrenos();
+    public BarraTerrenos barraTerrenos;
 
 
 
@@ -27,6 +27,7 @@ public class UI
     {
         keybinds = new Keybinds(player, playerEstado, controlador);
         conjuntoBarraAcciones = new ConjuntoBarraAcciones(keybinds);
+        barraTerrenos  = new BarraTerrenos(player);
     }
 
     public void añadirBarraAcciones(int filas, int columnas)

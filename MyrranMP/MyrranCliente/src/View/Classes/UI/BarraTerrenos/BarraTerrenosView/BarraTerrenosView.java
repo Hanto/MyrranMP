@@ -5,18 +5,23 @@ import Data.MiscData;
 import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
 import Model.DTO.BarraTerrenosDTO;
 import Recursos.DAO.RSC;
+import View.Classes.Graficos.Texto;
 import View.Classes.UI.BarraTerrenos.TerrenoIcono.TerrenoIcono;
 import View.Classes.UI.Comun.Ventana;
 import View.Classes.UI.Comun.VentanaMoverListener;
 import View.Classes.UI.Comun.VentanaResizeListener;
 import View.Classes.UI.Comun.VentanaScrollListener;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
 
@@ -31,12 +36,14 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
 
     protected Table tablaTerrenos = new Table().top().left();
     protected ScrollPane scrollPane;
-    protected Array<TerrenoIcono> barraIconos = new Array<>();
+    protected Array<TerrenoIcono> barraIconos;
 
-    protected DragAndDrop dad = new DragAndDrop();
+    protected DragAndDrop dad;
 
+    private Texto[] botonCapas = new Texto[MiscData.MAPA_Max_Capas_Terreno];
     protected Image moverBarra;
     protected Image redimensionarBarra;
+    protected Image botonBorrarTerreno;
 
     private float oldX;
     private float oldY;
@@ -47,11 +54,14 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
     @Override public float getAnchoElemento()           { return MiscData.TILESIZE*2; }
     @Override public float getAltoElemento()            { return MiscData.TILESIZE*2; }
 
-    public BarraTerrenosView (Controlador controlador, Stage stage, BarraTerrenos barraTerrenos)
+    public BarraTerrenosView (Controlador controlador, Stage stage, final BarraTerrenos barraTerrenos)
     {
         this.controlador = controlador;
         this.stage = stage;
         this.barraTerrenos = barraTerrenos;
+
+
+        barraTerrenos.añadirObservador(this);
 
         scrollPane = new ScrollPane(tablaTerrenos);
         this.addActor(scrollPane);
@@ -64,36 +74,70 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
         redimensionarBarra.addListener(new VentanaResizeListener(redimensionarBarra, this, this));
         this.addActor(redimensionarBarra);
 
+        botonBorrarTerreno = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRATERRENOS_Borrar_Terreno));
+        botonBorrarTerreno.setPosition(40, -botonBorrarTerreno.getHeight());
+        this.addActor(botonBorrarTerreno);
+        botonBorrarTerreno.addListener(new InputListener()
+        {
+            @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+            {
+                barraTerrenos.setParametroTerrenoID(-1);
+                return true;
+            }
+        });
+
         scrollPane.clearListeners();
         scrollPane.addListener(new VentanaScrollListener(scrollPane));
 
         crearBarraIconos();
-        recrearTabla();
+        crearBotonCapas();
 
         setPosition(-getWidth()-redimensionarBarra.getWidth(), 500);
-
         oldX = moverBarra.getWidth();
         oldY = 500;
-
-        barraTerrenos.añadirObservador(this);
     }
 
     private void crearBarraIconos()
     {
+        barraIconos = new Array<>();
+        dad = new DragAndDrop();
         dad.setDragTime(0);
-        barraIconos.clear();
 
         for (int x=0; x< barraTerrenos.getTamaño(); x++)
         {   barraIconos.add(crearIcono(x)); }
+
+        recrearTabla();
     }
 
-    public TerrenoIcono crearIcono(int posX)
+    private TerrenoIcono crearIcono(final int posX)
     {
         TerrenoIcono icono = new TerrenoIcono(barraTerrenos, posX);
         icono.addDragAndDrop(dad, controlador);
         return icono;
     }
 
+    private void crearBotonCapas()
+    {
+        for (int i=0; i< MiscData.MAPA_Max_Capas_Terreno; i++)
+        {
+            final int numCapa = i;
+            botonCapas[i] = new Texto("Capa "+numCapa, RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.ORANGE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
+            botonCapas[i].setPosition(4, -18-numCapa*17);
+            this.addActor(botonCapas[i]);
+
+            botonCapas[i].addListener(new InputListener()
+            {
+                @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+                {
+                    for (int j=0; j<botonCapas.length; j++)
+                    {   botonCapas[j].setColorNormal(Color.ORANGE); }
+                    botonCapas[numCapa].setColorNormal(Color.GREEN);
+                    barraTerrenos.setParametroNumCapa(numCapa);
+                    return true;
+                }
+            });
+        }
+    }
 
     public void recrearTabla()
     {   //La tabla es la Vista, lo que se ve, cada vez que se redimensiona el ancho y alto de la zona de visualizacion hay que recrearla
@@ -156,10 +200,13 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof BarraTerrenosDTO.SetTerrenoDTO)
+        if (evt.getNewValue() instanceof BarraTerrenosDTO.SetTerreno)
         {
-            int posX = ((BarraTerrenosDTO.SetTerrenoDTO) evt.getNewValue()).posX;
+            int posX = ((BarraTerrenosDTO.SetTerreno) evt.getNewValue()).posX;
             actualizarApariencia(barraIconos.get(posX));
         }
+
+        if (evt.getNewValue() instanceof BarraTerrenosDTO.CrearBarraTerreno)
+        {   crearBarraIconos(); }
     }
 }

@@ -116,6 +116,12 @@ public class PlayerView extends Group implements PropertyChangeListener
         }
     }
 
+    public void setParametrosSpell()
+    {
+        NetDTO.SetParametrosSpell setSpellIDSeleccionado = new NetDTO.SetParametrosSpell(player.getParametrosSpell());
+        controlador.enviarAServidor(setSpellIDSeleccionado);
+    }
+
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
         if (evt.getNewValue() instanceof PlayerDTO.PositionPlayer)
@@ -152,5 +158,8 @@ public class PlayerView extends Group implements PropertyChangeListener
             String spellID = ((PlayerDTO.SetSpellIDSeleccionado) evt.getNewValue()).spellID;
             setSpellIDSeleccionado(spellID);
         }
+
+        if (evt.getNewValue() instanceof PlayerDTO.SetParametrosSpell)
+        {   setParametrosSpell(); }
     }
 }
