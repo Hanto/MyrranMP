@@ -1,10 +1,10 @@
 package View.GameState;// Created by Hanto on 14/05/2014.
 
 import Controller.Controlador;
+import DTO.NetDTO;
 import Data.MiscData;
 import Model.Classes.Mobiles.PC;
 import Model.Classes.Mobiles.Player;
-import Model.DTO.MundoDTO;
 import Model.GameState.Mundo;
 import View.Classes.Geo.MapaView;
 import View.Classes.Mobiles.PCView;
@@ -20,6 +20,7 @@ import java.beans.PropertyChangeListener;
 public class MundoView extends Stage implements PropertyChangeListener
 {
     protected Controlador controlador;
+    protected Mundo mundo;
 
     protected PlayerView playerView;
     protected MapaView mapaView;
@@ -37,6 +38,7 @@ public class MundoView extends Stage implements PropertyChangeListener
     public MundoView(Controlador controlador, Player player, Mundo mundo)
     {
         this.controlador = controlador;
+        this.mundo = mundo;
 
         playerView = new PlayerView(player, this, controlador);
         mapaView = new MapaView(mundo.mapa, this, playerView.getX(), playerView.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY);
@@ -60,9 +62,9 @@ public class MundoView extends Stage implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof MundoDTO.AñadirPC)
+        if (evt.getNewValue() instanceof NetDTO.AñadirPC)
         {
-            PC pc = ((MundoDTO.AñadirPC) evt.getNewValue()).pc;
+            PC pc = mundo.getPC(((NetDTO.AñadirPC) evt.getNewValue()).connectionID);
 
             pc.eliminarObservador(this);
             PCView pcView = new PCView(pc, this, controlador);

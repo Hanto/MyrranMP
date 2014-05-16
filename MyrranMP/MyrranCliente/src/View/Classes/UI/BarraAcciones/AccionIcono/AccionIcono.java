@@ -3,7 +3,7 @@ package View.Classes.UI.BarraAcciones.AccionIcono;// Created by Hanto on 13/05/2
 import Controller.Interfaces.ControladorBarraAccionI;
 import Data.MiscData;
 import Model.Classes.Acciones.Accion;
-import Model.Classes.UI.ConjuntoBarraAcciones.ListaAccionesI;
+import Model.Classes.UI.BarraAcciones.ListaAccionesI;
 import Recursos.DAO.RSC;
 import View.Classes.UI.Comun.Icono;
 import View.Classes.UI.Comun.IconoSource;

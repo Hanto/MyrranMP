@@ -1,9 +1,9 @@
 package View.Classes.Mobiles;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
+import DTO.NetDTO;
 import Data.MiscData;
 import Model.Classes.Mobiles.PC;
-import Model.DTO.PcDTO;
 import Model.DTO.PlayerDTO;
 import View.Classes.Graficos.PixiePC;
 import View.GameState.MundoView;
@@ -64,10 +64,10 @@ public class PCView extends Group implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof PcDTO.PositionPC)
+        if (evt.getNewValue() instanceof NetDTO.CambiarPosicionPC)
         {
-            float x = ((PcDTO.PositionPC) evt.getNewValue()).x;
-            float y = ((PcDTO.PositionPC) evt.getNewValue()).y;
+            float x = ((NetDTO.CambiarPosicionPC) evt.getNewValue()).x;
+            float y = ((NetDTO.CambiarPosicionPC) evt.getNewValue()).y;
             mover((int)x, (int)y);
         }
 
@@ -77,7 +77,7 @@ public class PCView extends Group implements PropertyChangeListener
             setAnimacion(numAnimacion);
         }
 
-        if (evt.getNewValue() instanceof PcDTO.EliminarPC)
+        if (evt.getNewValue() instanceof NetDTO.EliminarPC)
         {   eliminar(); }
     }
 }

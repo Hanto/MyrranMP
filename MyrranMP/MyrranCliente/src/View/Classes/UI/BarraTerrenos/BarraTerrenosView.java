@@ -1,4 +1,4 @@
-package View.Classes.UI.BarraTerrenos.BarraTerrenosView;// Created by Hanto on 14/05/2014.
+package View.Classes.UI.BarraTerrenos;// Created by Hanto on 14/05/2014.
 
 import Controller.Controlador;
 import Data.MiscData;

@@ -1,4 +1,4 @@
-package Model.Classes.UI.ConjuntoBarraAcciones;// Created by Hanto on 13/05/2014.
+package Model.Classes.UI.BarraAcciones;// Created by Hanto on 13/05/2014.
 
 import Model.Classes.Acciones.Accion;
 

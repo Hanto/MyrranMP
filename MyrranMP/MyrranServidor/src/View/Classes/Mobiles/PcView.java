@@ -1,11 +1,9 @@
 package View.Classes.Mobiles;// Created by Hanto on 07/04/2014.
 
 import Controller.Controlador;
+import DTO.NetDTO;
 import Data.MiscData;
 import Interfaces.MobPC;
-import Model.DTO.MapaDTO;
-import DTO.NetDTO;
-import Model.DTO.PcDTO;
 import Model.Classes.Mobiles.Mundo;
 import Model.Classes.Mobiles.PC;
 import View.Vista;
@@ -43,13 +41,13 @@ public class PcView implements PropertyChangeListener
         x = PC.getX();
         y = PC.getY();
 
-        vista.listaPcViews.add(this);
         mundo.mapa.añadirObservador(this);
         PC.añadirObservador(this);
-        PC.eliminarObservador(vista);
 
         NetDTO.ActualizarPlayer actualizarPlayer = new NetDTO.ActualizarPlayer(PC, PC);
         controlador.enviarACliente(connectionID, actualizarPlayer);
+
+        quienMeVe();
     }
 
     public void netUpdate()
@@ -58,8 +56,8 @@ public class PcView implements PropertyChangeListener
         {
             if (positionChanged)
             {
-                NetDTO.MoverPC moverPC = new NetDTO.MoverPC(connectionID, x, y);
-                actualizarPlayersCercanos(moverPC);
+                NetDTO.CambiarPosicionPC cambiarPosicionPC = new NetDTO.CambiarPosicionPC(connectionID, x, y);
+                actualizarPlayersCercanos(cambiarPosicionPC);
             }
             positionChanged = false;
         }
@@ -154,32 +152,32 @@ public class PcView implements PropertyChangeListener
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
         //MOBILES:
-        if (evt.getNewValue() instanceof PcDTO.PositionPC)
+        if (evt.getNewValue() instanceof NetDTO.CambiarPosicionPC)
         {
-            x = ((PcDTO.PositionPC) evt.getNewValue()).x;
-            y = ((PcDTO.PositionPC) evt.getNewValue()).y;
+            x = ((NetDTO.CambiarPosicionPC) evt.getNewValue()).x;
+            y = ((NetDTO.CambiarPosicionPC) evt.getNewValue()).y;
             setPosition(x, y);
         }
 
-        if (evt.getNewValue() instanceof PcDTO.EliminarPC)
+        if (evt.getNewValue() instanceof NetDTO.EliminarPC)
         {   eliminar(); }
 
         if (visible)
         {
-            if (evt.getNewValue() instanceof PcDTO.AnimacionPC)
+            if (evt.getNewValue() instanceof NetDTO.CambiarAnimacionPC)
             {
-                int numAnimacion = ((PcDTO.AnimacionPC) evt.getNewValue()).numAnimacion;
+                int numAnimacion = ((NetDTO.CambiarAnimacionPC) evt.getNewValue()).numAnimacion;
                 setAnimacion(numAnimacion);
             }
         }
 
         //TERRENOS:
-        if (evt.getNewValue() instanceof MapaDTO.SetTerreno)
+        if (evt.getNewValue() instanceof NetDTO.SetTerreno)
         {
-            int celdaX = ((MapaDTO.SetTerreno) evt.getNewValue()).celdaX;
-            int celdaY = ((MapaDTO.SetTerreno) evt.getNewValue()).celdaY;
-            int numCapa = ((MapaDTO.SetTerreno) evt.getNewValue()).numCapa;
-            int iDTerreno = ((MapaDTO.SetTerreno) evt.getNewValue()).iDTerreno;
+            int celdaX = ((NetDTO.SetTerreno) evt.getNewValue()).celdaX;
+            int celdaY = ((NetDTO.SetTerreno) evt.getNewValue()).celdaY;
+            int numCapa = ((NetDTO.SetTerreno) evt.getNewValue()).numCapa;
+            int iDTerreno = ((NetDTO.SetTerreno) evt.getNewValue()).iDTerreno;
             cambioTerreno(celdaX, celdaY, numCapa, iDTerreno);
         }
     }

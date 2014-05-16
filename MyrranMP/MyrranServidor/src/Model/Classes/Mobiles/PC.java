@@ -1,16 +1,16 @@
 package Model.Classes.Mobiles;// Created by Hanto on 07/04/2014.
 
 
+import DTO.NetDTO;
 import Data.MiscData;
 import Interfaces.Caster;
 import Interfaces.MapaI;
 import Interfaces.MobPC;
 import Interfaces.Vulnerable;
 import Model.AbstractModel;
-import Model.DAO.DAO;
-import Model.DTO.PcDTO;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Skill.Spell.Spell;
+import Model.DAO.DAO;
 
 public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
 {
@@ -98,7 +98,7 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     public void setPosition(float x, float y)
     {
         this.x = x; this.y = y;
-        Object posicionDTO = new PcDTO.PositionPC(x, y);
+        Object posicionDTO = new NetDTO.CambiarPosicionPC(this);
         notificarActualizacion("setPosition", null, posicionDTO);
     }
 
@@ -107,14 +107,14 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
         if (this.numAnimacion != numAnimacion)
         {
             this.numAnimacion = numAnimacion;
-            Object animacionDTO = new PcDTO.AnimacionPC(numAnimacion);
+            Object animacionDTO = new NetDTO.CambiarAnimacionPC(this);
             notificarActualizacion("setAnimacion", null, animacionDTO);
         }
     }
 
     public void eliminar()
     {
-        Object eliminarDTO = new PcDTO.EliminarPC(this);
+        Object eliminarDTO = new NetDTO.EliminarPC(this);
         notificarActualizacion("eliminar", null, eliminarDTO);
     }
 

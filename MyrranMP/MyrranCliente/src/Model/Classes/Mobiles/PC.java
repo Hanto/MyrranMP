@@ -1,8 +1,8 @@
 package Model.Classes.Mobiles;// Created by Hanto on 08/04/2014.
 
-import Model.DTO.PcDTO;
-import Model.DTO.PlayerDTO;
+import DTO.NetDTO;
 import Model.Classes.AbstractModel;
+import Model.DTO.PlayerDTO;
 
 public class PC extends AbstractModel
 {
@@ -27,7 +27,7 @@ public class PC extends AbstractModel
     public void setPosition (float x, float y)
     {
         this.x = x; this.y = y;
-        Object posicionDTO = new PcDTO.PositionPC(this, x, y);
+        Object posicionDTO = new NetDTO.CambiarPosicionPC(connectionID, x, y);
         notificarActualizacion("setPosition", null, posicionDTO);
     }
 
@@ -41,7 +41,7 @@ public class PC extends AbstractModel
 
     public void eliminar()
     {
-        Object eliminarPC = new PcDTO.EliminarPC(this);
+        Object eliminarPC = new NetDTO.EliminarPC(connectionID);
         notificarActualizacion("eliminarPC", null, eliminarPC);
     }
 }

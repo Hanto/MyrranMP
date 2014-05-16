@@ -1,6 +1,7 @@
 package Model.DTO;// Created by Hanto on 07/05/2014.
 
 import Model.Classes.Acciones.Accion;
+import Model.Classes.UI.BarraAcciones.BarraAcciones;
 
 public class BarraAccionesDTO
 {
@@ -47,5 +48,12 @@ public class BarraAccionesDTO
         public int numColumnas;
         public AñadirColumnaDTO(int numColumnas)
         {   this.numColumnas = numColumnas; }
+    }
+
+    public static class AñadirBarraAcciones
+    {
+        public BarraAcciones barraAcciones;
+        public AñadirBarraAcciones(BarraAcciones barraAcciones)
+        {   this.barraAcciones = barraAcciones; }
     }
 }

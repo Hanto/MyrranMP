@@ -15,7 +15,7 @@ public class NetDTO
     {
         Kryo kryo = endPoint.getKryo();
         kryo.register(ActualizarPlayer.class);
-        kryo.register(MoverPC.class);
+        kryo.register(CambiarPosicionPC.class);
         kryo.register(CambiarAnimacionPC.class);
         kryo.register(AñadirPC.class);
         kryo.register(EliminarPC.class);
@@ -29,7 +29,6 @@ public class NetDTO
     }
 
     //Network DTOs:
-
     public static class ActualizarPlayer
     {
         public int connectionID;
@@ -68,23 +67,28 @@ public class NetDTO
             numAnimacion = pc.getNumAnimacion();
         }
         public AñadirPC (int connectionID, float x, float y, int numAnimacion)
-        {   this.connectionID = connectionID; this.x = x; this.y = y; this.numAnimacion = numAnimacion; }
+        {
+            this.connectionID = connectionID;
+            this.x = x;
+            this.y = y;
+            this.numAnimacion = numAnimacion;
+        }
     }
 
-    public static class MoverPC
+    public static class CambiarPosicionPC
     {
         public int connectionID;
         public float x;
         public float y;
 
-        public MoverPC () {}
-        public MoverPC (MobPC pc)
+        public CambiarPosicionPC() {}
+        public CambiarPosicionPC(MobPC pc)
         {
             connectionID = pc.getConnectionID();
             x = pc.getX();
             y = pc.getY();
         }
-        public MoverPC(int connectionID, float x, float y)
+        public CambiarPosicionPC(int connectionID, float x, float y)
         {   this.connectionID = connectionID; this.x = x; this.y = y; }
     }
 

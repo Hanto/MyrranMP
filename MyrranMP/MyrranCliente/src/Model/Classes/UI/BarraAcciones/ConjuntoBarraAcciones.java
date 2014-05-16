@@ -1,10 +1,10 @@
-package Model.Classes.UI.ConjuntoBarraAcciones;// Created by Hanto on 08/05/2014.
+package Model.Classes.UI.BarraAcciones;// Created by Hanto on 08/05/2014.
 
 import Model.Classes.AbstractModel;
 import Model.Classes.Acciones.Accion;
 import Model.Classes.UI.Input.Keybinds;
 import Model.DAO.DAO;
-import Model.DTO.UIDTO;
+import Model.DTO.BarraAccionesDTO;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +29,7 @@ public class ConjuntoBarraAcciones extends AbstractModel
         BarraAcciones barraAcciones = new BarraAcciones(keybinds, iDMenor, filas, columnas);
         listaDeBarraAcciones.put(barraAcciones.getID(), barraAcciones);
 
-        Object añadirBarraAccionesDTO = new UIDTO.AñadirBarraAccionesDTO(barraAcciones);
+        Object añadirBarraAccionesDTO = new BarraAccionesDTO.AñadirBarraAcciones(barraAcciones);
         notificarActualizacion("añadirBarraAcciones", null, añadirBarraAccionesDTO);
     }
 

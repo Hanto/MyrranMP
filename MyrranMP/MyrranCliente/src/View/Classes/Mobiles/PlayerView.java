@@ -74,7 +74,7 @@ public class PlayerView extends Group implements PropertyChangeListener
         if (Math.abs(this.getX()-x) >= 1 || Math.abs(this.getY()-y) >= 1)
         {
             super.setPosition(x, y);
-            NetDTO.MoverPC moverPlayer = new NetDTO.MoverPC(player.getConnectionID(), getX(), getY());
+            NetDTO.CambiarPosicionPC moverPlayer = new NetDTO.CambiarPosicionPC(player.getConnectionID(), getX(), getY());
             controlador.enviarAServidor(moverPlayer);
         }
     }

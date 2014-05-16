@@ -3,9 +3,9 @@ package Model.GameState;// Created by Hanto on 06/05/2014.
 import Controller.Controlador;
 import Model.Classes.Mobiles.Player;
 import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
-import Model.Classes.UI.ConjuntoBarraAcciones.BarraAccionesI;
-import Model.Classes.UI.ConjuntoBarraAcciones.ConjuntoBarraAcciones;
-import Model.Classes.UI.ConjuntoBarraAcciones.ListaAccionesI;
+import Model.Classes.UI.BarraAcciones.BarraAccionesI;
+import Model.Classes.UI.BarraAcciones.ConjuntoBarraAcciones;
+import Model.Classes.UI.BarraAcciones.ListaAccionesI;
 import Model.Classes.UI.Input.Keybinds;
 import Model.Classes.UI.Input.PlayerEstado;
 import Model.Classes.UI.Input.PlayerIO;

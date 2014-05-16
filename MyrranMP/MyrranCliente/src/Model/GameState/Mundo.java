@@ -1,9 +1,9 @@
 package Model.GameState;// Created by Hanto on 08/04/2014.
 
+import DTO.NetDTO;
 import Model.Classes.AbstractModel;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.PC;
-import Model.DTO.MundoDTO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,7 +39,7 @@ public class Mundo extends AbstractModel
         pc.setPosition(x, y);
         listaPlayers.add(pc);
         mapaPlayers.put(pc.getConnectionID(), pc);
-        Object añadirPC = new MundoDTO.AñadirPC(pc, pc.getX(), pc.getY());
+        Object añadirPC = new NetDTO.AñadirPC(pc.getConnectionID(), pc.getX(), pc.getY(), pc.getNumAnimacion());
         notificarActualizacion("añadirPC", null, añadirPC);
     }
 

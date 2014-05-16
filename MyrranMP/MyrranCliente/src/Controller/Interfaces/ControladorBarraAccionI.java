@@ -1,7 +1,7 @@
 package Controller.Interfaces;// Created by Hanto on 14/05/2014.
 
-import Model.Classes.UI.ConjuntoBarraAcciones.BarraAccionesI;
-import Model.Classes.UI.ConjuntoBarraAcciones.ListaAccionesI;
+import Model.Classes.UI.BarraAcciones.BarraAccionesI;
+import Model.Classes.UI.BarraAcciones.ListaAccionesI;
 
 public interface ControladorBarraAccionI
 {

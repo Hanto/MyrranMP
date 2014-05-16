@@ -1,7 +1,7 @@
 package Model.Classes.Mobiles;// Created by Hanto on 07/04/2014.
 
+import DTO.NetDTO;
 import Model.AbstractModel;
-import Model.DTO.MundoDTO;
 import Model.Classes.Geo.Mapa;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class Mundo extends AbstractModel
         pc.setPosition(x, y);
         listaPlayers.add(pc);
         mapaPlayers.put(pc.getConnectionID(), pc);
-        Object añadirPC = new MundoDTO.AñadirPC(pc, pc.getX(), pc.getY());
+        Object añadirPC = new NetDTO.AñadirPC(pc);
         notificarActualizacion("añadirPC", null, añadirPC);
     }
 

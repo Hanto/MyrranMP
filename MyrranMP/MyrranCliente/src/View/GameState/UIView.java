@@ -2,13 +2,13 @@ package View.GameState;// Created by Hanto on 14/05/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
-import Model.Classes.UI.ConjuntoBarraAcciones.BarraAcciones;
-import Model.DTO.UIDTO;
+import Model.Classes.UI.BarraAcciones.BarraAcciones;
+import Model.DTO.BarraAccionesDTO;
 import Model.GameState.UI;
 import Recursos.DAO.RSC;
 import View.Classes.Graficos.Texto;
-import View.Classes.UI.BarraTerrenos.BarraTerrenosView.BarraTerrenosView;
-import View.Classes.UI.BarraAcciones.BarraAccionesView.ConjuntoBarraAccionesView;
+import View.Classes.UI.BarraTerrenos.BarraTerrenosView;
+import View.Classes.UI.BarraAcciones.ConjuntoBarraAccionesView;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -44,9 +44,9 @@ public class UIView extends Stage implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof UIDTO.AñadirBarraAccionesDTO)
+        if (evt.getNewValue() instanceof BarraAccionesDTO.AñadirBarraAcciones)
         {
-            BarraAcciones barraAcciones = ((UIDTO.AñadirBarraAccionesDTO) evt.getNewValue()).barraAcciones;
+            BarraAcciones barraAcciones = ((BarraAccionesDTO.AñadirBarraAcciones) evt.getNewValue()).barraAcciones;
             conjuntoBarraAccionesView.añadirBarraAccionesView(barraAcciones);
         }
     }

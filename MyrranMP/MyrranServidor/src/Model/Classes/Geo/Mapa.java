@@ -1,11 +1,11 @@
 package Model.Classes.Geo;// Created by Hanto on 14/04/2014.
 
+import DTO.NetDTO;
 import Data.MiscData;
 import Interfaces.MapaI;
 import Model.AbstractModel;
 import Model.DAO.DAO;
 import Model.DAO.Terreno.TerrenoDAO;
-import Model.DTO.MapaDTO;
 
 public class Mapa extends AbstractModel implements MapaI
 {
@@ -36,7 +36,7 @@ public class Mapa extends AbstractModel implements MapaI
         else if (matriz[x][y].getTerreno(numCapa) != terreno)
         {
             matriz[x][y].setTerreno(numCapa, terreno);
-            MapaDTO.SetTerreno setTerreno = new MapaDTO.SetTerreno(x,y,numCapa,terreno.getID());
+            NetDTO.SetTerreno setTerreno = new NetDTO.SetTerreno(x,y,numCapa,terreno.getID());
             notificarActualizacion("setTerreno", null, setTerreno);
             return true;
         }
@@ -50,7 +50,7 @@ public class Mapa extends AbstractModel implements MapaI
         {
             if (matriz[x][y].setTerreno(numCapa, iDTerreno))
             {
-                MapaDTO.SetTerreno setTerreno = new MapaDTO.SetTerreno(x,y,numCapa,iDTerreno);
+                NetDTO.SetTerreno setTerreno = new NetDTO.SetTerreno(x,y,numCapa,iDTerreno);
                 notificarActualizacion("setTerreno", null, setTerreno);
                 return true;
             }

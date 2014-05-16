@@ -41,11 +41,11 @@ public class Cliente extends Client
             controlador.actualizarPlayer((NetDTO.ActualizarPlayer)obj);
         }
 
-        if (obj instanceof NetDTO.MoverPC)
+        if (obj instanceof NetDTO.CambiarPosicionPC)
         {
-            int conID = ((NetDTO.MoverPC) obj).connectionID;
-            float x = ((NetDTO.MoverPC) obj).x;
-            float y = ((NetDTO.MoverPC) obj).y;
+            int conID = ((NetDTO.CambiarPosicionPC) obj).connectionID;
+            float x = ((NetDTO.CambiarPosicionPC) obj).x;
+            float y = ((NetDTO.CambiarPosicionPC) obj).y;
 
             controlador.moverPC(conID, x, y);
         }

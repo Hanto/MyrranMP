@@ -1,7 +1,7 @@
 package View;// Created by Hanto on 07/04/2014.
 
 import Controller.Controlador;
-import Model.DTO.MundoDTO;
+import DTO.NetDTO;
 import Model.Classes.Mobiles.Mundo;
 import Model.Classes.Mobiles.PC;
 import View.Classes.Mobiles.PcView;
@@ -34,13 +34,16 @@ public class Vista implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof MundoDTO.AñadirPC)
+        if (evt.getNewValue() instanceof NetDTO.AñadirPC)
         {
-            PC PC = ((MundoDTO.AñadirPC) evt.getNewValue()).PC;
-            PcView pcView = new PcView(PC, this);
+            PC pc = mundo.getPC(((NetDTO.AñadirPC) evt.getNewValue()).connectionID);
 
-            for ( PcView gente: listaPcViews)
-            {   gente.quienMeVe(); }
+            pc.eliminarObservador(this);
+            PcView pcView = new PcView(pc, this);
+            listaPcViews.add(pcView);
+
+            //for ( PcView gente: listaPcViews)
+            //{   gente.quienMeVe(); }
         }
     }
 }

@@ -32,11 +32,11 @@ public class Servidor extends Server
 
     private void procesarMensajeCliente(Connection con, Object obj)
     {
-        if (obj instanceof NetDTO.MoverPC)
+        if (obj instanceof NetDTO.CambiarPosicionPC)
         {
             int conID = con.getID();
-            float x = ((NetDTO.MoverPC) obj).x;
-            float y = ((NetDTO.MoverPC) obj).y;
+            float x = ((NetDTO.CambiarPosicionPC) obj).x;
+            float y = ((NetDTO.CambiarPosicionPC) obj).y;
 
             controlador.moverPC(conID, x, y);
         }

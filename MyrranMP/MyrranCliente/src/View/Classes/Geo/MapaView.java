@@ -1,8 +1,8 @@
 package View.Classes.Geo;// Created by Hanto on 16/04/2014.
 
+import DTO.NetDTO;
 import Data.MiscData;
 import Model.Classes.Geo.Mapa;
-import Model.DTO.MapaDTO;
 import View.GameState.MundoView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -162,11 +162,11 @@ public class MapaView implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof MapaDTO.SetTerreno)
+        if (evt.getNewValue() instanceof NetDTO.SetTerreno)
         {
-            int celdaX = ((MapaDTO.SetTerreno) evt.getNewValue()).celdaX;
-            int celdaY = ((MapaDTO.SetTerreno) evt.getNewValue()).celdaY;
-            int numCapa = ((MapaDTO.SetTerreno) evt.getNewValue()).numCapa;
+            int celdaX = ((NetDTO.SetTerreno) evt.getNewValue()).celdaX;
+            int celdaY = ((NetDTO.SetTerreno) evt.getNewValue()).celdaY;
+            int numCapa = ((NetDTO.SetTerreno) evt.getNewValue()).numCapa;
             setTerreno(celdaX, celdaY, numCapa);
         }
     }

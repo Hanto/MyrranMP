@@ -1,14 +1,14 @@
-package View.Classes.UI.BarraAcciones.BarraAccionesView;// Created by Hanto on 06/05/2014.
+package View.Classes.UI.BarraAcciones;// Created by Hanto on 06/05/2014.
 
 import Controller.Interfaces.ControladorBarraAccionI;
 import Data.MiscData;
-import Model.Classes.UI.ConjuntoBarraAcciones.BarraAcciones;
+import Model.Classes.UI.BarraAcciones.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
 import Recursos.DAO.RSC;
 import View.Classes.Graficos.Texto;
 import View.Classes.UI.BarraAcciones.AccionIcono.AccionIcono;
-import View.Classes.UI.Comun.VentanaMoverListener;
 import View.Classes.UI.Comun.Ventana;
+import View.Classes.UI.Comun.VentanaMoverListener;
 import View.Classes.UI.Comun.VentanaResizeListener;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;

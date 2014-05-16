@@ -6,8 +6,8 @@ import Controller.Interfaces.ControladorBarraAccionI;
 import Controller.Interfaces.ControladorBarraTerrenosI;
 import DTO.NetDTO;
 import Model.Classes.Mobiles.Player;
-import Model.Classes.UI.ConjuntoBarraAcciones.BarraAccionesI;
-import Model.Classes.UI.ConjuntoBarraAcciones.ListaAccionesI;
+import Model.Classes.UI.BarraAcciones.BarraAccionesI;
+import Model.Classes.UI.BarraAcciones.ListaAccionesI;
 import Model.GameState.Mundo;
 import Model.GameState.UI;
 import View.Vista;
@@ -48,7 +48,7 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
         añadirBarraAcciones(3, 10);
         ui.añadirAccionesEnBarra(0);
 
-        moverPlayer(1000,500);
+        //moverPlayer(1000,500);
     }
 
     public void render (float delta)                                    { vista.render(delta); }
