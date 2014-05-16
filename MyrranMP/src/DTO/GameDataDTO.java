@@ -1,4 +1,4 @@
-package Data;
+package DTO;
 
 import Data.Spell.SkillStat;
 

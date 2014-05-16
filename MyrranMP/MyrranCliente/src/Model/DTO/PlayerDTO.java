@@ -59,4 +59,11 @@ public class PlayerDTO
         public Castear (Boolean castear, int screenX, int screenY)
         {   this.castear = castear; this.screenX = screenX; this.screenY = screenY; }
     }
+
+    public static class SetSpellIDSeleccionado
+    {
+        public String spellID;
+        public SetSpellIDSeleccionado(String spellID)
+        {   this.spellID = spellID; }
+    }
 }

@@ -1,7 +1,8 @@
-package Model.DTO;// Created by Hanto on 07/04/2014.
+package DTO;// Created by Hanto on 07/04/2014.
 
 import Data.MiscData;
-import Model.Classes.Mobiles.PC;
+import Interfaces.MobPC;
+import Interfaces.Vulnerable;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
 
@@ -20,6 +21,8 @@ public class NetDTO
         kryo.register(EliminarPC.class);
         kryo.register(CastearPC.class);
         kryo.register(SetTerreno.class);
+        kryo.register(SetSpellIDSeleccionado.class);
+        kryo.register(ParametrosSpellDTO.ParametrosEditarTerreno.class);
     }
 
     //Network DTOs:
@@ -34,14 +37,15 @@ public class NetDTO
         public float x;
         public float y;
         public ActualizarPlayer() {}
-        public ActualizarPlayer(PC PC)
-        {   connectionID = PC.getConnectionID();
-            nombre = PC.getNombre();
-            nivel = PC.getNivel();
-            actualHPs = PC.getActualHPs();
-            maxHPs = PC.getMaxHPs();
-            x = PC.getX();
-            y = PC.getY();
+        public ActualizarPlayer(MobPC pc, Vulnerable vulnerable)
+        {
+            connectionID = pc.getConnectionID();
+            nombre = pc.getNombre();
+            nivel = pc.getNivel();
+            actualHPs = vulnerable.getActualHPs();
+            maxHPs = vulnerable.getMaxHPs();
+            x = pc.getX();
+            y = pc.getY();
         }
     }
 
@@ -53,8 +57,15 @@ public class NetDTO
         public int numAnimacion;
 
         public AñadirPC () {}
-        public AñadirPC (PC PC, int numAnimacion)
-        { connectionID = PC.getConnectionID(); x = PC.getX(); y = PC.getY(); this.numAnimacion = numAnimacion; }
+        public AñadirPC (MobPC pc)
+        {
+            connectionID = pc.getConnectionID();
+            x = pc.getX();
+            y = pc.getY();
+            numAnimacion = pc.getNumAnimacion();
+        }
+        public AñadirPC (int connectionID, float x, float y, int numAnimacion)
+        {   this.connectionID = connectionID; this.x = x; this.y = y; this.numAnimacion = numAnimacion; }
     }
 
     public static class MoverPC
@@ -64,6 +75,12 @@ public class NetDTO
         public float y;
 
         public MoverPC () {}
+        public MoverPC (MobPC pc)
+        {
+            connectionID = pc.getConnectionID();
+            x = pc.getX();
+            y = pc.getY();
+        }
         public MoverPC(int connectionID, float x, float y)
         {   this.connectionID = connectionID; this.x = x; this.y = y; }
     }
@@ -73,6 +90,11 @@ public class NetDTO
         public int connectionID;
         public int numAnimacion;
         public CambiarAnimacionPC() {}
+        public CambiarAnimacionPC(MobPC pc)
+        {
+            connectionID = pc.getConnectionID();
+            numAnimacion = pc.getNumAnimacion();
+        }
         public CambiarAnimacionPC(int connectionID, int numAnimacion)
         {   this.connectionID = connectionID; this.numAnimacion = numAnimacion; }
     }
@@ -82,8 +104,8 @@ public class NetDTO
         public int connectionID;
 
         public EliminarPC () {}
-        public EliminarPC (PC PC)
-        {   connectionID = PC.getConnectionID(); }
+        public EliminarPC (MobPC pc)
+        {   this.connectionID = pc.getConnectionID(); }
         public EliminarPC (int connectionID)
         {   this.connectionID = connectionID; }
     }
@@ -109,4 +131,12 @@ public class NetDTO
         {   this.celdaX = celdaX; this.celdaY = celdaY; this.numCapa = numCapa; this.iDTerreno = iDTerreno; }
     }
 
+    public static class SetSpellIDSeleccionado
+    {
+        public String spellID;
+        public Object parametrosSpell;
+        public SetSpellIDSeleccionado() {}
+        public SetSpellIDSeleccionado(String spellID, Object parametrosSpell)
+        {   this.spellID = spellID; this.parametrosSpell = parametrosSpell; }
+    }
 }

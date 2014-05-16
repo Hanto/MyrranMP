@@ -4,7 +4,7 @@ import Controller.Controlador;
 import Data.MiscData;
 import Interfaces.MobPC;
 import Model.DTO.MapaDTO;
-import Model.DTO.NetDTO;
+import DTO.NetDTO;
 import Model.DTO.PcDTO;
 import Model.Classes.Mobiles.Mundo;
 import Model.Classes.Mobiles.PC;
@@ -48,7 +48,7 @@ public class PcView implements PropertyChangeListener
         PC.añadirObservador(this);
         PC.eliminarObservador(vista);
 
-        NetDTO.ActualizarPlayer actualizarPlayer = new NetDTO.ActualizarPlayer(PC);
+        NetDTO.ActualizarPlayer actualizarPlayer = new NetDTO.ActualizarPlayer(PC, PC);
         controlador.enviarACliente(connectionID, actualizarPlayer);
     }
 
@@ -117,7 +117,7 @@ public class PcView implements PropertyChangeListener
         if (!listaPCsCercanos.contains(pcview.PC))
         {
             listaPCsCercanos.add(pcview.PC);
-            NetDTO.AñadirPC añadirPC = new NetDTO.AñadirPC(pcview.PC, pcview.PC.getNumAnimacion());
+            NetDTO.AñadirPC añadirPC = new NetDTO.AñadirPC(pcview.PC);
             controlador.enviarACliente(PC.getConnectionID(), añadirPC);
         }
     }

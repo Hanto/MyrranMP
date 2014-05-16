@@ -1,6 +1,6 @@
 package Controller;// Created by Hanto on 07/04/2014.
 
-import Model.DTO.NetDTO;
+import DTO.NetDTO;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
@@ -55,6 +55,13 @@ public class Servidor extends Server
             int targetX = ((NetDTO.CastearPC) obj).targetX;
             int targetY = ((NetDTO.CastearPC) obj).targetY;
             controlador.castear(conID, castear, targetX, targetY);
+        }
+
+        if (obj instanceof NetDTO.SetSpellIDSeleccionado)
+        {
+            String spellID = ((NetDTO.SetSpellIDSeleccionado) obj).spellID;
+            Object parametros = ((NetDTO.SetSpellIDSeleccionado) obj).parametrosSpell;
+            controlador.cambiarSpellSeleccionado(con.getID(), spellID, parametros);
         }
     }
 

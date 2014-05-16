@@ -42,16 +42,15 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     protected Float totalCastingTime = 0.0f;
 
     protected String spellIDSeleccionado = null;
-    protected Integer terrenoIDSeleccionado = -1;
-    protected Integer capaTerrenoSeleccionada = 0;
+    protected Object parametrosSpell;
 
     protected String iDraza;                                    //id de la raza;
 
 
     //GET:
     @Override public int getConnectionID ()                     { return connectionID; }
-    public String getNombre()                                   { return nombre; }
-    public int getNivel()                                       { return nivel; }
+    @Override public String getNombre()                         { return nombre; }
+    @Override public int getNivel()                             { return nivel; }
 
     //VULNERABLE:
     @Override public float getActualHPs()                       { return actualHPs; }
@@ -65,10 +64,8 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     @Override public float getActualCastingTime()               { return actualCastingTime; }
     @Override public float getTotalCastingTime()                { return totalCastingTime; }
     @Override public String getSpellIDSeleccionado()            { return spellIDSeleccionado; }
-    @Override public int getTerrenoIDSeleccionado()             { return terrenoIDSeleccionado; }
-    @Override public int getCapaTerrenoSeleccionada()           { return capaTerrenoSeleccionada; }
-    @Override public void setTerrenoIDSeleccionado(int i)       { terrenoIDSeleccionado = i; }
-    @Override public void setCapaTerrenoSeleccionada(int i)     { capaTerrenoSeleccionada = i; }
+    @Override public Object getParametrosSpell()                { return parametrosSpell; }
+    @Override public void setParametrosSpell(Object parametros) { parametrosSpell = parametros; }
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0.01f; totalCastingTime = castingTime;}
     @Override public void setSpellIDSeleccionado(String spellID){ spellIDSeleccionado = spellID; }
     @Override public void setCastear (boolean castear, int targetX, int targetY)
@@ -139,8 +136,6 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     {
         if (!isCasteando())
         {
-            spellIDSeleccionado = "Terraformar";
-
             Spell spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellIDSeleccionado);
             if (spell != null)
             {

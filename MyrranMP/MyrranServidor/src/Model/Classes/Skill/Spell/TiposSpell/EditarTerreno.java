@@ -1,6 +1,7 @@
 package Model.Classes.Skill.Spell.TiposSpell;
 // @author Ivan Delgado Huerta
 
+import DTO.ParametrosSpellDTO;
 import Data.MiscData;
 import Data.Spell.TipoSpellsData;
 import Interfaces.Caster;
@@ -21,8 +22,8 @@ public class EditarTerreno extends TipoSpell
         int tileX = (targetX / MiscData.TILESIZE);
         int tileY = (targetY / MiscData.TILESIZE);
 
-        int numCapa = caster.getCapaTerrenoSeleccionada();
-        int iDTerreno = caster.getTerrenoIDSeleccionado();
+        int numCapa = ((ParametrosSpellDTO.ParametrosEditarTerreno)caster.getParametrosSpell()).capaTerrenoSeleccionada;
+        int iDTerreno = ((ParametrosSpellDTO.ParametrosEditarTerreno)caster.getParametrosSpell()).terrenoIDSeleccionado;
 
         caster.getMapa().setTerreno(tileX, tileY, numCapa, iDTerreno);
     }

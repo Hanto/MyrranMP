@@ -1,6 +1,7 @@
 package Model.Classes.Acciones.TiposAccion;// Created by Hanto on 05/05/2014.
 
 import Controller.Controlador;
+import DTO.ParametrosSpellDTO;
 import Data.Spell.SpellsData;
 import Model.Classes.Acciones.Accion;
 import Model.Classes.Mobiles.Player;
@@ -17,8 +18,8 @@ public class SeleccionarSpell extends Accion
 
     @Override public void accionKeyDown(Player player, PlayerEstado playerE, Controlador controlador)
     {
+        if (iD.equals(SpellsData.TERRAFORMAR_ID)) { player.setParametrosSpell(new ParametrosSpellDTO.ParametrosEditarTerreno());controlador.mostrarBarraTerrenos();}
         player.setSpellIDSeleccionado((String)parametros);
-        if (iD.equals(SpellsData.TERRAFORMAR_ID)) controlador.mostrarBarraTerrenos();
     }
 
     @Override public void accionKeyUp(Player player, PlayerEstado playerE, Controlador controlador)

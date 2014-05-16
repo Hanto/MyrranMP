@@ -1,6 +1,6 @@
 package Controller;// Created by Hanto on 08/04/2014.
 
-import Model.DTO.NetDTO;
+import DTO.NetDTO;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -37,6 +37,7 @@ public class Cliente extends Client
     {
         if (obj instanceof NetDTO.ActualizarPlayer)
         {
+
             controlador.actualizarPlayer((NetDTO.ActualizarPlayer)obj);
         }
 

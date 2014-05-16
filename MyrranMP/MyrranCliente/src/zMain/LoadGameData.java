@@ -1,7 +1,7 @@
 package zMain;// Created by Hanto on 11/04/2014.
 
 import Data.GameData;
-import Data.GameDataDTO;
+import DTO.GameDataDTO;
 import Data.MiscData;
 import Model.Classes.Acciones.Accion;
 import Model.Classes.Acciones.TiposAccion.*;

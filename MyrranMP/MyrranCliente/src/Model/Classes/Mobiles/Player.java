@@ -1,12 +1,12 @@
 package Model.Classes.Mobiles;// Created by Hanto on 10/04/2014.
 
-import Model.Classes.UI.Input.PlayerIO;
 import Interfaces.Caster;
 import Interfaces.MapaI;
 import Model.Classes.AbstractModel;
+import Model.Classes.Skill.Spell.Spell;
+import Model.Classes.UI.Input.PlayerIO;
 import Model.DAO.DAO;
 import Model.DTO.PlayerDTO;
-import Model.Classes.Skill.Spell.Spell;
 
 public class Player extends AbstractModel implements Caster
 {
@@ -35,8 +35,7 @@ public class Player extends AbstractModel implements Caster
     protected Float actualCastingTime = 0.0f;
     protected Float totalCastingTime = 0.0f;
     protected String spellIDSeleccionado = null;
-    protected Integer terrenoIDSeleccionado = -1;
-    protected Integer capaTerrenoSeleccionada = 0;
+    protected Object parametrosSpell;
 
     protected Boolean irArriba = false;
     protected Boolean irAbajo = false;
@@ -59,12 +58,9 @@ public class Player extends AbstractModel implements Caster
     @Override public float getActualCastingTime()               { return actualCastingTime; }
     @Override public float getTotalCastingTime()                { return totalCastingTime; }
     @Override public String getSpellIDSeleccionado()            { return spellIDSeleccionado; }
-    @Override public int getTerrenoIDSeleccionado()             { return terrenoIDSeleccionado; }
-    @Override public int getCapaTerrenoSeleccionada()           { return capaTerrenoSeleccionada; }
-    @Override public void setTerrenoIDSeleccionado(int i)       { terrenoIDSeleccionado = i; }
-    @Override   public void setCapaTerrenoSeleccionada(int i)   { capaTerrenoSeleccionada = i; }
+    @Override public Object getParametrosSpell()                { return parametrosSpell; }
+    @Override public void setParametrosSpell(Object parametros) { parametrosSpell = parametros; }
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0.01f; totalCastingTime = castingTime;}
-    @Override public void setSpellIDSeleccionado(String spellID){ spellIDSeleccionado = spellID; }
     @Override public void setCastear(boolean intentaCastear, int clickX, int clickY)
     {
         castear = intentaCastear;
@@ -73,6 +69,13 @@ public class Player extends AbstractModel implements Caster
 
         if (castear) startCastear();
         else stopCastear();
+    }
+
+    @Override public void setSpellIDSeleccionado(String spellID)
+    {
+        spellIDSeleccionado = spellID;
+        Object spellIDSeleccionadoDTO = new PlayerDTO.SetSpellIDSeleccionado(spellID);
+        notificarActualizacion("setSpellIDSeleccionado", null, spellIDSeleccionadoDTO);
     }
 
     private void stopCastear()
@@ -89,8 +92,6 @@ public class Player extends AbstractModel implements Caster
     {
         if (!isCasteando())
         {
-            spellIDSeleccionado = "Terraformar";
-
             Spell spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellIDSeleccionado);
             if (spell != null)
             {

@@ -1,9 +1,9 @@
 package View.Classes.Mobiles;// Created by Hanto on 10/04/2014.
 
 import Controller.Controlador;
+import DTO.NetDTO;
 import Data.MiscData;
 import Model.Classes.Mobiles.Player;
-import Model.DTO.NetDTO;
 import Model.DTO.PlayerDTO;
 import Recursos.DAO.RSC;
 import View.Classes.Graficos.PixiePC;
@@ -27,6 +27,8 @@ public class PlayerView extends Group implements PropertyChangeListener
 
     public Texto nombre;
     public Integer nivel;
+    public String spellIDSeleccionado;
+
 
     public PixiePC actor;
 
@@ -104,6 +106,16 @@ public class PlayerView extends Group implements PropertyChangeListener
         return new Vector2(destino.x, destino.y);
     }
 
+    public void setSpellIDSeleccionado(String spellID)
+    {
+        if (spellIDSeleccionado != spellID)
+        {
+            spellIDSeleccionado = spellID;
+            NetDTO.SetSpellIDSeleccionado setSpellIDSeleccionado = new NetDTO.SetSpellIDSeleccionado(spellID, player.getParametrosSpell());
+            controlador.enviarAServidor(setSpellIDSeleccionado);
+        }
+    }
+
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
         if (evt.getNewValue() instanceof PlayerDTO.PositionPlayer)
@@ -133,6 +145,12 @@ public class PlayerView extends Group implements PropertyChangeListener
             int targetX = ((PlayerDTO.Castear) evt.getNewValue()).screenX;
             int targetY = ((PlayerDTO.Castear) evt.getNewValue()).screenY;
             setCastear(castear, targetX, targetY);
+        }
+
+        if (evt.getNewValue() instanceof PlayerDTO.SetSpellIDSeleccionado)
+        {
+            String spellID = ((PlayerDTO.SetSpellIDSeleccionado) evt.getNewValue()).spellID;
+            setSpellIDSeleccionado(spellID);
         }
     }
 }

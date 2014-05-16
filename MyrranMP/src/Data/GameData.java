@@ -1,5 +1,6 @@
 package Data;
 
+import DTO.GameDataDTO;
 import Data.Spell.SpellsData;
 import Data.Spell.TipoSpellsData;
 

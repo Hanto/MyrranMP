@@ -33,6 +33,11 @@ public class Controlador
     public void castear(int connectionID, boolean castear, int targetX, int targetY)
     {   mundo.getPC(connectionID).setCastear(castear, targetX, targetY); }
 
+    public void cambiarSpellSeleccionado(int connectionID, String spellID, Object parametrosSpell)
+    {   mundo.getPC(connectionID).setSpellIDSeleccionado(spellID);
+        mundo.getPC(connectionID).setParametrosSpell(parametrosSpell);
+    }
+
 
     public void netUpdater ()                                           { vista.netUpdate(); }
 }
