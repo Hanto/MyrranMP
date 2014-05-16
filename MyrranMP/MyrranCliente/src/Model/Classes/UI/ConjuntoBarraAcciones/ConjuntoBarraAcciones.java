@@ -33,13 +33,13 @@ public class ConjuntoBarraAcciones extends AbstractModel
         notificarActualizacion("añadirBarraAcciones", null, añadirBarraAccionesDTO);
     }
 
-    public void eliminarBarraAccion(ListaAccionesBI barraAccion)
+    public void eliminarBarraAccion(BarraAccionesI barraAccion)
     {   listaDeBarraAcciones.remove(barraAccion.getID());
         barraAccion.eliminar();
     }
 
     //Provisional:
-    public void añadirAccionesEnBarra(ListaAccionesBI barra)
+    public void añadirAccionesEnBarra(BarraAccionesI barra)
     {
         barra.setKeycode(0, 0, 8);
         barra.setKeycode(1, 0, 9);
@@ -63,7 +63,7 @@ public class ConjuntoBarraAcciones extends AbstractModel
         barra.setAccion(0, 2, DAO.accionDAOFactory.getAccionDAO().getAccion("IrOeste"));
     }
 
-    public void setKeycode (ListaAccionesBI barra, int posX, int posY, int keycode)
+    public void setKeycode (BarraAccionesI barra, int posX, int posY, int keycode)
     {
         for (Map.Entry<Integer,BarraAcciones> entry : listaDeBarraAcciones.entrySet())
         {   entry.getValue().eliminarKeycode(keycode); }
@@ -71,10 +71,10 @@ public class ConjuntoBarraAcciones extends AbstractModel
         barra.setKeycode(posX, posY, keycode);
     }
 
-    public void setAccion (ListaAccionesBI barra, int posX, int posY, Accion accion)
+    public void setAccion (BarraAccionesI barra, int posX, int posY, Accion accion)
     {   barra.setAccion(posX, posY, accion); }
 
-    public void eliminarAccion (ListaAccionesBI barra, int posX, int posY)
+    public void eliminarAccion (BarraAccionesI barra, int posX, int posY)
     {   barra.eliminarAccion (posX, posY); }
 
     public void moverAccion (ListaAccionesI barraOrigen, int posXOrigen, int posYOrigen, ListaAccionesI barraDestino, int posXDestino, int posYDestino)
@@ -82,16 +82,16 @@ public class ConjuntoBarraAcciones extends AbstractModel
         Accion accionOrigen = barraOrigen.getAccion(posXOrigen, posYOrigen);
         Accion accionDestino = barraDestino.getAccion(posXDestino, posYDestino);
 
-        if (barraOrigen instanceof ListaAccionesBI)
+        if (barraOrigen instanceof BarraAccionesI)
         {
-            if (accionDestino == null) ((ListaAccionesBI)barraOrigen).eliminarAccion(posXOrigen, posYOrigen);
-            else ((ListaAccionesBI)barraOrigen).setAccion(posXOrigen, posYOrigen, accionDestino);
+            if (accionDestino == null) ((BarraAccionesI)barraOrigen).eliminarAccion(posXOrigen, posYOrigen);
+            else ((BarraAccionesI)barraOrigen).setAccion(posXOrigen, posYOrigen, accionDestino);
         }
 
-        if (barraDestino instanceof ListaAccionesBI)
+        if (barraDestino instanceof BarraAccionesI)
         {
-            if (accionOrigen == null) ((ListaAccionesBI)barraDestino).eliminarAccion(posXDestino, posYDestino);
-            else ((ListaAccionesBI)barraDestino).setAccion(posXDestino, posYDestino, accionOrigen);
+            if (accionOrigen == null) ((BarraAccionesI)barraDestino).eliminarAccion(posXDestino, posYDestino);
+            else ((BarraAccionesI)barraDestino).setAccion(posXDestino, posYDestino, accionOrigen);
         }
     }
 }

@@ -7,7 +7,7 @@ import Model.Classes.UI.Input.Keybinds;
 import Model.DTO.BarraAccionesDTO;
 import com.badlogic.gdx.utils.Array;
 
-public class BarraAcciones extends AbstractModel implements ListaAccionesBI
+public class BarraAcciones extends AbstractModel implements BarraAccionesI
 {
     private int iD;
     private Array<Array<Casilla>> barraAcciones = new Array<>();
@@ -21,7 +21,7 @@ public class BarraAcciones extends AbstractModel implements ListaAccionesBI
         public int keycode;
     }
 
-    @Override public int getID()          { return iD; }
+    @Override public int getID(){ return iD; }
     public void setID(int i)    { iD = i; }
     public int getNumFilas()    { return barraAcciones.size; }
     public int getNumColumnas() { return (barraAcciones.size == 0) ? 0 : barraAcciones.first().size; }
@@ -122,6 +122,9 @@ public class BarraAcciones extends AbstractModel implements ListaAccionesBI
 
 
 
+    @Override public void eliminar()
+    {   eliminarFila(barraAcciones.size); }
+
     @Override public void eliminarFila(int numFilas)
     {
         for (int i=0; i<numFilas;i++)
@@ -160,8 +163,6 @@ public class BarraAcciones extends AbstractModel implements ListaAccionesBI
 
     private void eliminarFila()
     {
-        //if (barraAcciones.size <= 1) return;
-
         Array<Casilla> array = barraAcciones.peek();
         for (int i=0; i<array.size; i++)
         {   keybinds.eliminarKeybind(array.get(i).keycode); }
@@ -183,8 +184,6 @@ public class BarraAcciones extends AbstractModel implements ListaAccionesBI
 
     private void eliminarColumna()
     {
-        //if (barraAcciones.first().size <= 1) return;
-
         for (int y=0; y<barraAcciones.size; y++)
         {   keybinds.eliminarKeybind(barraAcciones.get(y).pop().keycode);}
     }
@@ -197,8 +196,5 @@ public class BarraAcciones extends AbstractModel implements ListaAccionesBI
             barraAcciones.get(y).add(casilla);
         }
     }
-
-    @Override public void eliminar()
-    {   eliminarFila(barraAcciones.size); }
 
 }

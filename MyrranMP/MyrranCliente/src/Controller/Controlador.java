@@ -5,9 +5,8 @@ import Controller.Input.PlayerMouseKeyI;
 import Controller.Interfaces.ControladorBarraAccionI;
 import Controller.Interfaces.ControladorBarraTerrenosI;
 import Model.Classes.Mobiles.Player;
-import Model.Classes.UI.ConjuntoBarraAcciones.ListaAccionesBI;
+import Model.Classes.UI.ConjuntoBarraAcciones.BarraAccionesI;
 import Model.Classes.UI.ConjuntoBarraAcciones.ListaAccionesI;
-import Model.Classes.UI.ConjuntoBarraAcciones.ListaRedimensionableI;
 import Model.DTO.NetDTO;
 import Model.GameState.Mundo;
 import Model.GameState.UI;
@@ -48,7 +47,6 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
 
         añadirBarraAcciones(3, 10);
         ui.añadirAccionesEnBarra(0);
-        añadirBarraAcciones(2, 10);
 
         moverPlayer(1000,500);
     }
@@ -105,15 +103,15 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
 
     //BarrasAccion:
     @Override public void añadirBarraAcciones(int filas, int columnas)                          { ui.añadirBarraAcciones(filas, columnas); }
-    @Override public void eliminarBarraAcciones(ListaAccionesBI barraAcciones)                  { ui.eliminarBarraAcciones(barraAcciones); }
+    @Override public void eliminarBarraAcciones(BarraAccionesI barraAcciones)                  { ui.eliminarBarraAcciones(barraAcciones); }
     @Override public void barraAccionMoverAccion(ListaAccionesI barraOrigen, int posXOrigen, int posYOrigen, ListaAccionesI barraDestino,int posXDestino, int posYDestino)
     {   ui.moverAccion(barraOrigen, posXOrigen, posYOrigen, barraDestino, posXDestino, posYDestino);}
-    @Override public void barraAccionRebindear(ListaAccionesBI barra, int posX, int posY, int keycode)
+    @Override public void barraAccionRebindear(BarraAccionesI barra, int posX, int posY, int keycode)
     {   ui.setKeyCode(barra, posX, posY, keycode);}
-    @Override public void barraAñadirColumna(ListaRedimensionableI barra, int numColumnas)      { barra.añadirColumna(numColumnas); }
-    @Override public void barraAñadirFila (ListaRedimensionableI barra, int numFilas)           { barra.añadirFila(numFilas); }
-    @Override public void barraEliminarColumna (ListaRedimensionableI barra, int numColumnas)   { barra.eliminarColumna(numColumnas); }
-    @Override public void barraEliminarFila (ListaRedimensionableI barra, int numFilas)         { barra.eliminarFila(numFilas); }
+    @Override public void barraAñadirColumna(BarraAccionesI barra, int numColumnas)            { barra.añadirColumna(numColumnas); }
+    @Override public void barraAñadirFila (BarraAccionesI barra, int numFilas)                 { barra.añadirFila(numFilas); }
+    @Override public void barraEliminarColumna (BarraAccionesI barra, int numColumnas)         { barra.eliminarColumna(numColumnas); }
+    @Override public void barraEliminarFila (BarraAccionesI barra, int numFilas)               { barra.eliminarFila(numFilas); }
 
     //BarraTerrenos:
     @Override public void mostrarBarraTerrenos()                                                { vista.getUiView().mostrarBarraTerreno(); }

@@ -3,8 +3,8 @@ package Model.GameState;// Created by Hanto on 06/05/2014.
 import Controller.Controlador;
 import Model.Classes.Mobiles.Player;
 import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
+import Model.Classes.UI.ConjuntoBarraAcciones.BarraAccionesI;
 import Model.Classes.UI.ConjuntoBarraAcciones.ConjuntoBarraAcciones;
-import Model.Classes.UI.ConjuntoBarraAcciones.ListaAccionesBI;
 import Model.Classes.UI.ConjuntoBarraAcciones.ListaAccionesI;
 import Model.Classes.UI.Input.Keybinds;
 import Model.Classes.UI.Input.PlayerEstado;
@@ -31,12 +31,12 @@ public class UI
 
     public void añadirBarraAcciones(int filas, int columnas)
     {   conjuntoBarraAcciones.añadirBarraAcciones(filas, columnas); }
-    public void eliminarBarraAcciones(ListaAccionesBI barra)
+    public void eliminarBarraAcciones(BarraAccionesI barra)
     {   conjuntoBarraAcciones.eliminarBarraAccion(barra); }
 
     public void moverAccion (ListaAccionesI barraOrigen, int posXOrigen, int posYOrigen, ListaAccionesI barraDestino,int posXDestino, int posYDestino)
     {   conjuntoBarraAcciones.moverAccion(barraOrigen, posXOrigen, posYOrigen, barraDestino, posXDestino, posYDestino);}
-    public void setKeyCode (ListaAccionesBI barra, int posX, int posY, int keycode)
+    public void setKeyCode (BarraAccionesI barra, int posX, int posY, int keycode)
     {   conjuntoBarraAcciones.setKeycode(barra, posX, posY, keycode); }
 
     public void moverTerreno(int posOrigen, int posDestino)

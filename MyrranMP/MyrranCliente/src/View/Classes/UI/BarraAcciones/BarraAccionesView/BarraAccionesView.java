@@ -11,6 +11,8 @@ import View.Classes.UI.Comun.VentanaMoverListener;
 import View.Classes.UI.Comun.Ventana;
 import View.Classes.UI.Comun.VentanaResizeListener;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -31,6 +33,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
 
     private Image moverBarra;
     private Image redimensionarBarra;
+    private Image eliminarBarra;
 
     private Array<Array<AccionIcono>> barraIconos = new Array<>();
 
@@ -62,6 +65,16 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
         redimensionarBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
         redimensionarBarra.addListener(new VentanaResizeListener(redimensionarBarra, this, this));
         this.addActor(redimensionarBarra);
+
+        eliminarBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonOFF));
+        this.addActor(eliminarBarra);
+        eliminarBarra.addListener(new InputListener()
+        {
+            @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+            {   eliminarBarraAcciones();
+                return true;
+            }
+        });
 
         crearBarraIconos();
 
@@ -109,12 +122,12 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
         this.addActor(moverBarra);
         redimensionarBarra.setPosition(this.getWidth(),-redimensionarBarra.getHeight());
         this.addActor(redimensionarBarra);
+        eliminarBarra.setPosition(-eliminarBarra.getWidth()-2, this.getHeight()-moverBarra.getHeight()-eliminarBarra.getHeight());
+        this.addActor(eliminarBarra);
     }
 
     @Override public void eventoVentanaResize (int columnasAdicionales, int filasAdicionales)
     {
-        if (columnasAdicionales == 0 && filasAdicionales == 0) { eliminarBarraAccionesView(); return; }
-
         if (columnasAdicionales >0)
               { controlador.barraAñadirColumna(barraModel, columnasAdicionales); }
         else  { controlador.barraEliminarColumna(barraModel, Math.abs(columnasAdicionales)); }
@@ -191,7 +204,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
         }
     }
 
-    public void eliminarBarraAccionesView()
+    public void eliminarBarraAcciones()
     {
         controlador.eliminarBarraAcciones(barraModel);
         conjuntoBarraAccionesView.eliminarBarraAccionesView(this);
