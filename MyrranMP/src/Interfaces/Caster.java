@@ -9,9 +9,15 @@ public interface Caster
     public float getActualCastingTime();
     public float getTotalCastingTime();
     public String getSpellIDSeleccionado();
+    public int getTerrenoIDSeleccionado();
+    public int getCapaTerrenoSeleccionada();
 
     //SET:
     public void setCastear(boolean castear, int targetX, int targetY);
     public void setTotalCastingTime(float castingTime);
     public void setSpellIDSeleccionado(String spellID);
+    public void setTerrenoIDSeleccionado(int i);
+    public void setCapaTerrenoSeleccionada(int i);
+
+
 }

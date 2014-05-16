@@ -6,20 +6,18 @@ import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
 import Model.DTO.BarraTerrenosDTO;
 import Recursos.DAO.RSC;
 import View.Classes.UI.BarraTerrenos.TerrenoIcono.TerrenoIcono;
-import View.Classes.UI.Comun.VentanaMoverListener;
 import View.Classes.UI.Comun.Ventana;
+import View.Classes.UI.Comun.VentanaMoverListener;
 import View.Classes.UI.Comun.VentanaResizeListener;
+import View.Classes.UI.Comun.VentanaScrollListener;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
-import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.Array;
 
 import java.beans.PropertyChangeEvent;
@@ -67,19 +65,7 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
         this.addActor(redimensionarBarra);
 
         scrollPane.clearListeners();
-        scrollPane.addListener(new DragListener()
-        {   //para que se puede hacer scroll de la barra de terreno con solo pasar el raton por encima:
-            @Override public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
-            { scrollPane.getStage().setScrollFocus(scrollPane); }
-
-            //para que no haga scroll cuando el raton este fuera de la ventana de terrenos
-            @Override public void exit(InputEvent event, float x, float y, int pointer, Actor fromActor)
-            { if (scrollPane.getStage() != null) scrollPane.getStage().setScrollFocus(null); }
-
-            //Añdimos un listener para el scroll, para configurar su velocidad, hay que parar su propagacion con event.stop() para que no salte el que esta programado de base
-            @Override public boolean scrolled(InputEvent event, float x, float y, int amount)
-            { scrollPane.setScrollY(scrollPane.getScrollY()+ MiscData.TILESIZE*3*amount); event.stop(); return true; }
-        });
+        scrollPane.addListener(new VentanaScrollListener(scrollPane));
 
         crearBarraIconos();
         recrearTabla();

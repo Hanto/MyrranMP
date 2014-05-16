@@ -18,15 +18,12 @@ public class EditarTerreno extends TipoSpell
 
     @Override public void ejecutarCasteo(Spell skill, Caster caster, int targetX, int targetY)
     {
-        /*Vector2 destino = new Vector2(targetX, targetY);
-        destino = convertirCoordenadasANumeroDeTile(destino);
-        */
         int tileX = (targetX / MiscData.TILESIZE);
         int tileY = (targetY / MiscData.TILESIZE);
-/*
+
         int numCapa = caster.getCapaTerrenoSeleccionada();
-        String iDTerreno = Mundo.get().player.getTerrenoSeleccionado();
-*/
-        caster.getMapa().setTerreno(tileX, tileY, 1, 6);
+        int iDTerreno = caster.getTerrenoIDSeleccionado();
+
+        caster.getMapa().setTerreno(tileX, tileY, numCapa, iDTerreno);
     }
 }

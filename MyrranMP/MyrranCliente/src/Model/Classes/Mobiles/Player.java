@@ -35,6 +35,8 @@ public class Player extends AbstractModel implements Caster
     protected Float actualCastingTime = 0.0f;
     protected Float totalCastingTime = 0.0f;
     protected String spellIDSeleccionado = null;
+    protected Integer terrenoIDSeleccionado = -1;
+    protected Integer capaTerrenoSeleccionada = 0;
 
     protected Boolean irArriba = false;
     protected Boolean irAbajo = false;
@@ -57,6 +59,10 @@ public class Player extends AbstractModel implements Caster
     @Override public float getActualCastingTime()               { return actualCastingTime; }
     @Override public float getTotalCastingTime()                { return totalCastingTime; }
     @Override public String getSpellIDSeleccionado()            { return spellIDSeleccionado; }
+    @Override public int getTerrenoIDSeleccionado()             { return terrenoIDSeleccionado; }
+    @Override public int getCapaTerrenoSeleccionada()           { return capaTerrenoSeleccionada; }
+    @Override public void setTerrenoIDSeleccionado(int i)       { terrenoIDSeleccionado = i; }
+    @Override   public void setCapaTerrenoSeleccionada(int i)   { capaTerrenoSeleccionada = i; }
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0.01f; totalCastingTime = castingTime;}
     @Override public void setSpellIDSeleccionado(String spellID){ spellIDSeleccionado = spellID; }
     @Override public void setCastear(boolean intentaCastear, int clickX, int clickY)

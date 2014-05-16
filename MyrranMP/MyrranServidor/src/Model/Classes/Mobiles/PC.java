@@ -65,6 +65,10 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     @Override public float getActualCastingTime()               { return actualCastingTime; }
     @Override public float getTotalCastingTime()                { return totalCastingTime; }
     @Override public String getSpellIDSeleccionado()            { return spellIDSeleccionado; }
+    @Override public int getTerrenoIDSeleccionado()             { return terrenoIDSeleccionado; }
+    @Override public int getCapaTerrenoSeleccionada()           { return capaTerrenoSeleccionada; }
+    @Override public void setTerrenoIDSeleccionado(int i)       { terrenoIDSeleccionado = i; }
+    @Override public void setCapaTerrenoSeleccionada(int i)     { capaTerrenoSeleccionada = i; }
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0.01f; totalCastingTime = castingTime;}
     @Override public void setSpellIDSeleccionado(String spellID){ spellIDSeleccionado = spellID; }
     @Override public void setCastear (boolean castear, int targetX, int targetY)
