@@ -75,7 +75,7 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
         this.addActor(redimensionarBarra);
 
         botonBorrarTerreno = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRATERRENOS_Borrar_Terreno));
-        botonBorrarTerreno.setPosition(40, -botonBorrarTerreno.getHeight());
+        botonBorrarTerreno.setPosition(0, -botonBorrarTerreno.getHeight());
         this.addActor(botonBorrarTerreno);
         botonBorrarTerreno.addListener(new InputListener()
         {
@@ -122,7 +122,7 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
         {
             final int numCapa = i;
             botonCapas[i] = new Texto("Capa "+numCapa, RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.ORANGE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
-            botonCapas[i].setPosition(4, -18-numCapa*17);
+            botonCapas[i].setPosition(4, -MiscData.TILESIZE*2-18-numCapa*17);
             this.addActor(botonCapas[i]);
 
             botonCapas[i].addListener(new InputListener()

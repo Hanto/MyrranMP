@@ -45,7 +45,6 @@ public class VentanaResizeListener extends DragListener
         if (numFilas + filasAdicionales <=0)        { filasAdicionales = 1-numFilas; }
         if (numColumnas + columnasAdicionales <=0)  { columnasAdicionales = 1-numColumnas; }
 
-        System.out.println(filasAdicionales+"-"+columnasAdicionales);
         ventana.eventoVentanaResize(columnasAdicionales, filasAdicionales);
     }
 
