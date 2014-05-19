@@ -4,7 +4,7 @@ import Controller.Controlador;
 import DTO.NetDTO;
 import Data.MiscData;
 import Interfaces.MobPC;
-import Model.Classes.Mobiles.Mundo;
+import Model.GameState.Mundo;
 import Model.Classes.Mobiles.PC;
 import View.Vista;
 
@@ -41,13 +41,16 @@ public class PcView implements PropertyChangeListener
         x = PC.getX();
         y = PC.getY();
 
-        mundo.mapa.añadirObservador(this);
+        mundo.getMapa().añadirObservador(this);
         PC.añadirObservador(this);
 
         NetDTO.ActualizarPlayer actualizarPlayer = new NetDTO.ActualizarPlayer(PC, PC);
         controlador.enviarACliente(connectionID, actualizarPlayer);
 
         quienMeVe();
+        actualizarMapa(0,0);
+        actualizarMapa(67,0);
+        actualizarMapa(0,38);
     }
 
     public void netUpdate()
@@ -135,7 +138,7 @@ public class PcView implements PropertyChangeListener
         NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(PC);
         actualizarPlayersCercanos(eliminarPC);
 
-        mundo.mapa.eliminarObservador(this);
+        mundo.getMapa().eliminarObservador(this);
         PC.eliminarObservador(this);
         vista.listaPcViews.remove(this);
 
@@ -146,6 +149,20 @@ public class PcView implements PropertyChangeListener
         NetDTO.SetTerreno setTerreno = new NetDTO.SetTerreno(x,y,numCapa,iDTerreno);
         controlador.enviarACliente(PC.getConnectionID(), setTerreno);
         System.out.println("Editando SetTerreno: ["+x+"]["+y+"]");
+    }
+
+    public void actualizarMapa (int xInicial, int yInicial)
+    {
+        NetDTO.ActualizarMapa actualizarMapa = new NetDTO.ActualizarMapa(xInicial, yInicial);
+        for (int y=0; y< actualizarMapa.mapa[0].length; y++)
+        {
+            for (int x = 0; x< actualizarMapa.mapa.length; x++)
+            {
+                for (int i=0; i<MiscData.MAPA_Max_Capas_Terreno; i++)
+                {   actualizarMapa.mapa[x][y].celda[i] = mundo.getMapa().getTerrenoID(x+xInicial, y+yInicial, i); }
+            }
+        }
+        controlador.enviarACliente(PC.getConnectionID(), actualizarMapa);
     }
 
 

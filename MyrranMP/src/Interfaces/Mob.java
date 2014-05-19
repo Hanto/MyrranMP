@@ -8,7 +8,6 @@ public interface Mob
     public float getY();
     public float getVelocidadMod();
     public float getVelocidadMax();
-    public float getVelocidad();
     public double getDireccion();
 
     public int getNumAnimacion();
@@ -17,6 +16,5 @@ public interface Mob
     public void setPosition(float x, float y);
     public void setVelocidaMod(float velocidadMod);
     public void setVelocidadMax(float velocidadMax);
-    public void setVelocidad(float velocidad);
     public void setDireccion(double direccion);
 }

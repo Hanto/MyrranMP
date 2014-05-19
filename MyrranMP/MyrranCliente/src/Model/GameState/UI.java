@@ -40,7 +40,7 @@ public class UI
     public void setKeyCode (BarraAccionesI barra, int posX, int posY, int keycode)
     {   conjuntoBarraAcciones.setKeycode(barra, posX, posY, keycode); }
 
-    public void moverTerreno(int posOrigen, int posDestino)
+    public void barraTerrenosMoverTerreno(int posOrigen, int posDestino)
     {   barraTerrenos.moverTerreno(posOrigen, posDestino); }
 
     //Provisional:

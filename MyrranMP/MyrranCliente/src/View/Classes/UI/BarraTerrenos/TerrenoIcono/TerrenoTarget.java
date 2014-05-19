@@ -23,6 +23,6 @@ public class TerrenoTarget extends Target
     @Override public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer)
     {
         TerrenoIcono origen = (TerrenoIcono)payload.getObject();
-        controlador.moverTerreno(origen.getPosX(), terrenoIcono.getPosX());
+        controlador.barraTerrenosMoverTerreno(origen.getPosX(), terrenoIcono.getPosX());
     }
 }

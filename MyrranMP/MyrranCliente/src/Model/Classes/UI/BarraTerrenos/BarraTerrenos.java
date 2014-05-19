@@ -15,7 +15,7 @@ import static DTO.ParametrosSpellDTO.ParametrosEditarTerreno;
 public class BarraTerrenos extends AbstractModel
 {
     private Array<Integer>barraTerrenos = new Array<>();
-    private Caster player;
+    private Caster caster;
 
     private int parametroTerrenoID = 0;
     private int parametroNumCapa = 0;
@@ -26,7 +26,7 @@ public class BarraTerrenos extends AbstractModel
     public BarraTerrenos (Caster player)
     {
         crearBarraTerrenos();
-        this.player = player;
+        this.caster = player;
     }
 
     public void crearBarraTerrenos()
@@ -60,25 +60,25 @@ public class BarraTerrenos extends AbstractModel
 
     public void setParametroTerrenoID(int terrenoID)
     {
-        //if (player.getParametrosSpell() instanceof ParametrosEditarTerreno)
+        //if (caster.getParametrosSpell() instanceof ParametrosEditarTerreno)
         {
-            //ParametrosEditarTerreno editarTerreno = (ParametrosEditarTerreno)player.getParametrosSpell();
+            //ParametrosEditarTerreno editarTerreno = (ParametrosEditarTerreno)caster.getParametrosSpell();
             ParametrosEditarTerreno editarTerreno = new ParametrosEditarTerreno(parametroNumCapa, terrenoID);
             parametroTerrenoID = terrenoID;
             //editarTerreno.terrenoIDSeleccionado = terrenoID;
-            player.setParametrosSpell(editarTerreno);
+            caster.setParametrosSpell(editarTerreno);
         }
     }
 
     public void setParametroNumCapa(int numCapa)
     {
-        //if (player.getParametrosSpell() instanceof ParametrosEditarTerreno)
+        //if (caster.getParametrosSpell() instanceof ParametrosEditarTerreno)
         {
-            //ParametrosEditarTerreno editarTerreno = (ParametrosEditarTerreno)player.getParametrosSpell();
+            //ParametrosEditarTerreno editarTerreno = (ParametrosEditarTerreno)caster.getParametrosSpell();
             ParametrosEditarTerreno editarTerreno = new ParametrosEditarTerreno(numCapa, parametroTerrenoID);
             parametroNumCapa = numCapa;
             //editarTerreno.capaTerrenoSeleccionada = numCapa;
-            player.setParametrosSpell(editarTerreno);
+            caster.setParametrosSpell(editarTerreno);
         }
     }
 }

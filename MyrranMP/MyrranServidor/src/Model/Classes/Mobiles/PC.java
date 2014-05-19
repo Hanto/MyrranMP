@@ -26,7 +26,6 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
 
     protected Float velocidadMod=1.0f;                          //Modificadores de Velocidad: debido a Snares, a Sprints, Roots
     protected Float velocidadMax;                               //Velocidad Maxima:
-    protected Float velocidad;                                  //Velocidad Actual:
     protected Double direccion;                                 //Direccion Actual en Radianes
 
     protected String nombre = "Hanto";
@@ -82,11 +81,9 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     @Override public float getY()                               { return y; }
     @Override public float getVelocidadMod()                    { return velocidadMod; }
     @Override public float getVelocidadMax()                    { return velocidadMax; }
-    @Override public float getVelocidad()                       { return velocidad; }
     @Override public double getDireccion()                      { return direccion; }
     @Override public void setVelocidaMod(float velocidadMod)    { this.velocidadMod = velocidadMod; }
     @Override public void setVelocidadMax(float velocidadMax)   { this.velocidadMax = velocidadMax; }
-    @Override public void setVelocidad(float velocidad)         { this.velocidad = velocidad; }
     @Override public void setDireccion(double direccion)        { this.direccion = direccion; }
 
     public PC(int connectionID, Mapa mapa)

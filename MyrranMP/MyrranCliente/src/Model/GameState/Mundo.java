@@ -1,6 +1,7 @@
 package Model.GameState;// Created by Hanto on 08/04/2014.
 
 import DTO.NetDTO;
+import Data.MiscData;
 import Model.Classes.AbstractModel;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.PC;
@@ -17,19 +18,21 @@ public class Mundo extends AbstractModel
 
     public Mapa mapa = new Mapa();
 
+    private Mapa[] listaMapas = new Mapa[30];
+
     //Get:
     public List<? extends PC> listaPlayers()       { return listaPlayers; }
     public PC getPC (int connectionID)             { return mapaPlayers.get(connectionID); }
 
     public Mundo()
-    {/*
+    {
         for (int x = 0; x< MiscData.MAPA_Max_TilesX; x++)
         {
             for (int y = 0; y< MiscData.MAPA_Max_TilesY; y++)
             {
                 mapa.setTerreno(x,y,0,0);
             }
-        }*/
+        }
     }
 
     //SE NOTIFICA:
@@ -49,5 +52,20 @@ public class Mundo extends AbstractModel
         listaPlayers.remove(pc);
         mapaPlayers.remove(connectionID);
         pc.eliminar();
+    }
+
+    public void actualizarMapa (NetDTO.ActualizarMapa mapaServidor)
+    {
+        for (int y=0; y< mapaServidor.mapa[0].length; y++)
+        {
+            for (int x=0; x< mapaServidor.mapa.length; x++)
+            {
+                for (int i=0; i< MiscData.MAPA_Max_Capas_Terreno; i++)
+                {
+                    int idTerreno = mapaServidor.mapa[x][y].celda[i];
+                    mapa.setTerreno(x+mapaServidor.esquinaInfIzdaX,y+mapaServidor.esquinaInfIzdaY,i,idTerreno);
+                }
+            }
+        }
     }
 }

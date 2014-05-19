@@ -11,10 +11,12 @@ public class Servidor extends Server
 
     public Servidor (Controlador control)
     {
+        //super(15*1024, 2048);
         this.controlador = control;
 
         NetDTO.register(this);
         this.start();
+
 
         //Para activar el log completo de mensajes:
         //Log.TRACE();

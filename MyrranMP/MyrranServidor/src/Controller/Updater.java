@@ -1,8 +1,10 @@
 package Controller;// Created by Hanto on 09/04/2014.
 
 import Data.MiscData;
-import Model.Classes.Mobiles.Mundo;
+import Model.GameState.Mundo;
 import Model.Classes.Mobiles.PC;
+
+import java.util.Iterator;
 
 public class Updater implements Runnable
 {
@@ -34,7 +36,8 @@ public class Updater implements Runnable
     public void mundoUpdate()
     {
         //actualizar PCs
-        for (PC players: mundo.listaPlayers)
-        {   players.actualizar(); }
+        Iterator<PC> iteratorPCs = mundo.getIteratorListaPlayers();
+        while (iteratorPCs.hasNext())
+        {   iteratorPCs.next().actualizar(); }
     }
 }

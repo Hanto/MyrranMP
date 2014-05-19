@@ -7,7 +7,7 @@ import Model.Classes.UI.Input.PlayerIO;
 import Model.DAO.DAO;
 import Model.DTO.PlayerDTO;
 
-public class Player extends AbstractModel implements Caster, MobPC
+public class Player extends AbstractModel implements Caster, MobPC, Vulnerable
 {
     protected Integer connectionID;
     protected MapaI mapaI;                         //mapaI al que pertecene el Player
@@ -19,7 +19,6 @@ public class Player extends AbstractModel implements Caster, MobPC
 
     protected Float velocidadMax = 160.0f;
     protected Float velocidadMod = 1.0f;
-    protected float velocidad;
     protected Double direccion;
 
     protected String nombre;
@@ -50,14 +49,13 @@ public class Player extends AbstractModel implements Caster, MobPC
     @Override public float getY()                               { return y; }
     @Override public float getVelocidadMod()                    { return velocidadMod; }
     @Override public float getVelocidadMax()                    { return velocidadMax; }
-    @Override public float getVelocidad()                       { return velocidad; }
     @Override public double getDireccion()                      { return direccion; }
     @Override public int getNumAnimacion()                      { return numAnimacion; }
     @Override public String getNombre()                         { return nombre; }
     @Override public int getNivel()                             { return nivel; }
 
-    public float getActualHPs()                                 { return actualHPs; }
-    public float getMaxHPs()                                    { return maxHPs; }
+    @Override public float getActualHPs()                                 { return actualHPs; }
+    @Override public float getMaxHPs()                                    { return maxHPs; }
 
     @Override public MapaI getMapa()                            { return mapaI; }
     @Override public boolean isCasteando()                      { if (actualCastingTime >0) return true; else return false; }
@@ -68,7 +66,6 @@ public class Player extends AbstractModel implements Caster, MobPC
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0.01f; totalCastingTime = castingTime;}
     @Override public void setVelocidaMod(float velocidadMod)    { this.velocidadMod = velocidadMod; }
     @Override public void setVelocidadMax(float velocidadMax)   { this.velocidadMax = velocidadMax; }
-    @Override public void setVelocidad(float velocidad)         { this.velocidad = velocidad; }
     @Override public void setDireccion(double direccion)        { }
     @Override public void setParametrosSpell(Object parametros)
     {
@@ -185,14 +182,14 @@ public class Player extends AbstractModel implements Caster, MobPC
 
     }
 
-    public void setActualHPs (float hps)
+    @Override public void setActualHPs (float hps)
     {
         actualHPs = hps;
         Object HPsDTO = new PlayerDTO.ActualHPsPlayer(hps);
         notificarActualizacion("setActualHPs", null, HPsDTO);
     }
 
-    public void setMaxHPs (float mHps)
+    @Override public void setMaxHPs (float mHps)
     {
         maxHPs = mHps;
         Object mHPsDTO = new PlayerDTO.MaxHPs(mHps);

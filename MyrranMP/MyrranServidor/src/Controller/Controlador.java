@@ -1,6 +1,6 @@
 package Controller;// Created by Hanto on 07/04/2014.
 
-import Model.Classes.Mobiles.Mundo;
+import Model.GameState.Mundo;
 import View.Vista;
 
 public class Controlador

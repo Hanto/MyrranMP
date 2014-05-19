@@ -2,7 +2,7 @@ package View;// Created by Hanto on 07/04/2014.
 
 import Controller.Controlador;
 import DTO.NetDTO;
-import Model.Classes.Mobiles.Mundo;
+import Model.GameState.Mundo;
 import Model.Classes.Mobiles.PC;
 import View.Classes.Mobiles.PcView;
 

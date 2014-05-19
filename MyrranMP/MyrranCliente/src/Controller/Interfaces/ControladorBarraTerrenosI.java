@@ -4,5 +4,5 @@ public interface ControladorBarraTerrenosI
 {
     public void mostrarBarraTerrenos();
     public void ocultarBarraTerrenos();
-    public void moverTerreno(int posOrigen, int posDestino);
+    public void barraTerrenosMoverTerreno(int posOrigen, int posDestino);
 }

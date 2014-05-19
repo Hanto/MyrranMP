@@ -1,23 +1,23 @@
-package Model.Classes.Mobiles;// Created by Hanto on 07/04/2014.
+package Model.GameState;// Created by Hanto on 07/04/2014.
 
 import DTO.NetDTO;
 import Model.AbstractModel;
 import Model.Classes.Geo.Mapa;
+import Model.Classes.Mobiles.PC;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Mundo extends AbstractModel
 {
-    public List<PC> listaPlayers = new ArrayList<>();
-    public Map<Integer, PC> mapaPlayers = new HashMap<>();
+    private List<PC> listaPlayers = new ArrayList<>();
+    private Map<Integer, PC> mapaPlayers = new HashMap<>();
 
-    public Mapa mapa = new Mapa();
+    private Mapa mapa = new Mapa();
 
+    public Mapa getMapa()                           { return mapa; }
+    public Iterator<PC> getIteratorListaPlayers()   { return listaPlayers.iterator(); }
 
-    public List<? extends PC> listaPlayers()    { return listaPlayers; }
+    //public List<? extends PC> listaPlayers()    { return listaPlayers; }
 
     public void añadirPC (int connectionID, float x, float y)
     {
