@@ -12,7 +12,7 @@ public class Cliente extends Client
 
     public Cliente (Controlador controlador)
     {
-        super(8*1024, 16*1024);
+        super(8*1024, 32*1024);
         this.controlador = controlador;
 
         NetDTO.register(this);

@@ -60,12 +60,12 @@ public class MapaView implements PropertyChangeListener
 
         int xInicial, xFinal, yInicial;
 
-        //tamañoX Par:
+        //tamañoX Impar:
         if (tamañoX %2 > 0)
         {   xInicial = -(tamañoX -1)/2;
             xFinal = (tamañoX -1)/2;
         }
-        //tamañoX Impar:
+        //tamañoX Par:
         else
         {   xInicial = -tamañoX /2;
             xFinal = tamañoX /2-1;
@@ -77,11 +77,13 @@ public class MapaView implements PropertyChangeListener
 
         int x = xInicial; int y = yInicial;
 
-        for (int i=0; i<listaSubMapas.length;i++)
+        synchronized (listaSubMapas)
         {
-            listaSubMapas[i].crearTiledMap(x +mapTileInicialX, y +mapTileInicialY);
-            x++;
-            if (x > xFinal) {x = xInicial; y--;}
+            for (SubMapaView subMapaView : listaSubMapas)
+            {
+                subMapaView.crearTiledMap(x + mapTileInicialX, y + mapTileInicialY);
+                x++; if (x > xFinal) { x = xInicial; y--; }
+            }
         }
     }
 
@@ -99,6 +101,10 @@ public class MapaView implements PropertyChangeListener
     {
         xActual = (mundoView.camara.position.x );
         yActual = (mundoView.camara.position.y );
+
+        if (Math.abs(listaSubMapas[0].getMapTileX() -  (xActual /  (numTilesX *MiscData.TILESIZE))) > tamañoX ||
+            Math.abs(listaSubMapas[0].getMapTileY() -  (yActual /  (numTilesY *MiscData.TILESIZE))) > tamañoY )
+            setPosition(xActual, yActual);
 
         for (SubMapaView subMapaView: listaSubMapas)
         {
@@ -123,16 +129,16 @@ public class MapaView implements PropertyChangeListener
         mapTileBordeS = (int)(yActual - MiscData.GDX_Window_Vertical_Resolution /2) /    (numTilesY *MiscData.TILESIZE);
 
         if (mapTileBordeE >= (subMapaView.getMapTileX() + tamañoX))
-        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() + tamañoX,    subMapaView.getMapTileY()); }
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() + tamañoX,  subMapaView.getMapTileY()); }
 
         if (mapTileBordeO <= (subMapaView.getMapTileX() - tamañoX))
-        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() - tamañoX,    subMapaView.getMapTileY()); }
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX() - tamañoX,  subMapaView.getMapTileY()); }
 
         if (mapTileBordeN >= (subMapaView.getMapTileY() + tamañoY))
-        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()         ,    subMapaView.getMapTileY() + tamañoY); }
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()         ,   subMapaView.getMapTileY() + tamañoY); }
 
         if (mapTileBordeS <= (subMapaView.getMapTileY() - tamañoY))
-        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()         ,    subMapaView.getMapTileY() - tamañoY); }
+        {   subMapaView.crearTiledMap(subMapaView.getMapTileX()         ,   subMapaView.getMapTileY() - tamañoY); }
     }
 
     public void crearTile(int celdaX, int celdaY, int numCapa)
@@ -167,7 +173,9 @@ public class MapaView implements PropertyChangeListener
             int celdaX = ((NetDTO.SetTerreno) evt.getNewValue()).celdaX;
             int celdaY = ((NetDTO.SetTerreno) evt.getNewValue()).celdaY;
             int numCapa = ((NetDTO.SetTerreno) evt.getNewValue()).numCapa;
-            setTerreno(celdaX, celdaY, numCapa);
+
+            synchronized (listaSubMapas)
+            {   setTerreno(celdaX, celdaY, numCapa); }
         }
     }
 }

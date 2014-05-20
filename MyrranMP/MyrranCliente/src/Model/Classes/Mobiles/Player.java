@@ -54,8 +54,8 @@ public class Player extends AbstractModel implements Caster, MobPC, Vulnerable
     @Override public String getNombre()                         { return nombre; }
     @Override public int getNivel()                             { return nivel; }
 
-    @Override public float getActualHPs()                                 { return actualHPs; }
-    @Override public float getMaxHPs()                                    { return maxHPs; }
+    @Override public float getActualHPs()                       { return actualHPs; }
+    @Override public float getMaxHPs()                          { return maxHPs; }
 
     @Override public MapaI getMapa()                            { return mapaI; }
     @Override public boolean isCasteando()                      { if (actualCastingTime >0) return true; else return false; }

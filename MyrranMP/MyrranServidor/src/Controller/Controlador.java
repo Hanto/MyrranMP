@@ -11,7 +11,6 @@ public class Controlador
     protected Mundo mundo;
     protected Vista vista;
 
-
     public Controlador (Mundo mundo)
     {
         this.mundo = mundo;

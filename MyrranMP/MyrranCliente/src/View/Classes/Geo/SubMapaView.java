@@ -43,6 +43,7 @@ public class SubMapaView extends TiledMap
         this.tamañoY = tamañoY;
     }
 
+    public void crearTiledMap ()  { crearTiledMap(mapTileX, mapTileY);}
     public void crearTiledMap(int mapTileOrigenX, int mapTileOrigenY)
     {
         ajustarCoordenadas(mapTileOrigenX, mapTileOrigenY);
@@ -62,7 +63,7 @@ public class SubMapaView extends TiledMap
             {
                 for (int y = this.tileOrigenY; y < tileFinalY; y++)
                 {
-                    if (x < 0 || y < 0 || x > MiscData.MAPA_Max_TilesX || y > MiscData.MAPA_Max_TilesY) { break; }
+                    if (x < 0 || y < 0 || x >= MiscData.MAPA_Max_TilesX || y >= MiscData.MAPA_Max_TilesY) { break; }
                     else if (mapa.getTerrenoID(x, y, numCapa) >= 0)
                     {
                         adyacencias = calcularAdyacencias(x,y,numCapa);
@@ -96,7 +97,7 @@ public class SubMapaView extends TiledMap
         addGrid();
     }
 
-    private void ajustarCoordenadas(int mapTileOrigenX, int mapTileOrigenY)
+    public void ajustarCoordenadas(int mapTileOrigenX, int mapTileOrigenY)
     {
         this.mapTileX = mapTileOrigenX; this.mapTileY = mapTileOrigenY;
 
@@ -192,7 +193,7 @@ public class SubMapaView extends TiledMap
 
     public void crearTile (int tileX, int tileY, int numCapa)
     {
-        if (tileX<0 || tileY<0 || tileX> MiscData.MAPA_Max_TilesX || tileY> MiscData.MAPA_Max_TilesY) { return; }
+        if (tileX<0 || tileY<0 || tileX>= MiscData.MAPA_Max_TilesX || tileY>= MiscData.MAPA_Max_TilesY) { return; }
 
         if (mapa.getTerrenoID(tileX, tileY, numCapa) >= 0)
         {

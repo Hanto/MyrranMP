@@ -27,12 +27,13 @@ public class Mapa extends AbstractModel implements MapaI
 
     public int getTerrenoID (int x, int y, int numCapa)
     {
-        return matriz[x][y].getTerrenoID(numCapa);
+        if (x<0 || y<0 || x>= MiscData.MAPA_Max_TilesX || y>= MiscData.MAPA_Max_TilesY) return -1;
+        else return matriz[x][y].getTerrenoID(numCapa);
     }
 
     public boolean setTerreno (int x, int y, int numCapa, Terreno terreno)
     {
-        if (x<0 || y<0 || x> MiscData.MAPA_Max_TilesX || y> MiscData.MAPA_Max_TilesY) return false;
+        if (x<0 || y<0 || x>= MiscData.MAPA_Max_TilesX || y>= MiscData.MAPA_Max_TilesY) return false;
         else if (matriz[x][y].getTerreno(numCapa) != terreno)
         {
             matriz[x][y].setTerreno(numCapa, terreno);
@@ -45,7 +46,7 @@ public class Mapa extends AbstractModel implements MapaI
 
     @Override public boolean setTerreno (int x, int y, int numCapa, int iDTerreno)
     {
-        if (x<0 || y<0 || x> MiscData.MAPA_Max_TilesX || y> MiscData.MAPA_Max_TilesY) return false;
+        if (x<0 || y<0 || x>= MiscData.MAPA_Max_TilesX || y>= MiscData.MAPA_Max_TilesY) return false;
         else if (matriz[x][y].getTerrenoID(numCapa) != iDTerreno)
         {
             if (matriz[x][y].setTerreno(numCapa, iDTerreno))

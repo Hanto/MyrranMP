@@ -29,6 +29,7 @@ public class Vista
     private ShapeRenderer shape = new ShapeRenderer();
 
     public UIView getUiView()       { return uiView; }
+    public MundoView getMundoView() { return mundoView; }
 
     public Vista (Controlador controlador, Player player, UI ui, Mundo mundo)
     {

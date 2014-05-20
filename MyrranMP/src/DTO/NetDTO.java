@@ -24,7 +24,7 @@ public class NetDTO
         kryo.register(SetSpellIDSeleccionado.class);
         kryo.register(SetParametrosSpell.class);
 
-        kryo.register(int[].class);
+        kryo.register(short[].class);
         kryo.register(ActualizarMapa.CeldaMapa.class);
         kryo.register(ActualizarMapa.CeldaMapa[].class);
         kryo.register(ActualizarMapa.CeldaMapa[][].class);
@@ -164,18 +164,19 @@ public class NetDTO
     public static class ActualizarMapa
     {
         public static class CeldaMapa
-        {   public int[] celda= new int[MiscData.MAPA_Max_Capas_Terreno];
+        {   public short[] celda= new short[MiscData.MAPA_Max_Capas_Terreno];
             public CeldaMapa() { }
         }
 
         public int esquinaInfIzdaX;
         public int esquinaInfIzdaY;
-        public CeldaMapa[][] mapa = new CeldaMapa[67][38];
+        public CeldaMapa[][] mapa;
         public ActualizarMapa () {}
-        public ActualizarMapa(int esquinaInfIzdaX, int esquinaInfIzdaY)
+        public ActualizarMapa(int esquinaInfIzdaX, int esquinaInfIzdaY, int tamañoX, int tamañoY)
         {
             this.esquinaInfIzdaX = esquinaInfIzdaX;
             this.esquinaInfIzdaY = esquinaInfIzdaY;
+            mapa = new CeldaMapa[tamañoX][tamañoY];
             for (CeldaMapa[] fila: mapa)
             {   for (int i=0; i<fila.length; i++)
                 {   fila[i] = new CeldaMapa(); }

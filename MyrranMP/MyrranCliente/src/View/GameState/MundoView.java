@@ -3,6 +3,7 @@ package View.GameState;// Created by Hanto on 14/05/2014.
 import Controller.Controlador;
 import DTO.NetDTO;
 import Data.MiscData;
+import Model.Classes.Geo.MapaSeamless;
 import Model.Classes.Mobiles.PC;
 import Model.Classes.Mobiles.Player;
 import Model.GameState.Mundo;
@@ -40,13 +41,15 @@ public class MundoView extends Stage implements PropertyChangeListener
         this.controlador = controlador;
         this.mundo = mundo;
 
+        mapaView = new MapaView(mundo.mapa, this, player.getX(), player.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY);
         playerView = new PlayerView(player, this, controlador);
-        mapaView = new MapaView(mundo.mapa, this, playerView.getX(), playerView.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY);
         camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         getViewport().setCamera(camara);
 
         controlador.addInputProcessor(this);
         mundo.añadirObservador(this);
+
+        new MapaSeamless(MiscData.MAPAMODEL_TamañoX, MiscData.MAPAVIEW_TamañoY);
     }
 
     public void aplicarZoom(int incrementoZoom)

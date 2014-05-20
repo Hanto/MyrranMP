@@ -42,8 +42,11 @@ public class MiscData
     public final static int MAPA_Max_TilesX = 1000;
     public final static int MAPA_Max_TilesY = 1000;
 
-    public final static int MAPAVIEW_TamañoX = 3;//18;
-    public final static int MAPAVIEW_TamañoY = 3;//20;
+    public final static int MAPAVIEW_TamañoX = 2;//18;
+    public final static int MAPAVIEW_TamañoY = 2;//20;
+
+    public final static int MAPAMODEL_TamañoX = 2;
+    public final static int MAPAMODEL_TamañoY = 2;
 
     //Fuentes
     public final static String FUENTE_Nombres = "14";

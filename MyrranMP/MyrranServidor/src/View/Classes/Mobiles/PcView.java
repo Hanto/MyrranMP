@@ -4,8 +4,8 @@ import Controller.Controlador;
 import DTO.NetDTO;
 import Data.MiscData;
 import Interfaces.MobPC;
-import Model.GameState.Mundo;
 import Model.Classes.Mobiles.PC;
+import Model.GameState.Mundo;
 import View.Vista;
 
 import java.beans.PropertyChangeEvent;
@@ -30,6 +30,8 @@ public class PcView implements PropertyChangeListener
     public boolean positionChanged = false;
     public int numAnimacion = 0;
 
+    public MapaView mapaView;
+
     public PcView(PC PC, Vista vista)
     {
         this.PC = PC;
@@ -48,9 +50,16 @@ public class PcView implements PropertyChangeListener
         controlador.enviarACliente(connectionID, actualizarPlayer);
 
         quienMeVe();
-        actualizarMapa(0,0);
+
+        mapaView = new MapaView(PC, mundo, controlador, MiscData.MAPAMODEL_TamañoX, MiscData.MAPAMODEL_TamañoY);
+        mapaView.init();
+/*
+        actualizarMapa(0, 0);
         actualizarMapa(67,0);
         actualizarMapa(0,38);
+        actualizarMapa(68,38);
+        actualizarMapa(67+67,0);
+        actualizarMapa(67+67,38);*/
     }
 
     public void netUpdate()
@@ -103,6 +112,8 @@ public class PcView implements PropertyChangeListener
         quienMeVe();
         if (visible) positionChanged = true;
         else positionChanged = false;
+
+        mapaView.comprobarVistaMapa();
     }
 
     public void setAnimacion(int numAnimacion)
@@ -150,21 +161,20 @@ public class PcView implements PropertyChangeListener
         controlador.enviarACliente(PC.getConnectionID(), setTerreno);
         System.out.println("Editando SetTerreno: ["+x+"]["+y+"]");
     }
-
-    public void actualizarMapa (int xInicial, int yInicial)
+/*
+    public void actualizarMapa (int tileInicialX, int tileInicialY)
     {
-        NetDTO.ActualizarMapa actualizarMapa = new NetDTO.ActualizarMapa(xInicial, yInicial);
+        NetDTO.ActualizarMapa actualizarMapa = new NetDTO.ActualizarMapa(tileInicialX, tileInicialY);
         for (int y=0; y< actualizarMapa.mapa[0].length; y++)
         {
             for (int x = 0; x< actualizarMapa.mapa.length; x++)
             {
                 for (int i=0; i<MiscData.MAPA_Max_Capas_Terreno; i++)
-                {   actualizarMapa.mapa[x][y].celda[i] = mundo.getMapa().getTerrenoID(x+xInicial, y+yInicial, i); }
+                {   actualizarMapa.mapa[x][y].celda[i] = (short)mundo.getMapa().getTerrenoID(x+tileInicialX, y+tileInicialY, i); }
             }
         }
         controlador.enviarACliente(PC.getConnectionID(), actualizarMapa);
-    }
-
+    }*/
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
