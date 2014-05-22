@@ -48,7 +48,7 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
         añadirBarraAcciones(3, 10);
         ui.añadirAccionesEnBarra(0);
 
-        //moverPlayer(21000,22500);
+        //moverPlayer(21000,22600);
     }
 
     public void render (float delta)                                    { vista.render(delta); }

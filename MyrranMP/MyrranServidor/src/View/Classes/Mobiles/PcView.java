@@ -52,14 +52,6 @@ public class PcView implements PropertyChangeListener
         quienMeVe();
 
         mapaView = new MapaView(PC, mundo, controlador);
-        //mapaView.init();
-/*
-        actualizarMapa(0, 0);
-        actualizarMapa(67,0);
-        actualizarMapa(0,38);
-        actualizarMapa(68,38);
-        actualizarMapa(67+67,0);
-        actualizarMapa(67+67,38);*/
     }
 
     public void netUpdate()
@@ -155,27 +147,6 @@ public class PcView implements PropertyChangeListener
 
     }
 
-    public void cambioTerreno (int x, int y, int numCapa, int iDTerreno)
-    {
-        NetDTO.SetTerreno setTerreno = new NetDTO.SetTerreno(x,y,numCapa,iDTerreno);
-        controlador.enviarACliente(PC.getConnectionID(), setTerreno);
-        System.out.println("Editando SetTerreno: ["+x+"]["+y+"]");
-    }
-/*
-    public void actualizarMapa (int tileInicialX, int tileInicialY)
-    {
-        NetDTO.ActualizarMapa actualizarMapa = new NetDTO.ActualizarMapa(tileInicialX, tileInicialY);
-        for (int y=0; y< actualizarMapa.mapa[0].length; y++)
-        {
-            for (int x = 0; x< actualizarMapa.mapa.length; x++)
-            {
-                for (int i=0; i<MiscData.MAPA_Max_Capas_Terreno; i++)
-                {   actualizarMapa.mapa[x][y].celda[i] = (short)mundo.getMapa().getTerrenoID(x+tileInicialX, y+tileInicialY, i); }
-            }
-        }
-        controlador.enviarACliente(PC.getConnectionID(), actualizarMapa);
-    }*/
-
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
         //MOBILES:
@@ -205,7 +176,7 @@ public class PcView implements PropertyChangeListener
             int celdaY = ((NetDTO.SetTerreno) evt.getNewValue()).celdaY;
             int numCapa = ((NetDTO.SetTerreno) evt.getNewValue()).numCapa;
             int iDTerreno = ((NetDTO.SetTerreno) evt.getNewValue()).iDTerreno;
-            cambioTerreno(celdaX, celdaY, numCapa, iDTerreno);
+            mapaView.cambioTerreno(celdaX, celdaY, numCapa, iDTerreno);
         }
     }
 }

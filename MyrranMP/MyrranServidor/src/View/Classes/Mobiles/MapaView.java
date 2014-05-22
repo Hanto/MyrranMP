@@ -12,28 +12,20 @@ public class MapaView
     private Mundo mundo;
     private Controlador controlador;
 
-    private int numTilesX;
-    private int numTilesY;
-
-    private int mapTileCentroX = -20;
-    private int mapTileCentroY = -20;
-
+    private int mapTileCentroX;
+    private int mapTileCentroY;
     private int posicionHoritontal = 0;
     private int posicionVertical = 0;
 
-    private int franjaHorizontal;
-    private int franjaVertical;
+    private boolean[][] mapaEnviado = new boolean[3][3];
 
-    private SubMapaCoordenadas[][] mapa = new SubMapaCoordenadas[3][3];
+    private int numTilesX;
+    private int numTilesY;
+    private final int posHorNeg = MiscData.GDX_Window_Horizontal_Resolution/4;
+    private final int posHorPos = MiscData.GDX_Window_Horizontal_Resolution - MiscData.GDX_Window_Horizontal_Resolution/4;
+    private final int posVerNeg = MiscData.GDX_Window_Vertical_Resolution/4;
+    private final int posVerPos = MiscData.GDX_Window_Vertical_Resolution - MiscData.GDX_Window_Vertical_Resolution/4;
 
-    private static class SubMapaCoordenadas
-    {
-        public int offsetMapTileX;
-        public int offsetMapTileY;
-        public boolean enviado;
-        public void setCoordenadas(int x, int y)
-        {   this.offsetMapTileX = x; this.offsetMapTileY = y; }
-    }
 
     public MapaView (PC pc, Mundo mundo, Controlador controlador)
     {
@@ -43,164 +35,130 @@ public class MapaView
 
         this.numTilesX = (int)Math.ceil((double)MiscData.GDX_Window_Horizontal_Resolution/(double)MiscData.TILESIZE);
         this.numTilesY = (int)Math.ceil((double)MiscData.GDX_Window_Vertical_Resolution/(double)MiscData.TILESIZE);
-
-
-        for (SubMapaCoordenadas[] fila :mapa)
-        {   for (int i=0; i< fila.length; i++)
-            { fila[i] = new SubMapaCoordenadas(); }
-        }
-
-        setOffsets();
     }
 
-    public void setOffsets()
+    private void init ()
     {
-        mapa[0][0].setCoordenadas(-1, +1);
-        mapa[1][0].setCoordenadas( 0, +1);
-        mapa[2][0].setCoordenadas(+1, +1);
-
-        mapa[0][1].setCoordenadas(-1,  0);
-        mapa[1][1].setCoordenadas( 0,  0);
-        mapa[2][1].setCoordenadas(+1,  0);
-
-        mapa[0][2].setCoordenadas(-1, -1);
-        mapa[1][2].setCoordenadas( 0, -1);
-        mapa[2][2].setCoordenadas(+1, -1);
-
-        SubMapaCoordenadas[] temp;
-
-
-            temp = mapa[0];
-            System.arraycopy(mapa, 1, mapa, 0, mapa.length-1);
-            mapa[mapa.length-1] = temp;
-
-        for (int x = 0; x < mapa.length; x++)
-        {
-            for (int y = 0; y < mapa[x].length; y++)
-            { System.out.print("["+mapa[y][x].offsetMapTileX +" "+mapa[y][x].offsetMapTileY+"]"); }
-            System.out.println("");
+        for (boolean[] fila : mapaEnviado)
+        {   for (int i=0; i<fila.length; i++)
+                fila[i] = false;
         }
+        mapTileCentroX = getMapTileX();
+        mapTileCentroY = getMapTileY();
     }
 
+    private int getMapTileX()                                       { return (int)((PC.getX() / (float)(numTilesX * MiscData.TILESIZE))); }
+    private int getMapTileY()                                       { return (int)((PC.getY() / (float)(numTilesY * MiscData.TILESIZE))); }
+    private boolean getMapaEnviado(int offSetX, int offSetY)        { return mapaEnviado[offSetX+1][-offSetY+1]; }
+    private void setMapaEnviado(int offSetX, int offSetY, boolean b){ mapaEnviado[offSetX+1][-offSetY+1] = b; }
 
-    public void init ()
-    {
-        mapTileCentroX = getTileX();
-        mapTileCentroY = getTileY();
-    }
-
-    private int getTileX()  { return (int)((PC.getX() / (float)(numTilesX * MiscData.TILESIZE))); }
-    private int getTileY()  { return (int)((PC.getY() / (float)(numTilesY * MiscData.TILESIZE))); }
 
     public void comprobarVistaMapa ()
     {
-        if (Math.abs(getTileX()-mapTileCentroX) >1 || Math.abs(getTileY()-mapTileCentroY) > 1)  { init(); return; }
+        if (Math.abs(getMapTileX()-mapTileCentroX) >1 || Math.abs(getMapTileY()-mapTileCentroY) > 1)  { init(); return; }
 
         int distX = (int)PC.getX()-mapTileCentroX*numTilesX*MiscData.TILESIZE;
         int distY = (int)PC.getY()-mapTileCentroY*numTilesY*MiscData.TILESIZE;
 
-        if (distX < 800/2)              { posicionHoritontal = -1; }
-        else if (distX > 1600-800/2)    { posicionHoritontal = +1; }
-        else                            { posicionHoritontal = 0; }
+        if (distX < posHorNeg)      { posicionHoritontal = -1; }
+        else if (distX > posHorPos) { posicionHoritontal = +1; }
+        else                        { posicionHoritontal =  0; }
 
-        if (distY < 450/2)              { posicionVertical = -1; }
-        else if (distY > 900-450/2)     { posicionVertical = +1; }
-        else                            { posicionVertical = 0; }
+        if (distY < posVerNeg)      { posicionVertical = -1; }
+        else if (distY > posVerPos) { posicionVertical = +1; }
+        else                        { posicionVertical =  0; }
 
         if (posicionVertical != 0 && posicionHoritontal != 0)
-        {
-            actualizarMap(0, 0);
-            actualizarMap(posicionHoritontal, 0);
-            actualizarMap(0, posicionVertical);
-            actualizarMap(posicionHoritontal, posicionVertical);
+        {   //Si estamso en una esquina, mandamos las adyacencias de la esquina:
+            actualizarMapa(0, 0);
+            actualizarMapa(posicionHoritontal, 0);
+            actualizarMapa(0, posicionVertical);
+            actualizarMapa(posicionHoritontal, posicionVertical);
         }
         if (posicionVertical == 0 && posicionHoritontal != 0)
-        {
-            actualizarMap(0, 0);
-            actualizarMap(posicionHoritontal, 0);
-            actualizarMap(0, +1);
-            actualizarMap(0, -1);
-            actualizarMap(posicionHoritontal, +1);
-            actualizarMap(posicionHoritontal, -1);
+        {   //Si estamos en el lateral, enviamos las dos esquina de ese lado
+            actualizarMapa(0, +1);
+            actualizarMapa(0,  0);
+            actualizarMapa(0, -1);
+            actualizarMapa(posicionHoritontal, +1);
+            actualizarMapa(posicionHoritontal,  0);
+            actualizarMapa(posicionHoritontal, -1);
         }
         if (posicionHoritontal == 0 && posicionVertical != 0)
-        {
-            actualizarMap(0, 0);
-            actualizarMap(+1, 0);
-            actualizarMap(-1, 0);
-            actualizarMap(0, posicionVertical);
-            actualizarMap(+1, posicionVertical);
-            actualizarMap(-1, posicionVertical);
+        {   //Si estamos en el Lateral superior o inferior, enviarmos las dos esquinas de ese lado
+            actualizarMapa(+1, 0);
+            actualizarMapa( 0, 0);
+            actualizarMapa(-1, 0);
+            actualizarMapa(+1, posicionVertical);
+            actualizarMapa( 0, posicionVertical);
+            actualizarMapa(-1, posicionVertical);
         }
         if (posicionHoritontal == 0 && posicionVertical == 0)
-        {
-            actualizarMap(+1,+1);
-            actualizarMap(+1, 0);
-            actualizarMap(+1,-1);
-            actualizarMap(0, +1);
-            actualizarMap(0,  0);
-            actualizarMap(0, -1);
-            actualizarMap(-1,+1);
-            actualizarMap(-1, 0);
-            actualizarMap(-1,-1);
+        {   //Si estamos en el centro enviamos todas las esquinas
+            actualizarMapa(+1, +1);
+            actualizarMapa(+1,  0);
+            actualizarMapa(+1, -1);
+            actualizarMapa( 0, +1);
+            actualizarMapa( 0,  0);
+            actualizarMapa( 0, -1);
+            actualizarMapa(-1, +1);
+            actualizarMapa(-1,  0);
+            actualizarMapa(-1, -1);
         }
 
-
-        if      (getTileX() > mapTileCentroX)   { incrementarMapTile(1, 0); }
-        else if (getTileX() < mapTileCentroX)   { incrementarMapTile(-1, 0); }
-        else if (getTileY() > mapTileCentroY)   { incrementarMapTile(0, 1);  }
-        else if (getTileY() < mapTileCentroY)   { incrementarMapTile(0, -1); }
+        if      (getMapTileX() > mapTileCentroX)   { incrementarMapTile(1, 0); }
+        else if (getMapTileX() < mapTileCentroX)   { incrementarMapTile(-1, 0); }
+        else if (getMapTileY() > mapTileCentroY)   { incrementarMapTile(0, 1);  }
+        else if (getMapTileY() < mapTileCentroY)   { incrementarMapTile(0, -1); }
     }
 
-    public void actualizarMap (int x, int y)
-    {
-        int mX = x+1;
-        int mY = -1*y+1;
-        if (!mapa[mX][mY].enviado)
+    private void actualizarMapa(int x, int y)
+    {   //Convierte las referencias relativas al centro 0,0 en coordenadas de acceso a la matriz donde estan los datos
+        if (!getMapaEnviado(x, y))
         {
-            mapa[mX][mY].enviado = true;
-            actualizarMapa(getTileX()+x, getTileY()+y);
+            setMapaEnviado(x, y, true);
+            enviarMapa(mapTileCentroX + x, mapTileCentroY + y);
         }
     }
 
-    public void incrementarMapTile (int incX, int incY)
+    private void incrementarMapTile (int incX, int incY)
     {
         desplazarArray(incX, incY);
 
         if (incX >0)
         {
-            mapa[2][0].enviado = false;
-            mapa[2][1].enviado = false;
-            mapa[2][2].enviado = false;
+            mapaEnviado[2][0] = false;
+            mapaEnviado[2][1] = false;
+            mapaEnviado[2][2] = false;
         }
         if (incX <0)
         {
-            mapa[0][0].enviado = false;
-            mapa[0][1].enviado = false;
-            mapa[0][2].enviado = false;
+            mapaEnviado[0][0] = false;
+            mapaEnviado[0][1] = false;
+            mapaEnviado[0][2] = false;
         }
         if (incY >0)
         {
-            mapa[0][0].enviado = false;
-            mapa[1][0].enviado = false;
-            mapa[2][0].enviado = false;
+            mapaEnviado[0][0] = false;
+            mapaEnviado[1][0] = false;
+            mapaEnviado[2][0] = false;
         }
         if (incY <0)
         {
-            mapa[0][2].enviado = false;
-            mapa[1][2].enviado = false;
-            mapa[2][2].enviado = false;
+            mapaEnviado[0][2] = false;
+            mapaEnviado[1][2] = false;
+            mapaEnviado[2][2] = false;
         }
 
         mapTileCentroX += incX;
         mapTileCentroY += incY;
 
-        for (int x = 0; x < mapa.length; x++)
+        for (int x = 0; x < mapaEnviado.length; x++)
         {
-            for (int y = 0; y < mapa[x].length; y++)
+            for (int y = 0; y < mapaEnviado[x].length; y++)
             {
-                if (x == 1 && y == 1) System.out.print("  "+mapa[y][x].enviado+"  ");
-                else System.out.print("["+mapa[y][x].enviado+"]");
+                if (x == 1 && y == 1) System.out.print("  "+ mapaEnviado[y][x]+"  ");
+                else System.out.print("["+ mapaEnviado[y][x]+"]");
             }
             System.out.println("");
         }
@@ -208,45 +166,45 @@ public class MapaView
     }
 
 
-    public void desplazarArray (int incX, int incY)
+    private void desplazarArray (int incX, int incY)
     {
-        SubMapaCoordenadas[] temp;
-        SubMapaCoordenadas tempo;
+        boolean[] temp;
+        boolean tempo;
 
         if (incX > 0)
         {
-            temp = mapa[0];
-            System.arraycopy(mapa, 1, mapa, 0, mapa.length-1);
-            mapa[mapa.length-1] = temp;
+            temp = mapaEnviado[0];
+            System.arraycopy(mapaEnviado, 1, mapaEnviado, 0, mapaEnviado.length-1);
+            mapaEnviado[mapaEnviado.length-1] = temp;
 
         }
         if (incX < 0)
         {
-            temp = mapa[mapa.length-1];
-            System.arraycopy(mapa, 0, mapa, 1, mapa.length-1);
-            mapa[0] = temp;
+            temp = mapaEnviado[mapaEnviado.length-1];
+            System.arraycopy(mapaEnviado, 0, mapaEnviado, 1, mapaEnviado.length-1);
+            mapaEnviado[0] = temp;
         }
         if (incY < 0)
         {
-            for (int i=0; i<mapa.length; i++)
+            for (int i=0; i< mapaEnviado.length; i++)
             {
-                tempo = mapa[i][0];
-                System.arraycopy(mapa[i], 1, mapa[i], 0, mapa[i].length - 1);
-                mapa[i][mapa.length-1] = tempo;
+                tempo = mapaEnviado[i][0];
+                System.arraycopy(mapaEnviado[i], 1, mapaEnviado[i], 0, mapaEnviado[i].length - 1);
+                mapaEnviado[i][mapaEnviado.length-1] = tempo;
             }
         }
         if (incY > 0)
         {
-            for (int i=0; i<mapa.length; i++)
+            for (int i=0; i< mapaEnviado.length; i++)
             {
-                tempo = mapa[i][mapa.length-1];
-                System.arraycopy(mapa[i], 0, mapa[i], 1, mapa[i].length - 1);
-                mapa[i][0] = tempo;
+                tempo = mapaEnviado[i][mapaEnviado.length-1];
+                System.arraycopy(mapaEnviado[i], 0, mapaEnviado[i], 1, mapaEnviado[i].length - 1);
+                mapaEnviado[i][0] = tempo;
             }
         }
     }
 
-    public void actualizarMapa (int mapTileInicialX, int mapTileInicialY)
+    private void enviarMapa(int mapTileInicialX, int mapTileInicialY)
     {
         System.out.println("actualizarMapa: ["+mapTileInicialX+" "+mapTileInicialY+"]");
         if (mapTileInicialX <0 || mapTileInicialY < 0) { return; }
@@ -261,5 +219,21 @@ public class MapaView
             }
         }
         controlador.enviarACliente(PC.getConnectionID(), actualizarMapa);
+    }
+
+    public void cambioTerreno (int tileX, int tileY, int numCapa, int iDTerreno)
+    {   //Solo se notifican por cambios los terrenos adyacentes que han sido enviados:
+        int offsetX = tileX/MiscData.MAPAMODEL_NumTilesX - mapTileCentroX;
+        int offsetY = tileY/MiscData.MAPAMODEL_NumTilesY - mapTileCentroY;
+
+        if ( Math.abs(offsetX) <= 1 && Math.abs(offsetY) <= 1)
+        {
+            if (getMapaEnviado(offsetX, offsetY))
+            {
+                NetDTO.SetTerreno setTerreno = new NetDTO.SetTerreno(tileX,tileY,numCapa,iDTerreno);
+                controlador.enviarACliente(PC.getConnectionID(), setTerreno);
+                System.out.println("Editando SetTerreno: ["+tileX+"]["+tileY+"]");
+            }
+        }
     }
 }
