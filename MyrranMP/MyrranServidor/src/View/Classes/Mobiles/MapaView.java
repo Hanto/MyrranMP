@@ -214,13 +214,16 @@ public class MapaView
         System.out.println("enviar: ["+mapTileInicialX+" "+mapTileInicialY+"]");
         if (mapTileInicialX <0 || mapTileInicialY < 0) { return; }
 
-        NetDTO.ActualizarMapa actualizarMapa = new NetDTO.ActualizarMapa(mapTileInicialX*numTilesX, mapTileInicialY*numTilesY, numTilesX, numTilesY);
-        for (int x=0; x< numTilesX; x++)
+        int ancho = numTilesX+2;
+        int alto = numTilesY+2;
+
+        NetDTO.ActualizarMapa actualizarMapa = new NetDTO.ActualizarMapa(mapTileInicialX*numTilesX-1, mapTileInicialY*numTilesY-1, ancho, alto);
+        for (int x=0; x< ancho; x++)
         {
-            for (int y = 0; y< numTilesY; y++)
+            for (int y = 0; y< alto; y++)
             {
                 for (int i=0; i<MiscData.MAPA_Max_Capas_Terreno; i++)
-                {   actualizarMapa.mapa[x][y].celda[i] = (short)mundo.getMapa().getTerrenoID(x+mapTileInicialX*numTilesX, y+mapTileInicialY*numTilesY, i); }
+                {   actualizarMapa.mapa[x][y].celda[i] = (short)mundo.getMapa().getTerrenoID(x+mapTileInicialX*numTilesX-1, y+mapTileInicialY*numTilesY-1, i); }
             }
         }
         controlador.enviarACliente(PC.getConnectionID(), actualizarMapa);

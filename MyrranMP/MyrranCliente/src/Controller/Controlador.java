@@ -34,6 +34,8 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
         this.player = player;
         this.mundo = mundo;
 
+        mundo.mapaSeamless = new MapaSeamless(player);
+
         ui = new UI(player, this);
 
         vista = new Vista(this, player, ui, mundo);
@@ -58,11 +60,7 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
 
     public void enviarAServidor(Object o)                               { cliente.enviarAServidor(o); }
     public int  getConnID()                                             { return cliente.getID(); }
-    public void añadirPlayer(int connectionID)
-    {
-        player.setConnectionID(connectionID);
-        mundo.mapaSeamless = new MapaSeamless(player);
-    }
+    public void añadirPlayer(int connectionID)                          { player.setConnectionID(connectionID); }
 
     public void actualizarPlayer(NetDTO.ActualizarPlayer updatePlayer)
     {
@@ -82,7 +80,7 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
     public void cambiarAnimacionPC(int connectionID, int numAnimacion)                  { mundo.getPC(connectionID).setAnimacion(numAnimacion); }
 
     public void actualizarMapa(NetDTO.ActualizarMapa mapaServidor)                      { mundo.actualizarMapa(mapaServidor); }
-    public void setTerreno(int celdaX, int celdaY, int numCapa, int iDTerreno)          { mundo.mapa.setTerreno(celdaX, celdaY, numCapa, iDTerreno); }
+    public void setTerreno(int celdaX, int celdaY, int numCapa, int iDTerreno)          { mundo.mapaSeamless.setTerreno(celdaX, celdaY, numCapa, iDTerreno); }
     public void aplicarZoom(int incrementoZoom)                                         { vista.aplicarZoom(incrementoZoom); }
     public void addInputProcessor(Stage stage)                                          { inputMultiplexer.addProcessor(stage); }
     public void procesarKeyDown(int keycode)                                            { ui.keybinds.keyDown(keycode); }

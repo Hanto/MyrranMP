@@ -6,11 +6,11 @@ import Interfaces.AbstractModel;
 import Model.DAO.DAO;
 import Model.DAO.Terreno.TerrenoDAO;
 
-public class Mapa extends AbstractModel
+public class MapaBORRAME extends AbstractModel
 {
     private Celda[][] matriz = new Celda[MiscData.MAPA_Max_TilesX][MiscData.MAPA_Max_TilesY];
 
-    public Mapa(int numFilas, int numColumnas)
+    public MapaBORRAME(int numFilas, int numColumnas)
     {
         matriz = new Celda[numFilas][numColumnas];
         for (Celda[] fila: matriz)
@@ -19,7 +19,7 @@ public class Mapa extends AbstractModel
         }
     }
 
-    public Mapa()
+    public MapaBORRAME()
     {
         for (Celda[] fila: matriz)
         {   for (int i=0; i<fila.length; i++)

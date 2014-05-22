@@ -3,7 +3,6 @@ package Model.GameState;// Created by Hanto on 08/04/2014.
 import DTO.NetDTO;
 import Data.MiscData;
 import Interfaces.AbstractModel;
-import Model.Classes.Geo.Mapa;
 import Model.Classes.Geo.MapaSeamless;
 import Model.Classes.Mobiles.PC;
 
@@ -17,7 +16,7 @@ public class Mundo extends AbstractModel
     public List<PC> listaPlayers = new ArrayList<>();
     public Map<Integer,PC> mapaPlayers = new HashMap<>();
 
-    public Mapa mapa = new Mapa();
+    //public Mapa mapa = new Mapa();
     public MapaSeamless mapaSeamless;
 
     //Get:
@@ -30,7 +29,7 @@ public class Mundo extends AbstractModel
         {
             for (int y = 0; y< MiscData.MAPA_Max_TilesY; y++)
             {
-                mapa.setTerreno(x,y,0,0);
+                //mapa.setTerreno(x,y,0,0);
             }
         }
     }
@@ -56,6 +55,12 @@ public class Mundo extends AbstractModel
 
     public void actualizarMapa (NetDTO.ActualizarMapa mapaServidor)
     {
+        System.out.println("Mapa recibido");
+
+        if (mapaServidor.esquinaInfIzdaX == 0 && mapaServidor.esquinaInfIzdaY > 0)
+            System.out.println("PIM");
+
+
         for (int y=0; y< mapaServidor.mapa[0].length; y++)
         {
             for (int x=0; x< mapaServidor.mapa.length; x++)
@@ -63,7 +68,7 @@ public class Mundo extends AbstractModel
                 for (int i=0; i< MiscData.MAPA_Max_Capas_Terreno; i++)
                 {
                     int idTerreno = mapaServidor.mapa[x][y].celda[i];
-                    mapa.setTerreno(x+mapaServidor.esquinaInfIzdaX,y+mapaServidor.esquinaInfIzdaY,i,idTerreno);
+                    mapaSeamless.setTerreno(x+mapaServidor.esquinaInfIzdaX,y+mapaServidor.esquinaInfIzdaY,i,idTerreno);
                 }
             }
         }

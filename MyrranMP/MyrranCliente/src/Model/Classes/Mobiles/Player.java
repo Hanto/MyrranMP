@@ -202,34 +202,33 @@ public class Player extends AbstractModel implements Caster, MobPC, Vulnerable
 
         //Sur
         if (irAbajo && !irDerecha && !irIzquierda)
-        { Y += -velocidadMax*velocidadMod*delta; direccion = 4.71239d;}
+        { Y += -velocidadMax*velocidadMod*delta; direccion = 4.71239d; setPosition(X, Y);}
         //Norte
         else if (irArriba && !irDerecha && !irIzquierda)
-        { Y += +velocidadMax*velocidadMod*delta; direccion = 1.5708d; }
+        { Y += +velocidadMax*velocidadMod*delta; direccion = 1.5708d; setPosition(X, Y);}
         //Este
         else if (irDerecha && !irArriba && !irAbajo)
-        { X += +velocidadMax*velocidadMod*delta; direccion =  0d; }
+        { X += +velocidadMax*velocidadMod*delta; direccion =  0d; setPosition(X, Y);}
         //Oeste
         else if (irIzquierda && !irArriba && !irAbajo)
-        { X += -velocidadMax*velocidadMod*delta; direccion = 3.14159d; }
+        { X += -velocidadMax*velocidadMod*delta; direccion = 3.14159d; setPosition(X, Y);}
         //SurOeste
         else if (irAbajo&& irIzquierda)
         { Y += -0.707f*velocidadMax*velocidadMod*delta;
-          X += -0.707f*velocidadMax*velocidadMod*delta; direccion = 3.927d; }
+          X += -0.707f*velocidadMax*velocidadMod*delta; direccion = 3.927d; setPosition(X, Y);}
         //SurEste
         else if (irAbajo && irDerecha)
         { Y += -0.707f*velocidadMax*velocidadMod*delta;
-          X += +0.707f*velocidadMax*velocidadMod*delta; direccion = 5.4779d; }
+          X += +0.707f*velocidadMax*velocidadMod*delta; direccion = 5.4779d; setPosition(X, Y);}
         //NorOeste
         else if (irArriba && irIzquierda)
         { Y += +0.707f*velocidadMax*velocidadMod*delta;
-          X += -0.707f*velocidadMax*velocidadMod*delta; direccion = 2.35619d; }
+          X += -0.707f*velocidadMax*velocidadMod*delta; direccion = 2.35619d; setPosition(X, Y);}
         //NorEste
         else if (irArriba && irDerecha)
         { Y += +0.707f*velocidadMax*velocidadMod*delta;
-          X += +0.707f*velocidadMax*velocidadMod*delta; direccion = 0.7854d; }
+          X += +0.707f*velocidadMax*velocidadMod*delta; direccion = 0.7854d; setPosition(X, Y);}
 
-        setPosition(X, Y);
     }
 
     public void actualizar (float delta)

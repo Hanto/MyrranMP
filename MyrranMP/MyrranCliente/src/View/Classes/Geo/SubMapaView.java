@@ -1,9 +1,9 @@
 package View.Classes.Geo;// Created by Hanto on 15/04/2014.
 
-import Recursos.DAO.TerrenoRecursos.DB.TerrenoRecursosLocalDB;
 import Data.MiscData;
+import Model.Classes.Geo.MapaSeamless;
 import Model.DTO.TerrenoDTO;
-import Model.Classes.Geo.Mapa;
+import Recursos.DAO.TerrenoRecursos.DB.TerrenoRecursosLocalDB;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -13,7 +13,7 @@ import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 
 public class SubMapaView extends TiledMap
 {
-    private Mapa mapa;
+    private MapaSeamless mapa;
     private OrthogonalTiledMapRenderer mapRenderer;
 
     //mapTile, cuadrante que se renderiza
@@ -35,7 +35,7 @@ public class SubMapaView extends TiledMap
     public void setView(OrthographicCamera camara)  { mapRenderer.setView(camara); }
 
 
-    public SubMapaView(Mapa mapaModel, int tamañoX, int tamañoY)
+    public SubMapaView(MapaSeamless mapaModel, int tamañoX, int tamañoY)
     {
         this.mapa = mapaModel;
         this.mapRenderer = new OrthogonalTiledMapRenderer(this);

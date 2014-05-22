@@ -2,7 +2,6 @@ package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
-import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.Player;
 import Model.GameState.Mundo;
 import Model.GameState.UI;
@@ -20,7 +19,7 @@ public class Vista
     public Player player;
     public UI ui;
     public Mundo mundo;
-    public Mapa mapa;
+    //public Mapa mapa;
 
     private MundoView mundoView;
     private UIView uiView;
@@ -37,7 +36,7 @@ public class Vista
         this.player = player;
         this.ui = ui;
         this.mundo = mundo;
-        this.mapa = mundo.mapa;
+        //this.mapa = mundo.mapa;
 
         batch = new SpriteBatch();
 
