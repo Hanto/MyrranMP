@@ -45,8 +45,8 @@ public class MiscData
     public final static int MAPAVIEW_TamañoX = 2;//18;
     public final static int MAPAVIEW_TamañoY = 2;//20;
 
-    public final static int MAPAMODEL_TamañoX = 2;
-    public final static int MAPAMODEL_TamañoY = 2;
+    public final static int MAPAMODEL_NumTilesX = (int)Math.ceil((double)MiscData.GDX_Window_Horizontal_Resolution/(double)MiscData.TILESIZE);
+    public final static int MAPAMODEL_NumTilesY = (int)Math.ceil((double)MiscData.GDX_Window_Vertical_Resolution/(double)MiscData.TILESIZE);
 
     //Fuentes
     public final static String FUENTE_Nombres = "14";

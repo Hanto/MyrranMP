@@ -17,7 +17,7 @@ public class Player extends AbstractModel implements Caster, MobPC, Vulnerable
 
     protected Integer numAnimacion = 5;
 
-    protected Float velocidadMax = 160.0f;
+    protected Float velocidadMax = 320.0f;
     protected Float velocidadMod = 1.0f;
     protected Double direccion;
 

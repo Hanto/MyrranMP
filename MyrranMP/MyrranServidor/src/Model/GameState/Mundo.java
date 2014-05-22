@@ -1,6 +1,7 @@
 package Model.GameState;// Created by Hanto on 07/04/2014.
 
 import DTO.NetDTO;
+import Data.MiscData;
 import Model.AbstractModel;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.PC;
@@ -18,6 +19,15 @@ public class Mundo extends AbstractModel
     public Iterator<PC> getIteratorListaPlayers()   { return listaPlayers.iterator(); }
 
     //public List<? extends PC> listaPlayers()    { return listaPlayers; }
+
+    public Mundo()
+    {
+        for (int x = 0; x< MiscData.MAPA_Max_TilesX; x++)
+        {
+            for (int y = 0; y< MiscData.MAPA_Max_TilesY; y++)
+            {   mapa.setTerreno(x,y,0,1); }
+        }
+    }
 
     public void añadirPC (int connectionID, float x, float y)
     {

@@ -51,8 +51,8 @@ public class PcView implements PropertyChangeListener
 
         quienMeVe();
 
-        mapaView = new MapaView(PC, mundo, controlador, MiscData.MAPAMODEL_TamañoX, MiscData.MAPAMODEL_TamañoY);
-        mapaView.init();
+        mapaView = new MapaView(PC, mundo, controlador);
+        //mapaView.init();
 /*
         actualizarMapa(0, 0);
         actualizarMapa(67,0);

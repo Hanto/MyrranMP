@@ -12,137 +12,244 @@ public class MapaView
     private Mundo mundo;
     private Controlador controlador;
 
-    private int numSubMapasX;
-    private int numSubMapasY;
     private int numTilesX;
     private int numTilesY;
 
-    private int mapTileCentroX;
-    private int mapTileCentroY;
+    private int mapTileCentroX = -20;
+    private int mapTileCentroY = -20;
 
-    private int datosHorizontales = 0;
-    private int datosVerticales = 0;
+    private int posicionHoritontal = 0;
+    private int posicionVertical = 0;
 
-    private SubMapaCoordenadas[][] matrizSubMapas;
+    private int franjaHorizontal;
+    private int franjaVertical;
+
+    private SubMapaCoordenadas[][] mapa = new SubMapaCoordenadas[3][3];
 
     private static class SubMapaCoordenadas
     {
         public int offsetMapTileX;
         public int offsetMapTileY;
+        public boolean enviado;
+        public void setCoordenadas(int x, int y)
+        {   this.offsetMapTileX = x; this.offsetMapTileY = y; }
     }
 
-    public MapaView (PC pc, Mundo mundo, Controlador controlador, int numSubMapasX, int numSubMapasY)
+    public MapaView (PC pc, Mundo mundo, Controlador controlador)
     {
         this.PC = pc;
         this.mundo = mundo;
         this.controlador = controlador;
 
-        this.numSubMapasX = numSubMapasX+2;
-        this.numSubMapasY = numSubMapasY+2;
+        this.numTilesX = (int)Math.ceil((double)MiscData.GDX_Window_Horizontal_Resolution/(double)MiscData.TILESIZE);
+        this.numTilesY = (int)Math.ceil((double)MiscData.GDX_Window_Vertical_Resolution/(double)MiscData.TILESIZE);
 
-        this.numTilesX = (int)Math.ceil((double)MiscData.GDX_Window_Horizontal_Resolution/(double)(numSubMapasX -1)/(double)MiscData.TILESIZE);
-        this.numTilesY = (int)Math.ceil((double)MiscData.GDX_Window_Vertical_Resolution/(double)(numSubMapasY -1)/(double)MiscData.TILESIZE);
 
-        matrizSubMapas = new SubMapaCoordenadas[this.numSubMapasY][this.numSubMapasX];
-        for (SubMapaCoordenadas[] fila :matrizSubMapas)
+        for (SubMapaCoordenadas[] fila :mapa)
         {   for (int i=0; i< fila.length; i++)
             { fila[i] = new SubMapaCoordenadas(); }
         }
 
-        setPosicionRelativa();
+        setOffsets();
     }
 
-    public void setPosicionRelativa()
+    public void setOffsets()
     {
-        int xInicial, yInicial;
+        mapa[0][0].setCoordenadas(-1, +1);
+        mapa[1][0].setCoordenadas( 0, +1);
+        mapa[2][0].setCoordenadas(+1, +1);
 
-        //tamañoX Impar:
-        if (numSubMapasX %2 > 0) xInicial = -(numSubMapasX -1)/2 -1;
-            //tamañoX Par:
-        else xInicial = -numSubMapasX /2;
-        //TamañoY Impar:
-        if (numSubMapasY %2 >0) yInicial = (numSubMapasY -1)/2;
-            //TamañoY Par:
-        else yInicial = (numSubMapasY-1) /2;
+        mapa[0][1].setCoordenadas(-1,  0);
+        mapa[1][1].setCoordenadas( 0,  0);
+        mapa[2][1].setCoordenadas(+1,  0);
+
+        mapa[0][2].setCoordenadas(-1, -1);
+        mapa[1][2].setCoordenadas( 0, -1);
+        mapa[2][2].setCoordenadas(+1, -1);
+
+        SubMapaCoordenadas[] temp;
 
 
-        for (int y = 0; y < numSubMapasY; y++)
+            temp = mapa[0];
+            System.arraycopy(mapa, 1, mapa, 0, mapa.length-1);
+            mapa[mapa.length-1] = temp;
+
+        for (int x = 0; x < mapa.length; x++)
         {
-            for (int x = 0; x< numSubMapasX; x++)
-            {   matrizSubMapas[y][x].offsetMapTileX = x+xInicial;
-                matrizSubMapas[y][x].offsetMapTileY = yInicial-y;
-            }
-        }
-
-        for (SubMapaCoordenadas[] fila :matrizSubMapas)
-        {   for (int i=0; i< fila.length; i++)
-            { System.out.print("["+fila[i].offsetMapTileX +" "+fila[i].offsetMapTileY+"]"); }
+            for (int y = 0; y < mapa[x].length; y++)
+            { System.out.print("["+mapa[y][x].offsetMapTileX +" "+mapa[y][x].offsetMapTileY+"]"); }
             System.out.println("");
         }
-
     }
 
 
     public void init ()
     {
-        for (int y = 1; y < numSubMapasY-1; y++)
-        {
-            for (int x = 1; x< numSubMapasX-1; x++)
-            {
-                System.out.println("Init: ["+matrizSubMapas[y][x].offsetMapTileX+" "+matrizSubMapas[y][x].offsetMapTileY+"]");
-                actualizarMapa(matrizSubMapas[y][x]);
-            }
-        }
-        mapTileCentroX = 0;
-        mapTileCentroY = 0;
+        mapTileCentroX = getTileX();
+        mapTileCentroY = getTileY();
     }
 
-    private int getTileX()  { return (int)((float)PC.getX() / (float)(numTilesX * MiscData.TILESIZE)); }
+    private int getTileX()  { return (int)((PC.getX() / (float)(numTilesX * MiscData.TILESIZE))); }
     private int getTileY()  { return (int)((PC.getY() / (float)(numTilesY * MiscData.TILESIZE))); }
 
     public void comprobarVistaMapa ()
     {
-        if (PC.getX()-mapTileCentroX*numTilesX*MiscData.TILESIZE >= 800/2)
+        if (Math.abs(getTileX()-mapTileCentroX) >1 || Math.abs(getTileY()-mapTileCentroY) > 1)  { init(); return; }
+
+        int distX = (int)PC.getX()-mapTileCentroX*numTilesX*MiscData.TILESIZE;
+        int distY = (int)PC.getY()-mapTileCentroY*numTilesY*MiscData.TILESIZE;
+
+        if (distX < 800/2)              { posicionHoritontal = -1; }
+        else if (distX > 1600-800/2)    { posicionHoritontal = +1; }
+        else                            { posicionHoritontal = 0; }
+
+        if (distY < 450/2)              { posicionVertical = -1; }
+        else if (distY > 900-450/2)     { posicionVertical = +1; }
+        else                            { posicionVertical = 0; }
+
+        if (posicionVertical != 0 && posicionHoritontal != 0)
         {
-            if (datosHorizontales != 1)
-            {
-                System.out.println("getTileX: "+getTileX());
-                actualizarMapa(matrizSubMapas[1][3]);
-                actualizarMapa(matrizSubMapas[2][3]);
-                datosHorizontales = 1;
-            }
-            if (PC.getX()-mapTileCentroX*numTilesX*MiscData.TILESIZE >= 1600)
-            {
-                mapTileCentroX++;
-                datosHorizontales = 0;
-            }
+            actualizarMap(0, 0);
+            actualizarMap(posicionHoritontal, 0);
+            actualizarMap(0, posicionVertical);
+            actualizarMap(posicionHoritontal, posicionVertical);
+        }
+        if (posicionVertical == 0 && posicionHoritontal != 0)
+        {
+            actualizarMap(0, 0);
+            actualizarMap(posicionHoritontal, 0);
+            actualizarMap(0, +1);
+            actualizarMap(0, -1);
+            actualizarMap(posicionHoritontal, +1);
+            actualizarMap(posicionHoritontal, -1);
+        }
+        if (posicionHoritontal == 0 && posicionVertical != 0)
+        {
+            actualizarMap(0, 0);
+            actualizarMap(+1, 0);
+            actualizarMap(-1, 0);
+            actualizarMap(0, posicionVertical);
+            actualizarMap(+1, posicionVertical);
+            actualizarMap(-1, posicionVertical);
+        }
+        if (posicionHoritontal == 0 && posicionVertical == 0)
+        {
+            actualizarMap(+1,+1);
+            actualizarMap(+1, 0);
+            actualizarMap(+1,-1);
+            actualizarMap(0, +1);
+            actualizarMap(0,  0);
+            actualizarMap(0, -1);
+            actualizarMap(-1,+1);
+            actualizarMap(-1, 0);
+            actualizarMap(-1,-1);
         }
 
-        if (PC.getX()-mapTileCentroX*numTilesX*MiscData.TILESIZE <= -800/2)
-        {
 
-            if (datosHorizontales != -1)
+        if      (getTileX() > mapTileCentroX)   { incrementarMapTile(1, 0); }
+        else if (getTileX() < mapTileCentroX)   { incrementarMapTile(-1, 0); }
+        else if (getTileY() > mapTileCentroY)   { incrementarMapTile(0, 1);  }
+        else if (getTileY() < mapTileCentroY)   { incrementarMapTile(0, -1); }
+    }
+
+    public void actualizarMap (int x, int y)
+    {
+        int mX = x+1;
+        int mY = -1*y+1;
+        if (!mapa[mX][mY].enviado)
+        {
+            mapa[mX][mY].enviado = true;
+            actualizarMapa(getTileX()+x, getTileY()+y);
+        }
+    }
+
+    public void incrementarMapTile (int incX, int incY)
+    {
+        desplazarArray(incX, incY);
+
+        if (incX >0)
+        {
+            mapa[2][0].enviado = false;
+            mapa[2][1].enviado = false;
+            mapa[2][2].enviado = false;
+        }
+        if (incX <0)
+        {
+            mapa[0][0].enviado = false;
+            mapa[0][1].enviado = false;
+            mapa[0][2].enviado = false;
+        }
+        if (incY >0)
+        {
+            mapa[0][0].enviado = false;
+            mapa[1][0].enviado = false;
+            mapa[2][0].enviado = false;
+        }
+        if (incY <0)
+        {
+            mapa[0][2].enviado = false;
+            mapa[1][2].enviado = false;
+            mapa[2][2].enviado = false;
+        }
+
+        mapTileCentroX += incX;
+        mapTileCentroY += incY;
+
+        for (int x = 0; x < mapa.length; x++)
+        {
+            for (int y = 0; y < mapa[x].length; y++)
             {
-                System.out.println("getTileX: "+getTileX());
-                actualizarMapa(matrizSubMapas[1][2]);
-                actualizarMapa(matrizSubMapas[2][0]);
-                datosHorizontales = -1;
+                if (x == 1 && y == 1) System.out.print("  "+mapa[y][x].enviado+"  ");
+                else System.out.print("["+mapa[y][x].enviado+"]");
             }
-            if (PC.getX()-mapTileCentroX*numTilesX*MiscData.TILESIZE <= -1600)
+            System.out.println("");
+        }
+        System.out.println("MaptileCentroX: "+mapTileCentroX+" MapTileCentroY: "+mapTileCentroY);
+    }
+
+
+    public void desplazarArray (int incX, int incY)
+    {
+        SubMapaCoordenadas[] temp;
+        SubMapaCoordenadas tempo;
+
+        if (incX > 0)
+        {
+            temp = mapa[0];
+            System.arraycopy(mapa, 1, mapa, 0, mapa.length-1);
+            mapa[mapa.length-1] = temp;
+
+        }
+        if (incX < 0)
+        {
+            temp = mapa[mapa.length-1];
+            System.arraycopy(mapa, 0, mapa, 1, mapa.length-1);
+            mapa[0] = temp;
+        }
+        if (incY < 0)
+        {
+            for (int i=0; i<mapa.length; i++)
             {
-                mapTileCentroX--;
-                datosHorizontales = 0;
+                tempo = mapa[i][0];
+                System.arraycopy(mapa[i], 1, mapa[i], 0, mapa[i].length - 1);
+                mapa[i][mapa.length-1] = tempo;
+            }
+        }
+        if (incY > 0)
+        {
+            for (int i=0; i<mapa.length; i++)
+            {
+                tempo = mapa[i][mapa.length-1];
+                System.arraycopy(mapa[i], 0, mapa[i], 1, mapa[i].length - 1);
+                mapa[i][0] = tempo;
             }
         }
     }
 
-    public void actualizarMapa (SubMapaCoordenadas submapaCoorddenadas)
-    {   actualizarMapa(getTileX()+submapaCoorddenadas.offsetMapTileX, getTileY()+submapaCoorddenadas.offsetMapTileY); }
-
-
     public void actualizarMapa (int mapTileInicialX, int mapTileInicialY)
     {
-        if (mapTileInicialX <0 || mapTileInicialY < 0) return;
+        System.out.println("actualizarMapa: ["+mapTileInicialX+" "+mapTileInicialY+"]");
+        if (mapTileInicialX <0 || mapTileInicialY < 0) { return; }
 
         NetDTO.ActualizarMapa actualizarMapa = new NetDTO.ActualizarMapa(mapTileInicialX*numTilesX, mapTileInicialY*numTilesY, numTilesX, numTilesY);
         for (int x=0; x< numTilesX; x++)
@@ -154,6 +261,5 @@ public class MapaView
             }
         }
         controlador.enviarACliente(PC.getConnectionID(), actualizarMapa);
-        System.out.println("actualizarMapa: "+actualizarMapa.esquinaInfIzdaX+" "+actualizarMapa.esquinaInfIzdaY);
     }
 }

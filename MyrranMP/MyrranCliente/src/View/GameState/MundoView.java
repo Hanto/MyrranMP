@@ -49,7 +49,7 @@ public class MundoView extends Stage implements PropertyChangeListener
         controlador.addInputProcessor(this);
         mundo.añadirObservador(this);
 
-        new MapaSeamless(MiscData.MAPAMODEL_TamañoX, MiscData.MAPAVIEW_TamañoY);
+        new MapaSeamless(MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY);
     }
 
     public void aplicarZoom(int incrementoZoom)
