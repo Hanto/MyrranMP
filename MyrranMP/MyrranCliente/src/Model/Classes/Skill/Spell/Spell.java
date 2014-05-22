@@ -1,10 +1,10 @@
 package Model.Classes.Skill.Spell;
 // @author Ivan Delgado Huerta
 
+import Interfaces.AbstractModel;
 import Interfaces.Caster;
-import Model.Classes.AbstractModel;
-import Model.DAO.DAO;
 import Model.Classes.Skill.SkillStat;
+import Model.DAO.DAO;
 
 public class Spell extends AbstractModel
 {

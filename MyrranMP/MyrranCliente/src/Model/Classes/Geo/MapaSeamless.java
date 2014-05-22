@@ -1,77 +1,120 @@
 package Model.Classes.Geo;// Created by Hanto on 19/05/2014.
 
 import Data.MiscData;
+import Interfaces.Mob;
+import Model.DTO.PlayerDTO;
 
-public class MapaSeamless
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class MapaSeamless implements PropertyChangeListener
 {
-    private SubMapaCoordenadas[][] matrizSubMapas;
+    private int[][] mapa = new int[10][10];
 
-    private float xActual;
-    private float yActual;
+    private Mob mob;
 
-    private int mapTileBordeE;
-    private int mapTileBordeO;
-    private int mapTileBordeN;
-    private int mapTileBordeS;
-
-    private int numSubMapasX;
-    private int numSubMapasY;
+    private int mapTileCentroX = 0;
+    private int mapTileCentroY = 0;
 
     private int numTilesX;
     private int numTilesY;
 
-    private static class SubMapaCoordenadas
+
+    public MapaSeamless(Mob mob)
     {
-        public int mapTileX;
-        public int mapTileY;
-        public SubMapa subMapa;
-        public SubMapaCoordenadas(int numTilesX, int numTilesY)
-        {   this.subMapa = new SubMapa(numTilesX, numTilesY); }
-    }
+        this.mob = mob;
+        mob.añadirObservador(this);
 
-    public MapaSeamless(int numSubMapasX, int numSubMapasY)
-    {
-        this.numSubMapasX = numSubMapasX;
-        this.numSubMapasY = numSubMapasY;
+        this.numTilesX = (int)Math.ceil((double)MiscData.GDX_Window_Horizontal_Resolution/(double)MiscData.TILESIZE);
+        this.numTilesY = (int)Math.ceil((double)MiscData.GDX_Window_Vertical_Resolution/(double)MiscData.TILESIZE);
 
-        this.numTilesX = (int)Math.ceil((double)MiscData.GDX_Window_Horizontal_Resolution/(double)(numSubMapasX -1)/(double)MiscData.TILESIZE);
-        this.numTilesY = (int)Math.ceil((double)MiscData.GDX_Window_Vertical_Resolution/(double)(numSubMapasY -1)/(double)MiscData.TILESIZE);
-
-        matrizSubMapas = new SubMapaCoordenadas[numSubMapasX +1][numSubMapasY +1];
-        for (SubMapaCoordenadas[] fila :matrizSubMapas)
-        {   for (int i=0; i< fila.length; i++)
-            { fila[i] = new SubMapaCoordenadas(numTilesX, numTilesY); }
+        for (int y=0; y<10; y++)
+        {
+            for (int x=0; x<10; x++)
+            {
+                mapa[x][y] = x*y;
+            }
         }
 
-        setPosicionRelativa();
-
-        for (SubMapaCoordenadas[] fila :matrizSubMapas)
-        {   for (int i=0; i< fila.length; i++)
-        { System.out.print("["+fila[i].mapTileX +" "+fila[i].mapTileY +"]"); }
+        for (int y=0; y<10; y++)
+        {
+            for (int x=0; x<10; x++)
+            {
+                System.out.print("["+mapa[x][y]+"]");
+            }
             System.out.println("");
         }
     }
 
-    public void setPosicionRelativa()
+    private int getMapTileX()                                       { return (int)((mob.getX() / (float)(numTilesX * MiscData.TILESIZE))); }
+    private int getMapTileY()                                       { return (int)((mob.getY() / (float)(numTilesY * MiscData.TILESIZE))); }
+
+    private void desplazarArray (int incX, int incY)
     {
-        int xInicial, yInicial;
-
-        //tamañoX Impar:
-        if (numSubMapasX %2 > 0) xInicial = -(numSubMapasX -1)/2 -1;
-        //tamañoX Par:
-        else xInicial = -numSubMapasX /2;
-        //TamañoY Impar:
-        if (numSubMapasY %2 >0) yInicial = (numSubMapasY -1)/2;
-        //TamañoY Par:
-        else yInicial = numSubMapasY /2;
-
-        for (int y = 0; y < numSubMapasX +1; y++)
+        if (incX > 0)   //Desplazar IZDA:
         {
-            for (int x = 0; x< numSubMapasY +1; x++)
-            {   matrizSubMapas[y][x].mapTileX = x+xInicial;
-                matrizSubMapas[y][x].mapTileY = yInicial-y;
+            int[][] temp = new int[mapa.length][mapa[0].length];
+
+            System.arraycopy(mapa, incX,                temp, 0,                    mapa.length-incX);
+            System.arraycopy(mapa, 0,                   temp, temp.length-incX,     incX);
+            mapa = temp;
+        }
+
+        if (incX < 0)   //Desplazar DCHA:
+        {
+            incX = -incX;
+            int[][] temp = new int[mapa.length][mapa[0].length];
+
+            System.arraycopy(mapa,  0,                  temp, incX,                 mapa.length-incX);
+            System.arraycopy(mapa, temp.length-incX,    temp, 0,                    incX);
+            mapa = temp;
+        }
+
+        if (incY > 0)   //Desplazar ABAJO:
+        {
+            for (int i=0; i< mapa.length; i++)
+            {
+                int[] tempo = new int[mapa[i].length];
+                System.arraycopy(mapa[i], 0,                    tempo, incY,                mapa[i].length-incY);
+                System.arraycopy(mapa[i], tempo.length-incY,    tempo, 0,                   incY);
+                mapa[i]= tempo;
             }
+        }
+
+        if (incY < 0)   //Desplazar ARRIBA:
+        {
+            incY = -incY;
+            for (int i=0; i< mapa.length; i++)
+            {
+                int[] tempo = new int[mapa[i].length];
+                System.arraycopy(mapa[i], incY,                 tempo, 0,                   mapa[i].length-incY);
+                System.arraycopy(mapa[i], 0,                    tempo, tempo.length-incY,   incY);
+                mapa[i] = tempo;
+            }
+        }
+
+        for (int y=0; y<10; y++)
+        {
+            for (int x=0; x<10; x++)
+            {
+                System.out.print("["+mapa[x][y]+"]");
+            }
+            System.out.println("");
         }
     }
 
+    public void moverTile()
+    {
+        if      (getMapTileX() > mapTileCentroX)    { desplazarArray( 2,     0); mapTileCentroX++; }
+        else if (getMapTileX() < mapTileCentroX)    { desplazarArray(-2,     0); mapTileCentroX--; }
+        else if (getMapTileY() > mapTileCentroY)    { desplazarArray( 0,             2); mapTileCentroY++; }
+        else if (getMapTileY() < mapTileCentroY)    { desplazarArray( 0,            -2); mapTileCentroY--; }
+    }
+
+    @Override public void propertyChange(PropertyChangeEvent evt)
+    {
+        if (evt.getNewValue() instanceof PlayerDTO.PositionPlayer)
+        {   moverTile(); }
+
+    }
 }

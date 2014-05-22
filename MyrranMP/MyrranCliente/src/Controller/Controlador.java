@@ -5,6 +5,7 @@ import Controller.Input.PlayerMouseKeyI;
 import Controller.Interfaces.ControladorBarraAccionI;
 import Controller.Interfaces.ControladorBarraTerrenosI;
 import DTO.NetDTO;
+import Model.Classes.Geo.MapaSeamless;
 import Model.Classes.Mobiles.Player;
 import Model.Classes.UI.BarraAcciones.BarraAccionesI;
 import Model.Classes.UI.BarraAcciones.ListaAccionesI;
@@ -57,7 +58,11 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
 
     public void enviarAServidor(Object o)                               { cliente.enviarAServidor(o); }
     public int  getConnID()                                             { return cliente.getID(); }
-    public void añadirPlayer(int connectionID)                          { player.setConnectionID(connectionID);}
+    public void añadirPlayer(int connectionID)
+    {
+        player.setConnectionID(connectionID);
+        mundo.mapaSeamless = new MapaSeamless(player);
+    }
 
     public void actualizarPlayer(NetDTO.ActualizarPlayer updatePlayer)
     {

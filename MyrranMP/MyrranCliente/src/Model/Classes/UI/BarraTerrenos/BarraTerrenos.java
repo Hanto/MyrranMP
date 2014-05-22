@@ -1,7 +1,7 @@
 package Model.Classes.UI.BarraTerrenos;// Created by Hanto on 14/05/2014.
 
+import Interfaces.AbstractModel;
 import Interfaces.Caster;
-import Model.Classes.AbstractModel;
 import Model.Classes.Geo.Terreno;
 import Model.DAO.DAO;
 import Model.DAO.Terreno.TerrenoDAO;

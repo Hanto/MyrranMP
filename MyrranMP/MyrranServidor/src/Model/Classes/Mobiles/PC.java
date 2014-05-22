@@ -7,7 +7,7 @@ import Interfaces.Caster;
 import Interfaces.MapaI;
 import Interfaces.MobPC;
 import Interfaces.Vulnerable;
-import Model.AbstractModel;
+import Interfaces.AbstractModel;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Skill.Spell.Spell;
 import Model.DAO.DAO;
@@ -85,6 +85,9 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     @Override public void setVelocidaMod(float velocidadMod)    { this.velocidadMod = velocidadMod; }
     @Override public void setVelocidadMax(float velocidadMax)   { this.velocidadMax = velocidadMax; }
     @Override public void setDireccion(double direccion)        { this.direccion = direccion; }
+
+    public float getCenterX()                                   { return x+24; }
+    public float getCenterY()                                   { return y+24;}
 
     public PC(int connectionID, Mapa mapa)
     {

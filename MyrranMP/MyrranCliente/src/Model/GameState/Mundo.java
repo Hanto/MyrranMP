@@ -2,8 +2,9 @@ package Model.GameState;// Created by Hanto on 08/04/2014.
 
 import DTO.NetDTO;
 import Data.MiscData;
-import Model.Classes.AbstractModel;
+import Interfaces.AbstractModel;
 import Model.Classes.Geo.Mapa;
+import Model.Classes.Geo.MapaSeamless;
 import Model.Classes.Mobiles.PC;
 
 import java.util.ArrayList;
@@ -17,8 +18,7 @@ public class Mundo extends AbstractModel
     public Map<Integer,PC> mapaPlayers = new HashMap<>();
 
     public Mapa mapa = new Mapa();
-
-    private Mapa[] listaMapas = new Mapa[30];
+    public MapaSeamless mapaSeamless;
 
     //Get:
     public List<? extends PC> listaPlayers()       { return listaPlayers; }

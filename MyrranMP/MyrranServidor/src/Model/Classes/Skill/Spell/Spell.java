@@ -2,7 +2,7 @@ package Model.Classes.Skill.Spell;
 // @author Ivan Delgado Huerta
 
 import Interfaces.Caster;
-import Model.AbstractModel;
+import Interfaces.AbstractModel;
 import Model.DAO.DAO;
 import Model.Classes.Skill.SkillStat;
 

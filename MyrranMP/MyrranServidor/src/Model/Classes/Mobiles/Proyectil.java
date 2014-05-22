@@ -1,6 +1,6 @@
 package Model.Classes.Mobiles;// Created by Hanto on 07/04/2014.
 
-import Model.AbstractModel;
+import Interfaces.AbstractModel;
 
 public class Proyectil extends AbstractModel
 {

@@ -1,6 +1,6 @@
 package Model.Classes.UI.BarraAcciones;// Created by Hanto on 08/05/2014.
 
-import Model.Classes.AbstractModel;
+import Interfaces.AbstractModel;
 import Model.Classes.Acciones.Accion;
 import Model.Classes.UI.Input.Keybinds;
 import Model.DAO.DAO;

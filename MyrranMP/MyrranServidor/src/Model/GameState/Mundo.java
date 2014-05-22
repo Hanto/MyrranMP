@@ -2,7 +2,7 @@ package Model.GameState;// Created by Hanto on 07/04/2014.
 
 import DTO.NetDTO;
 import Data.MiscData;
-import Model.AbstractModel;
+import Interfaces.AbstractModel;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.PC;
 

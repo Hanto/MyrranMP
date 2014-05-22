@@ -1,7 +1,6 @@
 package Model.Classes.Mobiles;// Created by Hanto on 10/04/2014.
 
 import Interfaces.*;
-import Model.Classes.AbstractModel;
 import Model.Classes.Skill.Spell.Spell;
 import Model.Classes.UI.Input.PlayerIO;
 import Model.DAO.DAO;
@@ -17,7 +16,7 @@ public class Player extends AbstractModel implements Caster, MobPC, Vulnerable
 
     protected Integer numAnimacion = 5;
 
-    protected Float velocidadMax = 320.0f;
+    protected Float velocidadMax = 360.0f;
     protected Float velocidadMod = 1.0f;
     protected Double direccion;
 

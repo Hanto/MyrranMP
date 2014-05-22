@@ -3,7 +3,6 @@ package View.GameState;// Created by Hanto on 14/05/2014.
 import Controller.Controlador;
 import DTO.NetDTO;
 import Data.MiscData;
-import Model.Classes.Geo.MapaSeamless;
 import Model.Classes.Mobiles.PC;
 import Model.Classes.Mobiles.Player;
 import Model.GameState.Mundo;
@@ -48,8 +47,6 @@ public class MundoView extends Stage implements PropertyChangeListener
 
         controlador.addInputProcessor(this);
         mundo.añadirObservador(this);
-
-        new MapaSeamless(MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY);
     }
 
     public void aplicarZoom(int incrementoZoom)

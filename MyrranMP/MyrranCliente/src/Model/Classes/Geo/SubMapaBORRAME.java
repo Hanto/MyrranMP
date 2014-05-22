@@ -4,7 +4,7 @@ import Data.MiscData;
 import Model.DAO.DAO;
 import Model.DAO.Terreno.TerrenoDAO;
 
-public class SubMapa
+public class SubMapaBORRAME
 {
     private Celda[][] matriz;
 
@@ -21,7 +21,7 @@ public class SubMapa
     private int numTilesY;
 
 
-    public SubMapa(int numTilesX, int numTilesY)
+    public SubMapaBORRAME(int numTilesX, int numTilesY)
     {
         this.numTilesX = numTilesX;
         this.numTilesY = numTilesY;

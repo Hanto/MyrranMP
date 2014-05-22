@@ -52,13 +52,26 @@ public class MapaView
     private boolean getMapaEnviado(int offSetX, int offSetY)        { return mapaEnviado[offSetX+1][-offSetY+1]; }
     private void setMapaEnviado(int offSetX, int offSetY, boolean b){ mapaEnviado[offSetX+1][-offSetY+1] = b; }
 
+    private void printMapaView()
+    {
+        for (int y = 0; y < mapaEnviado.length; y++)
+        {
+            System.out.print(" ");
+            for (int x = 0; x < mapaEnviado[y].length; x++)
+            {
+                if (mapaEnviado[x][y]) System.out.print("[X]");
+                else System.out.print("[ ]");
+            }
+            System.out.println("");
+        }
+    }
 
     public void comprobarVistaMapa ()
     {
         if (Math.abs(getMapTileX()-mapTileCentroX) >1 || Math.abs(getMapTileY()-mapTileCentroY) > 1)  { init(); return; }
 
-        int distX = (int)PC.getX()-mapTileCentroX*numTilesX*MiscData.TILESIZE;
-        int distY = (int)PC.getY()-mapTileCentroY*numTilesY*MiscData.TILESIZE;
+        int distX = (int)PC.getX() -mapTileCentroX*numTilesX*MiscData.TILESIZE;
+        int distY = (int)PC.getY() -mapTileCentroY*numTilesY*MiscData.TILESIZE;
 
         if (distX < posHorNeg)      { posicionHoritontal = -1; }
         else if (distX > posHorPos) { posicionHoritontal = +1; }
@@ -118,6 +131,7 @@ public class MapaView
         {
             setMapaEnviado(x, y, true);
             enviarMapa(mapTileCentroX + x, mapTileCentroY + y);
+            printMapaView();
         }
     }
 
@@ -153,18 +167,9 @@ public class MapaView
         mapTileCentroX += incX;
         mapTileCentroY += incY;
 
-        for (int x = 0; x < mapaEnviado.length; x++)
-        {
-            for (int y = 0; y < mapaEnviado[x].length; y++)
-            {
-                if (x == 1 && y == 1) System.out.print("  "+ mapaEnviado[y][x]+"  ");
-                else System.out.print("["+ mapaEnviado[y][x]+"]");
-            }
-            System.out.println("");
-        }
-        System.out.println("MaptileCentroX: "+mapTileCentroX+" MapTileCentroY: "+mapTileCentroY);
+        System.out.println("MAPTILE: ["+mapTileCentroX+" "+mapTileCentroY+"]");
+        printMapaView();
     }
-
 
     private void desplazarArray (int incX, int incY)
     {
@@ -206,7 +211,7 @@ public class MapaView
 
     private void enviarMapa(int mapTileInicialX, int mapTileInicialY)
     {
-        System.out.println("actualizarMapa: ["+mapTileInicialX+" "+mapTileInicialY+"]");
+        System.out.println("enviar: ["+mapTileInicialX+" "+mapTileInicialY+"]");
         if (mapTileInicialX <0 || mapTileInicialY < 0) { return; }
 
         NetDTO.ActualizarMapa actualizarMapa = new NetDTO.ActualizarMapa(mapTileInicialX*numTilesX, mapTileInicialY*numTilesY, numTilesX, numTilesY);

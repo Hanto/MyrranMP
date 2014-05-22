@@ -79,7 +79,7 @@ public class Vista
     {
         mundoView.camara.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         mundoView.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        //stageUI.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        uiView.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
     public void dibujarVision()
@@ -102,13 +102,26 @@ public class Vista
         shape.setColor(Color.GRAY);
         shape.rect( 0, 0, MiscData.MAPA_Max_TilesX*MiscData.TILESIZE,MiscData.MAPA_Max_TilesY*MiscData.TILESIZE);
 
-        shape.setColor(Color.DARK_GRAY);
+        shape.setColor(Color.CYAN);
         for (int i=1; i<=MiscData.MAPA_Max_TilesX/MiscData.MAPAMODEL_NumTilesX; i++)
         {   shape.line(i*MiscData.MAPAMODEL_NumTilesX*MiscData.TILESIZE, 0, i*MiscData.MAPAMODEL_NumTilesX*MiscData.TILESIZE, MiscData.MAPA_Max_TilesY*MiscData.TILESIZE); }
         for (int i=1; i<=MiscData.MAPA_Max_TilesY/MiscData.MAPAMODEL_NumTilesY; i++)
         {   shape.line(0, i*MiscData.MAPAMODEL_NumTilesY*MiscData.TILESIZE, MiscData.MAPA_Max_TilesX*MiscData.TILESIZE, i*MiscData.MAPAMODEL_NumTilesY*MiscData.TILESIZE); }
 
 
+        shape.setColor(Color.DARK_GRAY);
+        for (int i=0; i<=MiscData.MAPA_Max_TilesX/MiscData.MAPAMODEL_NumTilesX; i++)
+        {
+            shape.line(i*MiscData.MAPAMODEL_NumTilesX*MiscData.TILESIZE+400, 0, i*MiscData.MAPAMODEL_NumTilesX*MiscData.TILESIZE+400, MiscData.MAPA_Max_TilesY*MiscData.TILESIZE);
+            shape.line(i*MiscData.MAPAMODEL_NumTilesX*MiscData.TILESIZE+1600-400, 0, i*MiscData.MAPAMODEL_NumTilesX*MiscData.TILESIZE+1600-400, MiscData.MAPA_Max_TilesY*MiscData.TILESIZE);
+        }
+
+        for (int i=0; i<=MiscData.MAPA_Max_TilesY/MiscData.MAPAMODEL_NumTilesY; i++)
+        {
+            shape.line(0, 225+i*MiscData.MAPAMODEL_NumTilesY*MiscData.TILESIZE, MiscData.MAPA_Max_TilesX*MiscData.TILESIZE, 225+i*MiscData.MAPAMODEL_NumTilesY*MiscData.TILESIZE);
+            shape.line(0, 900-225+i*MiscData.MAPAMODEL_NumTilesY*MiscData.TILESIZE, MiscData.MAPA_Max_TilesX*MiscData.TILESIZE, 900-225+i*MiscData.MAPAMODEL_NumTilesY*MiscData.TILESIZE);
+
+        }
         shape.end();
     }
 

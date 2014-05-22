@@ -1,7 +1,7 @@
 package Model.Classes.Skill.Spell;
 // @author Ivan Delgado Huerta
 
-import Model.Classes.AbstractModel;
+import Interfaces.AbstractModel;
 import Model.Classes.Skill.SkillStat;
 
 public abstract class TipoSpell extends AbstractModel implements TipoSpellInterface

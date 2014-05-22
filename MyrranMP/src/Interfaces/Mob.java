@@ -1,8 +1,7 @@
 package Interfaces;// Created by Ladrim on 18/04/2014.
 
-public interface Mob
+public interface Mob extends Model
 {
-
     //GET:
     public float getX();
     public float getY();
