@@ -5,7 +5,7 @@ import Controller.Input.PlayerMouseKeyI;
 import Controller.Interfaces.ControladorBarraAccionI;
 import Controller.Interfaces.ControladorBarraTerrenosI;
 import DTO.NetDTO;
-import Model.Classes.Geo.MapaSeamless;
+import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.Player;
 import Model.Classes.UI.BarraAcciones.BarraAccionesI;
 import Model.Classes.UI.BarraAcciones.ListaAccionesI;
@@ -34,7 +34,7 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
         this.player = player;
         this.mundo = mundo;
 
-        mundo.mapaSeamless = new MapaSeamless(player);
+        mundo.mapa = new Mapa(player);
 
         ui = new UI(player, this);
 
@@ -80,7 +80,7 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
     public void cambiarAnimacionPC(int connectionID, int numAnimacion)                  { mundo.getPC(connectionID).setAnimacion(numAnimacion); }
 
     public void actualizarMapa(NetDTO.ActualizarMapa mapaServidor)                      { mundo.actualizarMapa(mapaServidor); }
-    public void setTerreno(int celdaX, int celdaY, int numCapa, int iDTerreno)          { mundo.mapaSeamless.setTerreno(celdaX, celdaY, numCapa, iDTerreno); }
+    public void setTerreno(int celdaX, int celdaY, int numCapa, int iDTerreno)          { mundo.mapa.setTerreno(celdaX, celdaY, numCapa, iDTerreno); }
     public void aplicarZoom(int incrementoZoom)                                         { vista.aplicarZoom(incrementoZoom); }
     public void addInputProcessor(Stage stage)                                          { inputMultiplexer.addProcessor(stage); }
     public void procesarKeyDown(int keycode)                                            { ui.keybinds.keyDown(keycode); }

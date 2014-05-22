@@ -40,7 +40,7 @@ public class MundoView extends Stage implements PropertyChangeListener
         this.controlador = controlador;
         this.mundo = mundo;
 
-        mapaView = new MapaView(mundo.mapaSeamless, this, player.getX(), player.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY);
+        mapaView = new MapaView(mundo.mapa, this, player.getX(), player.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY);
         playerView = new PlayerView(player, this, controlador);
         camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         getViewport().setCamera(camara);

@@ -19,7 +19,6 @@ public class Vista
     public Player player;
     public UI ui;
     public Mundo mundo;
-    //public Mapa mapa;
 
     private MundoView mundoView;
     private UIView uiView;
@@ -36,7 +35,6 @@ public class Vista
         this.player = player;
         this.ui = ui;
         this.mundo = mundo;
-        //this.mapa = mundo.mapa;
 
         batch = new SpriteBatch();
 

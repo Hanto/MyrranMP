@@ -11,7 +11,7 @@ import Model.DTO.PlayerDTO;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class MapaSeamless extends AbstractModel implements PropertyChangeListener
+public class Mapa extends AbstractModel implements PropertyChangeListener
 {
     private Celda[][] mapa;
 
@@ -24,7 +24,7 @@ public class MapaSeamless extends AbstractModel implements PropertyChangeListene
     private int numTilesY;
 
 
-    public MapaSeamless(Mob mob)
+    public Mapa(Mob mob)
     {
         this.mob = mob;
         mob.añadirObservador(this);
@@ -37,15 +37,6 @@ public class MapaSeamless extends AbstractModel implements PropertyChangeListene
         {   for (int i=0; i<fila.length; i++)
             {   fila[i] = new Celda(); }
         }
-/*
-        for (int y=0; y<10; y++)
-        {
-            for (int x=0; x<10; x++)
-            {
-                System.out.print("["+mapa[x][y]+"]");
-            }
-            System.out.println("");
-        }*/
     }
 
     private int getMapTileX()                   { return (int)((mob.getX() / (float)(numTilesX * MiscData.TILESIZE))); }
@@ -78,9 +69,6 @@ public class MapaSeamless extends AbstractModel implements PropertyChangeListene
 
     public boolean setTerreno (int tileX, int tileY, int numCapa, int iDTerreno)
     {
-        if (tileX == 0 && tileY == 60)
-        {   System.out.println("pumba"); }
-
         int x = getTileX(tileX);
         int y = getTileY(tileY);
 
@@ -142,14 +130,6 @@ public class MapaSeamless extends AbstractModel implements PropertyChangeListene
                 mapa[i] = tempo;
             }
         }
-        /*for (int y=0; y<10; y++)
-        {
-            for (int x=0; x<10; x++)
-            {
-                System.out.print("["+mapa[x][y]+"]");
-            }
-            System.out.println("");
-        }*/
     }
 
     public void moverTile()

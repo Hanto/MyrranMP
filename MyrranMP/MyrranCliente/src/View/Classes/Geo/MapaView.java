@@ -2,7 +2,7 @@ package View.Classes.Geo;// Created by Hanto on 16/04/2014.
 
 import DTO.NetDTO;
 import Data.MiscData;
-import Model.Classes.Geo.MapaSeamless;
+import Model.Classes.Geo.Mapa;
 import View.GameState.MundoView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -13,7 +13,7 @@ import java.beans.PropertyChangeListener;
 public class MapaView implements PropertyChangeListener
 {
     private MundoView mundoView;
-    private MapaSeamless mapaModel;
+    private Mapa mapaModel;
 
     private OrthographicCamera camara;
 
@@ -33,7 +33,7 @@ public class MapaView implements PropertyChangeListener
     private int numTilesX;                          //numero de Tiles de ancho de cada submapa
     private int numTilesY;                          //numero de Tiles de alto de cada submapa
 
-    public MapaView(MapaSeamless mapaModel, MundoView mundoView, float posInicialX, float posInicialY, int tamañoX, int tamañoY)
+    public MapaView(Mapa mapaModel, MundoView mundoView, float posInicialX, float posInicialY, int tamañoX, int tamañoY)
     {
         this.mapaModel = mapaModel;
         this.mundoView = mundoView;

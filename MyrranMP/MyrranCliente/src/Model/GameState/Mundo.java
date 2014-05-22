@@ -3,7 +3,7 @@ package Model.GameState;// Created by Hanto on 08/04/2014.
 import DTO.NetDTO;
 import Data.MiscData;
 import Interfaces.AbstractModel;
-import Model.Classes.Geo.MapaSeamless;
+import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.PC;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class Mundo extends AbstractModel
     public Map<Integer,PC> mapaPlayers = new HashMap<>();
 
     //public Mapa mapa = new Mapa();
-    public MapaSeamless mapaSeamless;
+    public Mapa mapa;
 
     //Get:
     public List<? extends PC> listaPlayers()       { return listaPlayers; }
@@ -55,12 +55,6 @@ public class Mundo extends AbstractModel
 
     public void actualizarMapa (NetDTO.ActualizarMapa mapaServidor)
     {
-        System.out.println("Mapa recibido");
-
-        if (mapaServidor.esquinaInfIzdaX == 0 && mapaServidor.esquinaInfIzdaY > 0)
-            System.out.println("PIM");
-
-
         for (int y=0; y< mapaServidor.mapa[0].length; y++)
         {
             for (int x=0; x< mapaServidor.mapa.length; x++)
@@ -68,7 +62,7 @@ public class Mundo extends AbstractModel
                 for (int i=0; i< MiscData.MAPA_Max_Capas_Terreno; i++)
                 {
                     int idTerreno = mapaServidor.mapa[x][y].celda[i];
-                    mapaSeamless.setTerreno(x+mapaServidor.esquinaInfIzdaX,y+mapaServidor.esquinaInfIzdaY,i,idTerreno);
+                    mapa.setTerreno(x+mapaServidor.esquinaInfIzdaX,y+mapaServidor.esquinaInfIzdaY,i,idTerreno);
                 }
             }
         }
