@@ -7,6 +7,10 @@ public class MiscData
     //General
     public static final int TILESIZE = 24;
 
+    //LibGDX:
+    public static final int GDX_Horizontal_Resolution = 1600;
+    public static final int GDX_Vertical_Resolution = 900;
+
     //Network:
     public static final int NETWORK_Puerto_Servidor = 54555;
     public static final int NETWORK_Client_Timeout = 5000*100;
@@ -14,15 +18,10 @@ public class MiscData
     public static final float SERVIDOR_Delta_Time = NETWORK_Update_Time/1000f;
     public static final float SERVIDOR_DistanciaVisionMobs = 1.2f;
 
-    //LibGDX:
-    public static final int GDX_Window_Horizontal_Resolution = 1600;
-    public static final int GDX_Window_Vertical_Resolution = 900;
-
     //Recursos:
     public final static String RECURSOS_Atlas_Carpeta_Imagenes_Origen = "Images/";
     public final static String RECURSOS_Atlas_Carpeta_Imagenes_Destino = "Atlas/";
     public final static String RECURSOS_Atlas_Atlas_Extension = "atlas";
-
 
     //Mobiles Recursos:
     public final static String ATLAS_PlayerSprites_LOC = "Player Sprites/";
@@ -38,15 +37,21 @@ public class MiscData
     public final static int PIXIE_Player_numColumnas = 6;
 
     //Mapa:
+    public static final int MAPTILE_Horizontal_Resolution = 1980;
+    public static final int MAPTILE_Vertical_Resolution = 1200;
+    public final static int MAPTILE_NumTilesX = (int)Math.ceil((double)MiscData.MAPTILE_Horizontal_Resolution /(double)MiscData.TILESIZE);
+    public final static int MAPTILE_NumTilesY = (int)Math.ceil((double)MiscData.MAPTILE_Vertical_Resolution /(double)MiscData.TILESIZE);
+    public final static int MAPTILE_posHorNeg = MiscData.MAPTILE_Horizontal_Resolution /4;
+    public final static int MAPTILE_posHorPos = MiscData.MAPTILE_Horizontal_Resolution - MiscData.MAPTILE_Horizontal_Resolution /4;
+    public final static int MAPTILE_posVerNeg = MiscData.MAPTILE_Vertical_Resolution /4;
+    public final static int MAPTILE_posVerPos = MiscData.MAPTILE_Vertical_Resolution - MiscData.MAPTILE_Vertical_Resolution /4;
+
     public final static int MAPA_Max_Capas_Terreno = 3;
-    public final static int MAPA_Max_TilesX = 5000;
-    public final static int MAPA_Max_TilesY = 5000;
+    public final static int MAPA_Max_TilesX = 2000;
+    public final static int MAPA_Max_TilesY = 2000;
 
     public final static int MAPAVIEW_TamañoX = 2;//18;
     public final static int MAPAVIEW_TamañoY = 2;//20;
-
-    public final static int MAPAMODEL_NumTilesX = (int)Math.ceil((double)MiscData.GDX_Window_Horizontal_Resolution/(double)MiscData.TILESIZE);
-    public final static int MAPAMODEL_NumTilesY = (int)Math.ceil((double)MiscData.GDX_Window_Vertical_Resolution/(double)MiscData.TILESIZE);
 
     //Fuentes
     public final static String FUENTE_Nombres = "14";

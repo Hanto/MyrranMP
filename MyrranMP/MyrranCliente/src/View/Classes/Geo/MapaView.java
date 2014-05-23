@@ -41,8 +41,8 @@ public class MapaView implements PropertyChangeListener
         this.tamañoY = tamañoY;
         this.mapaModel.añadirObservador(this);
 
-        this.numTilesX = (int)Math.ceil((double)MiscData.GDX_Window_Horizontal_Resolution/(double)(tamañoX -1)/(double)MiscData.TILESIZE);
-        this.numTilesY = (int)Math.ceil((double)MiscData.GDX_Window_Vertical_Resolution/(double)(tamañoY -1)/(double)MiscData.TILESIZE);
+        this.numTilesX = (int)Math.ceil((double)MiscData.MAPTILE_Horizontal_Resolution /(double)(tamañoX -1)/(double)MiscData.TILESIZE);
+        this.numTilesY = (int)Math.ceil((double)MiscData.MAPTILE_Vertical_Resolution /(double)(tamañoY -1)/(double)MiscData.TILESIZE);
 
         camara = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
@@ -123,10 +123,10 @@ public class MapaView implements PropertyChangeListener
 
     public void mapaVistaLoader(SubMapaView subMapaView)
     {
-        mapTileBordeE = (int)(xActual + MiscData.GDX_Window_Horizontal_Resolution /2) /  (numTilesX *MiscData.TILESIZE);
-        mapTileBordeO = (int)(xActual - MiscData.GDX_Window_Horizontal_Resolution /2) /  (numTilesX *MiscData.TILESIZE);
-        mapTileBordeN = (int)(yActual + MiscData.GDX_Window_Vertical_Resolution /2) /    (numTilesY *MiscData.TILESIZE);
-        mapTileBordeS = (int)(yActual - MiscData.GDX_Window_Vertical_Resolution /2) /    (numTilesY *MiscData.TILESIZE);
+        mapTileBordeE = (int)(xActual + MiscData.MAPTILE_Horizontal_Resolution /2) /  (numTilesX *MiscData.TILESIZE);
+        mapTileBordeO = (int)(xActual - MiscData.MAPTILE_Horizontal_Resolution /2) /  (numTilesX *MiscData.TILESIZE);
+        mapTileBordeN = (int)(yActual + MiscData.MAPTILE_Vertical_Resolution /2) /    (numTilesY *MiscData.TILESIZE);
+        mapTileBordeS = (int)(yActual - MiscData.MAPTILE_Vertical_Resolution /2) /    (numTilesY *MiscData.TILESIZE);
 
         if (mapTileBordeE >= (subMapaView.getMapTileX() + tamañoX))
         {   subMapaView.crearTiledMap(subMapaView.getMapTileX() + tamañoX,  subMapaView.getMapTileY()); }

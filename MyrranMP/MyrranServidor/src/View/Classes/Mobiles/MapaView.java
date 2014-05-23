@@ -23,10 +23,10 @@ public class MapaView
     private int numTilesY;
 
     private final int reborde = 1;
-    private final int posHorNeg = MiscData.GDX_Window_Horizontal_Resolution/4;
-    private final int posHorPos = MiscData.GDX_Window_Horizontal_Resolution - MiscData.GDX_Window_Horizontal_Resolution/4;
-    private final int posVerNeg = MiscData.GDX_Window_Vertical_Resolution/4;
-    private final int posVerPos = MiscData.GDX_Window_Vertical_Resolution - MiscData.GDX_Window_Vertical_Resolution/4;
+    private final int posHorNeg = MiscData.MAPTILE_Horizontal_Resolution /4;
+    private final int posHorPos = MiscData.MAPTILE_Horizontal_Resolution - MiscData.MAPTILE_Horizontal_Resolution /4;
+    private final int posVerNeg = MiscData.MAPTILE_Vertical_Resolution /4;
+    private final int posVerPos = MiscData.MAPTILE_Vertical_Resolution - MiscData.MAPTILE_Vertical_Resolution /4;
 
 
     public MapaView (PC pc, Mundo mundo, Controlador controlador)
@@ -35,8 +35,8 @@ public class MapaView
         this.mundo = mundo;
         this.controlador = controlador;
 
-        this.numTilesX = (int)Math.ceil((double)MiscData.GDX_Window_Horizontal_Resolution/(double)MiscData.TILESIZE);
-        this.numTilesY = (int)Math.ceil((double)MiscData.GDX_Window_Vertical_Resolution/(double)MiscData.TILESIZE);
+        this.numTilesX = (int)Math.ceil((double)MiscData.MAPTILE_Horizontal_Resolution /(double)MiscData.TILESIZE);
+        this.numTilesY = (int)Math.ceil((double)MiscData.MAPTILE_Vertical_Resolution /(double)MiscData.TILESIZE);
     }
 
     private void init ()
@@ -54,18 +54,10 @@ public class MapaView
     private boolean getMapaEnviado(int offSetX, int offSetY)        { return mapaEnviado[offSetX+1][-offSetY+1]; }
     private void setMapaEnviado(int offSetX, int offSetY, boolean b){ mapaEnviado[offSetX+1][-offSetY+1] = b; }
 
-    private void printMapaView()
+    private void enviarMapTilesAdyancentes()
     {
-        for (int y = 0; y < mapaEnviado.length; y++)
-        {
-            System.out.print(" ");
-            for (int x = 0; x < mapaEnviado[y].length; x++)
-            {
-                if (mapaEnviado[x][y]) System.out.print("[X]");
-                else System.out.print("[ ]");
-            }
-            System.out.println("");
-        }
+        NetDTO.MapTilesAdyacentesEnCliente maptilesAdyacentes = new NetDTO.MapTilesAdyacentesEnCliente(mapaEnviado);
+        controlador.enviarACliente(PC.getConnectionID(), maptilesAdyacentes);
     }
 
     public void comprobarVistaMapa ()
@@ -133,7 +125,7 @@ public class MapaView
         {
             setMapaEnviado(x, y, true);
             enviarMapa(mapTileCentroX + x, mapTileCentroY + y);
-            printMapaView();
+            enviarMapTilesAdyancentes();
         }
     }
 
@@ -170,7 +162,7 @@ public class MapaView
         mapTileCentroY += incY;
 
         System.out.println("MAPTILE: ["+mapTileCentroX+" "+mapTileCentroY+"]");
-        printMapaView();
+        enviarMapTilesAdyancentes();
     }
 
     private void desplazarArray (int incX, int incY)
@@ -236,8 +228,8 @@ public class MapaView
 
     public void cambioTerreno (int tileX, int tileY, int numCapa, short iDTerreno)
     {   //Solo se notifican por cambios los terrenos adyacentes que han sido enviados:
-        int offsetX = tileX/MiscData.MAPAMODEL_NumTilesX - mapTileCentroX;
-        int offsetY = tileY/MiscData.MAPAMODEL_NumTilesY - mapTileCentroY;
+        int offsetX = tileX/MiscData.MAPTILE_NumTilesX - mapTileCentroX;
+        int offsetY = tileY/MiscData.MAPTILE_NumTilesY - mapTileCentroY;
 
         if ( Math.abs(offsetX) <= 1 && Math.abs(offsetY) <= 1)
         {

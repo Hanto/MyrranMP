@@ -17,8 +17,8 @@ public class Mapa extends AbstractModel implements PropertyChangeListener
 
     private Mob mob;
 
-    private int mapTileCentroX = 0;
-    private int mapTileCentroY = 0;
+    public int mapTileCentroX = 0;
+    public int mapTileCentroY = 0;
 
     private int numTilesX;
     private int numTilesY;
@@ -30,8 +30,8 @@ public class Mapa extends AbstractModel implements PropertyChangeListener
         this.mob = mob;
         mob.añadirObservador(this);
 
-        this.numTilesX = (int)Math.ceil((double)MiscData.GDX_Window_Horizontal_Resolution/(double)MiscData.TILESIZE);
-        this.numTilesY = (int)Math.ceil((double)MiscData.GDX_Window_Vertical_Resolution/(double)MiscData.TILESIZE);
+        this.numTilesX = (int)Math.ceil((double)MiscData.MAPTILE_Horizontal_Resolution /(double)MiscData.TILESIZE);
+        this.numTilesY = (int)Math.ceil((double)MiscData.MAPTILE_Vertical_Resolution /(double)MiscData.TILESIZE);
         mapa = new Celda[numTilesX*3+reborde*2][numTilesY*3+reborde*2];
 
         for (Celda[] fila: mapa)

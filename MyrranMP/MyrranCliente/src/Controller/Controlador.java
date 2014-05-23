@@ -5,8 +5,6 @@ import Controller.Input.PlayerMouseKeyI;
 import Controller.Interfaces.ControladorBarraAccionI;
 import Controller.Interfaces.ControladorBarraTerrenosI;
 import DTO.NetDTO;
-import Model.Classes.Geo.Mapa;
-import Model.Classes.Mobiles.Player;
 import Model.Classes.UI.BarraAcciones.BarraAccionesI;
 import Model.Classes.UI.BarraAcciones.ListaAccionesI;
 import Model.GameState.Mundo;
@@ -21,24 +19,20 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class Controlador implements ControladorBarraAccionI, ControladorBarraTerrenosI
 {
     protected Cliente cliente;
-    protected Player player;
-    protected UI ui;
+
     protected Mundo mundo;
+    protected UI ui;
     protected Vista vista;
 
     //Input:
     protected InputMultiplexer inputMultiplexer = new InputMultiplexer();
 
-    public Controlador (Player player, Mundo mundo)
+    public Controlador (Mundo mundo)
     {
-        this.player = player;
         this.mundo = mundo;
 
-        mundo.mapa = new Mapa(player);
-
-        ui = new UI(player, this);
-
-        vista = new Vista(this, player, ui, mundo);
+        ui = new UI(mundo.getPlayer(), this);
+        vista = new Vista(this, ui, mundo);
 
         inputMultiplexer.addProcessor(new GestureDetector(new PlayerGestures()));
         inputMultiplexer.addProcessor(new PlayerMouseKeyI(this));
@@ -51,7 +45,7 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
         añadirBarraAcciones(3, 10);
         ui.añadirAccionesEnBarra(0);
 
-        moverPlayer(21000,22600);
+        //moverPlayer(21000,22600);
     }
 
     public void render (float delta)                                    { vista.render(delta); }
@@ -59,28 +53,28 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
     public void resize(int anchura, int altura)                         { vista.resize(anchura, altura);}
 
     public void enviarAServidor(Object o)                               { cliente.enviarAServidor(o); }
-    public int  getConnID()                                             { return cliente.getID(); }
-    public void añadirPlayer(int connectionID)                          { player.setConnectionID(connectionID); }
+    public void añadirPlayer(int connectionID)                          { mundo.getPlayer().setConnectionID(connectionID); }
 
     public void actualizarPlayer(NetDTO.ActualizarPlayer updatePlayer)
     {
-        player.setNombre(updatePlayer.nombre);
-        player.setNivel(updatePlayer.nivel);
-        player.setActualHPs(updatePlayer.actualHPs);
-        player.setMaxHPs(updatePlayer.maxHPs);
+        mundo.getPlayer().setNombre(updatePlayer.nombre);
+        mundo.getPlayer().setNivel(updatePlayer.nivel);
+        mundo.getPlayer().setActualHPs(updatePlayer.actualHPs);
+        mundo.getPlayer().setMaxHPs(updatePlayer.maxHPs);
         //player.setPosition(updatePlayer.x, updatePlayer.y);
     }
     public void añadirPC(int connectionID, float x, float y, int numAnimacion)
     {   mundo.añadirPC(connectionID, x, y);
         mundo.getPC(connectionID).setAnimacion(numAnimacion);
     }
-    public void moverPlayer(float x, float y)                                           { player.setPosition(x, y); }
+    public void moverPlayer(float x, float y)                                           { mundo.getPlayer().setPosition(x, y); }
     public void eliminarPC(int connectionID)                                            { mundo.eliminarPC(connectionID); }
     public void moverPC(int connectionID, float x, float y)                             { mundo.getPC(connectionID).setPosition(x, y); }
     public void cambiarAnimacionPC(int connectionID, int numAnimacion)                  { mundo.getPC(connectionID).setAnimacion(numAnimacion); }
 
+    public void actualizarMapTilesCargados (NetDTO.MapTilesAdyacentesEnCliente ady)     { mundo.mapTilesCargados = ady.mapaAdyacencias; }
     public void actualizarMapa(NetDTO.ActualizarMapa mapaServidor)                      { mundo.actualizarMapa(mapaServidor); }
-    public void setTerreno(int celdaX, int celdaY, int numCapa, short iDTerreno)        { mundo.mapa.setTerreno(celdaX, celdaY, numCapa, iDTerreno); }
+    public void setTerreno(int celdaX, int celdaY, int numCapa, short iDTerreno)        { mundo.getMapa().setTerreno(celdaX, celdaY, numCapa, iDTerreno); }
     public void aplicarZoom(int incrementoZoom)                                         { vista.aplicarZoom(incrementoZoom); }
     public void addInputProcessor(Stage stage)                                          { inputMultiplexer.addProcessor(stage); }
     public void procesarKeyDown(int keycode)                                            { ui.keybinds.keyDown(keycode); }

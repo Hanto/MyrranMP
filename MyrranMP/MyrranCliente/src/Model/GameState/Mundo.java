@@ -5,6 +5,7 @@ import Data.MiscData;
 import Interfaces.AbstractModel;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.PC;
+import Model.Classes.Mobiles.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,25 +14,25 @@ import java.util.Map;
 
 public class Mundo extends AbstractModel
 {
-    public List<PC> listaPlayers = new ArrayList<>();
-    public Map<Integer,PC> mapaPlayers = new HashMap<>();
+    private List<PC> listaPlayers = new ArrayList<>();
+    private Map<Integer,PC> mapaPlayers = new HashMap<>();
 
-    //public Mapa mapa = new Mapa();
-    public Mapa mapa;
+    private Player player;
+    private Mapa mapa;
+
+    public boolean[][] mapTilesCargados = new boolean[3][3];
+
 
     //Get:
-    public List<? extends PC> listaPlayers()       { return listaPlayers; }
-    public PC getPC (int connectionID)             { return mapaPlayers.get(connectionID); }
+    public List<? extends PC> listaPlayers()        { return listaPlayers; }
+    public PC getPC (int connectionID)              { return mapaPlayers.get(connectionID); }
+    public Player getPlayer()                       { return player; }
+    public Mapa getMapa()                           { return mapa; }
 
     public Mundo()
     {
-        for (int x = 0; x< MiscData.MAPA_Max_TilesX; x++)
-        {
-            for (int y = 0; y< MiscData.MAPA_Max_TilesY; y++)
-            {
-                //mapa.setTerreno(x,y,0,0);
-            }
-        }
+        player = new Player();
+        mapa = new Mapa(player);
     }
 
     //SE NOTIFICA:

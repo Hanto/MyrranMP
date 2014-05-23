@@ -81,8 +81,8 @@ public class PcView implements PropertyChangeListener
 
             if (PCCercano.getConnectionID() != PC.getConnectionID())
             {
-                if (Math.abs(PCCercano.getX()- PC.getX()) <=  MiscData.SERVIDOR_DistanciaVisionMobs*MiscData.GDX_Window_Horizontal_Resolution/2 &&
-                    Math.abs(PCCercano.getY()- PC.getY()) <=  MiscData.SERVIDOR_DistanciaVisionMobs*MiscData.GDX_Window_Vertical_Resolution/2     )
+                if (Math.abs(PCCercano.getX()- PC.getX()) <=  MiscData.SERVIDOR_DistanciaVisionMobs*MiscData.MAPTILE_Horizontal_Resolution /2 &&
+                    Math.abs(PCCercano.getY()- PC.getY()) <=  MiscData.SERVIDOR_DistanciaVisionMobs*MiscData.MAPTILE_Vertical_Resolution /2     )
                 {
                     añadirPCVisible(pcCercanos);
                     pcCercanos.añadirPCVisible(this);

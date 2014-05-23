@@ -24,6 +24,10 @@ public class NetDTO
         kryo.register(SetSpellIDSeleccionado.class);
         kryo.register(SetParametrosSpell.class);
 
+        kryo.register(boolean[].class);
+        kryo.register(boolean[][].class);
+        kryo.register(MapTilesAdyacentesEnCliente.class);
+
         kryo.register(short[].class);
         kryo.register(ActualizarMapa.CeldaMapa.class);
         kryo.register(ActualizarMapa.CeldaMapa[].class);
@@ -159,6 +163,14 @@ public class NetDTO
         public SetParametrosSpell() {}
         public SetParametrosSpell(Object parametrosSpell)
         {   this.parametrosSpell = parametrosSpell; }
+    }
+
+    public static class MapTilesAdyacentesEnCliente
+    {
+        public boolean[][] mapaAdyacencias;
+        public MapTilesAdyacentesEnCliente() {}
+        public MapTilesAdyacentesEnCliente(boolean[][] mapaAdyacencias)
+        {   this.mapaAdyacencias = mapaAdyacencias; }
     }
 
     public static class ActualizarMapa

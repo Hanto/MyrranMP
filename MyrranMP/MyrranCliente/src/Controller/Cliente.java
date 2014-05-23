@@ -12,7 +12,7 @@ public class Cliente extends Client
 
     public Cliente (Controlador controlador)
     {
-        super(8*1024, 32*1024);
+        super(8*1024, 64*1024);
         this.controlador = controlador;
 
         NetDTO.register(this);
@@ -86,6 +86,11 @@ public class Cliente extends Client
         if (obj instanceof NetDTO.ActualizarMapa)
         {
             controlador.actualizarMapa((NetDTO.ActualizarMapa)obj);
+        }
+
+        if (obj instanceof NetDTO.MapTilesAdyacentesEnCliente)
+        {
+            controlador.actualizarMapTilesCargados((NetDTO.MapTilesAdyacentesEnCliente)obj);
         }
     }
 

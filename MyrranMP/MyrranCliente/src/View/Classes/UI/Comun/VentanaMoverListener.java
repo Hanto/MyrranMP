@@ -25,8 +25,8 @@ public class VentanaMoverListener extends DragListener
 
         if (newX - dragActor.getWidth() < 0) newX = 0 + dragActor.getWidth();
         if (newY < 0) newY = 0;
-        if (newX + ancho > MiscData.GDX_Window_Horizontal_Resolution) newX = MiscData.GDX_Window_Horizontal_Resolution - ancho;
-        if (newY + alto > MiscData.GDX_Window_Vertical_Resolution) newY = MiscData.GDX_Window_Vertical_Resolution - alto;
+        if (newX + ancho > MiscData.GDX_Horizontal_Resolution) newX = MiscData.GDX_Horizontal_Resolution - ancho;
+        if (newY + alto > MiscData.GDX_Vertical_Resolution) newY = MiscData.GDX_Vertical_Resolution - alto;
 
         actor.setPosition((int)newX, (int)newY);
     }
