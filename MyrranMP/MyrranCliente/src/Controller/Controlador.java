@@ -45,15 +45,15 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
         añadirBarraAcciones(3, 10);
         ui.añadirAccionesEnBarra(0);
 
-        //moverPlayer(21000,22600);
+        moverPlayer(21000,22400);
     }
 
-    public void render (float delta)                                    { vista.render(delta); }
-    public void dispose()                                               { vista.dispose(); }
-    public void resize(int anchura, int altura)                         { vista.resize(anchura, altura);}
+    public void render (float delta)                                                    { vista.render(delta); }
+    public void dispose()                                                               { vista.dispose(); }
+    public void resize(int anchura, int altura)                                         { vista.resize(anchura, altura);}
 
-    public void enviarAServidor(Object o)                               { cliente.enviarAServidor(o); }
-    public void añadirPlayer(int connectionID)                          { mundo.getPlayer().setConnectionID(connectionID); }
+    public void enviarAServidor(Object o)                                               { cliente.enviarAServidor(o); }
+    public void añadirPlayer(int connectionID)                                          { mundo.getPlayer().setConnectionID(connectionID); }
 
     public void actualizarPlayer(NetDTO.ActualizarPlayer updatePlayer)
     {
@@ -76,6 +76,7 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
     public void actualizarMapa(NetDTO.ActualizarMapa mapaServidor)                      { mundo.actualizarMapa(mapaServidor); }
     public void setTerreno(int celdaX, int celdaY, int numCapa, short iDTerreno)        { mundo.getMapa().setTerreno(celdaX, celdaY, numCapa, iDTerreno); }
     public void aplicarZoom(int incrementoZoom)                                         { vista.aplicarZoom(incrementoZoom); }
+
     public void addInputProcessor(Stage stage)                                          { inputMultiplexer.addProcessor(stage); }
     public void procesarKeyDown(int keycode)                                            { ui.keybinds.keyDown(keycode); }
     public void procesarKeyUp(int keycode)                                              { ui.keybinds.keyUp(keycode); }
@@ -83,20 +84,20 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
     public void procesarTouchUp(int screenX, int screenY, int pointer, int button)      { ui.keybinds.touchUp(screenX, screenY, pointer, button); }
     public void procesarTouchDragged(int screenX, int screenY, int pointer)             { ui.keybinds.touchDragged(screenX, screenY, pointer); }
 
+    //BarraTerrenos:
+    @Override public void mostrarBarraTerrenos()                                        { vista.getUiView().mostrarBarraTerreno(); }
+    @Override public void ocultarBarraTerrenos()                                        { vista.getUiView().ocultarBarraTerreno(); }
+    @Override public void barraTerrenosMoverTerreno(int posOrigen, int posDestino)      { ui.barraTerrenosMoverTerreno(posOrigen, posDestino); }
+
     //BarrasAccion:
-    @Override public void añadirBarraAcciones(int filas, int columnas)                          { ui.añadirBarraAcciones(filas, columnas); }
-    @Override public void eliminarBarraAcciones(BarraAccionesI barraAcciones)                   { ui.eliminarBarraAcciones(barraAcciones); }
-    @Override public void barraAñadirFila (BarraAccionesI barra, int numFilas)                  { barra.añadirFila(numFilas); }
-    @Override public void barraAñadirColumna(BarraAccionesI barra, int numColumnas)             { barra.añadirColumna(numColumnas); }
-    @Override public void barraEliminarFila (BarraAccionesI barra, int numFilas)                { barra.eliminarFila(numFilas); }
-    @Override public void barraEliminarColumna (BarraAccionesI barra, int numColumnas)          { barra.eliminarColumna(numColumnas); }
+    @Override public void añadirBarraAcciones(int filas, int columnas)                  { ui.añadirBarraAcciones(filas, columnas); }
+    @Override public void eliminarBarraAcciones(BarraAccionesI barraAcciones)           { ui.eliminarBarraAcciones(barraAcciones); }
+    @Override public void barraAñadirFila (BarraAccionesI barra, int numFilas)          { barra.añadirFila(numFilas); }
+    @Override public void barraAñadirColumna(BarraAccionesI barra, int numColumnas)     { barra.añadirColumna(numColumnas); }
+    @Override public void barraEliminarFila (BarraAccionesI barra, int numFilas)        { barra.eliminarFila(numFilas); }
+    @Override public void barraEliminarColumna (BarraAccionesI barra, int numColumnas)  { barra.eliminarColumna(numColumnas); }
     @Override public void barraAccionMoverAccion(ListaAccionesI barraOrigen, int posXOrigen, int posYOrigen, ListaAccionesI barraDestino,int posXDestino, int posYDestino)
     {   ui.moverAccion(barraOrigen, posXOrigen, posYOrigen, barraDestino, posXDestino, posYDestino);}
     @Override public void barraAccionRebindear(BarraAccionesI barra, int posX, int posY, int keycode)
     {   ui.setKeyCode(barra, posX, posY, keycode);}
-
-    //BarraTerrenos:
-    @Override public void mostrarBarraTerrenos()                                                { vista.getUiView().mostrarBarraTerreno(); }
-    @Override public void ocultarBarraTerrenos()                                                { vista.getUiView().ocultarBarraTerreno(); }
-    @Override public void barraTerrenosMoverTerreno(int posOrigen, int posDestino)              { ui.barraTerrenosMoverTerreno(posOrigen, posDestino); }
 }

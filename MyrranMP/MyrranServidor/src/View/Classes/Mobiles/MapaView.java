@@ -84,8 +84,8 @@ public class MapaView
         }
         if (posicionVertical == 0 && posicionHoritontal != 0)
         {   //Si estamos en el lateral, enviamos las dos esquina de ese lado
-            actualizarMapa(0, +1);
             actualizarMapa(0,  0);
+            actualizarMapa(0, +1);
             actualizarMapa(0, -1);
             actualizarMapa(posicionHoritontal, +1);
             actualizarMapa(posicionHoritontal,  0);
@@ -93,8 +93,8 @@ public class MapaView
         }
         if (posicionHoritontal == 0 && posicionVertical != 0)
         {   //Si estamos en el Lateral superior o inferior, enviarmos las dos esquinas de ese lado
-            actualizarMapa(+1, 0);
             actualizarMapa( 0, 0);
+            actualizarMapa(+1, 0);
             actualizarMapa(-1, 0);
             actualizarMapa(+1, posicionVertical);
             actualizarMapa( 0, posicionVertical);
@@ -102,11 +102,11 @@ public class MapaView
         }
         if (posicionHoritontal == 0 && posicionVertical == 0)
         {   //Si estamos en el centro enviamos todas las esquinas
+            actualizarMapa( 0,  0);
             actualizarMapa(+1, +1);
             actualizarMapa(+1,  0);
             actualizarMapa(+1, -1);
             actualizarMapa( 0, +1);
-            actualizarMapa( 0,  0);
             actualizarMapa( 0, -1);
             actualizarMapa(-1, +1);
             actualizarMapa(-1,  0);
@@ -161,7 +161,7 @@ public class MapaView
         mapTileCentroX += incX;
         mapTileCentroY += incY;
 
-        System.out.println("MAPTILE: ["+mapTileCentroX+" "+mapTileCentroY+"]");
+        //System.out.println("MAPTILE: ["+mapTileCentroX+" "+mapTileCentroY+"]");
         enviarMapTilesAdyancentes();
     }
 

@@ -11,7 +11,7 @@ public class Servidor extends Server
 
     public Servidor (Controlador control)
     {
-        super(128*1024, 2*1024);
+        super(256*1024, 2*1024);
         this.controlador = control;
 
         NetDTO.register(this);
