@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class TerrenoKryo implements TerrenoDAO
 {
-    private Map<Integer, Terreno> listaDeTerrenos = TerrenoKryoDB.get().listaDeTerrenos;
+    private Map<Short, Terreno> listaDeTerrenos = TerrenoKryoDB.get().listaDeTerrenos;
 
 
     @Override public boolean añadirTerreno(Terreno terreno)
@@ -26,7 +26,7 @@ public class TerrenoKryo implements TerrenoDAO
         }
     }
 
-    @Override public void eliminarTerreno(int terrenoID)
+    @Override public void eliminarTerreno(short terrenoID)
     {
         if (listaDeTerrenos.containsKey(terrenoID))
         {
@@ -35,6 +35,6 @@ public class TerrenoKryo implements TerrenoDAO
         }
     }
 
-    @Override public Terreno getTerreno(int terrenoID)
+    @Override public Terreno getTerreno(short terrenoID)
     {   return listaDeTerrenos.get(terrenoID); }
 }

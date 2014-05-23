@@ -39,8 +39,8 @@ public class MiscData
 
     //Mapa:
     public final static int MAPA_Max_Capas_Terreno = 3;
-    public final static int MAPA_Max_TilesX = 1000;
-    public final static int MAPA_Max_TilesY = 1000;
+    public final static int MAPA_Max_TilesX = 5000;
+    public final static int MAPA_Max_TilesY = 5000;
 
     public final static int MAPAVIEW_TamañoX = 2;//18;
     public final static int MAPAVIEW_TamañoY = 2;//20;

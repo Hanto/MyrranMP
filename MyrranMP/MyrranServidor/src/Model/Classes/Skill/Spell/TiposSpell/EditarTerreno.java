@@ -24,7 +24,7 @@ public class EditarTerreno extends TipoSpell
         int tileY = (targetY / MiscData.TILESIZE);
 
         int numCapa = 0;
-        int iDTerreno = 0;
+        short iDTerreno = 0;
 
         if (caster.getParametrosSpell() instanceof ParametrosEditarTerreno)
         {

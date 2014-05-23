@@ -10,5 +10,5 @@ public class TerrenoLocalDB
     private static class Singleton      { private static final TerrenoLocalDB get = new TerrenoLocalDB(); }
     public static TerrenoLocalDB get()  { return Singleton.get; }
 
-    public Map<Integer, Terreno> listaDeTerrenos = new HashMap<>();
+    public Map<Short, Terreno> listaDeTerrenos = new HashMap<>();
 }

@@ -57,7 +57,7 @@ public class Mapa extends AbstractModel implements PropertyChangeListener
         return terrenoDAO.getTerreno(getCelda(tileX, tileY).getTerrenoID(numCapa));
     }
 
-    public int getTerrenoID (int tileX, int tileY, int numCapa)
+    public short getTerrenoID (int tileX, int tileY, int numCapa)
     {
         int x = getTileX(tileX);
         int y = getTileY(tileY);
@@ -67,7 +67,7 @@ public class Mapa extends AbstractModel implements PropertyChangeListener
         return getCelda(tileX, tileY).getTerrenoID(numCapa);
     }
 
-    public boolean setTerreno (int tileX, int tileY, int numCapa, int iDTerreno)
+    public boolean setTerreno (int tileX, int tileY, int numCapa, short iDTerreno)
     {
         int x = getTileX(tileX);
         int y = getTileY(tileY);
@@ -134,6 +134,12 @@ public class Mapa extends AbstractModel implements PropertyChangeListener
 
     public void moverTile()
     {
+        if (Math.abs(getMapTileX()-mapTileCentroX) >1 || Math.abs(getMapTileY()-mapTileCentroY) > 1)
+        {   mapTileCentroX = getMapTileX();
+            mapTileCentroY = getMapTileY();
+            return;
+        }
+
         if      (getMapTileX() > mapTileCentroX)    { desplazarArray( numTilesX,     0);        mapTileCentroX++; }
         else if (getMapTileX() < mapTileCentroX)    { desplazarArray(-numTilesX,     0);        mapTileCentroX--; }
         else if (getMapTileY() > mapTileCentroY)    { desplazarArray( 0,            -numTilesY);mapTileCentroY++; }

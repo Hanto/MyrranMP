@@ -26,7 +26,8 @@ public class LoadGameData
         TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
 
         for (GameDataDTO.TerrenoDTO terrenoDTO : GameData.get().listaDeTerrenos)
-        {   terrenoDAO.añadirTerreno(new Terreno(terrenoDTO.id, terrenoDTO.nombre, terrenoDTO.isSolido));}
+        {   Terreno terreno = new Terreno(terrenoDTO.id, terrenoDTO.nombre, terrenoDTO.isSolido);
+            terrenoDAO.añadirTerreno(terreno);}
     }
 
     public static void cargarTipoSpells()

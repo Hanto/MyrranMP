@@ -5,9 +5,9 @@ public class ParametrosSpellDTO
     public static class ParametrosEditarTerreno
     {
         public int capaTerrenoSeleccionada = 0;
-        public int terrenoIDSeleccionado = 0;
+        public short terrenoIDSeleccionado = 0;
         public ParametrosEditarTerreno() {}
-        public ParametrosEditarTerreno(int capaTerrenoSeleccionada, int terrenoIDSeleccionado)
+        public ParametrosEditarTerreno(int capaTerrenoSeleccionada, short terrenoIDSeleccionado)
         {   this.capaTerrenoSeleccionada = capaTerrenoSeleccionada; this.terrenoIDSeleccionado = terrenoIDSeleccionado; }
     }
 }

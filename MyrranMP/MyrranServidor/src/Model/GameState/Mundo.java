@@ -25,7 +25,7 @@ public class Mundo extends AbstractModel
         for (int x = 0; x< MiscData.MAPA_Max_TilesX; x++)
         {
             for (int y = 0; y< MiscData.MAPA_Max_TilesY; y++)
-            {   mapa.setTerreno(x,y,0,1); }
+            {   mapa.setTerreno(x,y,0,(short)0); }
         }
     }
 

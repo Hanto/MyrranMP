@@ -229,7 +229,7 @@ public class MapaView
         controlador.enviarACliente(PC.getConnectionID(), actualizarMapa);
     }
 
-    public void cambioTerreno (int tileX, int tileY, int numCapa, int iDTerreno)
+    public void cambioTerreno (int tileX, int tileY, int numCapa, short iDTerreno)
     {   //Solo se notifican por cambios los terrenos adyacentes que han sido enviados:
         int offsetX = tileX/MiscData.MAPAMODEL_NumTilesX - mapTileCentroX;
         int offsetY = tileY/MiscData.MAPAMODEL_NumTilesY - mapTileCentroY;

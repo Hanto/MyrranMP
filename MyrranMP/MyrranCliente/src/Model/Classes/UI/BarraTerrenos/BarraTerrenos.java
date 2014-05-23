@@ -14,13 +14,13 @@ import static DTO.ParametrosSpellDTO.ParametrosEditarTerreno;
 
 public class BarraTerrenos extends AbstractModel
 {
-    private Array<Integer>barraTerrenos = new Array<>();
+    private Array<Short>barraTerrenos = new Array<>();
     private Caster caster;
 
-    private int parametroTerrenoID = 0;
+    private short parametroTerrenoID = 0;
     private int parametroNumCapa = 0;
 
-    public int getTerrenoID (int posX)                  { return barraTerrenos.get(posX); }
+    public short getTerrenoID (int posX)                { return barraTerrenos.get(posX); }
     public int getTamaño()                              { return barraTerrenos.size; }
 
     public BarraTerrenos (Caster player)
@@ -45,12 +45,12 @@ public class BarraTerrenos extends AbstractModel
 
     public void moverTerreno(int posOrigen, int posDestino)
     {
-        int origen = barraTerrenos.get(posOrigen);
+        short origen = barraTerrenos.get(posOrigen);
         setTerreno(posOrigen, getTerrenoID(posDestino));
         setTerreno(posDestino, origen);
     }
 
-    public void setTerreno (int posX, int terrenoID)
+    public void setTerreno (int posX, short terrenoID)
     {
         barraTerrenos.set(posX, terrenoID);
 
@@ -58,7 +58,7 @@ public class BarraTerrenos extends AbstractModel
         notificarActualizacion("setTerreno", null, setTerrenoDTO);
     }
 
-    public void setParametroTerrenoID(int terrenoID)
+    public void setParametroTerrenoID(short terrenoID)
     {
         //if (caster.getParametrosSpell() instanceof ParametrosEditarTerreno)
         {

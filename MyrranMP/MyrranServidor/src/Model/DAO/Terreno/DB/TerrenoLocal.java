@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class TerrenoLocal implements TerrenoDAO
 {
-    private Map<Integer, Terreno> listaDeTerrenos = TerrenoLocalDB.get().listaDeTerrenos;
+    private Map<Short, Terreno> listaDeTerrenos = TerrenoLocalDB.get().listaDeTerrenos;
 
 
     @Override public boolean añadirTerreno(Terreno terreno)
@@ -25,12 +25,12 @@ public class TerrenoLocal implements TerrenoDAO
 
     }
 
-    @Override public void eliminarTerreno(int terrenoID)
+    @Override public void eliminarTerreno(short terrenoID)
     {
         if (listaDeTerrenos.containsKey(terrenoID))
         {   listaDeTerrenos.remove(terrenoID); }
     }
 
-    @Override public Terreno getTerreno(int terrenoID)
+    @Override public Terreno getTerreno(short terrenoID)
     {   return listaDeTerrenos.get(terrenoID); }
 }

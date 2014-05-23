@@ -15,7 +15,7 @@ public class TerrenoKryoDB
     private static class Singleton      { private static final TerrenoKryoDB get = new TerrenoKryoDB(); }
     public static TerrenoKryoDB get()   { return Singleton.get; }
 
-    public Map<Integer, Terreno> listaDeTerrenos = new HashMap<>();
+    public Map<Short, Terreno> listaDeTerrenos = new HashMap<>();
 
     public TerrenoKryoDB()
     {

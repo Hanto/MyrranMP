@@ -51,7 +51,7 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
         añadirBarraAcciones(3, 10);
         ui.añadirAccionesEnBarra(0);
 
-        //moverPlayer(21000,22600);
+        moverPlayer(21000,22600);
     }
 
     public void render (float delta)                                    { vista.render(delta); }
@@ -80,7 +80,7 @@ public class Controlador implements ControladorBarraAccionI, ControladorBarraTer
     public void cambiarAnimacionPC(int connectionID, int numAnimacion)                  { mundo.getPC(connectionID).setAnimacion(numAnimacion); }
 
     public void actualizarMapa(NetDTO.ActualizarMapa mapaServidor)                      { mundo.actualizarMapa(mapaServidor); }
-    public void setTerreno(int celdaX, int celdaY, int numCapa, int iDTerreno)          { mundo.mapa.setTerreno(celdaX, celdaY, numCapa, iDTerreno); }
+    public void setTerreno(int celdaX, int celdaY, int numCapa, short iDTerreno)        { mundo.mapa.setTerreno(celdaX, celdaY, numCapa, iDTerreno); }
     public void aplicarZoom(int incrementoZoom)                                         { vista.aplicarZoom(incrementoZoom); }
     public void addInputProcessor(Stage stage)                                          { inputMultiplexer.addProcessor(stage); }
     public void procesarKeyDown(int keycode)                                            { ui.keybinds.keyDown(keycode); }

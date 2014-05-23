@@ -80,7 +80,7 @@ public class Cliente extends Client
             int celdaX = ((NetDTO.SetTerreno) obj).celdaX;
             int celdaY = ((NetDTO.SetTerreno) obj).celdaY;
             int numCapa = ((NetDTO.SetTerreno) obj).numCapa;
-            int iDTerreno = ((NetDTO.SetTerreno) obj).iDTerreno;
+            short iDTerreno = ((NetDTO.SetTerreno) obj).iDTerreno;
             controlador.setTerreno(celdaX, celdaY, numCapa, iDTerreno);
         }
         if (obj instanceof NetDTO.ActualizarMapa)

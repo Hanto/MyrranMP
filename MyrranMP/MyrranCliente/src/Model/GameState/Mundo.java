@@ -61,7 +61,7 @@ public class Mundo extends AbstractModel
             {
                 for (int i=0; i< MiscData.MAPA_Max_Capas_Terreno; i++)
                 {
-                    int idTerreno = mapaServidor.mapa[x][y].celda[i];
+                    short idTerreno = mapaServidor.mapa[x][y].celda[i];
                     mapa.setTerreno(x+mapaServidor.esquinaInfIzdaX,y+mapaServidor.esquinaInfIzdaY,i,idTerreno);
                 }
             }

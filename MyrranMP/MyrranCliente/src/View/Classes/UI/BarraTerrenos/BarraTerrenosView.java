@@ -81,7 +81,7 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
         {
             @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
             {
-                barraTerrenos.setParametroTerrenoID(-1);
+                barraTerrenos.setParametroTerrenoID((short)-1);
                 return true;
             }
         });

@@ -175,7 +175,7 @@ public class PcView implements PropertyChangeListener
             int celdaX = ((NetDTO.SetTerreno) evt.getNewValue()).celdaX;
             int celdaY = ((NetDTO.SetTerreno) evt.getNewValue()).celdaY;
             int numCapa = ((NetDTO.SetTerreno) evt.getNewValue()).numCapa;
-            int iDTerreno = ((NetDTO.SetTerreno) evt.getNewValue()).iDTerreno;
+            short iDTerreno = ((NetDTO.SetTerreno) evt.getNewValue()).iDTerreno;
             mapaView.cambioTerreno(celdaX, celdaY, numCapa, iDTerreno);
         }
     }

@@ -8,8 +8,8 @@ public interface TerrenoDAO
 {   //C.R.U.D: Create Retrieve Update Delete
     public boolean añadirTerreno(Terreno terreno);
     public void salvarTerreno(Terreno terreno);
-    public void eliminarTerreno(int terrenoID);
-    public Terreno getTerreno(int terrenoID);
+    public void eliminarTerreno(short terrenoID);
+    public Terreno getTerreno(short terrenoID);
 
     public Iterator<Terreno> getIterator();
 }

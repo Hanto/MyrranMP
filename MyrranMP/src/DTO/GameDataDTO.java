@@ -16,12 +16,12 @@ public class GameDataDTO
 
     public static class TerrenoDTO
     {
-        public int id;
+        public short id;
         public String nombre;
         public boolean isSolido;
         public String nombreTextura;
         public TerrenoDTO(int id, String nombre, boolean isSolido, String nombreTextura)
-        {   this.id = id; this.nombre = nombre; this.isSolido = isSolido; this.nombreTextura = nombreTextura; }
+        {   this.id = (short)id; this.nombre = nombre; this.isSolido = isSolido; this.nombreTextura = nombreTextura; }
     }
 
     public static class SpellRSCIconosDTO

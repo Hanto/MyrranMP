@@ -11,7 +11,7 @@ import com.esotericsoftware.kryo.io.Output;
 public class Celda implements KryoSerializable
 {
     //private Integer[] terrenosID = new Integer[MiscData.MAPA_Max_Capas_Terreno];
-    private Integer[] listaTerrenos = new Integer[MiscData.MAPA_Max_Capas_Terreno];
+    private short[] listaTerrenos = new short[MiscData.MAPA_Max_Capas_Terreno];
 
 
     //CONSTRUCTOR:
@@ -28,7 +28,7 @@ public class Celda implements KryoSerializable
         {   listaTerrenos[i] = celdaOrigen.getTerrenoID(i); }
     }
 
-    public int getTerrenoID(int numCapa)
+    public short getTerrenoID(int numCapa)
     {
         return listaTerrenos[numCapa];
     }
@@ -44,7 +44,7 @@ public class Celda implements KryoSerializable
         listaTerrenos[numCapa] = terreno.getID();
     }
 
-    public boolean setTerreno(int numCapa, int terrenoID)
+    public boolean setTerreno(int numCapa, short terrenoID)
     {
         TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
         if (terrenoDAO.getTerreno(terrenoID) == null && terrenoID != -1) { return false; }
@@ -61,6 +61,6 @@ public class Celda implements KryoSerializable
     @Override public void read(Kryo kryo, Input input)
     {
         for (int i=0; i<MiscData.MAPA_Max_Capas_Terreno; i++)
-            setTerreno(i, input.readInt());
+            setTerreno(i, input.readShort());
     }
 }
