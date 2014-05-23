@@ -23,6 +23,7 @@ public class Mapa extends AbstractModel implements PropertyChangeListener
     private int numTilesX;
     private int numTilesY;
 
+    private int reborde = 1;
 
     public Mapa(Mob mob)
     {
@@ -31,7 +32,7 @@ public class Mapa extends AbstractModel implements PropertyChangeListener
 
         this.numTilesX = (int)Math.ceil((double)MiscData.GDX_Window_Horizontal_Resolution/(double)MiscData.TILESIZE);
         this.numTilesY = (int)Math.ceil((double)MiscData.GDX_Window_Vertical_Resolution/(double)MiscData.TILESIZE);
-        mapa = new Celda[numTilesX*3+2][numTilesY*3+2];
+        mapa = new Celda[numTilesX*3+reborde*2][numTilesY*3+reborde*2];
 
         for (Celda[] fila: mapa)
         {   for (int i=0; i<fila.length; i++)
@@ -41,50 +42,58 @@ public class Mapa extends AbstractModel implements PropertyChangeListener
 
     private int getMapTileX()                   { return (int)((mob.getX() / (float)(numTilesX * MiscData.TILESIZE))); }
     private int getMapTileY()                   { return (int)((mob.getY() / (float)(numTilesY * MiscData.TILESIZE))); }
-    private int getTileX(int tileX)             { return (tileX - (mapTileCentroX-1)*numTilesX)+1; }
-    private int getTileY(int tileY)             { return (tileY - (mapTileCentroY-1)*numTilesY)+1; }
-    public Celda getCelda(int tileX, int tileY) { return mapa[getTileX(tileX)][getTileY(tileY)]; }
+    private int getTileX(int tileX)             { return (tileX - (mapTileCentroX-1)*numTilesX)+reborde; }
+    private int getTileY(int tileY)             { return (tileY - (mapTileCentroY-1)*numTilesY)+reborde; }
+
+    public Celda getCelda(int tileX, int tileY)
+    {
+        int x = getTileX(tileX);
+        int y = getTileY(tileY);
+
+        if (x <0 || y <0 || x >= (numTilesX*3+reborde*2) || y >= (numTilesY*3+reborde*2)) return null;
+        else return mapa[x][y];
+    }
 
 
     public Terreno getTerreno (int tileX, int tileY, int numCapa)
     {
-        int x = getTileX(tileX);
-        int y = getTileY(tileY);
+        Celda celda = getCelda(tileX, tileY);
 
-        if (x <0 || y <0 || x >= (numTilesX)*3+2 || y >= (numTilesY)*3+2) return null;
-
-        TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
-        return terrenoDAO.getTerreno(getCelda(tileX, tileY).getTerrenoID(numCapa));
+        if (celda == null) return null;
+        else
+        {
+            TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
+            return terrenoDAO.getTerreno(celda.getTerrenoID(numCapa));
+        }
     }
 
     public short getTerrenoID (int tileX, int tileY, int numCapa)
     {
-        int x = getTileX(tileX);
-        int y = getTileY(tileY);
+        Celda celda = getCelda(tileX, tileY);
 
-        if (x <0 || y <0 || x >= (numTilesX)*3+2 || y >= (numTilesY)*3+2) return -1;
-
-        return getCelda(tileX, tileY).getTerrenoID(numCapa);
+        if (celda == null) return -1;
+        else { return celda.getTerrenoID(numCapa); }
     }
 
     public boolean setTerreno (int tileX, int tileY, int numCapa, short iDTerreno)
     {
-        int x = getTileX(tileX);
-        int y = getTileY(tileY);
+        Celda celda = getCelda(tileX, tileY);
 
-        if (x <0 || y <0 || x >= (numTilesX)*3+2 || y >= (numTilesY)*3+2) return false;
-
-        if (getCelda(tileX, tileY).getTerrenoID(numCapa) != iDTerreno)
+        if (celda == null) return false;
+        else
         {
-            if (getCelda(tileX, tileY).setTerreno(numCapa, iDTerreno))
+            if (celda.getTerrenoID(numCapa) != iDTerreno)
             {
-                NetDTO.SetTerreno setTerreno = new NetDTO.SetTerreno(tileX,tileY,numCapa,iDTerreno);
-                notificarActualizacion("setTerreno", null, setTerreno);
-                return true;
+                if (celda.setTerreno(numCapa, iDTerreno))
+                {
+                    NetDTO.SetTerreno setTerreno = new NetDTO.SetTerreno(tileX,tileY,numCapa,iDTerreno);
+                    notificarActualizacion("setTerreno", null, setTerreno);
+                    return true;
+                }
+                else return false;
             }
-            else return false;
+            else return true;
         }
-        else return true;
     }
 
     private void desplazarArray (int incX, int incY)
@@ -132,7 +141,7 @@ public class Mapa extends AbstractModel implements PropertyChangeListener
         }
     }
 
-    public void moverTile()
+    public void comprobarCambioDeMapTile()
     {
         if (Math.abs(getMapTileX()-mapTileCentroX) >1 || Math.abs(getMapTileY()-mapTileCentroY) > 1)
         {   mapTileCentroX = getMapTileX();
@@ -149,7 +158,7 @@ public class Mapa extends AbstractModel implements PropertyChangeListener
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
         if (evt.getNewValue() instanceof PlayerDTO.PositionPlayer)
-        {   moverTile(); }
+        {   comprobarCambioDeMapTile(); }
 
     }
 }

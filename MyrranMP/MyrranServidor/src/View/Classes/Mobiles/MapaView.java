@@ -21,6 +21,8 @@ public class MapaView
 
     private int numTilesX;
     private int numTilesY;
+
+    private final int reborde = 1;
     private final int posHorNeg = MiscData.GDX_Window_Horizontal_Resolution/4;
     private final int posHorPos = MiscData.GDX_Window_Horizontal_Resolution - MiscData.GDX_Window_Horizontal_Resolution/4;
     private final int posVerNeg = MiscData.GDX_Window_Vertical_Resolution/4;
@@ -214,16 +216,19 @@ public class MapaView
         System.out.println("enviar: ["+mapTileInicialX+" "+mapTileInicialY+"]");
         if (mapTileInicialX <0 || mapTileInicialY < 0) { return; }
 
-        int ancho = numTilesX+2;
-        int alto = numTilesY+2;
+        int ancho = numTilesX+reborde*2;
+        int alto = numTilesY+reborde*2;
 
-        NetDTO.ActualizarMapa actualizarMapa = new NetDTO.ActualizarMapa(mapTileInicialX*numTilesX-1, mapTileInicialY*numTilesY-1, ancho, alto);
+        int esquinaInfIzdaX = mapTileInicialX*numTilesX-reborde;
+        int esquinaInfIzdaY = mapTileInicialY*numTilesY-reborde;
+
+        NetDTO.ActualizarMapa actualizarMapa = new NetDTO.ActualizarMapa(esquinaInfIzdaX, esquinaInfIzdaY, ancho, alto);
         for (int x=0; x< ancho; x++)
         {
             for (int y = 0; y< alto; y++)
             {
                 for (int i=0; i<MiscData.MAPA_Max_Capas_Terreno; i++)
-                {   actualizarMapa.mapa[x][y].celda[i] = (short)mundo.getMapa().getTerrenoID(x+mapTileInicialX*numTilesX-1, y+mapTileInicialY*numTilesY-1, i); }
+                {   actualizarMapa.mapa[x][y].celda[i] = mundo.getMapa().getTerrenoID(x +esquinaInfIzdaX, y +esquinaInfIzdaY, i); }
             }
         }
         controlador.enviarACliente(PC.getConnectionID(), actualizarMapa);
