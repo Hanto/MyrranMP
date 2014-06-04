@@ -6,13 +6,15 @@ import Data.MiscData;
 import Model.Classes.Mobiles.Player;
 import Model.DTO.PlayerDTO;
 import Recursos.DAO.RSC;
+import View.Classes.Graficos.Nameplate;
 import View.Classes.Graficos.PixiePC;
 import View.Classes.Graficos.Texto;
+import View.GameState.MundoView;
+import box2dLight.PointLight;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 import java.beans.PropertyChangeEvent;
@@ -21,21 +23,21 @@ import java.beans.PropertyChangeListener;
 public class PlayerView extends Group implements PropertyChangeListener
 {
     public Player player;
-    public Stage vista;
+    public MundoView vista;
     public Controlador controlador;
 
-
-    public Texto nombre;
     public Integer nivel;
     public String spellIDSeleccionado;
 
-
+    public Texto nombre;
     public PixiePC actor;
+    public Nameplate nameplate;
+    public PointLight luz;
 
     public float getCenterX()               { return (this.getX()+this.getWidth()/2); }
     public float getCenterY()               { return (this.getY()+this.getHeight()/2); }
 
-    public PlayerView (Player player, Stage vista, Controlador controlador)
+    public PlayerView (Player player, MundoView vista, Controlador controlador)
     {
         this.player = player;
         this.vista = vista;
@@ -59,6 +61,10 @@ public class PlayerView extends Group implements PropertyChangeListener
         vista.addActor(this);
         System.out.println("numero Mobiles: "+vista.getActors().size);
         actor.setAnimacion(5, false);
+        nameplate = new Nameplate();
+        this.addActor(nameplate);
+        nameplate.setPosition(getCenterX()-nameplate.getWidth()/2, getHeight());
+        luz = new PointLight(vista.getRayHandler(), 300, new Color(0.3f,0.3f,0.3f,1.0f), 350, 0, 0);
     }
 
     public void setNombre (String nuevoNombre)
@@ -74,6 +80,7 @@ public class PlayerView extends Group implements PropertyChangeListener
         if (Math.abs(this.getX()-x) >= 1 || Math.abs(this.getY()-y) >= 1)
         {
             super.setPosition(x, y);
+            luz.setPosition(x,y);
             NetDTO.CambiarPosicionPC moverPlayer = new NetDTO.CambiarPosicionPC(player.getConnectionID(), getX(), getY());
             controlador.enviarAServidor(moverPlayer);
         }

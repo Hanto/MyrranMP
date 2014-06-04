@@ -258,10 +258,13 @@ public class LoadGameData
     public void cargarMiscRecursos()
     {
         MiscRecursosDAO miscRecursosDAO = RSC.miscRecusosDAO.getMiscRecursosDAO();
+        miscRecursosDAO.salvarTextura(MiscData.PIXIEPC_Sombra, "Player Sprites/Sombra", atlas);
         miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_Textura_Casillero, "UI/Casillero", atlas);
         miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_RebindButtonON, "UI/RebindOn", atlas);
         miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_RebindButtonOFF, "UI/RebindOff", atlas);
         miscRecursosDAO.salvarTextura(MiscData.BARRATERRENOS_Borrar_Terreno, "UI/Borrar", atlas);
+        miscRecursosDAO.salvarTextura(MiscData.NAMEPLATE_Nameplate, "UI/Nameplate", atlas);
+        miscRecursosDAO.salvarTextura(MiscData.NAMEPLATE_Nameplate_Fondo, "UI/NameplateFondo", atlas);
     }
 
 

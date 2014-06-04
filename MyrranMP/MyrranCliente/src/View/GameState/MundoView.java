@@ -9,6 +9,7 @@ import Model.GameState.Mundo;
 import View.Classes.Geo.MapaView;
 import View.Classes.Mobiles.PCView;
 import View.Classes.Mobiles.PlayerView;
+import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -29,11 +30,15 @@ public class MundoView extends Stage implements PropertyChangeListener
     protected MapaView mapaView;
     protected Array<PCView> listaPCViews = new Array<>();
 
-    public OrthographicCamera camara;
-    private int nivelDeZoom = 0;
+    protected RayHandler rayHandler;
+    protected ShapeRenderer shape = new ShapeRenderer();
+    protected int nivelDeZoom = 0;
+    protected OrthographicCamera camara;
 
     public PlayerView getPlayerView()                   { return playerView; }
     public MapaView getMapaView()                       { return mapaView; }
+    public OrthographicCamera getCamara()               { return camara; }
+    public RayHandler getRayHandler()                   { return rayHandler; }
 
     public void eliminarPCView (PCView pcView)
     {   listaPCViews.removeValue(pcView, true); }
@@ -43,6 +48,9 @@ public class MundoView extends Stage implements PropertyChangeListener
         this.controlador = controlador;
         this.mundo = mundo;
 
+        RayHandler.useDiffuseLight(true);
+        rayHandler = new RayHandler(mundo.getWorld());
+        rayHandler.setAmbientLight(0.4f, 0.4f, 0.4f, 1.0f);
         mapaView = new MapaView(mundo.getMapa(), this, player.getX(), player.getY(), MiscData.MAPAVIEW_TamañoX, MiscData.MAPAVIEW_TamañoY);
         playerView = new PlayerView(player, this, controlador);
         camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -50,6 +58,30 @@ public class MundoView extends Stage implements PropertyChangeListener
 
         controlador.addInputProcessor(this);
         mundo.añadirObservador(this);
+    }
+
+    @Override public void draw ()
+    {
+        //dibujamos el fondo:
+        mapaView.render();
+
+        //dibujamos los sprites:
+        super.draw();
+
+        //aplicamos las luces:
+        rayHandler.setCombinedMatrix(camara.combined);
+        rayHandler.updateAndRender();
+
+        //dibujamos las lineas de debug:
+        dibujarVision();
+    }
+
+    @Override public void dispose ()
+    {
+        super.dispose();
+        mapaView.dispose();
+        rayHandler.dispose();
+        shape.dispose();
     }
 
     public void aplicarZoom(int incrementoZoom)
@@ -75,7 +107,8 @@ public class MundoView extends Stage implements PropertyChangeListener
         }
     }
 
-    public void dibujarVision(ShapeRenderer shape)
+
+    public void dibujarVision()
     {
         shape.setProjectionMatrix(camara.combined);
         shape.begin(ShapeRenderer.ShapeType.Line);

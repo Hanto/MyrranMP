@@ -1,5 +1,8 @@
 package View.Classes.Graficos;
 
+import Data.MiscData;
+import Recursos.DAO.MiscRecursos.MiscRecursosDAO;
+import Recursos.DAO.RSC;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -16,12 +19,14 @@ public class Nameplate extends Group
         
     public Nameplate()
     {
-        //barraVidaTotal = new Sprite(MobilesRecursos.get().nameplateTotal);
-        //barraVidaActual = new Sprite(MobilesRecursos.get().nameplateActual);
-        //barraCasteoTotal = new Sprite(MobilesRecursos.get().nameplateTotal);
-        //barraCasteoActual = new Sprite(MobilesRecursos.get().nameplateActual);
+        MiscRecursosDAO miscRecursosDAO = RSC.miscRecusosDAO.getMiscRecursosDAO();
+
+        barraVidaTotal = new Sprite(miscRecursosDAO.cargarTextura(MiscData.NAMEPLATE_Nameplate));
+        barraVidaActual = new Sprite(miscRecursosDAO.cargarTextura(MiscData.NAMEPLATE_Nameplate_Fondo));
+        barraCasteoTotal = new Sprite(miscRecursosDAO.cargarTextura(MiscData.NAMEPLATE_Nameplate));
+        barraCasteoActual = new Sprite(miscRecursosDAO.cargarTextura(MiscData.NAMEPLATE_Nameplate_Fondo));
         barraVidaTotal.setColor(Color.GREEN);
-        barraCasteoTotal.setColor(Color.RED);
+        barraCasteoTotal.setColor(Color.ORANGE);
 
         int alto = (int)barraVidaTotal.getHeight();
         int ancho = (int)barraVidaTotal.getWidth();

@@ -6,6 +6,8 @@ import Interfaces.AbstractModel;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Mobiles.PC;
 import Model.Classes.Mobiles.Player;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +21,7 @@ public class Mundo extends AbstractModel
 
     private Player player;
     private Mapa mapa;
+    private World world;
 
     public boolean[][] mapTilesCargados = new boolean[3][3];
 
@@ -28,11 +31,13 @@ public class Mundo extends AbstractModel
     public PC getPC (int connectionID)              { return mapaPlayers.get(connectionID); }
     public Player getPlayer()                       { return player; }
     public Mapa getMapa()                           { return mapa; }
+    public World getWorld()                         { return world; }
 
     public Mundo()
     {
         player = new Player();
         mapa = new Mapa(player);
+        world = new World(new Vector2(0, -9.8f), false);
     }
 
     //SE NOTIFICA:

@@ -422,20 +422,6 @@ Player Sprites/Humo
   orig: 51, 51
   offset: 0, 0
   index: -1
-Player Sprites/Nameplate
-  rotate: false
-  xy: 388, 644
-  size: 36, 5
-  orig: 36, 5
-  offset: 0, 0
-  index: -1
-Player Sprites/NameplateFondo
-  rotate: false
-  xy: 1016, 934
-  size: 1, 5
-  orig: 1, 5
-  offset: 0, 0
-  index: -1
 Player Sprites/Player
   rotate: false
   xy: 2, 393
@@ -743,16 +729,37 @@ UI/Casillero
   orig: 32, 32
   offset: 0, 0
   index: -1
+UI/Nameplate
+  rotate: false
+  xy: 2, 2
+  size: 36, 5
+  orig: 36, 5
+  offset: 0, 0
+  index: -1
+UI/Nameplate..OLD
+  rotate: false
+  xy: 52, 18
+  size: 36, 5
+  orig: 36, 5
+  offset: 0, 0
+  index: -1
+UI/NameplateFondo
+  rotate: false
+  xy: 40, 2
+  size: 1, 5
+  orig: 1, 5
+  offset: 0, 0
+  index: -1
 UI/RebindOff
   rotate: false
-  xy: 52, 2
+  xy: 120, 36
   size: 19, 21
   orig: 19, 21
   offset: 0, 0
   index: -1
 UI/RebindOn
   rotate: false
-  xy: 73, 2
+  xy: 141, 36
   size: 19, 21
   orig: 19, 21
   offset: 0, 0

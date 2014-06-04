@@ -11,6 +11,8 @@
     <orderEntry type="module" module-name="MyrranMP" />
     <orderEntry type="library" name="Java LibGDX" level="application" />
     <orderEntry type="library" name="gdx-tools" level="application" />
+    <orderEntry type="library" name="Java Box2DLights" level="application" />
+    <orderEntry type="library" name="gdx-box2d" level="application" />
   </component>
 </module>
 

@@ -8,7 +8,6 @@ import View.GameState.UIView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Vista
 {
@@ -21,7 +20,6 @@ public class Vista
     private UIView uiView;
 
     private SpriteBatch batch;
-    private ShapeRenderer shape = new ShapeRenderer();
 
     public UIView getUiView()       { return uiView; }
     public MundoView getMundoView() { return mundoView; }
@@ -45,14 +43,11 @@ public class Vista
 
         mundo.getPlayer().actualizar(delta);
 
-        mundoView.camara.position.x = mundoView.getPlayerView().getCenterX();
-        mundoView.camara.position.y = mundoView.getPlayerView().getCenterY();
-        mundoView.camara.update();
+        mundoView.getCamara().position.x = mundoView.getPlayerView().getCenterX();
+        mundoView.getCamara().position.y = mundoView.getPlayerView().getCenterY();
+        mundoView.getCamara().update();
 
-        batch.setProjectionMatrix(mundoView.camara.combined);
-        //rayHandler.setCombinedMatrix(camara.combined);
-
-        mundoView.getMapaView().render();
+        batch.setProjectionMatrix(mundoView.getCamara().combined);
 
         batch.begin();
         batch.end();
@@ -60,8 +55,6 @@ public class Vista
         mundoView.act(delta);
         mundoView.draw();
 
-        mundoView.dibujarVision(shape);
-        //rayHandler.updateAndRender();
         uiView.act(delta);
         uiView.draw();
 
@@ -70,7 +63,7 @@ public class Vista
 
     public void resize (int anchura, int altura)
     {
-        mundoView.camara.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        mundoView.getCamara().setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         mundoView.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         uiView.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
@@ -80,8 +73,6 @@ public class Vista
         mundoView.dispose();
         uiView.dispose();
         batch.dispose();
-        mundoView.getMapaView().dispose();
-        shape.dispose();
     }
 
     public void aplicarZoom(int incrementoZoom)

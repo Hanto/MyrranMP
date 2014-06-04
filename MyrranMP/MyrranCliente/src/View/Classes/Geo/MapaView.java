@@ -89,9 +89,9 @@ public class MapaView implements PropertyChangeListener
 
     public void setView (SubMapaView subMapaView)
     {
-        camara.zoom = mundoView.camara.zoom;
-        camara.position.x = mundoView.camara.position.x - subMapaView.getMapTileX() * numTilesX *MiscData.TILESIZE;
-        camara.position.y = mundoView.camara.position.y - subMapaView.getMapTileY() * numTilesY *MiscData.TILESIZE;
+        camara.zoom = mundoView.getCamara().zoom;
+        camara.position.x = mundoView.getCamara().position.x - subMapaView.getMapTileX() * numTilesX *MiscData.TILESIZE;
+        camara.position.y = mundoView.getCamara().position.y - subMapaView.getMapTileY() * numTilesY *MiscData.TILESIZE;
         camara.update();
 
         subMapaView.setView(camara);
@@ -99,8 +99,8 @@ public class MapaView implements PropertyChangeListener
 
     public void render()
     {
-        xActual = (mundoView.camara.position.x );
-        yActual = (mundoView.camara.position.y );
+        xActual = (mundoView.getCamara().position.x );
+        yActual = (mundoView.getCamara().position.y );
 
         if (Math.abs(listaSubMapas[0].getMapTileX() -  (xActual /  (numTilesX *MiscData.TILESIZE))) > tamañoX ||
             Math.abs(listaSubMapas[0].getMapTileY() -  (yActual /  (numTilesY *MiscData.TILESIZE))) > tamañoY )

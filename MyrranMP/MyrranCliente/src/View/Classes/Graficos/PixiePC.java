@@ -1,8 +1,10 @@
 package View.Classes.Graficos;
 
+import Data.MiscData;
 import Recursos.DAO.PixiePCRecursos.PixiePCRecursosDAO;
 import Recursos.DAO.RSC;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 
@@ -24,7 +26,7 @@ public class PixiePC extends Actor
     protected Pixie capaTrasera;                    //Pixie que contiene las animaciones de la armadura: Capa Trasera
     protected Pixie capaFrontal;                    //Pixie que contiene las animaciones de la armadura: Capa Frontal
     //SPRITES ESPECIALES:
-    //protected Sprite sombra;                        //Imagen que Contiene la sombra del personaje
+    protected Sprite sombra;                        //Imagen que Contiene la sombra del personaje
     
     public int getNumAnimacion()                    { return numAnimacion; }
 
@@ -48,7 +50,7 @@ public class PixiePC extends Actor
         capaTrasera = new Pixie(pixiePCDAO.getCapaTraseraPC(iDRaza, "Desnudo")); capaTrasera.setOffset(-24, -24);
         capaFrontal = new Pixie(pixiePCDAO.getCapaFrontalPC(iDRaza, "Desnudo")); capaFrontal.setOffset(-24, -24);
         
-        //sombra = new Sprite(RSC.sombraPlayer);
+        sombra = new Sprite(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.PIXIEPC_Sombra));
                 
         this.setHeight(cuerpo.getHeight());
         this.setWidth(cuerpo.getWidth());
@@ -132,7 +134,7 @@ public class PixiePC extends Actor
     public void act (float delta)
     {
         super.act(delta);
-        //sombra.setPosition(this.getMapTileX()+8, this.getMapTileY()-5);
+        sombra.setPosition(this.getX()+8, this.getY()-5);
     }
     
     @Override
@@ -140,7 +142,7 @@ public class PixiePC extends Actor
     {   //El orden de dibujado cambia segun la direccion en la que te muevas, ya que las hombreras por ejemplo deben ser tapadas por la capa al moverse en las diagonales superiores:
         if (numAnimacion == 0 || numAnimacion == 1 || numAnimacion == 2 || numAnimacion == 10 )
         {   
-            //sombra.draw(batch, alpha);
+            sombra.draw(batch, alpha);
             capaFrontal.draw(batch, alpha);
             cuerpo.draw(batch, alpha);
             cabeza.draw(batch, alpha);
@@ -154,7 +156,7 @@ public class PixiePC extends Actor
         }
         else
         {   
-            //sombra.draw(batch, alpha);
+            sombra.draw(batch, alpha);
             capaFrontal.draw(batch, alpha);
             capaTrasera.draw(batch, alpha);
             cuerpo.draw(batch, alpha);

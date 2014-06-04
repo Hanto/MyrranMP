@@ -60,6 +60,10 @@ public class Texto extends Group
         //Situamos el texto normal y el texto sombra en las coordenadas generadas segun el tipo de centrado, y añadimos ambos textos al grupo grupoTexto:
         textoSombra.setPosition(posX+relieveSombra, posY-relieveSombra);
         textoNormal.setPosition(posX, posY);
+
+        this.setHeight(textoNormal.getHeight()+relieve);
+        this.setWidth(textoNormal.getWidth()+relieve);
+
         this.addActor(textoSombra);
         this.addActor(textoNormal);
     }

@@ -22,7 +22,7 @@ public class MyrranClient extends Game
         cfg.fullscreen = false;
         cfg.vSyncEnabled = false;
         cfg.foregroundFPS = 5000;
-        //cfg.useGL30 = true;
+        cfg.useGL30 = true;
         cfg.fullscreen = false;
         cfg.width = MiscData.GDX_Horizontal_Resolution;
         cfg.height = MiscData.GDX_Vertical_Resolution;

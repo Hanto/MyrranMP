@@ -42,9 +42,9 @@ public class MiscData
     public final static int MAPTILE_NumTilesX = (int)Math.ceil((double)MiscData.MAPTILE_Horizontal_Resolution /(double)MiscData.TILESIZE);
     public final static int MAPTILE_NumTilesY = (int)Math.ceil((double)MiscData.MAPTILE_Vertical_Resolution /(double)MiscData.TILESIZE);
     public final static int MAPTILE_posHorNeg = MiscData.MAPTILE_Horizontal_Resolution /4;
-    public final static int MAPTILE_posHorPos = MiscData.MAPTILE_Horizontal_Resolution - MiscData.MAPTILE_Horizontal_Resolution /4;
+    public final static int MAPTILE_posHorPos = MiscData.MAPTILE_Horizontal_Resolution * 3/4;
     public final static int MAPTILE_posVerNeg = MiscData.MAPTILE_Vertical_Resolution /4;
-    public final static int MAPTILE_posVerPos = MiscData.MAPTILE_Vertical_Resolution - MiscData.MAPTILE_Vertical_Resolution /4;
+    public final static int MAPTILE_posVerPos = MiscData.MAPTILE_Vertical_Resolution * 3/4;
 
     public final static int MAPA_Max_Capas_Terreno = 3;
     public final static int MAPA_Max_TilesX = 2000;
@@ -63,7 +63,9 @@ public class MiscData
     public final static String BARRASPELLS_RebindButtonON = "RebindOn";
     public final static String BARRASPELLS_RebindButtonOFF ="RebindOff";
     public final static String BARRATERRENOS_Borrar_Terreno = "Borrar";
-
+    public final static String NAMEPLATE_Nameplate = "Nameplate";
+    public final static String NAMEPLATE_Nameplate_Fondo = "NameplateFondo";
+    public final static String PIXIEPC_Sombra = "Sombra";
     //Icono Accion
     public final static int ICONO_Accion_Ancho = 32;
     public final static int ICONO_Accion_Alto = 32;
