@@ -1,18 +1,19 @@
 package Model.Classes.Skill.Spell;
 // @author Ivan Delgado Huerta
 
+import DAO.DAO;
 import Data.Spell.SkillStat;
 import Interfaces.AbstractModel;
 import Interfaces.Entidades.Caster;
 import Interfaces.Spell.SpellI;
-import Model.DAO.DAO;
+import Interfaces.Spell.TipoSpellI;
 
 public class Spell extends AbstractModel implements SpellI
 {
     protected String id;
     protected String nombre;
     protected String descripcion;
-    protected TipoSpell tipoSpell;                              //Command Pattern: Codigo que se ejecuta al castear el skill
+    protected TipoSpellI tipoSpell;                              //Command Pattern: Codigo que se ejecuta al castear el skill
     protected SkillStat[] skillStats;                           //Stats concretos del skill
 
     //SET
@@ -29,7 +30,7 @@ public class Spell extends AbstractModel implements SpellI
     
     
     //CONSTRUCTOR:
-    public Spell (TipoSpell tipospell)
+    public Spell (TipoSpellI tipospell)
     {   //Se vincula el objeto que ejecutara los metodos de este tipo de Spell
         tipoSpell = tipospell;
 
@@ -62,7 +63,7 @@ public class Spell extends AbstractModel implements SpellI
         }
     }
     
-    public void castear (Caster caster, int targetX, int targetY)
+    @Override public void castear (Caster caster, int targetX, int targetY)
     {
         if (caster.isCasteando()) { }
         else 

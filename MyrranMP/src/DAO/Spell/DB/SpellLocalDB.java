@@ -1,4 +1,4 @@
-package Model.DAO.Spell.DB;// Created by Hanto on 17/04/2014.
+package DAO.Spell.DB;// Created by Hanto on 17/04/2014.
 
 import Interfaces.Spell.SpellI;
 

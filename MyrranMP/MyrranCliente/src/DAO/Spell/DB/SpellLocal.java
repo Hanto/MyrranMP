@@ -1,6 +1,6 @@
-package Model.DAO.Spell.DB;// Created by Hanto on 17/04/2014.
+package DAO.Spell.DB;// Created by Hanto on 17/04/2014.
 
-import Model.DAO.Spell.SpellDAO;
+import DAO.Spell.SpellDAO;
 import Model.Classes.Skill.Spell.Spell;
 
 import java.util.Map;

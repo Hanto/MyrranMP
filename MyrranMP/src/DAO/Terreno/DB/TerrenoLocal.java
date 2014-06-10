@@ -1,16 +1,16 @@
-package Model.DAO.Terreno.DB;// Created by Hanto on 15/04/2014.
+package DAO.Terreno.DB;// Created by Hanto on 15/04/2014.
 
-import Model.DAO.Terreno.TerrenoDAO;
-import Model.Classes.Geo.Terreno;
+import DAO.Terreno.TerrenoDAO;
+import Interfaces.Geo.TerrenoI;
 
 import java.util.Map;
 
 public class TerrenoLocal implements TerrenoDAO
 {
-    private Map<Short, Terreno> listaDeTerrenos = TerrenoLocalDB.get().listaDeTerrenos;
+    private Map<Short, TerrenoI> listaDeTerrenos = TerrenoLocalDB.get().listaDeTerrenos;
 
 
-    @Override public boolean añadirTerreno(Terreno terreno)
+    @Override public boolean añadirTerreno(TerrenoI terreno)
     {
         if (listaDeTerrenos.containsKey(terreno.getID()))
         {   System.out.println("ERROR: ya existe un terreno con este ID["+terreno.getID()+"]");  return false; }
@@ -18,7 +18,7 @@ public class TerrenoLocal implements TerrenoDAO
 
     }
 
-    @Override public void salvarTerreno(Terreno terreno)
+    @Override public void salvarTerreno(TerrenoI terreno)
     {
         if (listaDeTerrenos.containsKey(terreno.getID()))
         {   listaDeTerrenos.put(terreno.getID(), terreno); }
@@ -31,6 +31,6 @@ public class TerrenoLocal implements TerrenoDAO
         {   listaDeTerrenos.remove(terrenoID); }
     }
 
-    @Override public Terreno getTerreno(short terrenoID)
+    @Override public TerrenoI getTerreno(short terrenoID)
     {   return listaDeTerrenos.get(terrenoID); }
 }

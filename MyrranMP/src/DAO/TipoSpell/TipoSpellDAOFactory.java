@@ -1,6 +1,7 @@
-package Model.DAO.TipoSpell;// Created by Hanto on 13/05/2014.
+package DAO.TipoSpell;// Created by Hanto on 13/05/2014.
 
-import Model.DAO.TipoSpell.DB.TipoSpellLocal;
+import DAO.TipoSpell.TipoSpellDAO;
+import DAO.TipoSpell.DB.TipoSpellLocal;
 
 public enum TipoSpellDAOFactory
 {

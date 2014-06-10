@@ -1,6 +1,6 @@
-package Model.DAO.Terreno.DB;// Created by Hanto on 15/04/2014.
+package DAO.Terreno.DB;// Created by Hanto on 15/04/2014.
 
-import Model.Classes.Geo.Terreno;
+import Interfaces.Geo.TerrenoI;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
@@ -15,7 +15,7 @@ public class TerrenoKryoDB
     private static class Singleton      { private static final TerrenoKryoDB get = new TerrenoKryoDB(); }
     public static TerrenoKryoDB get()   { return Singleton.get; }
 
-    public Map<Short, Terreno> listaDeTerrenos = new HashMap<>();
+    public Map<Short, TerrenoI> listaDeTerrenos = new HashMap<>();
 
     public TerrenoKryoDB()
     {

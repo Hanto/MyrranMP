@@ -1,7 +1,7 @@
 package Model.DAO;// Created by Ladrim on 18/04/2014.
 
 import Model.DAO.Accion.AccionDAOFactory;
-import Model.DAO.Spell.SpellDAOFactory;
+import DAO.Spell.SpellDAOFactory;
 import Model.DAO.Terreno.TerrenoDAOFactory;
 import Model.DAO.TipoSpell.TipoSpellDAOFactory;
 

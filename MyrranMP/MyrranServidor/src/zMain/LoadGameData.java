@@ -1,16 +1,19 @@
 package zMain;// Created by Hanto on 11/04/2014.
 
-import Data.GameData;
+import DAO.DAO;
+import DAO.Spell.SpellDAO;
+import DAO.Terreno.TerrenoDAO;
+import DAO.TipoSpell.TipoSpellDAO;
 import DTO.GameDataDTO;
+import Data.GameData;
 import Data.Spell.SkillStat;
-import Model.DAO.DAO;
-import Model.DAO.Spell.SpellDAO;
-import Model.DAO.Terreno.TerrenoDAO;
-import Model.DAO.TipoSpell.TipoSpellDAO;
+import Interfaces.Spell.SpellI;
+import Interfaces.Spell.TipoSpellI;
 import Model.Classes.Geo.Terreno;
 import Model.Classes.Skill.Spell.Spell;
 import Model.Classes.Skill.Spell.TipoSpell;
 import Model.Classes.Skill.Spell.TipoSpellFactory;
+
 
 public class LoadGameData
 {
@@ -46,8 +49,8 @@ public class LoadGameData
     {
         SpellDAO spellDAO = DAO.spellDAOFactory.getSpellDAO();
 
-        Spell spell;
-        TipoSpell tipoSpell;
+        SpellI spell;
+        TipoSpellI tipoSpell;
 
         for (GameDataDTO.SpellDTO spellDTO : GameData.get().listaDeSpells)
         {

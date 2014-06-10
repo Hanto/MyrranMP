@@ -1,6 +1,7 @@
 package Model.Classes.Mobiles;// Created by Hanto on 07/04/2014.
 
 
+import DAO.DAO;
 import DTO.NetDTO;
 import Interfaces.AbstractModel;
 import Interfaces.BDebuff.AuraI;
@@ -9,9 +10,8 @@ import Interfaces.Entidades.Debuffeable;
 import Interfaces.Entidades.MobPC;
 import Interfaces.Entidades.Vulnerable;
 import Interfaces.Geo.MapaI;
+import Interfaces.Spell.SpellI;
 import Model.Classes.Geo.Mapa;
-import Model.Classes.Skill.Spell.Spell;
-import Model.DAO.DAO;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -145,7 +145,7 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debu
     {
         if (!isCasteando())
         {
-            Spell spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellIDSeleccionado);
+            SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellIDSeleccionado);
             if (spell != null)
             {
                 spell.castear(this, targetX, targetY);

@@ -12,7 +12,7 @@ import Model.Classes.Skill.Spell.TipoSpell;
 import Model.Classes.Skill.Spell.TipoSpellFactory;
 import Model.DAO.Accion.AccionDAO;
 import Model.DAO.DAO;
-import Model.DAO.Spell.SpellDAO;
+import DAO.Spell.SpellDAO;
 import Model.DAO.Terreno.TerrenoDAO;
 import Model.DAO.TipoSpell.TipoSpellDAO;
 import Recursos.Classes.AccionRecursos;

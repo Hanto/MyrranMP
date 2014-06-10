@@ -1,10 +1,10 @@
 package Model.Classes.Geo;// Created by Hanto on 14/04/2014.
 
+import DAO.DAO;
 import Data.MiscData;
 import Interfaces.Geo.CeldaI;
 import Interfaces.Geo.TerrenoI;
-import Model.DAO.DAO;
-import Model.DAO.Terreno.TerrenoDAO;
+import DAO.Terreno.TerrenoDAO;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
@@ -35,7 +35,7 @@ public class Celda implements CeldaI, KryoSerializable
         return listaTerrenos[numCapa];
     }
 
-    @Override public Terreno getTerreno(int numCapa)
+    @Override public TerrenoI getTerreno(int numCapa)
     {
         TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
         return terrenoDAO.getTerreno(listaTerrenos[numCapa]);

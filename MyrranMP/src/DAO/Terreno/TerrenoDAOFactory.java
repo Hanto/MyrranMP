@@ -1,7 +1,8 @@
-package Model.DAO.Terreno;// Created by Hanto on 14/04/2014.
+package DAO.Terreno;// Created by Hanto on 14/04/2014.
 
-import Model.DAO.Terreno.DB.TerrenoKryo;
-import Model.DAO.Terreno.DB.TerrenoLocal;
+import DAO.Terreno.TerrenoDAO;
+import DAO.Terreno.DB.TerrenoKryo;
+import DAO.Terreno.DB.TerrenoLocal;
 
 public enum TerrenoDAOFactory
 {

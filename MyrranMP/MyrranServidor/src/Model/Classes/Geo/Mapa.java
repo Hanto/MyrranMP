@@ -1,12 +1,12 @@
 package Model.Classes.Geo;// Created by Hanto on 14/04/2014.
 
+import DAO.DAO;
 import DTO.NetDTO;
 import Data.MiscData;
 import Interfaces.Geo.MapaI;
 import Interfaces.AbstractModel;
 import Interfaces.Geo.TerrenoI;
-import Model.DAO.DAO;
-import Model.DAO.Terreno.TerrenoDAO;
+import DAO.Terreno.TerrenoDAO;
 
 public class Mapa extends AbstractModel implements MapaI
 {

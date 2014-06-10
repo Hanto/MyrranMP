@@ -1,23 +1,23 @@
-package Model.DAO.Terreno.DB;// Created by Hanto on 14/04/2014.
+package DAO.Terreno.DB;// Created by Hanto on 14/04/2014.
 
-import Model.DAO.Terreno.TerrenoDAO;
-import Model.Classes.Geo.Terreno;
+import DAO.Terreno.TerrenoDAO;
+import Interfaces.Geo.TerrenoI;
 
 import java.util.Map;
 
 public class TerrenoKryo implements TerrenoDAO
 {
-    private Map<Short, Terreno> listaDeTerrenos = TerrenoKryoDB.get().listaDeTerrenos;
+    private Map<Short, TerrenoI> listaDeTerrenos = TerrenoKryoDB.get().listaDeTerrenos;
 
 
-    @Override public boolean añadirTerreno(Terreno terreno)
+    @Override public boolean añadirTerreno(TerrenoI terreno)
     {
         if (listaDeTerrenos.containsKey(terreno.getID()))
         {   System.out.println("ERROR: ya existe un terreno con este ID["+terreno.getID()+"]");  return false; }
         else {  listaDeTerrenos.put(terreno.getID(), terreno); return true; }
     }
 
-    @Override public void salvarTerreno(Terreno terreno)
+    @Override public void salvarTerreno(TerrenoI terreno)
     {
         if (listaDeTerrenos.containsKey(terreno.getID()))
         {
@@ -35,6 +35,6 @@ public class TerrenoKryo implements TerrenoDAO
         }
     }
 
-    @Override public Terreno getTerreno(short terrenoID)
+    @Override public TerrenoI getTerreno(short terrenoID)
     {   return listaDeTerrenos.get(terrenoID); }
 }

@@ -1,6 +1,7 @@
 package Interfaces.Spell;// Created by Hanto on 09/06/2014.
 
 import Data.Spell.SkillStat;
+import Interfaces.Entidades.Caster;
 
 public interface SpellI
 {
@@ -13,4 +14,7 @@ public interface SpellI
     public String getNombre ();
     public String getDescripcion ();
     public SkillStat[] skillStats ();
+
+    //METODOS:
+    public void castear (Caster caster, int targetX, int targetY);
 }
