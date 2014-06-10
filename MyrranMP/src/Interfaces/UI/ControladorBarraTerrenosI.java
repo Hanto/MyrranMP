@@ -1,4 +1,4 @@
-package Controller.Interfaces;// Created by Hanto on 14/05/2014.
+package Interfaces.UI;// Created by Hanto on 14/05/2014.
 
 public interface ControladorBarraTerrenosI
 {

@@ -1,6 +1,6 @@
 package Model.DAO.Accion;// Created by Hanto on 06/05/2014.
 
-import Model.Classes.Acciones.Accion;
+import Model.Classes.UI.Acciones.Accion;
 
 public interface AccionDAO
 {

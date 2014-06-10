@@ -1,7 +1,9 @@
 package Model.Classes.UI.Input;
 // @author Ivan Delgado Huertaimp
 
-public class PlayerEstado
+import Interfaces.UI.PlayerEstadoI;
+
+public class PlayerEstado implements PlayerEstadoI
 {
     protected Estado estado;                    //Estado actual, hace que mismos inputs produzcan diferentes resultados
     protected PlayerIO playerI;                 //Player al que hace referencia, para poder consultar sus datos facilmente
@@ -25,8 +27,9 @@ public class PlayerEstado
         this.playerO = playerO;
         estado = new Quieto(this);
     }
-    public void procesarInput ()                { estado.procesarInput(this); }
-    public void actualizar ()                   { estado.actualizar(this); }
+
+    @Override public void procesarInput ()      { estado.procesarInput(this); }
+    @Override public void actualizar ()                   { estado.actualizar(this); }
     
     //Cada estado contiene un constructor con las restricciones iniciales de movimiento y con la animacion que usa ese estado
     //Desde cada estado un mismo Vista.Controller.Input produce efectos diferentes y conduce a estados diferentes tambien
@@ -38,7 +41,7 @@ public class PlayerEstado
     //el Casteo en cambio no, es una accion instantanea, por eso se decide no hacer de ella un Estado. Para que la animacion
     //del casteo se ejecute hasta el final se flagea como ininterrumpible, y para que no loopee sin parar, se le pone como respaldo
     //la base del estado en el que esta:
-    public static class Quieto implements Estado
+    private static class Quieto implements Estado
     {   public Quieto (PlayerEstado playerE)
         {   playerE.playerO.irArriba = false;
             playerE.playerO.irAbajo = false;
@@ -74,7 +77,7 @@ public class PlayerEstado
     //Si, es así, cargamos primero la de casteo, y luego como respaldo la de disparo, de no startCastear solo se cargaria
     //la de disparo, que como no tiene fin, no necesita respaldo.
     //En caso de no disparar, hay que cambiar de estado:
-    public static class Disparando implements Estado
+    private static class Disparando implements Estado
     {   public Disparando (PlayerEstado playerE)
         {   playerE.playerO.irArriba = false;
             playerE.playerO.irAbajo = false;
@@ -120,7 +123,7 @@ public class PlayerEstado
     //si pulsamos N y luego E, se vera la animacion N, en cambio si pulsamos E y luego N, se vera la animacion E.
     //esto lo conseguimos con los estados. Mientras domine el de una direccion, alteramos el segundo eje, y si cambia,
     //cambiamos de estado
-    public static class Norte implements Estado
+    private static class Norte implements Estado
     {   public Norte (PlayerEstado playerE)
         {   playerE.playerO.irArriba = playerE.playerI.irArriba;
             playerE.playerO.irAbajo = false;
@@ -159,7 +162,7 @@ public class PlayerEstado
     }
     
     //Estado ABAJO:
-    public static class Sur implements Estado
+    private static class Sur implements Estado
     {   public Sur(PlayerEstado playerE)
         {   playerE.playerO.irArriba = false;
             playerE.playerO.irAbajo = playerE.playerI.irAbajo;
@@ -198,7 +201,7 @@ public class PlayerEstado
     }
     
     //Estado IZQUIERDA:
-    public static class Oeste implements Estado
+    private static class Oeste implements Estado
     {   public Oeste (PlayerEstado playerE)
         {   playerE.playerO.irArriba = playerE.playerI.irArriba;
             playerE.playerO.irAbajo = playerE.playerI.irAbajo;
@@ -238,7 +241,7 @@ public class PlayerEstado
     }
     
     //Estado DERECHA:
-    public static class Este implements Estado
+    private static class Este implements Estado
     {   public Este (PlayerEstado playerE)
         {   playerE.playerO.irArriba = playerE.playerI.irArriba;
             playerE.playerO.irAbajo = playerE.playerI.irAbajo;

@@ -1,6 +1,6 @@
 package Model.DAO.Accion.DB;// Created by Hanto on 06/05/2014.
 
-import Model.Classes.Acciones.Accion;
+import Model.Classes.UI.Acciones.Accion;
 import Model.DAO.Accion.AccionDAO;
 
 import java.util.Map;

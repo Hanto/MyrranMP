@@ -1,13 +1,11 @@
-package Model.Classes.UI.BarraAcciones;// Created by Hanto on 13/05/2014.
-
-import Model.Classes.Acciones.Accion;
+package Interfaces.UI;// Created by Hanto on 13/05/2014.
 
 public interface BarraAccionesI extends ListaAccionesI
 {
     public int getID();
     public void eliminar();
 
-    public void setAccion(int posX, int posY, Accion accion);
+    public void setAccion(int posX, int posY, AccionI accion);
     public void eliminarAccion(int posX, int posY);
 
     public String getKeybind (int posX, int posY);

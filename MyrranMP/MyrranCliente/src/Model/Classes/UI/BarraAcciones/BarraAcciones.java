@@ -2,7 +2,8 @@ package Model.Classes.UI.BarraAcciones;// Created by Hanto on 06/05/2014.
 
 import Data.MiscData;
 import Interfaces.AbstractModel;
-import Model.Classes.Acciones.Accion;
+import Interfaces.UI.AccionI;
+import Interfaces.UI.BarraAccionesI;
 import Model.Classes.UI.Input.Keybinds;
 import Model.DTO.BarraAccionesDTO;
 import com.badlogic.gdx.utils.Array;
@@ -16,7 +17,7 @@ public class BarraAcciones extends AbstractModel implements BarraAccionesI
 
     public static class Casilla
     {
-        public Accion accion = null;
+        public AccionI accion = null;
         public String keybind;
         public int keycode;
     }
@@ -60,13 +61,13 @@ public class BarraAcciones extends AbstractModel implements BarraAccionesI
     public void setKeybind (int posX, int posY, int keycode)
     {   barraAcciones.get(posY).get(posX).keybind = MiscData.keycodeNames.get(keycode); }
 
-    public void setBind (int keycode, Accion accion)
+    public void setBind (int keycode, AccionI accion)
     {   keybinds.salvarKeybind(keycode, accion.getID()); }
 
     public void eliminarBind (int keycode)
     {   keybinds.eliminarKeybind(keycode); }
 
-    @Override public Accion getAccion(int posX, int posY)
+    @Override public AccionI getAccion(int posX, int posY)
     {   return barraAcciones.get(posY).get(posX).accion; }
 
     @Override public void setKeycode (int posX, int posY, int keycode)
@@ -102,7 +103,7 @@ public class BarraAcciones extends AbstractModel implements BarraAccionesI
 
 
 
-    @Override public void setAccion(int posX, int posY, Accion accion)
+    @Override public void setAccion(int posX, int posY, AccionI accion)
     {
         barraAcciones.get(posY).get(posX).accion = accion;
         setBind(getKeycode(posX, posY), accion);

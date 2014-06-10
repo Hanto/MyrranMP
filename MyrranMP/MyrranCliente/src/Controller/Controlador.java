@@ -2,11 +2,10 @@ package Controller;// Created by Hanto on 08/04/2014.
 
 import Controller.Input.PlayerGestures;
 import Controller.Input.PlayerMouseKeyI;
-import Controller.Interfaces.ControladorBarraAccionI;
-import Controller.Interfaces.ControladorBarraTerrenosI;
+import Interfaces.UI.ControladorUI;
 import DTO.NetDTO;
-import Model.Classes.UI.BarraAcciones.BarraAccionesI;
-import Model.Classes.UI.BarraAcciones.ListaAccionesI;
+import Interfaces.UI.BarraAccionesI;
+import Interfaces.UI.ListaAccionesI;
 import Model.GameState.Mundo;
 import Model.GameState.UI;
 import View.Vista;
@@ -16,7 +15,7 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 //CLIENTE:
-public class Controlador implements ControladorBarraAccionI, ControladorBarraTerrenosI
+public class Controlador implements ControladorUI
 {
     protected Cliente cliente;
 

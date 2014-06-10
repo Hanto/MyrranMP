@@ -1,7 +1,7 @@
 package View.Classes.UI.BarraAcciones;// Created by Hanto on 13/05/2014.
 
-import Controller.Interfaces.ControladorBarraAccionI;
-import Model.Classes.UI.BarraAcciones.BarraAccionesI;
+import Interfaces.UI.ControladorBarraAccionI;
+import Interfaces.UI.BarraAccionesI;
 import View.Classes.UI.BarraAcciones.AccionIcono.AccionIcono;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;

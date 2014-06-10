@@ -1,9 +1,9 @@
 package View.Classes.UI.BarraAcciones.AccionIcono;// Created by Hanto on 13/05/2014.
 
-import Controller.Interfaces.ControladorBarraAccionI;
 import Data.MiscData;
-import Model.Classes.Acciones.Accion;
-import Model.Classes.UI.BarraAcciones.ListaAccionesI;
+import Interfaces.UI.AccionI;
+import Interfaces.UI.ControladorBarraAccionI;
+import Interfaces.UI.ListaAccionesI;
 import Recursos.DAO.RSC;
 import View.Classes.UI.Comun.Icono;
 import View.Classes.UI.Comun.IconoSource;
@@ -54,7 +54,7 @@ public class AccionIcono implements Icono
 
     private void actualizarApariencia(Group group)
     {
-        Accion accion = barra.getAccion(posX, posY);
+        AccionI accion = barra.getAccion(posX, posY);
 
         group.clearChildren();
         if (accion == null)

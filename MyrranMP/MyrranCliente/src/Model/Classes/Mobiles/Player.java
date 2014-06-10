@@ -1,16 +1,16 @@
 package Model.Classes.Mobiles;// Created by Hanto on 10/04/2014.
 
-import Interfaces.*;
+import DAO.DAO;
+import Interfaces.AbstractModel;
 import Interfaces.Entidades.Caster;
-import Interfaces.Geo.MapaI;
-import Interfaces.Entidades.MobPC;
+import Interfaces.Entidades.MobPlayer;
 import Interfaces.Entidades.Vulnerable;
-import Model.Classes.Skill.Spell.Spell;
-import Model.Classes.UI.Input.PlayerIO;
-import Model.DAO.DAO;
+import Interfaces.Geo.MapaI;
+import Interfaces.Spell.SpellI;
+import Interfaces.UI.PlayerIOI;
 import Model.DTO.PlayerDTO;
 
-public class Player extends AbstractModel implements Caster, MobPC, Vulnerable
+public class Player extends AbstractModel implements Caster, MobPlayer, Vulnerable
 {
     protected int connectionID;
     protected MapaI mapaI;                         //mapaI al que pertecene el Player
@@ -114,7 +114,7 @@ public class Player extends AbstractModel implements Caster, MobPC, Vulnerable
     {
         if (!isCasteando())
         {
-            Spell spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellIDSeleccionado);
+            SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellIDSeleccionado);
             if (spell != null)
             {
                 spell.castear(this, screenX, screenY);
@@ -144,19 +144,19 @@ public class Player extends AbstractModel implements Caster, MobPC, Vulnerable
     public void setConnectionID (int connectionID)
     {   this.connectionID = connectionID; }
 
-    public void setInput (PlayerIO playerInput)
+    public void setInput (PlayerIOI playerInput)
     {
-        irArriba = playerInput.irArriba;
-        irAbajo = playerInput.irAbajo;
-        irDerecha = playerInput.irDerecha;
-        irIzquierda = playerInput.irIzquierda;
+        irArriba = playerInput.getIrArriba();
+        irAbajo = playerInput.getIrAbajo();
+        irDerecha = playerInput.getIrDerecha();
+        irIzquierda = playerInput.getirIzquierda();
 
-        disparar = playerInput.disparar;
+        disparar = playerInput.getDisparar();
 
-        setAnimacion (playerInput.numAnimacion);
+        setAnimacion (playerInput.getNumAnimacion());
 
-        if (playerInput.stopCastear) setCastear(false, playerInput.screenX, playerInput.screenY);
-        else if (playerInput.startCastear) setCastear (true, playerInput.screenX, playerInput.screenY);
+        if (playerInput.getStopCastear()) setCastear(false, playerInput.getScreenX(), playerInput.getScreenY());
+        else if (playerInput.getStartCastear()) setCastear (true, playerInput.getScreenX(), playerInput.getScreenY());
     }
 
     private void setAnimacion (int numAnimacion)

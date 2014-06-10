@@ -1,10 +1,10 @@
 package Model.Classes.UI.BarraTerrenos;// Created by Hanto on 14/05/2014.
 
+import DAO.DAO;
+import DAO.Terreno.TerrenoDAO;
 import Interfaces.AbstractModel;
 import Interfaces.Entidades.Caster;
-import Model.Classes.Geo.Terreno;
-import Model.DAO.DAO;
-import Model.DAO.Terreno.TerrenoDAO;
+import Interfaces.Geo.TerrenoI;
 import Model.DTO.BarraTerrenosDTO;
 import com.badlogic.gdx.utils.Array;
 
@@ -35,7 +35,7 @@ public class BarraTerrenos extends AbstractModel
 
         TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
 
-        Iterator<Terreno> iterator = terrenoDAO.getIterator();
+        Iterator<TerrenoI> iterator = terrenoDAO.getIterator();
         while (iterator.hasNext())
         {   barraTerrenos.add(iterator.next().getID()); }
 

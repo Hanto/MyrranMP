@@ -2,7 +2,7 @@ package Model.Classes.UI.Input;// Created by Hanto on 05/05/2014.
 
 import Controller.Controlador;
 import Model.Classes.Mobiles.Player;
-import Model.DAO.DAO;
+import Model.DAO.DAOold;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +35,7 @@ public class Keybinds
         if (listaDeBinds.containsKey(keycode))
         {
             String idAccion = listaDeBinds.get(keycode);
-            DAO.accionDAOFactory.getAccionDAO().getAccion(idAccion).accionKeyDown(player, playerE, controlador);
+            DAOold.accionDAOFactory.getAccionDAO().getAccion(idAccion).accionKeyDown(player, playerE, controlador);
         }
     }
 
@@ -44,33 +44,33 @@ public class Keybinds
         if (listaDeBinds.containsKey(keycode))
         {
             String idAccion = listaDeBinds.get(keycode);
-            DAO.accionDAOFactory.getAccionDAO().getAccion(idAccion).accionKeyUp(player, playerE, controlador);
+            DAOold.accionDAOFactory.getAccionDAO().getAccion(idAccion).accionKeyUp(player, playerE, controlador);
         }
     }
 
     public void touchDown(int screenX, int screenY, int pointer, int button)
     {
-        playerE.getPlayerI().screenX = screenX;
-        playerE.getPlayerI().screenY = screenY;
-        playerE.getPlayerI().startCastear = true;
+        playerE.getPlayerI().setScreenX(screenX);
+        playerE.getPlayerI().setScreenY(screenY);
+        playerE.getPlayerI().setStartCastear(true);
         playerE.procesarInput();
         player.setInput(playerE.getPlayerO());
     }
 
     public void touchUp(int screenX, int screenY, int pointer, int button)
     {
-        playerE.getPlayerI().screenX = screenX;
-        playerE.getPlayerI().screenY = screenY;
-        playerE.getPlayerI().stopCastear = true;
+        playerE.getPlayerI().setScreenX(screenX);
+        playerE.getPlayerI().setScreenY(screenY);
+        playerE.getPlayerI().setStopCastear(true);
         playerE.procesarInput();
         player.setInput(playerE.getPlayerO());
     }
 
     public void touchDragged(int screenX, int screenY, int pointer)
     {
-        playerE.getPlayerI().screenX = screenX;
-        playerE.getPlayerI().screenY = screenY;
-        playerE.getPlayerI().startCastear = true;
+        playerE.getPlayerI().setScreenX(screenX);
+        playerE.getPlayerI().setScreenY(screenY);
+        playerE.getPlayerI().setStartCastear(true);
         playerE.procesarInput();
         player.setInput(playerE.getPlayerO());
     }
