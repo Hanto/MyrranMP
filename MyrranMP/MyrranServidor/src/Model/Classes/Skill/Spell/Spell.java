@@ -49,7 +49,7 @@ public class Spell extends AbstractModel implements SpellI
     {
         tipoSpell = DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(tipoSpellID);
 
-        if (tipoSpell == null) { System.out.println("ERROR: spellID no encontrado"); return; }
+        if (tipoSpell == null) { System.out.println("ERROR: spellID no encontrado."); return; }
 
         nombre = tipoSpell.getNombre();
         descripcion = tipoSpell.getDescripcion();

@@ -10,8 +10,9 @@ public interface AuraI
     public float getDuracion();
     public float getDuracionMax();
     public Caster getCaster();
-    public Debuffeable target();
+    public Debuffeable getTarget();
     public TipoBDebuffI getDebuff();
+
     //GET:
     public void setStacks(byte b);
     public void setTicksAplicados(byte b);
@@ -20,4 +21,7 @@ public interface AuraI
     public void setCaster(Caster caster);
     public void setTarget(Debuffeable target);
     public void setDebuff(TipoBDebuffI debuff);
+
+    //METODOS:
+    public void actualizarAura (float delta);
 }

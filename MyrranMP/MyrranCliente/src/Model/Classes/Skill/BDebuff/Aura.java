@@ -22,7 +22,7 @@ public class Aura implements AuraI
     @Override public float getDuracion()                    { return duracion; }
     @Override public float getDuracionMax()                 { return duracionMax; }
     @Override public Caster getCaster()                     { return caster; }
-    @Override public Debuffeable getTarget()                { return target; }
+    @Override public Debuffeable getTarget()                             { return target; }
     @Override public TipoBDebuffI getDebuff()               { return debuff; }
 
     //GET:
@@ -31,7 +31,7 @@ public class Aura implements AuraI
     @Override public void setDuracion(float f)              { duracion = f; }
     @Override public void setDuracionMax(float f)           { duracionMax = f; }
     @Override public void setCaster(Caster caster)          { this.caster = caster; }
-    @Override public void setTarget(Debuffeable target)     { this.target = target; }
+    @Override public void setTarget(Debuffeable target)               { this.target = target; }
     @Override public void setDebuff(TipoBDebuffI debuff)    { this.debuff = debuff; }
 
     public Aura (TipoBDebuffI debuff, Caster caster, Debuffeable target)

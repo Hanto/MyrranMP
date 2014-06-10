@@ -2,17 +2,22 @@ package Model.Classes.Mobiles;// Created by Hanto on 07/04/2014.
 
 
 import DTO.NetDTO;
-import Data.MiscData;
+import Interfaces.AbstractModel;
+import Interfaces.BDebuff.AuraI;
 import Interfaces.Entidades.Caster;
-import Interfaces.Geo.MapaI;
+import Interfaces.Entidades.Debuffeable;
 import Interfaces.Entidades.MobPC;
 import Interfaces.Entidades.Vulnerable;
-import Interfaces.AbstractModel;
+import Interfaces.Geo.MapaI;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Skill.Spell.Spell;
 import Model.DAO.DAO;
 
-public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debuffeable
 {
     protected int connectionID;                                 //ID de la conexion con el servidor
     protected MapaI mapaI;                                      //mapaI al que pertecene el Player
@@ -21,30 +26,23 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     protected float y=0.0f;                                     //Coordenadas Y:
     protected float oldPosX;                                    //Coordenadas X, de la ultima posicion X segura
     protected float oldPosY;                                    //Coordenadas Y, de la ultima posicion Y segura
-
     protected int numAnimacion = 5;
-
     protected float velocidadMod=1.0f;                          //Modificadores de Velocidad: debido a Snares, a Sprints, Roots
     protected float velocidadMax;                               //Velocidad Maxima:
     protected double direccion;                                 //Direccion Actual en Radianes
-
     protected String nombre = "Hanto";
     protected int nivel = 1;
-
     protected float actualHPs=2000f;
     protected float maxHPs=2000f;
-
     protected boolean castear = false;
     protected int targetX = 0;
     protected int targetY = 0;
     protected float actualCastingTime = 0.0f;
     protected float totalCastingTime = 0.0f;
-
     protected String spellIDSeleccionado = null;
     protected Object parametrosSpell;
-
     protected String iDraza;                                    //id de la raza;
-
+    protected List<AuraI>listaDeAuras = new ArrayList<>();
 
     //GET:
     @Override public int getConnectionID ()                     { return connectionID; }
@@ -56,6 +54,12 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
     @Override public float getMaxHPs()                          { return maxHPs; }
     @Override public void setActualHPs(float HPs)               { actualHPs = HPs; }
     @Override public void setMaxHPs(float HPs)                  { maxHPs = HPs; }
+    @Override public void modificarHPs(float HPs)
+    {
+        actualHPs += HPs;
+        if (actualHPs > maxHPs) actualHPs = maxHPs;
+        else if (actualHPs < 0) actualHPs = 0;
+    }
 
     //CASTER:
     @Override public MapaI getMapa()                            { return mapaI; }
@@ -88,6 +92,11 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
 
     public float getCenterX()                                   { return x+24; }
     public float getCenterY()                                   { return y+24;}
+
+    //DEBUFFEABLE:
+    @Override public void añadirAura(AuraI aura)                { listaDeAuras.add(aura); }
+    @Override public void eliminarAura(AuraI aura)              { listaDeAuras.remove(aura); }
+    @Override public Iterator<AuraI> getAuras()                 { return listaDeAuras.iterator(); }
 
     public PC(int connectionID, Mapa mapa)
     {
@@ -145,9 +154,17 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
         }
     }
 
-    public void actualizar()
+    private void actualizarAuras (float delta)
     {
-        actualizarCastingTime(MiscData.SERVIDOR_Delta_Time);
+        Iterator<AuraI> aurasIteator = getAuras();
+        while (aurasIteator.hasNext())
+        {   aurasIteator.next().actualizarAura(delta); }
+    }
+
+    public void actualizar(float delta)
+    {
+        actualizarCastingTime(delta);
+        actualizarAuras(delta);
         if (castear) castear();
     }
 }

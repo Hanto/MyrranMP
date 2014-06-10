@@ -18,6 +18,9 @@ public class MiscData
     public static final float SERVIDOR_Delta_Time = NETWORK_Update_Time/1000f;
     public static final float SERVIDOR_DistanciaVisionMobs = 1.2f;
 
+    //Spells, Debuffs:
+    public static final float BDEBUFF_DuracionTick = 1000f;
+
     //Recursos:
     public final static String RECURSOS_Atlas_Carpeta_Imagenes_Origen = "Images/";
     public final static String RECURSOS_Atlas_Carpeta_Imagenes_Destino = "Atlas/";

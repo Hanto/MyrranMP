@@ -1,15 +1,13 @@
 package Model.Classes.Skill.BDebuff;// Created by Hanto on 04/06/2014.
 
 
-import Data.MiscData;
+import DAO.DAO;
 import Data.Spell.SkillStat;
 import Interfaces.BDebuff.AuraI;
 import Interfaces.BDebuff.BDebuffI;
 import Interfaces.BDebuff.TipoBDebuffI;
 import Interfaces.Entidades.Caster;
 import Interfaces.Entidades.Debuffeable;
-
-import java.util.Iterator;
 
 public class BDebuff implements BDebuffI
 {
@@ -39,54 +37,43 @@ public class BDebuff implements BDebuffI
     @Override public SkillStat [] skillStats ()                     { return skillStats; }
 
     //CONSTRUCTOR:
-    public BDebuff (TipoBDebuffI tipoaura)
+    public BDebuff (TipoBDebuffI tipoBDebuff)
     {   //Se vincula el objeto que ejecutara los metodos de este tipo de Spell
-        tipoBDebuff = tipoaura;
+        this.tipoBDebuff = tipoBDebuff;
 
-        nombre = tipoaura.getNombre();
-        descripcion = tipoaura.getDescripcion();
-        isDebuff = tipoaura.getIsDebuff();
-        stacksMaximos = tipoaura.getStacksMaximos();
+        nombre = tipoBDebuff.getNombre();
+        descripcion = tipoBDebuff.getDescripcion();
+        isDebuff = tipoBDebuff.getIsDebuff();
+        stacksMaximos = tipoBDebuff.getStacksMaximos();
 
         //y se copian sus Stats base:
-        skillStats = new SkillStat[tipoaura.skillStat().length];
+        skillStats = new SkillStat[tipoBDebuff.skillStat().length];
         for (int i=0; i<skillStats.length;i++)
         {
-            SkillStat statSkill = new SkillStat(tipoaura.skillStat()[i]);
+            SkillStat statSkill = new SkillStat(tipoBDebuff.skillStat()[i]);
             skillStats[i] = statSkill;
         }
     }
 
-    private AuraI auraExisteYEsDelCaster(Caster caster, Debuffeable target)
+    public BDebuff (String tipoBDebuffID)
     {
-        AuraI aura;
-        Iterator<AuraI> iterator = target.getAuras();
+        this.tipoBDebuff = DAO.tipoBDebuffDAOFactory.getBDebuffDAO().getTipoBDebuff(tipoBDebuffID);
 
-        while (iterator.hasNext())
+        if (tipoBDebuff == null) { System.out.println("ERROR: BDebuffID no encontrado."); return; }
+
+        skillStats = new SkillStat[tipoBDebuff.skillStat().length];
+        for (int i=0; i<skillStats.length;i++)
         {
-            aura = iterator.next();
-            if (aura.getDebuff().getID().equals(id) && aura.getCaster() == caster)
-            {   return aura; }
+            SkillStat statSkill = new SkillStat(tipoBDebuff.skillStat()[i]);
+            skillStats[i] = statSkill;
         }
-        return null;
     }
 
     private void aplicarAura(Caster caster, Debuffeable target)
     {
-        AuraI aura = auraExisteYEsDelCaster(caster, target);
-
-        if (aura != null)
-        {
-            aura.setTicksAplicados((byte)0);
-            if (aura.getStacks() < stacksMaximos) aura.setStacks((byte) (aura.getStacks()+1));
-            aura.setDuracion(aura.getDuracion() % MiscData.BDEBUFF_DuracionTick);
-        }
-        else
-        {
-            aura = new Aura(tipoBDebuff, caster, target);
-            aura.setDuracionMax(skillStats()[TipoBDebuff.STAT_Duracion].getValorBase());
-            target.añadirAura(aura);
-        }
+        AuraI aura = new Aura(tipoBDebuff, caster, target);
+        aura.setDuracionMax(Float.MAX_VALUE);
+        target.añadirAura(aura);
     }
 
     public void actualizarTick (AuraI aura)

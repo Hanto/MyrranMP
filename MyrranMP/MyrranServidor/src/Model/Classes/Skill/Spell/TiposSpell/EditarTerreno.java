@@ -14,8 +14,8 @@ public class EditarTerreno extends TipoSpell
 {
     @Override public void inicializarSkillStats() 
     {
-        skillStats = new SkillStat[1]; SkillStat stat;
-        stat = new SkillStat  (TipoSpellsData.EDITARTERRENO_CastingTime_String, TipoSpellsData.EDITARTERRENO_CastingTime_Valor); skillStats[STAT_Cast]=stat;//CAST
+        skillStats = new SkillStat[1];
+        skillStats[STAT_Cast] = new SkillStat  (TipoSpellsData.EDITARTERRENO_CastingTime_String, TipoSpellsData.EDITARTERRENO_CastingTime_Valor); //CAST
     }
 
     @Override public void ejecutarCasteo(SpellI skill, Caster caster, int targetX, int targetY)

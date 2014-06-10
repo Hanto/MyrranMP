@@ -1,0 +1,14 @@
+package DAO.TipoBDebuff.DB;// Created by Hanto on 10/06/2014.
+
+import Interfaces.BDebuff.TipoBDebuffI;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class TipoBDebuffLocalDB
+{
+    private static class Singleton          { private static final TipoBDebuffLocalDB get = new TipoBDebuffLocalDB(); }
+    public static TipoBDebuffLocalDB get()  { return Singleton.get; }
+
+    public Map<String, TipoBDebuffI>listaDeBDebuffs = new HashMap<>();
+}

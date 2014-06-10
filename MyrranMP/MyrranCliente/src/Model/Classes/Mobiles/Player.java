@@ -12,39 +12,39 @@ import Model.DTO.PlayerDTO;
 
 public class Player extends AbstractModel implements Caster, MobPC, Vulnerable
 {
-    protected Integer connectionID;
+    protected int connectionID;
     protected MapaI mapaI;                         //mapaI al que pertecene el Player
 
-    protected Float x = 0.0f;                      //Coordenadas X:
-    protected Float y = 0.0f;                      //Coordenadas Y:
+    protected float x = 0.0f;                      //Coordenadas X:
+    protected float y = 0.0f;                      //Coordenadas Y:
 
-    protected Integer numAnimacion = 5;
+    protected int numAnimacion = 5;
 
-    protected Float velocidadMax = 360.0f;
-    protected Float velocidadMod = 1.0f;
-    protected Double direccion;
+    protected float velocidadMax = 360.0f;
+    protected float velocidadMod = 1.0f;
+    protected double direccion;
 
     protected String nombre;
-    protected Integer nivel;
+    protected int nivel;
 
-    protected Float actualHPs;
-    protected Float maxHPs;
+    protected float actualHPs;
+    protected float maxHPs;
 
-    protected Boolean castear = false;
-    protected Boolean castearInterrumpible = false;
+    protected boolean castear = false;
+    protected boolean castearInterrumpible = false;
 
-    protected Integer screenX = 0;
-    protected Integer screenY = 0;
-    protected Float actualCastingTime = 0.0f;
-    protected Float totalCastingTime = 0.0f;
+    protected int screenX = 0;
+    protected int screenY = 0;
+    protected float actualCastingTime = 0.0f;
+    protected float totalCastingTime = 0.0f;
     protected String spellIDSeleccionado = null;
     protected Object parametrosSpell;
 
-    protected Boolean irArriba = false;
-    protected Boolean irAbajo = false;
-    protected Boolean irDerecha = false;
-    protected Boolean irIzquierda = false;
-    protected Boolean disparar = false;
+    protected boolean irArriba = false;
+    protected boolean irAbajo = false;
+    protected boolean irDerecha = false;
+    protected boolean irIzquierda = false;
+    protected boolean disparar = false;
 
     //GET:
     @Override public int getConnectionID()                      { return connectionID; }
@@ -59,6 +59,12 @@ public class Player extends AbstractModel implements Caster, MobPC, Vulnerable
 
     @Override public float getActualHPs()                       { return actualHPs; }
     @Override public float getMaxHPs()                          { return maxHPs; }
+    @Override public void modificarHPs(float HPs)
+    {
+        actualHPs += HPs;
+        if (actualHPs > maxHPs) actualHPs = maxHPs;
+        else if (actualHPs < 0) actualHPs = 0f;
+    }
 
     @Override public MapaI getMapa()                            { return mapaI; }
     @Override public boolean isCasteando()                      { if (actualCastingTime >0) return true; else return false; }

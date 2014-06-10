@@ -7,6 +7,7 @@ public interface Vulnerable
     public float getMaxHPs();
 
     //SET:
+    public void modificarHPs(float HPs);
     public void setActualHPs(float HPs);
     public void setMaxHPs(float HPs);
 }
