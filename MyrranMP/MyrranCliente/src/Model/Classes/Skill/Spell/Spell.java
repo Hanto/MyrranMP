@@ -1,12 +1,13 @@
 package Model.Classes.Skill.Spell;
 // @author Ivan Delgado Huerta
 
+import Data.Spell.SkillStat;
 import Interfaces.AbstractModel;
-import Interfaces.Caster;
-import Model.Classes.Skill.SkillStat;
+import Interfaces.Entidades.Caster;
+import Interfaces.Spell.SpellI;
 import Model.DAO.DAO;
 
-public class Spell extends AbstractModel
+public class Spell extends AbstractModel implements SpellI
 {
     public static final int STAT_Cast = 0;
 
@@ -16,18 +17,17 @@ public class Spell extends AbstractModel
 
     protected TipoSpell tipoSpell;
 
-    protected SkillStat[] skillStats;                   //Stats concretos del skill
+    protected SkillStat[] skillStats;                           //Stats concretos del skill
 
     //SET
-    public void setID(String id)                        { this.id = id; }
-    public void setNombre (String nombre)               { this.nombre = nombre; }
-    public void setDescripcion (String descripcion)     { this.descripcion = descripcion; }
+    @Override public void setID(String id)                      { this.id = id; }
+    @Override public void setNombre (String nombre)             { this.nombre = nombre; }
+    @Override public void setDescripcion (String descripcion)   { this.descripcion = descripcion; }
     //GET:
-    public String getID()                               { return id; }
-    public String getNombre ()                          { return nombre; }
-    public String getDescripcion ()                     { return descripcion; }
-    
-    public SkillStat [] skillStats ()                   { return skillStats; }
+    @Override public String getID()                             { return id; }
+    @Override public String getNombre ()                        { return nombre; }
+    @Override public String getDescripcion ()                   { return descripcion; }
+    @Override public SkillStat [] skillStats ()                 { return skillStats; }
 
 
     //CONSTRUCTOR:
@@ -69,7 +69,7 @@ public class Spell extends AbstractModel
         if (caster.isCasteando()) { }
         else 
         {   //Marcamos al personaje como Casteando, y actualizamos su tiempo de casteo con el que marque el Spell (Stat Slot 0)
-            caster.setTotalCastingTime(skillStats[STAT_Cast].valorBase);
+            caster.setTotalCastingTime(skillStats[STAT_Cast].getValorBase());
         }
     }
 }

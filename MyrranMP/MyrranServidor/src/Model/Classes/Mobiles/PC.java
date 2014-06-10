@@ -3,10 +3,10 @@ package Model.Classes.Mobiles;// Created by Hanto on 07/04/2014.
 
 import DTO.NetDTO;
 import Data.MiscData;
-import Interfaces.Caster;
-import Interfaces.MapaI;
-import Interfaces.MobPC;
-import Interfaces.Vulnerable;
+import Interfaces.Entidades.Caster;
+import Interfaces.Geo.MapaI;
+import Interfaces.Entidades.MobPC;
+import Interfaces.Entidades.Vulnerable;
 import Interfaces.AbstractModel;
 import Model.Classes.Geo.Mapa;
 import Model.Classes.Skill.Spell.Spell;
@@ -14,31 +14,31 @@ import Model.DAO.DAO;
 
 public class PC extends AbstractModel implements MobPC, Caster, Vulnerable
 {
-    protected Integer connectionID;                             //ID de la conexion con el servidor
+    protected int connectionID;                                 //ID de la conexion con el servidor
     protected MapaI mapaI;                                      //mapaI al que pertecene el Player
 
-    protected Float x=0.0f;                                     //Coordenadas X:
-    protected Float y=0.0f;                                     //Coordenadas Y:
-    protected Float oldPosX;                                    //Coordenadas X, de la ultima posicion X segura
-    protected Float oldPosY;                                    //Coordenadas Y, de la ultima posicion Y segura
+    protected float x=0.0f;                                     //Coordenadas X:
+    protected float y=0.0f;                                     //Coordenadas Y:
+    protected float oldPosX;                                    //Coordenadas X, de la ultima posicion X segura
+    protected float oldPosY;                                    //Coordenadas Y, de la ultima posicion Y segura
 
-    protected Integer numAnimacion = 5;
+    protected int numAnimacion = 5;
 
-    protected Float velocidadMod=1.0f;                          //Modificadores de Velocidad: debido a Snares, a Sprints, Roots
-    protected Float velocidadMax;                               //Velocidad Maxima:
-    protected Double direccion;                                 //Direccion Actual en Radianes
+    protected float velocidadMod=1.0f;                          //Modificadores de Velocidad: debido a Snares, a Sprints, Roots
+    protected float velocidadMax;                               //Velocidad Maxima:
+    protected double direccion;                                 //Direccion Actual en Radianes
 
     protected String nombre = "Hanto";
-    protected Integer nivel = 1;
+    protected int nivel = 1;
 
-    protected Float actualHPs=2000f;
-    protected Float maxHPs=2000f;
+    protected float actualHPs=2000f;
+    protected float maxHPs=2000f;
 
-    protected Boolean castear = false;
-    protected Integer targetX = 0;
-    protected Integer targetY = 0;
-    protected Float actualCastingTime = 0.0f;
-    protected Float totalCastingTime = 0.0f;
+    protected boolean castear = false;
+    protected int targetX = 0;
+    protected int targetY = 0;
+    protected float actualCastingTime = 0.0f;
+    protected float totalCastingTime = 0.0f;
 
     protected String spellIDSeleccionado = null;
     protected Object parametrosSpell;

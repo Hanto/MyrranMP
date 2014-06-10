@@ -29,7 +29,15 @@ public class SkillStat
     public boolean getHayTalentoMaximo()            { return hayTalentoMaximo; }
     public boolean getHayCosteTalento()             { return hayCosteTalento; }
     public boolean getHayBonoTalento()              { return hayBonoTalento; }
-    
+
+    //SET:
+    public void setNombre (String nombre)           { this.nombre = nombre; }
+    public void setValorBase (float valorBase)      { this.valorBase = valorBase; }
+    public void setIsMejorable(boolean b)           { this.isMejorable = b; }
+    public void setTalentoMaximo (int talentoMaximo){ this.talentoMaximo = talentoMaximo; }
+    public void setCosteTalento (int costeTalento)  { this.costeTalento = costeTalento; }
+    public void setBonoTalento (int bonoTalento)    { this.bonoTalento = bonoTalento; }
+
     //CONSTRUCTOR:
     public SkillStat()
     {

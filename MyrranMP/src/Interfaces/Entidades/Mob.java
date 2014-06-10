@@ -1,6 +1,8 @@
-package Interfaces;// Created by Ladrim on 18/04/2014.
+package Interfaces.Entidades;// Created by Ladrim on 18/04/2014.
 
-public interface Mob extends Model
+import Interfaces.ModelI;
+
+public interface Mob extends ModelI
 {
     //GET:
     public float getX();

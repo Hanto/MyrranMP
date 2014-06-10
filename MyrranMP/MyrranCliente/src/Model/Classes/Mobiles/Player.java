@@ -1,6 +1,10 @@
 package Model.Classes.Mobiles;// Created by Hanto on 10/04/2014.
 
 import Interfaces.*;
+import Interfaces.Entidades.Caster;
+import Interfaces.Geo.MapaI;
+import Interfaces.Entidades.MobPC;
+import Interfaces.Entidades.Vulnerable;
 import Model.Classes.Skill.Spell.Spell;
 import Model.Classes.UI.Input.PlayerIO;
 import Model.DAO.DAO;

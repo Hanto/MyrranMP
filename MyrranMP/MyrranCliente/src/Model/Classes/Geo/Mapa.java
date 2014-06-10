@@ -3,7 +3,9 @@ package Model.Classes.Geo;// Created by Hanto on 19/05/2014.
 import DTO.NetDTO;
 import Data.MiscData;
 import Interfaces.AbstractModel;
-import Interfaces.Mob;
+import Interfaces.Entidades.Mob;
+import Interfaces.Geo.MapaI;
+import Interfaces.Geo.TerrenoI;
 import Model.DAO.DAO;
 import Model.DAO.Terreno.TerrenoDAO;
 import Model.DTO.PlayerDTO;
@@ -11,7 +13,7 @@ import Model.DTO.PlayerDTO;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class Mapa extends AbstractModel implements PropertyChangeListener
+public class Mapa extends AbstractModel implements MapaI,PropertyChangeListener
 {
     private Celda[][] mapa;
 
@@ -55,7 +57,7 @@ public class Mapa extends AbstractModel implements PropertyChangeListener
     }
 
 
-    public Terreno getTerreno (int tileX, int tileY, int numCapa)
+    @Override public TerrenoI getTerreno (int tileX, int tileY, int numCapa)
     {
         Celda celda = getCelda(tileX, tileY);
 
@@ -67,7 +69,7 @@ public class Mapa extends AbstractModel implements PropertyChangeListener
         }
     }
 
-    public short getTerrenoID (int tileX, int tileY, int numCapa)
+    @Override public short getTerrenoID (int tileX, int tileY, int numCapa)
     {
         Celda celda = getCelda(tileX, tileY);
 
@@ -75,7 +77,25 @@ public class Mapa extends AbstractModel implements PropertyChangeListener
         else { return celda.getTerrenoID(numCapa); }
     }
 
-    public boolean setTerreno (int tileX, int tileY, int numCapa, short iDTerreno)
+    @Override public boolean setTerreno(int tileX, int tileY, int numCapa, TerrenoI terreno)
+    {
+        Celda celda = getCelda(tileX, tileY);
+
+        if (celda == null) return false;
+        else
+        {
+            if (celda.getTerreno(numCapa) != terreno)
+            {
+                celda.setTerreno(numCapa, terreno);
+                NetDTO.SetTerreno setTerreno = new NetDTO.SetTerreno(tileX,tileY,numCapa,terreno.getID());
+                notificarActualizacion("setTerreno", null, setTerreno);
+                return true;
+            }
+            else return true;
+        }
+    }
+
+    @Override public boolean setTerreno (int tileX, int tileY, int numCapa, short iDTerreno)
     {
         Celda celda = getCelda(tileX, tileY);
 

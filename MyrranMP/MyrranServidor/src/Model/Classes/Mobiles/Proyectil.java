@@ -5,20 +5,20 @@ import Interfaces.AbstractModel;
 public class Proyectil extends AbstractModel
 {
     //Posicion:
-    protected Float x=0.0f;                 //Coordenadas X:
-    protected Float y=0.0f;                 //Coordenadas Y:
-    protected Float oldPosX;                //Coordenadas X, de la ultima posicion X segura
-    protected Float oldPosY;                //Coordenadas Y, de la ultima posicion Y segura
+    protected float x=0.0f;                 //Coordenadas X:
+    protected float y=0.0f;                 //Coordenadas Y:
+    protected float oldPosX;                //Coordenadas X, de la ultima posicion X segura
+    protected float oldPosY;                //Coordenadas Y, de la ultima posicion Y segura
 
     //Velocidad y Direccion:
-    protected Float velocidadMod=1.0f;      //Modificadores de Velocidad: debido a Snares, a Sprints, Roots
-    protected Float velocidadMax;           //Velocidad Maxima:
-    protected Float velocidad;              //Velocidad Actual:
-    protected Double direccion;             //Direccion Actual en Radianes
+    protected float velocidadMod=1.0f;      //Modificadores de Velocidad: debido a Snares, a Sprints, Roots
+    protected float velocidadMax;           //Velocidad Maxima:
+    protected float velocidad;              //Velocidad Actual:
+    protected double direccion;             //Direccion Actual en Radianes
 
     //Duracion
-    protected Float duracionActual = 0.0f;
-    protected Float duracionMaxima;
+    protected float duracionActual = 0.0f;
+    protected float duracionMaxima;
 
 
     //GET:

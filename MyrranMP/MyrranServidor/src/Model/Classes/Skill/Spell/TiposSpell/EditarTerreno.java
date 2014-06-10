@@ -2,10 +2,10 @@ package Model.Classes.Skill.Spell.TiposSpell;
 // @author Ivan Delgado Huerta
 
 import Data.MiscData;
+import Data.Spell.SkillStat;
 import Data.Spell.TipoSpellsData;
-import Interfaces.Caster;
-import Model.Classes.Skill.SkillStat;
-import Model.Classes.Skill.Spell.Spell;
+import Interfaces.Entidades.Caster;
+import Interfaces.Spell.SpellI;
 import Model.Classes.Skill.Spell.TipoSpell;
 
 import static DTO.ParametrosSpellDTO.ParametrosEditarTerreno;
@@ -18,7 +18,7 @@ public class EditarTerreno extends TipoSpell
         stat = new SkillStat  (TipoSpellsData.EDITARTERRENO_CastingTime_String, TipoSpellsData.EDITARTERRENO_CastingTime_Valor); skillStats[STAT_Cast]=stat;//CAST
     }
 
-    @Override public void ejecutarCasteo(Spell skill, Caster caster, int targetX, int targetY)
+    @Override public void ejecutarCasteo(SpellI skill, Caster caster, int targetX, int targetY)
     {
         int tileX = (targetX / MiscData.TILESIZE);
         int tileY = (targetY / MiscData.TILESIZE);

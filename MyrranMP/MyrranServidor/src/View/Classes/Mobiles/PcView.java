@@ -3,7 +3,7 @@ package View.Classes.Mobiles;// Created by Hanto on 07/04/2014.
 import Controller.Controlador;
 import DTO.NetDTO;
 import Data.MiscData;
-import Interfaces.MobPC;
+import Interfaces.Entidades.MobPC;
 import Model.Classes.Mobiles.PC;
 import Model.GameState.Mundo;
 import View.Vista;

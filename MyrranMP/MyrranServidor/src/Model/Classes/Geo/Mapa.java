@@ -2,8 +2,9 @@ package Model.Classes.Geo;// Created by Hanto on 14/04/2014.
 
 import DTO.NetDTO;
 import Data.MiscData;
-import Interfaces.MapaI;
+import Interfaces.Geo.MapaI;
 import Interfaces.AbstractModel;
+import Interfaces.Geo.TerrenoI;
 import Model.DAO.DAO;
 import Model.DAO.Terreno.TerrenoDAO;
 
@@ -19,20 +20,20 @@ public class Mapa extends AbstractModel implements MapaI
         }
     }
 
-    public Terreno getTerreno (int x, int y, int numCapa)
+    @Override public TerrenoI getTerreno (int x, int y, int numCapa)
     {
         if (x<0 || y<0 || x>= MiscData.MAPA_Max_TilesX || y>= MiscData.MAPA_Max_TilesY) return null;
         TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
         return terrenoDAO.getTerreno(matriz[x][y].getTerrenoID(numCapa));
     }
 
-    public short getTerrenoID (int x, int y, int numCapa)
+    @Override public short getTerrenoID (int x, int y, int numCapa)
     {
         if (x<0 || y<0 || x>= MiscData.MAPA_Max_TilesX || y>= MiscData.MAPA_Max_TilesY) return -1;
         else return matriz[x][y].getTerrenoID(numCapa);
     }
 
-    public boolean setTerreno (int x, int y, int numCapa, Terreno terreno)
+    @Override public boolean setTerreno (int x, int y, int numCapa, TerrenoI terreno)
     {
         if (x<0 || y<0 || x>= MiscData.MAPA_Max_TilesX || y>= MiscData.MAPA_Max_TilesY) return false;
         else if (matriz[x][y].getTerreno(numCapa) != terreno)

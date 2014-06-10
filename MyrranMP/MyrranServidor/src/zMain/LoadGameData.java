@@ -2,12 +2,12 @@ package zMain;// Created by Hanto on 11/04/2014.
 
 import Data.GameData;
 import DTO.GameDataDTO;
+import Data.Spell.SkillStat;
 import Model.DAO.DAO;
 import Model.DAO.Spell.SpellDAO;
 import Model.DAO.Terreno.TerrenoDAO;
 import Model.DAO.TipoSpell.TipoSpellDAO;
 import Model.Classes.Geo.Terreno;
-import Model.Classes.Skill.SkillStat;
 import Model.Classes.Skill.Spell.Spell;
 import Model.Classes.Skill.Spell.TipoSpell;
 import Model.Classes.Skill.Spell.TipoSpellFactory;
@@ -66,11 +66,11 @@ public class LoadGameData
                 SkillStat statOriginal = spell.skillStats()[i];
                 Data.Spell.SkillStat statModificado = spellDTO.skillStats[i];
 
-                if (statModificado.getHayNombre())          statOriginal.nombre = statModificado.getNombre();
-                if (statModificado.getHayValorBase())       statOriginal.valorBase = statModificado.getValorBase();
-                if (statModificado.getHayBonoTalento())     statOriginal.bonoTalento = statModificado.getBonoTalento();
-                if (statModificado.getHayCosteTalento())    statOriginal.costeTalento = statModificado.getCosteTalento();
-                if (statModificado.getHayTalentoMaximo())   statOriginal.talentoMaximo = statModificado.getTalentoMaximo();
+                if (statModificado.getHayNombre())          statOriginal.setNombre(statModificado.getNombre());
+                if (statModificado.getHayValorBase())       statOriginal.setValorBase(statModificado.getValorBase());
+                if (statModificado.getHayBonoTalento())     statOriginal.setBonoTalento(statModificado.getBonoTalento());
+                if (statModificado.getHayCosteTalento())    statOriginal.setCosteTalento(statModificado.getCosteTalento());
+                if (statModificado.getHayTalentoMaximo())   statOriginal.setTalentoMaximo(statModificado.getTalentoMaximo());
                 if (statModificado.getHayIsMejorable())     statOriginal.setIsMejorable(statModificado.getisMejorable());
             }
 

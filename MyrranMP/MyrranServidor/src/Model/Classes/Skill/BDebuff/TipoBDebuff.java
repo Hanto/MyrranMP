@@ -1,33 +1,38 @@
-package Model.Classes.Skill.Spell;
-// @author Ivan Delgado Huerta
+package Model.Classes.Skill.BDebuff;// Created by Hanto on 04/06/2014.
 
 import Data.Spell.SkillStat;
 import Interfaces.AbstractModel;
-import Interfaces.Spell.TipoSpellI;
+import Interfaces.BDebuff.TipoBDebuffI;
 
-public abstract class TipoSpell extends AbstractModel implements TipoSpellI
+public abstract class TipoBDebuff extends AbstractModel implements TipoBDebuffI
 {
     public static final int STAT_Cast = 0;
-    
+
     protected String id;
     protected String nombre;
     protected String descripcion;
+    protected boolean isDebuff = false;
+    protected byte stacksMaximos = 0;
     protected SkillStat[] skillStats;
-    
+
     //SET
     @Override public void setID(String id)                      { this.id = id; }
     @Override public void setNombre (String nombre)             { this.nombre = nombre; }
     @Override public void setDescripcion (String descripcion)   { this.descripcion = descripcion; }
+    @Override public void setIsDebuff (boolean b)               { isDebuff = b; }
+    @Override public void setStacksMaximos (byte i)             { stacksMaximos = i; }
 
     //GET
     @Override public String getID()                             { return id; }
     @Override public String getNombre()                         { return nombre; }
     @Override public String getDescripcion ()                   { return descripcion; }
-    @Override public SkillStat [] skillStat ()                  { return skillStats; }
+    @Override public boolean getIsDebuff ()                     { return isDebuff; }
+    @Override public byte getStacksMaximos ()                   { return stacksMaximos; }
+    @Override public SkillStat[] skillStat ()                   { return skillStats; }
 
-    
+
     //CONSTRUCTOR:
-    public TipoSpell ()
+    public TipoBDebuff()
     {
         inicializarSkillStats();
     }

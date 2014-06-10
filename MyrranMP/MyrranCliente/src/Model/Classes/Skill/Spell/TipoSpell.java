@@ -1,10 +1,13 @@
 package Model.Classes.Skill.Spell;
 // @author Ivan Delgado Huerta
 
+import Data.Spell.SkillStat;
 import Interfaces.AbstractModel;
-import Model.Classes.Skill.SkillStat;
+import Interfaces.Entidades.Caster;
+import Interfaces.Spell.SpellI;
+import Interfaces.Spell.TipoSpellI;
 
-public abstract class TipoSpell extends AbstractModel implements TipoSpellInterface
+public abstract class TipoSpell extends AbstractModel implements TipoSpellI
 {
     public static final int STAT_Cast = 0;
     
@@ -15,15 +18,14 @@ public abstract class TipoSpell extends AbstractModel implements TipoSpellInterf
     protected SkillStat[] skillStats;
     
     //SET
-    public void setID(String id)                        { this.id = id; }
-    public void setNombre (String nombre)               { this.nombre = nombre; }
-    public void setDescripcion (String descripcion)     { this.descripcion = descripcion; }
+    @Override public void setID(String id)                      { this.id = id; }
+    @Override public void setNombre (String nombre)             { this.nombre = nombre; }
+    @Override public void setDescripcion (String descripcion)   { this.descripcion = descripcion; }
     //GET
-    public String getID()                               { return id; }
-    public String getNombre()                           { return nombre; }
-    public String getDescripcion ()                     { return descripcion; }
-
-    public SkillStat [] skillStat ()                    { return skillStats; }
+    @Override public String getID()                             { return id; }
+    @Override public String getNombre()                         { return nombre; }
+    @Override public String getDescripcion ()                   { return descripcion; }
+    @Override public SkillStat [] skillStat ()                  { return skillStats; }
 
     
     //CONSTRUCTOR:
@@ -31,4 +33,6 @@ public abstract class TipoSpell extends AbstractModel implements TipoSpellInterf
     {
         inicializarSkillStats();
     }
+
+    @Override public void ejecutarCasteo(SpellI spell, Caster caster, int targetX, int targetY) {}
 }

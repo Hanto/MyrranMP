@@ -1,7 +1,9 @@
 package Model.Classes.Geo;// Created by Hanto on 14/04/2014.
 
+import Interfaces.Geo.TerrenoI;
+
 //Clase que define los tipos de terreno
-public class Terreno
+public class Terreno implements TerrenoI
 {
     private short id;                               //ID del tipo de Terreno para poder cargar su template
     private String nombre;                          //Nombre del Terreno ("Jungla", "Camino", "Cesped"...
@@ -12,12 +14,12 @@ public class Terreno
     {   this.id = id; this.nombre = nombre; this.isSolido = isSolido; }
 
     //SET:
-    public void setId (short i)                     { id = i ; }
-    public void setNombre (String s)                { nombre = s; }
-    public void setIsSolido (boolean b)             { isSolido = b; }
+    @Override public void setId (short i)           { id = i ; }
+    @Override public void setNombre (String s)      { nombre = s; }
+    @Override public void setIsSolido (boolean b)   { isSolido = b; }
 
     //GET:
-    public short getID()                            { return id; }
-    public String getNombre()                       { return nombre; }
-    public boolean getIsSolido()                    { return isSolido; }
+    @Override public short getID()                  { return id; }
+    @Override public String getNombre()             { return nombre; }
+    @Override public boolean getIsSolido()          { return isSolido; }
 }

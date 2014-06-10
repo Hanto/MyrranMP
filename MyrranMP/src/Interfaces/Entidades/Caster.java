@@ -1,4 +1,6 @@
-package Interfaces;// Created by Hanto on 17/04/2014.
+package Interfaces.Entidades;// Created by Hanto on 17/04/2014.
+
+import Interfaces.Geo.MapaI;
 
 public interface Caster
 {
