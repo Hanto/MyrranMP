@@ -1,6 +1,7 @@
-package Model.DAO.Accion;
+package DAO.Accion;
 
-import Model.DAO.Accion.DB.AccionLocal;
+import DAO.Accion.AccionDAO;
+import DAO.Accion.DB.AccionLocal;
 
 public enum AccionDAOFactory
 {

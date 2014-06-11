@@ -1,4 +1,4 @@
-package Interfaces.Entidades;// Created by Hanto on 17/04/2014.
+package Interfaces.EntidadesPropiedades;// Created by Hanto on 17/04/2014.
 
 import Interfaces.Geo.MapaI;
 

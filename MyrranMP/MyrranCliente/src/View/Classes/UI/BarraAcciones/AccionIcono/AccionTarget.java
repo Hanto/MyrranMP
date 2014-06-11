@@ -1,6 +1,6 @@
 package View.Classes.UI.BarraAcciones.AccionIcono;// Created by Hanto on 13/05/2014.
 
-import Interfaces.UI.ControladorBarraAccionI;
+import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
 import static com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;

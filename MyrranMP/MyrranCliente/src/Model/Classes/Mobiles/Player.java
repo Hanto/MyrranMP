@@ -1,13 +1,13 @@
 package Model.Classes.Mobiles;// Created by Hanto on 10/04/2014.
 
 import DAO.DAO;
-import Interfaces.AbstractModel;
-import Interfaces.Entidades.Caster;
-import Interfaces.Entidades.MobPlayer;
-import Interfaces.Entidades.Vulnerable;
+import Interfaces.Model.AbstractModel;
+import Interfaces.EntidadesPropiedades.Caster;
+import Interfaces.EntidadesTipos.MobPlayer;
+import Interfaces.EntidadesPropiedades.Vulnerable;
 import Interfaces.Geo.MapaI;
 import Interfaces.Spell.SpellI;
-import Interfaces.UI.PlayerIOI;
+import Interfaces.UI.Input.PlayerIOI;
 import Model.DTO.PlayerDTO;
 
 public class Player extends AbstractModel implements Caster, MobPlayer, Vulnerable

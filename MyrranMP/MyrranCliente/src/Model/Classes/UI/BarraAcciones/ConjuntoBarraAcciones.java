@@ -1,12 +1,12 @@
 package Model.Classes.UI.BarraAcciones;// Created by Hanto on 08/05/2014.
 
-import Interfaces.AbstractModel;
-import Interfaces.UI.AccionI;
-import Interfaces.UI.BarraAccionesI;
-import Interfaces.UI.ListaAccionesI;
+import DAO.DAO;
+import Interfaces.Model.AbstractModel;
+import Interfaces.UI.Acciones.AccionI;
+import Interfaces.UI.BarraAcciones.BarraAccionesI;
+import Interfaces.UI.BarraAcciones.ListaAccionesI;
 import Model.Classes.UI.Acciones.Accion;
 import Model.Classes.UI.Input.Keybinds;
-import Model.DAO.DAOold;
 import Model.DTO.BarraAccionesDTO;
 
 import java.util.HashMap;
@@ -59,11 +59,11 @@ public class ConjuntoBarraAcciones extends AbstractModel
         barra.setKeycode(2, 2, 32);
         barra.setKeycode(0, 2, 29);
 
-        barra.setAccion(0, 0, DAOold.accionDAOFactory.getAccionDAO().getAccion("Terraformar"));
-        barra.setAccion(1, 1, DAOold.accionDAOFactory.getAccionDAO().getAccion("IrNorte"));
-        barra.setAccion(1, 2, DAOold.accionDAOFactory.getAccionDAO().getAccion("IrSur"));
-        barra.setAccion(2, 2, DAOold.accionDAOFactory.getAccionDAO().getAccion("IrEste"));
-        barra.setAccion(0, 2, DAOold.accionDAOFactory.getAccionDAO().getAccion("IrOeste"));
+        barra.setAccion(0, 0, DAO.accionDAOFactory.getAccionDAO().getAccion("Terraformar"));
+        barra.setAccion(1, 1, DAO.accionDAOFactory.getAccionDAO().getAccion("IrNorte"));
+        barra.setAccion(1, 2, DAO.accionDAOFactory.getAccionDAO().getAccion("IrSur"));
+        barra.setAccion(2, 2, DAO.accionDAOFactory.getAccionDAO().getAccion("IrEste"));
+        barra.setAccion(0, 2, DAO.accionDAOFactory.getAccionDAO().getAccion("IrOeste"));
     }
 
     public void setKeycode (BarraAccionesI barra, int posX, int posY, int keycode)

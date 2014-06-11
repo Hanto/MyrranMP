@@ -1,6 +1,6 @@
 package Controller;// Created by Hanto on 09/04/2014.
 
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Model.GameState.Mundo;
 import Model.Classes.Mobiles.PC;
 

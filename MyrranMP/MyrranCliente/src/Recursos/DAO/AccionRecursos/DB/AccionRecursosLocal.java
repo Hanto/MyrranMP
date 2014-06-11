@@ -1,6 +1,6 @@
 package Recursos.DAO.AccionRecursos.DB;// Created by Hanto on 07/05/2014.
 
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Recursos.Classes.AccionRecursos;
 import Recursos.DAO.AccionRecursos.AccionRecursosDAO;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;

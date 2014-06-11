@@ -1,10 +1,10 @@
 package Model.Classes.Skill.Spell.TiposSpell;
 // @author Ivan Delgado Huerta
 
-import Data.MiscData;
-import Data.Spell.SkillStat;
+import Data.Misc.MiscData;
+import Comun.SkillStat;
 import Data.Spell.TipoSpellsData;
-import Interfaces.Entidades.Caster;
+import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.Spell.SpellI;
 import Model.Classes.Skill.Spell.TipoSpell;
 

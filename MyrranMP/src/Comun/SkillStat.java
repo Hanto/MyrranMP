@@ -1,4 +1,4 @@
-package Data.Spell;
+package Comun;
 //* @author Ivan Delgado Huerta
 public class SkillStat
 {

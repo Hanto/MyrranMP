@@ -1,23 +1,22 @@
 package zMain;// Created by Hanto on 11/04/2014.
 
+import DAO.Accion.AccionDAO;
 import DAO.DAO;
 import DAO.Spell.SpellDAO;
 import DAO.Terreno.TerrenoDAO;
 import DAO.TipoSpell.TipoSpellDAO;
 import DTO.GameDataDTO;
 import Data.GameData;
-import Data.MiscData;
-import Data.Spell.SkillStat;
+import Data.Misc.MiscData;
+import Comun.SkillStat;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
-import Model.Classes.UI.Acciones.Accion;
-import Model.Classes.UI.Acciones.TiposAccion.*;
 import Model.Classes.Geo.Terreno;
 import Model.Classes.Skill.Spell.Spell;
 import Model.Classes.Skill.Spell.TipoSpell;
 import Model.Classes.Skill.Spell.TipoSpellFactory;
-import Model.DAO.Accion.AccionDAO;
-import Model.DAO.DAOold;
+import Model.Classes.UI.Acciones.Accion;
+import Model.Classes.UI.Acciones.TiposAccion.*;
 import Recursos.Classes.AccionRecursos;
 import Recursos.Classes.AtlasRecursos;
 import Recursos.Classes.SpellRecursos;
@@ -228,7 +227,7 @@ public class LoadGameData
             for (int i = 0; i < spellDTO.skillStats.length; i++)
             {
                 SkillStat statOriginal = spell.skillStats()[i];
-                Data.Spell.SkillStat statModificado = spellDTO.skillStats[i];
+                SkillStat statModificado = spellDTO.skillStats[i];
 
                 if (statModificado.getHayNombre()) statOriginal.setNombre(statModificado.getNombre());
                 if (statModificado.getHayValorBase()) statOriginal.setValorBase(statModificado.getValorBase());
@@ -290,7 +289,7 @@ public class LoadGameData
         cargarAccion(new IrOeste());
         cargarAccion(new IrEste());
 
-        AccionDAO accionDAO = DAOold.accionDAOFactory.getAccionDAO();
+        AccionDAO accionDAO = DAO.accionDAOFactory.getAccionDAO();
         AccionRecursosDAO accionRecursosDAO = RSC.accionRecursosDAO.getAccionRecursosDAO();
 
         AccionRecursos accionRecurso;
@@ -308,7 +307,7 @@ public class LoadGameData
 
     public void cargarAccion(Accion accion)
     {
-        AccionDAO accionDAO = DAOold.accionDAOFactory.getAccionDAO();
+        AccionDAO accionDAO = DAO.accionDAOFactory.getAccionDAO();
         AccionRecursosDAO accionRecursosDAO = RSC.accionRecursosDAO.getAccionRecursosDAO();
 
         accionDAO.salvarAccion(accion);

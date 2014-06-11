@@ -2,7 +2,7 @@ package View.Classes.Mobiles;// Created by Hanto on 10/04/2014.
 
 import Controller.Controlador;
 import DTO.NetDTO;
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Model.Classes.Mobiles.Player;
 import Model.DTO.PlayerDTO;
 import Recursos.DAO.RSC;

@@ -1,10 +1,10 @@
 package Model.Classes.Skill.BDebuff;// Created by Hanto on 04/06/2014.
 
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Interfaces.BDebuff.AuraI;
 import Interfaces.BDebuff.TipoBDebuffI;
-import Interfaces.Entidades.Caster;
-import Interfaces.Entidades.Debuffeable;
+import Interfaces.EntidadesPropiedades.Caster;
+import Interfaces.EntidadesPropiedades.Debuffeable;
 
 public class Aura implements AuraI
 {

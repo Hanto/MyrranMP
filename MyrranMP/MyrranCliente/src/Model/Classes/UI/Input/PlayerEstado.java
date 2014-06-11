@@ -1,7 +1,7 @@
 package Model.Classes.UI.Input;
 // @author Ivan Delgado Huertaimp
 
-import Interfaces.UI.PlayerEstadoI;
+import Interfaces.UI.Input.PlayerEstadoI;
 
 public class PlayerEstado implements PlayerEstadoI
 {

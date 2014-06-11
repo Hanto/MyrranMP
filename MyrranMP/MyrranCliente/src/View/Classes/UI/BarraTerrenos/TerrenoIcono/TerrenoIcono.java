@@ -1,7 +1,7 @@
 package View.Classes.UI.BarraTerrenos.TerrenoIcono;// Created by Hanto on 14/05/2014.
 
-import Interfaces.UI.ControladorBarraTerrenosI;
-import Data.MiscData;
+import Interfaces.UI.BarraTerrenos.ControladorBarraTerrenosI;
+import Data.Misc.MiscData;
 import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
 import Recursos.DAO.RSC;
 import Recursos.DAO.TerrenoRecursos.TerrenoRecursosDAO;

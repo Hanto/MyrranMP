@@ -2,7 +2,7 @@ package View.Classes.Mobiles;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
 import DTO.NetDTO;
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Model.Classes.Mobiles.PC;
 import Model.DTO.PlayerDTO;
 import View.Classes.Graficos.PixiePC;

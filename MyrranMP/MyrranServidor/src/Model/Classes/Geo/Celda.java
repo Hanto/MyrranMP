@@ -1,7 +1,7 @@
 package Model.Classes.Geo;// Created by Hanto on 14/04/2014.
 
 import DAO.DAO;
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Interfaces.Geo.CeldaI;
 import Interfaces.Geo.TerrenoI;
 import DAO.Terreno.TerrenoDAO;

@@ -1,6 +1,8 @@
-package Interfaces.UI;// Created by Hanto on 05/05/2014.
+package Interfaces.UI.Acciones;// Created by Hanto on 05/05/2014.
 
-import Interfaces.Entidades.MobPlayer;
+import Interfaces.EntidadesTipos.MobPlayer;
+import Interfaces.UI.Input.ControladorUI;
+import Interfaces.UI.Input.PlayerEstadoI;
 
 public interface AccionI
 {

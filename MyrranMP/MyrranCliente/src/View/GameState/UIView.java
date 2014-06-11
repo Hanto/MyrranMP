@@ -1,7 +1,7 @@
 package View.GameState;// Created by Hanto on 14/05/2014.
 
 import Controller.Controlador;
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Model.Classes.UI.BarraAcciones.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
 import Model.GameState.UI;

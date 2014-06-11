@@ -1,4 +1,6 @@
-package Interfaces.UI;// Created by Hanto on 13/05/2014.
+package Interfaces.UI.BarraAcciones;// Created by Hanto on 13/05/2014.
+
+import Interfaces.UI.Acciones.AccionI;
 
 public interface BarraAccionesI extends ListaAccionesI
 {

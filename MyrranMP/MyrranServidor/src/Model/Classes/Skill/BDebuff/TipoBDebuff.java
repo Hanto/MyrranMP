@@ -1,7 +1,7 @@
 package Model.Classes.Skill.BDebuff;// Created by Hanto on 04/06/2014.
 
-import Data.Spell.SkillStat;
-import Interfaces.AbstractModel;
+import Comun.SkillStat;
+import Interfaces.Model.AbstractModel;
 import Interfaces.BDebuff.TipoBDebuffI;
 
 public abstract class TipoBDebuff extends AbstractModel implements TipoBDebuffI

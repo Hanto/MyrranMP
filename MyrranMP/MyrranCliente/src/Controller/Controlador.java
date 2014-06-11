@@ -1,11 +1,11 @@
 package Controller;// Created by Hanto on 08/04/2014.
 
 import Controller.Input.PlayerGestures;
-import Controller.Input.PlayerMouseKeyI;
-import Interfaces.UI.ControladorUI;
+import Controller.Input.PlayerMouseKeys;
+import Interfaces.UI.Input.ControladorUI;
 import DTO.NetDTO;
-import Interfaces.UI.BarraAccionesI;
-import Interfaces.UI.ListaAccionesI;
+import Interfaces.UI.BarraAcciones.BarraAccionesI;
+import Interfaces.UI.BarraAcciones.ListaAccionesI;
 import Model.GameState.Mundo;
 import Model.GameState.UI;
 import View.Vista;
@@ -34,7 +34,7 @@ public class Controlador implements ControladorUI
         vista = new Vista(this, ui, mundo);
 
         inputMultiplexer.addProcessor(new GestureDetector(new PlayerGestures()));
-        inputMultiplexer.addProcessor(new PlayerMouseKeyI(this));
+        inputMultiplexer.addProcessor(new PlayerMouseKeys(this));
         Gdx.input.setInputProcessor(inputMultiplexer);
 
         cliente = new Cliente(this);

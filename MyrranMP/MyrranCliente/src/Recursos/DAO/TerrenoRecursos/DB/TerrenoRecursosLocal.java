@@ -1,7 +1,7 @@
 package Recursos.DAO.TerrenoRecursos.DB;// Created by Ladrim on 24/04/2014.
 
 import Recursos.DAO.TerrenoRecursos.TerrenoRecursosDAO;
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Recursos.Classes.TerrenoRecursos;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

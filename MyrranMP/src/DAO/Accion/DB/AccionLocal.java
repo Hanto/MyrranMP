@@ -1,16 +1,16 @@
-package Model.DAO.Accion.DB;// Created by Hanto on 06/05/2014.
+package DAO.Accion.DB;// Created by Hanto on 06/05/2014.
 
-import Model.Classes.UI.Acciones.Accion;
-import Model.DAO.Accion.AccionDAO;
+import DAO.Accion.AccionDAO;
+import Interfaces.UI.Acciones.AccionI;
 
 import java.util.Map;
 
 public class AccionLocal implements AccionDAO
 {
-    private Map<String, Accion>listaDeAcciones = AccionLocalDB.get().listaDeAcciones;
+    private Map<String, AccionI>listaDeAcciones = AccionLocalDB.get().listaDeAcciones;
 
 
-    @Override public boolean salvarAccion(Accion accion)
+    @Override public boolean salvarAccion(AccionI accion)
     {
         if (listaDeAcciones.containsKey(accion.getID()))
         {   System.out.println("ERROR: ya existe una accion con este ID["+accion.getID()+"]"); return false; }
@@ -24,6 +24,6 @@ public class AccionLocal implements AccionDAO
             listaDeAcciones.remove(accionID);
     }
 
-    @Override public Accion getAccion(String accionID)
+    @Override public AccionI getAccion(String accionID)
     {   return listaDeAcciones.get(accionID);}
 }

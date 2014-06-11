@@ -1,7 +1,7 @@
 package View.Classes.Geo;// Created by Hanto on 16/04/2014.
 
 import DTO.NetDTO;
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Model.Classes.Geo.Mapa;
 import View.GameState.MundoView;
 import com.badlogic.gdx.Gdx;

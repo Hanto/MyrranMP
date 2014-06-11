@@ -1,7 +1,7 @@
 package View.Classes.UI.BarraTerrenos;// Created by Hanto on 14/05/2014.
 
 import Controller.Controlador;
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
 import Model.DTO.BarraTerrenosDTO;
 import Recursos.DAO.RSC;

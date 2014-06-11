@@ -1,4 +1,4 @@
-package Interfaces.Entidades;// Created by Ladrim on 19/04/2014.
+package Interfaces.EntidadesTipos;// Created by Ladrim on 19/04/2014.
 
 public interface MobPC extends Mob
 {

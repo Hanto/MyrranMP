@@ -2,8 +2,8 @@ package Model.Classes.UI.BarraTerrenos;// Created by Hanto on 14/05/2014.
 
 import DAO.DAO;
 import DAO.Terreno.TerrenoDAO;
-import Interfaces.AbstractModel;
-import Interfaces.Entidades.Caster;
+import Interfaces.Model.AbstractModel;
+import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.Geo.TerrenoI;
 import Model.DTO.BarraTerrenosDTO;
 import com.badlogic.gdx.utils.Array;

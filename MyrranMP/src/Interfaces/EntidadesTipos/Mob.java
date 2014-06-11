@@ -1,6 +1,6 @@
-package Interfaces.Entidades;// Created by Ladrim on 18/04/2014.
+package Interfaces.EntidadesTipos;// Created by Ladrim on 18/04/2014.
 
-import Interfaces.ModelI;
+import Interfaces.Model.ModelI;
 
 public interface Mob extends ModelI
 {

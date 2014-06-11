@@ -1,6 +1,6 @@
 package Interfaces.BDebuff;// Created by Hanto on 09/06/2014.
 
-import Data.Spell.SkillStat;
+import Comun.SkillStat;
 
 public interface TipoBDebuffI
 {   //SET:

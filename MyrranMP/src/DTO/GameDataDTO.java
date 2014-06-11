@@ -1,6 +1,6 @@
 package DTO;
 
-import Data.Spell.SkillStat;
+import Comun.SkillStat;
 
 public class GameDataDTO
 {

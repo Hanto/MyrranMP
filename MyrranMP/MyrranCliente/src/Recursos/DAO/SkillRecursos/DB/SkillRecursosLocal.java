@@ -1,7 +1,7 @@
 package Recursos.DAO.SkillRecursos.DB;// Created by Hanto on 30/04/2014.
 
 import Recursos.DAO.SkillRecursos.SkillRecursosDAO;
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Recursos.Classes.SpellRecursos;
 import Recursos.Classes.TipoSpellRecursos;
 import View.Classes.Graficos.Pixie;

@@ -1,6 +1,6 @@
 package Interfaces.Geo;// Created by Hanto on 17/04/2014.
 
-import Interfaces.ModelI;
+import Interfaces.Model.ModelI;
 
 public interface MapaI extends ModelI
 {

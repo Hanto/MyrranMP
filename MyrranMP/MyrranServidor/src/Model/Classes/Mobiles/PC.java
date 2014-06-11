@@ -3,12 +3,12 @@ package Model.Classes.Mobiles;// Created by Hanto on 07/04/2014.
 
 import DAO.DAO;
 import DTO.NetDTO;
-import Interfaces.AbstractModel;
+import Interfaces.Model.AbstractModel;
 import Interfaces.BDebuff.AuraI;
-import Interfaces.Entidades.Caster;
-import Interfaces.Entidades.Debuffeable;
-import Interfaces.Entidades.MobPC;
-import Interfaces.Entidades.Vulnerable;
+import Interfaces.EntidadesPropiedades.Caster;
+import Interfaces.EntidadesPropiedades.Debuffeable;
+import Interfaces.EntidadesTipos.MobPC;
+import Interfaces.EntidadesPropiedades.Vulnerable;
 import Interfaces.Geo.MapaI;
 import Interfaces.Spell.SpellI;
 import Model.Classes.Geo.Mapa;

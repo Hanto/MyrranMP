@@ -1,6 +1,6 @@
 package Recursos.DAO.FuentesRecursos.DB;// Created by Hanto on 02/05/2014.
 
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Recursos.DAO.FuentesRecursos.FuentesRecursosDAO;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

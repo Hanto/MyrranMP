@@ -1,6 +1,6 @@
 package View.Classes.Graficos;
 
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Recursos.DAO.MiscRecursos.MiscRecursosDAO;
 import Recursos.DAO.RSC;
 import com.badlogic.gdx.graphics.Color;

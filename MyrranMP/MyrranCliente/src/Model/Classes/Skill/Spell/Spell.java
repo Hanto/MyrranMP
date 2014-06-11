@@ -2,9 +2,9 @@ package Model.Classes.Skill.Spell;
 // @author Ivan Delgado Huerta
 
 import DAO.DAO;
-import Data.Spell.SkillStat;
-import Interfaces.AbstractModel;
-import Interfaces.Entidades.Caster;
+import Comun.SkillStat;
+import Interfaces.Model.AbstractModel;
+import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
 

@@ -3,9 +3,9 @@ package Model.Classes.Geo;// Created by Hanto on 19/05/2014.
 import DAO.DAO;
 import DAO.Terreno.TerrenoDAO;
 import DTO.NetDTO;
-import Data.MiscData;
-import Interfaces.AbstractModel;
-import Interfaces.Entidades.Mob;
+import Data.Misc.MiscData;
+import Interfaces.Model.AbstractModel;
+import Interfaces.EntidadesTipos.Mob;
 import Interfaces.Geo.MapaI;
 import Interfaces.Geo.TerrenoI;
 import Model.DTO.PlayerDTO;

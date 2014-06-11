@@ -6,7 +6,7 @@ import DAO.Terreno.TerrenoDAO;
 import DAO.TipoSpell.TipoSpellDAO;
 import DTO.GameDataDTO;
 import Data.GameData;
-import Data.Spell.SkillStat;
+import Comun.SkillStat;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
 import Model.Classes.Geo.Terreno;
@@ -67,7 +67,7 @@ public class LoadGameData
             for (int i=0; i<spellDTO.skillStats.length; i++)
             {
                 SkillStat statOriginal = spell.skillStats()[i];
-                Data.Spell.SkillStat statModificado = spellDTO.skillStats[i];
+                SkillStat statModificado = spellDTO.skillStats[i];
 
                 if (statModificado.getHayNombre())          statOriginal.setNombre(statModificado.getNombre());
                 if (statModificado.getHayValorBase())       statOriginal.setValorBase(statModificado.getValorBase());

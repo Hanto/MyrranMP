@@ -1,6 +1,6 @@
 package Recursos.DAO.TerrenoRecursos.DB;// Created by Hanto on 15/04/2014.
 
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Recursos.Classes.AtlasRecursos;
 import Recursos.Classes.TerrenoRecursos;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

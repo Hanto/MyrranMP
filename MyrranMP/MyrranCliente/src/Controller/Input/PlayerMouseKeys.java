@@ -4,12 +4,12 @@ package Controller.Input;
 import Controller.Controlador;
 import com.badlogic.gdx.InputProcessor;
 
-public class PlayerMouseKeyI implements InputProcessor
+public class PlayerMouseKeys implements InputProcessor
 {
     private Controlador controlador;
 
     //CONSTRUCTOR:
-    public PlayerMouseKeyI(Controlador controlador)
+    public PlayerMouseKeys(Controlador controlador)
     {   this.controlador = controlador; }
 
     @Override public boolean keyDown(int keycode)
@@ -50,8 +50,8 @@ public class PlayerMouseKeyI implements InputProcessor
 
     @Override public boolean scrolled(int amount)
     {
-        if (amount>0)   { controlador.aplicarZoom(1); }
-        if (amount <0)  { controlador.aplicarZoom(-1); }
+        if (amount > 0)  { controlador.aplicarZoom(1); }
+        if (amount < 0)  { controlador.aplicarZoom(-1); }
         return false;
     }
 }

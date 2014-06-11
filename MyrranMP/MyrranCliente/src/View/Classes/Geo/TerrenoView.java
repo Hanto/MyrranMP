@@ -1,6 +1,6 @@
 package View.Classes.Geo;// Created by Hanto on 15/04/2014.
 
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Model.DTO.TerrenoDTO;
 import Recursos.DAO.RSC;
 import Recursos.Classes.TerrenoRecursos;

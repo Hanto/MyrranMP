@@ -1,6 +1,6 @@
 package Data.Spell;// Created by Hanto on 10/06/2014.
 
-import Data.MiscData;
+import Data.Misc.MiscData;
 
 public class TipoAurasData
 {

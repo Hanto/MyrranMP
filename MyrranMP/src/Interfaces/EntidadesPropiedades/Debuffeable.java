@@ -1,4 +1,4 @@
-package Interfaces.Entidades;// Created by Hanto on 04/06/2014.
+package Interfaces.EntidadesPropiedades;// Created by Hanto on 04/06/2014.
 
 import Interfaces.BDebuff.AuraI;
 

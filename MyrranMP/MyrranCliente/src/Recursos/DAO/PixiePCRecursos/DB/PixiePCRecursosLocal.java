@@ -1,6 +1,6 @@
 package Recursos.DAO.PixiePCRecursos.DB;// Created by Hanto on 01/05/2014.
 
-import Data.MiscData;
+import Data.Misc.MiscData;
 import Recursos.DAO.PixiePCRecursos.PixiePCRecursosDAO;
 import View.Classes.Graficos.Pixie;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;

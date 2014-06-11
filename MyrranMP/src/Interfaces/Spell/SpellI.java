@@ -1,7 +1,7 @@
 package Interfaces.Spell;// Created by Hanto on 09/06/2014.
 
-import Data.Spell.SkillStat;
-import Interfaces.Entidades.Caster;
+import Comun.SkillStat;
+import Interfaces.EntidadesPropiedades.Caster;
 
 public interface SpellI
 {

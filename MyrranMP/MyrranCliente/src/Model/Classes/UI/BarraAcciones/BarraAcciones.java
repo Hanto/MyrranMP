@@ -1,9 +1,9 @@
 package Model.Classes.UI.BarraAcciones;// Created by Hanto on 06/05/2014.
 
-import Data.MiscData;
-import Interfaces.AbstractModel;
-import Interfaces.UI.AccionI;
-import Interfaces.UI.BarraAccionesI;
+import Data.Misc.MiscData;
+import Interfaces.Model.AbstractModel;
+import Interfaces.UI.Acciones.AccionI;
+import Interfaces.UI.BarraAcciones.BarraAccionesI;
 import Model.Classes.UI.Input.Keybinds;
 import Model.DTO.BarraAccionesDTO;
 import com.badlogic.gdx.utils.Array;

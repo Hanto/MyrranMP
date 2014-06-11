@@ -1,4 +1,4 @@
-package Interfaces;// Created by Hanto on 09/04/2014.
+package Interfaces.Model;// Created by Hanto on 09/04/2014.
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

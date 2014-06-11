@@ -1,8 +1,8 @@
 package Model.Classes.UI.Input;// Created by Hanto on 05/05/2014.
 
 import Controller.Controlador;
+import DAO.DAO;
 import Model.Classes.Mobiles.Player;
-import Model.DAO.DAOold;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +35,7 @@ public class Keybinds
         if (listaDeBinds.containsKey(keycode))
         {
             String idAccion = listaDeBinds.get(keycode);
-            DAOold.accionDAOFactory.getAccionDAO().getAccion(idAccion).accionKeyDown(player, playerE, controlador);
+            DAO.accionDAOFactory.getAccionDAO().getAccion(idAccion).accionKeyDown(player, playerE, controlador);
         }
     }
 
@@ -44,7 +44,7 @@ public class Keybinds
         if (listaDeBinds.containsKey(keycode))
         {
             String idAccion = listaDeBinds.get(keycode);
-            DAOold.accionDAOFactory.getAccionDAO().getAccion(idAccion).accionKeyUp(player, playerE, controlador);
+            DAO.accionDAOFactory.getAccionDAO().getAccion(idAccion).accionKeyUp(player, playerE, controlador);
         }
     }
 

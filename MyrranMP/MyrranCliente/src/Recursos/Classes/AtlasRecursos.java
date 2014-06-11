@@ -1,6 +1,6 @@
 package Recursos.Classes;// Created by Hanto on 10/04/2014.
 
-import Data.MiscData;
+import Data.Misc.MiscData;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

@@ -1,4 +1,4 @@
-package Interfaces.UI;// Created by Hanto on 10/06/2014.
+package Interfaces.UI.Input;// Created by Hanto on 10/06/2014.
 
 public interface PlayerIOI
 {
