@@ -1,5 +1,6 @@
 
 atlas.png
+size: 136,34
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -33,6 +34,7 @@ Acciones/IrSur
   index: -1
 
 atlas2.png
+size: 826,252
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -87,6 +89,7 @@ Arboles/Tronco2
   index: -1
 
 atlas3.png
+size: 1014,436
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -134,6 +137,7 @@ Armaduras/PetoGolem01
   index: -1
 
 atlas4.png
+size: 27,9
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -160,6 +164,7 @@ Aura Icons/Snare
   index: -1
 
 atlas5.png
+size: 868,870
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -207,6 +212,7 @@ BAK/Armaduras/Peto1
   index: -1
 
 atlas6.png
+size: 866,578
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -219,6 +225,7 @@ BAK/Armaduras/CapaFrontal1
   index: -1
 
 atlas7.png
+size: 866,578
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -231,6 +238,7 @@ BAK/Armaduras/CapaTrasera1
   index: -1
 
 atlas8.png
+size: 866,578
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -243,6 +251,7 @@ BAK/Armaduras/Casco1
   index: -1
 
 atlas9.png
+size: 921,991
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -325,6 +334,7 @@ BAK/Player Sprites/Sombra
   index: -1
 
 atlas10.png
+size: 78,29
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -351,6 +361,7 @@ Muros/MuroTecho
   index: -1
 
 atlas11.png
+size: 98,390
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -377,6 +388,7 @@ NPC Sprites/Momia
   index: -1
 
 atlas12.png
+size: 1014,939
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -438,6 +450,7 @@ Player Sprites/Sombra
   index: -1
 
 atlas13.png
+size: 918,800
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -506,6 +519,7 @@ Spell Animations/SpellBalls_04n
   index: -1
 
 atlas14.png
+size: 340,34
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -581,6 +595,7 @@ Spell Icons/PoisonBolt
   index: -1
 
 atlas15.png
+size: 496,246
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -712,6 +727,7 @@ Terrenos/grid
   index: -1
 
 atlas16.png
+size: 160,57
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -736,7 +752,7 @@ UI/Nameplate
   orig: 36, 5
   offset: 0, 0
   index: -1
-UI/Nameplate..OLD
+UI/Nameplate.OLD
   rotate: false
   xy: 52, 18
   size: 36, 5

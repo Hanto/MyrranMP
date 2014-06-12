@@ -3,11 +3,9 @@
     <output-path>$PROJECT_DIR$/out/artifacts/MyrranCliente_jar</output-path>
     <root id="archive" name="MyrranCliente.jar">
       <element id="module-output" name="MyrranCliente" />
-      <element id="module-output" name="MyrranMP" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java LibGDX/gdx.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java LibGDX/gdx-setup.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java LibGDX/gdx-natives.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java LibGDX/gdx-setup-ui.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java LibGDX/gdx-backend-gwt.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java LibGDX/gdx-backend-jglfw.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java LibGDX/gdx-backend-lwjgl.jar" path-in-jar="/" />
@@ -19,6 +17,12 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java LibGDX/extensions/gdx-tools/gdx-tools.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java Kryonet/kryonet-2.21-all.jar" path-in-jar="/" />
       <element id="dir-copy" path="$PROJECT_DIR$/MyrranCliente/assets" />
+      <element id="module-output" name="MyrranCore" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java JDom/jdom-2.0.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java LibGDX/extensions/gdx-box2d/gdx-box2d.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java LibGDX/extensions/gdx-box2d/gdx-box2d-gwt.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java LibGDX/extensions/gdx-box2d/gdx-box2d-natives.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Librerias/Java Box2DLights/box2dlights-1.3-SNAPSHOT.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

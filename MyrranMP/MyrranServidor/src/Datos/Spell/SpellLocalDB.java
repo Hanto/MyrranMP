@@ -1,5 +1,6 @@
 package Datos.Spell;// Created by Hanto on 17/04/2014.
 
+import Core.AbrirFichero;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
 import Model.Classes.Skill.Spell.Spell;
@@ -7,8 +8,7 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +26,7 @@ public class SpellLocalDB
     public void cargarDatos()
     {
         SAXBuilder builder = new SAXBuilder();
-        File fichero = new File("Data/Spells.xml");
+        InputStream fichero = AbrirFichero.abrirFichero("Data/Spells.xml");
 
         try
         {
@@ -90,7 +90,6 @@ public class SpellLocalDB
                 listaDeSpells.put(spell.getID(), spell);
             }
         }
-        catch (IOException io) { System.out.println(io.getMessage()); }
-        catch (Exception jdomex) { System.out.println(jdomex.getMessage()); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de Spells."+e); }
     }
 }

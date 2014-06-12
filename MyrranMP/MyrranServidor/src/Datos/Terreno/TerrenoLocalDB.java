@@ -1,14 +1,13 @@
 package Datos.Terreno;// Created by Hanto on 15/04/2014.
 
+import Core.AbrirFichero;
 import Interfaces.Geo.TerrenoI;
 import Model.Classes.Geo.Terreno;
 import org.jdom2.Document;
 import org.jdom2.Element;
-import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +25,7 @@ public class TerrenoLocalDB
     public void cargarDatos()
     {
         SAXBuilder builder = new SAXBuilder();
-        File fichero = new File("Data/Terrenos.xml");
+        InputStream fichero = AbrirFichero.abrirFichero("Data/Terrenos.xml");
 
         try
         {
@@ -50,8 +49,6 @@ public class TerrenoLocalDB
                 System.out.println("isSolido :      " + isSolido);
             }
         }
-        catch (IOException io) { System.out.println(io.getMessage()); }
-        catch (JDOMException jdomex) { System.out.println(jdomex.getMessage()); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de Spells."+e); }
     }
-
 }
