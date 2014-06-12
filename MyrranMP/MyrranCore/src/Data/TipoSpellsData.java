@@ -1,4 +1,4 @@
-package Data.Spell;
+package Data;
 // @author Ivan Delgado Huerta
 public class TipoSpellsData 
 {

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/../out/production/MyrranServidor" />
+    <output-test url="file://$MODULE_DIR$/../out/test/MyrranServidor" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
@@ -10,6 +12,7 @@
     <orderEntry type="library" name="Java Kryonet" level="application" />
     <orderEntry type="module" module-name="MyrranMP" />
     <orderEntry type="library" name="Java JDom" level="application" />
+    <orderEntry type="module" module-name="MyrranCore" />
   </component>
 </module>
 

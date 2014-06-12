@@ -1,4 +1,4 @@
-package Data.Misc;// Created by Hanto on 07/04/2014.
+package Data;// Created by Hanto on 07/04/2014.
 
 import java.util.HashMap;
 

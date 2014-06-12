@@ -1,7 +1,7 @@
 package Model.Classes.Skill.Spell;
 // @author Ivan Delgado Huerta
 
-import Comun.SkillStat;
+import Core.SkillStat;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.Model.AbstractModel;
 import Interfaces.Spell.SpellI;

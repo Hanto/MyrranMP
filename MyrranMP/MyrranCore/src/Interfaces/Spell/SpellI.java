@@ -1,22 +1,20 @@
 package Interfaces.Spell;// Created by Hanto on 09/06/2014.
 
-import Comun.SkillStat;
+import Core.SkillStat;
 import Interfaces.EntidadesPropiedades.Caster;
 
-public interface TipoSpellI
+public interface SpellI
 {
     //SET
     public void setID(String id);
     public void setNombre (String nombre);
     public void setDescripcion (String descripcion);
-
-    //GET
+    //GET:
     public String getID();
-    public String getNombre();
+    public String getNombre ();
     public String getDescripcion ();
-    public SkillStat[] skillStat ();
+    public SkillStat[] skillStats ();
 
     //METODOS:
-    public void inicializarSkillStats();
-    public void ejecutarCasteo(SpellI spell, Caster caster, int targetX, int targetY);
+    public void castear (Caster caster, int targetX, int targetY);
 }

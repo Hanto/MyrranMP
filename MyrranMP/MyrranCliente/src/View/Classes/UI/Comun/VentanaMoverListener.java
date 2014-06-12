@@ -1,6 +1,6 @@
 package View.Classes.UI.Comun;// Created by Hanto on 13/05/2014.
 
-import Data.Misc.MiscData;
+import Data.MiscData;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;

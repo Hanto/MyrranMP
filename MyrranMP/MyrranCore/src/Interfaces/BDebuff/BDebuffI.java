@@ -1,6 +1,7 @@
 package Interfaces.BDebuff;// Created by Hanto on 09/06/2014.
 
-import Comun.SkillStat;
+
+import Core.SkillStat;
 
 public interface BDebuffI
 {   //SET

@@ -1,8 +1,6 @@
 package Data;
 
 import DTO.GameDataDTO;
-import Data.Spell.SpellsData;
-import Data.Spell.TipoSpellsData;
 
 import java.util.ArrayList;
 import java.util.List;

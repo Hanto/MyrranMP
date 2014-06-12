@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyrranCliente/MyrranCliente.iml" filepath="$PROJECT_DIR$/MyrranCliente/MyrranCliente.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyrranCore/MyrranCore.iml" filepath="$PROJECT_DIR$/MyrranCore/MyrranCore.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyrranMP.iml" filepath="$PROJECT_DIR$/MyrranMP.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyrranServidor/MyrranServidor.iml" filepath="$PROJECT_DIR$/MyrranServidor/MyrranServidor.iml" />
     </modules>

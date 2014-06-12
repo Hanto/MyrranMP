@@ -1,6 +1,6 @@
 package Datos.FuentesRecursos;// Created by Hanto on 02/05/2014.
 
-import Data.Misc.MiscData;
+import Data.MiscData;
 import Datos.FuentesRecursos.DB.FuentesRecursosLocalDB;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

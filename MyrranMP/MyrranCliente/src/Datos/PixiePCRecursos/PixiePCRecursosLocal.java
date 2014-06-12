@@ -1,6 +1,6 @@
 package Datos.PixiePCRecursos;// Created by Hanto on 01/05/2014.
 
-import Data.Misc.MiscData;
+import Data.MiscData;
 import Datos.PixiePCRecursos.DB.PixiePCRecursosLocalDB;
 import View.Classes.Graficos.Pixie;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;

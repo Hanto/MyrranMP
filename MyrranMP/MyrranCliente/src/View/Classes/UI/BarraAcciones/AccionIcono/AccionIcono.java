@@ -1,6 +1,6 @@
 package View.Classes.UI.BarraAcciones.AccionIcono;// Created by Hanto on 13/05/2014.
 
-import Data.Misc.MiscData;
+import Data.MiscData;
 import Interfaces.UI.Acciones.AccionI;
 import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import Interfaces.UI.BarraAcciones.ListaAccionesI;

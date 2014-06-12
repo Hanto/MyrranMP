@@ -1,8 +1,8 @@
 package Model.Classes.Skill.BDebuff;// Created by Hanto on 04/06/2014.
 
 
-import Data.Misc.MiscData;
-import Comun.SkillStat;
+import Data.MiscData;
+import Core.SkillStat;
 import Interfaces.BDebuff.AuraI;
 import Interfaces.BDebuff.BDebuffI;
 import Interfaces.BDebuff.TipoBDebuffI;

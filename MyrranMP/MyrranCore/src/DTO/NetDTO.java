@@ -1,8 +1,9 @@
 package DTO;// Created by Hanto on 07/04/2014.
 
-import Data.Misc.MiscData;
-import Interfaces.EntidadesTipos.MobPC;
+
+import Data.MiscData;
 import Interfaces.EntidadesPropiedades.Vulnerable;
+import Interfaces.EntidadesTipos.MobPC;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
 

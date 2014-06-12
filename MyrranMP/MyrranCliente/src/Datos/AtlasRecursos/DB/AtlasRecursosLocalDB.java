@@ -1,6 +1,6 @@
 package Datos.AtlasRecursos.DB;// Created by Hanto on 10/04/2014.
 
-import Data.Misc.MiscData;
+import Data.MiscData;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 

@@ -1,6 +1,6 @@
 package View.Classes.Graficos;
 
-import Data.Misc.MiscData;
+import Data.MiscData;
 import Datos.PixiePCRecursos.PixiePCRecursosDAO;
 import Datos.RSC;
 import com.badlogic.gdx.graphics.g2d.Batch;

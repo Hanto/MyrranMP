@@ -1,6 +1,6 @@
 package Datos.SkillRecursos;// Created by Hanto on 30/04/2014.
 
-import Data.Misc.MiscData;
+import Data.MiscData;
 import Datos.SkillRecursos.DB.SkillRecursosLocalDB;
 import Datos.SkillRecursos.DTO.SpellRecursos;
 import Datos.SkillRecursos.DTO.TipoSpellRecursos;

@@ -1,6 +1,6 @@
 package Datos.AccionRecursos;// Created by Hanto on 07/05/2014.
 
-import Data.Misc.MiscData;
+import Data.MiscData;
 import Datos.AccionRecursos.DB.AccionRecursosLocalDB;
 import Datos.AccionRecursos.DTO.AccionRecursos;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;

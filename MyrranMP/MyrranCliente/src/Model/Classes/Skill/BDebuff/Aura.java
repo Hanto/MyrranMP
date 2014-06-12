@@ -1,6 +1,6 @@
 package Model.Classes.Skill.BDebuff;// Created by Hanto on 04/06/2014.
 
-import Data.Misc.MiscData;
+import Data.MiscData;
 import Interfaces.BDebuff.AuraI;
 import Interfaces.BDebuff.TipoBDebuffI;
 import Interfaces.EntidadesPropiedades.Caster;

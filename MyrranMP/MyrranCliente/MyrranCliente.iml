@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
@@ -14,6 +14,7 @@
     <orderEntry type="library" name="Java Box2DLights" level="application" />
     <orderEntry type="library" name="gdx-box2d" level="application" />
     <orderEntry type="library" name="Java JDom" level="application" />
+    <orderEntry type="module" module-name="MyrranCore" />
   </component>
 </module>
 

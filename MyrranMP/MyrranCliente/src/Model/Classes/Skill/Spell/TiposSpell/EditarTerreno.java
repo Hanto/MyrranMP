@@ -1,8 +1,8 @@
 package Model.Classes.Skill.Spell.TiposSpell;
 // @author Ivan Delgado Huerta
 
-import Comun.SkillStat;
-import Data.Spell.TipoSpellsData;
+import Core.SkillStat;
+import Data.TipoSpellsData;
 import Model.Classes.Skill.Spell.TipoSpell;
 
 public class EditarTerreno extends TipoSpell

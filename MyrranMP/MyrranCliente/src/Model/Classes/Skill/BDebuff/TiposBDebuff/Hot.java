@@ -1,7 +1,7 @@
 package Model.Classes.Skill.BDebuff.TiposBDebuff;// Created by Hanto on 10/06/2014.
 
-import Comun.SkillStat;
-import Data.Spell.TipoAurasData;
+import Core.SkillStat;
+import Data.TipoAurasData;
 import Interfaces.BDebuff.AuraI;
 import Interfaces.EntidadesPropiedades.Vulnerable;
 import Model.Classes.Skill.BDebuff.TipoBDebuff;

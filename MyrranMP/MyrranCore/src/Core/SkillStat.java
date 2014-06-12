@@ -1,4 +1,4 @@
-package Comun;
+package Core;
 //* @author Ivan Delgado Huerta
 public class SkillStat
 {

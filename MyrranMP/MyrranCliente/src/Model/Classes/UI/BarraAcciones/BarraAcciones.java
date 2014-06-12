@@ -1,6 +1,6 @@
 package Model.Classes.UI.BarraAcciones;// Created by Hanto on 06/05/2014.
 
-import Data.Misc.MiscData;
+import Data.MiscData;
 import Interfaces.Model.AbstractModel;
 import Interfaces.UI.Acciones.AccionI;
 import Interfaces.UI.BarraAcciones.BarraAccionesI;

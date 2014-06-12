@@ -2,7 +2,7 @@ package Model.Classes.Skill.BDebuff;// Created by Hanto on 04/06/2014.
 
 
 import DAO.DAO;
-import Comun.SkillStat;
+import Core.SkillStat;
 import Interfaces.BDebuff.AuraI;
 import Interfaces.BDebuff.BDebuffI;
 import Interfaces.BDebuff.TipoBDebuffI;

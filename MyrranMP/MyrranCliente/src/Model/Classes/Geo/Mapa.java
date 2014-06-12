@@ -2,7 +2,7 @@ package Model.Classes.Geo;// Created by Hanto on 19/05/2014.
 
 import DAO.Terreno.TerrenoDAO;
 import DTO.NetDTO;
-import Data.Misc.MiscData;
+import Data.MiscData;
 import Interfaces.EntidadesTipos.Mob;
 import Interfaces.Geo.MapaI;
 import Interfaces.Geo.TerrenoI;

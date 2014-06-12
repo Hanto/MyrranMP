@@ -1,7 +1,7 @@
 package Datos.TerrenoRecursos;// Created by Ladrim on 24/04/2014.
 
 import Datos.TerrenoRecursos.DB.TerrenoRecursosLocalDB;
-import Data.Misc.MiscData;
+import Data.MiscData;
 import Datos.TerrenoRecursos.DTO.TerrenoRecursos;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

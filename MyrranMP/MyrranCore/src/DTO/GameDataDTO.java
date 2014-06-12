@@ -1,6 +1,6 @@
 package DTO;
 
-import Comun.SkillStat;
+import Core.SkillStat;
 
 public class GameDataDTO
 {
@@ -54,7 +54,7 @@ public class GameDataDTO
         public String id;
         public String nombre;
         public String descripcion;
-        public SkillStat [] skillStats;
+        public SkillStat[] skillStats;
         public String iDIcono;
         public String[] listaIDAnimaciones;
         public SpellDTO(int numSkillStats, int numAnimaciones)

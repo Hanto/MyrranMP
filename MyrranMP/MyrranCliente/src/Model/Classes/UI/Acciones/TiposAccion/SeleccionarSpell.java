@@ -1,6 +1,6 @@
 package Model.Classes.UI.Acciones.TiposAccion;// Created by Hanto on 05/05/2014.
 
-import Data.Spell.SpellsData;
+import Data.SpellsData;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesTipos.MobPlayer;
 import Interfaces.Spell.SpellI;

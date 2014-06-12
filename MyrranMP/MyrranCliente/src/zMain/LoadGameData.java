@@ -1,6 +1,6 @@
 package zMain;// Created by Hanto on 11/04/2014.
 
-import Comun.SkillStat;
+import Core.SkillStat;
 import DAO.Accion.AccionDAO;
 import DAO.DAO;
 import DAO.Spell.SpellDAO;
@@ -8,7 +8,7 @@ import DAO.Terreno.TerrenoDAO;
 import DAO.TipoSpell.TipoSpellDAO;
 import DTO.GameDataDTO;
 import Data.GameData;
-import Data.Misc.MiscData;
+import Data.MiscData;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
 import Model.Classes.Geo.Terreno;

@@ -1,7 +1,7 @@
 package View.Classes.UI.BarraAcciones;// Created by Hanto on 06/05/2014.
 
 import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
-import Data.Misc.MiscData;
+import Data.MiscData;
 import Model.Classes.UI.BarraAcciones.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
 import Datos.RSC;
