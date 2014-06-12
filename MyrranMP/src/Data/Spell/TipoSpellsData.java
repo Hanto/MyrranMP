@@ -19,9 +19,12 @@ public class TipoSpellsData
     //TIPOSSPELL:
 
     //EDITAR TERRENO:
-    public static final String  EDITARTERRENO_Icono = ICONO_Editar;
+    public static final String  EDITARTERRENO_ID = "EditarTErreno";
+    public static final String  EDITARTERRENO_Nombre = "EditarTerreno";
+    public static final String  EDITARTERRENO_Descripcion = "Edita el Terreno";
     public static final String  EDITARTERRENO_CastingTime_String = "Casting Time";
     public static final float   EDITARTERRENO_CastingTime_Valor = 0.01f;
+    public static final String  EDITARTERRENO_Icono = ICONO_Editar;
 
     //BOLT: (el casting time siempre debe ir primero)
     public static final String  BOLT_Icono = "FireBall";

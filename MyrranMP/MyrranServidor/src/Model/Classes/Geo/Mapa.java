@@ -1,12 +1,11 @@
 package Model.Classes.Geo;// Created by Hanto on 14/04/2014.
 
-import DAO.DAO;
+import DAO.Terreno.TerrenoDAO;
 import DTO.NetDTO;
 import Data.Misc.MiscData;
 import Interfaces.Geo.MapaI;
-import Interfaces.Model.AbstractModel;
 import Interfaces.Geo.TerrenoI;
-import DAO.Terreno.TerrenoDAO;
+import Interfaces.Model.AbstractModel;
 
 public class Mapa extends AbstractModel implements MapaI
 {
@@ -23,7 +22,7 @@ public class Mapa extends AbstractModel implements MapaI
     @Override public TerrenoI getTerreno (int x, int y, int numCapa)
     {
         if (x<0 || y<0 || x>= MiscData.MAPA_Max_TilesX || y>= MiscData.MAPA_Max_TilesY) return null;
-        TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
+        TerrenoDAO terrenoDAO = Datos.DAO.terrenoDAOFactory.getTerrenoDAO();
         return terrenoDAO.getTerreno(matriz[x][y].getTerrenoID(numCapa));
     }
 

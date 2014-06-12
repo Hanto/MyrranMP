@@ -5,7 +5,7 @@ import Data.Misc.MiscData;
 import Model.Classes.UI.BarraAcciones.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
 import Model.GameState.UI;
-import Recursos.DAO.RSC;
+import Datos.RSC;
 import View.Classes.Graficos.Texto;
 import View.Classes.UI.BarraTerrenos.BarraTerrenosView;
 import View.Classes.UI.BarraAcciones.ConjuntoBarraAccionesView;

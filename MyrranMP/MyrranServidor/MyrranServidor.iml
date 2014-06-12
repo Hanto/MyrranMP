@@ -9,6 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Java Kryonet" level="application" />
     <orderEntry type="module" module-name="MyrranMP" />
+    <orderEntry type="library" name="Java JDom" level="application" />
   </component>
 </module>
 

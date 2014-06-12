@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<Spells>
+	<Spell>
+		<iD>Terraformar</iD>
+		<nombre>Terraformar</nombre>
+		<descripcion>Terraforma el terreno</descripcion>
+		<tipoSpell>EDITARTERRENO</tipoSpell>
+		<SkillStats>
+			<Stat>
+				<numStat>0</numStat>
+				<nombre>Castear</nombre>
+				<valorBase>0.02</valorBase>
+				<isMejorable>false</isMejorable>
+				<talentoMaximo>50</talentoMaximo>
+				<costeTalento>1</costeTalento>
+				<bonoTalento>1</bonoTalento>
+			</Stat>
+		</SkillStats>
+	</Spell>
+</Spells>

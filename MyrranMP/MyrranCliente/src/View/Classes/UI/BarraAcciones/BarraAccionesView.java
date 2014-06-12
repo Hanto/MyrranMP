@@ -4,7 +4,7 @@ import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import Data.Misc.MiscData;
 import Model.Classes.UI.BarraAcciones.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
-import Recursos.DAO.RSC;
+import Datos.RSC;
 import View.Classes.Graficos.Texto;
 import View.Classes.UI.BarraAcciones.AccionIcono.AccionIcono;
 import View.Classes.UI.Comun.Ventana;
@@ -58,15 +58,15 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
         this.bottom().left();
         this.setPosition(500,0);
 
-        moverBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
+        moverBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_RebindButtonON));
         moverBarra.addListener(new VentanaMoverListener(moverBarra, this));
         this.addActor(moverBarra);
 
-        redimensionarBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
+        redimensionarBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_RebindButtonON));
         redimensionarBarra.addListener(new VentanaResizeListener(redimensionarBarra, this, this));
         this.addActor(redimensionarBarra);
 
-        eliminarBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonOFF));
+        eliminarBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_RebindButtonOFF));
         this.addActor(eliminarBarra);
         eliminarBarra.addListener(new InputListener()
         {

@@ -62,13 +62,14 @@ public class MiscData
     //Barra Spells:
     public final static int BARRASPELLS_Ancho_Casilla = 32+2;
     public final static int BARRASPELLS_Alto_Casilla = 32+2;
-    public final static String BARRASPELLS_Textura_Casillero = "Casillero";
-    public final static String BARRASPELLS_RebindButtonON = "RebindOn";
-    public final static String BARRASPELLS_RebindButtonOFF ="RebindOff";
-    public final static String BARRATERRENOS_Borrar_Terreno = "Borrar";
-    public final static String NAMEPLATE_Nameplate = "Nameplate";
-    public final static String NAMEPLATE_Nameplate_Fondo = "NameplateFondo";
-    public final static String PIXIEPC_Sombra = "Sombra";
+    public final static String RECURSO_BARRASPELLS_Textura_Casillero = "Casillero";
+    public final static String RECURSO_BARRASPELLS_RebindButtonON = "RebindOn";
+    public final static String RECURSO_BARRASPELLS_RebindButtonOFF ="RebindOff";
+    public final static String RECURSO_BARRATERRENOS_Borrar_Terreno = "Borrar";
+    public final static String RECURSO_NAMEPLATE_Nameplate = "Nameplate";
+    public final static String RECURSO_NAMEPLATE_Nameplate_Fondo = "NameplateFondo";
+    public final static String RECURSO_PIXIEPC_Sombra = "Sombra";
+    public final static String RECURSO_Grid = "grid";
     //Icono Accion
     public final static int ICONO_Accion_Ancho = 32;
     public final static int ICONO_Accion_Alto = 32;

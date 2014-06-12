@@ -1,10 +1,9 @@
 package Model.Classes.Skill.Spell;
 // @author Ivan Delgado Huerta
 
-import DAO.DAO;
 import Comun.SkillStat;
-import Interfaces.Model.AbstractModel;
 import Interfaces.EntidadesPropiedades.Caster;
+import Interfaces.Model.AbstractModel;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
 
@@ -50,7 +49,7 @@ public class Spell extends AbstractModel implements SpellI
 
     public Spell (String tipoSpellID)
     {
-        tipoSpell = DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(tipoSpellID);
+        tipoSpell = Datos.DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(tipoSpellID);
 
         if (tipoSpell == null) { System.out.println("ERROR: spellID no encontrado"); return; }
 

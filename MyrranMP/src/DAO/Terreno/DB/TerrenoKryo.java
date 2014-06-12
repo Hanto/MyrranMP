@@ -23,7 +23,7 @@ public class TerrenoKryo implements TerrenoDAO
         if (listaDeTerrenos.containsKey(terreno.getID()))
         {
             listaDeTerrenos.put(terreno.getID(), terreno);
-            TerrenoKryoDB.get().salvarTerrenoDB();
+            TerrenoKryoDB.get().salvarDatos();
         }
     }
 
@@ -32,7 +32,7 @@ public class TerrenoKryo implements TerrenoDAO
         if (listaDeTerrenos.containsKey(terrenoID))
         {
             listaDeTerrenos.remove(terrenoID);
-            TerrenoKryoDB.get().salvarTerrenoDB();
+            TerrenoKryoDB.get().salvarDatos();
         }
     }
 

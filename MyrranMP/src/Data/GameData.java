@@ -73,9 +73,9 @@ public class GameData
         listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (7, "Cesped3",      false, "Cesped3"));
         listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (8, "Cesped4",      false, "Cesped4"));
         listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (9, "Cesped5",      false, "Cesped5"));
-        listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (12, "Tierra1",     false, "Tierra1"));
-        listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (13, "Tierra2",     false, "Tierra2"));
-        listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (14, "Tierra3",     false, "Tierra3"));
+        listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (10, "Tierra1",     false, "Tierra1"));
+        listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (11, "Tierra2",     false, "Tierra2"));
+        listaDeTerrenos.add(new GameDataDTO.TerrenoDTO  (12, "Tierra3",     false, "Tierra3"));
 
         //ICONOS:
         listaDeSpellRSCIconos.add(new GameDataDTO.SpellRSCIconosDTO(TipoSpellsData.ICONO_Editar));

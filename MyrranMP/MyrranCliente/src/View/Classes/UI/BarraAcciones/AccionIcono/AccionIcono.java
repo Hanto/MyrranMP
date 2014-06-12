@@ -4,7 +4,7 @@ import Data.Misc.MiscData;
 import Interfaces.UI.Acciones.AccionI;
 import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import Interfaces.UI.BarraAcciones.ListaAccionesI;
-import Recursos.DAO.RSC;
+import Datos.RSC;
 import View.Classes.UI.Comun.Icono;
 import View.Classes.UI.Comun.IconoSource;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -59,7 +59,7 @@ public class AccionIcono implements Icono
         group.clearChildren();
         if (accion == null)
         {
-            Image casillaVacia = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_Textura_Casillero));
+            Image casillaVacia = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_Textura_Casillero));
             casillaVacia.setColor(0, 0, 0, 0.06f);
             casillaVacia.setBounds(0,0,MiscData.ICONO_Accion_Ancho, MiscData.ICONO_Accion_Alto);
             group.addActor(casillaVacia);

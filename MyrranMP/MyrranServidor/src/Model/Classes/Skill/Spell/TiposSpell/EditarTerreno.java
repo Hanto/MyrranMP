@@ -1,8 +1,8 @@
 package Model.Classes.Skill.Spell.TiposSpell;
 // @author Ivan Delgado Huerta
 
-import Data.Misc.MiscData;
 import Comun.SkillStat;
+import Data.Misc.MiscData;
 import Data.Spell.TipoSpellsData;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.Spell.SpellI;
@@ -14,6 +14,10 @@ public class EditarTerreno extends TipoSpell
 {
     @Override public void inicializarSkillStats() 
     {
+        setID(TipoSpellsData.EDITARTERRENO_ID);
+        setNombre(TipoSpellsData.EDITARTERRENO_Nombre);
+        setDescripcion(TipoSpellsData.EDITARTERRENO_Descripcion);
+
         skillStats = new SkillStat[1];
         skillStats[STAT_Cast] = new SkillStat  (TipoSpellsData.EDITARTERRENO_CastingTime_String, TipoSpellsData.EDITARTERRENO_CastingTime_Valor); //CAST
     }

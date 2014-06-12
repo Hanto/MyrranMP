@@ -3,7 +3,7 @@ package View.Classes.UI.BarraAcciones;// Created by Hanto on 08/05/2014.
 import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import Data.Misc.MiscData;
 import Model.Classes.UI.BarraAcciones.BarraAcciones;
-import Recursos.DAO.RSC;
+import Datos.RSC;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -42,7 +42,7 @@ public class ConjuntoBarraAccionesView
 
     private void crearBotonesRebind()
     {
-        final Image rebindButtonOff = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonOFF));
+        final Image rebindButtonOff = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_RebindButtonOFF));
         stage.addActor(rebindButtonOff);
         rebindButtonOff.setPosition(32,0);
         rebindButtonOff.addListener(new InputListener()
@@ -55,7 +55,7 @@ public class ConjuntoBarraAccionesView
             }
         });
 
-        final Image rebindButtonOn = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
+        final Image rebindButtonOn = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_RebindButtonON));
         stage.addActor(rebindButtonOn);
         rebindButtonOn.setPosition(32,0);
         rebindButtonOn.addListener(new InputListener()
@@ -68,7 +68,7 @@ public class ConjuntoBarraAccionesView
             }
         });
 
-        Image añadirBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
+        Image añadirBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_RebindButtonON));
         stage.addActor(añadirBarra);
         añadirBarra.setPosition(32+18,0);
         añadirBarra.addListener(new InputListener()

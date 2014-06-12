@@ -1,5 +1,6 @@
 package zMain;// Created by Hanto on 11/04/2014.
 
+import Comun.SkillStat;
 import DAO.Accion.AccionDAO;
 import DAO.DAO;
 import DAO.Spell.SpellDAO;
@@ -8,7 +9,6 @@ import DAO.TipoSpell.TipoSpellDAO;
 import DTO.GameDataDTO;
 import Data.GameData;
 import Data.Misc.MiscData;
-import Comun.SkillStat;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
 import Model.Classes.Geo.Terreno;
@@ -17,22 +17,21 @@ import Model.Classes.Skill.Spell.TipoSpell;
 import Model.Classes.Skill.Spell.TipoSpellFactory;
 import Model.Classes.UI.Acciones.Accion;
 import Model.Classes.UI.Acciones.TiposAccion.*;
-import Recursos.Classes.AccionRecursos;
-import Recursos.Classes.AtlasRecursos;
-import Recursos.Classes.SpellRecursos;
-import Recursos.Classes.TerrenoRecursos;
-import Recursos.DAO.AccionRecursos.AccionRecursosDAO;
-import Recursos.DAO.FuentesRecursos.FuentesRecursosDAO;
-import Recursos.DAO.MiscRecursos.MiscRecursosDAO;
-import Recursos.DAO.PixiePCRecursos.PixiePCRecursosDAO;
-import Recursos.DAO.RSC;
-import Recursos.DAO.SkillRecursos.SkillRecursosDAO;
-import Recursos.DAO.TerrenoRecursos.TerrenoRecursosDAO;
+import Datos.AccionRecursos.AccionRecursosDAO;
+import Datos.AccionRecursos.DTO.AccionRecursos;
+import Datos.FuentesRecursos.FuentesRecursosDAO;
+import Datos.MiscRecursos.MiscRecursosDAO;
+import Datos.PixiePCRecursos.PixiePCRecursosDAO;
+import Datos.RSC;
+import Datos.SkillRecursos.DTO.SpellRecursos;
+import Datos.SkillRecursos.SkillRecursosDAO;
+import Datos.TerrenoRecursos.DTO.TerrenoRecursos;
+import Datos.TerrenoRecursos.TerrenoRecursosDAO;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class LoadGameData
 {
-    private TextureAtlas atlas = AtlasRecursos.get().atlas;
+    private TextureAtlas atlas = RSC.atlasRecursosDAO.getAtlasRecursosDAO().getAtlas();
 
     public void cargarTodo ()
     {
@@ -55,7 +54,7 @@ public class LoadGameData
         cargarSpellCasteos();
         cargarSpellProyectiles();
 
-        cargarTipoSpells();
+        //cargarTipoSpells();
         cargarSpells();
 
         cargarFuentes();
@@ -154,7 +153,7 @@ public class LoadGameData
 
     public void cargarTerrenos()
     {
-        TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
+        TerrenoDAO terrenoDAO = Datos.DAO.terrenoDAOFactory.getTerrenoDAO();
         TerrenoRecursosDAO terrenoRecursosDAO = RSC.terrenoRecursosDAO.getTerrenoRecursosDAO();
 
         for (GameDataDTO.TerrenoDTO terrenoDTO : GameData.get().listaDeTerrenos)
@@ -193,11 +192,11 @@ public class LoadGameData
 
     public void cargarTipoSpells()
     {
-        TipoSpellDAO tipoSpellDAO = DAO.tipoSpellDAOFactory.getTipoSpellDAO();
+        TipoSpellDAO tipoSpellDAO = Datos.DAO.tipoSpellDAOFactory.getTipoSpellDAO();
 
         for (TipoSpellFactory tipoSpellFactory: TipoSpellFactory.values())
         {
-            TipoSpell tipoSpell = tipoSpellFactory.nuevo();
+            TipoSpell tipoSpell = tipoSpellFactory.nuevoTipoSpell();
             tipoSpell.setID(tipoSpellFactory.name());
             tipoSpellDAO.añadirTipoSpell(tipoSpell);
         }
@@ -205,7 +204,7 @@ public class LoadGameData
 
     public void cargarSpells()
     {
-        SpellDAO spellDAO = DAO.spellDAOFactory.getSpellDAO();
+        SpellDAO spellDAO = Datos.DAO.spellDAOFactory.getSpellDAO();
         SkillRecursosDAO skillRecursosDAO = RSC.skillRecursosDAO.getSpellRecursosDAO();
 
         SpellI spell;
@@ -214,7 +213,7 @@ public class LoadGameData
 
         for (GameDataDTO.SpellDTO spellDTO : GameData.get().listaDeSpells)
         {
-            tipoSpell = DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(spellDTO.tipoSpell.name());
+            tipoSpell = Datos.DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(spellDTO.tipoSpell.name());
             spell = new Spell(tipoSpell);
 
             if (spell.skillStats().length != spellDTO.skillStats.length)
@@ -260,13 +259,14 @@ public class LoadGameData
     public void cargarMiscRecursos()
     {
         MiscRecursosDAO miscRecursosDAO = RSC.miscRecusosDAO.getMiscRecursosDAO();
-        miscRecursosDAO.salvarTextura(MiscData.PIXIEPC_Sombra, "Player Sprites/Sombra", atlas);
-        miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_Textura_Casillero, "UI/Casillero", atlas);
-        miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_RebindButtonON, "UI/RebindOn", atlas);
-        miscRecursosDAO.salvarTextura(MiscData.BARRASPELLS_RebindButtonOFF, "UI/RebindOff", atlas);
-        miscRecursosDAO.salvarTextura(MiscData.BARRATERRENOS_Borrar_Terreno, "UI/Borrar", atlas);
-        miscRecursosDAO.salvarTextura(MiscData.NAMEPLATE_Nameplate, "UI/Nameplate", atlas);
-        miscRecursosDAO.salvarTextura(MiscData.NAMEPLATE_Nameplate_Fondo, "UI/NameplateFondo", atlas);
+        miscRecursosDAO.salvarTextura(MiscData.RECURSO_PIXIEPC_Sombra, "Player Sprites/Sombra", atlas);
+        miscRecursosDAO.salvarTextura(MiscData.RECURSO_BARRASPELLS_Textura_Casillero, "UI/Casillero", atlas);
+        miscRecursosDAO.salvarTextura(MiscData.RECURSO_BARRASPELLS_RebindButtonON, "UI/RebindOn", atlas);
+        miscRecursosDAO.salvarTextura(MiscData.RECURSO_BARRASPELLS_RebindButtonOFF, "UI/RebindOff", atlas);
+        miscRecursosDAO.salvarTextura(MiscData.RECURSO_BARRATERRENOS_Borrar_Terreno, "UI/Borrar", atlas);
+        miscRecursosDAO.salvarTextura(MiscData.RECURSO_NAMEPLATE_Nameplate, "UI/Nameplate", atlas);
+        miscRecursosDAO.salvarTextura(MiscData.RECURSO_NAMEPLATE_Nameplate_Fondo, "UI/NameplateFondo", atlas);
+        miscRecursosDAO.salvarTextura(MiscData.RECURSO_Grid, "Terrenos/grid", atlas);
     }
 
 
@@ -297,7 +297,7 @@ public class LoadGameData
 
         for (GameDataDTO.SpellDTO spellDTO : GameData.get().listaDeSpells)
         {
-            accion = new SeleccionarSpell(DAO.spellDAOFactory.getSpellDAO().getSpell(spellDTO.id));
+            accion = new SeleccionarSpell(Datos.DAO.spellDAOFactory.getSpellDAO().getSpell(spellDTO.id));
             accionDAO.salvarAccion(accion);
 
             accionRecurso = new AccionRecursos(accion.getID(), RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRecursos(spellDTO.id).getIcono());

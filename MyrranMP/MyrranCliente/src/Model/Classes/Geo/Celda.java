@@ -1,6 +1,5 @@
 package Model.Classes.Geo;// Created by Hanto on 14/04/2014.
 
-import DAO.DAO;
 import DAO.Terreno.TerrenoDAO;
 import Data.Misc.MiscData;
 import Interfaces.Geo.CeldaI;
@@ -37,7 +36,7 @@ public class Celda implements CeldaI,KryoSerializable
 
     @Override public TerrenoI getTerreno(int numCapa)
     {
-        TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
+        TerrenoDAO terrenoDAO = Datos.DAO.terrenoDAOFactory.getTerrenoDAO();
         return terrenoDAO.getTerreno(listaTerrenos[numCapa]);
     }
 
@@ -48,7 +47,7 @@ public class Celda implements CeldaI,KryoSerializable
 
     @Override public boolean setTerreno(int numCapa, short terrenoID)
     {
-        TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
+        TerrenoDAO terrenoDAO = Datos.DAO.terrenoDAOFactory.getTerrenoDAO();
         if (terrenoDAO.getTerreno(terrenoID) == null && terrenoID != -1) { return false; }
         else { listaTerrenos[numCapa] = terrenoID; return true; }
     }

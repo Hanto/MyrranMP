@@ -4,7 +4,7 @@ import Controller.Controlador;
 import Data.Misc.MiscData;
 import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
 import Model.DTO.BarraTerrenosDTO;
-import Recursos.DAO.RSC;
+import Datos.RSC;
 import View.Classes.Graficos.Texto;
 import View.Classes.UI.BarraTerrenos.TerrenoIcono.TerrenoIcono;
 import View.Classes.UI.Comun.Ventana;
@@ -66,15 +66,15 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
         scrollPane = new ScrollPane(tablaTerrenos);
         this.addActor(scrollPane);
 
-        moverBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
+        moverBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_RebindButtonON));
         moverBarra.addListener(new VentanaMoverListener(moverBarra, this));
         this.addActor(moverBarra);
 
-        redimensionarBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRASPELLS_RebindButtonON));
+        redimensionarBarra = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_RebindButtonON));
         redimensionarBarra.addListener(new VentanaResizeListener(redimensionarBarra, this, this));
         this.addActor(redimensionarBarra);
 
-        botonBorrarTerreno = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.BARRATERRENOS_Borrar_Terreno));
+        botonBorrarTerreno = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRATERRENOS_Borrar_Terreno));
         botonBorrarTerreno.setPosition(0, -botonBorrarTerreno.getHeight());
         this.addActor(botonBorrarTerreno);
         botonBorrarTerreno.addListener(new InputListener()

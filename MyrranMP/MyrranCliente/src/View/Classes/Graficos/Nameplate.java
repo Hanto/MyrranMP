@@ -1,8 +1,8 @@
 package View.Classes.Graficos;
 
 import Data.Misc.MiscData;
-import Recursos.DAO.MiscRecursos.MiscRecursosDAO;
-import Recursos.DAO.RSC;
+import Datos.MiscRecursos.MiscRecursosDAO;
+import Datos.RSC;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -21,10 +21,10 @@ public class Nameplate extends Group
     {
         MiscRecursosDAO miscRecursosDAO = RSC.miscRecusosDAO.getMiscRecursosDAO();
 
-        barraVidaTotal = new Sprite(miscRecursosDAO.cargarTextura(MiscData.NAMEPLATE_Nameplate));
-        barraVidaActual = new Sprite(miscRecursosDAO.cargarTextura(MiscData.NAMEPLATE_Nameplate_Fondo));
-        barraCasteoTotal = new Sprite(miscRecursosDAO.cargarTextura(MiscData.NAMEPLATE_Nameplate));
-        barraCasteoActual = new Sprite(miscRecursosDAO.cargarTextura(MiscData.NAMEPLATE_Nameplate_Fondo));
+        barraVidaTotal = new Sprite(miscRecursosDAO.cargarTextura(MiscData.RECURSO_NAMEPLATE_Nameplate));
+        barraVidaActual = new Sprite(miscRecursosDAO.cargarTextura(MiscData.RECURSO_NAMEPLATE_Nameplate_Fondo));
+        barraCasteoTotal = new Sprite(miscRecursosDAO.cargarTextura(MiscData.RECURSO_NAMEPLATE_Nameplate));
+        barraCasteoActual = new Sprite(miscRecursosDAO.cargarTextura(MiscData.RECURSO_NAMEPLATE_Nameplate_Fondo));
         barraVidaTotal.setColor(Color.GREEN);
         barraCasteoTotal.setColor(Color.ORANGE);
 

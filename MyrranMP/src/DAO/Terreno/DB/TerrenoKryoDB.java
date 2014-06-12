@@ -19,10 +19,10 @@ public class TerrenoKryoDB
 
     public TerrenoKryoDB()
     {
-        cargarTerrenoDB();
+        cargarDatos();
     }
 
-    public void salvarTerrenoDB ()
+    public void salvarDatos()
     {
         Kryo kryo = new Kryo();
         try
@@ -34,7 +34,7 @@ public class TerrenoKryoDB
         catch (Exception e) { System.out.println("No se ha podido salvar Terrenos.Bin"); }
     }
 
-    public void cargarTerrenoDB()
+    public void cargarDatos()
     {
         Kryo kryo = new Kryo();
 
