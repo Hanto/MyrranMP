@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<TexturasTerreno>
+  <Terreno>Arena1</Terreno>
+  <Terreno>Arena2</Terreno>
+  <Terreno>Baldosas1</Terreno>
+  <Terreno>Baldosas2</Terreno>
+  <Terreno>Baldosas3</Terreno>
+  <Terreno>Cesped1</Terreno>
+  <Terreno>Cesped2</Terreno>
+  <Terreno>Cesped3</Terreno>
+  <Terreno>Cesped4</Terreno>
+  <Terreno>Cesped5</Terreno>
+  <Terreno>Tierra1</Terreno>
+  <Terreno>Tierra2</Terreno>
+  <Terreno>Tierra3</Terreno>
+</TexturasTerreno>

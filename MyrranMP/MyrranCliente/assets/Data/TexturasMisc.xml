@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<TexturasMisc>
+  	<Textura>Sombra</Textura>
+  	<Textura>Casillero</Textura>
+  	<Textura>RebindOn</Textura>
+  	<Textura>RebindOff</Textura>
+	<Textura>Borrar</Textura>
+	<Textura>Nameplate</Textura>
+	<Textura>NameplateFondo</Textura>
+	<Textura>Grid</Textura>
+</TexturasMisc>
