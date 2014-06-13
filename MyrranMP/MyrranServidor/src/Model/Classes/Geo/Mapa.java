@@ -22,7 +22,7 @@ public class Mapa extends AbstractModel implements MapaI
     @Override public TerrenoI getTerreno (int x, int y, int numCapa)
     {
         if (x<0 || y<0 || x>= MiscData.MAPA_Max_TilesX || y>= MiscData.MAPA_Max_TilesY) return null;
-        TerrenoDAO terrenoDAO = Datos.DAO.terrenoDAOFactory.getTerrenoDAO();
+        TerrenoDAO terrenoDAO = DB.DAO.terrenoDAOFactory.getTerrenoDAO();
         return terrenoDAO.getTerreno(matriz[x][y].getTerrenoID(numCapa));
     }
 

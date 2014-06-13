@@ -205,7 +205,7 @@ public class MapaView
 
     private void enviarMapa(int mapTileInicialX, int mapTileInicialY)
     {
-        System.out.println("enviar: ["+mapTileInicialX+" "+mapTileInicialY+"]");
+        System.out.println("Enviar MapTile: ["+mapTileInicialX+" "+mapTileInicialY+"]");
         if (mapTileInicialX <0 || mapTileInicialY < 0) { return; }
 
         int ancho = numTilesX+reborde*2;

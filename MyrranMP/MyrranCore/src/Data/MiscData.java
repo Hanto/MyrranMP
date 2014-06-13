@@ -31,9 +31,9 @@ public class MiscData
     public final static String ATLAS_Armaduras_LOC = "Armaduras/";
     public final static String ATLAS_Terrenos_LOC = "Terrenos/";
     public final static String ATLAS_Fuentes_LOC = "Fonts/";
-    public final static String ATLAS_Spell_Iconos_Loc = "Spell Icons/";
+    public final static String ATLAS_Iconos_LOC = "Iconos/";
     public final static String ATLAS_Spell_Animations_LOC = "Spell Animations/";
-    public final static String ATLAS_Acciones_LOC = "Acciones/";
+    public final static String ATLAS_Misc_LOC = "Misc/";
 
     //Pixie:
     public final static int PIXIE_Player_numFilas = 7;
@@ -69,7 +69,7 @@ public class MiscData
     public final static String RECURSO_NAMEPLATE_Nameplate = "Nameplate";
     public final static String RECURSO_NAMEPLATE_Nameplate_Fondo = "NameplateFondo";
     public final static String RECURSO_PIXIEPC_Sombra = "Sombra";
-    public final static String RECURSO_Grid = "grid";
+    public final static String RECURSO_Grid = "Grid";
     //Icono Accion
     public final static int ICONO_Accion_Ancho = 32;
     public final static int ICONO_Accion_Alto = 32;

@@ -27,7 +27,7 @@ public class MyrranClient extends Game
         cfg.width = MiscData.GDX_Horizontal_Resolution;
         cfg.height = MiscData.GDX_Vertical_Resolution;
 
-        cfg.addIcon("Images/Spell Icons/FireBall.png", Files.FileType.Internal);
+        cfg.addIcon("Images/Iconos/FireBall.png", Files.FileType.Internal);
         new LwjglApplication(new MyrranClient(), cfg);
     }
 

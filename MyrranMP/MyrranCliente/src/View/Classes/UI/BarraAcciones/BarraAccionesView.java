@@ -4,7 +4,7 @@ import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import Data.MiscData;
 import Model.Classes.UI.BarraAcciones.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
-import Datos.RSC;
+import DB.RSC;
 import View.Classes.Graficos.Texto;
 import View.Classes.UI.BarraAcciones.AccionIcono.AccionIcono;
 import View.Classes.UI.Comun.Ventana;

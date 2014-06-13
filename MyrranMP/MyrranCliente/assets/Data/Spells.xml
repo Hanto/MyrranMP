@@ -5,6 +5,7 @@
 		<nombre>Terraformar</nombre>
 		<descripcion>Terraforma el terreno</descripcion>
 		<tipoSpell>EDITARTERRENO</tipoSpell>
+		<icono>Editar</icono>
 		<SkillStats>
 			<Stat>
 				<numStat>0</numStat>

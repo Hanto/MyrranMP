@@ -1,8 +1,8 @@
 package View.Classes.Graficos;
 
 import Data.MiscData;
-import Datos.MiscRecursos.MiscRecursosDAO;
-import Datos.RSC;
+import DB.Recursos.MiscRecursos.DAO.MiscRecursosDAO;
+import DB.RSC;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;

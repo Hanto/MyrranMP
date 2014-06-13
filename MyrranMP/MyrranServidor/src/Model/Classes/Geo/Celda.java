@@ -36,7 +36,7 @@ public class Celda implements CeldaI, KryoSerializable
 
     @Override public TerrenoI getTerreno(int numCapa)
     {
-        TerrenoDAO terrenoDAO = Datos.DAO.terrenoDAOFactory.getTerrenoDAO();
+        TerrenoDAO terrenoDAO = DB.DAO.terrenoDAOFactory.getTerrenoDAO();
         return terrenoDAO.getTerreno(listaTerrenos[numCapa]);
     }
 
@@ -47,7 +47,7 @@ public class Celda implements CeldaI, KryoSerializable
 
     @Override public boolean setTerreno(int numCapa, short terrenoID)
     {
-        TerrenoDAO terrenoDAO = Datos.DAO.terrenoDAOFactory.getTerrenoDAO();
+        TerrenoDAO terrenoDAO = DB.DAO.terrenoDAOFactory.getTerrenoDAO();
         if (terrenoDAO.getTerreno(terrenoID) == null && terrenoID != -1) { return false; }
         else { listaTerrenos[numCapa] = terrenoID; return true; }
     }

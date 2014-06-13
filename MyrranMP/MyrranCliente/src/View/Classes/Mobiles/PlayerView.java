@@ -5,7 +5,7 @@ import DTO.NetDTO;
 import Data.MiscData;
 import Model.Classes.Mobiles.Player;
 import Model.DTO.PlayerDTO;
-import Datos.RSC;
+import DB.RSC;
 import View.Classes.Graficos.Nameplate;
 import View.Classes.Graficos.PixiePC;
 import View.Classes.Graficos.Texto;

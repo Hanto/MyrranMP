@@ -2,8 +2,8 @@ package View.Classes.Geo;// Created by Hanto on 15/04/2014.
 
 import Data.MiscData;
 import Model.DTO.TerrenoDTO;
-import Datos.RSC;
-import Datos.TerrenoRecursos.DTO.TerrenoRecursos;
+import DB.RSC;
+import DB.Recursos.TerrenoRecursos.DTO.TerrenoRecursos;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class TerrenoView

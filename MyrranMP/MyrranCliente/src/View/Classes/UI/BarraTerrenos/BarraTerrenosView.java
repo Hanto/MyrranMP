@@ -4,7 +4,7 @@ import Controller.Controlador;
 import Data.MiscData;
 import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
 import Model.DTO.BarraTerrenosDTO;
-import Datos.RSC;
+import DB.RSC;
 import View.Classes.Graficos.Texto;
 import View.Classes.UI.BarraTerrenos.TerrenoIcono.TerrenoIcono;
 import View.Classes.UI.Comun.Ventana;

@@ -1,39 +1,5 @@
 
 atlas.png
-size: 136,34
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-Acciones/IrEste
-  rotate: false
-  xy: 2, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-Acciones/IrNorte
-  rotate: false
-  xy: 36, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-Acciones/IrOeste
-  rotate: false
-  xy: 70, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-Acciones/IrSur
-  rotate: false
-  xy: 104, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-
-atlas2.png
 size: 826,252
 format: RGBA8888
 filter: Nearest,Nearest
@@ -88,7 +54,7 @@ Arboles/Tronco2
   offset: 0, 0
   index: -1
 
-atlas3.png
+atlas2.png
 size: 1014,436
 format: RGBA8888
 filter: Nearest,Nearest
@@ -136,7 +102,7 @@ Armaduras/PetoGolem01
   offset: 0, 0
   index: -1
 
-atlas4.png
+atlas3.png
 size: 27,9
 format: RGBA8888
 filter: Nearest,Nearest
@@ -163,7 +129,7 @@ Aura Icons/Snare
   offset: 0, 0
   index: -1
 
-atlas5.png
+atlas4.png
 size: 868,870
 format: RGBA8888
 filter: Nearest,Nearest
@@ -211,7 +177,7 @@ BAK/Armaduras/Peto1
   offset: 0, 0
   index: -1
 
-atlas6.png
+atlas5.png
 size: 866,578
 format: RGBA8888
 filter: Nearest,Nearest
@@ -224,7 +190,7 @@ BAK/Armaduras/CapaFrontal1
   offset: 0, 0
   index: -1
 
-atlas7.png
+atlas6.png
 size: 866,578
 format: RGBA8888
 filter: Nearest,Nearest
@@ -237,7 +203,7 @@ BAK/Armaduras/CapaTrasera1
   offset: 0, 0
   index: -1
 
-atlas8.png
+atlas7.png
 size: 866,578
 format: RGBA8888
 filter: Nearest,Nearest
@@ -250,7 +216,7 @@ BAK/Armaduras/Casco1
   offset: 0, 0
   index: -1
 
-atlas9.png
+atlas8.png
 size: 921,991
 format: RGBA8888
 filter: Nearest,Nearest
@@ -333,7 +299,187 @@ BAK/Player Sprites/Sombra
   offset: 0, 0
   index: -1
 
+atlas9.png
+size: 476,34
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Iconos/Editar
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Iconos/Editar.OLD
+  rotate: false
+  xy: 36, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Iconos/Espectro
+  rotate: false
+  xy: 70, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Iconos/FireBall
+  rotate: false
+  xy: 104, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Iconos/FireBall.OLD
+  rotate: false
+  xy: 138, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Iconos/FrostBolt
+  rotate: false
+  xy: 172, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Iconos/IceBall
+  rotate: false
+  xy: 206, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Iconos/IrEste
+  rotate: false
+  xy: 240, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Iconos/IrNorte
+  rotate: false
+  xy: 274, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Iconos/IrOeste
+  rotate: false
+  xy: 308, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Iconos/IrSur
+  rotate: false
+  xy: 342, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Iconos/Muros
+  rotate: false
+  xy: 376, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Iconos/Plantar
+  rotate: false
+  xy: 410, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Iconos/PoisonBolt
+  rotate: false
+  xy: 444, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+
 atlas10.png
+size: 186,57
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Misc/Borrar
+  rotate: false
+  xy: 2, 9
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+Misc/Casillero
+  rotate: false
+  xy: 52, 25
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Misc/Grid
+  rotate: false
+  xy: 120, 33
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+Misc/Nameplate
+  rotate: false
+  xy: 2, 2
+  size: 36, 5
+  orig: 36, 5
+  offset: 0, 0
+  index: -1
+Misc/Nameplate.OLD
+  rotate: false
+  xy: 146, 52
+  size: 36, 5
+  orig: 36, 5
+  offset: 0, 0
+  index: -1
+Misc/NameplateFondo
+  rotate: false
+  xy: 184, 52
+  size: 1, 5
+  orig: 1, 5
+  offset: 0, 0
+  index: -1
+Misc/RebindOff
+  rotate: false
+  xy: 146, 29
+  size: 19, 21
+  orig: 19, 21
+  offset: 0, 0
+  index: -1
+Misc/RebindOn
+  rotate: false
+  xy: 167, 29
+  size: 19, 21
+  orig: 19, 21
+  offset: 0, 0
+  index: -1
+Misc/Select
+  rotate: false
+  xy: 86, 25
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Misc/Sombra
+  rotate: false
+  xy: 52, 12
+  size: 31, 11
+  orig: 31, 11
+  offset: 0, 0
+  index: -1
+
+atlas11.png
 size: 78,29
 format: RGBA8888
 filter: Nearest,Nearest
@@ -360,7 +506,7 @@ Muros/MuroTecho
   offset: 0, 0
   index: -1
 
-atlas11.png
+atlas12.png
 size: 98,390
 format: RGBA8888
 filter: Nearest,Nearest
@@ -387,7 +533,7 @@ NPC Sprites/Momia
   offset: 0, 0
   index: -1
 
-atlas12.png
+atlas13.png
 size: 1014,939
 format: RGBA8888
 filter: Nearest,Nearest
@@ -441,15 +587,8 @@ Player Sprites/Player
   orig: 384, 256
   offset: 0, 0
   index: -1
-Player Sprites/Sombra
-  rotate: false
-  xy: 292, 380
-  size: 31, 11
-  orig: 31, 11
-  offset: 0, 0
-  index: -1
 
-atlas13.png
+atlas14.png
 size: 918,800
 format: RGBA8888
 filter: Nearest,Nearest
@@ -518,272 +657,127 @@ Spell Animations/SpellBalls_04n
   offset: 0, 0
   index: -1
 
-atlas14.png
-size: 340,34
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-Spell Icons/Editar
-  rotate: false
-  xy: 2, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-Spell Icons/Editar.OLD
-  rotate: false
-  xy: 36, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-Spell Icons/Espectro
-  rotate: false
-  xy: 70, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-Spell Icons/FireBall
-  rotate: false
-  xy: 104, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-Spell Icons/FireBall.OLD
-  rotate: false
-  xy: 138, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-Spell Icons/FrostBolt
-  rotate: false
-  xy: 172, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-Spell Icons/IceBall
-  rotate: false
-  xy: 206, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-Spell Icons/Muros
-  rotate: false
-  xy: 240, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-Spell Icons/Plantar
-  rotate: false
-  xy: 274, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-Spell Icons/PoisonBolt
-  rotate: false
-  xy: 308, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-
 atlas15.png
-size: 496,246
+size: 496,220
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 Terrenos/Arena1
   rotate: false
-  xy: 2, 28
+  xy: 2, 2
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Arena2
   rotate: false
-  xy: 198, 174
+  xy: 198, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Baldosas1
   rotate: false
-  xy: 52, 28
+  xy: 52, 2
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Baldosas2
   rotate: false
-  xy: 248, 174
+  xy: 248, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Baldosas3
   rotate: false
-  xy: 102, 28
+  xy: 102, 2
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Cesped.OLD
   rotate: false
-  xy: 2, 102
+  xy: 2, 76
   size: 96, 144
   orig: 96, 144
   offset: 0, 0
   index: -1
 Terrenos/Cesped1
   rotate: false
-  xy: 298, 174
+  xy: 298, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Cesped2
   rotate: false
-  xy: 348, 174
+  xy: 348, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Cesped4
   rotate: false
-  xy: 348, 174
+  xy: 348, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Cesped2.OLD
   rotate: false
-  xy: 100, 102
+  xy: 100, 76
   size: 96, 144
   orig: 96, 144
   offset: 0, 0
   index: -1
 Terrenos/Cesped3
   rotate: false
-  xy: 398, 174
+  xy: 398, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Cesped5
   rotate: false
-  xy: 448, 174
+  xy: 448, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Suelo
   rotate: false
-  xy: 348, 124
+  xy: 348, 98
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 Terrenos/Suelo2
   rotate: false
-  xy: 398, 124
+  xy: 398, 98
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 Terrenos/Tierra1
   rotate: false
-  xy: 198, 100
+  xy: 198, 74
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Tierra2
   rotate: false
-  xy: 248, 100
+  xy: 248, 74
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Tierra3
   rotate: false
-  xy: 298, 100
+  xy: 298, 74
   size: 48, 72
   orig: 48, 72
-  offset: 0, 0
-  index: -1
-Terrenos/grid
-  rotate: false
-  xy: 2, 2
-  size: 24, 24
-  orig: 24, 24
-  offset: 0, 0
-  index: -1
-
-atlas16.png
-size: 160,57
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-UI/Borrar
-  rotate: false
-  xy: 2, 9
-  size: 48, 48
-  orig: 48, 48
-  offset: 0, 0
-  index: -1
-UI/Casillero
-  rotate: false
-  xy: 52, 25
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-UI/Nameplate
-  rotate: false
-  xy: 2, 2
-  size: 36, 5
-  orig: 36, 5
-  offset: 0, 0
-  index: -1
-UI/Nameplate.OLD
-  rotate: false
-  xy: 52, 18
-  size: 36, 5
-  orig: 36, 5
-  offset: 0, 0
-  index: -1
-UI/NameplateFondo
-  rotate: false
-  xy: 40, 2
-  size: 1, 5
-  orig: 1, 5
-  offset: 0, 0
-  index: -1
-UI/RebindOff
-  rotate: false
-  xy: 120, 36
-  size: 19, 21
-  orig: 19, 21
-  offset: 0, 0
-  index: -1
-UI/RebindOn
-  rotate: false
-  xy: 141, 36
-  size: 19, 21
-  orig: 19, 21
-  offset: 0, 0
-  index: -1
-UI/Select
-  rotate: false
-  xy: 86, 25
-  size: 32, 32
-  orig: 32, 32
   offset: 0, 0
   index: -1

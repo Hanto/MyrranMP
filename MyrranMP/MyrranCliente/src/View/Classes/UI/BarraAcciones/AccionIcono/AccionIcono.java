@@ -4,7 +4,7 @@ import Data.MiscData;
 import Interfaces.UI.Acciones.AccionI;
 import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import Interfaces.UI.BarraAcciones.ListaAccionesI;
-import Datos.RSC;
+import DB.RSC;
 import View.Classes.UI.Comun.Icono;
 import View.Classes.UI.Comun.IconoSource;
 import com.badlogic.gdx.scenes.scene2d.Group;

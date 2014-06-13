@@ -3,8 +3,8 @@ package View.Classes.UI.BarraTerrenos.TerrenoIcono;// Created by Hanto on 14/05/
 import Interfaces.UI.BarraTerrenos.ControladorBarraTerrenosI;
 import Data.MiscData;
 import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
-import Datos.RSC;
-import Datos.TerrenoRecursos.TerrenoRecursosDAO;
+import DB.RSC;
+import DB.Recursos.TerrenoRecursos.DAO.TerrenoRecursosDAO;
 import View.Classes.UI.Comun.Icono;
 import View.Classes.UI.Comun.IconoSource;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

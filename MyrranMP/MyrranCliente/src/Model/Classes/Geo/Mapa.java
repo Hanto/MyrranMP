@@ -63,7 +63,7 @@ public class Mapa extends AbstractModel implements MapaI,PropertyChangeListener
         if (celda == null) return null;
         else
         {
-            TerrenoDAO terrenoDAO = Datos.DAO.terrenoDAOFactory.getTerrenoDAO();
+            TerrenoDAO terrenoDAO = DB.DAO.terrenoDAOFactory.getTerrenoDAO();
             return terrenoDAO.getTerreno(celda.getTerrenoID(numCapa));
         }
     }

@@ -32,7 +32,7 @@ public class BarraTerrenos extends AbstractModel
     {
         barraTerrenos.clear();
 
-        TerrenoDAO terrenoDAO = Datos.DAO.terrenoDAOFactory.getTerrenoDAO();
+        TerrenoDAO terrenoDAO = DB.DAO.terrenoDAOFactory.getTerrenoDAO();
 
         Iterator<TerrenoI> iterator = terrenoDAO.getIterator();
         while (iterator.hasNext())
