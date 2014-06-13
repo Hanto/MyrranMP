@@ -2,29 +2,15 @@ package Data;
 // @author Ivan Delgado Huerta
 public class TipoSpellsData 
 {
-    //Iconos:
-    public static final String ICONO_Editar = "Editar";
-    public static final String ICONO_Fireball = "FireBall";
-    public static final String ICONO_Frostbolt = "FrostBolt";
-    public static final String ICONO_Muro = "Muros";
-
-    //Casteos:
-    public static final String CASTEO_Fireball = "Fireball01";
-    public static final String CASTEO_FrostBolt = "FrostBolt01";
-
-    //Proyectiles:
-    public static final String PROYECTIL_Fireball = "Fireball02";
-    public static final String PROYECTIL_Frostbolt = "FrostBolt02";
-
     //TIPOSSPELL:
 
     //EDITAR TERRENO:
-    public static final String  EDITARTERRENO_ID = "EditarTErreno";
+    public static final String  EDITARTERRENO_ID = "EDITARTERRENO";
     public static final String  EDITARTERRENO_Nombre = "EditarTerreno";
     public static final String  EDITARTERRENO_Descripcion = "Edita el Terreno";
     public static final String  EDITARTERRENO_CastingTime_String = "Casting Time";
     public static final float   EDITARTERRENO_CastingTime_Valor = 0.01f;
-    public static final String  EDITARTERRENO_Icono = ICONO_Editar;
+    public static final String  EDITARTERRENO_Icono = "Editar";
 
     //BOLT: (el casting time siempre debe ir primero)
     public static final String  BOLT_Icono = "FireBall";

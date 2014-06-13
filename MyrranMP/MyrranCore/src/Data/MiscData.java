@@ -22,18 +22,19 @@ public class MiscData
     public static final float BDEBUFF_DuracionTick = 1000f;
 
     //Recursos:
+    public final static String RECURSOS_XML = "Data/";
     public final static String RECURSOS_Atlas_Carpeta_Imagenes_Origen = "Images/";
     public final static String RECURSOS_Atlas_Carpeta_Imagenes_Destino = "Atlas/";
     public final static String RECURSOS_Atlas_Atlas_Extension = "atlas";
 
     //Mobiles Recursos:
-    public final static String ATLAS_PlayerSprites_LOC = "Player Sprites/";
-    public final static String ATLAS_Armaduras_LOC = "Armaduras/";
-    public final static String ATLAS_Terrenos_LOC = "Terrenos/";
+    public final static String ATLAS_PixiePcCuerpos_LOC = "PixiePcCuerpos/";
+    public final static String ATLAS_PixiePcSlots_LOC = "PixiePcSlots/";
+    public final static String ATLAS_TexturasTerrenos_LOC = "TexturasTerrenos/";
+    public final static String ATLAS_TexturasIconos_LOC = "TexturasIconos/";
+    public final static String ATLAS_TexturasMisc_LOC = "TexturasMisc/";
+    public final static String ATLAS_AnimacionesSpells_LOC = "AnimacionesSpells/";
     public final static String ATLAS_Fuentes_LOC = "Fonts/";
-    public final static String ATLAS_Iconos_LOC = "Iconos/";
-    public final static String ATLAS_Spell_Animations_LOC = "Spell Animations/";
-    public final static String ATLAS_Misc_LOC = "Misc/";
 
     //Pixie:
     public final static int PIXIE_Player_numFilas = 7;

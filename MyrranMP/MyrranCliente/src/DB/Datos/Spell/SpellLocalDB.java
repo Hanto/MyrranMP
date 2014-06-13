@@ -1,6 +1,7 @@
 package DB.Datos.Spell;// Created by Hanto on 17/04/2014.
 
 import Core.AbrirFichero;
+import Data.MiscData;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
 import Model.Classes.Skill.Spell.Spell;
@@ -27,7 +28,7 @@ public class SpellLocalDB
     {
         System.out.println("[CARGANDO SPELLS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero("Data/Spells.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"Spells.xml");
 
         try
         {

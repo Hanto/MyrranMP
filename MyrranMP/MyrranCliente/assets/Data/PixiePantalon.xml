@@ -1,7 +1,4 @@
 <?xml version="1.0"?>
 <PixiePantalon>
-	<Pantalon>
-	<Raza>Golem</Raza>
-	<Textura>Desnudo</Textura>
-	</Pantalon>
+	<Pantalon><Raza>Golem</Raza><Textura>Desnudo</Textura></Pantalon>
 </PixiePantalon>

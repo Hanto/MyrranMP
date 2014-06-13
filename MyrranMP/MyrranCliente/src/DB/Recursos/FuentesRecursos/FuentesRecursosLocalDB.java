@@ -30,7 +30,7 @@ public class FuentesRecursosLocalDB
     {
         System.out.println("[CARGANDO TEXTURAS FUENTES]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero("Data/TexturasFuentes.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"TexturasFuentes.xml");
 
         try
         {

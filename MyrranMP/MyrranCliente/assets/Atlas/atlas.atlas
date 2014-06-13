@@ -1,135 +1,74 @@
 
 atlas.png
-size: 826,252
+size: 918,800
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Arboles/BolaGrande2
+AnimacionesSpells/Fireball01
   rotate: false
-  xy: 2, 85
-  size: 477, 167
-  orig: 477, 167
+  xy: 388, 494
+  size: 144, 48
+  orig: 144, 48
   offset: 0, 0
   index: -1
-Arboles/BolaMediana2
+AnimacionesSpells/Fireball02
   rotate: false
   xy: 2, 2
-  size: 282, 81
-  orig: 282, 81
+  size: 72, 24
+  orig: 72, 24
   offset: 0, 0
   index: -1
-Arboles/Bolapequenya2
+AnimacionesSpells/FrostBolt01
   rotate: false
-  xy: 286, 26
-  size: 162, 57
-  orig: 162, 57
+  xy: 774, 752
+  size: 144, 48
+  orig: 144, 48
   offset: 0, 0
   index: -1
-Arboles/Hojas1
+AnimacionesSpells/FrostBolt02
   rotate: false
-  xy: 481, 75
-  size: 111, 177
-  orig: 111, 177
+  xy: 388, 468
+  size: 72, 24
+  orig: 72, 24
   offset: 0, 0
   index: -1
-Arboles/SombraArbol1
+AnimacionesSpells/Frostball
   rotate: false
-  xy: 710, 214
-  size: 116, 38
-  orig: 116, 38
+  xy: 534, 518
+  size: 72, 24
+  orig: 72, 24
   offset: 0, 0
   index: -1
-Arboles/Tronco1
+AnimacionesSpells/SpellBalls_01n
   rotate: false
-  xy: 660, 46
-  size: 48, 206
-  orig: 48, 206
+  xy: 2, 544
+  size: 384, 256
+  orig: 384, 256
   offset: 0, 0
   index: -1
-Arboles/Tronco2
+AnimacionesSpells/SpellBalls_02n
   rotate: false
-  xy: 594, 79
-  size: 64, 173
-  orig: 64, 173
+  xy: 2, 286
+  size: 384, 256
+  orig: 384, 256
+  offset: 0, 0
+  index: -1
+AnimacionesSpells/SpellBalls_03n
+  rotate: false
+  xy: 388, 544
+  size: 384, 256
+  orig: 384, 256
+  offset: 0, 0
+  index: -1
+AnimacionesSpells/SpellBalls_04n
+  rotate: false
+  xy: 2, 28
+  size: 384, 256
+  orig: 384, 256
   offset: 0, 0
   index: -1
 
 atlas2.png
-size: 1014,436
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-Armaduras/BotasGolem01
-  rotate: false
-  xy: 2, 2
-  size: 288, 144
-  orig: 288, 144
-  offset: 0, 0
-  index: -1
-Armaduras/Desnudo
-  rotate: false
-  xy: 2, 148
-  size: 432, 288
-  orig: 432, 288
-  offset: 0, 0
-  index: -1
-Armaduras/GuantesGolem01
-  rotate: false
-  xy: 436, 292
-  size: 288, 144
-  orig: 288, 144
-  offset: 0, 0
-  index: -1
-Armaduras/HombrerasGolem01
-  rotate: false
-  xy: 726, 292
-  size: 288, 144
-  orig: 288, 144
-  offset: 0, 0
-  index: -1
-Armaduras/PantalonesGolem01
-  rotate: false
-  xy: 436, 146
-  size: 288, 144
-  orig: 288, 144
-  offset: 0, 0
-  index: -1
-Armaduras/PetoGolem01
-  rotate: false
-  xy: 726, 146
-  size: 288, 144
-  orig: 288, 144
-  offset: 0, 0
-  index: -1
-
-atlas3.png
-size: 27,9
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-Aura Icons/Dot
-  rotate: false
-  xy: 2, 2
-  size: 7, 7
-  orig: 7, 7
-  offset: 0, 0
-  index: -1
-Aura Icons/Hot
-  rotate: false
-  xy: 11, 2
-  size: 7, 7
-  orig: 7, 7
-  offset: 0, 0
-  index: -1
-Aura Icons/Snare
-  rotate: false
-  xy: 20, 2
-  size: 7, 7
-  orig: 7, 7
-  offset: 0, 0
-  index: -1
-
-atlas4.png
 size: 868,870
 format: RGBA8888
 filter: Nearest,Nearest
@@ -177,7 +116,7 @@ BAK/Armaduras/Peto1
   offset: 0, 0
   index: -1
 
-atlas5.png
+atlas3.png
 size: 866,578
 format: RGBA8888
 filter: Nearest,Nearest
@@ -190,7 +129,7 @@ BAK/Armaduras/CapaFrontal1
   offset: 0, 0
   index: -1
 
-atlas6.png
+atlas4.png
 size: 866,578
 format: RGBA8888
 filter: Nearest,Nearest
@@ -203,7 +142,7 @@ BAK/Armaduras/CapaTrasera1
   offset: 0, 0
   index: -1
 
-atlas7.png
+atlas5.png
 size: 866,578
 format: RGBA8888
 filter: Nearest,Nearest
@@ -216,7 +155,7 @@ BAK/Armaduras/Casco1
   offset: 0, 0
   index: -1
 
-atlas8.png
+atlas6.png
 size: 921,991
 format: RGBA8888
 filter: Nearest,Nearest
@@ -299,103 +238,199 @@ BAK/Player Sprites/Sombra
   offset: 0, 0
   index: -1
 
+atlas7.png
+size: 966,457
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+PixiePcCuerpos/Golem
+  rotate: false
+  xy: 388, 121
+  size: 288, 336
+  orig: 288, 336
+  offset: 0, 0
+  index: -1
+PixiePcCuerpos/Golem.OLD
+  rotate: false
+  xy: 678, 167
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+PixiePcCuerpos/Golem2
+  rotate: false
+  xy: 2, 55
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+PixiePcCuerpos/Golem3
+  rotate: false
+  xy: 678, 313
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+PixiePcCuerpos/Humo
+  rotate: false
+  xy: 2, 2
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
+PixiePcCuerpos/Player
+  rotate: false
+  xy: 2, 201
+  size: 384, 256
+  orig: 384, 256
+  offset: 0, 0
+  index: -1
+
+atlas8.png
+size: 1014,436
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+PixiePcSlots/BotasGolem01
+  rotate: false
+  xy: 2, 2
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+PixiePcSlots/Desnudo
+  rotate: false
+  xy: 2, 148
+  size: 432, 288
+  orig: 432, 288
+  offset: 0, 0
+  index: -1
+PixiePcSlots/GuantesGolem01
+  rotate: false
+  xy: 436, 292
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+PixiePcSlots/HombrerasGolem01
+  rotate: false
+  xy: 726, 292
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+PixiePcSlots/PantalonesGolem01
+  rotate: false
+  xy: 436, 146
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+PixiePcSlots/PetoGolem01
+  rotate: false
+  xy: 726, 146
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+
 atlas9.png
 size: 476,34
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Iconos/Editar
+TexturasIconos/Editar
   rotate: false
   xy: 2, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Iconos/Editar.OLD
+TexturasIconos/Editar.OLD
   rotate: false
   xy: 36, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Iconos/Espectro
+TexturasIconos/Espectro
   rotate: false
   xy: 70, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Iconos/FireBall
+TexturasIconos/FireBall
   rotate: false
   xy: 104, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Iconos/FireBall.OLD
+TexturasIconos/FireBall.OLD
   rotate: false
   xy: 138, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Iconos/FrostBolt
+TexturasIconos/FrostBolt
   rotate: false
   xy: 172, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Iconos/IceBall
+TexturasIconos/IceBall
   rotate: false
   xy: 206, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Iconos/IrEste
+TexturasIconos/IrEste
   rotate: false
   xy: 240, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Iconos/IrNorte
+TexturasIconos/IrNorte
   rotate: false
   xy: 274, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Iconos/IrOeste
+TexturasIconos/IrOeste
   rotate: false
   xy: 308, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Iconos/IrSur
+TexturasIconos/IrSur
   rotate: false
   xy: 342, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Iconos/Muros
+TexturasIconos/Muros
   rotate: false
   xy: 376, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Iconos/Plantar
+TexturasIconos/Plantar
   rotate: false
   xy: 410, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Iconos/PoisonBolt
+TexturasIconos/PoisonBolt
   rotate: false
   xy: 444, 2
   size: 32, 32
@@ -408,70 +443,70 @@ size: 186,57
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Misc/Borrar
+TexturasMisc/Borrar
   rotate: false
   xy: 2, 9
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
-Misc/Casillero
+TexturasMisc/Casillero
   rotate: false
   xy: 52, 25
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Misc/Grid
+TexturasMisc/Grid
   rotate: false
   xy: 120, 33
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
-Misc/Nameplate
+TexturasMisc/Nameplate
   rotate: false
   xy: 2, 2
   size: 36, 5
   orig: 36, 5
   offset: 0, 0
   index: -1
-Misc/Nameplate.OLD
+TexturasMisc/Nameplate.OLD
   rotate: false
   xy: 146, 52
   size: 36, 5
   orig: 36, 5
   offset: 0, 0
   index: -1
-Misc/NameplateFondo
+TexturasMisc/NameplateFondo
   rotate: false
   xy: 184, 52
   size: 1, 5
   orig: 1, 5
   offset: 0, 0
   index: -1
-Misc/RebindOff
+TexturasMisc/RebindOff
   rotate: false
   xy: 146, 29
   size: 19, 21
   orig: 19, 21
   offset: 0, 0
   index: -1
-Misc/RebindOn
+TexturasMisc/RebindOn
   rotate: false
   xy: 167, 29
   size: 19, 21
   orig: 19, 21
   offset: 0, 0
   index: -1
-Misc/Select
+TexturasMisc/Select
   rotate: false
   xy: 86, 25
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Misc/Sombra
+TexturasMisc/Sombra
   rotate: false
   xy: 52, 12
   size: 31, 11
@@ -480,301 +515,123 @@ Misc/Sombra
   index: -1
 
 atlas11.png
-size: 78,29
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-Muros/MuroBase
-  rotate: false
-  xy: 28, 5
-  size: 24, 24
-  orig: 24, 24
-  offset: 0, 0
-  index: -1
-Muros/MuroMedio
-  rotate: false
-  xy: 54, 5
-  size: 24, 24
-  orig: 24, 24
-  offset: 0, 0
-  index: -1
-Muros/MuroTecho
-  rotate: false
-  xy: 2, 2
-  size: 24, 27
-  orig: 24, 27
-  offset: 0, 0
-  index: -1
-
-atlas12.png
-size: 98,390
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-NPC Sprites/GlowingSpectre
-  rotate: false
-  xy: 2, 262
-  size: 96, 128
-  orig: 96, 128
-  offset: 0, 0
-  index: -1
-NPC Sprites/GrimReaper
-  rotate: false
-  xy: 2, 132
-  size: 96, 128
-  orig: 96, 128
-  offset: 0, 0
-  index: -1
-NPC Sprites/Momia
-  rotate: false
-  xy: 2, 2
-  size: 96, 128
-  orig: 96, 128
-  offset: 0, 0
-  index: -1
-
-atlas13.png
-size: 1014,939
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-Player Sprites/Desnudo
-  rotate: false
-  xy: 2, 651
-  size: 432, 288
-  orig: 432, 288
-  offset: 0, 0
-  index: -1
-Player Sprites/Golem
-  rotate: false
-  xy: 2, 55
-  size: 288, 336
-  orig: 288, 336
-  offset: 0, 0
-  index: -1
-Player Sprites/Golem.OLD
-  rotate: false
-  xy: 436, 649
-  size: 288, 144
-  orig: 288, 144
-  offset: 0, 0
-  index: -1
-Player Sprites/Golem2
-  rotate: false
-  xy: 436, 795
-  size: 288, 144
-  orig: 288, 144
-  offset: 0, 0
-  index: -1
-Player Sprites/Golem3
-  rotate: false
-  xy: 726, 795
-  size: 288, 144
-  orig: 288, 144
-  offset: 0, 0
-  index: -1
-Player Sprites/Humo
-  rotate: false
-  xy: 2, 2
-  size: 51, 51
-  orig: 51, 51
-  offset: 0, 0
-  index: -1
-Player Sprites/Player
-  rotate: false
-  xy: 2, 393
-  size: 384, 256
-  orig: 384, 256
-  offset: 0, 0
-  index: -1
-
-atlas14.png
-size: 918,800
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-Spell Animations/Fireball01
-  rotate: false
-  xy: 388, 494
-  size: 144, 48
-  orig: 144, 48
-  offset: 0, 0
-  index: -1
-Spell Animations/Fireball02
-  rotate: false
-  xy: 2, 2
-  size: 72, 24
-  orig: 72, 24
-  offset: 0, 0
-  index: -1
-Spell Animations/FrostBolt01
-  rotate: false
-  xy: 774, 752
-  size: 144, 48
-  orig: 144, 48
-  offset: 0, 0
-  index: -1
-Spell Animations/FrostBolt02
-  rotate: false
-  xy: 388, 468
-  size: 72, 24
-  orig: 72, 24
-  offset: 0, 0
-  index: -1
-Spell Animations/Frostball
-  rotate: false
-  xy: 534, 518
-  size: 72, 24
-  orig: 72, 24
-  offset: 0, 0
-  index: -1
-Spell Animations/SpellBalls_01n
-  rotate: false
-  xy: 2, 544
-  size: 384, 256
-  orig: 384, 256
-  offset: 0, 0
-  index: -1
-Spell Animations/SpellBalls_02n
-  rotate: false
-  xy: 2, 286
-  size: 384, 256
-  orig: 384, 256
-  offset: 0, 0
-  index: -1
-Spell Animations/SpellBalls_03n
-  rotate: false
-  xy: 388, 544
-  size: 384, 256
-  orig: 384, 256
-  offset: 0, 0
-  index: -1
-Spell Animations/SpellBalls_04n
-  rotate: false
-  xy: 2, 28
-  size: 384, 256
-  orig: 384, 256
-  offset: 0, 0
-  index: -1
-
-atlas15.png
 size: 496,220
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Terrenos/Arena1
+TexturasTerrenos/Arena1
   rotate: false
   xy: 2, 2
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Arena2
+TexturasTerrenos/Arena2
   rotate: false
   xy: 198, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Baldosas1
+TexturasTerrenos/Baldosas1
   rotate: false
   xy: 52, 2
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Baldosas2
+TexturasTerrenos/Baldosas2
   rotate: false
   xy: 248, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Baldosas3
+TexturasTerrenos/Baldosas3
   rotate: false
   xy: 102, 2
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Cesped.OLD
+TexturasTerrenos/Cesped.OLD
   rotate: false
   xy: 2, 76
   size: 96, 144
   orig: 96, 144
   offset: 0, 0
   index: -1
-Terrenos/Cesped1
+TexturasTerrenos/Cesped1
   rotate: false
   xy: 298, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Cesped2
+TexturasTerrenos/Cesped2
   rotate: false
   xy: 348, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Cesped4
+TexturasTerrenos/Cesped4
   rotate: false
   xy: 348, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Cesped2.OLD
+TexturasTerrenos/Cesped2.OLD
   rotate: false
   xy: 100, 76
   size: 96, 144
   orig: 96, 144
   offset: 0, 0
   index: -1
-Terrenos/Cesped3
+TexturasTerrenos/Cesped3
   rotate: false
   xy: 398, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Cesped5
+TexturasTerrenos/Cesped5
   rotate: false
   xy: 448, 148
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Suelo
+TexturasTerrenos/Suelo
   rotate: false
   xy: 348, 98
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
-Terrenos/Suelo2
+TexturasTerrenos/Suelo2
   rotate: false
   xy: 398, 98
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
-Terrenos/Tierra1
+TexturasTerrenos/Tierra1
   rotate: false
   xy: 198, 74
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Tierra2
+TexturasTerrenos/Tierra2
   rotate: false
   xy: 248, 74
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Tierra3
+TexturasTerrenos/Tierra3
   rotate: false
   xy: 298, 74
   size: 48, 72

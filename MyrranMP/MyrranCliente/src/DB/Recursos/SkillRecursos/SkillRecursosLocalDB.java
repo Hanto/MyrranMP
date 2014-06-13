@@ -44,7 +44,7 @@ public class SkillRecursosLocalDB
     {
         System.out.println("[CARGANDO TEXTURAS ICONOS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero("Data/TexturasIconosSpells.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"TexturasIconosSpells.xml");
 
         try
         {
@@ -57,7 +57,7 @@ public class SkillRecursosLocalDB
                 Element nodo = (Element) listaNodos.get(i);
                 String nombre = nodo.getText();
 
-                TextureRegion textura = new TextureRegion(RSC.atlasRecursosDAO.getAtlasRecursosDAO().getAtlas().findRegion(MiscData.ATLAS_Iconos_LOC + nombre));
+                TextureRegion textura = new TextureRegion(RSC.atlasRecursosDAO.getAtlasRecursosDAO().getAtlas().findRegion(MiscData.ATLAS_TexturasIconos_LOC + nombre));
                 listaDeTexturasIconosSpells.put(nombre, textura);
 
                 System.out.println(" TexturaIconoSpell : " + nombre);
@@ -71,7 +71,7 @@ public class SkillRecursosLocalDB
     {
         System.out.println("[CARGANDO ANIMACIONES CASTEO]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero("Data/AnimacionesCasteo.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"AnimacionesCasteo.xml");
 
         try
         {
@@ -84,7 +84,7 @@ public class SkillRecursosLocalDB
                 Element nodo = (Element) listaNodos.get(i);
                 String nombre = nodo.getText();
 
-                Pixie pixie = new Pixie(RSC.atlasRecursosDAO.getAtlasRecursosDAO().getAtlas().findRegion(MiscData.ATLAS_Spell_Animations_LOC + nombre),1,3);
+                Pixie pixie = new Pixie(RSC.atlasRecursosDAO.getAtlasRecursosDAO().getAtlas().findRegion(MiscData.ATLAS_AnimacionesSpells_LOC + nombre),1,3);
                 pixie.añadirAnimacion("Casteo", new int[]{0, 1, 2}, 0.15f, false);
                 pixie.animaciones().get(0).animarYEliminar = true;
                 listaDeAnimaciones.put(nombre, pixie);
@@ -100,7 +100,7 @@ public class SkillRecursosLocalDB
     {
         System.out.println("[CARGANDO ANIMACIONES PROYECTIL]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero("Data/AnimacionesProyectil.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"AnimacionesProyectil.xml");
 
         try
         {
@@ -113,7 +113,7 @@ public class SkillRecursosLocalDB
                 Element nodo = (Element) listaNodos.get(i);
                 String nombre = nodo.getText();
 
-                Pixie pixie = new Pixie(RSC.atlasRecursosDAO.getAtlasRecursosDAO().getAtlas().findRegion(MiscData.ATLAS_Spell_Animations_LOC + nombre),1,3);
+                Pixie pixie = new Pixie(RSC.atlasRecursosDAO.getAtlasRecursosDAO().getAtlas().findRegion(MiscData.ATLAS_AnimacionesSpells_LOC + nombre),1,3);
                 pixie.añadirAnimacion("Proyectil", new int[]{0, 1, 2}, 0.15f, false);
                 listaDeAnimaciones.put(nombre, pixie);
 
@@ -128,7 +128,7 @@ public class SkillRecursosLocalDB
     {
         System.out.println("[CARGANDO SPELL RECURSOS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero("Data/Spells.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"Spells.xml");
 
         try
         {

@@ -1,7 +1,4 @@
 <?xml version="1.0"?>
 <PixiePeto>
-	<Peto>
-	<Raza>Golem</Raza>
-	<Textura>Desnudo</Textura>
-	</Peto>
+	<Peto><Raza>Golem</Raza><Textura>Desnudo</Textura></Peto>
 </PixiePeto>

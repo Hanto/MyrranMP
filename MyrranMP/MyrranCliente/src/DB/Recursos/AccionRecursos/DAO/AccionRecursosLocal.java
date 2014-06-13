@@ -20,7 +20,7 @@ public class AccionRecursosLocal implements AccionRecursosDAO
 
     @Override public void salvarTextura(String nombreTextura, String nombreTexturaEnAtlas, TextureAtlas atlas)
     {
-        TextureRegion textura = new TextureRegion(atlas.findRegion(MiscData.ATLAS_Iconos_LOC +nombreTexturaEnAtlas));
+        TextureRegion textura = new TextureRegion(atlas.findRegion(MiscData.ATLAS_TexturasIconos_LOC +nombreTexturaEnAtlas));
         listaDeTexturasAccion.put(nombreTextura, textura);
     }
 

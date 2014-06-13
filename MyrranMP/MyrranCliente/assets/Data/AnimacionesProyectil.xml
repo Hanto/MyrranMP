@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <AnimacionesProyectil>
-  <Animacion>Fireball02</Animacion>
-  <Animacion>FrostBolt02</Animacion>
+	<Animacion>Fireball02</Animacion>
+	<Animacion>FrostBolt02</Animacion>
 </AnimacionesProyectil>

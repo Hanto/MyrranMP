@@ -9,6 +9,8 @@ import Interfaces.Spell.TipoSpellI;
 
 public class Spell extends AbstractModel implements SpellI
 {
+    public static final int STAT_Cast = 0;
+
     protected String id;
     protected String nombre;
     protected String descripcion;
@@ -19,15 +21,16 @@ public class Spell extends AbstractModel implements SpellI
     @Override public void setID(String id)                      { this.id = id; }
     @Override public void setNombre (String nombre)             { this.nombre = nombre; }
     @Override public void setDescripcion (String descripcion)   { this.descripcion = descripcion; }
+    @Override public void setTipoSpell(TipoSpellI tipoSpell)    { this.tipoSpell = tipoSpell; }
 
     //GET:
     @Override public String getID()                             { return id; }
     @Override public String getNombre ()                        { return nombre; }
     @Override public String getDescripcion ()                   { return descripcion; }
+    @Override public TipoSpellI getTipoSpell()                  { return tipoSpell; }
     @Override public SkillStat [] skillStats ()                 { return skillStats; }
 
-    
-    
+
     //CONSTRUCTOR:
     public Spell (TipoSpellI tipospell)
     {   //Se vincula el objeto que ejecutara los metodos de este tipo de Spell
@@ -67,7 +70,7 @@ public class Spell extends AbstractModel implements SpellI
         if (caster.isCasteando()) { }
         else 
         {   //Marcamos al personaje como Casteando, y actualizamos su tiempo de casteo con el que marque el Spell (Stat Slot 0)
-            caster.setTotalCastingTime(skillStats[TipoSpell.STAT_Cast].getValorBase());
+            caster.setTotalCastingTime(skillStats[STAT_Cast].getValorBase());
             tipoSpell.ejecutarCasteo(this, caster, targetX, targetY);
         }
     }

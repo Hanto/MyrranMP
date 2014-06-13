@@ -1,7 +1,4 @@
 <?xml version="1.0"?>
 <PixieRazas>
-  	<Cuerpo>
-	<Raza>Golem</Raza>
-	<Textura>Golem</Textura>
-	</Cuerpo>
+  	<Cuerpo><Raza>Golem</Raza><Textura>Golem</Textura></Cuerpo>
 </PixieRazas>

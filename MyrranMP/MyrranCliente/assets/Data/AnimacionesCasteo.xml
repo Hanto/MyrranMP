@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <AnimacionesCasteo>
-  <Animacion>Fireball01</Animacion>
-  <Animacion>FrostBolt01</Animacion>
+	<Animacion>Fireball01</Animacion>
+ 	<Animacion>FrostBolt01</Animacion>
 </AnimacionesCasteo>

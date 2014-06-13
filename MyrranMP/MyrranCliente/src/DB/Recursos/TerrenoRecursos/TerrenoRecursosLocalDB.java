@@ -36,7 +36,7 @@ public class TerrenoRecursosLocalDB
     {
         System.out.println("[CARGANDO TEXTURAS TERRENOS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero("Data/TexturasTerrenos.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"TexturasTerrenos.xml");
 
         try
         {
@@ -49,7 +49,7 @@ public class TerrenoRecursosLocalDB
                 Element nodo = (Element) listaNodos.get(i);
                 String nombre = nodo.getText();
 
-                TextureRegion textura = new TextureRegion(RSC.atlasRecursosDAO.getAtlasRecursosDAO().getAtlas().findRegion(MiscData.ATLAS_Terrenos_LOC + nombre));
+                TextureRegion textura = new TextureRegion(RSC.atlasRecursosDAO.getAtlasRecursosDAO().getAtlas().findRegion(MiscData.ATLAS_TexturasTerrenos_LOC + nombre));
                 listaDeTexturasTerreno.put(nombre, textura);
 
                 System.out.println(" TexturaTerreno : " + nombre);
@@ -63,7 +63,7 @@ public class TerrenoRecursosLocalDB
     {
         System.out.println("[CARGANDO TERRENOS RECURSOS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero("Data/Terrenos.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"Terrenos.xml");
 
         try
         {

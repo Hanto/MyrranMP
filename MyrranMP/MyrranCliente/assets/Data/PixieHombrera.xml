@@ -1,7 +1,4 @@
 <?xml version="1.0"?>
 <PixieHombrera>
-	<Hombrera>
-	<Raza>Golem</Raza>
-	<Textura>Desnudo</Textura>
-	</Hombrera>
+	<Hombrera><Raza>Golem</Raza><Textura>Desnudo</Textura></Hombrera>
 </PixieHombrera>

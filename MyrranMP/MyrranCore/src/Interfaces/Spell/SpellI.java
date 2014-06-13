@@ -9,10 +9,13 @@ public interface SpellI
     public void setID(String id);
     public void setNombre (String nombre);
     public void setDescripcion (String descripcion);
+    public void setTipoSpell(TipoSpellI tipoSpell);
+
     //GET:
     public String getID();
     public String getNombre ();
     public String getDescripcion ();
+    public TipoSpellI getTipoSpell();
     public SkillStat[] skillStats ();
 
     //METODOS:

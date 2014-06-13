@@ -1,7 +1,4 @@
 <?xml version="1.0"?>
 <PixieCabezas>
-  	<Cabeza>
-	<Raza>Golem</Raza>
-	<Textura>Desnudo</Textura>
-	</Cabeza>
+  	<Cabeza><Raza>Golem</Raza><Textura>Desnudo</Textura></Cabeza>
 </PixieCabezas>

@@ -2,6 +2,7 @@ package DB.Recursos.PixiePCRecursos;// Created by Hanto on 01/05/2014.
 
 import Core.AbrirFichero;
 import DB.Recursos.PixiePCRecursos.DTO.PixieRecursos;
+import Data.MiscData;
 import View.Classes.Graficos.Pixie;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -72,7 +73,7 @@ public class PixiePCRecursosLocalDB
     {
         System.out.println("[CARGANDO RAZAS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero("Data/PixieRaza.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"PixieRaza.xml");
 
         try
         {
@@ -99,7 +100,7 @@ public class PixiePCRecursosLocalDB
     {
         System.out.println("[CARGANDO CUERPOS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero("Data/PixieCuerpo.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"PixieCuerpo.xml");
 
         try
         {
@@ -130,7 +131,7 @@ public class PixiePCRecursosLocalDB
     {
         System.out.println("[CARGANDO "+slot.toUpperCase()+"S]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero("Data/Pixie"+slot+".xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"Pixie"+slot+".xml");
 
         try
         {

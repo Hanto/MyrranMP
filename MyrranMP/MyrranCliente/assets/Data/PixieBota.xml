@@ -1,7 +1,4 @@
 <?xml version="1.0"?>
 <PixieBotas>
-  	<Bota>
-	<Raza>Golem</Raza>
-	<Textura>Desnudo</Textura>
-	</Bota>
+  	<Bota><Raza>Golem</Raza><Textura>Desnudo</Textura></Bota>
 </PixieBotas>

@@ -14,19 +14,20 @@ public class Spell extends AbstractModel implements SpellI
     protected String id;
     protected String nombre;
     protected String descripcion;
-
     protected TipoSpellI tipoSpell;
-
     protected SkillStat[] skillStats;                           //Stats concretos del skill
 
     //SET
     @Override public void setID(String id)                      { this.id = id; }
     @Override public void setNombre (String nombre)             { this.nombre = nombre; }
     @Override public void setDescripcion (String descripcion)   { this.descripcion = descripcion; }
+    @Override public void setTipoSpell(TipoSpellI tipoSpell)    { this.tipoSpell = tipoSpell; }
+
     //GET:
     @Override public String getID()                             { return id; }
     @Override public String getNombre ()                        { return nombre; }
     @Override public String getDescripcion ()                   { return descripcion; }
+    @Override public TipoSpellI getTipoSpell()                  { return tipoSpell; }
     @Override public SkillStat [] skillStats ()                 { return skillStats; }
 
 
@@ -64,7 +65,7 @@ public class Spell extends AbstractModel implements SpellI
         }
     }
     
-    public void castear (Caster caster, int targetX, int targetY)
+    @Override public void castear (Caster caster, int targetX, int targetY)
     {
         if (caster.isCasteando()) { }
         else 

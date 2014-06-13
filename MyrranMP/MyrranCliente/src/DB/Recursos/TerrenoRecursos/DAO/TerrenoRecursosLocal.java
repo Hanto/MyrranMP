@@ -19,7 +19,7 @@ public class TerrenoRecursosLocal implements TerrenoRecursosDAO
 
     @Override public void salvarTextura(String nombreTextura, String nombreTexturaEnAtlas, TextureAtlas atlas)
     {
-        TextureRegion textura = new TextureRegion(atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+nombreTexturaEnAtlas));
+        TextureRegion textura = new TextureRegion(atlas.findRegion(MiscData.ATLAS_TexturasTerrenos_LOC +nombreTexturaEnAtlas));
         listaDeTexturasTerreno.put(nombreTextura, textura);
     }
 

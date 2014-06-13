@@ -29,7 +29,7 @@ public class MiscRecursosLocalDB
     {
         System.out.println("[CARGANDO TEXTURAS MISCELANEAS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero("Data/TexturasMisc.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"TexturasMisc.xml");
 
         try
         {
@@ -42,7 +42,7 @@ public class MiscRecursosLocalDB
                 Element nodo = (Element) listaNodos.get(i);
                 String nombre = nodo.getText();
 
-                TextureRegion textura = new TextureRegion(RSC.atlasRecursosDAO.getAtlasRecursosDAO().getAtlas().findRegion(MiscData.ATLAS_Misc_LOC + nombre));
+                TextureRegion textura = new TextureRegion(RSC.atlasRecursosDAO.getAtlasRecursosDAO().getAtlas().findRegion(MiscData.ATLAS_TexturasMisc_LOC + nombre));
                 listaDeTexturasMisc.put(nombre, textura);
 
                 System.out.println(" TexturaMisc : " + nombre);

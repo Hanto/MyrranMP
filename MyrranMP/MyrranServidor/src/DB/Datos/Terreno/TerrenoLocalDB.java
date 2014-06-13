@@ -1,6 +1,7 @@
 package DB.Datos.Terreno;// Created by Hanto on 15/04/2014.
 
 import Core.AbrirFichero;
+import Data.MiscData;
 import Interfaces.Geo.TerrenoI;
 import Model.Classes.Geo.Terreno;
 import org.jdom2.Document;
@@ -25,7 +26,7 @@ public class TerrenoLocalDB
     public void cargarDatos()
     {
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero("Data/Terrenos.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"Terrenos.xml");
 
         try
         {
