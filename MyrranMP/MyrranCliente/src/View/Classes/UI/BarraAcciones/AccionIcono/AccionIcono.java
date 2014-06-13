@@ -13,10 +13,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
 public class AccionIcono implements Icono
 {
+    //Model:
     protected ListaAccionesI barra;
     protected int posX;
     protected int posY;
 
+    //View:
     protected Group apariencia = new Group();
     protected IconoSource source;
     protected AccionTarget target;

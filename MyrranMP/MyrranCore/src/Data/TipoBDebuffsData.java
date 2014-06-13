@@ -1,7 +1,7 @@
 package Data;// Created by Hanto on 10/06/2014.
 
 
-public class TipoAurasData
+public class TipoBDebuffsData
 {
     //HOT:
     public static final String  HOT_ID = "Dot";

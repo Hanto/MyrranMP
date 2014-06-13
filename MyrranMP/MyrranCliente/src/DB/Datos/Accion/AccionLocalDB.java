@@ -1,4 +1,4 @@
-package DAO.Accion.DB;// Created by Hanto on 06/05/2014.
+package DB.Datos.Accion;// Created by Hanto on 06/05/2014.
 
 import Interfaces.UI.Acciones.AccionI;
 

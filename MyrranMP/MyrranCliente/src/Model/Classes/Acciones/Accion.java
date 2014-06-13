@@ -1,4 +1,4 @@
-package Model.Classes.UI.Acciones;// Created by Hanto on 05/05/2014.
+package Model.Classes.Acciones;// Created by Hanto on 05/05/2014.
 
 import Interfaces.UI.Acciones.AccionI;
 

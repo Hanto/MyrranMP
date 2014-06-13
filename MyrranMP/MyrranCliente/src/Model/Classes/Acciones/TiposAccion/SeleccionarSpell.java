@@ -1,4 +1,4 @@
-package Model.Classes.UI.Acciones.TiposAccion;// Created by Hanto on 05/05/2014.
+package Model.Classes.Acciones.TiposAccion;// Created by Hanto on 05/05/2014.
 
 import Data.TipoSpellsData;
 import Interfaces.EntidadesPropiedades.Caster;
@@ -6,7 +6,7 @@ import Interfaces.EntidadesTipos.MobPlayer;
 import Interfaces.Spell.SpellI;
 import Interfaces.UI.Input.ControladorUI;
 import Interfaces.UI.Input.PlayerEstadoI;
-import Model.Classes.UI.Acciones.Accion;
+import Model.Classes.Acciones.Accion;
 
 public class SeleccionarSpell extends Accion
 {

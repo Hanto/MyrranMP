@@ -2,12 +2,11 @@ package zMain;// Created by Hanto on 11/04/2014.
 
 import Core.SkillStat;
 import DAO.Accion.AccionDAO;
-import DAO.DAO;
 import DB.RSC;
 import DB.Recursos.AccionRecursos.DAO.AccionRecursosDAO;
 import DB.Recursos.AccionRecursos.DTO.AccionRecursos;
-import Model.Classes.UI.Acciones.Accion;
-import Model.Classes.UI.Acciones.TiposAccion.*;
+import Model.Classes.Acciones.Accion;
+import Model.Classes.Acciones.TiposAccion.*;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import java.util.ArrayList;
@@ -80,7 +79,7 @@ public class LoadGameData
         cargarAccion(new IrOeste());
         cargarAccion(new IrEste());
 
-        AccionDAO accionDAO = DAO.accionDAOFactory.getAccionDAO();
+        AccionDAO accionDAO = DB.DAO.accionDAOFactory.getAccionDAO();
         AccionRecursosDAO accionRecursosDAO = RSC.accionRecursosDAO.getAccionRecursosDAO();
 
         AccionRecursos accionRecurso;
@@ -91,14 +90,14 @@ public class LoadGameData
             accion = new SeleccionarSpell(DB.DAO.spellDAOFactory.getSpellDAO().getSpell(spellDTO.id));
             accionDAO.salvarAccion(accion);
 
-            accionRecurso = new AccionRecursos(accion.getID(), RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRecursos(spellDTO.id).getIcono());
+            accionRecurso = new AccionRecursos(accion.getID(), null);
             accionRecursosDAO.salvarAccionRecurso(accionRecurso);
         }
     }
 
     public void cargarAccion(Accion accion)
     {
-        AccionDAO accionDAO = DAO.accionDAOFactory.getAccionDAO();
+        AccionDAO accionDAO = DB.DAO.accionDAOFactory.getAccionDAO();
         AccionRecursosDAO accionRecursosDAO = RSC.accionRecursosDAO.getAccionRecursosDAO();
 
         accionDAO.salvarAccion(accion);
