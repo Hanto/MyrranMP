@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Java Kryonet">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/MyrranCore/lib/Java Kryonet" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/MyrranCore/lib/Java Kryonet/javadoc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/MyrranCore/lib/Java Kryonet/src" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/MyrranCore/lib/Java Kryonet" recursive="false" />
+  </library>
+</component>
