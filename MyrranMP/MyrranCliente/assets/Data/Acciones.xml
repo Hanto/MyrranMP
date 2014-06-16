@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Acciones>
+	<Accion>
+		<iD>IrNorte</iD>
+		<icono>IrNorte</icono>
+	</Accion>
+	<Accion>
+		<iD>IrSur</iD>
+		<icono>IrSur</icono>
+	</Accion>
+	<Accion>
+		<iD>IrEste</iD>
+		<icono>IrEste</icono>
+	</Accion>
+	<Accion>
+		<iD>IrOeste</iD>
+		<icono>IrOeste</icono>
+	</Accion>
+</Acciones>

@@ -6,7 +6,7 @@ import Model.Classes.UI.BarraAcciones.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
 import DB.RSC;
 import View.Classes.Graficos.Texto;
-import View.Classes.UI.BarraAcciones.AccionIcono.AccionIcono;
+import View.Classes.UI.BarraAcciones.AccionView.AccionView;
 import View.Classes.UI.Comun.Ventana;
 import View.Classes.UI.Comun.VentanaMoverListener;
 import View.Classes.UI.Comun.VentanaResizeListener;
@@ -35,7 +35,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
     private Image redimensionarBarra;
     private Image eliminarBarra;
 
-    private Array<Array<AccionIcono>> barraIconos = new Array<>();
+    private Array<Array<AccionView>> barraIconos = new Array<>();
 
     public float getEsquinaSupIzdaX()                       { return this.getX(); }
     public float getEsquinaSupIzdaY()                       { return this.getY() + this.getHeight(); }
@@ -88,9 +88,9 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
         recrearTabla();
     }
 
-    private AccionIcono crearIcono (int posX, int posY)
+    private AccionView crearIcono (int posX, int posY)
     {
-        AccionIcono icono = new AccionIcono(barraModel, posX, posY);
+        AccionView icono = new AccionView(barraModel, posX, posY);
         icono.addDragAndDrop(dad, controlador);
         icono.getApariencia().addListener(new BAccionesRebindListener(icono, conjuntoBarraAccionesView, controlador));
         return icono;
@@ -111,7 +111,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
         {
             for (int x = 0; x < barraIconos.get(y).size; x++)
             {
-                AccionIcono icono = barraIconos.get(y).get(x);
+                AccionView icono = barraIconos.get(y).get(x);
                 this.add(icono.getApariencia()).left().height(MiscData.BARRASPELLS_Alto_Casilla).width(MiscData.BARRASPELLS_Ancho_Casilla);
             }
             this.row();
@@ -166,11 +166,11 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
     private void añadirFila()
     {
         int y = barraIconos.size;
-        Array<AccionIcono>array = new Array<>();
+        Array<AccionView>array = new Array<>();
 
         for (int x = 0; x< barraModel.getNumColumnas(); x++)
         {
-            AccionIcono icono = crearIcono(x, y);
+            AccionView icono = crearIcono(x, y);
             array.add(icono);
         }
         barraIconos.add(array);
@@ -181,14 +181,14 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
         for (int y=0; y< barraIconos.size; y++)
         {
             int x = barraIconos.get(y).size;
-            AccionIcono icono = crearIcono(x, y);
+            AccionView icono = crearIcono(x, y);
             barraIconos.get(y).add(icono);
         }
     }
 
     private void eliminarFila ()
     {
-        Array<AccionIcono> array = barraIconos.peek();
+        Array<AccionView> array = barraIconos.peek();
         for (int i=0; i< array.size; i++)
         {   array.get(i).eliminarIcono(dad); }
         barraIconos.removeIndex(barraIconos.size - 1);
@@ -198,7 +198,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
     {
         for (int y=0; y< barraIconos.size; y++)
         {
-            AccionIcono icono = barraIconos.get(y).pop();
+            AccionView icono = barraIconos.get(y).pop();
             icono.eliminarIcono(dad);
         }
     }
@@ -212,7 +212,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
     }
 
 
-    private void actualizarApariencia(AccionIcono icono)
+    private void actualizarApariencia(AccionView icono)
     {
         icono.actualizarApariencia();
         if (barraModel.getKeybind(icono.getPosX(), icono.getPosY()) != null)

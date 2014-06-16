@@ -1,4 +1,4 @@
-package Model.Classes.UI.Input;
+package Model.Classes.Input;
 // @author Ivan Delgado Huertaimp
 
 import Interfaces.UI.Input.PlayerEstadoI;

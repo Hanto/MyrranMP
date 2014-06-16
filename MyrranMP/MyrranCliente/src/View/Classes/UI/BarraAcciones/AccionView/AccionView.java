@@ -1,17 +1,18 @@
-package View.Classes.UI.BarraAcciones.AccionIcono;// Created by Hanto on 13/05/2014.
+package View.Classes.UI.BarraAcciones.AccionView;// Created by Hanto on 13/05/2014.
 
 import Data.MiscData;
 import Interfaces.UI.Acciones.AccionI;
 import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import Interfaces.UI.BarraAcciones.ListaAccionesI;
 import DB.RSC;
+import Model.Classes.Acciones.TiposAccion.SeleccionarSpell;
 import View.Classes.UI.Comun.Icono;
 import View.Classes.UI.Comun.IconoSource;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
-public class AccionIcono implements Icono
+public class AccionView implements Icono
 {
     //Model:
     protected ListaAccionesI barra;
@@ -28,7 +29,7 @@ public class AccionIcono implements Icono
     public ListaAccionesI getBarra()    { return barra; }
 
     //Constructor:
-    public AccionIcono(ListaAccionesI barra, int posX, int posY)
+    public AccionView(ListaAccionesI barra, int posX, int posY)
     {
         this.barra = barra;
         this.posX = posX;
@@ -37,22 +38,8 @@ public class AccionIcono implements Icono
     }
 
 
-
-    @Override public Group getApariencia()            { return apariencia; }
-    @Override public Group getDragActor()
-    {
-        Group group = new Group();
-        actualizarApariencia(group);
-        return group;
-    }
-    public void actualizarApariencia()
-    {   actualizarApariencia(apariencia); }
-
-    @Override public boolean tieneDatos()
-    {
-        if (barra.getAccion(posX, posY) != null) return true;
-        else return false;
-    }
+    @Override public Group getApariencia()          { return apariencia; }
+    public void actualizarApariencia()    { actualizarApariencia(apariencia); }
 
     private void actualizarApariencia(Group group)
     {
@@ -70,12 +57,31 @@ public class AccionIcono implements Icono
         }
         else
         {
-            Image casillaIcono = new Image (RSC.accionRecursosDAO.getAccionRecursosDAO().getAccionRecurso(accion.getID()).getTextura());
+            Image casillaIcono;
+            if (accion instanceof SeleccionarSpell)
+            {   casillaIcono = new Image (RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRecursos(accion.getID()).getIcono()); }
+            else
+            {   casillaIcono = new Image (RSC.accionRecursosDAO.getAccionRecursosDAO().getAccionRecurso(accion.getID()).getTextura()); }
+
             casillaIcono.setBounds(0,0,MiscData.ICONO_Accion_Ancho, MiscData.ICONO_Accion_Alto);
             group.addActor(casillaIcono);
             group.setWidth(casillaIcono.getWidth());
             group.setHeight(casillaIcono.getHeight());
         }
+    }
+
+
+    @Override public Group getDragActor()
+    {
+        Group group = new Group();
+        actualizarApariencia(group);
+        return group;
+    }
+
+    @Override public boolean tieneDatos()
+    {
+        if (barra.getAccion(posX, posY) != null) return true;
+        else return false;
     }
 
     public void addSource(DragAndDrop dad)

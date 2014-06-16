@@ -1,4 +1,4 @@
-package Model.Classes.UI.Input;// Created by Hanto on 11/04/2014.
+package Model.Classes.Input;// Created by Hanto on 11/04/2014.
 
 import Interfaces.UI.Input.PlayerIOI;
 

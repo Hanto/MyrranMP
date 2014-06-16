@@ -5,7 +5,7 @@ import Interfaces.UI.Acciones.AccionI;
 import Interfaces.UI.BarraAcciones.BarraAccionesI;
 import Interfaces.UI.BarraAcciones.ListaAccionesI;
 import Model.Classes.Acciones.Accion;
-import Model.Classes.UI.Input.Keybinds;
+import Model.Classes.Input.Keybinds;
 import Model.DTO.BarraAccionesDTO;
 
 import java.util.HashMap;
@@ -40,30 +40,6 @@ public class ConjuntoBarraAcciones extends AbstractModel
         barraAccion.eliminar();
     }
 
-    //Provisional:
-    public void añadirAccionesEnBarra(BarraAccionesI barra)
-    {
-        barra.setKeycode(0, 0, 8);
-        barra.setKeycode(1, 0, 9);
-        barra.setKeycode(2, 0, 10);
-        barra.setKeycode(3, 0, 11);
-        barra.setKeycode(4, 0, 12);
-        barra.setKeycode(5, 0, 13);
-        barra.setKeycode(6, 0, 14);
-        barra.setKeycode(7, 0, 15);
-        barra.setKeycode(8, 0, 16);
-
-        barra.setKeycode(1, 1, 51);
-        barra.setKeycode(1, 2, 47);
-        barra.setKeycode(2, 2, 32);
-        barra.setKeycode(0, 2, 29);
-
-        barra.setAccion(0, 0, DB.DAO.accionDAOFactory.getAccionDAO().getAccion("Terraformar"));
-        barra.setAccion(1, 1, DB.DAO.accionDAOFactory.getAccionDAO().getAccion("IrNorte"));
-        barra.setAccion(1, 2, DB.DAO.accionDAOFactory.getAccionDAO().getAccion("IrSur"));
-        barra.setAccion(2, 2, DB.DAO.accionDAOFactory.getAccionDAO().getAccion("IrEste"));
-        barra.setAccion(0, 2, DB.DAO.accionDAOFactory.getAccionDAO().getAccion("IrOeste"));
-    }
 
     public void setKeycode (BarraAccionesI barra, int posX, int posY, int keycode)
     {
@@ -71,6 +47,19 @@ public class ConjuntoBarraAcciones extends AbstractModel
         {   entry.getValue().eliminarKeycode(keycode); }
 
         barra.setKeycode(posX, posY, keycode);
+    }
+
+
+    public void  setAccion (BarraAccionesI barra, int posX, int posY, String idAccion, int keycode)
+    {
+        setAccion(barra, posX, posY, idAccion);
+        setKeycode(barra, posX, posY, keycode);
+    }
+
+    public void setAccion (BarraAccionesI barra, int posX, int posY, String idAccion)
+    {
+        AccionI accion = keybinds.getAccion(idAccion);
+        barra.setAccion(posX, posY, accion);
     }
 
     public void setAccion (BarraAccionesI barra, int posX, int posY, Accion accion)

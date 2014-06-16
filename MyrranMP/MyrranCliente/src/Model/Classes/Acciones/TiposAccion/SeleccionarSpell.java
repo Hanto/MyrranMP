@@ -1,5 +1,6 @@
 package Model.Classes.Acciones.TiposAccion;// Created by Hanto on 05/05/2014.
 
+import DB.DAO;
 import Data.TipoSpellsData;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesTipos.MobPlayer;
@@ -12,6 +13,13 @@ public class SeleccionarSpell extends Accion
 {
     public SeleccionarSpell(SpellI spell)
     {
+        iD = spell.getID();
+        parametros = spell.getTipoSpell().getID();
+    }
+
+    public SeleccionarSpell(String idSpell)
+    {
+        SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(idSpell);
         iD = spell.getID();
         parametros = spell.getTipoSpell().getID();
     }

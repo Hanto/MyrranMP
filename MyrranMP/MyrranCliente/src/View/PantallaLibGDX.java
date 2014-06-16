@@ -4,7 +4,6 @@ import Controller.Controlador;
 import Model.GameState.Mundo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import zMain.LoadGameData;
 import zMain.MyrranClient;
 
 
@@ -18,8 +17,6 @@ public class PantallaLibGDX implements Screen
     public PantallaLibGDX(MyrranClient myrranCliente)
     {
         this.myrranCliente = myrranCliente;
-
-        new LoadGameData().cargarTodo();
 
         Mundo mundo = new Mundo();
         controlador = new Controlador(mundo);

@@ -42,7 +42,7 @@ public class SkillRecursosLocalDB
 
     public void cargarTexturasIconos()
     {
-        System.out.println("[CARGANDO TEXTURAS ICONOS]:");
+        System.out.println("[CARGANDO TEXTURAS ICONOS SPELLS]:");
         SAXBuilder builder = new SAXBuilder();
         InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"TexturasIconosSpells.xml");
 

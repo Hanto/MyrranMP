@@ -2,7 +2,7 @@ package View.Classes.UI.BarraAcciones;// Created by Hanto on 13/05/2014.
 
 import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import Interfaces.UI.BarraAcciones.BarraAccionesI;
-import View.Classes.UI.BarraAcciones.AccionIcono.AccionIcono;
+import View.Classes.UI.BarraAcciones.AccionView.AccionView;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -10,11 +10,11 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class BAccionesRebindListener extends InputListener
 {
     private ConjuntoBarraAccionesView conjuntoBarraAccionesView;
-    private AccionIcono icono;
+    private AccionView icono;
     private ControladorBarraAccionI controlador;
 
 
-    public BAccionesRebindListener(AccionIcono icono, ConjuntoBarraAccionesView conjuntoBarraAccionesView, ControladorBarraAccionI controlador)
+    public BAccionesRebindListener(AccionView icono, ConjuntoBarraAccionesView conjuntoBarraAccionesView, ControladorBarraAccionI controlador)
     {
         this.conjuntoBarraAccionesView = conjuntoBarraAccionesView;
         this.icono = icono;

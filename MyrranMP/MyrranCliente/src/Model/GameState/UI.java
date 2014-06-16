@@ -1,19 +1,20 @@
 package Model.GameState;// Created by Hanto on 06/05/2014.
 
 import Controller.Controlador;
-import Model.Classes.Mobiles.Player;
-import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
 import Interfaces.UI.BarraAcciones.BarraAccionesI;
-import Model.Classes.UI.BarraAcciones.ConjuntoBarraAcciones;
 import Interfaces.UI.BarraAcciones.ListaAccionesI;
-import Model.Classes.UI.Input.Keybinds;
-import Model.Classes.UI.Input.PlayerEstado;
-import Model.Classes.UI.Input.PlayerIO;
+import Model.Classes.Acciones.AccionFactory;
+import Model.Classes.Mobiles.Player;
+import Model.Classes.UI.BarraAcciones.ConjuntoBarraAcciones;
+import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
+import Model.Classes.Input.Keybinds;
+import Model.Classes.Input.PlayerEstado;
+import Model.Classes.Input.PlayerIO;
 
 
 public class UI
 {
-    public Keybinds keybinds;
+    protected Keybinds keybinds;
     protected PlayerIO playerInput = new PlayerIO();
     protected PlayerIO playerOutput = new PlayerIO();
     protected PlayerEstado playerEstado = new PlayerEstado(playerInput, playerOutput);
@@ -21,6 +22,7 @@ public class UI
     public ConjuntoBarraAcciones conjuntoBarraAcciones;
     public BarraTerrenos barraTerrenos;
 
+    public Keybinds getKeybinds()       { return keybinds; }
 
 
     public UI (Player player, Controlador controlador)
@@ -28,7 +30,17 @@ public class UI
         keybinds = new Keybinds(player, playerEstado, controlador);
         conjuntoBarraAcciones = new ConjuntoBarraAcciones(keybinds);
         barraTerrenos  = new BarraTerrenos(player);
+
+
+
+
+        keybinds.añadirAccion(AccionFactory.accionComando.IRNORTE.nuevo());
+        keybinds.añadirAccion(AccionFactory.accionComando.IRSUR.nuevo());
+        keybinds.añadirAccion(AccionFactory.accionComando.IRESTE.nuevo());
+        keybinds.añadirAccion(AccionFactory.accionComando.IROESTE.nuevo());
+        keybinds.añadirAccion(AccionFactory.accionSpell.SELECCIONARSPELL.nuevo("Terraformar"));
     }
+
 
     public void añadirBarraAcciones(int filas, int columnas)
     {   conjuntoBarraAcciones.añadirBarraAcciones(filas, columnas); }
@@ -42,9 +54,4 @@ public class UI
 
     public void barraTerrenosMoverTerreno(int posOrigen, int posDestino)
     {   barraTerrenos.moverTerreno(posOrigen, posDestino); }
-
-    //Provisional:
-    public void añadirAccionesEnBarra(int numBarra)
-    {   conjuntoBarraAcciones.añadirAccionesEnBarra(conjuntoBarraAcciones.getBarraAcciones(numBarra)); }
-
 }

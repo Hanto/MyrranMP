@@ -4,7 +4,7 @@ import Data.MiscData;
 import Interfaces.Model.AbstractModel;
 import Interfaces.UI.Acciones.AccionI;
 import Interfaces.UI.BarraAcciones.BarraAccionesI;
-import Model.Classes.UI.Input.Keybinds;
+import Model.Classes.Input.Keybinds;
 import Model.DTO.BarraAccionesDTO;
 import com.badlogic.gdx.utils.Array;
 
@@ -102,6 +102,17 @@ public class BarraAcciones extends AbstractModel implements BarraAccionesI
     }
 
 
+    public void setAccion(int posX, int posY, String idAccion, int keycode)
+    {
+        setAccion(posX, posY, idAccion);
+        setKeycode(posX, posY, keycode);
+    }
+
+    public void setAccion(int posX, int posY, String idAccion)
+    {
+        AccionI accion = keybinds.getAccion(idAccion);
+        setAccion(posX, posY, accion);
+    }
 
     @Override public void setAccion(int posX, int posY, AccionI accion)
     {

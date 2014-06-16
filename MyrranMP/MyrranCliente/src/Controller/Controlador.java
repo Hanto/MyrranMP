@@ -41,8 +41,23 @@ public class Controlador implements ControladorUI
 
         añadirPlayer(cliente.getID());
 
-        añadirBarraAcciones(3, 10);
-        ui.añadirAccionesEnBarra(0);
+
+        ui.añadirBarraAcciones(3, 9);
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setKeycode(1, 0, 9);
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setKeycode(2, 0, 10);
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setKeycode(3, 0, 11);
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setKeycode(4, 0, 12);
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setKeycode(5, 0, 13);
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setKeycode(6, 0, 14);
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setKeycode(7, 0, 15);
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setKeycode(8, 0, 16);
+
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setAccion(0, 0, "Terraformar", 8);
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setAccion(1, 1, "IrNorte", 51);
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setAccion(1, 2, "IrSur", 47);
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setAccion(2, 2, "IrEste", 32);
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setAccion(0, 2, "IrOeste", 29);
+
 
         moverPlayer(21000,22400);
     }
@@ -77,11 +92,11 @@ public class Controlador implements ControladorUI
     public void aplicarZoom(int incrementoZoom)                                         { vista.aplicarZoom(incrementoZoom); }
 
     public void addInputProcessor(Stage stage)                                          { inputMultiplexer.addProcessor(stage); }
-    public void procesarKeyDown(int keycode)                                            { ui.keybinds.keyDown(keycode); }
-    public void procesarKeyUp(int keycode)                                              { ui.keybinds.keyUp(keycode); }
-    public void procesarTouchDown(int screenX, int screenY, int pointer, int button)    { ui.keybinds.touchDown(screenX, screenY, pointer, button); }
-    public void procesarTouchUp(int screenX, int screenY, int pointer, int button)      { ui.keybinds.touchUp(screenX, screenY, pointer, button); }
-    public void procesarTouchDragged(int screenX, int screenY, int pointer)             { ui.keybinds.touchDragged(screenX, screenY, pointer); }
+    public void procesarKeyDown(int keycode)                                            { ui.getKeybinds().keyDown(keycode); }
+    public void procesarKeyUp(int keycode)                                              { ui.getKeybinds().keyUp(keycode); }
+    public void procesarTouchDown(int screenX, int screenY, int pointer, int button)    { ui.getKeybinds().touchDown(screenX, screenY, pointer, button); }
+    public void procesarTouchUp(int screenX, int screenY, int pointer, int button)      { ui.getKeybinds().touchUp(screenX, screenY, pointer, button); }
+    public void procesarTouchDragged(int screenX, int screenY, int pointer)             { ui.getKeybinds().touchDragged(screenX, screenY, pointer); }
 
     //BarraTerrenos:
     @Override public void mostrarBarraTerrenos()                                        { vista.getUiView().mostrarBarraTerreno(); }

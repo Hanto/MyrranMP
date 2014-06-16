@@ -32,22 +32,9 @@ public class TerrenoIcono implements Icono
         crearListener();
     }
 
-    @Override public Group getApariencia()      { return apariencia; }
-    @Override public Group getDragActor()
-    {
-        Group group = new Group();
-        actualizarApariencia(group);
-        return group;
-    }
 
-    public void actualizarApariencia()
-    {   actualizarApariencia(apariencia); }
-
-    @Override public boolean tieneDatos()
-    {
-        if (barraTerrenos.getTerrenoID(posX) >= 0) return true;
-        else return false;
-    }
+    @Override public Group getApariencia()          { return apariencia; }
+    public void actualizarApariencia()    { actualizarApariencia(apariencia); }
 
     private void actualizarApariencia(Group group)
     {
@@ -62,6 +49,20 @@ public class TerrenoIcono implements Icono
         group.addActor(image);
         group.setWidth(image.getWidth());
         group.setHeight(image.getHeight());
+    }
+
+
+    @Override public Group getDragActor()
+    {
+        Group group = new Group();
+        actualizarApariencia(group);
+        return group;
+    }
+
+    @Override public boolean tieneDatos()
+    {
+        if (barraTerrenos.getTerrenoID(posX) >= 0) return true;
+        else return false;
     }
 
     public void crearListener()
