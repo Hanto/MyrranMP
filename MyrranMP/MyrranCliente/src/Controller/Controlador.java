@@ -1,17 +1,14 @@
 package Controller;// Created by Hanto on 08/04/2014.
 
-import Controller.Input.PlayerGestures;
-import Controller.Input.PlayerMouseKeys;
-import Interfaces.UI.Input.ControladorUI;
 import DTO.NetDTO;
 import Interfaces.UI.BarraAcciones.BarraAccionesI;
 import Interfaces.UI.BarraAcciones.ListaAccionesI;
+import Interfaces.UI.Input.ControladorUI;
 import Model.GameState.Mundo;
 import Model.GameState.UI;
 import View.Vista;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 //CLIENTE:
@@ -33,8 +30,7 @@ public class Controlador implements ControladorUI
         ui = new UI(mundo.getPlayer(), this);
         vista = new Vista(this, ui, mundo);
 
-        inputMultiplexer.addProcessor(new GestureDetector(new PlayerGestures()));
-        inputMultiplexer.addProcessor(new PlayerMouseKeys(this));
+        inputMultiplexer.addProcessor(ui.getInputManager());
         Gdx.input.setInputProcessor(inputMultiplexer);
 
         cliente = new Cliente(this);
@@ -92,11 +88,11 @@ public class Controlador implements ControladorUI
     public void aplicarZoom(int incrementoZoom)                                         { vista.aplicarZoom(incrementoZoom); }
 
     public void addInputProcessor(Stage stage)                                          { inputMultiplexer.addProcessor(stage); }
-    public void procesarKeyDown(int keycode)                                            { ui.getKeybinds().keyDown(keycode); }
-    public void procesarKeyUp(int keycode)                                              { ui.getKeybinds().keyUp(keycode); }
-    public void procesarTouchDown(int screenX, int screenY, int pointer, int button)    { ui.getKeybinds().touchDown(screenX, screenY, pointer, button); }
-    public void procesarTouchUp(int screenX, int screenY, int pointer, int button)      { ui.getKeybinds().touchUp(screenX, screenY, pointer, button); }
-    public void procesarTouchDragged(int screenX, int screenY, int pointer)             { ui.getKeybinds().touchDragged(screenX, screenY, pointer); }
+    public void procesarKeyDown(int keycode)                                            { ui.getInputManager().keyDown(keycode); }
+    public void procesarKeyUp(int keycode)                                              { ui.getInputManager().keyUp(keycode); }
+    public void procesarTouchDown(int screenX, int screenY, int pointer, int button)    { ui.getInputManager().touchDown(screenX, screenY, pointer, button); }
+    public void procesarTouchUp(int screenX, int screenY, int pointer, int button)      { ui.getInputManager().touchUp(screenX, screenY, pointer, button); }
+    public void procesarTouchDragged(int screenX, int screenY, int pointer)             { ui.getInputManager().touchDragged(screenX, screenY, pointer); }
 
     //BarraTerrenos:
     @Override public void mostrarBarraTerrenos()                                        { vista.getUiView().mostrarBarraTerreno(); }

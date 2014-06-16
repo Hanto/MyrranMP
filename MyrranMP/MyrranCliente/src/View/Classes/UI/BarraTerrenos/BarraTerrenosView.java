@@ -6,7 +6,7 @@ import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
 import Model.DTO.BarraTerrenosDTO;
 import DB.RSC;
 import View.Classes.Graficos.Texto;
-import View.Classes.UI.BarraTerrenos.TerrenoIcono.TerrenoIcono;
+import View.Classes.UI.BarraTerrenos.TerrenoView.TerrenoView;
 import View.Classes.UI.Comun.Ventana;
 import View.Classes.UI.Comun.VentanaMoverListener;
 import View.Classes.UI.Comun.VentanaResizeListener;
@@ -36,7 +36,7 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
 
     protected Table tablaTerrenos = new Table().top().left();
     protected ScrollPane scrollPane;
-    protected Array<TerrenoIcono> barraIconos;
+    protected Array<TerrenoView> barraIconos;
 
     protected DragAndDrop dad;
 
@@ -109,9 +109,9 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
         recrearTabla();
     }
 
-    private TerrenoIcono crearIcono(final int posX)
+    private TerrenoView crearIcono(final int posX)
     {
-        TerrenoIcono icono = new TerrenoIcono(barraTerrenos, posX);
+        TerrenoView icono = new TerrenoView(barraTerrenos, posX);
         icono.addDragAndDrop(dad, controlador);
         return icono;
     }
@@ -145,7 +145,7 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
 
         int columna = 0;
 
-        for (TerrenoIcono icono: barraIconos)
+        for (TerrenoView icono: barraIconos)
         {
             columna++;
             tablaTerrenos.add(icono.getApariencia()).left().height(icono.getApariencia().getHeight()).width(icono.getApariencia().getWidth());
@@ -194,7 +194,7 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
                                    Actions.removeActor()));
     }
 
-    public void actualizarApariencia(TerrenoIcono icono)
+    public void actualizarApariencia(TerrenoView icono)
     {   icono.actualizarApariencia(); }
 
 

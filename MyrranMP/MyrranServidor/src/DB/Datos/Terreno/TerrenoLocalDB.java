@@ -26,7 +26,7 @@ public class TerrenoLocalDB
     public void cargarDatos()
     {
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"Terrenos.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_DataTerrenos);
 
         try
         {
@@ -53,6 +53,6 @@ public class TerrenoLocalDB
             }
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de Spells."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_DataTerrenos+": "+e); }
     }
 }

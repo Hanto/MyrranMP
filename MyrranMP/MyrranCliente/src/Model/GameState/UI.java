@@ -4,17 +4,17 @@ import Controller.Controlador;
 import Interfaces.UI.BarraAcciones.BarraAccionesI;
 import Interfaces.UI.BarraAcciones.ListaAccionesI;
 import Model.Classes.Acciones.AccionFactory;
+import Model.Classes.Input.InputManager;
 import Model.Classes.Mobiles.Player;
 import Model.Classes.UI.BarraAcciones.ConjuntoBarraAcciones;
 import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
-import Model.Classes.Input.Keybinds;
 import Model.Classes.Input.PlayerEstado;
 import Model.Classes.Input.PlayerIO;
 
 
 public class UI
 {
-    protected Keybinds keybinds;
+    protected InputManager inputManager;
     protected PlayerIO playerInput = new PlayerIO();
     protected PlayerIO playerOutput = new PlayerIO();
     protected PlayerEstado playerEstado = new PlayerEstado(playerInput, playerOutput);
@@ -22,23 +22,23 @@ public class UI
     public ConjuntoBarraAcciones conjuntoBarraAcciones;
     public BarraTerrenos barraTerrenos;
 
-    public Keybinds getKeybinds()       { return keybinds; }
+    public InputManager getInputManager()       { return inputManager; }
 
 
     public UI (Player player, Controlador controlador)
     {
-        keybinds = new Keybinds(player, playerEstado, controlador);
-        conjuntoBarraAcciones = new ConjuntoBarraAcciones(keybinds);
+        inputManager = new InputManager(player, playerEstado, controlador);
+        conjuntoBarraAcciones = new ConjuntoBarraAcciones(inputManager);
         barraTerrenos  = new BarraTerrenos(player);
 
 
 
 
-        keybinds.añadirAccion(AccionFactory.accionComando.IRNORTE.nuevo());
-        keybinds.añadirAccion(AccionFactory.accionComando.IRSUR.nuevo());
-        keybinds.añadirAccion(AccionFactory.accionComando.IRESTE.nuevo());
-        keybinds.añadirAccion(AccionFactory.accionComando.IROESTE.nuevo());
-        keybinds.añadirAccion(AccionFactory.accionSpell.SELECCIONARSPELL.nuevo("Terraformar"));
+        inputManager.añadirAccion(AccionFactory.accionComando.IRNORTE.nuevo());
+        inputManager.añadirAccion(AccionFactory.accionComando.IRSUR.nuevo());
+        inputManager.añadirAccion(AccionFactory.accionComando.IRESTE.nuevo());
+        inputManager.añadirAccion(AccionFactory.accionComando.IROESTE.nuevo());
+        inputManager.añadirAccion(AccionFactory.accionSpell.SELECCIONARSPELL.nuevo("Terraformar"));
     }
 
 

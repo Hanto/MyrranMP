@@ -28,7 +28,7 @@ public class SpellLocalDB
     {
         System.out.println("[CARGANDO SPELLS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"Spells.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+ MiscData.XML_DataSpells);
 
         try
         {
@@ -92,6 +92,6 @@ public class SpellLocalDB
                 listaDeSpells.put(spell.getID(), spell);
             }
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de Spells."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_DataSpells+": "+e); }
     }
 }

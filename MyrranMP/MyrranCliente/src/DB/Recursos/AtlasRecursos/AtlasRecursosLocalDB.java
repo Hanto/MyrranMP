@@ -29,7 +29,7 @@ public class AtlasRecursosLocalDB
     {
         System.out.println("[CARGANDO CONFIGURACION ATLAS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML + "TexturasAtlas.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML + MiscData.XML_TexturasAtlas);
 
         try
         {
@@ -45,7 +45,7 @@ public class AtlasRecursosLocalDB
 
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de TexturasAtlas."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_TexturasAtlas+": "+e); }
 
         //Cargamos el atlas en memoria
         atlas = new TextureAtlas(Gdx.files.internal(MiscData.RECURSOS_Atlas_Carpeta_Imagenes_Destino + MiscData.RECURSOS_Atlas_Atlas_Extension +".atlas"));

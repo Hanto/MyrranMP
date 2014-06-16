@@ -30,7 +30,7 @@ public class FuentesRecursosLocalDB
     {
         System.out.println("[CARGANDO TEXTURAS FUENTES]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"TexturasFuentes.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_TexturasFuentes);
 
         try
         {
@@ -50,6 +50,6 @@ public class FuentesRecursosLocalDB
             }
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de TexturasFuentes."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_TexturasFuentes+": "+e); }
     }
 }

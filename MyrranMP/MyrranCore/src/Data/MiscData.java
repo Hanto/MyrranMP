@@ -27,14 +27,30 @@ public class MiscData
     public final static String RECURSOS_Atlas_Carpeta_Imagenes_Destino = "Atlas/";
     public final static String RECURSOS_Atlas_Atlas_Extension = "atlas";
 
+    //XML
+    public final static String XML_DataSpells               = "DataSpells.xml";
+    public final static String XML_DataTerrenos             = "DataTerrenos.xml";
+    public final static String XML_DataAcciones             = "DataAcciones.xml";
+    public final static String XML_DataRazas                = "DataRazas.xml";
+    public final static String XML_TexturasAtlas            = "TexturasAtlas.xml";
+    public final static String XML_TexturasIconosAcciones   = "TexturasIconosAcciones.xml";
+    public final static String XML_TexturasFuentes          = "TexturasFuentes.xml";
+    public final static String XML_TexturasMisc             = "TexturasMisc.xml";
+    public final static String XML_TexturasIconoSpells      = "TexturasIconosSpells.xml";
+    public final static String XML_TexturasTerrenos         = "TexturasTerrenos.xml";
+    public final static String XML_AnimacionesCasteo        = "AnimacionesCasteo.xml";
+    public final static String XML_AnimacionesProyectil     = "AnimacionesProyectil.xml";
+    public final static String XML_PixieCuerpo              = "PixieCuerpo.xml";
+    public final static String XML_PixieSlot                = "Pixie";
+
     //Mobiles Recursos:
-    public final static String ATLAS_PixiePcCuerpos_LOC = "PixiePcCuerpos/";
-    public final static String ATLAS_PixiePcSlots_LOC = "PixiePcSlots/";
-    public final static String ATLAS_TexturasTerrenos_LOC = "TexturasTerrenos/";
-    public final static String ATLAS_TexturasIconos_LOC = "TexturasIconos/";
-    public final static String ATLAS_TexturasMisc_LOC = "TexturasMisc/";
-    public final static String ATLAS_AnimacionesSpells_LOC = "AnimacionesSpells/";
-    public final static String ATLAS_Fuentes_LOC = "Fonts/";
+    public final static String ATLAS_PixiePcCuerpos_LOC     = "PixiePcCuerpos/";
+    public final static String ATLAS_PixiePcSlots_LOC       = "PixiePcSlots/";
+    public final static String ATLAS_TexturasTerrenos_LOC   = "TexturasTerrenos/";
+    public final static String ATLAS_TexturasIconos_LOC     = "TexturasIconos/";
+    public final static String ATLAS_TexturasMisc_LOC       = "TexturasMisc/";
+    public final static String ATLAS_AnimacionesSpells_LOC  = "AnimacionesSpells/";
+    public final static String ATLAS_Fuentes_LOC            = "Fonts/";
 
     //Pixie:
     public final static int PIXIE_Player_numFilas = 7;

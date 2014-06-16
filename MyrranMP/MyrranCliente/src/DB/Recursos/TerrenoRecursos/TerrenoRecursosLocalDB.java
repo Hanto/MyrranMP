@@ -36,7 +36,7 @@ public class TerrenoRecursosLocalDB
     {
         System.out.println("[CARGANDO TEXTURAS TERRENOS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"TexturasTerrenos.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_TexturasTerrenos);
 
         try
         {
@@ -56,14 +56,14 @@ public class TerrenoRecursosLocalDB
             }
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de TexturasTerrenos."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_TexturasTerrenos+": "+e); }
     }
 
     public void cargarTerrenoRecursos()
     {
         System.out.println("[CARGANDO TERRENOS RECURSOS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"Terrenos.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_DataTerrenos);
 
         try
         {
@@ -86,7 +86,7 @@ public class TerrenoRecursosLocalDB
             }
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de Terrenos."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_DataTerrenos+": "+e); }
     }
 }
 

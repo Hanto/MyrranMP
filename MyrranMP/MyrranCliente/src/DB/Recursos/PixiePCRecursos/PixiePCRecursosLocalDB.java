@@ -73,7 +73,7 @@ public class PixiePCRecursosLocalDB
     {
         System.out.println("[CARGANDO RAZAS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"PixieRaza.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_DataRazas);
 
         try
         {
@@ -93,14 +93,14 @@ public class PixiePCRecursosLocalDB
             }
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de PixieRazas."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_DataRazas+": "+e); }
     }
 
     public void cargarCuerpos()
     {
         System.out.println("[CARGANDO CUERPOS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"PixieCuerpo.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_PixieCuerpo);
 
         try
         {
@@ -124,14 +124,14 @@ public class PixiePCRecursosLocalDB
             }
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de PixieCuerpos."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_PixieCuerpo+": "+e); }
     }
 
     public void cargarSlot(String slot)
     {
         System.out.println("[CARGANDO "+slot.toUpperCase()+"S]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"Pixie"+slot+".xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_PixieSlot+slot+".xml");
 
         try
         {
@@ -154,6 +154,6 @@ public class PixiePCRecursosLocalDB
             }
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de Pixie"+slot+"s."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_PixieSlot+slot+"s."+e); }
     }
 }

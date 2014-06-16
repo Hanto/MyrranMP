@@ -37,7 +37,7 @@ public class AccionRecursosLocalDB
     {
         System.out.println("[CARGANDO TEXTURAS ICONOS ACCIONES]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML + "TexturasIconosAcciones.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML + MiscData.XML_TexturasIconosAcciones);
 
         try
         {
@@ -57,14 +57,14 @@ public class AccionRecursosLocalDB
             }
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de TexturasIconosAcciones."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_TexturasIconosAcciones+": "+e); }
     }
 
     public void cargarAccionRecursos()
     {
         System.out.println("[CARGANDO ACCION RECURSOS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"Acciones.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_DataAcciones);
 
         try
         {
@@ -87,6 +87,6 @@ public class AccionRecursosLocalDB
             }
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de Acciones."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_DataAcciones+": "+e); }
     }
 }

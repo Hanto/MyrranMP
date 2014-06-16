@@ -5,7 +5,7 @@ import Interfaces.UI.Acciones.AccionI;
 import Interfaces.UI.BarraAcciones.BarraAccionesI;
 import Interfaces.UI.BarraAcciones.ListaAccionesI;
 import Model.Classes.Acciones.Accion;
-import Model.Classes.Input.Keybinds;
+import Model.Classes.Input.InputManager;
 import Model.DTO.BarraAccionesDTO;
 
 import java.util.HashMap;
@@ -13,13 +13,13 @@ import java.util.Map;
 
 public class ConjuntoBarraAcciones extends AbstractModel
 {
-    protected Keybinds keybinds;
+    protected InputManager inputManager;
     protected Map<Integer, BarraAcciones> listaDeBarraAcciones = new HashMap<>();
 
     public BarraAcciones getBarraAcciones (int iD)              { return listaDeBarraAcciones.get(iD); }
 
-    public ConjuntoBarraAcciones(Keybinds keybinds)
-    {   this.keybinds = keybinds; }
+    public ConjuntoBarraAcciones(InputManager inputManager)
+    {   this.inputManager = inputManager; }
 
     public void añadirBarraAcciones (int filas, int columnas)
     {
@@ -28,7 +28,7 @@ public class ConjuntoBarraAcciones extends AbstractModel
         {   if (!listaDeBarraAcciones.containsKey(iDMenor)) break; }
 
 
-        BarraAcciones barraAcciones = new BarraAcciones(keybinds, iDMenor, filas, columnas);
+        BarraAcciones barraAcciones = new BarraAcciones(inputManager, iDMenor, filas, columnas);
         listaDeBarraAcciones.put(barraAcciones.getID(), barraAcciones);
 
         Object añadirBarraAccionesDTO = new BarraAccionesDTO.AñadirBarraAcciones(barraAcciones);
@@ -58,7 +58,7 @@ public class ConjuntoBarraAcciones extends AbstractModel
 
     public void setAccion (BarraAccionesI barra, int posX, int posY, String idAccion)
     {
-        AccionI accion = keybinds.getAccion(idAccion);
+        AccionI accion = inputManager.getAccion(idAccion);
         barra.setAccion(posX, posY, accion);
     }
 

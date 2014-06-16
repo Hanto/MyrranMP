@@ -44,7 +44,7 @@ public class SkillRecursosLocalDB
     {
         System.out.println("[CARGANDO TEXTURAS ICONOS SPELLS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"TexturasIconosSpells.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_TexturasIconoSpells);
 
         try
         {
@@ -64,14 +64,14 @@ public class SkillRecursosLocalDB
             }
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de TexturasIconosSpells."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_TexturasIconoSpells+": "+e); }
     }
 
     public void cargarAnimacionesCasteo()
     {
         System.out.println("[CARGANDO ANIMACIONES CASTEO]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"AnimacionesCasteo.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_AnimacionesCasteo);
 
         try
         {
@@ -93,14 +93,14 @@ public class SkillRecursosLocalDB
             }
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de AnimacionesCasteos."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_AnimacionesCasteo+": "+e); }
     }
 
     public void cargarAnimacionesProyectil()
     {
         System.out.println("[CARGANDO ANIMACIONES PROYECTIL]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"AnimacionesProyectil.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_AnimacionesProyectil);
 
         try
         {
@@ -121,14 +121,14 @@ public class SkillRecursosLocalDB
             }
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de AnimacionesCasteos."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_AnimacionesProyectil+": "+e); }
     }
 
     public void cargarSpellRecursos()
     {
         System.out.println("[CARGANDO SPELL RECURSOS]:");
         SAXBuilder builder = new SAXBuilder();
-        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+"Spells.xml");
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_DataSpells);
 
         try
         {
@@ -151,6 +151,6 @@ public class SkillRecursosLocalDB
             }
             System.out.println();
         }
-        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de Spells."+e); }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+MiscData.XML_DataSpells+": "+e); }
     }
 }
