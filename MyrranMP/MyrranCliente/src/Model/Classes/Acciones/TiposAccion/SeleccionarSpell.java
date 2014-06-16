@@ -5,8 +5,8 @@ import Data.TipoSpellsData;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesTipos.MobPlayer;
 import Interfaces.Spell.SpellI;
-import Interfaces.UI.Input.ControladorUI;
-import Interfaces.UI.Input.PlayerEstadoI;
+import Interfaces.UI.ControladorUI;
+import Interfaces.Input.PlayerEstadoI;
 import Model.Classes.Acciones.Accion;
 
 public class SeleccionarSpell extends Accion

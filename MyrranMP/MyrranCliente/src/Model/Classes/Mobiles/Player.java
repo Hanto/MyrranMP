@@ -6,7 +6,7 @@ import Interfaces.EntidadesTipos.MobPlayer;
 import Interfaces.Geo.MapaI;
 import Interfaces.Model.AbstractModel;
 import Interfaces.Spell.SpellI;
-import Interfaces.UI.Input.PlayerIOI;
+import Interfaces.Input.PlayerIOI;
 import Model.DTO.PlayerDTO;
 
 public class Player extends AbstractModel implements Caster, MobPlayer, Vulnerable

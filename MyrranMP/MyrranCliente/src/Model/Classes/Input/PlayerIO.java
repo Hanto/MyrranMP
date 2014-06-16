@@ -1,6 +1,6 @@
 package Model.Classes.Input;// Created by Hanto on 11/04/2014.
 
-import Interfaces.UI.Input.PlayerIOI;
+import Interfaces.Input.PlayerIOI;
 
 public class PlayerIO implements PlayerIOI
 {

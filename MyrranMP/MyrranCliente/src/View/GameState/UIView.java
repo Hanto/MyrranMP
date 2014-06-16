@@ -38,7 +38,7 @@ public class UIView extends Stage implements PropertyChangeListener
                         Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
         addActor(fps);
 
-        controlador.addInputProcessor(this);
+        //controlador.addInputProcessor(this);
         ui.conjuntoBarraAcciones.añadirObservador(this);
     }
 

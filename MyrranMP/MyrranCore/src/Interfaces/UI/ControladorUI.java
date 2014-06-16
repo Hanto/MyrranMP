@@ -1,4 +1,4 @@
-package Interfaces.UI.Input;// Created by Hanto on 10/06/2014.
+package Interfaces.UI;// Created by Hanto on 10/06/2014.
 
 import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import Interfaces.UI.BarraTerrenos.ControladorBarraTerrenosI;

@@ -16,10 +16,14 @@ public class ConjuntoBarraAcciones extends AbstractModel
     protected InputManager inputManager;
     protected Map<Integer, BarraAcciones> listaDeBarraAcciones = new HashMap<>();
 
-    public BarraAcciones getBarraAcciones (int iD)              { return listaDeBarraAcciones.get(iD); }
-
     public ConjuntoBarraAcciones(InputManager inputManager)
     {   this.inputManager = inputManager; }
+
+
+
+
+    public BarraAcciones getBarraAcciones (int iD)
+    {   return listaDeBarraAcciones.get(iD); }
 
     public void añadirBarraAcciones (int filas, int columnas)
     {

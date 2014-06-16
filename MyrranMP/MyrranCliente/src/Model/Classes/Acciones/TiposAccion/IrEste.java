@@ -1,8 +1,8 @@
 package Model.Classes.Acciones.TiposAccion;// Created by Hanto on 07/05/2014.
 
 import Interfaces.EntidadesTipos.MobPlayer;
-import Interfaces.UI.Input.ControladorUI;
-import Interfaces.UI.Input.PlayerEstadoI;
+import Interfaces.UI.ControladorUI;
+import Interfaces.Input.PlayerEstadoI;
 import Model.Classes.Acciones.Accion;
 
 public class IrEste extends Accion

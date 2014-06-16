@@ -56,7 +56,7 @@ public class MundoView extends Stage implements PropertyChangeListener
         camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         getViewport().setCamera(camara);
 
-        controlador.addInputProcessor(this);
+        //controlador.addInputProcessor(this);
         mundo.añadirObservador(this);
     }
 

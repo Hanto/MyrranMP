@@ -1,6 +1,6 @@
 package Interfaces.EntidadesTipos;// Created by Hanto on 10/06/2014.
 
-import Interfaces.UI.Input.PlayerIOI;
+import Interfaces.Input.PlayerIOI;
 
 public interface MobPlayer extends MobPC
 {
