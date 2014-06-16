@@ -1,6 +1,7 @@
 package Model.Classes.Geo;// Created by Hanto on 19/05/2014.
 
 import DAO.Terreno.TerrenoDAO;
+import DB.DAO;
 import DTO.NetDTO;
 import Data.MiscData;
 import Interfaces.EntidadesTipos.Mob;
@@ -63,7 +64,7 @@ public class Mapa extends AbstractModel implements MapaI,PropertyChangeListener
         if (celda == null) return null;
         else
         {
-            TerrenoDAO terrenoDAO = DB.DAO.terrenoDAOFactory.getTerrenoDAO();
+            TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
             return terrenoDAO.getTerreno(celda.getTerrenoID(numCapa));
         }
     }

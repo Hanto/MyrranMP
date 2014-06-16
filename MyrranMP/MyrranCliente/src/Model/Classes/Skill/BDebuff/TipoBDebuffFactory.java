@@ -4,7 +4,7 @@ import Model.Classes.Skill.BDebuff.TiposBDebuff.Hot;
 
 public enum TipoBDebuffFactory
 {
-    DOT("Dot")
+    HOT("Hot")
     {
         @Override
         public TipoBDebuff nuevo()

@@ -21,7 +21,7 @@ public class TipoSpellLocalDB
     {
         for (TipoSpellFactory tipoSpellFactory: TipoSpellFactory.values())
         {
-            TipoSpell tipoSpell = tipoSpellFactory.nuevoTipoSpell();
+            TipoSpell tipoSpell = tipoSpellFactory.nuevo();
             tipoSpell.setID(tipoSpellFactory.name());
             listaDeTipoSpells.put(tipoSpell.getID(), tipoSpell);
         }

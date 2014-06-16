@@ -1,5 +1,6 @@
 package Model.Classes.Mobiles;// Created by Hanto on 10/04/2014.
 
+import DB.DAO;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesPropiedades.Vulnerable;
 import Interfaces.EntidadesTipos.MobPlayer;
@@ -113,7 +114,7 @@ public class Player extends AbstractModel implements Caster, MobPlayer, Vulnerab
     {
         if (!isCasteando())
         {
-            SpellI spell = DB.DAO.spellDAOFactory.getSpellDAO().getSpell(spellIDSeleccionado);
+            SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellIDSeleccionado);
             if (spell != null)
             {
                 spell.castear(this, screenX, screenY);

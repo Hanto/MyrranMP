@@ -1,33 +1,38 @@
-package DAO.TipoBDebuff.DB;// Created by Hanto on 10/06/2014.
+package DAO.BDebuff;// Created by Hanto on 16/06/2014.
 
-import DAO.TipoBDebuff.TipoBDebuffDAO;
-import Interfaces.BDebuff.TipoBDebuffI;
+import Interfaces.BDebuff.BDebuffI;
 
 import java.util.Map;
 
-public class TipoBDebuffLocal implements TipoBDebuffDAO
+public class BDebuffLocal implements BDebuffDAO
 {
-    private Map<String, TipoBDebuffI>listaDeBDebuffs = TipoBDebuffLocalDB.get().listaDeBDebuffs;
+    private Map<String, BDebuffI> listaDeBDebuffs;
 
-    @Override public boolean añadirTipoBDebuff(TipoBDebuffI debuff)
+    public BDebuffLocal(Map<String, BDebuffI> listaDeBDebuffs)
+    {   this.listaDeBDebuffs = listaDeBDebuffs; }
+
+
+
+
+    @Override public boolean añadirBDebuff(BDebuffI debuff)
     {
         if (listaDeBDebuffs.containsKey(debuff.getID()))
         {   System.out.println("ERROR: ya existe un Buff/Debuff con este ID["+debuff.getID()+"]");  return false; }
         else {  listaDeBDebuffs.put(debuff.getID(), debuff); return true; }
     }
 
-    @Override public void salvarTipoBDebuff(TipoBDebuffI debuff)
+    @Override public void salvarBDebuff(BDebuffI debuff)
     {
         if (listaDeBDebuffs.containsKey(debuff.getID()))
         {   listaDeBDebuffs.put(debuff.getID(), debuff); }
     }
 
-    @Override public void eliminarTipoBDebuff(String debuffID)
+    @Override public void eliminarBDebuff(String debuffID)
     {
         if (listaDeBDebuffs.containsKey(debuffID))
         {   listaDeBDebuffs.remove(debuffID); }
     }
 
-    @Override public TipoBDebuffI getTipoBDebuff(String debuffID)
+    @Override public BDebuffI getBDebuff(String debuffID)
     {   return listaDeBDebuffs.get(debuffID); }
 }

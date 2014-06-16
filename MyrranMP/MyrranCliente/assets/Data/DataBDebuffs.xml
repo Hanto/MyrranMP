@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<BDebuffs>
+	<BDebuff>
+		<iD>Hot</iD>
+		<nombre>Hot</nombre>
+		<descripcion>Cura cada tick por una cierta cantidad de HPs.</descripcion>
+		<isDebuff>false</isDebuff>
+		<stacksMaximos>5</stacksMaximos>
+		<tipoBDebuff>HOT</tipoBDebuff>
+		<icono>Editar</icono>
+		<SkillStats>
+			<Stat>
+				<numStat>0</numStat>
+				<nombre>Castear</nombre>
+				<valorBase>0.5</valorBase>
+				<isMejorable>true</isMejorable>
+				<talentoMaximo>50</talentoMaximo>
+				<costeTalento>1</costeTalento>
+				<bonoTalento>1</bonoTalento>
+			</Stat>
+		</SkillStats>
+	</BDebuff>
+</BDebuffs>

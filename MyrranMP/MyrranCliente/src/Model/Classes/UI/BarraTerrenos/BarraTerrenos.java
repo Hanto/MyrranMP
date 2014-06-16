@@ -1,6 +1,7 @@
 package Model.Classes.UI.BarraTerrenos;// Created by Hanto on 14/05/2014.
 
 import DAO.Terreno.TerrenoDAO;
+import DB.DAO;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.Geo.TerrenoI;
 import Interfaces.Model.AbstractModel;
@@ -32,7 +33,7 @@ public class BarraTerrenos extends AbstractModel
     {
         barraTerrenos.clear();
 
-        TerrenoDAO terrenoDAO = DB.DAO.terrenoDAOFactory.getTerrenoDAO();
+        TerrenoDAO terrenoDAO = DAO.terrenoDAOFactory.getTerrenoDAO();
 
         Iterator<TerrenoI> iterator = terrenoDAO.getIterator();
         while (iterator.hasNext())

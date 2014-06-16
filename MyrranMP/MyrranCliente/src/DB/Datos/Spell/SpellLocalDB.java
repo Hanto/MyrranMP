@@ -1,6 +1,7 @@
 package DB.Datos.Spell;// Created by Hanto on 17/04/2014.
 
 import Core.AbrirFichero;
+import DB.DAO;
 import Data.MiscData;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
@@ -45,7 +46,7 @@ public class SpellLocalDB
                 String descripcion  = nodo.getChildText("descripcion");
                 String tipoSpell    = nodo.getChildText("tipoSpell");
 
-                TipoSpellI tipoSpellI =  DB.DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(tipoSpell);
+                TipoSpellI tipoSpellI =  DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(tipoSpell);
                 SpellI spell = new Spell(tipoSpellI);
                 spell.setID(iD);
                 spell.setNombre(nombre);
@@ -75,16 +76,16 @@ public class SpellLocalDB
                     if (isMejorable) spell.skillStats()[numStat].setTalentos(talentoMaximo, costeTalento, bonoTalento);
                     else spell.skillStats()[numStat].setIsMejorable(isMejorable);
 
-                    System.out.println(" numStat:       " + numStat);
-                    System.out.println(" nombreStat:    " + nombreStat);
-                    System.out.println(" valorBase:     " + valorBase);
-                    System.out.println(" isMejorable:   " + isMejorable);
+                    System.out.println("\n  numStat:      " + numStat);
+                    System.out.println("  nombreStat:   " + nombreStat);
+                    System.out.println("  valorBase:    " + valorBase);
+                    System.out.println("  isMejorable:  " + isMejorable);
 
                     if (isMejorable)
                     {
-                        System.out.println(" talentoMaximo: " + talentoMaximo);
-                        System.out.println(" costeTalento:  " + costeTalento);
-                        System.out.println(" bonoTalento:   " + bonoTalento);
+                        System.out.println("  talentoMaximo:" + talentoMaximo);
+                        System.out.println("  costeTalento: " + costeTalento);
+                        System.out.println("  bonoTalento:  " + bonoTalento);
                     }
                     System.out.println();
                 }

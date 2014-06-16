@@ -7,11 +7,11 @@ public enum TipoSpellFactory
     EDITARTERRENO("EditarTerreno")
     {
         @Override
-        public TipoSpell nuevoTipoSpell()
+        public TipoSpell nuevo()
         {   return new EditarTerreno(); }
     };
 
-    public abstract TipoSpell nuevoTipoSpell();
+    public abstract TipoSpell nuevo();
 
     private TipoSpellFactory(String nombre) { }
 }

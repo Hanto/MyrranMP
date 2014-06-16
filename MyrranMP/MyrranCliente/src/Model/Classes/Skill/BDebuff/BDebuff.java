@@ -1,8 +1,8 @@
 package Model.Classes.Skill.BDebuff;// Created by Hanto on 04/06/2014.
 
 
-import DAO.DAO;
 import Core.SkillStat;
+import DB.DAO;
 import Interfaces.BDebuff.AuraI;
 import Interfaces.BDebuff.BDebuffI;
 import Interfaces.BDebuff.TipoBDebuffI;
@@ -57,7 +57,7 @@ public class BDebuff implements BDebuffI
 
     public BDebuff (String tipoBDebuffID)
     {
-        this.tipoBDebuff = DAO.tipoBDebuffDAOFactory.getBDebuffDAO().getTipoBDebuff(tipoBDebuffID);
+        this.tipoBDebuff = DAO.tipoBDebuffDAOFactory.getTipoBDebuffDAO().getTipoBDebuff(tipoBDebuffID);
 
         if (tipoBDebuff == null) { System.out.println("ERROR: BDebuffID no encontrado."); return; }
 
