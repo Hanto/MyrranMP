@@ -41,10 +41,10 @@ public class Spell extends AbstractModel implements SpellI
         descripcion = tipospell.getDescripcion();
 
         //y se copian sus Stats base:
-        skillStats = new SkillStat[tipospell.skillStat().length];
+        skillStats = new SkillStat[tipospell.skillStats().length];
         for (int i=0; i<skillStats.length;i++)
         {
-            SkillStat statSkill = new SkillStat(tipospell.skillStat()[i]);
+            SkillStat statSkill = new SkillStat(tipospell.skillStats()[i]);
             skillStats[i] = statSkill;
         }
     }
@@ -58,10 +58,10 @@ public class Spell extends AbstractModel implements SpellI
         nombre = tipoSpell.getNombre();
         descripcion = tipoSpell.getDescripcion();
 
-        skillStats = new SkillStat[tipoSpell.skillStat().length];
+        skillStats = new SkillStat[tipoSpell.skillStats().length];
         for (int i=0; i<skillStats.length;i++)
         {
-            SkillStat statSkill = new SkillStat(tipoSpell.skillStat()[i]);
+            SkillStat statSkill = new SkillStat(tipoSpell.skillStats()[i]);
             skillStats[i] = statSkill;
         }
     }

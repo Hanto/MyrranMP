@@ -25,6 +25,7 @@ public class TerrenoLocalDB
 
     public void cargarDatos()
     {
+        System.out.println("[CARGANDO TERRENOS]:");
         SAXBuilder builder = new SAXBuilder();
         InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_DataTerrenos);
 

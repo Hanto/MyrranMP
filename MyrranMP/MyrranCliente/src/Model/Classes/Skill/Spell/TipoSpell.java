@@ -25,7 +25,7 @@ public abstract class TipoSpell extends AbstractModel implements TipoSpellI
     @Override public String getID()                             { return id; }
     @Override public String getNombre()                         { return nombre; }
     @Override public String getDescripcion ()                   { return descripcion; }
-    @Override public SkillStat [] skillStat ()                  { return skillStats; }
+    @Override public SkillStat [] skillStats()                  { return skillStats; }
 
     
     //CONSTRUCTOR:

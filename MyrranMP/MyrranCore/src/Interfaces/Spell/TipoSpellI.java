@@ -14,7 +14,7 @@ public interface TipoSpellI
     public String getID();
     public String getNombre();
     public String getDescripcion ();
-    public SkillStat[] skillStat ();
+    public SkillStat[] skillStats();
 
     //METODOS:
     public void inicializarSkillStats();

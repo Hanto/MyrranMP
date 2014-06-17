@@ -141,8 +141,8 @@ public class PixiePC extends Actor
     public void draw (Batch batch, float alpha)
     {   //El orden de dibujado cambia segun la direccion en la que te muevas, ya que las hombreras por ejemplo deben ser tapadas por la capa al moverse en las diagonales superiores:
         if (numAnimacion == 0 || numAnimacion == 1 || numAnimacion == 2 || numAnimacion == 10 )
-        {   
-            sombra.draw(batch, alpha);
+        {
+            batch.draw(sombra, sombra.getX(), sombra.getY(), sombra.getOriginX(), sombra.getOriginY(), sombra.getWidth(), sombra.getHeight(), this.getScaleX(), this.getScaleY(), this.getRotation());
             capaFrontal.draw(batch, alpha);
             cuerpo.draw(batch, alpha);
             cabeza.draw(batch, alpha);

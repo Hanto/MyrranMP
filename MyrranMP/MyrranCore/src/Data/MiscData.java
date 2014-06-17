@@ -28,6 +28,7 @@ public class MiscData
     public final static String RECURSOS_Atlas_Atlas_Extension = "atlas";
 
     //XML
+    public final static String XML_DataTipoSpells           = "DataTipoSpells.xml";
     public final static String XML_DataSpells               = "DataSpells.xml";
     public final static String XML_DataBDebuffs             = "DataBDebuffs.xml";
     public final static String XML_DataTerrenos             = "DataTerrenos.xml";
@@ -80,6 +81,10 @@ public class MiscData
     //Barra Spells:
     public final static int BARRASPELLS_Ancho_Casilla = 32+2;
     public final static int BARRASPELLS_Alto_Casilla = 32+2;
+
+    //Barra Terrenos:
+    public final static String BARRATERRENOS_EditarTerrenoID = "EDITARTERRENO";
+
     public final static String RECURSO_BARRASPELLS_Textura_Casillero = "Casillero";
     public final static String RECURSO_BARRASPELLS_RebindButtonON = "RebindOn";
     public final static String RECURSO_BARRASPELLS_RebindButtonOFF ="RebindOff";

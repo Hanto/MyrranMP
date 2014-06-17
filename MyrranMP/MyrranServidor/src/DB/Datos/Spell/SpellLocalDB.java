@@ -27,6 +27,7 @@ public class SpellLocalDB
 
     public void cargarDatos()
     {
+        System.out.println("[CARGANDO SPELLS]:");
         SAXBuilder builder = new SAXBuilder();
         InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+MiscData.XML_DataSpells);
 

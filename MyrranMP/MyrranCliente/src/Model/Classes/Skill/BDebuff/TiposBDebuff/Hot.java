@@ -12,7 +12,7 @@ public class Hot extends TipoBDebuff
 
     @Override public void inicializarSkillStats()
     {
-        setID(TipoBDebuffsData.HOT_ID);
+        setID(this.getClass().getSimpleName().toUpperCase());
         setNombre(TipoBDebuffsData.HOT_Nombre);
         setDescripcion(TipoBDebuffsData.HOT_Descripcion);
         setIsDebuff(TipoBDebuffsData.HOT_isDebuff);

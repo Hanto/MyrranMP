@@ -1,4 +1,4 @@
-package View.Classes.UI.Comun;// Created by Hanto on 16/05/2014.
+package View.Classes.UI.Ventana;// Created by Hanto on 16/05/2014.
 
 import Data.MiscData;
 import com.badlogic.gdx.scenes.scene2d.Actor;

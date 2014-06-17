@@ -236,7 +236,8 @@ public class Pixie extends Actor
         if (reverse && stateTime > duracionFrame*(framesAnimacion))         { chequearFlags(); }
         
         frameActual = animation.getKeyFrame(stateTime, loop);
-        batch.draw(frameActual, getX() + Offset.x, getY() + Offset.y);
+        batch.draw(frameActual, getX() + Offset.x, getY() + Offset.y,
+                this.getOriginX(), this.getOriginY(), this.getWidth(), this.getHeight(), this.getScaleX(), this.getScaleY(), this.getRotation());
         
         //Restauramos el color original
         batch.setColor(oldColor);
