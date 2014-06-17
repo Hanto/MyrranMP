@@ -66,6 +66,8 @@ public class TipoSpellLocalDB
 
                 for (int j = 0; j < listaStats.size(); j++)
                 {
+                    if (listaStats.size() < tipoSpell.skillStats().length) System.out.println("ERROR: Faltan SkillStats por Definir.");
+
                     Element stat = (Element) listaStats.get(j);
 
                     int numStat         = Integer.parseInt(stat.getChildText("numStat"));

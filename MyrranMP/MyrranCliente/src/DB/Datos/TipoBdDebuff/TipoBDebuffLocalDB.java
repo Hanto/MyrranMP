@@ -1,10 +1,18 @@
 package DB.Datos.TipoBdDebuff;// Created by Hanto on 10/06/2014.
 
+import Core.AbrirFichero;
+import Core.SkillStat;
+import Data.MiscData;
 import Interfaces.BDebuff.TipoBDebuffI;
 import Model.Classes.Skill.BDebuff.TipoBDebuff;
 import Model.Classes.Skill.BDebuff.TipoBDebuffFactory;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
 
+import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TipoBDebuffLocalDB
@@ -25,5 +33,78 @@ public class TipoBDebuffLocalDB
             tipoBDebuff.setID(tipoBDebuffFactory.name());
             listaDeTipoBDebuffs.put(tipoBDebuff.getID(), tipoBDebuff);
         }
+
+        System.out.println("[CARGANDO TIPO BDEBUFFS]:");
+        SAXBuilder builder = new SAXBuilder();
+        InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML + MiscData.XML_DataTipoBDebuffs);
+
+        try
+        {
+            Document documento = builder.build(fichero);
+            Element rootNode = documento.getRootElement();
+            List listaNodos = rootNode.getChildren("TipoBDebuff");
+
+            for (int i = 0; i < listaNodos.size(); i++)
+            {
+                Element nodo = (Element) listaNodos.get(i);
+
+                String iD           = nodo.getChildText("iD");
+                String nombre       = nodo.getChildText("nombre");
+                String descripcion  = nodo.getChildText("descripcion");
+                boolean isDebuff    = Boolean.parseBoolean(nodo.getChildText("isDebuff"));
+                byte stacksMaximos  = Byte.parseByte(nodo.getChildText("stacksMaximos"));
+
+                TipoBDebuffI tipoDebuff =  listaDeTipoBDebuffs.get(iD);
+                tipoDebuff.setID(iD);
+                tipoDebuff.setNombre(nombre);
+                tipoDebuff.setDescripcion(descripcion);
+                tipoDebuff.setIsDebuff(isDebuff);
+                tipoDebuff.setStacksMaximos(stacksMaximos);
+
+                System.out.println(" iD :           " + iD);
+                System.out.println(" nombre:        " + nombre);
+                System.out.println(" Descripcion:   " + descripcion);
+                System.out.println(" isDebuff:      " + isDebuff);
+                System.out.println(" stacksMaximos: " + stacksMaximos);
+
+                Element skillStats = nodo.getChild("SkillStats");
+                List listaStats= skillStats.getChildren("Stat");
+
+                for (int j = 0; j < listaStats.size(); j++)
+                {
+                    if (listaStats.size() < tipoDebuff.skillStats().length) System.out.println("ERROR: Faltan SkillStats por Definir.");
+
+                    Element stat = (Element) listaStats.get(j);
+
+                    int numStat         = Integer.parseInt(stat.getChildText("numStat"));
+                    String nombreStat   = stat.getChildText("nombre");
+                    float valorBase     = Float.parseFloat(stat.getChildText("valorBase"));
+                    boolean isMejorable = Boolean.parseBoolean(stat.getChildText("isMejorable"));
+                    int talentoMaximo   = Integer.parseInt(stat.getChildText("talentoMaximo"));
+                    int costeTalento    = Integer.parseInt(stat.getChildText("costeTalento"));
+                    int bonoTalento     = Integer.parseInt(stat.getChildText("bonoTalento"));
+
+                    tipoDebuff.skillStats()[numStat] = new SkillStat(nombreStat, valorBase);
+                    if (isMejorable) tipoDebuff.skillStats()[numStat].setTalentos(talentoMaximo, costeTalento, bonoTalento);
+                    else tipoDebuff.skillStats()[numStat].setIsMejorable(isMejorable);
+
+                    System.out.println("\n  numStat:      " + numStat);
+                    System.out.println("  nombreStat:   " + nombreStat);
+                    System.out.println("  valorBase:    " + valorBase);
+                    System.out.println("  isMejorable:  " + isMejorable);
+
+                    if (isMejorable)
+                    {
+                        System.out.println("  talentoMaximo:" + talentoMaximo);
+                        System.out.println("  costeTalento: " + costeTalento);
+                        System.out.println("  bonoTalento:  " + bonoTalento);
+                    }
+                    System.out.println();
+                }
+
+                listaDeTipoBDebuffs.put(tipoDebuff.getID(), tipoDebuff);
+            }
+        }
+        catch (Exception e) { System.out.println("ERROR: con el fichero XML de datos de "+ MiscData.XML_DataTipoBDebuffs+": "+e); }
     }
 }

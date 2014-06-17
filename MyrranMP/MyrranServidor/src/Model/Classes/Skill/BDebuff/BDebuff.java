@@ -49,10 +49,10 @@ public class BDebuff implements BDebuffI
         stacksMaximos = tipoaura.getStacksMaximos();
 
         //y se copian sus Stats base:
-        skillStats = new SkillStat[tipoaura.skillStat().length];
+        skillStats = new SkillStat[tipoaura.skillStats().length];
         for (int i=0; i<skillStats.length;i++)
         {
-            SkillStat statSkill = new SkillStat(tipoaura.skillStat()[i]);
+            SkillStat statSkill = new SkillStat(tipoaura.skillStats()[i]);
             skillStats[i] = statSkill;
         }
     }

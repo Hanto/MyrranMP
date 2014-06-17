@@ -30,6 +30,7 @@ public class MiscData
     //XML
     public final static String XML_DataTipoSpells           = "DataTipoSpells.xml";
     public final static String XML_DataSpells               = "DataSpells.xml";
+    public final static String XML_DataTipoBDebuffs         = "DataTipoBDebuffs.xml";
     public final static String XML_DataBDebuffs             = "DataBDebuffs.xml";
     public final static String XML_DataTerrenos             = "DataTerrenos.xml";
     public final static String XML_DataAcciones             = "DataAcciones.xml";

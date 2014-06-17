@@ -47,10 +47,10 @@ public class BDebuff implements BDebuffI
         stacksMaximos = tipoBDebuff.getStacksMaximos();
 
         //y se copian sus Stats base:
-        skillStats = new SkillStat[tipoBDebuff.skillStat().length];
+        skillStats = new SkillStat[tipoBDebuff.skillStats().length];
         for (int i=0; i<skillStats.length;i++)
         {
-            SkillStat statSkill = new SkillStat(tipoBDebuff.skillStat()[i]);
+            SkillStat statSkill = new SkillStat(tipoBDebuff.skillStats()[i]);
             skillStats[i] = statSkill;
         }
     }
@@ -61,10 +61,10 @@ public class BDebuff implements BDebuffI
 
         if (tipoBDebuff == null) { System.out.println("ERROR: BDebuffID no encontrado."); return; }
 
-        skillStats = new SkillStat[tipoBDebuff.skillStat().length];
+        skillStats = new SkillStat[tipoBDebuff.skillStats().length];
         for (int i=0; i<skillStats.length;i++)
         {
-            SkillStat statSkill = new SkillStat(tipoBDebuff.skillStat()[i]);
+            SkillStat statSkill = new SkillStat(tipoBDebuff.skillStats()[i]);
             skillStats[i] = statSkill;
         }
     }

@@ -28,7 +28,7 @@ public abstract class TipoBDebuff extends AbstractModel implements TipoBDebuffI
     @Override public String getDescripcion ()                   { return descripcion; }
     @Override public boolean getIsDebuff ()                     { return isDebuff; }
     @Override public byte getStacksMaximos ()                   { return stacksMaximos; }
-    @Override public SkillStat[] skillStat ()                   { return skillStats; }
+    @Override public SkillStat[] skillStats()                   { return skillStats; }
 
 
     //CONSTRUCTOR:

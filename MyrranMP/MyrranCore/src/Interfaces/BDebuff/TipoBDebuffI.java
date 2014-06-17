@@ -16,7 +16,7 @@ public interface TipoBDebuffI
     public String getDescripcion();
     public boolean getIsDebuff();
     public byte getStacksMaximos();
-    public SkillStat[] skillStat();
+    public SkillStat[] skillStats();
 
     //METODOS:
     public void inicializarSkillStats();
