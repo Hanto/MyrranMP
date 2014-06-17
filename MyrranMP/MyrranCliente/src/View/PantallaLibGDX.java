@@ -1,7 +1,6 @@
 package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
-import DB.Datos.BDebuff.BDebuffLocalDB;
 import Model.GameState.Mundo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -18,8 +17,6 @@ public class PantallaLibGDX implements Screen
     public PantallaLibGDX(MyrranClient myrranCliente)
     {
         this.myrranCliente = myrranCliente;
-
-        System.out.println(BDebuffLocalDB.get().listaDeBDebuffs);
 
         Mundo mundo = new Mundo();
         controlador = new Controlador(mundo);

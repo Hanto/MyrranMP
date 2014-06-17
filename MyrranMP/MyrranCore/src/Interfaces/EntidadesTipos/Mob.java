@@ -12,6 +12,7 @@ public interface Mob extends ModelI
     public double getDireccion();
 
     public int getNumAnimacion();
+    public void setNumAnimacion(int numAnimacion);
 
     //SET:
     public void setPosition(float x, float y);

@@ -9,7 +9,6 @@ import Model.GameState.UI;
 import View.Vista;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 
 //CLIENTE:
 public class Controlador implements ControladorUI
@@ -50,44 +49,77 @@ public class Controlador implements ControladorUI
         ui.conjuntoBarraAcciones.getBarraAcciones(0).setKeycode(8, 0, 16);
 
         ui.conjuntoBarraAcciones.getBarraAcciones(0).setAccion(0, 0, "Terraformar", 8);
+        ui.conjuntoBarraAcciones.getBarraAcciones(0).setAccion(1, 0, "Heal", 9);
+
         ui.conjuntoBarraAcciones.getBarraAcciones(0).setAccion(1, 1, "IrNorte", 51);
         ui.conjuntoBarraAcciones.getBarraAcciones(0).setAccion(1, 2, "IrSur", 47);
         ui.conjuntoBarraAcciones.getBarraAcciones(0).setAccion(2, 2, "IrEste", 32);
         ui.conjuntoBarraAcciones.getBarraAcciones(0).setAccion(0, 2, "IrOeste", 29);
 
-        moverPlayer(21000,22400);
+        moverPPC(mundo.getPlayer().getConnectionID(), 21000, 20000);
     }
 
+    //LibGDX:
     public void render (float delta)                                                    { vista.render(delta); }
     public void dispose()                                                               { vista.dispose(); }
     public void resize(int anchura, int altura)                                         { vista.resize(anchura, altura);}
 
-    public void enviarAServidor(Object o)                                               { cliente.enviarAServidor(o); }
-    public void añadirPlayer(int connectionID)                                          { mundo.getPlayer().setConnectionID(connectionID); }
+    //Kryo:
+    public void enviarAServidor(Object obj)                                             { cliente.enviarAServidor(obj); }
 
-    public void actualizarPlayer(NetDTO.ActualizarPlayer updatePlayer)
+    //Entidades:
+    public void añadirPlayer(int connectionID)
+    {   mundo.getPlayer().setConnectionID(connectionID); }
+
+    public void modificarHPsPPC(int connectionID, float HPs)
     {
-        mundo.getPlayer().setNombre(updatePlayer.nombre);
-        mundo.getPlayer().setNivel(updatePlayer.nivel);
-        mundo.getPlayer().setActualHPs(updatePlayer.actualHPs);
-        mundo.getPlayer().setMaxHPs(updatePlayer.maxHPs);
-        //player.setPosition(updatePlayer.x, updatePlayer.y);
+        if (connectionID == mundo.getPlayer().getConnectionID()) mundo.getPlayer().modificarHPs(HPs);
+        else mundo.getPC(connectionID).modificarHPs(HPs);
     }
-    public void añadirPC(int connectionID, float x, float y, int numAnimacion)
-    {   mundo.añadirPC(connectionID, x, y);
-        mundo.getPC(connectionID).setAnimacion(numAnimacion);
+    public void moverPPC(int connectionID, float x, float y)
+    {
+        if (connectionID == mundo.getPlayer().getConnectionID()) mundo.getPlayer().setPosition(x, y);
+        else mundo.getPC(connectionID).setPosition(x, y);
     }
-    public void moverPlayer(float x, float y)                                           { mundo.getPlayer().setPosition(x, y); }
-    public void eliminarPC(int connectionID)                                            { mundo.eliminarPC(connectionID); }
-    public void moverPC(int connectionID, float x, float y)                             { mundo.getPC(connectionID).setPosition(x, y); }
-    public void cambiarAnimacionPC(int connectionID, int numAnimacion)                  { mundo.getPC(connectionID).setAnimacion(numAnimacion); }
+    public void cambiarAnimacionPPC(int connectionID, int numAnimacion)
+    {
+        if (connectionID == mundo.getPlayer().getConnectionID()) mundo.getPlayer().setNumAnimacion(numAnimacion);
+        else mundo.getPC(connectionID).setNumAnimacion(numAnimacion);
+    }
+    public void eliminarPPC(int connectionID)
+    {
+        if (connectionID == mundo.getPlayer().getConnectionID()) {}
+        else mundo.eliminarPC(connectionID);
+    }
+    public void actualizarPPC(NetDTO.ActualizarPPC updatePlayer)
+    {
+        if (updatePlayer.connectionID == mundo.getPlayer().getConnectionID())
+        {
+            mundo.getPlayer().setNombre(updatePlayer.nombre);
+            mundo.getPlayer().setNivel(updatePlayer.nivel);
+            mundo.getPlayer().setActualHPs(updatePlayer.actualHPs);
+            mundo.getPlayer().setMaxHPs(updatePlayer.maxHPs);
+            mundo.getPlayer().setPosition(updatePlayer.x, updatePlayer.y);
+            mundo.getPlayer().setNumAnimacion(updatePlayer.numAnimacion);
+        }
+        else
+        {
+            if (mundo.getPC(updatePlayer.connectionID) == null)
+            {   mundo.añadirPC(updatePlayer.connectionID, updatePlayer.x, updatePlayer.y); }
+
+            mundo.getPC(updatePlayer.connectionID).setNombre(updatePlayer.nombre);
+            mundo.getPC(updatePlayer.connectionID).setNivel(updatePlayer.nivel);
+            mundo.getPC(updatePlayer.connectionID).setActualHPs(updatePlayer.actualHPs);
+            mundo.getPC(updatePlayer.connectionID).setMaxHPs(updatePlayer.maxHPs);
+            mundo.getPC(updatePlayer.connectionID).setPosition(updatePlayer.x, updatePlayer.y);
+            mundo.getPC(updatePlayer.connectionID).setNumAnimacion(updatePlayer.numAnimacion);
+        }
+    }
 
     public void actualizarMapTilesCargados (NetDTO.MapTilesAdyacentesEnCliente ady)     { mundo.mapTilesCargados = ady.mapaAdyacencias; }
     public void actualizarMapa(NetDTO.ActualizarMapa mapaServidor)                      { mundo.actualizarMapa(mapaServidor); }
     public void setTerreno(int celdaX, int celdaY, int numCapa, short iDTerreno)        { mundo.getMapa().setTerreno(celdaX, celdaY, numCapa, iDTerreno); }
     public void aplicarZoom(int incrementoZoom)                                         { vista.aplicarZoom(incrementoZoom); }
-
-    public void addInputProcessor(Stage stage)                                          { inputMultiplexer.addProcessor(stage); }
 
     //BarraTerrenos:
     @Override public void mostrarBarraTerrenos()                                        { vista.getUiView().mostrarBarraTerreno(); }

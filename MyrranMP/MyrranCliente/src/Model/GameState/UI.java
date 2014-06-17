@@ -38,6 +38,7 @@ public class UI
         inputManager.añadirAccion(AccionFactory.accionComando.IRESTE.nuevo());
         inputManager.añadirAccion(AccionFactory.accionComando.IROESTE.nuevo());
         inputManager.añadirAccion(AccionFactory.accionSpell.SELECCIONARSPELL.nuevo("Terraformar"));
+        inputManager.añadirAccion(AccionFactory.accionSpell.SELECCIONARSPELL.nuevo("Heal"));
     }
 
 

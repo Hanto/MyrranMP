@@ -1,11 +1,9 @@
 <?xml version="1.0"?>
-<Spells>
-	<Spell>
-		<iD>Terraformar</iD>
-		<nombre>Terraformar</nombre>
-		<descripcion>Terraforma el terreno</descripcion>
-		<tipoSpell>EDITARTERRENO</tipoSpell>
-		<icono>Editar</icono>
+<TipoSpells>
+	<TipoSpell>
+		<iD>EDITARTERRENO</iD>
+		<nombre>EditarTerreno</nombre>
+		<descripcion>Edita el Terreno</descripcion>
 		<SkillStats>
 			<Stat>
 				<numStat>0</numStat>
@@ -17,13 +15,11 @@
 				<bonoTalento>1</bonoTalento>
 			</Stat>
 		</SkillStats>
-	</Spell>
-	<Spell>
-		<iD>Heal</iD>
+	</TipoSpell>
+	<TipoSpell>
+		<iD>HEAL</iD>
 		<nombre>Heal</nombre>
 		<descripcion>Cura los HPs</descripcion>
-		<tipoSpell>HEAL</tipoSpell>
-		<icono>Muros</icono>
 		<SkillStats>
 			<Stat>
 				<numStat>0</numStat>
@@ -44,5 +40,5 @@
 				<bonoTalento>1</bonoTalento>
 			</Stat>
 		</SkillStats>
-	</Spell>
-</Spells>
+	</TipoSpell>
+</TipoSpells>

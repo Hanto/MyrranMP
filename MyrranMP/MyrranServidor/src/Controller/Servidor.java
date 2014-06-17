@@ -33,28 +33,28 @@ public class Servidor extends Server
 
     private void procesarMensajeCliente(Connection con, Object obj)
     {
-        if (obj instanceof NetDTO.CambiarPosicionPC)
+        if (obj instanceof NetDTO.PosicionPPC)
         {
             int conID = con.getID();
-            float x = ((NetDTO.CambiarPosicionPC) obj).x;
-            float y = ((NetDTO.CambiarPosicionPC) obj).y;
+            float x = ((NetDTO.PosicionPPC) obj).x;
+            float y = ((NetDTO.PosicionPPC) obj).y;
 
             controlador.moverPC(conID, x, y);
         }
 
-        if (obj instanceof NetDTO.CambiarAnimacionPC)
+        if (obj instanceof NetDTO.AnimacionPPC)
         {
-            int conID = ((NetDTO.CambiarAnimacionPC) obj).connectionID;
-            int numAnimacion = ((NetDTO.CambiarAnimacionPC) obj).numAnimacion;
+            int conID = ((NetDTO.AnimacionPPC) obj).connectionID;
+            int numAnimacion = ((NetDTO.AnimacionPPC) obj).numAnimacion;
             controlador.cambiarAnimacionPC(conID, numAnimacion);
         }
 
-        if (obj instanceof NetDTO.CastearPC)
+        if (obj instanceof NetDTO.CastearPPC)
         {
             int conID = con.getID();
-            boolean castear = ((NetDTO.CastearPC) obj).castear;
-            int targetX = ((NetDTO.CastearPC) obj).targetX;
-            int targetY = ((NetDTO.CastearPC) obj).targetY;
+            boolean castear = ((NetDTO.CastearPPC) obj).castear;
+            int targetX = ((NetDTO.CastearPPC) obj).targetX;
+            int targetY = ((NetDTO.CastearPPC) obj).targetY;
             controlador.castear(conID, castear, targetX, targetY);
         }
 

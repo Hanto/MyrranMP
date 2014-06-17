@@ -36,43 +36,39 @@ public class Cliente extends Client
 
     private void procesarMensajeServidor (Connection con, Object obj)
     {
-        if (obj instanceof NetDTO.ActualizarPlayer)
-        {
+        if (obj instanceof NetDTO.ActualizarPPC)
+        {   controlador.actualizarPPC((NetDTO.ActualizarPPC) obj); }
 
-            controlador.actualizarPlayer((NetDTO.ActualizarPlayer)obj);
+        if (obj instanceof NetDTO.PosicionPPC)
+        {
+            int conID = ((NetDTO.PosicionPPC) obj).connectionID;
+            float x = ((NetDTO.PosicionPPC) obj).x;
+            float y = ((NetDTO.PosicionPPC) obj).y;
+
+            controlador.moverPPC(conID, x, y);
         }
 
-        if (obj instanceof NetDTO.CambiarPosicionPC)
+        if (obj instanceof NetDTO.AnimacionPPC)
         {
-            int conID = ((NetDTO.CambiarPosicionPC) obj).connectionID;
-            float x = ((NetDTO.CambiarPosicionPC) obj).x;
-            float y = ((NetDTO.CambiarPosicionPC) obj).y;
+            int conID = ((NetDTO.AnimacionPPC) obj).connectionID;
+            int numAnimacion = ((NetDTO.AnimacionPPC) obj).numAnimacion;
 
-            controlador.moverPC(conID, x, y);
+            controlador.cambiarAnimacionPPC(conID, numAnimacion);
         }
 
-        if (obj instanceof NetDTO.CambiarAnimacionPC)
+        if (obj instanceof NetDTO.ModificarHPsPPC)
         {
-            int conID = ((NetDTO.CambiarAnimacionPC) obj).connectionID;
-            int numAnimacion = ((NetDTO.CambiarAnimacionPC) obj).numAnimacion;
+            int conID = ((NetDTO.ModificarHPsPPC) obj).connectionID;
+            float modHPs = ((NetDTO.ModificarHPsPPC) obj).HPs;
 
-            controlador.cambiarAnimacionPC(conID, numAnimacion);
+            controlador.modificarHPsPPC(conID, modHPs);
         }
 
-        if (obj instanceof NetDTO.AñadirPC)
+        if (obj instanceof NetDTO.EliminarPPC)
         {
-            int conID = ((NetDTO.AñadirPC) obj).connectionID;
-            float x = ((NetDTO.AñadirPC) obj).x;
-            float y = ((NetDTO.AñadirPC) obj).y;
-            int numAnimacion = ((NetDTO.AñadirPC) obj).numAnimacion;
-            System.out.println("recibido añadir Player con ID: "+conID);
-            controlador.añadirPC(conID, x, y, numAnimacion);
-        }
+            int conID = ((NetDTO.EliminarPPC) obj).connectionID;
 
-        if (obj instanceof NetDTO.EliminarPC)
-        {
-            int conID = ((NetDTO.EliminarPC) obj).connectionID;
-            controlador.eliminarPC(conID);
+            controlador.eliminarPPC(conID);
         }
 
         if (obj instanceof NetDTO.SetTerreno)
@@ -81,17 +77,14 @@ public class Cliente extends Client
             int celdaY = ((NetDTO.SetTerreno) obj).celdaY;
             int numCapa = ((NetDTO.SetTerreno) obj).numCapa;
             short iDTerreno = ((NetDTO.SetTerreno) obj).iDTerreno;
+
             controlador.setTerreno(celdaX, celdaY, numCapa, iDTerreno);
         }
         if (obj instanceof NetDTO.ActualizarMapa)
-        {
-            controlador.actualizarMapa((NetDTO.ActualizarMapa)obj);
-        }
+        {   controlador.actualizarMapa((NetDTO.ActualizarMapa)obj); }
 
         if (obj instanceof NetDTO.MapTilesAdyacentesEnCliente)
-        {
-            controlador.actualizarMapTilesCargados((NetDTO.MapTilesAdyacentesEnCliente)obj);
-        }
+        {   controlador.actualizarMapTilesCargados((NetDTO.MapTilesAdyacentesEnCliente)obj); }
     }
 
     public void enviarAServidor(Object obj)

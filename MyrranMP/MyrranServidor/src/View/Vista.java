@@ -34,9 +34,9 @@ public class Vista implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof NetDTO.AñadirPC)
+        if (evt.getNewValue() instanceof NetDTO.AñadirPPC)
         {
-            PC pc = mundo.getPC(((NetDTO.AñadirPC) evt.getNewValue()).connectionID);
+            PC pc = mundo.getPC(((NetDTO.AñadirPPC) evt.getNewValue()).connectionID);
 
             pc.eliminarObservador(this);
             PcView pcView = new PcView(pc, this);

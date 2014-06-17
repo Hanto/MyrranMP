@@ -23,53 +23,82 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debu
 
     protected float x=0.0f;                                     //Coordenadas X:
     protected float y=0.0f;                                     //Coordenadas Y:
-    protected float oldPosX;                                    //Coordenadas X, de la ultima posicion X segura
-    protected float oldPosY;                                    //Coordenadas Y, de la ultima posicion Y segura
     protected int numAnimacion = 5;
+
     protected float velocidadMod=1.0f;                          //Modificadores de Velocidad: debido a Snares, a Sprints, Roots
     protected float velocidadMax;                               //Velocidad Maxima:
     protected double direccion;                                 //Direccion Actual en Radianes
+
     protected String nombre = "Hanto";
     protected int nivel = 1;
-    protected float actualHPs=2000f;
+
+    protected float actualHPs=2f;
     protected float maxHPs=2000f;
+
     protected boolean castear = false;
+
     protected int targetX = 0;
     protected int targetY = 0;
+
     protected float actualCastingTime = 0.0f;
     protected float totalCastingTime = 0.0f;
     protected String spellIDSeleccionado = null;
     protected Object parametrosSpell;
-    protected String iDraza;                                    //id de la raza;
+
     protected List<AuraI>listaDeAuras = new ArrayList<>();
+
+
+    //Constructor:
+    public PC(int connectionID, Mapa mapa)
+    {
+        this.connectionID = connectionID;
+        this.mapaI = mapa;
+    }
 
     //GET:
     @Override public int getConnectionID ()                     { return connectionID; }
+    @Override public float getX()                               { return x; }
+    @Override public float getY()                               { return y; }
+    @Override public int getNumAnimacion()                      { return numAnimacion; }
+    @Override public float getVelocidadMod()                    { return velocidadMod; }
+    @Override public float getVelocidadMax()                    { return velocidadMax; }
+    @Override public double getDireccion()                      { return direccion; }
     @Override public String getNombre()                         { return nombre; }
     @Override public int getNivel()                             { return nivel; }
-
-    //VULNERABLE:
     @Override public float getActualHPs()                       { return actualHPs; }
     @Override public float getMaxHPs()                          { return maxHPs; }
-    @Override public void setActualHPs(float HPs)               { actualHPs = HPs; }
-    @Override public void setMaxHPs(float HPs)                  { maxHPs = HPs; }
-    @Override public void modificarHPs(float HPs)
-    {
-        actualHPs += HPs;
-        if (actualHPs > maxHPs) actualHPs = maxHPs;
-        else if (actualHPs < 0) actualHPs = 0;
-    }
-
-    //CASTER:
     @Override public MapaI getMapa()                            { return mapaI; }
     @Override public boolean isCasteando()                      { if (actualCastingTime >0) return true; else return false; }
     @Override public float getActualCastingTime()               { return actualCastingTime; }
     @Override public float getTotalCastingTime()                { return totalCastingTime; }
     @Override public String getSpellIDSeleccionado()            { return spellIDSeleccionado; }
     @Override public Object getParametrosSpell()                { return parametrosSpell; }
-    @Override public void setParametrosSpell(Object parametros) { parametrosSpell = parametros; }
+
+    //SET:
+    @Override public void setConnectionID (int connectionID)    { this.connectionID = connectionID; }
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0.01f; totalCastingTime = castingTime;}
+    @Override public void setVelocidaMod(float velocidadMod)    { this.velocidadMod = velocidadMod; }
+    @Override public void setVelocidadMax(float velocidadMax)   { this.velocidadMax = velocidadMax; }
+    @Override public void setDireccion(double direccion)        { this.direccion = direccion; }
     @Override public void setSpellIDSeleccionado(String spellID){ spellIDSeleccionado = spellID; }
+    @Override public void setParametrosSpell(Object parametros) { parametrosSpell = parametros; }
+    @Override public void setNombre(String nombre)              { this.nombre = nombre; }
+    @Override public void setNivel(int nivel)                   { this.nivel = nivel; }
+    @Override public void añadirAura(AuraI aura)                { listaDeAuras.add(aura); }
+    @Override public void eliminarAura(AuraI aura)              { listaDeAuras.remove(aura); }
+    @Override public Iterator<AuraI> getAuras()                 { return listaDeAuras.iterator(); }
+    @Override public void setMaxHPs(float HPs)                  { maxHPs = HPs; }
+    @Override public void setActualHPs(float HPs)               { modificarHPs(actualHPs - HPs); }
+
+    @Override public void modificarHPs(float HPs)
+    {
+        actualHPs += HPs;
+        if (actualHPs > maxHPs) actualHPs = maxHPs;
+        else if (actualHPs < 0) actualHPs = 0;
+        Object modificarHPs = new NetDTO.ModificarHPsPPC(this, HPs);
+        notificarActualizacion("modificarHPs", null, modificarHPs);
+    }
+
     @Override public void setCastear (boolean castear, int targetX, int targetY)
     {
         this.castear = castear;
@@ -78,52 +107,40 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debu
         if (castear) castear();
     }
 
-    //MOB:
-    @Override public int getNumAnimacion()                      { return numAnimacion; }
-    @Override public float getX()                               { return x; }
-    @Override public float getY()                               { return y; }
-    @Override public float getVelocidadMod()                    { return velocidadMod; }
-    @Override public float getVelocidadMax()                    { return velocidadMax; }
-    @Override public double getDireccion()                      { return direccion; }
-    @Override public void setVelocidaMod(float velocidadMod)    { this.velocidadMod = velocidadMod; }
-    @Override public void setVelocidadMax(float velocidadMax)   { this.velocidadMax = velocidadMax; }
-    @Override public void setDireccion(double direccion)        { this.direccion = direccion; }
-
-    public float getCenterX()                                   { return x+24; }
-    public float getCenterY()                                   { return y+24;}
-
-    //DEBUFFEABLE:
-    @Override public void añadirAura(AuraI aura)                { listaDeAuras.add(aura); }
-    @Override public void eliminarAura(AuraI aura)              { listaDeAuras.remove(aura); }
-    @Override public Iterator<AuraI> getAuras()                 { return listaDeAuras.iterator(); }
-
-    public PC(int connectionID, Mapa mapa)
-    {
-        this.connectionID = connectionID;
-        this.mapaI = mapa;
-    }
-
-    public void setPosition(float x, float y)
+    @Override public void setPosition(float x, float y)
     {
         this.x = x; this.y = y;
-        Object posicionDTO = new NetDTO.CambiarPosicionPC(this);
+        Object posicionDTO = new NetDTO.PosicionPPC(this);
         notificarActualizacion("setPosition", null, posicionDTO);
     }
 
-    public void setAnimacion(int numAnimacion)
+    @Override public void setNumAnimacion(int numAnimacion)
     {
         if (this.numAnimacion != numAnimacion)
         {
             this.numAnimacion = numAnimacion;
-            Object animacionDTO = new NetDTO.CambiarAnimacionPC(this);
-            notificarActualizacion("setAnimacion", null, animacionDTO);
+            Object animacionDTO = new NetDTO.AnimacionPPC(this);
+            notificarActualizacion("setNumAnimacion", null, animacionDTO);
         }
     }
 
     public void eliminar()
     {
-        Object eliminarDTO = new NetDTO.EliminarPC(this);
+        Object eliminarDTO = new NetDTO.EliminarPPC(this);
         notificarActualizacion("eliminar", null, eliminarDTO);
+    }
+
+    private void castear()
+    {
+        if (!isCasteando())
+        {
+            SpellI spell = DB.DAO.spellDAOFactory.getSpellDAO().getSpell(spellIDSeleccionado);
+            if (spell != null)
+            {
+                spell.castear(this, targetX, targetY);
+                //actualCastingTime += 0.01f;
+            }
+        }
     }
 
     private void actualizarCastingTime(float delta)
@@ -140,20 +157,7 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debu
         }
     }
 
-    private void castear()
-    {
-        if (!isCasteando())
-        {
-            SpellI spell = DB.DAO.spellDAOFactory.getSpellDAO().getSpell(spellIDSeleccionado);
-            if (spell != null)
-            {
-                spell.castear(this, targetX, targetY);
-                //actualCastingTime += 0.01f;
-            }
-        }
-    }
-
-    private void actualizarAuras (float delta)
+    public void actualizarAuras (float delta)
     {
         Iterator<AuraI> aurasIteator = getAuras();
         while (aurasIteator.hasNext())

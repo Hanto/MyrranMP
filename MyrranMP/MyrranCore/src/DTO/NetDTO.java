@@ -15,12 +15,15 @@ public class NetDTO
     public static void register (EndPoint endPoint)
     {
         Kryo kryo = endPoint.getKryo();
-        kryo.register(ActualizarPlayer.class);
-        kryo.register(CambiarPosicionPC.class);
-        kryo.register(CambiarAnimacionPC.class);
-        kryo.register(AñadirPC.class);
-        kryo.register(EliminarPC.class);
-        kryo.register(CastearPC.class);
+        kryo.register(AñadirPPC.class);
+
+        kryo.register(ActualizarPPC.class);
+        kryo.register(PosicionPPC.class);
+        kryo.register(AnimacionPPC.class);
+        kryo.register(ModificarHPsPPC.class);
+        kryo.register(EliminarPPC.class);
+        kryo.register(CastearPPC.class);
+
         kryo.register(SetTerreno.class);
         kryo.register(SetSpellIDSeleccionado.class);
         kryo.register(SetParametrosSpell.class);
@@ -40,101 +43,101 @@ public class NetDTO
     }
 
     //Network DTOs:
-    public static class ActualizarPlayer
+    public static class ActualizarPPC
     {
         public int connectionID;
         public String nombre;
-        public Integer nivel;
-        public Float actualHPs;
-        public Float maxHPs;
+        public int nivel;
+        public float actualHPs;
+        public float maxHPs;
         public float x;
         public float y;
-        public ActualizarPlayer() {}
-        public ActualizarPlayer(MobPC pc, Vulnerable vulnerable)
+        public int numAnimacion;
+        public ActualizarPPC() {}
+        public ActualizarPPC(MobPC pc)
         {
             connectionID = pc.getConnectionID();
             nombre = pc.getNombre();
             nivel = pc.getNivel();
-            actualHPs = vulnerable.getActualHPs();
-            maxHPs = vulnerable.getMaxHPs();
-            x = pc.getX();
-            y = pc.getY();
-        }
-    }
-
-    public static class AñadirPC
-    {
-        public int connectionID;
-        public float x;
-        public float y;
-        public int numAnimacion;
-
-        public AñadirPC () {}
-        public AñadirPC (MobPC pc)
-        {
-            connectionID = pc.getConnectionID();
+            actualHPs = ((Vulnerable)pc).getActualHPs();
+            maxHPs = ((Vulnerable)pc).getMaxHPs();
             x = pc.getX();
             y = pc.getY();
             numAnimacion = pc.getNumAnimacion();
         }
-        public AñadirPC (int connectionID, float x, float y, int numAnimacion)
-        {
-            this.connectionID = connectionID;
-            this.x = x;
-            this.y = y;
-            this.numAnimacion = numAnimacion;
-        }
     }
 
-    public static class CambiarPosicionPC
+    public static class AñadirPPC
+    {
+        public int connectionID;
+
+        public AñadirPPC() {}
+        public AñadirPPC(MobPC pc)
+        {   connectionID = pc.getConnectionID(); }
+    }
+
+    public static class PosicionPPC
     {
         public int connectionID;
         public float x;
         public float y;
 
-        public CambiarPosicionPC() {}
-        public CambiarPosicionPC(MobPC pc)
+        public PosicionPPC() {}
+        public PosicionPPC(MobPC pc)
         {
             connectionID = pc.getConnectionID();
             x = pc.getX();
             y = pc.getY();
         }
-        public CambiarPosicionPC(int connectionID, float x, float y)
+        public PosicionPPC(int connectionID, float x, float y)
         {   this.connectionID = connectionID; this.x = x; this.y = y; }
     }
 
-    public static class CambiarAnimacionPC
+    public static class AnimacionPPC
     {
         public int connectionID;
         public int numAnimacion;
-        public CambiarAnimacionPC() {}
-        public CambiarAnimacionPC(MobPC pc)
+        public AnimacionPPC() {}
+        public AnimacionPPC(MobPC pc)
         {
             connectionID = pc.getConnectionID();
             numAnimacion = pc.getNumAnimacion();
         }
-        public CambiarAnimacionPC(int connectionID, int numAnimacion)
+        public AnimacionPPC(int connectionID, int numAnimacion)
         {   this.connectionID = connectionID; this.numAnimacion = numAnimacion; }
     }
 
-    public static class EliminarPC
+    public static class ModificarHPsPPC
+    {
+        public int connectionID;
+        public float HPs;
+
+        public ModificarHPsPPC() {}
+        public ModificarHPsPPC(MobPC pc, float HPs)
+        {
+            this.connectionID = pc.getConnectionID();
+            this.HPs = HPs;
+        }
+    }
+
+    public static class EliminarPPC
     {
         public int connectionID;
 
-        public EliminarPC () {}
-        public EliminarPC (MobPC pc)
+        public EliminarPPC() {}
+        public EliminarPPC(MobPC pc)
         {   this.connectionID = pc.getConnectionID(); }
-        public EliminarPC (int connectionID)
+        public EliminarPPC(int connectionID)
         {   this.connectionID = connectionID; }
     }
 
-    public static class CastearPC
+    public static class CastearPPC
     {
         public Boolean castear;
         public int targetX;
         public int targetY;
-        public CastearPC () {}
-        public CastearPC(Boolean castear, int x, int y)
+        public CastearPPC() {}
+        public CastearPPC(Boolean castear, int x, int y)
         {   this.castear = castear; targetX = x; targetY = y; }
     }
 

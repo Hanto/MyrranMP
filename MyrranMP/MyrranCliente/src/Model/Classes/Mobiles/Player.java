@@ -1,16 +1,22 @@
 package Model.Classes.Mobiles;// Created by Hanto on 10/04/2014.
 
 import DB.DAO;
+import DTO.NetDTO;
+import Interfaces.BDebuff.AuraI;
 import Interfaces.EntidadesPropiedades.Caster;
+import Interfaces.EntidadesPropiedades.Debuffeable;
 import Interfaces.EntidadesPropiedades.Vulnerable;
 import Interfaces.EntidadesTipos.MobPlayer;
 import Interfaces.Geo.MapaI;
+import Interfaces.Input.PlayerIOI;
 import Interfaces.Model.AbstractModel;
 import Interfaces.Spell.SpellI;
-import Interfaces.Input.PlayerIOI;
 import Model.DTO.PlayerDTO;
+import com.badlogic.gdx.utils.Array;
 
-public class Player extends AbstractModel implements Caster, MobPlayer, Vulnerable
+import java.util.Iterator;
+
+public class Player extends AbstractModel implements MobPlayer, Caster, Vulnerable, Debuffeable
 {
     protected int connectionID;
     protected MapaI mapaI;                         //mapaI al que pertecene el Player
@@ -40,6 +46,8 @@ public class Player extends AbstractModel implements Caster, MobPlayer, Vulnerab
     protected String spellIDSeleccionado = null;
     protected Object parametrosSpell;
 
+    protected Array<AuraI> listaDeAuras = new Array<>();
+
     protected boolean irArriba = false;
     protected boolean irAbajo = false;
     protected boolean irDerecha = false;
@@ -50,37 +58,91 @@ public class Player extends AbstractModel implements Caster, MobPlayer, Vulnerab
     @Override public int getConnectionID()                      { return connectionID; }
     @Override public float getX()                               { return x; }
     @Override public float getY()                               { return y; }
+    @Override public int getNumAnimacion()                      { return numAnimacion; }
     @Override public float getVelocidadMod()                    { return velocidadMod; }
     @Override public float getVelocidadMax()                    { return velocidadMax; }
     @Override public double getDireccion()                      { return direccion; }
-    @Override public int getNumAnimacion()                      { return numAnimacion; }
     @Override public String getNombre()                         { return nombre; }
     @Override public int getNivel()                             { return nivel; }
-
     @Override public float getActualHPs()                       { return actualHPs; }
     @Override public float getMaxHPs()                          { return maxHPs; }
-    @Override public void modificarHPs(float HPs)
-    {
-        actualHPs += HPs;
-        if (actualHPs > maxHPs) actualHPs = maxHPs;
-        else if (actualHPs < 0) actualHPs = 0f;
-    }
-
     @Override public MapaI getMapa()                            { return mapaI; }
     @Override public boolean isCasteando()                      { if (actualCastingTime >0) return true; else return false; }
     @Override public float getActualCastingTime()               { return actualCastingTime; }
     @Override public float getTotalCastingTime()                { return totalCastingTime; }
     @Override public String getSpellIDSeleccionado()            { return spellIDSeleccionado; }
     @Override public Object getParametrosSpell()                { return parametrosSpell; }
-    @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0.01f; totalCastingTime = castingTime;}
+
+    //SET:
+    @Override public void setConnectionID (int connectionID)    { this.connectionID = connectionID; }
+    @Override public void setTotalCastingTime(float castingTime){ this.actualCastingTime = 0.01f; totalCastingTime = castingTime;}
     @Override public void setVelocidaMod(float velocidadMod)    { this.velocidadMod = velocidadMod; }
     @Override public void setVelocidadMax(float velocidadMax)   { this.velocidadMax = velocidadMax; }
     @Override public void setDireccion(double direccion)        { }
+    @Override public void añadirAura(AuraI aura)                 { listaDeAuras.add(aura); }
+    @Override public void eliminarAura(AuraI aura)              { listaDeAuras.removeValue(aura, true); }
+    @Override public Iterator<AuraI> getAuras()                 { return listaDeAuras.iterator(); }
+    @Override public void setActualHPs (float hps)              { modificarHPs(actualHPs - hps); }
+
+    @Override public void modificarHPs(float HPs)
+    {
+        actualHPs += HPs;
+        if (actualHPs > maxHPs) actualHPs = maxHPs;
+        else if (actualHPs < 0) actualHPs = 0f;
+        Object modificarHPs = new NetDTO.ModificarHPsPPC(this, HPs);
+        notificarActualizacion("modificarHPs", null, modificarHPs);
+    }
+
+    @Override public void setNumAnimacion(int numAnimacion)
+    {
+        if (this.numAnimacion != numAnimacion)
+        {
+            this.numAnimacion = numAnimacion;
+            Object AnimacionDTO = new NetDTO.AnimacionPPC(this);
+            notificarActualizacion("setTipoAnimacion", null, AnimacionDTO);
+        }
+    }
+
+    @Override public void setPosition (float x, float y)
+    {
+        this.x = x; this.y = y;
+        Object posicionDTO = new NetDTO.PosicionPPC(this);
+        notificarActualizacion("setPosition", null, posicionDTO);
+    }
+
+    @Override public void setNombre (String nombre)
+    {
+        this.nombre = nombre;
+        Object nombreDTO = new PlayerDTO.NombrePlayer(nombre);
+        notificarActualizacion("setNombre", null, nombreDTO);
+    }
+
+    @Override public void setNivel (int nivel)
+    {
+        this.nivel = nivel;
+        Object nivelDTO = new PlayerDTO.NivelPlayer(nivel);
+        notificarActualizacion("setNivel", null, nivelDTO);
+    }
+
+    @Override public void setMaxHPs (float mHps)
+    {
+        maxHPs = mHps;
+        Object mHPsDTO = new PlayerDTO.MaxHPs(mHps);
+        notificarActualizacion("setMaxHPs", null, mHPsDTO);
+    }
+
     @Override public void setParametrosSpell(Object parametros)
     {
         parametrosSpell = parametros;
         Object setParametrosSpell = new PlayerDTO.SetParametrosSpell();
         notificarActualizacion("setParametrosSpell", null, setParametrosSpell);
+    }
+
+    @Override public void setSpellIDSeleccionado(String spellID)
+    {
+        spellIDSeleccionado = spellID;
+        Object spellIDSeleccionadoDTO = new PlayerDTO.SetSpellIDSeleccionado(spellID);
+        notificarActualizacion("setSpellIDSeleccionado", null, spellIDSeleccionadoDTO);
     }
 
     @Override public void setCastear(boolean intentaCastear, int clickX, int clickY)
@@ -93,18 +155,11 @@ public class Player extends AbstractModel implements Caster, MobPlayer, Vulnerab
         else stopCastear();
     }
 
-    @Override public void setSpellIDSeleccionado(String spellID)
-    {
-        spellIDSeleccionado = spellID;
-        Object spellIDSeleccionadoDTO = new PlayerDTO.SetSpellIDSeleccionado(spellID);
-        notificarActualizacion("setSpellIDSeleccionado", null, spellIDSeleccionadoDTO);
-    }
-
     private void stopCastear()
     {
         if (castearInterrumpible)
         {
-            Object castearDTO = new PlayerDTO.Castear(castear, screenX, screenY);
+            Object castearDTO = new NetDTO.CastearPPC(castear, screenX, screenY);
             notificarActualizacion("setCastear", null, castearDTO);
             castearInterrumpible = false;
         }
@@ -119,7 +174,7 @@ public class Player extends AbstractModel implements Caster, MobPlayer, Vulnerab
             {
                 spell.castear(this, screenX, screenY);
 
-                Object castearDTO = new PlayerDTO.Castear(castear, screenX, screenY);
+                Object castearDTO = new NetDTO.CastearPPC(castear, screenX, screenY);
                 notificarActualizacion("setCastear", null, castearDTO);
                 //actualCastingTime += 0.01f;
                 castearInterrumpible = true;
@@ -127,22 +182,8 @@ public class Player extends AbstractModel implements Caster, MobPlayer, Vulnerab
         }
     }
 
-    private void actualizarCastingTime(float delta)
-    {
-        if (isCasteando())
-        {
-            actualCastingTime += delta;
-            if (actualCastingTime >= totalCastingTime)
-            {
-                actualCastingTime = 0f;
-                totalCastingTime = 0f;
-            }
-        }
-    }
 
-    //SET:
-    public void setConnectionID (int connectionID)
-    {   this.connectionID = connectionID; }
+
 
     public void setInput (PlayerIOI playerInput)
     {
@@ -153,56 +194,10 @@ public class Player extends AbstractModel implements Caster, MobPlayer, Vulnerab
 
         disparar = playerInput.getDisparar();
 
-        setAnimacion (playerInput.getNumAnimacion());
+        setNumAnimacion(playerInput.getNumAnimacion());
 
         if (playerInput.getStopCastear()) setCastear(false, playerInput.getScreenX(), playerInput.getScreenY());
         else if (playerInput.getStartCastear()) setCastear (true, playerInput.getScreenX(), playerInput.getScreenY());
-    }
-
-    private void setAnimacion (int numAnimacion)
-    {
-        if (this.numAnimacion != numAnimacion)
-        {
-            this.numAnimacion = numAnimacion;
-            Object AnimacionDTO = new PlayerDTO.AnimacionPlayer(numAnimacion);
-            notificarActualizacion("setTipoAnimacion", null, AnimacionDTO);
-        }
-    }
-
-    public void setPosition (float x, float y)
-    {
-        this.x = x; this.y = y;
-        Object posicionDTO = new PlayerDTO.PositionPlayer(this, x, y);
-        notificarActualizacion("setPosition", null, posicionDTO);
-    }
-
-    public void setNombre (String nombre)
-    {
-        this.nombre = nombre;
-        Object nombreDTO = new PlayerDTO.NombrePlayer(nombre);
-        notificarActualizacion("setNombre", null, nombreDTO);
-    }
-
-    public void setNivel (int nivel)
-    {
-        this.nivel = nivel;
-        Object nivelDTO = new PlayerDTO.NivelPlayer(nivel);
-        notificarActualizacion("setNivel", null, nivelDTO);
-
-    }
-
-    @Override public void setActualHPs (float hps)
-    {
-        actualHPs = hps;
-        Object HPsDTO = new PlayerDTO.ActualHPsPlayer(hps);
-        notificarActualizacion("setActualHPs", null, HPsDTO);
-    }
-
-    @Override public void setMaxHPs (float mHps)
-    {
-        maxHPs = mHps;
-        Object mHPsDTO = new PlayerDTO.MaxHPs(mHps);
-        notificarActualizacion("setMaxHPs", null, mHPsDTO);
     }
 
     private void moverse (float delta)
@@ -239,6 +234,19 @@ public class Player extends AbstractModel implements Caster, MobPlayer, Vulnerab
         { Y += +0.707f*velocidadMax*velocidadMod*delta;
           X += +0.707f*velocidadMax*velocidadMod*delta; direccion = 0.7854d; setPosition(X, Y);}
 
+    }
+
+    private void actualizarCastingTime(float delta)
+    {
+        if (isCasteando())
+        {
+            actualCastingTime += delta;
+            if (actualCastingTime >= totalCastingTime)
+            {
+                actualCastingTime = 0f;
+                totalCastingTime = 0f;
+            }
+        }
     }
 
     public void actualizar (float delta)

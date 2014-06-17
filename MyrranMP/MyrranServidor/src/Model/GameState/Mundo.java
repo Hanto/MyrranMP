@@ -35,7 +35,7 @@ public class Mundo extends AbstractModel
         pc.setPosition(x, y);
         listaPlayers.add(pc);
         mapaPlayers.put(pc.getConnectionID(), pc);
-        Object añadirPC = new NetDTO.AñadirPC(pc);
+        Object añadirPC = new NetDTO.AñadirPPC(pc);
         notificarActualizacion("añadirPC", null, añadirPC);
     }
 

@@ -27,7 +27,7 @@ public class Controlador
     {   mundo.getPC(connectionID).setPosition(x, y);}
 
     public void cambiarAnimacionPC(int connectionID, int numAnimacion)
-    {   mundo.getPC(connectionID).setAnimacion(numAnimacion); }
+    {   mundo.getPC(connectionID).setNumAnimacion(numAnimacion); }
 
     public void castear(int connectionID, boolean castear, int targetX, int targetY)
     {   mundo.getPC(connectionID).setCastear(castear, targetX, targetY); }

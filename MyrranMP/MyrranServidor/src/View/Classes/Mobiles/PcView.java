@@ -15,23 +15,24 @@ import java.util.List;
 
 public class PcView implements PropertyChangeListener
 {
+    //Model:
     public PC PC;
     public Vista vista;
     public Mundo mundo;
     public Controlador controlador;
 
+    //Datos:
     private List<MobPC> listaPCsCercanos = new ArrayList<>();
 
     public boolean visible = false;
-
-    public int connectionID;
+    public boolean positionChanged = false;
     public float x;
     public float y;
-    public boolean positionChanged = false;
-    public int numAnimacion = 0;
 
     public MapaView mapaView;
 
+
+    //Constructor:
     public PcView(PC PC, Vista vista)
     {
         this.PC = PC;
@@ -39,15 +40,14 @@ public class PcView implements PropertyChangeListener
         this.controlador = vista.controlador;
         mundo = vista.mundo;
 
-        connectionID = PC.getConnectionID();
         x = PC.getX();
         y = PC.getY();
 
         mundo.getMapa().añadirObservador(this);
         PC.añadirObservador(this);
 
-        NetDTO.ActualizarPlayer actualizarPlayer = new NetDTO.ActualizarPlayer(PC, PC);
-        controlador.enviarACliente(connectionID, actualizarPlayer);
+        NetDTO.ActualizarPPC actualizarPPC = new NetDTO.ActualizarPPC(PC);
+        actualizarPlayer(actualizarPPC);
 
         quienMeVe();
 
@@ -60,19 +60,31 @@ public class PcView implements PropertyChangeListener
         {
             if (positionChanged)
             {
-                NetDTO.CambiarPosicionPC cambiarPosicionPC = new NetDTO.CambiarPosicionPC(connectionID, x, y);
-                actualizarPlayersCercanos(cambiarPosicionPC);
+                NetDTO.PosicionPPC posicionPPC = new NetDTO.PosicionPPC(PC.getConnectionID(), x, y);
+                actualizarPlayersCercanos(posicionPPC);
             }
             positionChanged = false;
         }
     }
-
     public void actualizarPlayersCercanos (Object obj)
     {
         for (MobPC PCCercanos : listaPCsCercanos)
             controlador.enviarACliente(PCCercanos.getConnectionID(), obj);
     }
+    public void actualizarPlayer (Object obj)
+    {   controlador.enviarACliente(PC.getConnectionID(), obj); }
 
+
+
+    public void setPosition (float x, float y)
+    {
+        this.x = x; this.y = y;
+        this.quienMeVe();
+        if (visible) positionChanged = true;
+        else positionChanged = false;
+
+        mapaView.comprobarVistaMapa();
+    }
     public void quienMeVe()
     {
         for (PcView pcCercanos : vista.listaPcViews)
@@ -97,76 +109,65 @@ public class PcView implements PropertyChangeListener
         if (listaPCsCercanos.size()>0) visible = true;
         else visible = false;
     }
-
-    public void setPosition (float x, float y)
-    {
-        this.x = x; this.y = y;
-        quienMeVe();
-        if (visible) positionChanged = true;
-        else positionChanged = false;
-
-        mapaView.comprobarVistaMapa();
-    }
-
-    public void setAnimacion(int numAnimacion)
-    {
-        this.numAnimacion = numAnimacion;
-        NetDTO.CambiarAnimacionPC cambiarAnimacionPC = new NetDTO.CambiarAnimacionPC(connectionID, numAnimacion);
-        actualizarPlayersCercanos(cambiarAnimacionPC);
-        System.out.println("Servidor envia animacion ["+numAnimacion+"]");
-    }
-
     public void añadirPCVisible (PcView pcview)
     {
         if (!listaPCsCercanos.contains(pcview.PC))
         {
             listaPCsCercanos.add(pcview.PC);
-            NetDTO.AñadirPC añadirPC = new NetDTO.AñadirPC(pcview.PC);
-            controlador.enviarACliente(PC.getConnectionID(), añadirPC);
+            NetDTO.ActualizarPPC añadirPC = new NetDTO.ActualizarPPC(pcview.PC);
+            actualizarPlayer(añadirPC);
         }
     }
-
     public void eliminarPCVisible (PcView pcView)
     {
         if (listaPCsCercanos.contains(pcView.PC))
         {
             listaPCsCercanos.remove(pcView.PC);
-            NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(pcView.PC);
-            controlador.enviarACliente(PC.getConnectionID(), eliminarPC);
+            NetDTO.EliminarPPC eliminarPPC = new NetDTO.EliminarPPC(pcView.PC);
+            actualizarPlayer(eliminarPPC);
         }
     }
 
-    public void eliminar()
-    {
-        NetDTO.EliminarPC eliminarPC = new NetDTO.EliminarPC(PC);
-        actualizarPlayersCercanos(eliminarPC);
 
+
+
+    public void setAnimacion(NetDTO.AnimacionPPC animacion)
+    {   actualizarPlayersCercanos(animacion); }
+    public void modificarHPs(NetDTO.ModificarHPsPPC HPs)
+    {   actualizarPlayersCercanos(HPs);
+        actualizarPlayer(HPs);
+    }
+    public void eliminar(NetDTO.EliminarPPC eliminarPPC)
+    {
         mundo.getMapa().eliminarObservador(this);
         PC.eliminarObservador(this);
         vista.listaPcViews.remove(this);
 
+        actualizarPlayersCercanos(eliminarPPC);
     }
+
+
+
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
         //MOBILES:
-        if (evt.getNewValue() instanceof NetDTO.CambiarPosicionPC)
+        if (evt.getNewValue() instanceof NetDTO.PosicionPPC)
         {
-            x = ((NetDTO.CambiarPosicionPC) evt.getNewValue()).x;
-            y = ((NetDTO.CambiarPosicionPC) evt.getNewValue()).y;
+            x = ((NetDTO.PosicionPPC) evt.getNewValue()).x;
+            y = ((NetDTO.PosicionPPC) evt.getNewValue()).y;
             setPosition(x, y);
         }
+        if (evt.getNewValue() instanceof NetDTO.ModificarHPsPPC)
+        {   modificarHPs((NetDTO.ModificarHPsPPC)evt.getNewValue()); }
 
-        if (evt.getNewValue() instanceof NetDTO.EliminarPC)
-        {   eliminar(); }
+        if (evt.getNewValue() instanceof NetDTO.EliminarPPC)
+        {   eliminar((NetDTO.EliminarPPC)evt.getNewValue()); }
 
         if (visible)
         {
-            if (evt.getNewValue() instanceof NetDTO.CambiarAnimacionPC)
-            {
-                int numAnimacion = ((NetDTO.CambiarAnimacionPC) evt.getNewValue()).numAnimacion;
-                setAnimacion(numAnimacion);
-            }
+            if (evt.getNewValue() instanceof NetDTO.AnimacionPPC)
+            {   setAnimacion((NetDTO.AnimacionPPC)evt.getNewValue()); }
         }
 
         //TERRENOS:

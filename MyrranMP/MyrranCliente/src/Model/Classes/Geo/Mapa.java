@@ -8,7 +8,6 @@ import Interfaces.EntidadesTipos.Mob;
 import Interfaces.Geo.MapaI;
 import Interfaces.Geo.TerrenoI;
 import Interfaces.Model.AbstractModel;
-import Model.DTO.PlayerDTO;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -177,7 +176,7 @@ public class Mapa extends AbstractModel implements MapaI,PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof PlayerDTO.PositionPlayer)
+        if (evt.getNewValue() instanceof NetDTO.PosicionPPC)
         {   comprobarCambioDeMapTile(); }
 
     }

@@ -23,7 +23,7 @@ import java.beans.PropertyChangeListener;
 public class PlayerView extends Group implements PropertyChangeListener
 {
     public Player player;
-    public MundoView vista;
+    public MundoView mundoView;
     public Controlador controlador;
 
     public Integer nivel;
@@ -37,12 +37,11 @@ public class PlayerView extends Group implements PropertyChangeListener
     public float getCenterX()               { return (this.getX()+this.getWidth()/2); }
     public float getCenterY()               { return (this.getY()+this.getHeight()/2); }
 
-    public PlayerView (Player player, MundoView vista, Controlador controlador)
+    public PlayerView (Player player, MundoView mundoView, Controlador controlador)
     {
         this.player = player;
-        this.vista = vista;
+        this.mundoView = mundoView;
         this.controlador = controlador;
-
 
         this.setPosition(player.getX(), player.getY());
 
@@ -57,14 +56,13 @@ public class PlayerView extends Group implements PropertyChangeListener
         this.addActor(actor);
         this.setWidth(actor.getWidth());
         this.setHeight(actor.getHeight());
-        System.out.println("añadiendo Actor:");
-        vista.addActor(this);
-        System.out.println("numero Mobiles: "+vista.getActors().size);
+        mundoView.addActor(this);
         actor.setAnimacion(5, false);
+
         nameplate = new Nameplate();
         this.addActor(nameplate);
         nameplate.setPosition(getCenterX()-nameplate.getWidth()/2, getHeight());
-        luz = new PointLight(vista.getRayHandler(), 300, new Color(0.3f,0.3f,0.3f,1.0f), 350, 0, 0);
+        luz = new PointLight(mundoView.getRayHandler(), 300, new Color(0.3f,0.3f,0.3f,1.0f), 350, 0, 0);
     }
 
     public void setNombre (String nuevoNombre)
@@ -81,7 +79,7 @@ public class PlayerView extends Group implements PropertyChangeListener
         {
             super.setPosition(x, y);
             luz.setPosition(x,y);
-            NetDTO.CambiarPosicionPC moverPlayer = new NetDTO.CambiarPosicionPC(player.getConnectionID(), getX(), getY());
+            NetDTO.PosicionPPC moverPlayer = new NetDTO.PosicionPPC(player.getConnectionID(), getX(), getY());
             controlador.enviarAServidor(moverPlayer);
         }
     }
@@ -93,23 +91,31 @@ public class PlayerView extends Group implements PropertyChangeListener
     public void setAnimacion (int numAnimacion)
     {
         actor.setAnimacion(numAnimacion, false);
-        NetDTO.CambiarAnimacionPC cambiarAnimacionPC = new NetDTO.CambiarAnimacionPC(player.getConnectionID(), numAnimacion);
-        controlador.enviarAServidor(cambiarAnimacionPC);
-        System.out.println("Player ID["+cambiarAnimacionPC.connectionID + "]Animacion["+cambiarAnimacionPC.numAnimacion+"]");
+        NetDTO.AnimacionPPC animacionPPC = new NetDTO.AnimacionPPC(player.getConnectionID(), numAnimacion);
+        controlador.enviarAServidor(animacionPPC);
+        //System.out.println("Player ID["+cambiarAnimacionPC.connectionID + "]Animacion["+cambiarAnimacionPC.numAnimacion+"]");
     }
 
     public void setCastear (boolean castear, int targetX, int targetY)
     {
         Vector2 targetMundo = convertirCoordenadasPantallaAMundo(targetX, targetY);
-        NetDTO.CastearPC castearNDTO = new NetDTO.CastearPC(castear, (int)targetMundo.x, (int)targetMundo.y);
+        NetDTO.CastearPPC castearNDTO = new NetDTO.CastearPPC(castear, (int)targetMundo.x, (int)targetMundo.y);
         controlador.enviarAServidor(castearNDTO);
-        System.out.println("Casteando "+castear+" en: ["+targetX+"]["+targetY+"]");
+        //System.out.println("Casteando "+castear+" en: ["+targetX+"]["+targetY+"]");
+    }
+
+    public void modificarHPs(NetDTO.ModificarHPsPPC HPs)
+    {
+        Texto texto = new Texto(Integer.toString((int)HPs.HPs), RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
+                Color.GREEN, Color.BLACK, 0, 0, Align.center, Align.bottom, 1);
+        texto.setPosition(this.getWidth()/2+(float)Math.random()*30-15, this.getHeight()+15);
+        texto.scrollingCombatText(this, 2f);
     }
 
     public Vector2 convertirCoordenadasPantallaAMundo (int screenX, int screenY)
     {
         Vector3 destino = new Vector3(screenX, screenY, 0);
-        vista.getCamera().unproject(destino);
+        mundoView.getCamera().unproject(destino);
         return new Vector2(destino.x, destino.y);
     }
 
@@ -131,16 +137,16 @@ public class PlayerView extends Group implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getNewValue() instanceof PlayerDTO.PositionPlayer)
+        if (evt.getNewValue() instanceof NetDTO.PosicionPPC)
         {
-            float x = ((PlayerDTO.PositionPlayer) evt.getNewValue()).x;
-            float y = ((PlayerDTO.PositionPlayer) evt.getNewValue()).y;
+            float x = ((NetDTO.PosicionPPC) evt.getNewValue()).x;
+            float y = ((NetDTO.PosicionPPC) evt.getNewValue()).y;
             setPosition(x, y);
         }
 
-        if (evt.getNewValue() instanceof PlayerDTO.AnimacionPlayer)
+        if (evt.getNewValue() instanceof NetDTO.AnimacionPPC)
         {
-            int numAnimacion = ((PlayerDTO.AnimacionPlayer) evt.getNewValue()).numAnimacion;
+            int numAnimacion = ((NetDTO.AnimacionPPC) evt.getNewValue()).numAnimacion;
             setAnimacion(numAnimacion);
         }
 
@@ -152,13 +158,16 @@ public class PlayerView extends Group implements PropertyChangeListener
         if (evt.getNewValue() instanceof PlayerDTO.NivelPlayer)
         {   nivel = ((PlayerDTO.NivelPlayer) evt.getNewValue()).nivel; }
 
-        if (evt.getNewValue() instanceof PlayerDTO.Castear)
+        if (evt.getNewValue() instanceof NetDTO.CastearPPC)
         {
-            boolean castear = ((PlayerDTO.Castear) evt.getNewValue()).castear;
-            int targetX = ((PlayerDTO.Castear) evt.getNewValue()).screenX;
-            int targetY = ((PlayerDTO.Castear) evt.getNewValue()).screenY;
+            boolean castear = ((NetDTO.CastearPPC) evt.getNewValue()).castear;
+            int targetX = ((NetDTO.CastearPPC) evt.getNewValue()).targetX;
+            int targetY = ((NetDTO.CastearPPC) evt.getNewValue()).targetY;
             setCastear(castear, targetX, targetY);
         }
+
+        if (evt.getNewValue() instanceof NetDTO.ModificarHPsPPC)
+        {   modificarHPs((NetDTO.ModificarHPsPPC)evt.getNewValue()); }
 
         if (evt.getNewValue() instanceof PlayerDTO.SetSpellIDSeleccionado)
         {
