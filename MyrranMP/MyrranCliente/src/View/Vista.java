@@ -52,7 +52,8 @@ public class Vista
         batch.begin();
         batch.end();
 
-        mundoView.act(delta);
+        synchronized (mundoView)
+        {   mundoView.act(delta); }
         mundoView.draw();
 
         uiView.act(delta);

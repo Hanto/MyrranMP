@@ -29,9 +29,9 @@ public class PlayerView extends Group implements PropertyChangeListener
     public Integer nivel;
     public String spellIDSeleccionado;
 
-    public Texto nombre;
     public PixiePC actor;
     public Nameplate nameplate;
+    public Texto nombre;
     public PointLight luz;
 
     public float getCenterX()               { return (this.getX()+this.getWidth()/2); }
@@ -52,26 +52,27 @@ public class PlayerView extends Group implements PropertyChangeListener
 
     public void crearActor ()
     {
+        mundoView.addActor(this);
+
         actor = new PixiePC("Golem");
+        actor.setAnimacion(5, false);
         this.addActor(actor);
         this.setWidth(actor.getWidth());
         this.setHeight(actor.getHeight());
-        mundoView.addActor(this);
-        actor.setAnimacion(5, false);
 
         nameplate = new Nameplate();
-        this.addActor(nameplate);
         nameplate.setPosition(getCenterX()-nameplate.getWidth()/2, getHeight());
+        this.addActor(nameplate);
+
+        nombre = new Texto("Hanto", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.WHITE, Color.BLACK, actor.getWidth()/2, 0, Align.center, Align.bottom, 1);
+        nombre.setPosition(0, actor.getHeight()+12);
+        this.addActor(nombre);
+
         luz = new PointLight(mundoView.getRayHandler(), 300, new Color(0.3f,0.3f,0.3f,1.0f), 350, 0, 0);
     }
 
     public void setNombre (String nuevoNombre)
-    {
-        this.removeActor(nombre);
-        nombre = new Texto(nuevoNombre, RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.WHITE, Color.BLACK, actor.getWidth()/2, 0, Align.center, Align.bottom, 1);
-        nombre.setPosition(0, actor.getHeight()+12);
-        this.addActor(nombre);
-    }
+    {   nombre.setTexto(nuevoNombre); }
 
     public void setPosition (int x, int y)
     {
@@ -106,10 +107,13 @@ public class PlayerView extends Group implements PropertyChangeListener
 
     public void modificarHPs(NetDTO.ModificarHPsPPC HPs)
     {
-        Texto texto = new Texto(Integer.toString((int)HPs.HPs), RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
-                Color.GREEN, Color.BLACK, 0, 0, Align.center, Align.bottom, 1);
-        texto.setPosition(this.getWidth()/2+(float)Math.random()*30-15, this.getHeight()+15);
-        texto.scrollingCombatText(this, 2f);
+        synchronized (mundoView)
+        {
+            Texto texto = new Texto(Integer.toString((int) HPs.HPs), RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
+                    Color.GREEN, Color.BLACK, 0, 0, Align.center, Align.bottom, 1);
+            texto.setPosition(this.getWidth() / 2 + (float) Math.random() * 30 - 15, this.getHeight() + 15);
+            texto.scrollingCombatText(this, 2f);
+        }
     }
 
     public Vector2 convertirCoordenadasPantallaAMundo (int screenX, int screenY)
@@ -151,7 +155,8 @@ public class PlayerView extends Group implements PropertyChangeListener
         }
 
         if (evt.getNewValue() instanceof PlayerDTO.NombrePlayer)
-        {   String nuevoNombre = ((PlayerDTO.NombrePlayer) evt.getNewValue()).nombre;
+        {
+            String nuevoNombre = ((PlayerDTO.NombrePlayer) evt.getNewValue()).nombre;
             setNombre(nuevoNombre);
         }
 

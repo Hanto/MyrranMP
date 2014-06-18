@@ -1,6 +1,7 @@
 package Model.Classes.Skill.BDebuff;// Created by Hanto on 04/06/2014.
 
 import Core.SkillStat;
+import Interfaces.BDebuff.AuraI;
 import Interfaces.Model.AbstractModel;
 import Interfaces.BDebuff.TipoBDebuffI;
 
@@ -36,4 +37,6 @@ public abstract class TipoBDebuff extends AbstractModel implements TipoBDebuffI
     {
         inicializarSkillStats();
     }
+
+    @Override public void actualizarTick(AuraI aura) {}
 }

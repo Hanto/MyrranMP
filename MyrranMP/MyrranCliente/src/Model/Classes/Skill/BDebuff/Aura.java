@@ -52,7 +52,5 @@ public class Aura implements AuraI
             ticksAplicados++;
             debuff.actualizarTick(this);
         }
-
-        if (duracion >= duracionMax) target.eliminarAura(this);
     }
 }

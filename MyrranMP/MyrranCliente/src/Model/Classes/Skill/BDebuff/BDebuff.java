@@ -72,10 +72,9 @@ public class BDebuff implements BDebuffI
     @Override public void aplicarDebuff(Caster caster, Debuffeable target)
     {
         AuraI aura = new Aura(this, caster, target);
-        aura.setDuracionMax(Float.MAX_VALUE);
+        aura.setDuracionMax(skillStats()[TipoBDebuff.STAT_Duracion].getValorBase());
         target.añadirAura(aura);
     }
 
-    public void actualizarTick (AuraI aura)
-    {   tipoBDebuff.actualizarTick(aura); }
+    public void actualizarTick (AuraI aura) {}
 }

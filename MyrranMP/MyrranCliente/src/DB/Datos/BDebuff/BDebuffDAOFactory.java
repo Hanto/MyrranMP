@@ -7,12 +7,12 @@ public enum BDebuffDAOFactory
 {
     LOCAL("LOCAL")
     {
-        @Override public BDebuffDAO getBDebuffDAODAO()
+        @Override public BDebuffDAO getBDebuffDAO()
         {   return new BDebuffLocal(BDebuffLocalDB.get().listaDeBDebuffs); }
     };
 
 
-    public abstract BDebuffDAO getBDebuffDAODAO();
+    public abstract BDebuffDAO getBDebuffDAO();
 
     private BDebuffDAOFactory(String nombre) {}
 

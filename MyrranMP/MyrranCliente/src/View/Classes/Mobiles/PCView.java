@@ -23,7 +23,6 @@ public class PCView extends Group implements PropertyChangeListener
     public MundoView mundoView;
     public Controlador controlador;
 
-    public int connectionID;
     public PixiePC actor;
 
     public PCView (PC pc, MundoView vista, Controlador controlador)
@@ -32,7 +31,6 @@ public class PCView extends Group implements PropertyChangeListener
         this.mundoView = vista;
         this.controlador = controlador;
 
-        connectionID = pc.getConnectionID();
         this.setPosition(pc.getX(), pc.getY());
 
         pc.añadirObservador(this);
@@ -42,12 +40,13 @@ public class PCView extends Group implements PropertyChangeListener
 
     public void crearActor ()
     {
+        mundoView.addActor(this);
+
         actor = new PixiePC("Golem");
+        actor.setAnimacion(5, false);
         this.addActor(actor);
         this.setWidth(actor.getWidth());
         this.setHeight(actor.getHeight());
-        mundoView.addActor(this);
-        actor.setAnimacion(5, false);
     }
 
     public void eliminar()
@@ -59,17 +58,24 @@ public class PCView extends Group implements PropertyChangeListener
 
     public void mover(int x, int y)
     {
-        //TODO hay que hacerlo por setPosition y en cambio mover el model interpoladamente, el destino sin decimales
-        this.addAction(Actions.moveTo(x, y, MiscData.SERVIDOR_Delta_Time, Interpolation.linear));
-        //setPosition(x,y);
+        synchronized (mundoView)
+        {
+            //TODO hay que hacerlo por setPosition y en cambio mover el model interpoladamente, el destino sin decimales
+            this.clearActions();
+            this.addAction(Actions.moveTo(x, y, MiscData.SERVIDOR_Delta_Time, Interpolation.linear));
+            //setPosition(x,y);
+        }
     }
 
     public void modificarHPs(NetDTO.ModificarHPsPPC HPs)
     {
-        Texto texto = new Texto(Integer.toString((int)HPs.HPs), RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
-                Color.RED, Color.BLACK, 0, 0, Align.center, Align.bottom, 1);
-        texto.setPosition(this.getWidth()/2+(float)Math.random()*30-15, this.getHeight()+15);
-        texto.scrollingCombatText(this, 2f);
+        synchronized (mundoView)
+        {
+            Texto texto = new Texto(Integer.toString((int) HPs.HPs), RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
+                    Color.RED, Color.BLACK, 0, 0, Align.center, Align.bottom, 1);
+            texto.setPosition(this.getWidth() / 2 + (float) Math.random() * 30 - 15, this.getHeight() + 15);
+            texto.scrollingCombatText(this, 2f);
+        }
     }
 
     public void setAnimacion (int numAnimacion)

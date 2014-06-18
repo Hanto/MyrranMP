@@ -10,6 +10,9 @@ import Interfaces.Model.AbstractModel;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Spell extends AbstractModel implements SpellI
 {
     public static final int STAT_Cast = 0;
@@ -19,6 +22,7 @@ public class Spell extends AbstractModel implements SpellI
     protected String descripcion;
     protected TipoSpellI tipoSpell;
     protected SkillStat[] skillStats;                           //Stats concretos del skill
+    protected List<BDebuffI> listaDeDebuffsQueAplica = new ArrayList<>();
 
     //SET
     @Override public void setID(String id)                      { this.id = id; }
@@ -69,8 +73,17 @@ public class Spell extends AbstractModel implements SpellI
         }
     }
 
-    @Override public void añadirDebuff (BDebuffI debuff) {}
-    @Override public void añadirDebuff (String debuffID) {}
+    @Override public void añadirDebuff (BDebuffI debuff)
+    {   if (!listaDeDebuffsQueAplica.contains(debuff)) { listaDeDebuffsQueAplica.add(debuff); } }
+
+    @Override public void añadirDebuff (String debuffID)
+    {
+        BDebuffI debuff = DAO.debuffDAOFactory.getBDebuffDAO().getBDebuff(debuffID);
+
+        if (debuff == null) { System.out.println("ERROR: debuff que añadir al Spell "+id+" no encontrado."); return; }
+
+        añadirDebuff(debuff);
+    }
     @Override public void aplicarDebuffs (Caster caster, Debuffeable target) {}
 
     @Override public void castear (Caster caster, int targetX, int targetY)

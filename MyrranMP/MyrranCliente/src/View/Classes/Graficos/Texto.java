@@ -21,16 +21,19 @@ public class Texto extends Group
     
     private Label textoNormal;              //Resultado final del Texto final
     private Label textoSombra;              //Resultado final del Texto sombra
-    
+
+    private int offSetX;
+    private int offSetY;
+
     private int centradoHorizontal;
     private int centradoVertical;
     private int relieveSombra;
         
     //CONSTRUCTOR Metodo para crear texto con un formato determinado y encapsularlo todo en un grupo:
-    public Texto (String texto, BitmapFont fuente, Color colorNormal, Color colorSombra, float posX, float posY, int centradoHorizontal, int centradoVertical, int relieve )
+    public Texto (String texto, BitmapFont fuente, Color colorNormal, Color colorSombra, float offSetX, float offSetY, int centradoHorizontal, int centradoVertical, int relieve )
     {   
-        this.setX(posX);
-        this.setY(posY);
+        this.offSetX = (int)offSetX;
+        this.offSetY = (int)offSetY;
         this.centradoHorizontal = centradoHorizontal;
         this.centradoVertical = centradoVertical;
         this.relieveSombra = relieve;
@@ -44,22 +47,22 @@ public class Texto extends Group
                 
         switch (centradoHorizontal)
         {//Segun el tipo de centradoHorizontal ajustamos el eje de coordenadas X:
-            case Align.right:   { posX = posX - (int)textoNormal.getWidth(); break; }
-            case Align.center:  { posX = posX - (int)textoNormal.getWidth()/2; break; }
+            case Align.right:   { offSetX = this.offSetX - (int)textoNormal.getWidth(); break; }
+            case Align.center:  { offSetX = this.offSetX - (int)textoNormal.getWidth()/2; break; }
             case Align.left:    { break; }
             default:            { break; }
         }
         
         switch (centradoVertical)
         {//Segun el tipo de centradoVertical ajustamos el eje de coordenadas Y:
-            case Align.top:     { posY = posY -(int)textoNormal.getHeight(); break; }
-            case Align.center:  { posY = posY -(int)textoNormal.getHeight()/2; break; }
+            case Align.top:     { offSetY = this.offSetY -(int)textoNormal.getHeight(); break; }
+            case Align.center:  { offSetY = this.offSetY -(int)textoNormal.getHeight()/2; break; }
             case Align.bottom:  { break; }
             default:            { break; }
         }
         //Situamos el texto normal y el texto sombra en las coordenadas generadas segun el tipo de centrado, y añadimos ambos textos al grupo grupoTexto:
-        textoSombra.setPosition(posX+relieveSombra, posY-relieveSombra);
-        textoNormal.setPosition(posX, posY);
+        textoSombra.setPosition(offSetX+relieveSombra, offSetY-relieveSombra);
+        textoNormal.setPosition(offSetX, offSetY);
 
         this.setHeight(textoNormal.getHeight()+relieve);
         this.setWidth(textoNormal.getWidth()+relieve);
@@ -70,21 +73,22 @@ public class Texto extends Group
     
     public void setCentrado ( int centradoHorizontal, int centradoVertical)
     {
-        float posX,posY;
+        float posX = offSetX;
+        float posY = offSetY;
         switch (centradoHorizontal)
         {//Segun el tipo de centradoHorizontal ajustamos el eje de coordenadas X:
-            case Align.right:   { posX = this.getX() - (int)textoNormal.getWidth(); break; }
-            case Align.center:  { posX = this.getX() - (int)textoNormal.getWidth()/2; break; }
-            case Align.left:    { posX = 0; break; }
-            default:            { posX = 0; break; }
+            case Align.right:   { posX = offSetX - (int)textoNormal.getWidth(); break; }
+            case Align.center:  { posX = offSetX - (int)textoNormal.getWidth()/2; break; }
+            case Align.left:    { break; }
+            default:            { break; }
         }
         
         switch (centradoVertical)
         {//Segun el tipo de centradoVertical ajustamos el eje de coordenadas Y:
-            case Align.top:     { posY = this.getY() -(int)textoNormal.getHeight(); break; }
-            case Align.center:  { posY = this.getY() -(int)textoNormal.getHeight()/2; break; }
-            case Align.bottom:  { posY = 0; break; }
-            default:            { posY = 0; break; }
+            case Align.top:     { posY = offSetY -(int)textoNormal.getHeight(); break; }
+            case Align.center:  { posY = offSetY -(int)textoNormal.getHeight()/2; break; }
+            case Align.bottom:  { break; }
+            default:            { break; }
         }
         //Situamos el texto normal y el texto sombra en las coordenadas generadas segun el tipo de centrado, y añadimos ambos textos al grupo grupoTexto:
         textoSombra.setPosition(posX+relieveSombra, posY-relieveSombra);
@@ -92,7 +96,7 @@ public class Texto extends Group
     }
     
     public void setTexto ( String texto )
-    {   
+    {
         textoNormal.setText(texto);
         textoSombra.setText(texto);
         //por algun motivo si cambiamos el texto su tamaño no se actualiza, así que tenemos que generar un label getTipoSpellDAO con ese texto para calcular el tamaño

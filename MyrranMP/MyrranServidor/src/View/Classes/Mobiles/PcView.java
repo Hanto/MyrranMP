@@ -23,8 +23,6 @@ public class PcView implements PropertyChangeListener
 
     //Datos:
     private List<MobPC> listaPCsCercanos = new ArrayList<>();
-
-    public boolean visible = false;
     public boolean positionChanged = false;
     public float x;
     public float y;
@@ -56,7 +54,7 @@ public class PcView implements PropertyChangeListener
 
     public void netUpdate()
     {
-        if (visible)
+        if (isVisible())
         {
             if (positionChanged)
             {
@@ -66,26 +64,30 @@ public class PcView implements PropertyChangeListener
             positionChanged = false;
         }
     }
-    public void actualizarPlayersCercanos (Object obj)
+    private void actualizarPlayersCercanos (Object obj)
     {
         for (MobPC PCCercanos : listaPCsCercanos)
             controlador.enviarACliente(PCCercanos.getConnectionID(), obj);
     }
-    public void actualizarPlayer (Object obj)
+    private void actualizarPlayer (Object obj)
     {   controlador.enviarACliente(PC.getConnectionID(), obj); }
 
+    private boolean isVisible()
+    {   return !listaPCsCercanos.isEmpty(); }
 
 
-    public void setPosition (float x, float y)
+    private void setPosition (float x, float y)
     {
         this.x = x; this.y = y;
         this.quienMeVe();
-        if (visible) positionChanged = true;
+
+        if (isVisible()) positionChanged = true;
         else positionChanged = false;
 
         mapaView.comprobarVistaMapa();
     }
-    public void quienMeVe()
+
+    private void quienMeVe()
     {
         for (PcView pcCercanos : vista.listaPcViews)
         {
@@ -106,10 +108,9 @@ public class PcView implements PropertyChangeListener
                 }
             }
         }
-        if (listaPCsCercanos.size()>0) visible = true;
-        else visible = false;
     }
-    public void añadirPCVisible (PcView pcview)
+
+    private void añadirPCVisible (PcView pcview)
     {
         if (!listaPCsCercanos.contains(pcview.PC))
         {
@@ -118,7 +119,8 @@ public class PcView implements PropertyChangeListener
             actualizarPlayer(añadirPC);
         }
     }
-    public void eliminarPCVisible (PcView pcView)
+
+    private void eliminarPCVisible (PcView pcView)
     {
         if (listaPCsCercanos.contains(pcView.PC))
         {
@@ -131,13 +133,13 @@ public class PcView implements PropertyChangeListener
 
 
 
-    public void setAnimacion(NetDTO.AnimacionPPC animacion)
-    {   actualizarPlayersCercanos(animacion); }
-    public void modificarHPs(NetDTO.ModificarHPsPPC HPs)
+    private void setAnimacion(NetDTO.AnimacionPPC animacion)
+    {   actualizarPlayersCercanos(animacion); System.out.println("Enviar Animacion: " + animacion.numAnimacion); }
+    private void modificarHPs(NetDTO.ModificarHPsPPC HPs)
     {   actualizarPlayersCercanos(HPs);
         actualizarPlayer(HPs);
     }
-    public void eliminar(NetDTO.EliminarPPC eliminarPPC)
+    private void eliminar(NetDTO.EliminarPPC eliminarPPC)
     {
         mundo.getMapa().eliminarObservador(this);
         PC.eliminarObservador(this);
@@ -164,7 +166,10 @@ public class PcView implements PropertyChangeListener
         if (evt.getNewValue() instanceof NetDTO.EliminarPPC)
         {   eliminar((NetDTO.EliminarPPC)evt.getNewValue()); }
 
-        if (visible)
+        if (evt.getNewValue() instanceof NetDTO.AnimacionPPC)
+        {   System.out.println("Intentando enviar Animacion: " + ((NetDTO.AnimacionPPC) evt.getNewValue()).numAnimacion); }
+
+        if (isVisible())
         {
             if (evt.getNewValue() instanceof NetDTO.AnimacionPPC)
             {   setAnimacion((NetDTO.AnimacionPPC)evt.getNewValue()); }
