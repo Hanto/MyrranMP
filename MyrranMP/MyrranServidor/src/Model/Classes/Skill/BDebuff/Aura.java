@@ -2,7 +2,7 @@ package Model.Classes.Skill.BDebuff;// Created by Hanto on 04/06/2014.
 
 import Data.MiscData;
 import Interfaces.BDebuff.AuraI;
-import Interfaces.BDebuff.TipoBDebuffI;
+import Interfaces.BDebuff.BDebuffI;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesPropiedades.Debuffeable;
 
@@ -14,7 +14,7 @@ public class Aura implements AuraI
     private float duracionMax;
     private Caster caster;
     private Debuffeable target;
-    private TipoBDebuffI debuff;
+    private BDebuffI debuff;
 
     //SET:
     @Override public byte getStacks()                       { return stacks; }
@@ -23,7 +23,7 @@ public class Aura implements AuraI
     @Override public float getDuracionMax()                 { return duracionMax; }
     @Override public Caster getCaster()                     { return caster; }
     @Override public Debuffeable getTarget()                { return target; }
-    @Override public TipoBDebuffI getDebuff()               { return debuff; }
+    @Override public BDebuffI getDebuff()                   { return debuff; }
 
     //GET:
     @Override public void setStacks(byte b)                 { stacks = b; }
@@ -32,9 +32,9 @@ public class Aura implements AuraI
     @Override public void setDuracionMax(float f)           { duracionMax = f; }
     @Override public void setCaster(Caster caster)          { this.caster = caster; }
     @Override public void setTarget(Debuffeable target)     { this.target = target; }
-    @Override public void setDebuff(TipoBDebuffI debuff)    { this.debuff = debuff; }
+    @Override public void setDebuff(BDebuffI debuff)        { this.debuff = debuff; }
 
-    public Aura (TipoBDebuffI debuff, Caster caster, Debuffeable target)
+    public Aura (BDebuffI debuff, Caster caster, Debuffeable target)
     {
         this.debuff = debuff;
         this.caster = caster;
@@ -45,14 +45,12 @@ public class Aura implements AuraI
     {
         duracion += delta;
 
-        int tickActualk =  (int) (duracion / MiscData.BDEBUFF_DuracionTick);
+        int tickActual =  (int) (duracion / MiscData.BDEBUFF_DuracionTick);
 
-        for (int i=ticksAplicados; i<tickActualk; i++)
+        for (int i=ticksAplicados; i<tickActual; i++)
         {
             ticksAplicados++;
-            debuff.actualizarAura(this);
+            debuff.actualizarTick(this);
         }
-
-        if (duracion >= duracionMax) target.eliminarAura(this);
     }
 }

@@ -34,7 +34,6 @@ public class TipoSpellLocalDB
             listaDeTipoSpells.put(tipoSpell.getID(), tipoSpell);
         }
 
-        System.out.println("[CARGANDO TIPOSPELLS]:");
         SAXBuilder builder = new SAXBuilder();
         InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML + MiscData.XML_DataTipoSpells);
 
@@ -57,6 +56,7 @@ public class TipoSpellLocalDB
                 tipoSpell.setNombre(nombre);
                 tipoSpell.setDescripcion(descripcion);
 
+                System.out.println("[TIPOSPELL]:");
                 System.out.println(" iD:            " + iD);
                 System.out.println(" nombre:        " + nombre);
                 System.out.println(" Descripcion:   " + descripcion);
@@ -93,8 +93,8 @@ public class TipoSpellLocalDB
                         System.out.println("  costeTalento: " + costeTalento);
                         System.out.println("  bonoTalento:  " + bonoTalento);
                     }
-                    System.out.println();
                 }
+                System.out.println();
 
                 listaDeTipoSpells.put(tipoSpell.getID(), tipoSpell);
             }

@@ -27,7 +27,6 @@ public class SpellLocalDB
 
     public void cargarDatos()
     {
-        System.out.println("[CARGANDO SPELLS]:");
         SAXBuilder builder = new SAXBuilder();
         InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML+ MiscData.XML_DataSpells);
 
@@ -52,10 +51,21 @@ public class SpellLocalDB
                 spell.setNombre(nombre);
                 spell.setDescripcion(descripcion);
 
+                System.out.println("[SPELL]:");
                 System.out.println(" iD :           " + iD);
                 System.out.println(" nombre:        " + nombre);
                 System.out.println(" Descripcion:   " + descripcion);
                 System.out.println(" TipoSpell:     " + tipoSpell);
+
+                List listaDebuffs = nodo.getChildren("debuff");
+
+                for (int j = 0; j < listaDebuffs.size(); j++)
+                {
+                    String debuffID = ((Element)listaDebuffs.get(j)).getText();
+                    spell.añadirDebuff(debuffID);
+
+                    System.out.println(" Aplica debuff: "+ debuffID);
+                }
 
                 Element skillStats = nodo.getChild("SkillStats");
                 List listaStats= skillStats.getChildren("Stat");
@@ -87,8 +97,8 @@ public class SpellLocalDB
                         System.out.println("  costeTalento: " + costeTalento);
                         System.out.println("  bonoTalento:  " + bonoTalento);
                     }
-                    System.out.println();
                 }
+                System.out.println();
 
                 listaDeSpells.put(spell.getID(), spell);
             }

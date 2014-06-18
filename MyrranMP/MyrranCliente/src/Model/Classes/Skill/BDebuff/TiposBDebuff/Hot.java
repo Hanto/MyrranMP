@@ -15,7 +15,7 @@ public class Hot extends TipoBDebuff
         skillStats = new SkillStat[2];
     }
 
-    @Override public void actualizarAura(AuraI aura)
+    @Override public void actualizarTick(AuraI aura)
     {
         float HPsPorTick = aura.getDebuff().skillStats()[STAT_Heal].getValorBase() * aura.getStacks();
 

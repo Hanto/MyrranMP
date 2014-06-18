@@ -19,7 +19,7 @@ public class MiscData
     public static final float SERVIDOR_DistanciaVisionMobs = 1.2f;
 
     //Spells, Debuffs:
-    public static final float BDEBUFF_DuracionTick = 1000f;
+    public static final float BDEBUFF_DuracionTick = 1.0f;
 
     //Recursos:
     public final static String RECURSOS_XML = "Data/";

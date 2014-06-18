@@ -2,10 +2,16 @@ package Model.Classes.Skill.Spell;
 // @author Ivan Delgado Huerta
 
 import Core.SkillStat;
+import DB.DAO;
+import Interfaces.BDebuff.BDebuffI;
 import Interfaces.EntidadesPropiedades.Caster;
+import Interfaces.EntidadesPropiedades.Debuffeable;
 import Interfaces.Model.AbstractModel;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Spell extends AbstractModel implements SpellI
 {
@@ -16,6 +22,7 @@ public class Spell extends AbstractModel implements SpellI
     protected String descripcion;
     protected TipoSpellI tipoSpell;                              //Command Pattern: Codigo que se ejecuta al castear el skill
     protected SkillStat[] skillStats;                           //Stats concretos del skill
+    protected List<BDebuffI> listaDeDebuffsQueAplica = new ArrayList<>();
 
     //SET
     @Override public void setID(String id)                      { this.id = id; }
@@ -50,7 +57,7 @@ public class Spell extends AbstractModel implements SpellI
 
     public Spell (String tipoSpellID)
     {
-        tipoSpell = DB.DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(tipoSpellID);
+        tipoSpell = DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(tipoSpellID);
 
         if (tipoSpell == null) { System.out.println("ERROR: spellID no encontrado."); return; }
 
@@ -64,7 +71,27 @@ public class Spell extends AbstractModel implements SpellI
             skillStats[i] = statSkill;
         }
     }
-    
+
+
+    @Override public void añadirDebuff (BDebuffI debuff)
+    {   if (!listaDeDebuffsQueAplica.contains(debuff)) { listaDeDebuffsQueAplica.add(debuff); } }
+
+    @Override public void añadirDebuff (String debuffID)
+    {
+        BDebuffI debuff = DAO.debuffDAOFactory.getBDebuffDAO().getBDebuff(debuffID);
+
+        if (debuff == null) { System.out.println("ERROR: debuff que añadir al Spell "+id+" no encontrado."); return; }
+
+        añadirDebuff(debuff);
+    }
+
+    @Override public void aplicarDebuffs (Caster caster, Debuffeable target)
+    {
+        for (BDebuffI debuff: listaDeDebuffsQueAplica)
+        {   debuff.aplicarDebuff(caster, target);}
+    }
+
+
     @Override public void castear (Caster caster, int targetX, int targetY)
     {
         if (caster.isCasteando()) { }

@@ -36,6 +36,7 @@ public class BDebuff implements BDebuffI
     @Override public TipoBDebuffI getTipoBDebuff()                  { return tipoBDebuff; }
     @Override public SkillStat [] skillStats ()                     { return skillStats; }
 
+
     //CONSTRUCTOR:
     public BDebuff (TipoBDebuffI tipoBDebuff)
     {   //Se vincula el objeto que ejecutara los metodos de este tipo de Spell
@@ -54,7 +55,6 @@ public class BDebuff implements BDebuffI
             skillStats[i] = statSkill;
         }
     }
-
     public BDebuff (String tipoBDebuffID)
     {
         this.tipoBDebuff = DAO.tipoBDebuffDAOFactory.getTipoBDebuffDAO().getTipoBDebuff(tipoBDebuffID);
@@ -69,13 +69,13 @@ public class BDebuff implements BDebuffI
         }
     }
 
-    private void aplicarAura(Caster caster, Debuffeable target)
+    @Override public void aplicarDebuff(Caster caster, Debuffeable target)
     {
-        AuraI aura = new Aura(tipoBDebuff, caster, target);
+        AuraI aura = new Aura(this, caster, target);
         aura.setDuracionMax(Float.MAX_VALUE);
         target.añadirAura(aura);
     }
 
     public void actualizarTick (AuraI aura)
-    {   tipoBDebuff.actualizarAura(aura); }
+    {   tipoBDebuff.actualizarTick(aura); }
 }

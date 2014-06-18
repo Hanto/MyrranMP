@@ -10,8 +10,8 @@
 		<SkillStats>
 			<Stat>
 				<numStat>0</numStat>
-				<nombre>Castear</nombre>
-				<valorBase>0.5</valorBase>
+				<nombre>Duracion</nombre>
+				<valorBase>10</valorBase>
 				<isMejorable>true</isMejorable>
 				<talentoMaximo>50</talentoMaximo>
 				<costeTalento>1</costeTalento>

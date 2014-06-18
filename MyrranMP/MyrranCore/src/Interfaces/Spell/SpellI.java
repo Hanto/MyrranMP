@@ -1,7 +1,9 @@
 package Interfaces.Spell;// Created by Hanto on 09/06/2014.
 
 import Core.SkillStat;
+import Interfaces.BDebuff.BDebuffI;
 import Interfaces.EntidadesPropiedades.Caster;
+import Interfaces.EntidadesPropiedades.Debuffeable;
 
 public interface SpellI
 {
@@ -19,5 +21,8 @@ public interface SpellI
     public SkillStat[] skillStats ();
 
     //METODOS:
+    public void añadirDebuff (BDebuffI debuff);
+    public void añadirDebuff (String debuffID);
     public void castear (Caster caster, int targetX, int targetY);
+    public void aplicarDebuffs (Caster caster, Debuffeable target);
 }

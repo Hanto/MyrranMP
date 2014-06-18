@@ -27,7 +27,6 @@ public class BDebuffLocalDB
 
     public void cargarDatos()
     {
-        System.out.println("[CARGANDO BDEBUFFS]:");
         SAXBuilder builder = new SAXBuilder();
         InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML + MiscData.XML_DataBDebuffs);
 
@@ -56,6 +55,7 @@ public class BDebuffLocalDB
                 debuff.setIsDebuff(isDebuff);
                 debuff.setStacksMaximos(stacksMaximos);
 
+                System.out.println("[DEBUFF]:");
                 System.out.println(" iD :           " + iD);
                 System.out.println(" nombre:        " + nombre);
                 System.out.println(" Descripcion:   " + descripcion);
@@ -93,8 +93,8 @@ public class BDebuffLocalDB
                         System.out.println("  costeTalento: " + costeTalento);
                         System.out.println("  bonoTalento:  " + bonoTalento);
                     }
-                    System.out.println();
                 }
+                System.out.println();
 
                 listaDeBDebuffs.put(debuff.getID(), debuff);
             }

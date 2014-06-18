@@ -23,6 +23,7 @@
 		<nombre>Heal</nombre>
 		<descripcion>Cura los HPs</descripcion>
 		<tipoSpell>HEAL</tipoSpell>
+		<debuff>Hot</debuff>
 		<icono>Muros</icono>
 		<SkillStats>
 			<Stat>

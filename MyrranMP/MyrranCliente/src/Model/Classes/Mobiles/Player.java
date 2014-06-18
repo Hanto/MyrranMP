@@ -82,7 +82,7 @@ public class Player extends AbstractModel implements MobPlayer, Caster, Vulnerab
     @Override public void añadirAura(AuraI aura)                 { listaDeAuras.add(aura); }
     @Override public void eliminarAura(AuraI aura)              { listaDeAuras.removeValue(aura, true); }
     @Override public Iterator<AuraI> getAuras()                 { return listaDeAuras.iterator(); }
-    @Override public void setActualHPs (float hps)              { modificarHPs(actualHPs - hps); }
+    @Override public void setActualHPs (float hps)              { modificarHPs(hps - actualHPs); }
 
     @Override public void modificarHPs(float HPs)
     {

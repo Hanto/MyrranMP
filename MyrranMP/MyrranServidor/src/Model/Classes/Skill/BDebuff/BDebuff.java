@@ -71,7 +71,7 @@ public class BDebuff implements BDebuffI
         return null;
     }
 
-    private void aplicarAura(Caster caster, Debuffeable target)
+    @Override public void aplicarDebuff(Caster caster, Debuffeable target)
     {
         AuraI aura = auraExisteYEsDelCaster(caster, target);
 
@@ -83,12 +83,12 @@ public class BDebuff implements BDebuffI
         }
         else
         {
-            aura = new Aura(tipoBDebuff, caster, target);
+            aura = new Aura(this, caster, target);
             aura.setDuracionMax(skillStats()[TipoBDebuff.STAT_Duracion].getValorBase());
             target.añadirAura(aura);
         }
     }
 
-    public void actualizarTick (AuraI aura)
-    {   tipoBDebuff.actualizarAura(aura); }
+    @Override public void actualizarTick (AuraI aura)
+    {   tipoBDebuff.actualizarTick(aura); }
 }

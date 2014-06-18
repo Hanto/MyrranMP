@@ -127,13 +127,15 @@ public class Texto extends Group
     public void scrollingCombatText (Stage stage, float duracion)
     {
         stage.addActor(this);
-        this.addAction(Actions.sequence(Actions.fadeOut(0), Actions.fadeIn(duracion / 4), Actions.delay(duracion / 4 * 2), Actions.fadeOut(duracion / 4)));
+        this.setColor(this.getColor().r, this.getColor().g, this.getColor().b, 0);
+        this.addAction(Actions.sequence(Actions.fadeIn(duracion / 4), Actions.delay(duracion / 4 * 2), Actions.fadeOut(duracion / 4)));
         this.addAction(Actions.sequence(Actions.moveBy(0f, 40f, duracion), Actions.removeActor()));
     }
     
     public void scrollingCombatText (Group group, float duracion)
     {
-        this.addAction(Actions.sequence(Actions.fadeOut(0), Actions.fadeIn(duracion / 4), Actions.delay(duracion / 4 * 2), Actions.fadeOut(duracion / 4)));
+        this.setColor(this.getColor().r, this.getColor().g, this.getColor().b, 0);
+        this.addAction(Actions.sequence(Actions.fadeIn(duracion / 4), Actions.delay(duracion / 4 * 2), Actions.fadeOut(duracion / 4)));
         this.addAction(Actions.sequence(Actions.moveBy(0f, 40f, duracion), Actions.removeActor()));
         group.addActor(this);
     }

@@ -1,6 +1,18 @@
 package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
+import DB.Datos.BDebuff.BDebuffLocalDB;
+import DB.Datos.Spell.SpellLocalDB;
+import DB.Datos.Terreno.TerrenoLocalDB;
+import DB.Datos.TipoBdDebuff.TipoBDebuffLocalDB;
+import DB.Datos.TipoSpell.TipoSpellLocalDB;
+import DB.Recursos.AccionRecursos.AccionRecursosLocalDB;
+import DB.Recursos.AtlasRecursos.AtlasRecursosLocalDB;
+import DB.Recursos.FuentesRecursos.FuentesRecursosLocalDB;
+import DB.Recursos.MiscRecursos.MiscRecursosLocalDB;
+import DB.Recursos.PixiePCRecursos.PixiePCRecursosLocalDB;
+import DB.Recursos.SkillRecursos.SkillRecursosLocalDB;
+import DB.Recursos.TerrenoRecursos.TerrenoRecursosLocalDB;
 import Model.GameState.Mundo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -17,6 +29,20 @@ public class PantallaLibGDX implements Screen
     public PantallaLibGDX(MyrranClient myrranCliente)
     {
         this.myrranCliente = myrranCliente;
+
+        TipoBDebuffLocalDB.get();
+        BDebuffLocalDB.get();
+        TipoSpellLocalDB.get();
+        SpellLocalDB.get();
+        TerrenoLocalDB.get();
+
+        AtlasRecursosLocalDB.get();
+        MiscRecursosLocalDB.get();
+        FuentesRecursosLocalDB.get();
+        TerrenoRecursosLocalDB.get();
+        AccionRecursosLocalDB.get();
+        SkillRecursosLocalDB.get();
+        PixiePCRecursosLocalDB.get();
 
         Mundo mundo = new Mundo();
         controlador = new Controlador(mundo);

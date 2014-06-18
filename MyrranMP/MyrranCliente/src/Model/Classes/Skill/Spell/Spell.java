@@ -3,7 +3,9 @@ package Model.Classes.Skill.Spell;
 
 import Core.SkillStat;
 import DB.DAO;
+import Interfaces.BDebuff.BDebuffI;
 import Interfaces.EntidadesPropiedades.Caster;
+import Interfaces.EntidadesPropiedades.Debuffeable;
 import Interfaces.Model.AbstractModel;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
@@ -30,6 +32,7 @@ public class Spell extends AbstractModel implements SpellI
     @Override public String getDescripcion ()                   { return descripcion; }
     @Override public TipoSpellI getTipoSpell()                  { return tipoSpell; }
     @Override public SkillStat [] skillStats ()                 { return skillStats; }
+
 
 
     //CONSTRUCTOR:
@@ -65,7 +68,11 @@ public class Spell extends AbstractModel implements SpellI
             skillStats[i] = statSkill;
         }
     }
-    
+
+    @Override public void añadirDebuff (BDebuffI debuff) {}
+    @Override public void añadirDebuff (String debuffID) {}
+    @Override public void aplicarDebuffs (Caster caster, Debuffeable target) {}
+
     @Override public void castear (Caster caster, int targetX, int targetY)
     {
         if (caster.isCasteando()) { }

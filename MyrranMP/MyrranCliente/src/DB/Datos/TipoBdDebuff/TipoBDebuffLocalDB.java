@@ -34,7 +34,6 @@ public class TipoBDebuffLocalDB
             listaDeTipoBDebuffs.put(tipoBDebuff.getID(), tipoBDebuff);
         }
 
-        System.out.println("[CARGANDO TIPO BDEBUFFS]:");
         SAXBuilder builder = new SAXBuilder();
         InputStream fichero = AbrirFichero.abrirFichero(MiscData.RECURSOS_XML + MiscData.XML_DataTipoBDebuffs);
 
@@ -61,6 +60,7 @@ public class TipoBDebuffLocalDB
                 tipoDebuff.setIsDebuff(isDebuff);
                 tipoDebuff.setStacksMaximos(stacksMaximos);
 
+                System.out.println("[TIPODEBUFF]:");
                 System.out.println(" iD :           " + iD);
                 System.out.println(" nombre:        " + nombre);
                 System.out.println(" Descripcion:   " + descripcion);
@@ -99,8 +99,8 @@ public class TipoBDebuffLocalDB
                         System.out.println("  costeTalento: " + costeTalento);
                         System.out.println("  bonoTalento:  " + bonoTalento);
                     }
-                    System.out.println();
                 }
+                System.out.println();
 
                 listaDeTipoBDebuffs.put(tipoDebuff.getID(), tipoDebuff);
             }

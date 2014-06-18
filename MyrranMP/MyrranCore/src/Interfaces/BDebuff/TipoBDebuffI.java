@@ -20,5 +20,5 @@ public interface TipoBDebuffI
 
     //METODOS:
     public void inicializarSkillStats();
-    public void actualizarAura(AuraI aura);
+    public void actualizarTick(AuraI aura);
 }

@@ -32,7 +32,7 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debu
     protected String nombre = "Hanto";
     protected int nivel = 1;
 
-    protected float actualHPs=2f;
+    protected float actualHPs=2000f;
     protected float maxHPs=2000f;
 
     protected boolean castear = false;
@@ -88,7 +88,7 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debu
     @Override public void eliminarAura(AuraI aura)              { listaDeAuras.remove(aura); }
     @Override public Iterator<AuraI> getAuras()                 { return listaDeAuras.iterator(); }
     @Override public void setMaxHPs(float HPs)                  { maxHPs = HPs; }
-    @Override public void setActualHPs(float HPs)               { modificarHPs(actualHPs - HPs); }
+    @Override public void setActualHPs(float HPs)               { modificarHPs(HPs - actualHPs); }
 
     @Override public void modificarHPs(float HPs)
     {
@@ -161,7 +161,11 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debu
     {
         Iterator<AuraI> aurasIteator = getAuras();
         while (aurasIteator.hasNext())
-        {   aurasIteator.next().actualizarAura(delta); }
+        {
+            AuraI aura = aurasIteator.next();
+            aura.actualizarAura(delta);
+            if (aura.getDuracion() >= aura.getDuracionMax()) aurasIteator.remove();
+        }
     }
 
     public void actualizar(float delta)

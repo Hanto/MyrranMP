@@ -25,7 +25,7 @@ public class PC extends AbstractModel implements Vulnerable, MobPC
     //TODO
     @Override public float getActualHPs()                       { return 0; }
     @Override public float getMaxHPs()                          { return 0; }
-    @Override public void setActualHPs(float HPs)               { }
+    @Override public void setActualHPs(float HPs)               { modificarHPs(HPs - actualHPs);}
     @Override public void setMaxHPs(float HPs)                  { }
     @Override public String getNombre()                         { return null; }
     @Override public int getNivel()                             { return 0; }
