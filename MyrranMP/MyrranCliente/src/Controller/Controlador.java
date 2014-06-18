@@ -97,8 +97,8 @@ public class Controlador implements ControladorUI
         {
             mundo.getPlayer().setNombre(updatePlayer.nombre);
             mundo.getPlayer().setNivel(updatePlayer.nivel);
-            mundo.getPlayer().setActualHPs(updatePlayer.actualHPs);
             mundo.getPlayer().setMaxHPs(updatePlayer.maxHPs);
+            mundo.getPlayer().setActualHPs(updatePlayer.actualHPs);
             mundo.getPlayer().setPosition(updatePlayer.x, updatePlayer.y);
             mundo.getPlayer().setNumAnimacion(updatePlayer.numAnimacion);
         }
@@ -109,8 +109,8 @@ public class Controlador implements ControladorUI
 
             mundo.getPC(updatePlayer.connectionID).setNombre(updatePlayer.nombre);
             mundo.getPC(updatePlayer.connectionID).setNivel(updatePlayer.nivel);
-            mundo.getPC(updatePlayer.connectionID).setActualHPs(updatePlayer.actualHPs);
             mundo.getPC(updatePlayer.connectionID).setMaxHPs(updatePlayer.maxHPs);
+            mundo.getPC(updatePlayer.connectionID).setActualHPs(updatePlayer.actualHPs);
             mundo.getPC(updatePlayer.connectionID).setPosition(updatePlayer.x, updatePlayer.y);
             mundo.getPC(updatePlayer.connectionID).setNumAnimacion(updatePlayer.numAnimacion);
         }

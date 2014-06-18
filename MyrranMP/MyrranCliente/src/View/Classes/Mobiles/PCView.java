@@ -24,6 +24,9 @@ public class PCView extends Group implements PropertyChangeListener
     public Controlador controlador;
 
     public PixiePC actor;
+    public NameplateView nameplateView;
+
+
 
     public PCView (PC pc, MundoView vista, Controlador controlador)
     {
@@ -40,20 +43,33 @@ public class PCView extends Group implements PropertyChangeListener
 
     public void crearActor ()
     {
-        mundoView.addActor(this);
+        synchronized (mundoView)
+        {
+            mundoView.addActor(this);
 
-        actor = new PixiePC("Golem");
-        actor.setAnimacion(5, false);
-        this.addActor(actor);
-        this.setWidth(actor.getWidth());
-        this.setHeight(actor.getHeight());
+            actor = new PixiePC("Golem");
+            actor.setAnimacion(5, false);
+            this.addActor(actor);
+            this.setWidth(actor.getWidth());
+            this.setHeight(actor.getHeight());
+
+            nameplateView = new NameplateView(pc);
+            nameplateView.setPosition(this.getWidth()/2 - nameplateView.getWidth() / 2, getHeight());
+            this.addActor(nameplateView);
+        }
     }
 
     public void eliminar()
     {
-        pc.eliminarObservador(this);
-        mundoView.getRoot().removeActor(this);
-        mundoView.eliminarPCView(this);
+        synchronized (mundoView)
+        {
+            pc.eliminarObservador(this);
+            mundoView.getRoot().removeActor(this);
+            mundoView.eliminarPCView(this);
+            nameplateView.eliminar();
+            this.actor = null;
+            this.nameplateView = null;
+        }
     }
 
     public void mover(int x, int y)

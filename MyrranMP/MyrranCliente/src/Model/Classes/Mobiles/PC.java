@@ -23,10 +23,10 @@ public class PC extends AbstractModel implements Vulnerable, MobPC
 
 
     //TODO
-    @Override public float getActualHPs()                       { return 0; }
-    @Override public float getMaxHPs()                          { return 0; }
+    @Override public float getActualHPs()                       { return actualHPs; }
+    @Override public float getMaxHPs()                          { return maxHPs; }
     @Override public void setActualHPs(float HPs)               { modificarHPs(HPs - actualHPs);}
-    @Override public void setMaxHPs(float HPs)                  { }
+    @Override public void setMaxHPs(float HPs)                  { this.maxHPs = HPs; }
     @Override public String getNombre()                         { return null; }
     @Override public int getNivel()                             { return 0; }
     @Override public float getVelocidadMod()                    { return 0; }
@@ -76,6 +76,4 @@ public class PC extends AbstractModel implements Vulnerable, MobPC
         Object modificarHPs = new NetDTO.ModificarHPsPPC(this, HPs);
         notificarActualizacion("modificarHPs", null, modificarHPs);
     }
-
-
 }

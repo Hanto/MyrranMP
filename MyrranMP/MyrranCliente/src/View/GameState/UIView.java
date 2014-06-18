@@ -24,7 +24,7 @@ public class UIView extends Stage implements PropertyChangeListener
     protected BarraTerrenosView barraTerrenosView;
     protected Texto fps;
 
-    public void setTextoFPS(String s)                           { /*fps.setTexto(s);*/ }
+    public void setTextoFPS(String s)                           { fps.setTexto(s); }
     public void mostrarBarraTerreno()                           { barraTerrenosView.mostrarBarraTerrenos(); }
     public void ocultarBarraTerreno()                           { barraTerrenosView.ocultarBarraTerrenos(); }
 

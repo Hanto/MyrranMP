@@ -246,6 +246,9 @@ public class Player extends AbstractModel implements MobPlayer, Caster, Vulnerab
                 actualCastingTime = 0f;
                 totalCastingTime = 0f;
             }
+
+            Object castingTimePercent = new NetDTO.CastingTimePercent(this);
+            notificarActualizacion("actualizarCastingTime", null, castingTimePercent);
         }
     }
 

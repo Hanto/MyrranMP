@@ -1,6 +1,8 @@
 package Interfaces.EntidadesPropiedades;// Created by Ladrim on 18/04/2014.
 
-public interface Vulnerable
+import Interfaces.Model.ModelI;
+
+public interface Vulnerable extends ModelI
 {
     //GET:
     public float getActualHPs();

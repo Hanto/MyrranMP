@@ -38,7 +38,7 @@
 			<Stat>
 				<numStat>1</numStat>
 				<nombre>Curacion</nombre>
-				<valorBase>500</valorBase>
+				<valorBase>15</valorBase>
 				<isMejorable>true</isMejorable>
 				<talentoMaximo>50</talentoMaximo>
 				<costeTalento>1</costeTalento>

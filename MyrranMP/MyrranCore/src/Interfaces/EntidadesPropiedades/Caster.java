@@ -1,8 +1,9 @@
 package Interfaces.EntidadesPropiedades;// Created by Hanto on 17/04/2014.
 
 import Interfaces.Geo.MapaI;
+import Interfaces.Model.ModelI;
 
-public interface Caster
+public interface Caster extends ModelI
 {
     //GET:
     public MapaI getMapa();

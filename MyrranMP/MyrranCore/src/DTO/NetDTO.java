@@ -2,6 +2,7 @@ package DTO;// Created by Hanto on 07/04/2014.
 
 
 import Data.MiscData;
+import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesPropiedades.Vulnerable;
 import Interfaces.EntidadesTipos.MobPC;
 import com.esotericsoftware.kryo.Kryo;
@@ -23,6 +24,8 @@ public class NetDTO
         kryo.register(ModificarHPsPPC.class);
         kryo.register(EliminarPPC.class);
         kryo.register(CastearPPC.class);
+
+        kryo.register(CastingTimePercent.class);
 
         kryo.register(SetTerreno.class);
         kryo.register(SetSpellIDSeleccionado.class);
@@ -139,6 +142,14 @@ public class NetDTO
         public CastearPPC() {}
         public CastearPPC(Boolean castear, int x, int y)
         {   this.castear = castear; targetX = x; targetY = y; }
+    }
+
+    public static class CastingTimePercent
+    {
+        public float castingTimePercent;
+        public CastingTimePercent() {}
+        public CastingTimePercent(Caster caster)
+        {   this.castingTimePercent = caster.getActualCastingTime() / caster.getTotalCastingTime(); }
     }
 
     public static class SetTerreno

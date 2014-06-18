@@ -3,10 +3,10 @@ package View.Classes.Mobiles;// Created by Hanto on 10/04/2014.
 import Controller.Controlador;
 import DTO.NetDTO;
 import Data.MiscData;
+import Interfaces.EntidadesPropiedades.Vulnerable;
 import Model.Classes.Mobiles.Player;
 import Model.DTO.PlayerDTO;
 import DB.RSC;
-import View.Classes.Graficos.Nameplate;
 import View.Classes.Graficos.PixiePC;
 import View.Classes.Graficos.Texto;
 import View.GameState.MundoView;
@@ -30,7 +30,7 @@ public class PlayerView extends Group implements PropertyChangeListener
     public String spellIDSeleccionado;
 
     public PixiePC actor;
-    public Nameplate nameplate;
+    public NameplateView nameplateView;
     public Texto nombre;
     public PointLight luz;
 
@@ -60,12 +60,12 @@ public class PlayerView extends Group implements PropertyChangeListener
         this.setWidth(actor.getWidth());
         this.setHeight(actor.getHeight());
 
-        nameplate = new Nameplate();
-        nameplate.setPosition(getCenterX()-nameplate.getWidth()/2, getHeight());
-        this.addActor(nameplate);
+        nameplateView = new NameplateView((Vulnerable)player);
+        nameplateView.setPosition(this.getWidth()/2 - nameplateView.getWidth() / 2, getHeight());
+        this.addActor(nameplateView);
 
-        nombre = new Texto("Hanto", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.WHITE, Color.BLACK, actor.getWidth()/2, 0, Align.center, Align.bottom, 1);
-        nombre.setPosition(0, actor.getHeight()+12);
+        nombre = new Texto("Player", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.WHITE, Color.BLACK, actor.getWidth()/2, 0, Align.center, Align.bottom, 1);
+        nombre.setPosition(0, actor.getHeight()+8);
         this.addActor(nombre);
 
         luz = new PointLight(mundoView.getRayHandler(), 300, new Color(0.3f,0.3f,0.3f,1.0f), 350, 0, 0);
