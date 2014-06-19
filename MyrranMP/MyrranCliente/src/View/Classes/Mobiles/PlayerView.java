@@ -139,6 +139,9 @@ public class PlayerView extends Group implements PropertyChangeListener
         controlador.enviarAServidor(setSpellIDSeleccionado);
     }
 
+
+
+
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
         if (evt.getNewValue() instanceof NetDTO.PosicionPPC)

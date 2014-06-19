@@ -4,7 +4,6 @@ import Controller.Controlador;
 import DTO.NetDTO;
 import Model.GameState.Mundo;
 import Model.Classes.Mobiles.PC;
-import View.Classes.Mobiles.PcView;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -41,9 +40,6 @@ public class Vista implements PropertyChangeListener
             pc.eliminarObservador(this);
             PcView pcView = new PcView(pc, this);
             listaPcViews.add(pcView);
-
-            //for ( PcView gente: listaPcViews)
-            //{   gente.quienMeVe(); }
         }
     }
 }

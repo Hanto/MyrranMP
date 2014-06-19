@@ -2,7 +2,7 @@ package View.Classes.UI.BarraTerrenos.TerrenoView;// Created by Hanto on 14/05/2
 
 import Interfaces.UI.BarraTerrenos.ControladorBarraTerrenosI;
 import Data.MiscData;
-import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
+import Model.Classes.UI.BarraTerrenos;
 import DB.RSC;
 import DB.Recursos.TerrenoRecursos.DAO.TerrenoRecursosDAO;
 import View.Classes.UI.Icono.Icono;
@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
-public class TerrenoView implements Icono
+public class TerrenoIcono implements Icono
 {
     protected BarraTerrenos barraTerrenos;
     protected int posX;
@@ -24,7 +24,7 @@ public class TerrenoView implements Icono
     public int getPosX()                        { return posX; }
 
     //Constructor:
-    public TerrenoView(BarraTerrenos barraTerrenos, int posX)
+    public TerrenoIcono(BarraTerrenos barraTerrenos, int posX)
     {
         this.barraTerrenos = barraTerrenos;
         this.posX = posX;

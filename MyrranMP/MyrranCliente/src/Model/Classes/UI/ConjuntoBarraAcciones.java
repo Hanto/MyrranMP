@@ -1,4 +1,4 @@
-package Model.Classes.UI.BarraAcciones;// Created by Hanto on 08/05/2014.
+package Model.Classes.UI;// Created by Hanto on 08/05/2014.
 
 import Interfaces.Model.AbstractModel;
 import Interfaces.UI.Acciones.AccionI;
@@ -6,6 +6,7 @@ import Interfaces.UI.BarraAcciones.BarraAccionesI;
 import Interfaces.UI.BarraAcciones.ListaAccionesI;
 import Model.Classes.Acciones.Accion;
 import Model.Classes.Input.InputManager;
+import Model.Classes.UI.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
 
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package Model.Classes.UI.BarraTerrenos;// Created by Hanto on 14/05/2014.
+package Model.Classes.UI;// Created by Hanto on 14/05/2014.
 
 import DAO.Terreno.TerrenoDAO;
 import DB.DAO;

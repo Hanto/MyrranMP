@@ -2,11 +2,11 @@ package View.Classes.UI.BarraTerrenos;// Created by Hanto on 14/05/2014.
 
 import Controller.Controlador;
 import Data.MiscData;
-import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
+import Model.Classes.UI.BarraTerrenos;
 import Model.DTO.BarraTerrenosDTO;
 import DB.RSC;
 import View.Classes.Graficos.Texto;
-import View.Classes.UI.BarraTerrenos.TerrenoView.TerrenoView;
+import View.Classes.UI.BarraTerrenos.TerrenoView.TerrenoIcono;
 import View.Classes.UI.Ventana.Ventana;
 import View.Classes.UI.Ventana.VentanaMoverListener;
 import View.Classes.UI.Ventana.VentanaResizeListener;
@@ -36,7 +36,7 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
 
     protected Table tablaTerrenos = new Table().top().left();
     protected ScrollPane scrollPane;
-    protected Array<TerrenoView> barraIconos;
+    protected Array<TerrenoIcono> barraIconos;
 
     protected DragAndDrop dad;
 
@@ -109,9 +109,9 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
         recrearTabla();
     }
 
-    private TerrenoView crearIcono(final int posX)
+    private TerrenoIcono crearIcono(final int posX)
     {
-        TerrenoView icono = new TerrenoView(barraTerrenos, posX);
+        TerrenoIcono icono = new TerrenoIcono(barraTerrenos, posX);
         icono.addDragAndDrop(dad, controlador);
         return icono;
     }
@@ -145,7 +145,7 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
 
         int columna = 0;
 
-        for (TerrenoView icono: barraIconos)
+        for (TerrenoIcono icono: barraIconos)
         {
             columna++;
             tablaTerrenos.add(icono.getApariencia()).left().height(icono.getApariencia().getHeight()).width(icono.getApariencia().getWidth());
@@ -194,7 +194,7 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
                                    Actions.removeActor()));
     }
 
-    public void actualizarApariencia(TerrenoView icono)
+    public void actualizarApariencia(TerrenoIcono icono)
     {   icono.actualizarApariencia(); }
 
 

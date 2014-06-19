@@ -1,4 +1,4 @@
-package Model.Classes.UI.BarraAcciones;// Created by Hanto on 06/05/2014.
+package Model.Classes.UI;// Created by Hanto on 06/05/2014.
 
 import Data.MiscData;
 import Interfaces.Model.AbstractModel;

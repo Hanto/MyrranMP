@@ -7,14 +7,14 @@ import static com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 
 public class AccionTarget extends Target
 {
-    private AccionView accionView;
+    private AccionIcono accionIcono;
     private DragAndDrop dad;
     private ControladorBarraAccionI controlador;
 
-    public AccionTarget(AccionView accionView, DragAndDrop dad, ControladorBarraAccionI controlador)
+    public AccionTarget(AccionIcono accionIcono, DragAndDrop dad, ControladorBarraAccionI controlador)
     {
-        super(accionView.getApariencia());
-        this.accionView = accionView;
+        super(accionIcono.getApariencia());
+        this.accionIcono = accionIcono;
         this.dad = dad;
         this.controlador = controlador;
     }
@@ -30,7 +30,7 @@ public class AccionTarget extends Target
 
     @Override public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float v, float v2, int i)
     {
-        AccionView origen = ((AccionView) payload.getObject());
-        controlador.barraAccionMoverAccion(origen.barra, origen.posX, origen.posY, accionView.barra, accionView.posX, accionView.posY);
+        AccionIcono origen = ((AccionIcono) payload.getObject());
+        controlador.barraAccionMoverAccion(origen.barra, origen.posX, origen.posY, accionIcono.barra, accionIcono.posX, accionIcono.posY);
     }
 }

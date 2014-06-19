@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
-public class AccionView implements Icono
+public class AccionIcono implements Icono
 {
     //Model:
     protected ListaAccionesI barra;
@@ -29,7 +29,7 @@ public class AccionView implements Icono
     public ListaAccionesI getBarra()    { return barra; }
 
     //Constructor:
-    public AccionView(ListaAccionesI barra, int posX, int posY)
+    public AccionIcono(ListaAccionesI barra, int posX, int posY)
     {
         this.barra = barra;
         this.posX = posX;

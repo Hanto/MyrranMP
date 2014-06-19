@@ -32,8 +32,8 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debu
     protected String nombre = "Hanto";
     protected int nivel = 1;
 
-    protected float actualHPs=1f;
-    protected float maxHPs=2000f;
+    protected float actualHPs;
+    protected float maxHPs;
 
     protected boolean castear = false;
 
@@ -153,18 +153,19 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debu
                 actualCastingTime = 0f;
                 totalCastingTime = 0f;
             }
-            //NOTIFICAR ACTUALIZACION CASTING TIME
         }
     }
 
     public void actualizarAuras (float delta)
     {
+        AuraI aura;
         Iterator<AuraI> aurasIteator = getAuras();
         while (aurasIteator.hasNext())
         {
-            AuraI aura = aurasIteator.next();
+            aura = aurasIteator.next();
             aura.actualizarAura(delta);
-            if (aura.getDuracion() >= aura.getDuracionMax()) aurasIteator.remove();
+            if (aura.getDuracion() >= aura.getDuracionMax())
+                aurasIteator.remove();
         }
     }
 

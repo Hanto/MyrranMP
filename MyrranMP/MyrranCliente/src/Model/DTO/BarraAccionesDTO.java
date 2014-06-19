@@ -1,7 +1,7 @@
 package Model.DTO;// Created by Hanto on 07/05/2014.
 
 import Model.Classes.Acciones.Accion;
-import Model.Classes.UI.BarraAcciones.BarraAcciones;
+import Model.Classes.UI.BarraAcciones;
 
 public class BarraAccionesDTO
 {

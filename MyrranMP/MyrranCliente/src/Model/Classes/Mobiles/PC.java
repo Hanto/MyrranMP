@@ -9,8 +9,8 @@ public class PC extends AbstractModel implements Vulnerable, MobPC
 {
     protected Integer connectionID;
     //Posicion:
-    protected Float x;                      //Coordenadas X:
-    protected Float y;                      //Coordenadas Y:
+    protected float x;                      //Coordenadas X:
+    protected float y;                      //Coordenadas Y:
     protected int numAnimacion = 5;
 
     protected float actualHPs;

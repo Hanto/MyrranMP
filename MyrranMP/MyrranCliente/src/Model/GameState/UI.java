@@ -6,8 +6,8 @@ import Interfaces.UI.BarraAcciones.ListaAccionesI;
 import Model.Classes.Acciones.AccionFactory;
 import Model.Classes.Input.InputManager;
 import Model.Classes.Mobiles.Player;
-import Model.Classes.UI.BarraAcciones.ConjuntoBarraAcciones;
-import Model.Classes.UI.BarraTerrenos.BarraTerrenos;
+import Model.Classes.UI.ConjuntoBarraAcciones;
+import Model.Classes.UI.BarraTerrenos;
 import Model.Classes.Input.PlayerEstado;
 import Model.Classes.Input.PlayerIO;
 
