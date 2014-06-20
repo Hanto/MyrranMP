@@ -82,7 +82,7 @@ public class TipoBDebuffLocalDB
                     boolean isMejorable = Boolean.parseBoolean(stat.getChildText("isMejorable"));
                     int talentoMaximo   = Integer.parseInt(stat.getChildText("talentoMaximo"));
                     int costeTalento    = Integer.parseInt(stat.getChildText("costeTalento"));
-                    int bonoTalento     = Integer.parseInt(stat.getChildText("bonoTalento"));
+                    float bonoTalento   = Float.parseFloat(stat.getChildText("bonoTalento"));
 
                     tipoDebuff.skillStats()[numStat] = new SkillStat(nombreStat, valorBase);
                     if (isMejorable) tipoDebuff.skillStats()[numStat].setTalentos(talentoMaximo, costeTalento, bonoTalento);

@@ -5,6 +5,8 @@ import Interfaces.BDebuff.BDebuffI;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesPropiedades.Debuffeable;
 
+import java.util.Iterator;
+
 public interface SpellI
 {
     //SET
@@ -19,6 +21,7 @@ public interface SpellI
     public String getDescripcion ();
     public TipoSpellI getTipoSpell();
     public SkillStat[] skillStats ();
+    public Iterator<BDebuffI> getDebuffsQueAplica();
 
     //METODOS:
     public void añadirDebuff (BDebuffI debuff);

@@ -32,8 +32,8 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debu
     protected String nombre = "Hanto";
     protected int nivel = 1;
 
-    protected float actualHPs;
-    protected float maxHPs;
+    protected float actualHPs=1;
+    protected float maxHPs=2000;
 
     protected boolean castear = false;
 

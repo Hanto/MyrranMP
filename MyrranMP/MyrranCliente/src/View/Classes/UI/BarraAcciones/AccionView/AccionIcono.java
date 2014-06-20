@@ -34,12 +34,14 @@ public class AccionIcono implements Icono
         this.barra = barra;
         this.posX = posX;
         this.posY = posY;
+
+        apariencia.addListener(new AccionTooltipListener(this));
         actualizarApariencia();
     }
 
-
+    public AccionI getAccion()                      { return barra.getAccion(posX, posY); }
     @Override public Group getApariencia()          { return apariencia; }
-    public void actualizarApariencia()    { actualizarApariencia(apariencia); }
+    public void actualizarApariencia()              { actualizarApariencia(apariencia); }
 
     private void actualizarApariencia(Group group)
     {
@@ -48,28 +50,27 @@ public class AccionIcono implements Icono
         group.clearChildren();
         if (accion == null)
         {
-            Image casillaVacia = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_Textura_Casillero));
-            casillaVacia.setColor(0, 0, 0, 0.06f);
-            casillaVacia.setBounds(0,0,MiscData.ICONO_Accion_Ancho, MiscData.ICONO_Accion_Alto);
-            group.addActor(casillaVacia);
-            group.setWidth(casillaVacia.getWidth());
-            group.setHeight(casillaVacia.getHeight());
+            Image casillaIcono = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_Textura_Casillero));
+            casillaIcono.setColor(0, 0, 0, 0.06f);
+            casillaIcono.setBounds(0, 0, MiscData.ICONO_Accion_Ancho, MiscData.ICONO_Accion_Alto);
+
+            group.addActor(casillaIcono);
+            group.setWidth(casillaIcono.getWidth());
+            group.setHeight(casillaIcono.getHeight());
         }
         else
         {
             Image casillaIcono;
             if (accion instanceof SeleccionarSpell)
-            {   casillaIcono = new Image (RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRecursos(accion.getID()).getIcono()); }
+            {   casillaIcono = new Image(RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRecursos(accion.getID()).getIcono()); }
             else
-            {   casillaIcono = new Image (RSC.accionRecursosDAO.getAccionRecursosDAO().getAccionRecurso(accion.getID()).getTextura()); }
+            {   casillaIcono = new Image(RSC.accionRecursosDAO.getAccionRecursosDAO().getAccionRecurso(accion.getID()).getTextura()); }
 
-            casillaIcono.setBounds(0,0,MiscData.ICONO_Accion_Ancho, MiscData.ICONO_Accion_Alto);
             group.addActor(casillaIcono);
             group.setWidth(casillaIcono.getWidth());
             group.setHeight(casillaIcono.getHeight());
         }
     }
-
 
     @Override public Group getDragActor()
     {
@@ -84,22 +85,13 @@ public class AccionIcono implements Icono
         else return false;
     }
 
-    public void addSource(DragAndDrop dad)
+    public void addDragAndDrop(DragAndDrop dad, ControladorBarraAccionI controlador)
     {
         source = new IconoSource(this, dad);
         dad.addSource(source);
-    }
 
-    public void addTarget(DragAndDrop dad, ControladorBarraAccionI controlador)
-    {
         target = new AccionTarget(this, dad, controlador);
         dad.addTarget(target);
-    }
-
-    public void addDragAndDrop(DragAndDrop dad, ControladorBarraAccionI controlador)
-    {
-        addSource(dad);
-        addTarget(dad, controlador);
     }
 
     public void eliminarIcono (DragAndDrop dad)

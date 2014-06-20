@@ -8,6 +8,7 @@ import View.GameState.UIView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 public class Vista
 {
@@ -41,7 +42,7 @@ public class Vista
         Gdx.gl.glClearColor(0/2.55f, 0/2.55f, 0/2.55f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        mundo.getPlayer().actualizar(delta);
+        mundo.act(delta);
 
         mundoView.getCamara().position.x = mundoView.getPlayerView().getCenterX();
         mundoView.getCamara().position.y = mundoView.getPlayerView().getCenterY();
@@ -60,6 +61,8 @@ public class Vista
         uiView.draw();
 
         uiView.setTextoFPS(Integer.toString(Gdx.graphics.getFramesPerSecond()) + "fps");
+
+        Table.drawDebug(uiView);
     }
 
     public void resize (int anchura, int altura)

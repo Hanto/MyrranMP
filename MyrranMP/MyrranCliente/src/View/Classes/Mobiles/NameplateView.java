@@ -26,6 +26,8 @@ public class NameplateView extends Actor implements PropertyChangeListener
     protected boolean isCaster = false;
     protected boolean isVulnerable = false;
 
+    protected boolean isCasting = false;
+
     //NAMEPLATES
     protected Sprite barraVidaTotal;                //Imagen que contiene el nameplateTotal de la vida del Player
     protected Sprite barraVidaActual;               //Imagen que contiene el MapaView de la vida del nameplateTotal del Player
@@ -103,6 +105,9 @@ public class NameplateView extends Actor implements PropertyChangeListener
 
     private void setCastingTimePercent (float castingTimePercent)
     {
+        if (castingTimePercent <100) isCasting = true;
+        else isCasting = false;
+
         float tamaño = (1-castingTimePercent)*this.getWidth();
         if (tamaño != barraCasteoActual.getWidth()) barraCasteoActual.setSize(-(int)tamaño, this.getHeight());
     }
@@ -135,7 +140,7 @@ public class NameplateView extends Actor implements PropertyChangeListener
             barraVidaTotal.draw(batch, alpha);
             barraVidaActual.draw(batch, alpha);
         }
-        if (isCaster)
+        if (isCaster && isCasting)
         {
             barraCasteoTotal.draw(batch, alpha);
             barraCasteoActual.draw(batch, alpha);

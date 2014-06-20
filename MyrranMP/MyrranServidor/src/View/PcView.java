@@ -133,7 +133,7 @@ public class PcView implements PropertyChangeListener
 
 
     private void setAnimacion(NetDTO.AnimacionPPC animacion)
-    {   actualizarPlayersCercanos(animacion); System.out.println("Enviar Animacion: " + animacion.numAnimacion); }
+    {   actualizarPlayersCercanos(animacion); }
     private void modificarHPs(NetDTO.ModificarHPsPPC HPs)
     {   actualizarPlayersCercanos(HPs);
         actualizarPlayer(HPs);
@@ -164,9 +164,6 @@ public class PcView implements PropertyChangeListener
 
         if (evt.getNewValue() instanceof NetDTO.EliminarPPC)
         {   eliminar((NetDTO.EliminarPPC)evt.getNewValue()); }
-
-        if (evt.getNewValue() instanceof NetDTO.AnimacionPPC)
-        {   System.out.println("Intentando enviar Animacion: " + ((NetDTO.AnimacionPPC) evt.getNewValue()).numAnimacion); }
 
         if (isVisible())
         {

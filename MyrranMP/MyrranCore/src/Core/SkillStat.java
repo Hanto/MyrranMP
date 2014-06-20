@@ -7,13 +7,8 @@ public class SkillStat
     private boolean isMejorable = false;            //Indica si es un SkillStat mejorable por Talentos
     private int talentoMaximo;                       //numero de Talentos maximos que se pueden gastar en este SkillStat
     private int costeTalento;                        //coste por mejorar cada punto de talento
-    private int bonoTalento;                         //Valor con el que mejora el valorBase por punto de talento
-    private boolean hayNombre = false;
-    private boolean hayValorBase = false;
-    private boolean hayIsMejorable = false;
-    private boolean hayTalentoMaximo = false;
-    private boolean hayCosteTalento = false;
-    private boolean hayBonoTalento = false;
+    private float bonoTalento;                         //Valor con el que mejora el valorBase por punto de talento
+
 
     //GET:
     public String getNombre()                       { return nombre; }
@@ -21,14 +16,9 @@ public class SkillStat
     public boolean getisMejorable()                 { return isMejorable; }
     public int getTalentoMaximo()                   { return talentoMaximo; }
     public int getCosteTalento()                    { return costeTalento; }
-    public int getBonoTalento()                     { return bonoTalento; }
+    public float getBonoTalento()                   { return bonoTalento; }
 
-    public boolean getHayNombre()                   { return hayNombre; }
-    public boolean getHayValorBase()                { return hayValorBase; }
-    public boolean getHayIsMejorable()              { return hayIsMejorable; }
-    public boolean getHayTalentoMaximo()            { return hayTalentoMaximo; }
-    public boolean getHayCosteTalento()             { return hayCosteTalento; }
-    public boolean getHayBonoTalento()              { return hayBonoTalento; }
+
 
     //SET:
     public void setNombre (String nombre)           { this.nombre = nombre; }
@@ -36,23 +26,16 @@ public class SkillStat
     public void setIsMejorable(boolean b)           { this.isMejorable = b; }
     public void setTalentoMaximo (int talentoMaximo){ this.talentoMaximo = talentoMaximo; }
     public void setCosteTalento (int costeTalento)  { this.costeTalento = costeTalento; }
-    public void setBonoTalento (int bonoTalento)    { this.bonoTalento = bonoTalento; }
+    public void setBonoTalento (float bonoTalento)  { this.bonoTalento = bonoTalento; }
 
     //CONSTRUCTOR:
-    public SkillStat()
-    {
-
-    }
+    public SkillStat() {}
 
     public SkillStat(String nombre, float valor)
     {   //constructor:
         this.nombre = nombre;
         valorBase = valor;
         isMejorable = false;
-
-        hayNombre = true;
-        hayValorBase = true;
-        hayIsMejorable = true;
     }
     
     //CONSTRUCTOR: (constructor Copia)
@@ -64,42 +47,23 @@ public class SkillStat
         this.costeTalento = skillStat.costeTalento;
         this.bonoTalento = skillStat.bonoTalento;
         this.isMejorable = skillStat.isMejorable;
-
-        hayNombre = true;
-        hayValorBase = true;
-        hayTalentoMaximo = true;
-        hayCosteTalento = true;
-        hayBonoTalento = true;
-        hayIsMejorable = true;
     }
 
     public void setValor (float valor)
-    {
-        valorBase = valor;
-
-        hayValorBase = true;
-    }
+    {   valorBase = valor; }
 
     public void setStat (String nombre, float valor)
     {
         this.nombre = nombre;
         valorBase = valor;
-
-        hayNombre = true;
-        hayValorBase = true;
     }
 
-    public void setTalentos (int max, int coste, int bono)
+    public void setTalentos (int max, int coste, float bono)
     {
         talentoMaximo = max;
         costeTalento = coste;
         bonoTalento = bono;
         isMejorable = true;
-
-        hayTalentoMaximo = true;
-        hayCosteTalento = true;
-        hayBonoTalento = true;
-        hayIsMejorable = true;
     }
 }
     

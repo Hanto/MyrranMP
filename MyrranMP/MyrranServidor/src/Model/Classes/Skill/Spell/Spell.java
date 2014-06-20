@@ -11,6 +11,7 @@ import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Spell extends AbstractModel implements SpellI
@@ -36,6 +37,7 @@ public class Spell extends AbstractModel implements SpellI
     @Override public String getDescripcion ()                   { return descripcion; }
     @Override public TipoSpellI getTipoSpell()                  { return tipoSpell; }
     @Override public SkillStat [] skillStats ()                 { return skillStats; }
+    @Override public Iterator<BDebuffI> getDebuffsQueAplica()   { return listaDeDebuffsQueAplica.iterator(); }
 
 
     //CONSTRUCTOR:

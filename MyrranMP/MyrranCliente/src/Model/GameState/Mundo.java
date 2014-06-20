@@ -59,6 +59,15 @@ public class Mundo extends AbstractModel
         pc.eliminar();
     }
 
+    public void act(float delta)
+    {
+        //Actualizar al Player
+        player.actualizar(delta);
+        //Actualizar a los demas jugador multiplayer:
+        for (PC pc: listaPlayers)
+        {   pc.actualizar(delta); }
+    }
+
     public void actualizarMapa (NetDTO.ActualizarMapa mapaServidor)
     {
         for (int y=0; y< mapaServidor.mapa[0].length; y++)

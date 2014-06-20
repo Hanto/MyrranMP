@@ -76,7 +76,7 @@ public class BDebuffLocalDB
                     boolean isMejorable = Boolean.parseBoolean(stat.getChildText("isMejorable"));
                     int talentoMaximo   = Integer.parseInt(stat.getChildText("talentoMaximo"));
                     int costeTalento    = Integer.parseInt(stat.getChildText("costeTalento"));
-                    int bonoTalento     = Integer.parseInt(stat.getChildText("bonoTalento"));
+                    float bonoTalento   = Float.parseFloat(stat.getChildText("bonoTalento"));
 
                     debuff.skillStats()[numStat].setStat(nombreStat, valorBase);
                     if (isMejorable) debuff.skillStats()[numStat].setTalentos(talentoMaximo, costeTalento, bonoTalento);

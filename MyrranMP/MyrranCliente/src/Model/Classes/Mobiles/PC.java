@@ -76,4 +76,9 @@ public class PC extends AbstractModel implements Vulnerable, MobPC
         Object modificarHPs = new NetDTO.ModificarHPsPPC(this, HPs);
         notificarActualizacion("modificarHPs", null, modificarHPs);
     }
+
+    public void actualizar (float delta)
+    {
+
+    }
 }

@@ -76,7 +76,7 @@ public class TipoSpellLocalDB
                     boolean isMejorable = Boolean.parseBoolean(stat.getChildText("isMejorable"));
                     int talentoMaximo   = Integer.parseInt(stat.getChildText("talentoMaximo"));
                     int costeTalento    = Integer.parseInt(stat.getChildText("costeTalento"));
-                    int bonoTalento     = Integer.parseInt(stat.getChildText("bonoTalento"));
+                    float bonoTalento   = Float.parseFloat(stat.getChildText("bonoTalento"));
 
                     tipoSpell.skillStats()[numStat] = new SkillStat(nombreStat, valorBase);
                     if (isMejorable) tipoSpell.skillStats()[numStat].setTalentos(talentoMaximo, costeTalento, bonoTalento);

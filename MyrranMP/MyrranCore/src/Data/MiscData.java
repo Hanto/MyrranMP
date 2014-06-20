@@ -14,7 +14,7 @@ public class MiscData
     //Network:
     public static final int NETWORK_Puerto_Servidor = 54555;
     public static final int NETWORK_Client_Timeout = 5000*100;
-    public static final int NETWORK_Update_Time = 50;
+    public static final int NETWORK_Update_Time = 40;
     public static final float SERVIDOR_Delta_Time = NETWORK_Update_Time/1000f;
     public static final float SERVIDOR_DistanciaVisionMobs = 1.2f;
 

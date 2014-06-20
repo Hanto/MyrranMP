@@ -149,7 +149,7 @@ public class NetDTO
         public float castingTimePercent;
         public CastingTimePercent() {}
         public CastingTimePercent(Caster caster)
-        {   this.castingTimePercent = caster.getActualCastingTime() / caster.getTotalCastingTime(); }
+        {   this.castingTimePercent = caster.getActualCastingTime() == 0 && caster.getTotalCastingTime() == 0 ? 100 : caster.getActualCastingTime() / caster.getTotalCastingTime(); }
     }
 
     public static class SetTerreno

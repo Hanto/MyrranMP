@@ -1,6 +1,7 @@
 package View.Classes.UI.Ventana;// Created by Hanto on 13/05/2014.
 
 import Data.MiscData;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
@@ -10,24 +11,49 @@ public class VentanaMoverListener extends DragListener
     private Actor actor;
     private Actor dragActor;
 
+    private float anchoDragActor;
+    private float altoDragActor;
+
+    private Vector2 posicionInicial = new Vector2();
+    private Vector2 posicionFinal = new Vector2();
+
     public VentanaMoverListener(Actor dragActor, Actor actor)
     {
         this.dragActor = dragActor;
         this.actor = actor;
+
+        this.anchoDragActor = dragActor.getWidth();
+        this.altoDragActor = dragActor.getHeight();
     }
+
 
     @Override public void touchDragged (InputEvent event, float x, float y, int pointer)
     {
-        float newX = actor.getX() - dragActor.getWidth()/2 + x;
-        float newY = actor.getY() - dragActor.getHeight()/2 + y;
-        float alto = actor.getHeight();
-        float ancho = actor.getWidth();
+        posicionFinal.set(x, y);
 
-        if (newX - dragActor.getWidth() < 0) newX = 0 + dragActor.getWidth();
-        if (newY < 0) newY = 0;
-        if (newX + ancho > MiscData.GDX_Horizontal_Resolution) newX = MiscData.GDX_Horizontal_Resolution - ancho;
-        if (newY + alto > MiscData.GDX_Vertical_Resolution) newY = MiscData.GDX_Vertical_Resolution - alto;
+        float scrollX = posicionFinal.x - posicionInicial.x;
+        float scrollY = posicionFinal.y - posicionInicial.y;
 
-        actor.setPosition((int)newX, (int)newY);
+        float dragActorX = dragActor.getParent().getX() + dragActor.getX();
+        float dragACtorY = dragActor.getParent().getY() + dragActor.getY();
+
+        if (dragActorX + scrollX < 0)                                                           { actor.setX(getActorX(0)); }
+        else if (dragActorX + anchoDragActor + scrollX > MiscData.GDX_Horizontal_Resolution)    { actor.setX(getActorX(MiscData.GDX_Horizontal_Resolution-anchoDragActor));}
+        else                                                                                    { actor.setX(actor.getX() + scrollX); }
+
+        if (dragACtorY + scrollY < 0)                                                           { actor.setY(getActorY(0)); }
+        else if (dragACtorY + altoDragActor + scrollY > MiscData.GDX_Vertical_Resolution)       { actor.setY(getActorY(MiscData.GDX_Vertical_Resolution-altoDragActor)); }
+        else                                                                                    { actor.setY(actor.getY() + scrollY); }
+
+        posicionFinal.set(posicionInicial);
     }
+
+    @Override public boolean touchDown (InputEvent event, float x, float y, int pointer, int button)
+    {
+        posicionInicial.set(x,y);
+        return true;
+    }
+
+    private float getActorX(float posX)                 { return posX - dragActor.getX(); }
+    private float getActorY(float posY)                 { return posY - dragActor.getY(); }
 }

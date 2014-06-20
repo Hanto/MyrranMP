@@ -29,8 +29,8 @@ public class Controlador implements ControladorUI
         ui = new UI(mundo.getPlayer(), this);
         vista = new Vista(this, ui, mundo);
 
-        inputMultiplexer.addProcessor(vista.getMundoView());
         inputMultiplexer.addProcessor(vista.getUiView());
+        inputMultiplexer.addProcessor(vista.getMundoView());
         inputMultiplexer.addProcessor(ui.getInputManager());
         Gdx.input.setInputProcessor(inputMultiplexer);
 
