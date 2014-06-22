@@ -19,7 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 import java.util.Iterator;
 
-public class SpellTooltipView extends Group
+public class SpellTooltip extends Group
 {
     private SpellI spell;
 
@@ -30,7 +30,7 @@ public class SpellTooltipView extends Group
     private final int PAD = 8;
     private final int ANCHO_Descripcion = 80;
 
-    public SpellTooltipView(SpellI spell)
+    public SpellTooltip(SpellI spell)
     {
         this.spell = spell;
 
@@ -53,7 +53,7 @@ public class SpellTooltipView extends Group
             @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
             {
                 if (button == Input.Buttons.RIGHT)
-                {   getParent().removeActor(SpellTooltipView.this);}
+                {   getParent().removeActor(SpellTooltip.this);}
                 return true;
             }
         });

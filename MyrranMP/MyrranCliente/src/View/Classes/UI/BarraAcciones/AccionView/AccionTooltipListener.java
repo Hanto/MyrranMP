@@ -4,39 +4,49 @@ import DB.DAO;
 import Interfaces.Spell.SpellI;
 import Interfaces.UI.Acciones.AccionI;
 import Model.Classes.Acciones.TiposAccion.SeleccionarSpell;
-import View.Classes.UI.SpellTooltipView;
+import View.Classes.UI.SpellTooltip;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class AccionTooltipListener extends InputListener
 {
     private AccionIcono accionIcono;
-    private SpellTooltipView tooltip;
+    private Group tooltip;
 
     public AccionTooltipListener(AccionIcono accionIcono)
     {   this.accionIcono = accionIcono; }
 
     @Override public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
     {
-        AccionI accion = accionIcono.getAccion();
+        System.out.println("Entra " + pointer);
 
-        if (tooltip != null)
-        {   accionIcono.getApariencia().removeActor(tooltip); }
-        if (accion instanceof SeleccionarSpell)
+        if (pointer <0)
         {
-            System.out.println("Entra " + fromActor);
-            SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(accion.getID());
-            tooltip = new SpellTooltipView(spell);
-            tooltip.setPosition(0, tooltip.getHeight() + accionIcono.getApariencia().getHeight()+8);
-            accionIcono.getApariencia().addActor(tooltip);
+            AccionI accion = accionIcono.getAccion();
+
+            if (accion instanceof SeleccionarSpell)
+            {
+                SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(accion.getID());
+                tooltip = new SpellTooltip(spell);
+                tooltip.setPosition(0, tooltip.getHeight() + accionIcono.getApariencia().getHeight() + 8);
+                accionIcono.getApariencia().addActor(tooltip);
+            }
         }
     }
 
     @Override public void exit(InputEvent event, float x, float y, int pointer, Actor fromActor)
-    {   accionIcono.getApariencia().removeActor(tooltip); System.out.println(" Sale "+fromActor);}
+    {
+        if (pointer <0)
+        {
+            accionIcono.getApariencia().removeActor(tooltip);
+            tooltip = null;
+            System.out.println(" Sale " + pointer);
+        }
+    }
 
     @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
     {
@@ -46,7 +56,7 @@ public class AccionTooltipListener extends InputListener
             Vector2 clickPos = getPosicionClick(event, x, y);
             tooltip.setPosition(clickPos.x +16, clickPos.y +16);
         }
-        return true;
+        return false;
     }
 
     private Vector2 getPosicionClick(InputEvent event, float x, float y)

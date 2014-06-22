@@ -1,18 +1,22 @@
 package View.Classes.UI.BarraAcciones.AccionView;// Created by Hanto on 13/05/2014.
 
+import DB.RSC;
 import Data.MiscData;
 import Interfaces.UI.Acciones.AccionI;
 import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import Interfaces.UI.BarraAcciones.ListaAccionesI;
-import DB.RSC;
 import Model.Classes.Acciones.TiposAccion.SeleccionarSpell;
+import View.Classes.Graficos.Texto;
 import View.Classes.UI.Icono.Icono;
 import View.Classes.UI.Icono.IconoSource;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
-public class AccionIcono implements Icono
+public class AccionIcono extends Group implements Icono
 {
     //Model:
     protected ListaAccionesI barra;
@@ -20,7 +24,8 @@ public class AccionIcono implements Icono
     protected int posY;
 
     //View:
-    protected Group apariencia = new Group();
+    protected Image casillaIcono;
+    protected Texto keybind;
     protected IconoSource source;
     protected AccionTarget target;
 
@@ -35,53 +40,54 @@ public class AccionIcono implements Icono
         this.posX = posX;
         this.posY = posY;
 
-        apariencia.addListener(new AccionTooltipListener(this));
-        actualizarApariencia();
+        keybind = new Texto("", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.ORANGE, Color.BLACK, 0, 0, Align.left, Align.top, 2);
+        keybind.setPosition(0, 32+4);
+        keybind.setTouchable(Touchable.disabled);
+        this.addActor(keybind);
+
+        this.addCaptureListener(new AccionTooltipListener(this));
+        this.actualizarApariencia();
     }
 
-    public AccionI getAccion()                      { return barra.getAccion(posX, posY); }
-    @Override public Group getApariencia()          { return apariencia; }
-    public void actualizarApariencia()              { actualizarApariencia(apariencia); }
-
-    private void actualizarApariencia(Group group)
+    public void actualizarApariencia()
     {
-        AccionI accion = barra.getAccion(posX, posY);
+        AccionI accion = getAccion();
+        this.clearChildren();
 
-        group.clearChildren();
         if (accion == null)
         {
-            Image casillaIcono = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_Textura_Casillero));
+            casillaIcono = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_Textura_Casillero));
             casillaIcono.setColor(0, 0, 0, 0.06f);
             casillaIcono.setBounds(0, 0, MiscData.ICONO_Accion_Ancho, MiscData.ICONO_Accion_Alto);
-
-            group.addActor(casillaIcono);
-            group.setWidth(casillaIcono.getWidth());
-            group.setHeight(casillaIcono.getHeight());
         }
         else
         {
-            Image casillaIcono;
-            if (accion instanceof SeleccionarSpell)
-            {   casillaIcono = new Image(RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRecursos(accion.getID()).getIcono()); }
-            else
-            {   casillaIcono = new Image(RSC.accionRecursosDAO.getAccionRecursosDAO().getAccionRecurso(accion.getID()).getTextura()); }
-
-            group.addActor(casillaIcono);
-            group.setWidth(casillaIcono.getWidth());
-            group.setHeight(casillaIcono.getHeight());
+            if (accion instanceof SeleccionarSpell) { casillaIcono = new Image(RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRecursos(accion.getID()).getIcono()); }
+            else { casillaIcono = new Image(RSC.accionRecursosDAO.getAccionRecursosDAO().getAccionRecurso(accion.getID()).getTextura()); }
         }
-    }
 
+        this.addActor(casillaIcono);
+        this.setWidth(casillaIcono.getWidth());
+        this.setHeight(casillaIcono.getHeight());
+        this.addActor(keybind);
+
+        casillaIcono.setTouchable(Touchable.disabled);
+    }
+    public AccionI getAccion()                      { return barra.getAccion(posX, posY); }
+    public void setTexto(String texto)              { keybind.setTexto(texto); }
+    @Override public Group getApariencia()          { return this; }
     @Override public Group getDragActor()
     {
         Group group = new Group();
-        actualizarApariencia(group);
+        group.addActor(casillaIcono);
+        group.setWidth(casillaIcono.getWidth());
+        group.setHeight(casillaIcono.getHeight());
         return group;
     }
 
     @Override public boolean tieneDatos()
     {
-        if (barra.getAccion(posX, posY) != null) return true;
+        if (getAccion() != null) return true;
         else return false;
     }
 

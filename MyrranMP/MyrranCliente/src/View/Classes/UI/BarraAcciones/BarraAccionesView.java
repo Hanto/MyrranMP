@@ -5,18 +5,15 @@ import Data.MiscData;
 import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import Model.Classes.UI.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
-import View.Classes.Graficos.Texto;
 import View.Classes.UI.BarraAcciones.AccionView.AccionIcono;
 import View.Classes.UI.Ventana.Ventana;
 import View.Classes.UI.Ventana.VentanaMoverListener;
 import View.Classes.UI.Ventana.VentanaResizeListener;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
 
@@ -92,7 +89,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
     {
         AccionIcono icono = new AccionIcono(barraModel, posX, posY);
         icono.addDragAndDrop(dad, controlador);
-        icono.getApariencia().addListener(new BAccionesRebindListener(icono, conjuntoBarraAccionesView, controlador));
+        icono.addListener(new BAccionesRebindListener(icono, conjuntoBarraAccionesView, controlador));
         return icono;
     }
 
@@ -112,7 +109,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
             for (int x = 0; x < barraIconos.get(y).size; x++)
             {
                 AccionIcono icono = barraIconos.get(y).get(x);
-                this.add(icono.getApariencia()).left().height(MiscData.BARRASPELLS_Alto_Casilla).width(MiscData.BARRASPELLS_Ancho_Casilla);
+                this.add(icono).left().height(MiscData.BARRASPELLS_Alto_Casilla).width(MiscData.BARRASPELLS_Ancho_Casilla);
             }
             this.row();
         }
@@ -216,10 +213,7 @@ public class BarraAccionesView extends Table implements PropertyChangeListener, 
     {
         icono.actualizarApariencia();
         if (barraModel.getKeybind(icono.getPosX(), icono.getPosY()) != null)
-        {
-            Texto.printTexto(String.valueOf(barraModel.getKeybind(icono.getPosX(), icono.getPosY())), RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
-                             Color.ORANGE, Color.BLACK, 0, 20, Align.left, Align.bottom, 2, icono.getApariencia());
-        }
+        {   icono.setTexto(barraModel.getKeybind(icono.getPosX(), icono.getPosY())); }
     }
 
     @Override public void propertyChange(PropertyChangeEvent evt)

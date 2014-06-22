@@ -19,8 +19,8 @@ public class Texto extends Group
     private LabelStyle estiloNormal;        //Fuente y Color del texto normal
     private LabelStyle estiloSombra;        //Fuente y Color del texto de la sombra
     
-    private Label textoNormal;              //Resultado final del Texto final
-    private Label textoSombra;              //Resultado final del Texto sombra
+    public Label textoNormal;              //Resultado final del Texto final
+    public Label textoSombra;              //Resultado final del Texto sombra
 
     private int offSetX;
     private int offSetY;
@@ -44,25 +44,17 @@ public class Texto extends Group
         //Creamos el texto segun segun los dos estilo (el normal y el sombra):
         textoNormal = new Label(texto, estiloNormal);
         textoSombra = new Label(texto, estiloSombra);
-                
-        switch (centradoHorizontal)
-        {//Segun el tipo de centradoHorizontal ajustamos el eje de coordenadas X:
-            case Align.right:   { offSetX = this.offSetX - (int)textoNormal.getWidth(); break; }
-            case Align.center:  { offSetX = this.offSetX - (int)textoNormal.getWidth()/2; break; }
-            case Align.left:    { break; }
-            default:            { break; }
-        }
-        
-        switch (centradoVertical)
-        {//Segun el tipo de centradoVertical ajustamos el eje de coordenadas Y:
-            case Align.top:     { offSetY = this.offSetY -(int)textoNormal.getHeight(); break; }
-            case Align.center:  { offSetY = this.offSetY -(int)textoNormal.getHeight()/2; break; }
-            case Align.bottom:  { break; }
-            default:            { break; }
-        }
+
         //Situamos el texto normal y el texto sombra en las coordenadas generadas segun el tipo de centrado, y añadimos ambos textos al grupo grupoTexto:
-        textoSombra.setPosition(offSetX+relieveSombra, offSetY-relieveSombra);
-        textoNormal.setPosition(offSetX, offSetY);
+        //textoSombra.setPosition(offSetX+relieveSombra, offSetY-relieveSombra);
+        //textoNormal.setPosition(offSetX, offSetY);
+
+        textoNormal.setAlignment(centradoHorizontal);
+        textoNormal.setAlignment(centradoVertical);
+        textoSombra.setAlignment(centradoHorizontal);
+        textoSombra.setAlignment(centradoVertical);
+
+        textoSombra.setPosition(relieve, -relieve);
 
         this.setHeight(textoNormal.getHeight()+relieve);
         this.setWidth(textoNormal.getWidth()+relieve);
@@ -82,7 +74,7 @@ public class Texto extends Group
             case Align.left:    { break; }
             default:            { break; }
         }
-        
+
         switch (centradoVertical)
         {//Segun el tipo de centradoVertical ajustamos el eje de coordenadas Y:
             case Align.top:     { posY = offSetY -(int)textoNormal.getHeight(); break; }

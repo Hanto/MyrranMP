@@ -64,8 +64,8 @@ public class PlayerView extends Group implements PropertyChangeListener
         nameplateView.setPosition(this.getWidth()/2 - nameplateView.getWidth() / 2, getHeight());
         this.addActor(nameplateView);
 
-        nombre = new Texto("Player", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.WHITE, Color.BLACK, actor.getWidth()/2, 0, Align.center, Align.bottom, 1);
-        nombre.setPosition(0, actor.getHeight()+8);
+        nombre = new Texto("Player", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.WHITE, Color.BLACK, 0, 0, Align.center, Align.bottom, 1);
+        nombre.setPosition(actor.getWidth()/2, actor.getHeight()+8);
         this.addActor(nombre);
 
         luz = new PointLight(mundoView.getRayHandler(), 300, new Color(0.3f,0.3f,0.3f,1.0f), 350, 0, 0);
