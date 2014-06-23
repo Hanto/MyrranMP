@@ -43,11 +43,10 @@ public class PlayerView extends Group implements PropertyChangeListener
         this.mundoView = mundoView;
         this.controlador = controlador;
 
-        this.setPosition(player.getX(), player.getY());
-
-        player.añadirObservador(this);
-
         crearActor();
+
+        this.setPosition(player.getX(), player.getY());
+        player.añadirObservador(this);
     }
 
     public void crearActor ()

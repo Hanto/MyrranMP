@@ -1,7 +1,9 @@
 package View.Classes.Graficos;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -14,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
  */
 
 //clase para el tratamiento grafico de textos en pantalla:
-public class Texto extends Group
+public class Texto extends Actor
 {
     private LabelStyle estiloNormal;        //Fuente y Color del texto normal
     private LabelStyle estiloSombra;        //Fuente y Color del texto de la sombra
@@ -25,6 +27,8 @@ public class Texto extends Group
     private int centradoHorizontal;
     private int centradoVertical;
 
+    private int offSetX = 0;
+    private int offSetY = 0;
     private int relieveSombra;
 
     //CONSTRUCTOR Metodo para crear texto con un formato determinado y encapsularlo todo en un grupo:
@@ -41,42 +45,42 @@ public class Texto extends Group
         textoNormal = new Label(texto, estiloNormal);
         textoSombra = new Label(texto, estiloSombra);
 
-        textoNormal.setAlignment(centradoHorizontal);
-        textoNormal.setAlignment(centradoVertical);
-        textoSombra.setAlignment(centradoHorizontal);
-        textoSombra.setAlignment(centradoVertical);
-
-        textoSombra.setPosition(relieve, -relieve);
-
+        switch (centradoHorizontal)
+        {//Segun el tipo de centradoHorizontal ajustamos el eje de coordenadas X:
+            case Align.right:   { offSetX = - (int)textoNormal.getWidth(); break; }
+            case Align.center:  { offSetX = - (int)textoNormal.getWidth()/2; ;break;}
+            case Align.left:    { break; }
+            default:            { break; }
+        }
+        switch (centradoVertical)
+        {//Segun el tipo de centradoVertical ajustamos el eje de coordenadas Y:
+            case Align.top:     { offSetY = - (int)textoNormal.getHeight(); break; }
+            case Align.center:  { offSetY = - (int)textoNormal.getHeight()/2; break; }
+            case Align.bottom:  { break; }
+            default:            { break; }
+        }
         this.setHeight(textoNormal.getHeight()+relieve);
         this.setWidth(textoNormal.getWidth()+relieve);
-
-        this.addActor(textoSombra);
-        this.addActor(textoNormal);
     }
 
     public void setCentrado ( int centradoHorizontal, int centradoVertical)
     {
-        int posX = 0;
-        int posY = 0;
         switch (centradoHorizontal)
         {//Segun el tipo de centradoHorizontal ajustamos el eje de coordenadas X:
-            case Align.right:   { posX = - (int)textoNormal.getWidth(); break; }
-            case Align.center:  { posX = - (int)textoNormal.getWidth()/2; break; }
+            case Align.right:   { offSetX = - (int)textoNormal.getWidth(); break; }
+            case Align.center:  { offSetX = - (int)textoNormal.getWidth()/2; break; }
             case Align.left:    { break; }
             default:            { break; }
         }
 
         switch (centradoVertical)
         {//Segun el tipo de centradoVertical ajustamos el eje de coordenadas Y:
-            case Align.top:     { posY = - (int)textoNormal.getHeight(); break; }
-            case Align.center:  { posY = - (int)textoNormal.getHeight()/2; break; }
+            case Align.top:     { offSetY = - (int)textoNormal.getHeight(); break; }
+            case Align.center:  { offSetY = - (int)textoNormal.getHeight()/2; break; }
             case Align.bottom:  { break; }
             default:            { break; }
         }
         //Situamos el texto normal y el texto sombra en las coordenadas generadas segun el tipo de centrado, y añadimos ambos textos al grupo grupoTexto:
-        textoSombra.setPosition(posX+relieveSombra, posY-relieveSombra);
-        textoNormal.setPosition(posX, posY);
     }
 
     public void setTexto ( String texto )
@@ -152,9 +156,20 @@ public class Texto extends Group
             default:            { break; }
         }
         //Situamos el texto normal y el texto sombra en las coordenadas generadas segun el tipo de centrado, y añadimos ambos textos al grupo grupoTexto:
-        textoSombra.setPosition(posX+relieve, posY-relieve);
+        textoSombra.setPosition(posX + relieve, posY - relieve);
         textoNormal.setPosition(posX, posY);
         group.addActor(textoSombra);
         group.addActor(textoNormal);
+    }
+
+    @Override public void draw (Batch batch, float alpha)
+    {
+        //Posicion Elementos:
+        textoNormal.setPosition(getX() + offSetX, getY() + offSetY);
+        textoSombra.setPosition(getX() + offSetX + relieveSombra, getY() + offSetY - relieveSombra);
+
+        //Dibujado Elementos:
+        textoSombra.draw(batch, this.getColor().a);
+        textoNormal.draw(batch, this.getColor().a);
     }
 }

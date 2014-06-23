@@ -38,8 +38,6 @@ public class AccionIcono extends Actor implements Icono
     public int getPosY()                    { return posY; }
     public ListaAccionesI getBarra()        { return barra; }
     public AccionI getAccion()              { return barra.getAccion(posX, posY); }
-    @Override public float getX()           { return (this.hasParent() ? super.getX()+getParent().getX() : super.getX()); }
-    @Override public float getY()           { return (this.hasParent() ? super.getY()+getParent().getY() : super.getY()); }
     @Override public Actor getApariencia()  { return this; }
     @Override public Actor getDragActor()   { return new Image(casillaIcono);}
     //SET:
@@ -95,18 +93,15 @@ public class AccionIcono extends Actor implements Icono
         if (target != null) dad.removeTarget(target);
     }
 
-    @Override public void act (float delta)
-    {
-        super.act(delta);
+    @Override public void draw (Batch batch, float alpha)
+    {   //Posicion Elementos:
+        keybind.setPosition(getX(), getY() + 32 -4);
+        if (tooltip != null) tooltip.setPosition(getX(), getY() + tooltip.getHeight() +32 +8);
 
-        keybind.setPosition(getX(), getY() + 32 + 4);
-        if (tooltip != null) tooltip.setPosition(getX(), getY() + tooltip.getHeight() +32 + 8);
-    }
-
-    @Override  public void draw (Batch batch, float alpha)
-    {
+        //Dibujado Elementos:
         batch.draw(casillaIcono, getX(), getY());
         keybind.draw(batch, alpha);
-        if (tooltip != null) tooltip.draw(batch, alpha);
+        if (tooltip != null)
+            tooltip.draw(batch, alpha);
     }
 }
