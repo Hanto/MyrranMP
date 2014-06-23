@@ -8,22 +8,19 @@ import View.Classes.UI.SpellTooltip;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class AccionTooltipListener extends InputListener
 {
     private AccionIcono accionIcono;
-    private Group tooltip;
+    private Actor tooltip;
 
     public AccionTooltipListener(AccionIcono accionIcono)
     {   this.accionIcono = accionIcono; }
 
     @Override public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
     {
-        System.out.println("Entra " + pointer);
-
         if (pointer <0)
         {
             AccionI accion = accionIcono.getAccion();
@@ -32,8 +29,7 @@ public class AccionTooltipListener extends InputListener
             {
                 SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(accion.getID());
                 tooltip = new SpellTooltip(spell);
-                tooltip.setPosition(0, tooltip.getHeight() + accionIcono.getApariencia().getHeight() + 8);
-                accionIcono.getApariencia().addActor(tooltip);
+                accionIcono.setTooltip(tooltip);
             }
         }
     }
@@ -42,9 +38,8 @@ public class AccionTooltipListener extends InputListener
     {
         if (pointer <0)
         {
-            accionIcono.getApariencia().removeActor(tooltip);
+            accionIcono.setTooltip(null);
             tooltip = null;
-            System.out.println(" Sale " + pointer);
         }
     }
 

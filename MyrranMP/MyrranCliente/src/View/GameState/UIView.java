@@ -35,10 +35,9 @@ public class UIView extends Stage implements PropertyChangeListener
         barraTerrenosView = new BarraTerrenosView(this.controlador, this, ui.barraTerrenos);
 
         fps = new Texto("fps", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
-                        Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
+                        Color.WHITE, Color.BLACK, Align.left, Align.bottom, 2);
         addActor(fps);
 
-        //controlador.addInputProcessor(this);
         ui.conjuntoBarraAcciones.añadirObservador(this);
     }
 

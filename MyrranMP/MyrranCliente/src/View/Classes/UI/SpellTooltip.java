@@ -65,7 +65,7 @@ public class SpellTooltip extends Group
         Texto texto;
         BitmapFont fuente = RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres);
         //NOMBRE SPELL::
-        texto = new Texto(spell.getNombre(), fuente, Color.ORANGE, Color.BLACK, 0, 0, Align.left, Align.bottom, 1);
+        texto = new Texto(spell.getNombre(), fuente, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
         tabla.add(texto).left().padRight(4).padLeft(4);
         tabla.row();
 
@@ -77,7 +77,7 @@ public class SpellTooltip extends Group
         {
             BDebuffI debuff = debuffIIterator.next();
             //NOMBRE DEBUFF:
-            texto = new Texto(debuff.getNombre()+":", fuente, Color.GREEN, Color.BLACK, 0, 0, Align.left, Align.bottom, 1);
+            texto = new Texto(debuff.getNombre()+":", fuente, Color.GREEN, Color.BLACK, Align.left, Align.bottom, 1);
             tabla.add(texto).height(texto.getHeight() - PAD).left().padRight(4).padLeft(4);
             tabla.row();
 
@@ -95,19 +95,19 @@ public class SpellTooltip extends Group
         Texto texto;
         BitmapFont fuenteMini = RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente("10");
 
-        texto = new Texto("Nombre", fuenteMini, Color.ORANGE, Color.BLACK, 0, 0, Align.left, Align.bottom, 1);
+        texto = new Texto("Nombre", fuenteMini, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
         tabla.add(texto).height(texto.getHeight() - PAD).left().padRight(4).padLeft(4);
 
-        texto = new Texto("Valor", fuenteMini, Color.ORANGE, Color.BLACK, 0, 0, Align.left, Align.bottom, 1);
+        texto = new Texto("Valor", fuenteMini, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
         tabla.add(texto).height(texto.getHeight() - PAD).right().padRight(4);
 
-        texto = new Texto("c", fuenteMini, Color.ORANGE, Color.BLACK, 0, 0, Align.left, Align.bottom, 1);
+        texto = new Texto("c", fuenteMini, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
         tabla.add(texto).height(texto.getHeight() - PAD).right().padRight(4);
 
-        texto = new Texto("bono", fuenteMini, Color.ORANGE, Color.BLACK, 0, 0, Align.left, Align.bottom, 1);
+        texto = new Texto("bono", fuenteMini, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
         tabla.add(texto).height(texto.getHeight() - PAD).right().padRight(4);
 
-        texto = new Texto("m", fuenteMini, Color.ORANGE, Color.BLACK, 0, 0, Align.left, Align.bottom, 1);
+        texto = new Texto("m", fuenteMini, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
         tabla.add(texto).height(texto.getHeight() - PAD).right().padRight(4);
 
         tabla.row();
@@ -120,19 +120,19 @@ public class SpellTooltip extends Group
 
         for (SkillStat skillStat: skillStats)
         {   //NOMBRE:
-            texto = new Texto(skillStat.getNombre(), fuente, Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 1);
+            texto = new Texto(skillStat.getNombre(), fuente, Color.WHITE, Color.BLACK, Align.left, Align.bottom, 1);
             tabla.add(texto).height(texto.getHeight() - PAD).left().width(ANCHO_Descripcion > texto.getWidth() ? ANCHO_Descripcion : texto.getWidth()).padRight(4).padLeft(4);
             //VALOR:
-            texto = new Texto(Float.toString(skillStat.getValorBase()), fuente, Color.ORANGE, Color.BLACK, 0, 0, Align.left, Align.bottom, 1);
+            texto = new Texto(Float.toString(skillStat.getValorBase()), fuente, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
             tabla.add(texto).height(texto.getHeight() - PAD).right().padRight(4);
             //COSTE TALENTO:
-            texto = new Texto(skillStat.getisMejorable() ? Integer.toString(skillStat.getCosteTalento()) : "-", fuente, Color.YELLOW, Color.BLACK, 0, 0, Align.left, Align.bottom, 1);
+            texto = new Texto(skillStat.getisMejorable() ? Integer.toString(skillStat.getCosteTalento()) : "-", fuente, Color.YELLOW, Color.BLACK, Align.left, Align.bottom, 1);
             tabla.add(texto).height(texto.getHeight()-PAD).right().padRight(4);
             //BONO TALENTO:
-            texto = new Texto(skillStat.getisMejorable() ? Float.toString(skillStat.getBonoTalento()) : "-", fuente, Color.YELLOW, Color.BLACK, 0, 0, Align.left, Align.bottom, 1);
+            texto = new Texto(skillStat.getisMejorable() ? Float.toString(skillStat.getBonoTalento()) : "-", fuente, Color.YELLOW, Color.BLACK, Align.left, Align.bottom, 1);
             tabla.add(texto).height(texto.getHeight()-PAD).right().padRight(4);
             //NUMTALENTOS MAXIMOS:
-            texto = new Texto(skillStat.getisMejorable() ? Integer.toString(skillStat.getTalentoMaximo()): "-", fuente, Color.YELLOW, Color.BLACK, 0, 0, Align.left, Align.bottom, 1);
+            texto = new Texto(skillStat.getisMejorable() ? Integer.toString(skillStat.getTalentoMaximo()): "-", fuente, Color.YELLOW, Color.BLACK, Align.left, Align.bottom, 1);
             tabla.add(texto).height(texto.getHeight()-PAD).right().padRight(4);
 
             tabla.row();

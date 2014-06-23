@@ -18,36 +18,28 @@ public class Texto extends Group
 {
     private LabelStyle estiloNormal;        //Fuente y Color del texto normal
     private LabelStyle estiloSombra;        //Fuente y Color del texto de la sombra
-    
+
     public Label textoNormal;              //Resultado final del Texto final
     public Label textoSombra;              //Resultado final del Texto sombra
 
-    private int offSetX;
-    private int offSetY;
-
     private int centradoHorizontal;
     private int centradoVertical;
+
     private int relieveSombra;
-        
+
     //CONSTRUCTOR Metodo para crear texto con un formato determinado y encapsularlo todo en un grupo:
-    public Texto (String texto, BitmapFont fuente, Color colorNormal, Color colorSombra, float offSetX, float offSetY, int centradoHorizontal, int centradoVertical, int relieve )
-    {   
-        this.offSetX = (int)offSetX;
-        this.offSetY = (int)offSetY;
+    public Texto (String texto, BitmapFont fuente, Color colorNormal, Color colorSombra, int centradoHorizontal, int centradoVertical, int relieve )
+    {
         this.centradoHorizontal = centradoHorizontal;
         this.centradoVertical = centradoVertical;
         this.relieveSombra = relieve;
-        
+
         //Creamos el estilo para los dos tipos de texto, el de la sombra y el del texto normal:
         estiloNormal = new LabelStyle(fuente, colorNormal);
         estiloSombra = new LabelStyle(fuente, colorSombra);
         //Creamos el texto segun segun los dos estilo (el normal y el sombra):
         textoNormal = new Label(texto, estiloNormal);
         textoSombra = new Label(texto, estiloSombra);
-
-        //Situamos el texto normal y el texto sombra en las coordenadas generadas segun el tipo de centrado, y añadimos ambos textos al grupo grupoTexto:
-        //textoSombra.setPosition(offSetX+relieveSombra, offSetY-relieveSombra);
-        //textoNormal.setPosition(offSetX, offSetY);
 
         textoNormal.setAlignment(centradoHorizontal);
         textoNormal.setAlignment(centradoVertical);
@@ -62,23 +54,23 @@ public class Texto extends Group
         this.addActor(textoSombra);
         this.addActor(textoNormal);
     }
-    
+
     public void setCentrado ( int centradoHorizontal, int centradoVertical)
     {
-        float posX = offSetX;
-        float posY = offSetY;
+        int posX = 0;
+        int posY = 0;
         switch (centradoHorizontal)
         {//Segun el tipo de centradoHorizontal ajustamos el eje de coordenadas X:
-            case Align.right:   { posX = offSetX - (int)textoNormal.getWidth(); break; }
-            case Align.center:  { posX = offSetX - (int)textoNormal.getWidth()/2; break; }
+            case Align.right:   { posX = - (int)textoNormal.getWidth(); break; }
+            case Align.center:  { posX = - (int)textoNormal.getWidth()/2; break; }
             case Align.left:    { break; }
             default:            { break; }
         }
 
         switch (centradoVertical)
         {//Segun el tipo de centradoVertical ajustamos el eje de coordenadas Y:
-            case Align.top:     { posY = offSetY -(int)textoNormal.getHeight(); break; }
-            case Align.center:  { posY = offSetY -(int)textoNormal.getHeight()/2; break; }
+            case Align.top:     { posY = - (int)textoNormal.getHeight(); break; }
+            case Align.center:  { posY = - (int)textoNormal.getHeight()/2; break; }
             case Align.bottom:  { break; }
             default:            { break; }
         }
@@ -86,7 +78,7 @@ public class Texto extends Group
         textoSombra.setPosition(posX+relieveSombra, posY-relieveSombra);
         textoNormal.setPosition(posX, posY);
     }
-    
+
     public void setTexto ( String texto )
     {
         textoNormal.setText(texto);
@@ -97,29 +89,29 @@ public class Texto extends Group
         textoSombra.setWidth(ltexto.getWidth());
         setCentrado (this.centradoHorizontal, this.centradoVertical);
     }
-    
+
     public void setFuente ( BitmapFont fuente )
     {   //no se puede hacer un estiloNormal = new LabelStyle () con los nuevos parametros, hay que acceder a los campos y modificarlos. Si se hace un new, se crean nuevas referencias y los actores
         //no se actualizan.
         estiloNormal.font = fuente;
         estiloSombra.font = fuente;
-        
+
         textoNormal.setStyle(estiloNormal);
         textoSombra.setStyle(estiloSombra);
     }
-    
+
     public void setColorNormal ( Color color )
     {
         estiloNormal.fontColor = color;
         textoNormal.setStyle(estiloNormal);
     }
-    
+
     public void setColorSombra ( Color color)
     {
         estiloSombra.fontColor = color;
         textoSombra.setStyle(estiloSombra);
     }
-    
+
     public void scrollingCombatText (Stage stage, float duracion)
     {
         stage.addActor(this);
@@ -127,7 +119,7 @@ public class Texto extends Group
         this.addAction(Actions.sequence(Actions.fadeIn(duracion / 4), Actions.delay(duracion / 4 * 2), Actions.fadeOut(duracion / 4)));
         this.addAction(Actions.sequence(Actions.moveBy(0f, 40f, duracion), Actions.removeActor()));
     }
-    
+
     public void scrollingCombatText (Group group, float duracion)
     {
         this.setColor(this.getColor().r, this.getColor().g, this.getColor().b, 0);
@@ -135,7 +127,7 @@ public class Texto extends Group
         this.addAction(Actions.sequence(Actions.moveBy(0f, 40f, duracion), Actions.removeActor()));
         group.addActor(this);
     }
-    
+
     //Para cuando no queremos crear la entidad para su posterior modificabilidad, si no que queremos crearla rapido:
     public static void printTexto (String texto, BitmapFont fuente, Color colorNormal, Color colorSombra, float posX, float posY, int centradoHorizontal, int centradoVertical, int relieve, Group group)
     {   //Creamos el estilo para los dos tipos de texto, el de la sombra y el del texto normal:
@@ -144,7 +136,7 @@ public class Texto extends Group
         //Creamos el texto segun segun los dos estilo (el normal y el sombra):
         Label textoNormal = new Label(texto, estiloNormal);
         Label textoSombra = new Label(texto, estiloSombra);
-                
+
         switch (centradoHorizontal)
         {//Segun el tipo de centradoHorizontal ajustamos el eje de coordenadas X:
             case Align.right:   { posX = posX - (int)textoNormal.getWidth(); break; }
@@ -164,5 +156,5 @@ public class Texto extends Group
         textoNormal.setPosition(posX, posY);
         group.addActor(textoSombra);
         group.addActor(textoNormal);
-    } 
+    }
 }

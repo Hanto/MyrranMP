@@ -121,7 +121,7 @@ public class BarraTerrenosView extends Group implements PropertyChangeListener, 
         for (int i=0; i< MiscData.MAPA_Max_Capas_Terreno; i++)
         {
             final int numCapa = i;
-            botonCapas[i] = new Texto("Capa "+numCapa, RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.ORANGE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
+            botonCapas[i] = new Texto("Capa "+numCapa, RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 2);
             botonCapas[i].setPosition(4, -MiscData.TILESIZE*2-18-numCapa*17);
             this.addActor(botonCapas[i]);
 

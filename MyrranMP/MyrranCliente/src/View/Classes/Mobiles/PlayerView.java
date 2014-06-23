@@ -64,7 +64,7 @@ public class PlayerView extends Group implements PropertyChangeListener
         nameplateView.setPosition(this.getWidth()/2 - nameplateView.getWidth() / 2, getHeight());
         this.addActor(nameplateView);
 
-        nombre = new Texto("Player", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.WHITE, Color.BLACK, 0, 0, Align.center, Align.bottom, 1);
+        nombre = new Texto("Player", RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres), Color.WHITE, Color.BLACK, Align.center, Align.bottom, 1);
         nombre.setPosition(actor.getWidth()/2, actor.getHeight()+8);
         this.addActor(nombre);
 
@@ -110,7 +110,7 @@ public class PlayerView extends Group implements PropertyChangeListener
         synchronized (mundoView)
         {
             Texto texto = new Texto(Integer.toString((int) HPs.HPs), RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres),
-                    Color.GREEN, Color.BLACK, 0, 0, Align.center, Align.bottom, 1);
+                    Color.GREEN, Color.BLACK, Align.center, Align.bottom, 1);
             texto.setPosition(this.getWidth() / 2 + (float) Math.random() * 30 - 15, this.getHeight() + 15);
             texto.scrollingCombatText(this, 2f);
         }
