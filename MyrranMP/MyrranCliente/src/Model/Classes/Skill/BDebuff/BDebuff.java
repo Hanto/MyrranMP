@@ -9,6 +9,9 @@ import Interfaces.BDebuff.TipoBDebuffI;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesPropiedades.Debuffeable;
 
+import java.util.Arrays;
+import java.util.Iterator;
+
 public class BDebuff implements BDebuffI
 {
     protected String id;
@@ -34,7 +37,8 @@ public class BDebuff implements BDebuffI
     @Override public boolean isDebuff ()                            { return isDebuff; }
     @Override public int getStacksMaximos ()                        { return stacksMaximos; }
     @Override public TipoBDebuffI getTipoBDebuff()                  { return tipoBDebuff; }
-    @Override public SkillStat [] skillStats ()                     { return skillStats; }
+    @Override public SkillStat getSkillStat(int numSkillStat)       { return skillStats[numSkillStat]; }
+    @Override public Iterator<SkillStat> getSkillStats()            { return Arrays.asList(skillStats).iterator(); }
 
 
     //CONSTRUCTOR:
@@ -55,24 +59,14 @@ public class BDebuff implements BDebuffI
             skillStats[i] = statSkill;
         }
     }
+
     public BDebuff (String tipoBDebuffID)
-    {
-        this.tipoBDebuff = DAO.tipoBDebuffDAOFactory.getTipoBDebuffDAO().getTipoBDebuff(tipoBDebuffID);
-
-        if (tipoBDebuff == null) { System.out.println("ERROR: BDebuffID no encontrado."); return; }
-
-        skillStats = new SkillStat[tipoBDebuff.skillStats().length];
-        for (int i=0; i<skillStats.length;i++)
-        {
-            SkillStat statSkill = new SkillStat(tipoBDebuff.skillStats()[i]);
-            skillStats[i] = statSkill;
-        }
-    }
+    {   this(DAO.tipoBDebuffDAOFactory.getTipoBDebuffDAO().getTipoBDebuff(tipoBDebuffID)); }
 
     @Override public void aplicarDebuff(Caster caster, Debuffeable target)
     {
         AuraI aura = new Aura(this, caster, target);
-        aura.setDuracionMax(skillStats()[TipoBDebuff.STAT_Duracion].getValorBase());
+        aura.setDuracionMax(getSkillStat(TipoBDebuff.STAT_Duracion).getValorBase());
         target.añadirAura(aura);
     }
 

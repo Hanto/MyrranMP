@@ -20,7 +20,8 @@ public interface SpellI
     public String getNombre ();
     public String getDescripcion ();
     public TipoSpellI getTipoSpell();
-    public SkillStat[] skillStats ();
+    public SkillStat getSkillStat(int numSkillStat);
+    public Iterator<SkillStat> getSkillStats();
     public Iterator<BDebuffI> getDebuffsQueAplica();
 
     //METODOS:

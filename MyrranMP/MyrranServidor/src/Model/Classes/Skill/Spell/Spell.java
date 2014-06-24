@@ -11,6 +11,7 @@ import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -36,13 +37,14 @@ public class Spell extends AbstractModel implements SpellI
     @Override public String getNombre ()                        { return nombre; }
     @Override public String getDescripcion ()                   { return descripcion; }
     @Override public TipoSpellI getTipoSpell()                  { return tipoSpell; }
-    @Override public SkillStat [] skillStats ()                 { return skillStats; }
     @Override public Iterator<BDebuffI> getDebuffsQueAplica()   { return listaDeDebuffsQueAplica.iterator(); }
-
+    @Override public Iterator<SkillStat> getSkillStats()        { return Arrays.asList(skillStats).iterator(); }
+    @Override public SkillStat getSkillStat(int numSkillStat)   { return skillStats[numSkillStat]; }
 
     //CONSTRUCTOR:
     public Spell (TipoSpellI tipospell)
     {   //Se vincula el objeto que ejecutara los metodos de este tipo de Spell
+        if (tipospell == null) { System.out.println("ERROR: spellID no encontrado."); return; }
         tipoSpell = tipospell;
 
         nombre = tipospell.getNombre();
@@ -58,21 +60,7 @@ public class Spell extends AbstractModel implements SpellI
     }
 
     public Spell (String tipoSpellID)
-    {
-        tipoSpell = DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(tipoSpellID);
-
-        if (tipoSpell == null) { System.out.println("ERROR: spellID no encontrado."); return; }
-
-        nombre = tipoSpell.getNombre();
-        descripcion = tipoSpell.getDescripcion();
-
-        skillStats = new SkillStat[tipoSpell.skillStats().length];
-        for (int i=0; i<skillStats.length;i++)
-        {
-            SkillStat statSkill = new SkillStat(tipoSpell.skillStats()[i]);
-            skillStats[i] = statSkill;
-        }
-    }
+    {   this(DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(tipoSpellID)); }
 
 
     @Override public void añadirDebuff (BDebuffI debuff)

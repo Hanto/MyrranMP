@@ -82,9 +82,9 @@ public class SpellLocalDB
                     int costeTalento    = Integer.parseInt(stat.getChildText("costeTalento"));
                     float bonoTalento   = Float.parseFloat(stat.getChildText("bonoTalento"));
 
-                    spell.skillStats()[numStat].setStat(nombreStat, valorBase);
-                    if (isMejorable) spell.skillStats()[numStat].setTalentos(talentoMaximo, costeTalento, bonoTalento);
-                    else spell.skillStats()[numStat].setIsMejorable(isMejorable);
+                    spell.getSkillStat(numStat).setStat(nombreStat, valorBase);
+                    if (isMejorable) spell.getSkillStat(numStat).setTalentos(talentoMaximo, costeTalento, bonoTalento);
+                    else spell.getSkillStat(numStat).setIsMejorable(isMejorable);
 
                     System.out.println("\n  numStat:      " + numStat);
                     System.out.println("  nombreStat:   " + nombreStat);

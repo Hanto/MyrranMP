@@ -5,6 +5,8 @@ import Core.SkillStat;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesPropiedades.Debuffeable;
 
+import java.util.Iterator;
+
 public interface BDebuffI
 {
 //SET
@@ -22,7 +24,8 @@ public interface BDebuffI
     public boolean isDebuff ();
     public int getStacksMaximos ();
     public TipoBDebuffI getTipoBDebuff();
-    public SkillStat[] skillStats ();
+    public SkillStat getSkillStat(int numSkillStat);
+    public Iterator<SkillStat> getSkillStats();
 
     //METODOS:
     public void aplicarDebuff(Caster caster, Debuffeable target);

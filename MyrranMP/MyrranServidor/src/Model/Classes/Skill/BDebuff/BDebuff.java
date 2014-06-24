@@ -1,6 +1,7 @@
 package Model.Classes.Skill.BDebuff;// Created by Hanto on 04/06/2014.
 
 
+import DB.DAO;
 import Data.MiscData;
 import Core.SkillStat;
 import Interfaces.BDebuff.AuraI;
@@ -9,6 +10,7 @@ import Interfaces.BDebuff.TipoBDebuffI;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesPropiedades.Debuffeable;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class BDebuff implements BDebuffI
@@ -36,26 +38,33 @@ public class BDebuff implements BDebuffI
     @Override public boolean isDebuff ()                            { return isDebuff; }
     @Override public int getStacksMaximos ()                        { return stacksMaximos; }
     @Override public TipoBDebuffI getTipoBDebuff()                  { return tipoBDebuff; }
-    @Override public SkillStat [] skillStats ()                     { return skillStats; }
+    @Override public SkillStat getSkillStat(int numSkillStat)       { return skillStats[numSkillStat]; }
+    @Override public Iterator<SkillStat> getSkillStats()            { return Arrays.asList(skillStats).iterator(); }
 
     //CONSTRUCTOR:
-    public BDebuff (TipoBDebuffI tipoaura)
+    public BDebuff (TipoBDebuffI tipoBDebuff)
     {   //Se vincula el objeto que ejecutara los metodos de este tipo de Spell
-        tipoBDebuff = tipoaura;
+        if (tipoBDebuff == null) { System.out.println("ERROR: TipoSpellID no encontrado."); return; }
+        this.tipoBDebuff = tipoBDebuff;
 
-        nombre = tipoaura.getNombre();
-        descripcion = tipoaura.getDescripcion();
-        isDebuff = tipoaura.getIsDebuff();
-        stacksMaximos = tipoaura.getStacksMaximos();
+        nombre = tipoBDebuff.getNombre();
+        descripcion = tipoBDebuff.getDescripcion();
+        isDebuff = tipoBDebuff.getIsDebuff();
+        stacksMaximos = tipoBDebuff.getStacksMaximos();
 
         //y se copian sus Stats base:
-        skillStats = new SkillStat[tipoaura.skillStats().length];
+        skillStats = new SkillStat[tipoBDebuff.skillStats().length];
         for (int i=0; i<skillStats.length;i++)
         {
-            SkillStat statSkill = new SkillStat(tipoaura.skillStats()[i]);
+            SkillStat statSkill = new SkillStat(tipoBDebuff.skillStats()[i]);
             skillStats[i] = statSkill;
         }
+        Arrays.asList(skillStats).iterator();
+
     }
+
+    public BDebuff (String tipoBDebuffID)
+    {   this(DAO.tipoBDebuffDAOFactory.getTipoBDebuffDAO().getTipoBDebuff(tipoBDebuffID)); }
 
     private AuraI auraExisteYEsDelCaster(Caster caster, Debuffeable target)
     {
@@ -84,7 +93,7 @@ public class BDebuff implements BDebuffI
         else
         {
             aura = new Aura(this, caster, target);
-            aura.setDuracionMax(skillStats()[TipoBDebuff.STAT_Duracion].getValorBase());
+            aura.setDuracionMax(getSkillStat(TipoBDebuff.STAT_Duracion).getValorBase());
             target.añadirAura(aura);
         }
     }

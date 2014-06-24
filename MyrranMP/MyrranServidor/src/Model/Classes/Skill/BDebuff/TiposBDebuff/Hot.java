@@ -17,7 +17,7 @@ public class Hot extends TipoBDebuff
 
     @Override public void actualizarTick(AuraI aura)
     {
-        float HPsPorTick = aura.getDebuff().skillStats()[STAT_Heal].getValorBase() * aura.getStacks();
+        float HPsPorTick = aura.getDebuff().getSkillStat(STAT_Heal).getValorBase() * aura.getStacks();
 
         if (aura.getTarget() instanceof Vulnerable)
         {   ((Vulnerable)aura.getTarget()).modificarHPs((int)+HPsPorTick); }

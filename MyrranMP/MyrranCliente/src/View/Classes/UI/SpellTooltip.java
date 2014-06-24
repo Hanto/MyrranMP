@@ -70,7 +70,7 @@ public class SpellTooltip extends Group
         tabla.row();
 
         this.cabecera(tabla);
-        this.printSkillStats(tabla, spell.skillStats());
+        this.printSkillStats(tabla, spell.getSkillStats());
 
         Iterator<BDebuffI> debuffIIterator = spell.getDebuffsQueAplica();
         while (debuffIIterator.hasNext())
@@ -81,7 +81,7 @@ public class SpellTooltip extends Group
             tabla.add(texto).height(texto.getHeight() - PAD).left().padRight(4).padLeft(4);
             tabla.row();
 
-            this.printSkillStats(tabla, debuff.skillStats());
+            this.printSkillStats(tabla, debuff.getSkillStats());
         }
 
         this.setBounds(0, 0, tabla.getMinWidth(), tabla.getMinHeight());
@@ -113,13 +113,15 @@ public class SpellTooltip extends Group
         tabla.row();
     }
 
-    private void printSkillStats(Table tabla, SkillStat[] skillStats)
+    private void printSkillStats(Table tabla, Iterator<SkillStat> iterator)
     {
         Texto texto;
         BitmapFont fuente = RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres);
-
-        for (SkillStat skillStat: skillStats)
-        {   //NOMBRE:
+        SkillStat skillStat;
+        while (iterator.hasNext())
+        {
+            skillStat = iterator.next();
+            //NOMBRE:
             texto = new Texto(skillStat.getNombre(), fuente, Color.WHITE, Color.BLACK, Align.left, Align.bottom, 1);
             tabla.add(texto).height(texto.getHeight() - PAD).left().width(ANCHO_Descripcion > texto.getWidth() ? ANCHO_Descripcion : texto.getWidth()).padRight(4).padLeft(4);
             //VALOR:
