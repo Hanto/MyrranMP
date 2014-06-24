@@ -22,7 +22,7 @@ public interface BDebuffI
     public String getNombre ();
     public String getDescripcion ();
     public boolean isDebuff ();
-    public int getStacksMaximos ();
+    public byte getStacksMaximos ();
     public TipoBDebuffI getTipoBDebuff();
     public SkillStat getSkillStat(int numSkillStat);
     public Iterator<SkillStat> getSkillStats();

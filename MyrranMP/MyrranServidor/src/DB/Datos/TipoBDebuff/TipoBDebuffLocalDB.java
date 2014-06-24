@@ -72,7 +72,7 @@ public class TipoBDebuffLocalDB
 
                 for (int j = 0; j < listaStats.size(); j++)
                 {
-                    if (listaStats.size() < tipoDebuff.skillStats().length) System.out.println("ERROR: Faltan SkillStats por Definir.");
+                    if (listaStats.size() < tipoDebuff.getNumSkillStats()) System.out.println("ERROR: Faltan SkillStats por Definir.");
 
                     Element stat = (Element) listaStats.get(j);
 
@@ -84,9 +84,9 @@ public class TipoBDebuffLocalDB
                     int costeTalento    = Integer.parseInt(stat.getChildText("costeTalento"));
                     float bonoTalento   = Float.parseFloat(stat.getChildText("bonoTalento"));
 
-                    tipoDebuff.skillStats()[numStat] = new SkillStat(nombreStat, valorBase);
-                    if (isMejorable) tipoDebuff.skillStats()[numStat].setTalentos(talentoMaximo, costeTalento, bonoTalento);
-                    else tipoDebuff.skillStats()[numStat].setIsMejorable(isMejorable);
+                    tipoDebuff.setSkillStat(new SkillStat(nombreStat, valorBase), numStat);
+                    if (isMejorable) tipoDebuff.getSkillStat(numStat).setTalentos(talentoMaximo, costeTalento, bonoTalento);
+                    else tipoDebuff.getSkillStat(numStat).setIsMejorable(isMejorable);
 
                     System.out.println("\n  numStat:      " + numStat);
                     System.out.println("  nombreStat:   " + nombreStat);

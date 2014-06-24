@@ -37,45 +37,33 @@ public class Spell extends AbstractModel implements SpellI
     @Override public String getNombre ()                        { return nombre; }
     @Override public String getDescripcion ()                   { return descripcion; }
     @Override public TipoSpellI getTipoSpell()                  { return tipoSpell; }
-    @Override public Iterator<BDebuffI> getDebuffsQueAplica()   { return listaDeDebuffsQueAplica.iterator(); }
-    @Override public Iterator<SkillStat> getSkillStats()        { return Arrays.asList(skillStats).iterator(); }
     @Override public SkillStat getSkillStat(int numSkillStat)   { return skillStats[numSkillStat]; }
+    @Override public Iterator<SkillStat> getSkillStats()        { return Arrays.asList(skillStats).iterator(); }
+    @Override public Iterator<BDebuffI> getDebuffsQueAplica()   { return listaDeDebuffsQueAplica.iterator(); }
 
 
 
     //CONSTRUCTOR:
     public Spell (TipoSpellI tipospell)
     {   //Se vincula el objeto que ejecutara los metodos de este tipo de Spell
+        if (tipospell == null) { System.out.println("ERROR: spellID no encontrado"); return; }
         tipoSpell = tipospell;
 
         nombre = tipospell.getNombre();
         descripcion = tipospell.getDescripcion();
 
         //y se copian sus Stats base:
-        skillStats = new SkillStat[tipospell.skillStats().length];
+        skillStats = new SkillStat[tipospell.getNumSkillStats()];
         for (int i=0; i<skillStats.length;i++)
         {
-            SkillStat statSkill = new SkillStat(tipospell.skillStats()[i]);
+            SkillStat statSkill = new SkillStat(tipospell.getSkillStat(i));
             skillStats[i] = statSkill;
         }
     }
 
     public Spell (String tipoSpellID)
-    {
-        tipoSpell = DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(tipoSpellID);
+    {   this(DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(tipoSpellID)); }
 
-        if (tipoSpell == null) { System.out.println("ERROR: spellID no encontrado"); return; }
-
-        nombre = tipoSpell.getNombre();
-        descripcion = tipoSpell.getDescripcion();
-
-        skillStats = new SkillStat[tipoSpell.skillStats().length];
-        for (int i=0; i<skillStats.length;i++)
-        {
-            SkillStat statSkill = new SkillStat(tipoSpell.skillStats()[i]);
-            skillStats[i] = statSkill;
-        }
-    }
 
     @Override public void añadirDebuff (BDebuffI debuff)
     {   if (!listaDeDebuffsQueAplica.contains(debuff)) { listaDeDebuffsQueAplica.add(debuff); } }

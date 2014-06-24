@@ -37,9 +37,9 @@ public class Spell extends AbstractModel implements SpellI
     @Override public String getNombre ()                        { return nombre; }
     @Override public String getDescripcion ()                   { return descripcion; }
     @Override public TipoSpellI getTipoSpell()                  { return tipoSpell; }
-    @Override public Iterator<BDebuffI> getDebuffsQueAplica()   { return listaDeDebuffsQueAplica.iterator(); }
-    @Override public Iterator<SkillStat> getSkillStats()        { return Arrays.asList(skillStats).iterator(); }
     @Override public SkillStat getSkillStat(int numSkillStat)   { return skillStats[numSkillStat]; }
+    @Override public Iterator<SkillStat> getSkillStats()        { return Arrays.asList(skillStats).iterator(); }
+    @Override public Iterator<BDebuffI> getDebuffsQueAplica()   { return listaDeDebuffsQueAplica.iterator(); }
 
     //CONSTRUCTOR:
     public Spell (TipoSpellI tipospell)
@@ -51,10 +51,10 @@ public class Spell extends AbstractModel implements SpellI
         descripcion = tipospell.getDescripcion();
 
         //y se copian sus Stats base:
-        skillStats = new SkillStat[tipospell.skillStats().length];
+        skillStats = new SkillStat[tipospell.getNumSkillStats()];
         for (int i=0; i<skillStats.length;i++)
         {
-            SkillStat statSkill = new SkillStat(tipospell.skillStats()[i]);
+            SkillStat statSkill = new SkillStat(tipospell.getSkillStat(i));
             skillStats[i] = statSkill;       
         }
     }

@@ -36,7 +36,7 @@ public class BDebuff implements BDebuffI
     @Override public String getNombre ()                            { return nombre; }
     @Override public String getDescripcion ()                       { return descripcion; }
     @Override public boolean isDebuff ()                            { return isDebuff; }
-    @Override public int getStacksMaximos ()                        { return stacksMaximos; }
+    @Override public byte getStacksMaximos ()                        { return stacksMaximos; }
     @Override public TipoBDebuffI getTipoBDebuff()                  { return tipoBDebuff; }
     @Override public SkillStat getSkillStat(int numSkillStat)       { return skillStats[numSkillStat]; }
     @Override public Iterator<SkillStat> getSkillStats()            { return Arrays.asList(skillStats).iterator(); }
@@ -53,14 +53,13 @@ public class BDebuff implements BDebuffI
         stacksMaximos = tipoBDebuff.getStacksMaximos();
 
         //y se copian sus Stats base:
-        skillStats = new SkillStat[tipoBDebuff.skillStats().length];
+        skillStats = new SkillStat[tipoBDebuff.getNumSkillStats()];
         for (int i=0; i<skillStats.length;i++)
         {
-            SkillStat statSkill = new SkillStat(tipoBDebuff.skillStats()[i]);
+            SkillStat statSkill = new SkillStat(tipoBDebuff.getSkillStat(i));
             skillStats[i] = statSkill;
         }
         Arrays.asList(skillStats).iterator();
-
     }
 
     public BDebuff (String tipoBDebuffID)

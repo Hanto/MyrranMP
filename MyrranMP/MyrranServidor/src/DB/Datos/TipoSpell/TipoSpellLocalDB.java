@@ -66,7 +66,7 @@ public class TipoSpellLocalDB
 
                 for (int j = 0; j < listaStats.size(); j++)
                 {
-                    if (listaStats.size() < tipoSpell.skillStats().length) System.out.println("ERROR: Faltan SkillStats por Definir.");
+                    if (listaStats.size() < tipoSpell.getNumSkillStats()) System.out.println("ERROR: Faltan SkillStats por Definir.");
 
                     Element stat = (Element) listaStats.get(j);
 
@@ -78,9 +78,9 @@ public class TipoSpellLocalDB
                     int costeTalento    = Integer.parseInt(stat.getChildText("costeTalento"));
                     float bonoTalento   = Float.parseFloat(stat.getChildText("bonoTalento"));
 
-                    tipoSpell.skillStats()[numStat] = new SkillStat(nombreStat, valorBase);
-                    if (isMejorable) tipoSpell.skillStats()[numStat].setTalentos(talentoMaximo, costeTalento, bonoTalento);
-                    else tipoSpell.skillStats()[numStat].setIsMejorable(isMejorable);
+                    tipoSpell.setSkillStat(new SkillStat(nombreStat, valorBase), numStat);
+                    if (isMejorable) tipoSpell.getSkillStat(numStat).setTalentos(talentoMaximo, costeTalento, bonoTalento);
+                    else tipoSpell.getSkillStat(numStat).setIsMejorable(isMejorable);
 
                     System.out.println("\n  numStat:      " + numStat);
                     System.out.println("  nombreStat:   " + nombreStat);
