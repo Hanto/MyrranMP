@@ -93,8 +93,13 @@ public class Controlador implements ControladorUI
     }
     public void modificarSkillTalentoPCC(int connectionID, String skillID, int statID, int valor)
     {
-        if (connectionID == mundo.getPlayer().getConnectionID()) { mundo.getPlayer().modificarSkillTalento(skillID, statID, valor);}
+        if (connectionID == mundo.getPlayer().getConnectionID()) { mundo.getPlayer().setSkillTalento(skillID, statID, valor);}
     }
+    public void añadirSkillTalentoPPC(int connectionID, String spellID)
+    {
+        if (connectionID == mundo.getPlayer().getConnectionID()) { mundo.getPlayer().añadirSpellTalentos(spellID); }
+    }
+
     public void actualizarPPC(NetDTO.ActualizarPPC updatePlayer)
     {
         if (updatePlayer.connectionID == mundo.getPlayer().getConnectionID())
@@ -141,4 +146,9 @@ public class Controlador implements ControladorUI
     {   ui.moverAccion(barraOrigen, posXOrigen, posYOrigen, barraDestino, posXDestino, posYDestino);}
     @Override public void barraAccionRebindear(BarraAccionesI barra, int posX, int posY, int keycode)
     {   ui.setKeyCode(barra, posX, posY, keycode);}
+    @Override public void enviarPlayerSetSkillTalento(String skillID, int statID, int valor)
+    {
+        Object enviarModificarSkillTalento = new NetDTO.ModificarSkillTalentoPPC(skillID, statID, valor);
+        enviarAServidor(enviarModificarSkillTalento);
+    }
 }

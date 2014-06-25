@@ -86,13 +86,18 @@ public class Cliente extends Client
         if (obj instanceof NetDTO.MapTilesAdyacentesEnCliente)
         {   controlador.actualizarMapTilesCargados((NetDTO.MapTilesAdyacentesEnCliente)obj); }
 
-        if (obj instanceof NetDTO.EnviarModificarSkillTalentoPPC)
+        if (obj instanceof NetDTO.AñadirSpellTalentosPPC)
         {
-            int conID = con.getID();
-            String skillID = ((NetDTO.EnviarModificarSkillTalentoPPC) obj).skillID;
-            int statID = ((NetDTO.EnviarModificarSkillTalentoPPC) obj).statID;
-            int valor = ((NetDTO.EnviarModificarSkillTalentoPPC) obj).valor;
-            controlador.modificarSkillTalentoPCC(conID, skillID, statID, valor);
+            String spellID = ((NetDTO.AñadirSpellTalentosPPC) obj).spellID;
+            controlador.añadirSkillTalentoPPC(con.getID(), spellID);
+        }
+
+        if (obj instanceof NetDTO.ModificarSkillTalentoPPC)
+        {
+            String skillID = ((NetDTO.ModificarSkillTalentoPPC) obj).skillID;
+            int statID = ((NetDTO.ModificarSkillTalentoPPC) obj).statID;
+            int valor = ((NetDTO.ModificarSkillTalentoPPC) obj).valor;
+            controlador.modificarSkillTalentoPCC(con.getID(), skillID, statID, valor);
         }
     }
 

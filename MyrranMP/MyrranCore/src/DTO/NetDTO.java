@@ -5,6 +5,7 @@ import Data.MiscData;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesPropiedades.Vulnerable;
 import Interfaces.EntidadesTipos.MobPC;
+import Interfaces.Spell.SpellI;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
 
@@ -24,9 +25,9 @@ public class NetDTO
         kryo.register(ModificarHPsPPC.class);
         kryo.register(EliminarPPC.class);
         kryo.register(CastearPPC.class);
-
+        kryo.register(AñadirSpellTalentosPPC.class);
         kryo.register(ModificarSkillTalentoPPC.class);
-        kryo.register(EnviarModificarSkillTalentoPPC.class);
+
 
         kryo.register(CastingTimePercent.class);
 
@@ -147,14 +148,12 @@ public class NetDTO
         {   this.castear = castear; targetX = x; targetY = y; }
     }
 
-    public static class EnviarModificarSkillTalentoPPC
+    public static class AñadirSpellTalentosPPC
     {
-        public String skillID;
-        public int statID;
-        public int valor;
-        public EnviarModificarSkillTalentoPPC() {}
-        public EnviarModificarSkillTalentoPPC(String skillID, int statID, int valor)
-        {   this.skillID = skillID; this.statID = statID; this.valor = valor; }
+        public String spellID;
+        public AñadirSpellTalentosPPC() {}
+        public AñadirSpellTalentosPPC(SpellI spell)
+        {   this.spellID = spell.getID(); }
     }
 
     public static class ModificarSkillTalentoPPC
@@ -166,7 +165,6 @@ public class NetDTO
         public ModificarSkillTalentoPPC(String skillID, int statID, int valor)
         {   this.skillID = skillID; this.statID = statID; this.valor = valor; }
     }
-
 
     public static class CastingTimePercent
     {

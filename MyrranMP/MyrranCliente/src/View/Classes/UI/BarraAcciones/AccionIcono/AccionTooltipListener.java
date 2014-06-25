@@ -28,7 +28,7 @@ public class AccionTooltipListener extends InputListener
             if (accion instanceof SeleccionarSpell && tooltip == null)
             {
                 SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(accion.getID());
-                tooltip = new SpellTooltip(spell, accionIcono.getBarra().getCaster());
+                tooltip = new SpellTooltip(spell, accionIcono.getBarra().getCaster(), accionIcono.getControlador());
                 accionIcono.setTooltip(tooltip);
             }
         }
@@ -51,11 +51,12 @@ public class AccionTooltipListener extends InputListener
 
             if (accion instanceof SeleccionarSpell)
             {
+                System.out.println("añadir Tooltip");
                 SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(accion.getID());
-                SpellTooltip tooltipMovible = new SpellTooltip(spell, accionIcono.getBarra().getCaster());
+                SpellTooltip tooltipMovible = new SpellTooltip(spell, accionIcono.getBarra().getCaster(), accionIcono.getControlador());
                 event.getStage().addActor(tooltipMovible);
                 Vector2 clickPos = getPosicionClick(event, x, y);
-                tooltipMovible.setPosition(clickPos.x +16, clickPos.y +16);
+                tooltipMovible.setPosition(clickPos.x +16 , clickPos.y +16 -tooltipMovible.getHeight());
             }
         }
         return true;

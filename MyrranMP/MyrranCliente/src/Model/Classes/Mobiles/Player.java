@@ -61,39 +61,41 @@ public class Player extends AbstractModel implements MobPlayer, CasterConTalento
 
     public Player()
     {
-        añadirSpellTalentos("Heal");
+
     }
 
     //GET:
-    @Override public int getConnectionID()                      { return connectionID; }
-    @Override public float getX()                               { return x; }
-    @Override public float getY()                               { return y; }
-    @Override public int getNumAnimacion()                      { return numAnimacion; }
-    @Override public float getVelocidadMod()                    { return velocidadMod; }
-    @Override public float getVelocidadMax()                    { return velocidadMax; }
-    @Override public double getDireccion()                      { return direccion; }
-    @Override public String getNombre()                         { return nombre; }
-    @Override public int getNivel()                             { return nivel; }
-    @Override public float getActualHPs()                       { return actualHPs; }
-    @Override public float getMaxHPs()                          { return maxHPs; }
-    @Override public MapaI getMapa()                            { return mapaI; }
-    @Override public boolean isCasteando()                      { if (actualCastingTime >0) return true; else return false; }
-    @Override public float getActualCastingTime()               { return actualCastingTime; }
-    @Override public float getTotalCastingTime()                { return totalCastingTime; }
-    @Override public String getSpellIDSeleccionado()            { return spellIDSeleccionado; }
-    @Override public Object getParametrosSpell()                { return parametrosSpell; }
+    @Override public int getConnectionID()                              { return connectionID; }
+    @Override public float getX()                                       { return x; }
+    @Override public float getY()                                       { return y; }
+    @Override public int getNumAnimacion()                              { return numAnimacion; }
+    @Override public float getVelocidadMod()                            { return velocidadMod; }
+    @Override public float getVelocidadMax()                            { return velocidadMax; }
+    @Override public double getDireccion()                              { return direccion; }
+    @Override public String getNombre()                                 { return nombre; }
+    @Override public int getNivel()                                     { return nivel; }
+    @Override public float getActualHPs()                               { return actualHPs; }
+    @Override public float getMaxHPs()                                  { return maxHPs; }
+    @Override public MapaI getMapa()                                    { return mapaI; }
+    @Override public boolean isCasteando()                              { if (actualCastingTime >0) return true; else return false; }
+    @Override public float getActualCastingTime()                       { return actualCastingTime; }
+    @Override public float getTotalCastingTime()                        { return totalCastingTime; }
+    @Override public String getSpellIDSeleccionado()                    { return spellIDSeleccionado; }
+    @Override public Object getParametrosSpell()                        { return parametrosSpell; }
 
     //SET:
-    @Override public void setConnectionID (int connectionID)    { this.connectionID = connectionID; }
-    @Override public void setTotalCastingTime(float castingTime){ this.actualCastingTime = 0.01f; totalCastingTime = castingTime;}
-    @Override public void setVelocidaMod(float velocidadMod)    { this.velocidadMod = velocidadMod; }
-    @Override public void setVelocidadMax(float velocidadMax)   { this.velocidadMax = velocidadMax; }
-    @Override public void setDireccion(double direccion)        { }
-    @Override public void añadirAura(AuraI aura)                { listaDeAuras.add(aura); }
-    @Override public void eliminarAura(AuraI aura)              { listaDeAuras.removeValue(aura, true); }
-    @Override public Iterator<AuraI> getAuras()                 { return listaDeAuras.iterator(); }
-    @Override public void setActualHPs (float hps)              { modificarHPs(hps - actualHPs); }
+    @Override public void setConnectionID (int connectionID)            { this.connectionID = connectionID; }
+    @Override public void setTotalCastingTime(float castingTime)        { this.actualCastingTime = 0.01f; totalCastingTime = castingTime;}
+    @Override public void setVelocidaMod(float velocidadMod)            { this.velocidadMod = velocidadMod; }
+    @Override public void setVelocidadMax(float velocidadMax)           { this.velocidadMax = velocidadMax; }
+    @Override public void setDireccion(double direccion)                { }
+    @Override public void añadirAura(AuraI aura)                        { listaDeAuras.add(aura); }
+    @Override public void eliminarAura(AuraI aura)                      { listaDeAuras.removeValue(aura, true); }
+    @Override public Iterator<AuraI> getAuras()                         { return listaDeAuras.iterator(); }
+    @Override public void setActualHPs (float hps)                      { modificarHPs(hps - actualHPs); }
+    @Override public int getSkillTalentos(String skillID, int statID)   { return (talentos.get(skillID) != null ? talentos.get(skillID).getTalento(statID) : 0); }
 
+    //RECEPCION DATOS:
     @Override public void añadirSpellTalentos(String spellID)
     {
         SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellID);
@@ -109,44 +111,13 @@ public class Player extends AbstractModel implements MobPlayer, CasterConTalento
         }
     }
 
-    @Override public int getSkillTalentos(String skillID, int statID)
-    {
-        SkillTalentos skillTalentos = talentos.get(skillID);
-        if (skillTalentos == null) return 0;
-        else return skillTalentos.getTalento(statID);
-    }
-
     @Override public void setSkillTalento(String skillID, int statID, int valor)
-    {
-        SkillTalentos skillTalentos = talentos.get(skillID);
-        if (skillTalentos == null) { System.out.println("ERROR: setSkillTalento, spellID no existe: " + skillID); return; }
-        else
-        {
-            if (valor <0) { return; }
-            if (skillTalentos.getIsSpell())
-            {
-                SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(skillTalentos.getId());
-                int valormax = spell.getSkillStat(statID).getTalentoMaximo();
-                if (valor > valormax) return;
-            }
-            if (!skillTalentos.getIsSpell())
-            {
-                BDebuffI debuff = DAO.debuffDAOFactory.getBDebuffDAO().getBDebuff(skillTalentos.getId());
-                int valormax = debuff.getSkillStat(statID).getTalentoMaximo();
-                if (valor > valormax) return;
-            }
-        }
-        Object enviarModificarSkillTalento = new NetDTO.EnviarModificarSkillTalentoPPC(skillID, statID, valor);
-        notificarActualizacion("setSkillTalento", null, enviarModificarSkillTalento);
-    }
-
-    public void modificarSkillTalento(String skillID, int statID, int valor)
     {
         SkillTalentos skillTalentos = talentos.get(skillID);
         if (skillTalentos == null) { System.out.println("ERROR: setSkillTalento, spellID no existe: " + skillID); return; }
         skillTalentos.setTalento(statID, valor);
         Object modificarSkillTalento = new NetDTO.ModificarSkillTalentoPPC(skillID, statID, valor);
-        notificarActualizacion("modificarSkillTalento", null, modificarSkillTalento);
+        notificarActualizacion("RECEPCION: setSkillTalento", null, modificarSkillTalento);
     }
 
     @Override public void modificarHPs(float HPs)
@@ -155,16 +126,45 @@ public class Player extends AbstractModel implements MobPlayer, CasterConTalento
         if (actualHPs > maxHPs) actualHPs = maxHPs;
         else if (actualHPs < 0) actualHPs = 0f;
         Object modificarHPs = new NetDTO.ModificarHPsPPC(this, HPs);
-        notificarActualizacion("modificarHPs", null, modificarHPs);
+        notificarActualizacion("RECEPCION: modificarHPs", null, modificarHPs);
     }
 
+    @Override public void setNombre (String nombre)
+    {
+        this.nombre = nombre;
+        Object nombreDTO = new PlayerDTO.NombrePlayer(nombre);
+        notificarActualizacion("RECEPCION: setNombre", null, nombreDTO);
+    }
+
+    @Override public void setNivel (int nivel)
+    {
+        this.nivel = nivel;
+        Object nivelDTO = new PlayerDTO.NivelPlayer(nivel);
+        notificarActualizacion("RECEPCION: setNivel", null, nivelDTO);
+    }
+
+    @Override public void setMaxHPs (float mHps)
+    {
+        maxHPs = mHps;
+        Object mHPsDTO = new PlayerDTO.MaxHPs(mHps);
+        notificarActualizacion("RECEPCION: setMaxHPs", null, mHPsDTO);
+    }
+
+
+
+
+
+
+
+
+    //ENVIO DATOS:
     @Override public void setNumAnimacion(int numAnimacion)
     {
         if (this.numAnimacion != numAnimacion)
         {
             this.numAnimacion = numAnimacion;
             Object AnimacionDTO = new NetDTO.AnimacionPPC(this);
-            notificarActualizacion("setTipoAnimacion", null, AnimacionDTO);
+            notificarActualizacion("ENVIO: setTipoAnimacion", null, AnimacionDTO);
         }
     }
 
@@ -172,42 +172,21 @@ public class Player extends AbstractModel implements MobPlayer, CasterConTalento
     {
         this.x = x; this.y = y;
         Object posicionDTO = new NetDTO.PosicionPPC(this);
-        notificarActualizacion("setPosition", null, posicionDTO);
-    }
-
-    @Override public void setNombre (String nombre)
-    {
-        this.nombre = nombre;
-        Object nombreDTO = new PlayerDTO.NombrePlayer(nombre);
-        notificarActualizacion("setNombre", null, nombreDTO);
-    }
-
-    @Override public void setNivel (int nivel)
-    {
-        this.nivel = nivel;
-        Object nivelDTO = new PlayerDTO.NivelPlayer(nivel);
-        notificarActualizacion("setNivel", null, nivelDTO);
-    }
-
-    @Override public void setMaxHPs (float mHps)
-    {
-        maxHPs = mHps;
-        Object mHPsDTO = new PlayerDTO.MaxHPs(mHps);
-        notificarActualizacion("setMaxHPs", null, mHPsDTO);
+        notificarActualizacion("ENVIO: setPosition", null, posicionDTO);
     }
 
     @Override public void setParametrosSpell(Object parametros)
     {
         parametrosSpell = parametros;
         Object setParametrosSpell = new PlayerDTO.SetParametrosSpell();
-        notificarActualizacion("setParametrosSpell", null, setParametrosSpell);
+        notificarActualizacion("ENVIO: setParametrosSpell", null, setParametrosSpell);
     }
 
     @Override public void setSpellIDSeleccionado(String spellID)
     {
         spellIDSeleccionado = spellID;
         Object spellIDSeleccionadoDTO = new PlayerDTO.SetSpellIDSeleccionado(spellID);
-        notificarActualizacion("setSpellIDSeleccionado", null, spellIDSeleccionadoDTO);
+        notificarActualizacion("ENVIO: setSpellIDSeleccionado", null, spellIDSeleccionadoDTO);
     }
 
     @Override public void setCastear(boolean intentaCastear, int clickX, int clickY)
@@ -225,7 +204,7 @@ public class Player extends AbstractModel implements MobPlayer, CasterConTalento
         if (castearInterrumpible)
         {
             Object castearDTO = new NetDTO.CastearPPC(castear, screenX, screenY);
-            notificarActualizacion("setCastear", null, castearDTO);
+            notificarActualizacion("ENVIO: setCastear", null, castearDTO);
             castearInterrumpible = false;
         }
     }
@@ -240,7 +219,7 @@ public class Player extends AbstractModel implements MobPlayer, CasterConTalento
                 spell.castear(this, screenX, screenY);
 
                 Object castearDTO = new NetDTO.CastearPPC(castear, screenX, screenY);
-                notificarActualizacion("setCastear", null, castearDTO);
+                notificarActualizacion("ENVIO: setCastear", null, castearDTO);
                 //actualCastingTime += 0.01f;
                 castearInterrumpible = true;
             }

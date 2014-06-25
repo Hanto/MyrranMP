@@ -70,39 +70,11 @@ public class PlayerView extends Group implements PropertyChangeListener
         luz = new PointLight(mundoView.getRayHandler(), 300, new Color(0.3f,0.3f,0.3f,1.0f), 350, 0, 0);
     }
 
+
+
+    //VISTA:
     public void setNombre (String nuevoNombre)
     {   nombre.setTexto(nuevoNombre); }
-
-    public void setPosition (int x, int y)
-    {
-        if (Math.abs(this.getX()-x) >= 1 || Math.abs(this.getY()-y) >= 1)
-        {
-            super.setPosition(x, y);
-            luz.setPosition(x,y);
-            NetDTO.PosicionPPC moverPlayer = new NetDTO.PosicionPPC(player.getConnectionID(), getX(), getY());
-            controlador.enviarAServidor(moverPlayer);
-        }
-    }
-
-    //Muy importante, la posX en pantalla que sea en Pixels siempre, o sea sin decimales, o el sprite parpadea
-    @Override public void setPosition (float x, float y)
-    {   setPosition((int)x, (int)y);}
-
-    public void setAnimacion (int numAnimacion)
-    {
-        actor.setAnimacion(numAnimacion, false);
-        NetDTO.AnimacionPPC animacionPPC = new NetDTO.AnimacionPPC(player.getConnectionID(), numAnimacion);
-        controlador.enviarAServidor(animacionPPC);
-        //System.out.println("Player ID["+cambiarAnimacionPC.connectionID + "]Animacion["+cambiarAnimacionPC.numAnimacion+"]");
-    }
-
-    public void setCastear (boolean castear, int targetX, int targetY)
-    {
-        Vector2 targetMundo = convertirCoordenadasPantallaAMundo(targetX, targetY);
-        NetDTO.CastearPPC castearNDTO = new NetDTO.CastearPPC(castear, (int)targetMundo.x, (int)targetMundo.y);
-        controlador.enviarAServidor(castearNDTO);
-        //System.out.println("Casteando "+castear+" en: ["+targetX+"]["+targetY+"]");
-    }
 
     public void modificarHPs(NetDTO.ModificarHPsPPC HPs)
     {
@@ -115,11 +87,44 @@ public class PlayerView extends Group implements PropertyChangeListener
         }
     }
 
-    public Vector2 convertirCoordenadasPantallaAMundo (int screenX, int screenY)
+
+
+
+
+    //VISTA / ENVIODATOS:
+    public void setPosition (int x, int y)
     {
-        Vector3 destino = new Vector3(screenX, screenY, 0);
-        mundoView.getCamera().unproject(destino);
-        return new Vector2(destino.x, destino.y);
+        if (Math.abs(this.getX()-x) >= 1 || Math.abs(this.getY()-y) >= 1)
+        {
+            super.setPosition(x, y);
+            luz.setPosition(x,y);
+            NetDTO.PosicionPPC moverPlayer = new NetDTO.PosicionPPC(player.getConnectionID(), getX(), getY());
+            controlador.enviarAServidor(moverPlayer);
+        }
+    }
+
+    @Override public void setPosition (float x, float y)
+    {   //Muy importante, la posX en pantalla que sea en Pixels siempre, o sea sin decimales, o el sprite parpadea
+        setPosition((int)x, (int)y);
+    }
+
+    public void setAnimacion (int numAnimacion)
+    {
+        actor.setAnimacion(numAnimacion, false);
+        NetDTO.AnimacionPPC animacionPPC = new NetDTO.AnimacionPPC(player.getConnectionID(), numAnimacion);
+        controlador.enviarAServidor(animacionPPC);
+    }
+
+
+
+
+
+    //EMVIODATOS:
+    public void setCastear (boolean castear, int targetX, int targetY)
+    {
+        Vector2 targetMundo = convertirCoordenadasPantallaAMundo(targetX, targetY);
+        NetDTO.CastearPPC castearNDTO = new NetDTO.CastearPPC(castear, (int)targetMundo.x, (int)targetMundo.y);
+        controlador.enviarAServidor(castearNDTO);
     }
 
     public void setSpellIDSeleccionado(String spellID)
@@ -138,8 +143,17 @@ public class PlayerView extends Group implements PropertyChangeListener
         controlador.enviarAServidor(setSpellIDSeleccionado);
     }
 
-    public void modificarSkillTalento(NetDTO.EnviarModificarSkillTalentoPPC skillTalento)
-    {   controlador.enviarAServidor(skillTalento); }
+    public Vector2 convertirCoordenadasPantallaAMundo (int screenX, int screenY)
+    {
+        Vector3 destino = new Vector3(screenX, screenY, 0);
+        mundoView.getCamera().unproject(destino);
+        return new Vector2(destino.x, destino.y);
+    }
+
+
+
+
+
 
 
     @Override public void propertyChange(PropertyChangeEvent evt)
@@ -185,8 +199,5 @@ public class PlayerView extends Group implements PropertyChangeListener
 
         if (evt.getNewValue() instanceof PlayerDTO.SetParametrosSpell)
         {   setParametrosSpell(); }
-
-        if (evt.getNewValue() instanceof NetDTO.EnviarModificarSkillTalentoPPC)
-        {   modificarSkillTalento((NetDTO.EnviarModificarSkillTalentoPPC)evt.getNewValue()); }
     }
 }

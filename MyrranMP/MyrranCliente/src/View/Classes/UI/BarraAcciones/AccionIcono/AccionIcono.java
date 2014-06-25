@@ -22,6 +22,7 @@ public class AccionIcono extends Actor implements Icono
 {
     //Model:
     protected ListaAccionesI barra;
+    protected ControladorBarraAccionI controlador;
     protected int posX;
     protected int posY;
 
@@ -29,25 +30,27 @@ public class AccionIcono extends Actor implements Icono
     protected TextureRegion casillaIcono;
     protected Texto keybind;
     protected Actor tooltip;
-
     protected IconoSource source;
     protected AccionTarget target;
 
     //GET:
-    public int getPosX()                    { return posX; }
-    public int getPosY()                    { return posY; }
-    public ListaAccionesI getBarra()        { return barra; }
-    public AccionI getAccion()              { return barra.getAccion(posX, posY); }
-    @Override public Actor getApariencia()  { return this; }
-    @Override public Actor getDragActor()   { return new Image(casillaIcono);}
+    public int getPosX()                            { return posX; }
+    public int getPosY()                            { return posY; }
+    public ListaAccionesI getBarra()                { return barra; }
+    public AccionI getAccion()                      { return barra.getAccion(posX, posY); }
+    public ControladorBarraAccionI getControlador() { return controlador; }
+    @Override public Actor getApariencia()          { return this; }
+    @Override public Actor getDragActor()           { return new Image(casillaIcono);}
+
     //SET:
-    public void setTooltip(Actor tooltip)   { this.tooltip = tooltip; }
-    public void setTexto(String texto)      { this.keybind.setTexto(texto); }
+    public void setTooltip(Actor tooltip)           { this.tooltip = tooltip; }
+    public void setTexto(String texto)              { this.keybind.setTexto(texto); }
 
     //Constructor:
-    public AccionIcono(ListaAccionesI barra, int posX, int posY)
+    public AccionIcono(ListaAccionesI barra, ControladorBarraAccionI controlador, int posX, int posY)
     {
         this.barra = barra;
+        this.controlador = controlador;
         this.posX = posX;
         this.posY = posY;
 
@@ -96,7 +99,7 @@ public class AccionIcono extends Actor implements Icono
     @Override public void draw (Batch batch, float alpha)
     {   //Posicion Elementos:
         keybind.setPosition(getX(), getY() + 32 -4);
-        if (tooltip != null) tooltip.setPosition(getX(), getY() + tooltip.getHeight() +32 +8);
+        if (tooltip != null) tooltip.setPosition(getX(), getY() + 32 +8);
 
         //Dibujado Elementos:
         batch.setColor(this.getColor());

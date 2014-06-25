@@ -439,55 +439,48 @@ TexturasIconos/PoisonBolt
   index: -1
 
 atlas10.png
-size: 193,62
+size: 246,57
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 TexturasMisc/Borrar
   rotate: false
-  xy: 2, 14
+  xy: 2, 9
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 TexturasMisc/CasillaTalento
   rotate: false
-  xy: 2, 11
+  xy: 130, 49
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
-TexturasMisc/CasillaTalento.BAK
-  rotate: false
-  xy: 189, 55
-  size: 4, 7
-  orig: 4, 7
-  offset: 0, 0
-  index: -1
 TexturasMisc/CasillaTalentoFondo
   rotate: false
-  xy: 52, 43
+  xy: 52, 49
   size: 76, 8
   orig: 76, 8
   offset: 0, 0
   index: -1
-TexturasMisc/CasillaTalentoFondo.BAK9
-  rotate: false
-  xy: 52, 53
-  size: 76, 9
-  orig: 76, 9
-  offset: 0, 0
-  index: -1
 TexturasMisc/Casillero
   rotate: false
-  xy: 52, 9
+  xy: 52, 15
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+TexturasMisc/Casillero.BAK
+  rotate: false
+  xy: 86, 15
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TexturasMisc/Grid
   rotate: false
-  xy: 130, 38
+  xy: 201, 33
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -501,42 +494,42 @@ TexturasMisc/Nameplate
   index: -1
 TexturasMisc/Nameplate.OLD
   rotate: false
-  xy: 40, 2
+  xy: 130, 52
   size: 36, 5
   orig: 36, 5
   offset: 0, 0
   index: -1
 TexturasMisc/NameplateFondo
   rotate: false
-  xy: 78, 2
+  xy: 40, 2
   size: 1, 5
   orig: 1, 5
   offset: 0, 0
   index: -1
 TexturasMisc/RebindOff
   rotate: false
-  xy: 120, 15
+  xy: 227, 36
   size: 19, 21
   orig: 19, 21
   offset: 0, 0
   index: -1
 TexturasMisc/RebindOn
   rotate: false
-  xy: 141, 15
+  xy: 154, 23
   size: 19, 21
   orig: 19, 21
   offset: 0, 0
   index: -1
 TexturasMisc/Select
   rotate: false
-  xy: 86, 9
+  xy: 120, 15
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TexturasMisc/Sombra
   rotate: false
-  xy: 156, 51
+  xy: 168, 46
   size: 31, 11
   orig: 31, 11
   offset: 0, 0

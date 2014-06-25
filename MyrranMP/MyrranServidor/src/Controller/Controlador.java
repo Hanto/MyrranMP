@@ -54,5 +54,6 @@ public class Controlador
 
 
 
-    public void netUpdater ()                                           { vista.netUpdate(); }
+    public void netUpdater ()
+    {   vista.netUpdate(); }
 }

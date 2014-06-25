@@ -8,15 +8,13 @@ import Interfaces.BDebuff.BDebuffI;
 import Interfaces.EntidadesPropiedades.CasterConTalentos;
 import Interfaces.Spell.Skill;
 import Interfaces.Spell.SpellI;
+import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import View.Classes.Graficos.Texto;
 import View.Classes.UI.Ventana.VentanaMoverListener;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -32,6 +30,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
     //Model:
     private SpellI spell;
     private CasterConTalentos caster;
+    private ControladorBarraAccionI controlador;
 
     //View:
     private Image background;
@@ -41,17 +40,16 @@ public class SpellTooltip extends Group implements PropertyChangeListener
     private final int PAD = 8;
     private final int ANCHO_Descripcion = 80;
 
-    public SpellTooltip(SpellI spell, CasterConTalentos caster)
+    public SpellTooltip(SpellI spell, CasterConTalentos caster, ControladorBarraAccionI controlador)
     {
         this.spell = spell;
         this.caster = caster;
+        this.controlador = controlador;
 
         background = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_Textura_Casillero));
-        background.setColor(0, 0, 0, 0.15f);
         icono = new Image(RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRecursos(spell.getID()).getIcono());
-        icono.setPosition(0 - icono.getWidth(), getHeight() - icono.getHeight());
         icono.addListener(new VentanaMoverListener(icono, this));
-        tabla = new Table().top().left();
+        tabla = new Table().bottom().left();
         tabla.setPosition(0, 8);
 
         this.addActor(background);
@@ -84,6 +82,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
         tabla.clear();
         Texto texto;
         BitmapFont fuente = RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres);
+
         //NOMBRE SPELL::
         texto = new Texto(spell.getNombre(), fuente, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
         tabla.add(texto).left().padRight(4).padLeft(4);
@@ -105,9 +104,9 @@ public class SpellTooltip extends Group implements PropertyChangeListener
         }
 
         this.setSize(tabla.getMinWidth(), tabla.getMinHeight());
-        background.setBounds(0,-getHeight(), getWidth(), getHeight());
+        background.setBounds(0, 0, getWidth(), getHeight());
+        icono.setPosition(0 - icono.getWidth(), getHeight() - icono.getHeight());
         //tabla.debug();
-
     }
 
 
@@ -152,6 +151,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
         SkillStat skillStat;
         DecimalFormat df = new DecimalFormat("0.00");
         DecimalFormatSymbols symbols = df.getDecimalFormatSymbols();
+
         symbols.setDecimalSeparator('.');
         df.setDecimalFormatSymbols(symbols);
 
@@ -214,28 +214,24 @@ public class SpellTooltip extends Group implements PropertyChangeListener
 
         Actor quitarTalento = new Actor();
         quitarTalento.setBounds(0, 0, fondo.getWidth()/2, fondo.getHeight());
+        quitarTalento.setColor(Color.RED);
         group.addActor(quitarTalento);
 
         Actor añadirTalento = new Actor();
         añadirTalento.setBounds(fondo.getWidth()/2, 0, fondo.getWidth()/2, fondo.getHeight());
+        añadirTalento.setColor(Color.GREEN);
         group.addActor(añadirTalento);
 
         quitarTalento.addListener(new InputListener()
         {
             @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
-            {
-                caster.setSkillTalento(skillID, skillStatID, numTalentos-1);
-                return true;
-            }
+            {   controlador.enviarPlayerSetSkillTalento(skillID, skillStatID, numTalentos - 1); return true; }
         });
 
         añadirTalento.addListener(new InputListener()
         {
             @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
-            {
-                caster.setSkillTalento(skillID, skillStatID, numTalentos+1);
-                return true;
-            }
+            {   controlador.enviarPlayerSetSkillTalento(skillID, skillStatID, numTalentos + 1); return true; }
         });
 
         return group;

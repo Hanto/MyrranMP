@@ -91,6 +91,7 @@ public class PC extends AbstractModel implements MobPC, CasterConTalentos, Vulne
     @Override public Iterator<AuraI> getAuras()                 { return listaDeAuras.iterator(); }
     @Override public void setMaxHPs(float HPs)                  { maxHPs = HPs; }
     @Override public void setActualHPs(float HPs)               { modificarHPs(HPs - actualHPs); }
+    @Override public int getSkillTalentos(String skillID, int statID)   { return (talentos.get(skillID) != null ? talentos.get(skillID).getTalento(statID) : 0); }
 
     @Override public void añadirSpellTalentos(String spellID)
     {
@@ -104,14 +105,9 @@ public class PC extends AbstractModel implements MobPC, CasterConTalentos, Vulne
         {
             SkillTalentos debuffTalentos = new SkillTalentos(iterator.next());
             talentos.put(debuffTalentos.getId(), debuffTalentos);
+            Object añadirSpellTalentos = new NetDTO.AñadirSpellTalentosPPC(spell);
+            notificarActualizacion("añadirSpellTalentos", null, añadirSpellTalentos);
         }
-    }
-
-    @Override public int getSkillTalentos(String skillID, int statID)
-    {
-        SkillTalentos skillTalentos = talentos.get(skillID);
-        if (skillTalentos == null) return 0;
-        else return skillTalentos.getTalento(statID);
     }
 
     @Override public void setSkillTalento(String skillID, int statID, int valor)
@@ -135,7 +131,7 @@ public class PC extends AbstractModel implements MobPC, CasterConTalentos, Vulne
             }
         }
         skillTalentos.setTalento(statID, valor);
-        Object modificarSkillTalento = new NetDTO.EnviarModificarSkillTalentoPPC(skillID, statID, valor);
+        Object modificarSkillTalento = new NetDTO.ModificarSkillTalentoPPC(skillID, statID, valor);
         notificarActualizacion("setSkillTalento", null, modificarSkillTalento);
     }
 
