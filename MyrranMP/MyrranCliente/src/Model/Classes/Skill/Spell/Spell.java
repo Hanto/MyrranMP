@@ -5,6 +5,7 @@ import Core.SkillStat;
 import DB.DAO;
 import Interfaces.BDebuff.BDebuffI;
 import Interfaces.EntidadesPropiedades.Caster;
+import Interfaces.EntidadesPropiedades.CasterConTalentos;
 import Interfaces.EntidadesPropiedades.Debuffeable;
 import Interfaces.Model.AbstractModel;
 import Interfaces.Spell.SpellI;
@@ -17,14 +18,15 @@ import java.util.List;
 
 public class Spell extends AbstractModel implements SpellI
 {
-    public static final int STAT_Cast = 0;
+    public final int STAT_Cast = 0;
 
     protected String id;
     protected String nombre;
     protected String descripcion;
     protected TipoSpellI tipoSpell;
-    protected SkillStat[] skillStats;                           //Stats concretos del skill
-    protected List<BDebuffI> listaDeDebuffsQueAplica = new ArrayList<>();
+
+    private SkillStat[] skillStats;                           //Stats concretos del skill
+    private List<BDebuffI> listaDeDebuffsQueAplica = new ArrayList<>();
 
     //SET
     @Override public void setID(String id)                      { this.id = id; }
@@ -37,9 +39,10 @@ public class Spell extends AbstractModel implements SpellI
     @Override public String getNombre ()                        { return nombre; }
     @Override public String getDescripcion ()                   { return descripcion; }
     @Override public TipoSpellI getTipoSpell()                  { return tipoSpell; }
-    @Override public SkillStat getSkillStat(int numSkillStat)   { return skillStats[numSkillStat]; }
+    @Override public SkillStat getSkillStat(int statID)         { return skillStats[statID]; }
     @Override public Iterator<SkillStat> getSkillStats()        { return Arrays.asList(skillStats).iterator(); }
     @Override public Iterator<BDebuffI> getDebuffsQueAplica()   { return listaDeDebuffsQueAplica.iterator(); }
+    @Override public int getNumSkillStats()                     { return skillStats.length; }
 
 
 
@@ -66,24 +69,32 @@ public class Spell extends AbstractModel implements SpellI
 
 
     @Override public void añadirDebuff (BDebuffI debuff)
-    {   if (!listaDeDebuffsQueAplica.contains(debuff)) { listaDeDebuffsQueAplica.add(debuff); } }
+    {
+        if (debuff == null) { System.out.println("ERROR: debuff que añadir al Spell "+id+" no encontrado."); return; }
+        if (!listaDeDebuffsQueAplica.contains(debuff)) { listaDeDebuffsQueAplica.add(debuff); }
+    }
 
     @Override public void añadirDebuff (String debuffID)
-    {
-        BDebuffI debuff = DAO.debuffDAOFactory.getBDebuffDAO().getBDebuff(debuffID);
+    {   añadirDebuff(DAO.debuffDAOFactory.getBDebuffDAO().getBDebuff(debuffID)); }
 
-        if (debuff == null) { System.out.println("ERROR: debuff que añadir al Spell "+id+" no encontrado."); return; }
-
-        añadirDebuff(debuff);
-    }
     @Override public void aplicarDebuffs (Caster caster, Debuffeable target) {}
+
+    @Override public float getTalentedSkillStat(Caster caster, int statID)
+    {
+        if (caster instanceof CasterConTalentos)
+        {
+            return getSkillStat(statID).getValorBase() +
+                    ((CasterConTalentos)caster).getSkillTalentos(id, statID) * getSkillStat(statID).getBonoTalento();
+        }
+        else return getSkillStat(statID).getValorBase();
+    }
 
     @Override public void castear (Caster caster, int targetX, int targetY)
     {
         if (caster.isCasteando()) { }
         else 
         {   //Marcamos al personaje como Casteando, y actualizamos su tiempo de casteo con el que marque el Spell (Stat Slot 0)
-            caster.setTotalCastingTime(skillStats[STAT_Cast].getValorBase());
+            caster.setTotalCastingTime(getTalentedSkillStat(caster, STAT_Cast));
         }
     }
 }

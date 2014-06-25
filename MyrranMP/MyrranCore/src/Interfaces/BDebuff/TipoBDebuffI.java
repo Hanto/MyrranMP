@@ -11,7 +11,8 @@ public interface TipoBDebuffI
     public void setDescripcion (String descripcion);
     public void setIsDebuff (boolean b);
     public void setStacksMaximos (byte i);
-    public void setSkillStat(SkillStat skillStat, int numStat);
+    public void setSkillStat(SkillStat skillStat, int statID);
+    public void setNumSkillStats(int numSkillStats);
 
     //GET
     public String getID();
@@ -19,7 +20,7 @@ public interface TipoBDebuffI
     public String getDescripcion();
     public boolean getIsDebuff();
     public byte getStacksMaximos();
-    public SkillStat getSkillStat(int numSkillStat);
+    public SkillStat getSkillStat(int statID);
     public Iterator<SkillStat> getSkillStats();
     public int getNumSkillStats();
 

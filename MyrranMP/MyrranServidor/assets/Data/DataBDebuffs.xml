@@ -10,22 +10,22 @@
 		<icono>Editar</icono>
 		<SkillStats>
 			<Stat>
-				<numStat>0</numStat>
+				<id>0</id>
 				<nombre>Duracion</nombre>
 				<valorBase>10</valorBase>
 				<isMejorable>true</isMejorable>
 				<talentoMaximo>50</talentoMaximo>
 				<costeTalento>1</costeTalento>
-				<bonoTalento>1</bonoTalento>
+				<bonoTalento>0.5</bonoTalento>
 			</Stat>
 			<Stat>
-				<numStat>1</numStat>
-				<nombre>Curacion</nombre>
+				<id>1</id>
+				<nombre>Curacion por segundo</nombre>
 				<valorBase>10</valorBase>
 				<isMejorable>true</isMejorable>
 				<talentoMaximo>50</talentoMaximo>
-				<costeTalento>1</costeTalento>
-				<bonoTalento>1</bonoTalento>
+				<costeTalento>2</costeTalento>
+				<bonoTalento>1.25</bonoTalento>
 			</Stat>
 		</SkillStats>
 	</BDebuff>

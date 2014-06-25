@@ -1,4 +1,4 @@
-package View.Classes.UI.BarraAcciones.AccionView;// Created by Hanto on 13/05/2014.
+package View.Classes.UI.BarraAcciones.AccionIcono;// Created by Hanto on 13/05/2014.
 
 import DB.RSC;
 import Data.MiscData;
@@ -99,6 +99,7 @@ public class AccionIcono extends Actor implements Icono
         if (tooltip != null) tooltip.setPosition(getX(), getY() + tooltip.getHeight() +32 +8);
 
         //Dibujado Elementos:
+        batch.setColor(this.getColor());
         batch.draw(casillaIcono, getX(), getY());
         keybind.draw(batch, alpha);
         if (tooltip != null)

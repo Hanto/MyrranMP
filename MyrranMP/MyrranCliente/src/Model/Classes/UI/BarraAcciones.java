@@ -1,6 +1,7 @@
 package Model.Classes.UI;// Created by Hanto on 06/05/2014.
 
 import Data.MiscData;
+import Interfaces.EntidadesPropiedades.CasterConTalentos;
 import Interfaces.Model.AbstractModel;
 import Interfaces.UI.Acciones.AccionI;
 import Interfaces.UI.BarraAcciones.BarraAccionesI;
@@ -12,6 +13,7 @@ public class BarraAcciones extends AbstractModel implements BarraAccionesI
 {
     private int iD;
     private Array<Array<Casilla>> barraAcciones = new Array<>();
+    private CasterConTalentos caster;
 
     private InputManager inputManager;
 
@@ -28,8 +30,9 @@ public class BarraAcciones extends AbstractModel implements BarraAccionesI
     public int getNumColumnas() { return (barraAcciones.size == 0) ? 0 : barraAcciones.first().size; }
 
     //CONSTRUCTOR:
-    public BarraAcciones(InputManager inputManager, int id, int numFilas, int numColumnas)
+    public BarraAcciones(CasterConTalentos caster, InputManager inputManager, int id, int numFilas, int numColumnas)
     {
+        this.caster = caster;
         this.inputManager = inputManager;
         this.iD = id;
 
@@ -48,8 +51,8 @@ public class BarraAcciones extends AbstractModel implements BarraAccionesI
     }
 
 
-
-
+    @Override public CasterConTalentos getCaster()
+    { return caster; }
 
     @Override public String getKeybind (int posX, int posY)
     {   return barraAcciones.get(posY).get(posX).keybind; }
@@ -69,6 +72,7 @@ public class BarraAcciones extends AbstractModel implements BarraAccionesI
 
     @Override public AccionI getAccion(int posX, int posY)
     {   return barraAcciones.get(posY).get(posX).accion; }
+
 
     @Override public void setKeycode (int posX, int posY, int keycode)
     {

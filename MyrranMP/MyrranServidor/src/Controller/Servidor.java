@@ -70,6 +70,15 @@ public class Servidor extends Server
             Object parametros = ((NetDTO.SetParametrosSpell) obj).parametrosSpell;
             controlador.cambiarParametrosSpell(con.getID(), parametros);
         }
+
+        if (obj instanceof NetDTO.EnviarModificarSkillTalentoPPC)
+        {
+            int conID = con.getID();
+            String skillID = ((NetDTO.EnviarModificarSkillTalentoPPC) obj).skillID;
+            int statID = ((NetDTO.EnviarModificarSkillTalentoPPC) obj).statID;
+            int valor = ((NetDTO.EnviarModificarSkillTalentoPPC) obj).valor;
+            controlador.modificarSkillTalentoPC(conID, skillID, statID, valor);
+        }
     }
 
     public void enviarACliente(int connectionID, Object obj)

@@ -1,9 +1,12 @@
 package Model.Classes.Mobiles;// Created by Hanto on 07/04/2014.
 
 
+import Core.SkillTalentos;
+import DB.DAO;
 import DTO.NetDTO;
 import Interfaces.BDebuff.AuraI;
-import Interfaces.EntidadesPropiedades.Caster;
+import Interfaces.BDebuff.BDebuffI;
+import Interfaces.EntidadesPropiedades.CasterConTalentos;
 import Interfaces.EntidadesPropiedades.Debuffeable;
 import Interfaces.EntidadesPropiedades.Vulnerable;
 import Interfaces.EntidadesTipos.MobPC;
@@ -12,11 +15,9 @@ import Interfaces.Model.AbstractModel;
 import Interfaces.Spell.SpellI;
 import Model.Classes.Geo.Mapa;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
-public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debuffeable
+public class PC extends AbstractModel implements MobPC, CasterConTalentos, Vulnerable, Debuffeable
 {
     protected int connectionID;                                 //ID de la conexion con el servidor
     protected MapaI mapaI;                                      //mapaI al que pertecene el Player
@@ -45,8 +46,8 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debu
     protected String spellIDSeleccionado = null;
     protected Object parametrosSpell;
 
-    protected List<AuraI>listaDeAuras = new ArrayList<>();
-
+    private List<AuraI>listaDeAuras = new ArrayList<>();
+    private Map<String, SkillTalentos> talentos = new HashMap<>();
 
     //Constructor:
     public PC(int connectionID, Mapa mapa)
@@ -74,6 +75,7 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debu
     @Override public String getSpellIDSeleccionado()            { return spellIDSeleccionado; }
     @Override public Object getParametrosSpell()                { return parametrosSpell; }
 
+
     //SET:
     @Override public void setConnectionID (int connectionID)    { this.connectionID = connectionID; }
     @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0.01f; totalCastingTime = castingTime;}
@@ -89,6 +91,53 @@ public class PC extends AbstractModel implements MobPC, Caster, Vulnerable, Debu
     @Override public Iterator<AuraI> getAuras()                 { return listaDeAuras.iterator(); }
     @Override public void setMaxHPs(float HPs)                  { maxHPs = HPs; }
     @Override public void setActualHPs(float HPs)               { modificarHPs(HPs - actualHPs); }
+
+    @Override public void añadirSpellTalentos(String spellID)
+    {
+        SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellID);
+        if (spell == null) { System.out.println("ERROR: añadirSpellTalentos: spellID no encontrado: " + spellID ); return; }
+
+        SkillTalentos spellTalentos = new SkillTalentos(spell);
+        talentos.put(spellTalentos.getId(), spellTalentos);
+        Iterator<BDebuffI> iterator = spell.getDebuffsQueAplica();
+        while (iterator.hasNext())
+        {
+            SkillTalentos debuffTalentos = new SkillTalentos(iterator.next());
+            talentos.put(debuffTalentos.getId(), debuffTalentos);
+        }
+    }
+
+    @Override public int getSkillTalentos(String skillID, int statID)
+    {
+        SkillTalentos skillTalentos = talentos.get(skillID);
+        if (skillTalentos == null) return 0;
+        else return skillTalentos.getTalento(statID);
+    }
+
+    @Override public void setSkillTalento(String skillID, int statID, int valor)
+    {
+        SkillTalentos skillTalentos = talentos.get(skillID);
+        if (skillTalentos == null) { System.out.println("ERROR: setSkillTalento, spellID no existe: " + skillID); return; }
+        else
+        {
+            if (valor <0) { return; }
+            if (skillTalentos.getIsSpell())
+            {
+                SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(skillTalentos.getId());
+                int valormax = spell.getSkillStat(statID).getTalentoMaximo();
+                if (valor > valormax) return;
+            }
+            if (!skillTalentos.getIsSpell())
+            {
+                BDebuffI debuff = DAO.debuffDAOFactory.getBDebuffDAO().getBDebuff(skillTalentos.getId());
+                int valormax = debuff.getSkillStat(statID).getTalentoMaximo();
+                if (valor > valormax) return;
+            }
+        }
+        skillTalentos.setTalento(statID, valor);
+        Object modificarSkillTalento = new NetDTO.EnviarModificarSkillTalentoPPC(skillID, statID, valor);
+        notificarActualizacion("setSkillTalento", null, modificarSkillTalento);
+    }
 
     @Override public void modificarHPs(float HPs)
     {

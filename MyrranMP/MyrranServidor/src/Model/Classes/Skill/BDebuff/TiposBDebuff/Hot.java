@@ -1,6 +1,5 @@
 package Model.Classes.Skill.BDebuff.TiposBDebuff;// Created by Hanto on 10/06/2014.
 
-import Core.SkillStat;
 import Interfaces.BDebuff.AuraI;
 import Interfaces.EntidadesPropiedades.Vulnerable;
 import Model.Classes.Skill.BDebuff.TipoBDebuff;
@@ -12,12 +11,12 @@ public class Hot extends TipoBDebuff
     @Override public void inicializarSkillStats()
     {
         setID(this.getClass().getSimpleName().toUpperCase());
-        skillStats = new SkillStat[2];
+        setNumSkillStats(2);
     }
 
     @Override public void actualizarTick(AuraI aura)
     {
-        float HPsPorTick = aura.getDebuff().getSkillStat(STAT_Heal).getValorBase() * aura.getStacks();
+        float HPsPorTick = aura.getDebuff().getTalentedSkillStat(aura.getCaster(), STAT_Heal) * aura.getStacks();
 
         if (aura.getTarget() instanceof Vulnerable)
         {   ((Vulnerable)aura.getTarget()).modificarHPs((int)+HPsPorTick); }

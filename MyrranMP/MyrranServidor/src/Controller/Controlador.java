@@ -18,10 +18,19 @@ public class Controlador
         updater = new Updater(this, mundo);
     }
 
-    public void enviarACliente(int connectionID, Object obj)            { servidor.enviarACliente(connectionID, obj); }
+    public void enviarACliente(int connectionID, Object obj)
+    {   servidor.enviarACliente(connectionID, obj); }
 
-    public void añadirPC (int connectionID, float x, float y)           { mundo.añadirPC(connectionID, x, y); }
-    public void eliminarPC (int connectionID)                           { mundo.eliminarPC(connectionID); }
+    public void añadirPC (int connectionID, float x, float y)
+    {   mundo.añadirPC(connectionID, x, y);
+        mundo.getPC(connectionID).añadirSpellTalentos("Heal");
+        mundo.getPC(connectionID).setSkillTalento("Heal", 0, 10);
+        mundo.getPC(connectionID).setSkillTalento("Heal", 1, 17);
+        mundo.getPC(connectionID).setSkillTalento("Hot", 1, 10);
+    }
+
+    public void eliminarPC (int connectionID)
+    {   mundo.eliminarPC(connectionID); }
 
     public void moverPC (int connectionID, float x, float y)
     {   mundo.getPC(connectionID).setPosition(x, y);}
@@ -39,6 +48,10 @@ public class Controlador
 
     public void cambiarParametrosSpell(int connectionID, Object parametrosSpell)
     {   mundo.getPC(connectionID).setParametrosSpell(parametrosSpell); }
+
+    public void modificarSkillTalentoPC(int connectionID, String skillID, int statID, int valor)
+    {   mundo.getPC(connectionID).setSkillTalento(skillID, statID, valor);}
+
 
 
     public void netUpdater ()                                           { vista.netUpdate(); }

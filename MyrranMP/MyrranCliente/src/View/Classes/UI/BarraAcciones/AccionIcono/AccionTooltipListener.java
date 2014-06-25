@@ -1,4 +1,4 @@
-package View.Classes.UI.BarraAcciones.AccionView;// Created by Hanto on 19/06/2014.
+package View.Classes.UI.BarraAcciones.AccionIcono;// Created by Hanto on 19/06/2014.
 
 import DB.DAO;
 import Interfaces.Spell.SpellI;
@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class AccionTooltipListener extends InputListener
 {
     private AccionIcono accionIcono;
-    private Actor tooltip;
+    private SpellTooltip tooltip;
 
     public AccionTooltipListener(AccionIcono accionIcono)
     {   this.accionIcono = accionIcono; }
@@ -25,10 +25,10 @@ public class AccionTooltipListener extends InputListener
         {
             AccionI accion = accionIcono.getAccion();
 
-            if (accion instanceof SeleccionarSpell)
+            if (accion instanceof SeleccionarSpell && tooltip == null)
             {
                 SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(accion.getID());
-                tooltip = new SpellTooltip(spell);
+                tooltip = new SpellTooltip(spell, accionIcono.getBarra().getCaster());
                 accionIcono.setTooltip(tooltip);
             }
         }
@@ -39,7 +39,7 @@ public class AccionTooltipListener extends InputListener
         if (pointer <0)
         {
             accionIcono.setTooltip(null);
-            tooltip = null;
+            if (tooltip != null) { tooltip.eliminar(); tooltip = null; }
         }
     }
 
@@ -47,11 +47,18 @@ public class AccionTooltipListener extends InputListener
     {
         if (button == Input.Buttons.RIGHT && tooltip != null)
         {
-            event.getStage().addActor(tooltip);
-            Vector2 clickPos = getPosicionClick(event, x, y);
-            tooltip.setPosition(clickPos.x +16, clickPos.y +16);
+            AccionI accion = accionIcono.getAccion();
+
+            if (accion instanceof SeleccionarSpell)
+            {
+                SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(accion.getID());
+                SpellTooltip tooltipMovible = new SpellTooltip(spell, accionIcono.getBarra().getCaster());
+                event.getStage().addActor(tooltipMovible);
+                Vector2 clickPos = getPosicionClick(event, x, y);
+                tooltipMovible.setPosition(clickPos.x +16, clickPos.y +16);
+            }
         }
-        return false;
+        return true;
     }
 
     private Vector2 getPosicionClick(InputEvent event, float x, float y)

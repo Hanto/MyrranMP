@@ -13,7 +13,7 @@ public class MiscData
 
     //Network:
     public static final int NETWORK_Puerto_Servidor = 54555;
-    public static final int NETWORK_Client_Timeout = 5000*100;
+    public static final int NETWORK_Client_Timeout = 5000*10000;
     public static final int NETWORK_Update_Time = 40;
     public static final float SERVIDOR_Delta_Time = NETWORK_Update_Time/1000f;
     public static final float SERVIDOR_DistanciaVisionMobs = 1.2f;
@@ -94,6 +94,9 @@ public class MiscData
     public final static String RECURSO_NAMEPLATE_Nameplate_Fondo = "NameplateFondo";
     public final static String RECURSO_PIXIEPC_Sombra = "Sombra";
     public final static String RECURSO_Grid = "Grid";
+    public final static String RECURSO_SPELLTOOLTIP_TalentoFondo = "CasillaTalentoFondo";
+    public final static String RECURSO_SPELLTOOLTIP_Talento = "CasillaTalento";
+
     //Icono Accion
     public final static int ICONO_Accion_Ancho = 32;
     public final static int ICONO_Accion_Alto = 32;

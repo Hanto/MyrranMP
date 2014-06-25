@@ -5,7 +5,7 @@ import Data.MiscData;
 import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
 import Model.Classes.UI.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
-import View.Classes.UI.BarraAcciones.AccionView.AccionIcono;
+import View.Classes.UI.BarraAcciones.AccionIcono.AccionIcono;
 import View.Classes.UI.Ventana.Ventana;
 import View.Classes.UI.Ventana.VentanaMoverListener;
 import View.Classes.UI.Ventana.VentanaResizeListener;

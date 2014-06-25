@@ -6,7 +6,7 @@
 		<descripcion>Edita el Terreno</descripcion>
 		<SkillStats>
 			<Stat>
-				<numStat>0</numStat>
+				<id>0</id>
 				<nombre>Castear</nombre>
 				<valorBase>0.02</valorBase>
 				<isMejorable>false</isMejorable>
@@ -22,7 +22,7 @@
 		<descripcion>Cura los HPs</descripcion>
 		<SkillStats>
 			<Stat>
-				<numStat>0</numStat>
+				<id>0</id>
 				<nombre>Castear</nombre>
 				<valorBase>1.0</valorBase>
 				<isMejorable>true</isMejorable>
@@ -31,7 +31,7 @@
 				<bonoTalento>1</bonoTalento>
 			</Stat>
 			<Stat>
-				<numStat>1</numStat>
+				<id>1</id>
 				<nombre>Curacion</nombre>
 				<valorBase>500</valorBase>
 				<isMejorable>true</isMejorable>

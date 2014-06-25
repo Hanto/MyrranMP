@@ -74,7 +74,7 @@ public class SpellLocalDB
                 {
                     Element stat = (Element) listaStats.get(j);
 
-                    int numStat         = Integer.parseInt(stat.getChildText("numStat"));
+                    byte id             = Byte.parseByte(stat.getChildText("id"));
                     String nombreStat   = stat.getChildText("nombre");
                     float valorBase     = Float.parseFloat(stat.getChildText("valorBase"));
                     boolean isMejorable = Boolean.parseBoolean(stat.getChildText("isMejorable"));
@@ -82,11 +82,11 @@ public class SpellLocalDB
                     int costeTalento    = Integer.parseInt(stat.getChildText("costeTalento"));
                     float bonoTalento   = Float.parseFloat(stat.getChildText("bonoTalento"));
 
-                    spell.getSkillStat(numStat).setStat(nombreStat, valorBase);
-                    if (isMejorable) spell.getSkillStat(numStat).setTalentos(talentoMaximo, costeTalento, bonoTalento);
-                    else spell.getSkillStat(numStat).setIsMejorable(isMejorable);
+                    spell.getSkillStat(id).setStat(id, nombreStat, valorBase);
+                    if (isMejorable) spell.getSkillStat(id).setTalentos(talentoMaximo, costeTalento, bonoTalento);
+                    else spell.getSkillStat(id).setIsMejorable(isMejorable);
 
-                    System.out.println("\n  numStat:      " + numStat);
+                    System.out.println("\n  id:           " + id);
                     System.out.println("  nombreStat:   " + nombreStat);
                     System.out.println("  valorBase:    " + valorBase);
                     System.out.println("  isMejorable:  " + isMejorable);

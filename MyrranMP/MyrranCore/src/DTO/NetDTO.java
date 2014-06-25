@@ -25,6 +25,9 @@ public class NetDTO
         kryo.register(EliminarPPC.class);
         kryo.register(CastearPPC.class);
 
+        kryo.register(ModificarSkillTalentoPPC.class);
+        kryo.register(EnviarModificarSkillTalentoPPC.class);
+
         kryo.register(CastingTimePercent.class);
 
         kryo.register(SetTerreno.class);
@@ -143,6 +146,27 @@ public class NetDTO
         public CastearPPC(Boolean castear, int x, int y)
         {   this.castear = castear; targetX = x; targetY = y; }
     }
+
+    public static class EnviarModificarSkillTalentoPPC
+    {
+        public String skillID;
+        public int statID;
+        public int valor;
+        public EnviarModificarSkillTalentoPPC() {}
+        public EnviarModificarSkillTalentoPPC(String skillID, int statID, int valor)
+        {   this.skillID = skillID; this.statID = statID; this.valor = valor; }
+    }
+
+    public static class ModificarSkillTalentoPPC
+    {
+        public String skillID;
+        public int statID;
+        public int valor;
+        public ModificarSkillTalentoPPC() {}
+        public ModificarSkillTalentoPPC(String skillID, int statID, int valor)
+        {   this.skillID = skillID; this.statID = statID; this.valor = valor; }
+    }
+
 
     public static class CastingTimePercent
     {

@@ -1,7 +1,6 @@
 package Model.Classes.Skill.Spell.TiposSpell;
 // @author Ivan Delgado Huerta
 
-import Core.SkillStat;
 import Data.MiscData;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.Spell.SpellI;
@@ -14,7 +13,7 @@ public class EditarTerreno extends TipoSpell
     @Override public void inicializarSkillStats() 
     {
         setID(this.getClass().getSimpleName().toUpperCase());
-        skillStats = new SkillStat[1];
+        setNumSkillStats(1);
     }
 
     @Override public void ejecutarCasteo(SpellI skill, Caster caster, int targetX, int targetY)

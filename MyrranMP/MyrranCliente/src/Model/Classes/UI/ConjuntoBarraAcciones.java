@@ -1,12 +1,12 @@
 package Model.Classes.UI;// Created by Hanto on 08/05/2014.
 
+import Interfaces.EntidadesPropiedades.CasterConTalentos;
 import Interfaces.Model.AbstractModel;
 import Interfaces.UI.Acciones.AccionI;
 import Interfaces.UI.BarraAcciones.BarraAccionesI;
 import Interfaces.UI.BarraAcciones.ListaAccionesI;
 import Model.Classes.Acciones.Accion;
 import Model.Classes.Input.InputManager;
-import Model.Classes.UI.BarraAcciones;
 import Model.DTO.BarraAccionesDTO;
 
 import java.util.HashMap;
@@ -16,9 +16,13 @@ public class ConjuntoBarraAcciones extends AbstractModel
 {
     protected InputManager inputManager;
     protected Map<Integer, BarraAcciones> listaDeBarraAcciones = new HashMap<>();
+    protected CasterConTalentos caster;
 
-    public ConjuntoBarraAcciones(InputManager inputManager)
-    {   this.inputManager = inputManager; }
+    public ConjuntoBarraAcciones(CasterConTalentos caster, InputManager inputManager)
+    {
+        this.caster = caster;
+        this.inputManager = inputManager;
+    }
 
 
 
@@ -33,7 +37,7 @@ public class ConjuntoBarraAcciones extends AbstractModel
         {   if (!listaDeBarraAcciones.containsKey(iDMenor)) break; }
 
 
-        BarraAcciones barraAcciones = new BarraAcciones(inputManager, iDMenor, filas, columnas);
+        BarraAcciones barraAcciones = new BarraAcciones(caster, inputManager, iDMenor, filas, columnas);
         listaDeBarraAcciones.put(barraAcciones.getID(), barraAcciones);
 
         Object añadirBarraAccionesDTO = new BarraAccionesDTO.AñadirBarraAcciones(barraAcciones);

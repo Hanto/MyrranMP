@@ -70,7 +70,7 @@ public class BDebuffLocalDB
                 {
                     Element stat = (Element) listaStats.get(j);
 
-                    int numStat         = Integer.parseInt(stat.getChildText("numStat"));
+                    byte id             = Byte.parseByte(stat.getChildText("id"));
                     String nombreStat   = stat.getChildText("nombre");
                     float valorBase     = Float.parseFloat(stat.getChildText("valorBase"));
                     boolean isMejorable = Boolean.parseBoolean(stat.getChildText("isMejorable"));
@@ -78,11 +78,11 @@ public class BDebuffLocalDB
                     int costeTalento    = Integer.parseInt(stat.getChildText("costeTalento"));
                     float bonoTalento   = Float.parseFloat(stat.getChildText("bonoTalento"));
 
-                    debuff.getSkillStat(numStat).setStat(nombreStat, valorBase);
-                    if (isMejorable) debuff.getSkillStat(numStat).setTalentos(talentoMaximo, costeTalento, bonoTalento);
-                    else debuff.getSkillStat(numStat).setIsMejorable(isMejorable);
+                    debuff.getSkillStat(id).setStat(id, nombreStat, valorBase);
+                    if (isMejorable) debuff.getSkillStat(id).setTalentos(talentoMaximo, costeTalento, bonoTalento);
+                    else debuff.getSkillStat(id).setIsMejorable(isMejorable);
 
-                    System.out.println("\n  numStat:      " + numStat);
+                    System.out.println("\n  id:           " + id);
                     System.out.println("  nombreStat:   " + nombreStat);
                     System.out.println("  valorBase:    " + valorBase);
                     System.out.println("  isMejorable:  " + isMejorable);

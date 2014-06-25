@@ -28,7 +28,7 @@ public class UI
     public UI (Player player, Controlador controlador)
     {
         inputManager = new InputManager(player, playerEstado, controlador);
-        conjuntoBarraAcciones = new ConjuntoBarraAcciones(inputManager);
+        conjuntoBarraAcciones = new ConjuntoBarraAcciones(player, inputManager);
         barraTerrenos  = new BarraTerrenos(player);
 
 

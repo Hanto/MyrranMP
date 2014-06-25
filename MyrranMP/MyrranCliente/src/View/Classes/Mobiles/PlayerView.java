@@ -138,7 +138,8 @@ public class PlayerView extends Group implements PropertyChangeListener
         controlador.enviarAServidor(setSpellIDSeleccionado);
     }
 
-
+    public void modificarSkillTalento(NetDTO.EnviarModificarSkillTalentoPPC skillTalento)
+    {   controlador.enviarAServidor(skillTalento); }
 
 
     @Override public void propertyChange(PropertyChangeEvent evt)
@@ -184,5 +185,8 @@ public class PlayerView extends Group implements PropertyChangeListener
 
         if (evt.getNewValue() instanceof PlayerDTO.SetParametrosSpell)
         {   setParametrosSpell(); }
+
+        if (evt.getNewValue() instanceof NetDTO.EnviarModificarSkillTalentoPPC)
+        {   modificarSkillTalento((NetDTO.EnviarModificarSkillTalentoPPC)evt.getNewValue()); }
     }
 }

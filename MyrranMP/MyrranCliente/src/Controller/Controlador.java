@@ -91,6 +91,10 @@ public class Controlador implements ControladorUI
         if (connectionID == mundo.getPlayer().getConnectionID()) {}
         else mundo.eliminarPC(connectionID);
     }
+    public void modificarSkillTalentoPCC(int connectionID, String skillID, int statID, int valor)
+    {
+        if (connectionID == mundo.getPlayer().getConnectionID()) { mundo.getPlayer().modificarSkillTalento(skillID, statID, valor);}
+    }
     public void actualizarPPC(NetDTO.ActualizarPPC updatePlayer)
     {
         if (updatePlayer.connectionID == mundo.getPlayer().getConnectionID())

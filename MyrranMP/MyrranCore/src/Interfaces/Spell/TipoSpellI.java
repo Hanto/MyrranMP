@@ -11,13 +11,14 @@ public interface TipoSpellI
     public void setID(String id);
     public void setNombre (String nombre);
     public void setDescripcion (String descripcion);
-    public void setSkillStat(SkillStat skillStat, int numStat);
+    public void setSkillStat(SkillStat skillStat, int statID);
+    public void setNumSkillStats(int numSkillStats);
 
     //GET
     public String getID();
     public String getNombre();
     public String getDescripcion ();
-    public SkillStat getSkillStat(int numSkillStat);
+    public SkillStat getSkillStat(int statID);
     public Iterator<SkillStat> getSkillStats();
     public int getNumSkillStats();
 

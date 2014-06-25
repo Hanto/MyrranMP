@@ -54,11 +54,16 @@ public class Vista
         batch.end();
 
         synchronized (mundoView)
-        {   mundoView.act(delta); }
-        mundoView.draw();
+        {
+            mundoView.act(delta);
+            mundoView.draw();
+        }
 
-        uiView.act(delta);
-        uiView.draw();
+        synchronized (uiView)
+        {
+            uiView.act(delta);
+            uiView.draw();
+        }
 
         uiView.setTextoFPS(Integer.toString(Gdx.graphics.getFramesPerSecond()) + "fps");
 

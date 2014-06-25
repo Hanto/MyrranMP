@@ -146,7 +146,8 @@ public class PcView implements PropertyChangeListener
 
         actualizarPlayersCercanos(eliminarPPC);
     }
-
+    private void modificarSkillTalento(NetDTO.EnviarModificarSkillTalentoPPC skillTalento)
+    {   actualizarPlayer(skillTalento); }
 
 
 
@@ -164,6 +165,9 @@ public class PcView implements PropertyChangeListener
 
         if (evt.getNewValue() instanceof NetDTO.EliminarPPC)
         {   eliminar((NetDTO.EliminarPPC)evt.getNewValue()); }
+
+        if (evt.getNewValue() instanceof NetDTO.EnviarModificarSkillTalentoPPC)
+        {   modificarSkillTalento((NetDTO.EnviarModificarSkillTalentoPPC)evt.getNewValue()); }
 
         if (isVisible())
         {

@@ -4,10 +4,11 @@ package Interfaces.BDebuff;// Created by Hanto on 09/06/2014.
 import Core.SkillStat;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesPropiedades.Debuffeable;
+import Interfaces.Spell.Skill;
 
 import java.util.Iterator;
 
-public interface BDebuffI
+public interface BDebuffI extends Skill
 {
 //SET
     public void setID(String id);
@@ -24,8 +25,10 @@ public interface BDebuffI
     public boolean isDebuff ();
     public byte getStacksMaximos ();
     public TipoBDebuffI getTipoBDebuff();
-    public SkillStat getSkillStat(int numSkillStat);
+    public float getTalentedSkillStat(Caster caster, int statID);
+    public SkillStat getSkillStat(int statID);
     public Iterator<SkillStat> getSkillStats();
+    public int getNumSkillStats();
 
     //METODOS:
     public void aplicarDebuff(Caster caster, Debuffeable target);

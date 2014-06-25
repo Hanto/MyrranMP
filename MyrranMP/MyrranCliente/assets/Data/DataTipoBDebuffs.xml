@@ -9,7 +9,7 @@
 		<icono>Editar</icono>
 		<SkillStats>
 			<Stat>
-				<numStat>0</numStat>
+				<id>0</id>
 				<nombre>Duracion</nombre>
 				<valorBase>10</valorBase>
 				<isMejorable>true</isMejorable>
@@ -18,7 +18,7 @@
 				<bonoTalento>1</bonoTalento>
 			</Stat>
 			<Stat>
-				<numStat>1</numStat>
+				<id>1</id>
 				<nombre>Curacion</nombre>
 				<valorBase>10</valorBase>
 				<isMejorable>true</isMejorable>

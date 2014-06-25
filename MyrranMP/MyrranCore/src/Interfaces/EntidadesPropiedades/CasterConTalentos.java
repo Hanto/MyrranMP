@@ -2,6 +2,7 @@ package Interfaces.EntidadesPropiedades;// Created by Hanto on 23/06/2014.
 
 public interface CasterConTalentos extends Caster
 {
-    public int getSpellTalentos(String idSpell, int numStat);
-    public int getBDebuffTalentos(String BDebuff, int numStat);
+    public void añadirSpellTalentos(String spellID);
+    public int getSkillTalentos(String spelloDebuffID, int statID);
+    public void setSkillTalento(String spelloDebuffID, int statID, int talento);
 }

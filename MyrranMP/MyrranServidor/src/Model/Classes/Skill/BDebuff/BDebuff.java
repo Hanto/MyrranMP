@@ -8,6 +8,7 @@ import Interfaces.BDebuff.AuraI;
 import Interfaces.BDebuff.BDebuffI;
 import Interfaces.BDebuff.TipoBDebuffI;
 import Interfaces.EntidadesPropiedades.Caster;
+import Interfaces.EntidadesPropiedades.CasterConTalentos;
 import Interfaces.EntidadesPropiedades.Debuffeable;
 
 import java.util.Arrays;
@@ -15,13 +16,16 @@ import java.util.Iterator;
 
 public class BDebuff implements BDebuffI
 {
+    protected final int STAT_Duracion = 0;
+
     protected String id;
     protected String nombre;
     protected String descripcion;
     protected boolean isDebuff = false;
     protected byte stacksMaximos = 0;
     protected TipoBDebuffI tipoBDebuff;                             //Command Pattern: Codigo que se ejecuta al castear el skill
-    protected SkillStat[] skillStats;                               //Stats concretos del skill
+
+    private SkillStat[] skillStats;                               //Stats concretos del skill
 
     //SET
     @Override public void setID(String id)                          { this.id = id; }
@@ -36,10 +40,11 @@ public class BDebuff implements BDebuffI
     @Override public String getNombre ()                            { return nombre; }
     @Override public String getDescripcion ()                       { return descripcion; }
     @Override public boolean isDebuff ()                            { return isDebuff; }
-    @Override public byte getStacksMaximos ()                        { return stacksMaximos; }
+    @Override public byte getStacksMaximos ()                       { return stacksMaximos; }
     @Override public TipoBDebuffI getTipoBDebuff()                  { return tipoBDebuff; }
-    @Override public SkillStat getSkillStat(int numSkillStat)       { return skillStats[numSkillStat]; }
+    @Override public SkillStat getSkillStat(int statID)             { return skillStats[statID]; }
     @Override public Iterator<SkillStat> getSkillStats()            { return Arrays.asList(skillStats).iterator(); }
+    @Override public int getNumSkillStats()                         { return skillStats.length; }
 
     //CONSTRUCTOR:
     public BDebuff (TipoBDebuffI tipoBDebuff)
@@ -79,6 +84,16 @@ public class BDebuff implements BDebuffI
         return null;
     }
 
+    @Override public float getTalentedSkillStat(Caster caster, int statID)
+    {
+        if (caster instanceof CasterConTalentos)
+        {
+            return getSkillStat(statID).getValorBase() +
+                    ((CasterConTalentos)caster).getSkillTalentos(id, statID) * getSkillStat(statID).getBonoTalento();
+        }
+        else return getSkillStat(statID).getValorBase();
+    }
+
     @Override public void aplicarDebuff(Caster caster, Debuffeable target)
     {
         AuraI aura = auraExisteYEsDelCaster(caster, target);
@@ -92,7 +107,7 @@ public class BDebuff implements BDebuffI
         else
         {
             aura = new Aura(this, caster, target);
-            aura.setDuracionMax(getSkillStat(TipoBDebuff.STAT_Duracion).getValorBase());
+            aura.setDuracionMax(getTalentedSkillStat(caster, STAT_Duracion));
             target.añadirAura(aura);
         }
     }

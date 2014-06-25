@@ -2,6 +2,7 @@ package Core;
 //* @author Ivan Delgado Huerta
 public class SkillStat
 {
+    private int id;
     private String nombre;                           //Nombre del SkillStat: por ej: "Daño, velocidad, Casting Time"
     private float valorBase;                         //Valor Base del SkillStat: por ej: 100 de Daño
     private boolean isMejorable = false;            //Indica si es un SkillStat mejorable por Talentos
@@ -11,6 +12,7 @@ public class SkillStat
 
 
     //GET:
+    public int getID()                              { return id;}
     public String getNombre()                       { return nombre; }
     public float getValorBase()                     { return valorBase; }
     public boolean getisMejorable()                 { return isMejorable; }
@@ -19,8 +21,8 @@ public class SkillStat
     public float getBonoTalento()                   { return bonoTalento; }
 
 
-
     //SET:
+    public void setID(byte id)                      { this.id = id; }
     public void setNombre (String nombre)           { this.nombre = nombre; }
     public void setValorBase (float valorBase)      { this.valorBase = valorBase; }
     public void setIsMejorable(boolean b)           { this.isMejorable = b; }
@@ -31,16 +33,18 @@ public class SkillStat
     //CONSTRUCTOR:
     public SkillStat() {}
 
-    public SkillStat(String nombre, float valor)
+    public SkillStat(int id, String nombre, float valor)
     {   //constructor:
+        this.id = id;
         this.nombre = nombre;
-        valorBase = valor;
+        this.valorBase = valor;
         isMejorable = false;
     }
     
     //CONSTRUCTOR: (constructor Copia)
     public SkillStat(SkillStat skillStat)
     {
+        this.id = skillStat.id;
         this.nombre = skillStat.nombre;
         this.valorBase = skillStat.valorBase;
         this.talentoMaximo = skillStat.talentoMaximo;
@@ -52,10 +56,12 @@ public class SkillStat
     public void setValor (float valor)
     {   valorBase = valor; }
 
-    public void setStat (String nombre, float valor)
+    public void setStat (int id, String nombre, float valor)
     {
+        this.id = id;
         this.nombre = nombre;
         valorBase = valor;
+        isMejorable = false;
     }
 
     public void setTalentos (int max, int coste, float bono)

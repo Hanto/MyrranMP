@@ -7,7 +7,7 @@ import Interfaces.EntidadesPropiedades.Debuffeable;
 
 import java.util.Iterator;
 
-public interface SpellI
+public interface SpellI extends Skill
 {
     //SET
     public void setID(String id);
@@ -20,9 +20,11 @@ public interface SpellI
     public String getNombre ();
     public String getDescripcion ();
     public TipoSpellI getTipoSpell();
-    public SkillStat getSkillStat(int numSkillStat);
+    public float getTalentedSkillStat(Caster caster, int statID);
+    public SkillStat getSkillStat(int statID);
     public Iterator<SkillStat> getSkillStats();
     public Iterator<BDebuffI> getDebuffsQueAplica();
+    public int getNumSkillStats();
 
     //METODOS:
     public void añadirDebuff (BDebuffI debuff);
