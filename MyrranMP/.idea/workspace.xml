@@ -10,23 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7d314d5-d115-4c47-b321-a6ac893ae3ac" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/assets/Images/TexturasMisc/Casillero.png" afterPath="$PROJECT_DIR$/MyrranCliente/assets/Images/TexturasMisc/Casillero.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/assets/Atlas/atlas10.png" afterPath="$PROJECT_DIR$/MyrranCliente/assets/Atlas/atlas10.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/AccionIcono/AccionIcono.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/AccionIcono/AccionIcono.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/AccionIcono/AccionTooltipListener.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/AccionIcono/AccionTooltipListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/BarraAccionesView.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/BarraAccionesView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/Controller/Cliente.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/Controller/Cliente.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/Controller/Controlador.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/Controller/Controlador.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Controller/Controlador.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Controller/Controlador.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCore/src/Interfaces/UI/BarraAcciones/ControladorBarraAccionI.java" afterPath="$PROJECT_DIR$/MyrranCore/src/Interfaces/UI/BarraAcciones/ControladorBarraAccionI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCore/src/DTO/NetDTO.java" afterPath="$PROJECT_DIR$/MyrranCore/src/DTO/NetDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Mobiles/PC.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Mobiles/PC.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/View/PcView.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/View/PcView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Mobiles/Player.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Mobiles/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/PlayerView.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/PlayerView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Controller/Servidor.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Controller/Servidor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/assets/Atlas/atlas.atlas" afterPath="$PROJECT_DIR$/MyrranCliente/assets/Atlas/atlas.atlas" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MyrranServidor.iws" />
@@ -388,7 +371,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="PackagesPane" proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers ProjectPane="false" />
       <showModules PackagesPane="true" />
@@ -1117,7 +1100,7 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1131,123 +1114,11 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="View" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyrranMP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyrranCliente" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="View" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Classes" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UI" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyrranMP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyrranCliente" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="View" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Classes" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UI" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BarraAcciones" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyrranMP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyrranCliente" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="View" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Classes" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UI" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BarraAcciones" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AccionIcono" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyrranMP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyrranCliente" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="View" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Classes" />
+              <option name="myItemId" value="Fonts" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1309,6 +1180,7 @@
       <recent name="Modelo.DTO.MundoDTO" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Google Drive\Programacion\IntelliJ IDEA\MyrranMP\MyrranCliente\assets\Fonts" />
       <recent name="D:\Google Drive\Programacion\IntelliJ IDEA\MyrranServidor" />
       <recent name="D:\Google Drive\Programacion\IntelliJ IDEA\MyrranServidor\MyrranServidor" />
     </key>
@@ -1867,7 +1739,11 @@
       <created>1403707687299</created>
       <updated>1403707687299</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="v1.380&#10;-El Servidor envia los nuevos SpellTalentos al cliente ahora&#10;-El tooltip envia la peticion de alterar los talentos via controlador, en lugar de modificar el model&#10;-Hay un unico DTO encargado de transportar los datos de la modificacion de talentos en lugar de dos&#10;&#10;&#10;&#10;&#10;">
+      <created>1403723574036</created>
+      <updated>1403723574036</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1892,7 +1768,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1216" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="644" y="419" width="670" height="450" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1913,7 +1789,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.15388711" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="-375" y="-1" width="375" height="1161" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.15388711" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="-375" y="-1" width="375" height="1161" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.23503521" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="3278" y="1" width="559" height="1195" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1937,7 +1813,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="v1.358 Assets restantes" />
     <MESSAGE value="v1.359 Todos los DAO Local cargan datos desde XML, al 80%" />
     <MESSAGE value="v1.360 AccionFactory en pruebas, acepta parametros" />
     <MESSAGE value="v1.361 Librerias en local para facilitar programar a distancia" />
@@ -1962,7 +1837,8 @@
     <MESSAGE value="v1.378&#10;-SkillStats() de TipoSpell y TipoBDebuff ya no devuelve un array, eso desvelaria la implementacion exacta de ambos, ahora devuelve un iterator como dios manda, se añade un metodo para acceder a cada elemento llamado getSkillStat, de esta manera podemos implementar el tipo de almacenamiento de datos que queramos sin desvelarlo a las clases que acceden a el&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;" />
     <MESSAGE value="v1.379&#10;-El metodo exit del AccionTooltipListener tiene que desubscribir al observador antes de crear otro tooltip, o si no se queda para siempre el tooltip invisible escuchando los datos&#10;-Cuando creamos un tooltip de Spells apretando el boton derecho en lugar de reaprovechar el que tenemos, creamos uno. (para evitar problemas)&#10;-Las barras de acciones reciben como parametro CasterConTalentos para poder construir los Tooltips de los Spells&#10;-Los Spells y Debuffs ganan el metodo de computar el valor total de un stat en funcion del valor base y del numero total de puntos de talento que hayamos invertado multiplcado por el bono que da cada punto de talento&#10;-Los Spells,TipoSpells, Debuffs y TipoDebuffs esconden las implementaciones de sus estructuras de Datos, a ellas se acceden a atraves de metodos publicos, nunca directasmente a traves de dichas estructuras, tambien disponen de los metodos para saber el numero de SkillStats, &#10;-Cada SkillStat tienen un ID numerico&#10;-Creado interface, CasterConTalentos, para aquellos Casters que puedan personalizar sus Spells&#10;-Implementados Los metodos del interfaz CasterConTalentos en el Player del servidor y el Cliente, en ambos hay logica inteligente para no desperdiciar ancho de banda&#10;-Creado Interfaz Skill comun a Spell y Debuff, se compone de los metodos comunes a ambos&#10;-Creada clase SkillTalentos, para almecenar los talentos asignados a cada skill&#10;-Cambiados los constructores alternativos de las clases Debuff,Spell, TipoDebuff y TipoSpell, ahora son mas optimos&#10;-SpellTooltip ahora acepta clicks en la barra de talentos para aumentar o quitar los talentos. Lo que hace es enviar al Servidor la peticion, antes el cliente procesa la logica para no enviar peticiones inutiles que consuman ancho de banda (como bajar por debajo de 0 talentos), una vez llega confirmacion del servidor el resultado se actualiza en el cliente. Cualquier stat es alterable dentro de sus parametros y sus efectos son contrastables al instante&#10;&#10;&#10;&#10;&#10;&#10;&#10;" />
     <MESSAGE value="v1.380&#10;-El Servidor envia los nuevos SpellTalentos al cliente ahora&#10;-El tooltip envia la peticion de alterar los talentos via controlador, en lugar de modificar el model&#10;-Hay un unico DTO encargado de transportar los datos de la modificacion de talentos en lugar de dos&#10;&#10;&#10;&#10;&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.380&#10;-El Servidor envia los nuevos SpellTalentos al cliente ahora&#10;-El tooltip envia la peticion de alterar los talentos via controlador, en lugar de modificar el model&#10;-Hay un unico DTO encargado de transportar los datos de la modificacion de talentos en lugar de dos&#10;&#10;&#10;&#10;&#10;" />
+    <MESSAGE value="v1.381&#10;-Fuentes que faltaban&#10;&#10;&#10;&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.381&#10;-Fuentes que faltaban&#10;&#10;&#10;&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
