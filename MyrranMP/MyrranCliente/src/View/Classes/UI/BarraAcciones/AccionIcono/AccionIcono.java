@@ -99,7 +99,7 @@ public class AccionIcono extends Actor implements Icono
     @Override public void draw (Batch batch, float alpha)
     {   //Posicion Elementos:
         keybind.setPosition(getX(), getY() + 32 -4);
-        if (tooltip != null) tooltip.setPosition(getX(), getY() + 32 +8);
+        if (tooltip != null) { tooltip.setPosition(getX(), getY() + 32 +8); }
 
         //Dibujado Elementos:
         batch.setColor(this.getColor());

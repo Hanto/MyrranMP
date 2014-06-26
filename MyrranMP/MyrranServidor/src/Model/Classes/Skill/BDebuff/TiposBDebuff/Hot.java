@@ -6,7 +6,7 @@ import Model.Classes.Skill.BDebuff.TipoBDebuff;
 
 public class Hot extends TipoBDebuff
 {
-    public static final int STAT_Heal = 1;
+    public final int STAT_Heal = 1;
 
     @Override public void inicializarSkillStats()
     {

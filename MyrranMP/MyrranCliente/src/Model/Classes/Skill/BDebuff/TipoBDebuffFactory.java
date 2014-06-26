@@ -1,5 +1,6 @@
 package Model.Classes.Skill.BDebuff;
 
+import Model.Classes.Skill.BDebuff.TiposBDebuff.Bomba;
 import Model.Classes.Skill.BDebuff.TiposBDebuff.Hot;
 
 public enum TipoBDebuffFactory
@@ -9,6 +10,12 @@ public enum TipoBDebuffFactory
         @Override
         public TipoBDebuff nuevo()
         {   return new Hot(); }
+    },
+    BOMBA("Bomba")
+    {
+        @Override
+        public TipoBDebuff nuevo()
+        {   return new Bomba(); }
     };
 
 

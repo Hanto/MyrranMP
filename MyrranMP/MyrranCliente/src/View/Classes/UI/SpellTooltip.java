@@ -50,8 +50,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
         background.setColor(1f,1f,1f,0.95f);
         icono = new Image(RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRecursos(spell.getID()).getIcono());
         icono.addListener(new VentanaMoverListener(icono, this));
-        tabla = new Table().bottom().left();
-        tabla.setPosition(0, 8);
+        tabla = new Table().bottom().left().padLeft(4).padRight(4).padBottom(4);
 
         this.addActor(background);
         this.addActor(icono);
@@ -82,10 +81,13 @@ public class SpellTooltip extends Group implements PropertyChangeListener
     {
         tabla.clear();
         Texto texto;
+        BitmapFont fuenteNombre = RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente("20");
         BitmapFont fuente = RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres);
 
         //NOMBRE SPELL::
-        texto = new Texto(spell.getNombre(), fuente, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
+        texto = new Texto(spell.getNombre(), fuenteNombre, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
+        int textoSobresalePorArriba = (int)(texto.getHeight()/2+2);
+        texto.setTouchable(Touchable.disabled);
         tabla.add(texto).left().padRight(4).padLeft(4);
         tabla.row();
 
@@ -104,7 +106,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
             this.printSkillStats(tabla, debuff.getSkillStats(), debuff);
         }
 
-        this.setSize(tabla.getMinWidth(), tabla.getMinHeight());
+        this.setSize(tabla.getMinWidth(), tabla.getMinHeight() - textoSobresalePorArriba);
         background.setBounds(0, 0, getWidth(), getHeight());
         icono.setPosition(0 - icono.getWidth(), getHeight() - icono.getHeight());
         //tabla.debug();

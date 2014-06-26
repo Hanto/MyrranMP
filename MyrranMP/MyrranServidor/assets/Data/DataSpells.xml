@@ -24,6 +24,7 @@
 		<descripcion>Cura los HPs</descripcion>
 		<tipoSpell>HEAL</tipoSpell>
 		<debuff>Hot</debuff>
+		<debuff>Bomba</debuff>
 		<icono>Muros</icono>
 		<SkillStats>
 			<Stat>

@@ -20,6 +20,8 @@ public class ConsolaOutputStream extends OutputStream
 
     @Override public void write(int b) throws IOException
     {
+        System.out.write(b);
+
         SimpleAttributeSet saSet = new SimpleAttributeSet ();
         StyleConstants.setFontSize(saSet, 11);
 

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <TipoBDebuffs>
 	<TipoBDebuff>
 		<iD>HOT</iD>
@@ -20,6 +20,34 @@
 			<Stat>
 				<id>1</id>
 				<nombre>Curacion</nombre>
+				<valorBase>10</valorBase>
+				<isMejorable>true</isMejorable>
+				<talentoMaximo>50</talentoMaximo>
+				<costeTalento>1</costeTalento>
+				<bonoTalento>1</bonoTalento>
+			</Stat>
+		</SkillStats>
+	</TipoBDebuff>
+	<TipoBDebuff>
+		<iD>BOMBA</iD>
+		<nombre>Bomba</nombre>
+		<descripcion>Hace explotar al cabo de su duracion por cada stack acumulado.</descripcion>
+		<isDebuff>true</isDebuff>
+		<stacksMaximos>5</stacksMaximos>
+		<icono>Editar</icono>
+		<SkillStats>
+			<Stat>
+				<id>0</id>
+				<nombre>Duracion</nombre>
+				<valorBase>10</valorBase>
+				<isMejorable>true</isMejorable>
+				<talentoMaximo>50</talentoMaximo>
+				<costeTalento>1</costeTalento>
+				<bonoTalento>1</bonoTalento>
+			</Stat>
+			<Stat>
+				<id>1</id>
+				<nombre>Daño</nombre>
 				<valorBase>10</valorBase>
 				<isMejorable>true</isMejorable>
 				<talentoMaximo>50</talentoMaximo>
