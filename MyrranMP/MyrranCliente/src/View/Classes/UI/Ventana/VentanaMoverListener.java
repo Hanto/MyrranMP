@@ -50,6 +50,7 @@ public class VentanaMoverListener extends DragListener
 
     @Override public boolean touchDown (InputEvent event, float x, float y, int pointer, int button)
     {
+        actor.toFront();
         posicionInicial.set(x,y);
         return true;
     }

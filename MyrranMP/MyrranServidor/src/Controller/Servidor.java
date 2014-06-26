@@ -22,7 +22,7 @@ public class Servidor extends Server
 
         this.addListener(new Listener.ThreadedListener(new Listener()
         {
-            public void connected (Connection con)              { controlador.añadirPC(con.getID(),0f,0f); }
+            public void connected (Connection con)              { controlador.añadirPC(con.getID()); }
             public void disconnected (Connection con)           { controlador.eliminarPC(con.getID()); }
             public void received (Connection con, Object obj)   { procesarMensajeCliente(con, obj); }
         }));

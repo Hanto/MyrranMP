@@ -50,6 +50,15 @@ public class NetDTO
     }
 
     //Network DTOs:
+    public static class AñadirPPC
+    {
+        public int connectionID;
+
+        public AñadirPPC() {}
+        public AñadirPPC(MobPC pc)
+        {   connectionID = pc.getConnectionID(); }
+    }
+
     public static class ActualizarPPC
     {
         public int connectionID;
@@ -72,15 +81,6 @@ public class NetDTO
             y = pc.getY();
             numAnimacion = pc.getNumAnimacion();
         }
-    }
-
-    public static class AñadirPPC
-    {
-        public int connectionID;
-
-        public AñadirPPC() {}
-        public AñadirPPC(MobPC pc)
-        {   connectionID = pc.getConnectionID(); }
     }
 
     public static class PosicionPPC

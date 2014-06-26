@@ -1,12 +1,16 @@
 package zMain;// Created by Hanto on 08/04/2014.
 
+import Core.ConsolaOutputStream;
 import Data.MiscData;
+import Model.GameState.Consolas;
 import View.PantallaLibGDX;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+
+import java.io.PrintStream;
 
 public class MyrranClient extends Game
 {
@@ -15,6 +19,10 @@ public class MyrranClient extends Game
 
     public static void main (String[] arg)
     {
+        PrintStream printStream = new PrintStream(new ConsolaOutputStream(Consolas.get().consolaPrincipal));
+        System.setOut(printStream);
+        System.setErr(printStream);
+
         System.setProperty("user.name","Myrran");
 
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();

@@ -2,6 +2,7 @@
 <TexturasMisc>
   	<Textura>Sombra</Textura>
   	<Textura>Casillero</Textura>
+	<Textura>Casillero2</Textura>
   	<Textura>RebindOn</Textura>
   	<Textura>RebindOff</Textura>
 	<Textura>Borrar</Textura>

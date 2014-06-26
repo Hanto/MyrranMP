@@ -44,7 +44,6 @@ public class Cliente extends Client
             int conID = ((NetDTO.PosicionPPC) obj).connectionID;
             float x = ((NetDTO.PosicionPPC) obj).x;
             float y = ((NetDTO.PosicionPPC) obj).y;
-
             controlador.moverPPC(conID, x, y);
         }
 
@@ -52,7 +51,6 @@ public class Cliente extends Client
         {
             int conID = ((NetDTO.AnimacionPPC) obj).connectionID;
             int numAnimacion = ((NetDTO.AnimacionPPC) obj).numAnimacion;
-
             controlador.cambiarAnimacionPPC(conID, numAnimacion);
         }
 
@@ -60,14 +58,12 @@ public class Cliente extends Client
         {
             int conID = ((NetDTO.ModificarHPsPPC) obj).connectionID;
             float modHPs = ((NetDTO.ModificarHPsPPC) obj).HPs;
-
             controlador.modificarHPsPPC(conID, modHPs);
         }
 
         if (obj instanceof NetDTO.EliminarPPC)
         {
             int conID = ((NetDTO.EliminarPPC) obj).connectionID;
-
             controlador.eliminarPPC(conID);
         }
 
@@ -77,9 +73,9 @@ public class Cliente extends Client
             int celdaY = ((NetDTO.SetTerreno) obj).celdaY;
             int numCapa = ((NetDTO.SetTerreno) obj).numCapa;
             short iDTerreno = ((NetDTO.SetTerreno) obj).iDTerreno;
-
             controlador.setTerreno(celdaX, celdaY, numCapa, iDTerreno);
         }
+
         if (obj instanceof NetDTO.ActualizarMapa)
         {   controlador.actualizarMapa((NetDTO.ActualizarMapa)obj); }
 

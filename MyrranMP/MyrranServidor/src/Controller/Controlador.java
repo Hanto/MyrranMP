@@ -21,8 +21,9 @@ public class Controlador
     public void enviarACliente(int connectionID, Object obj)
     {   servidor.enviarACliente(connectionID, obj); }
 
-    public void añadirPC (int connectionID, float x, float y)
-    {   mundo.añadirPC(connectionID, x, y);
+    public void añadirPC (int connectionID)
+    {   mundo.añadirPC(connectionID);
+
         mundo.getPC(connectionID).añadirSpellTalentos("Heal");
         mundo.getPC(connectionID).setSkillTalento("Heal", 0, 10);
         mundo.getPC(connectionID).setSkillTalento("Heal", 1, 17);

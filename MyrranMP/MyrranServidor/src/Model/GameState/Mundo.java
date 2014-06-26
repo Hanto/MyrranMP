@@ -29,10 +29,9 @@ public class Mundo extends AbstractModel
         }
     }
 
-    public void añadirPC (int connectionID, float x, float y)
+    public void añadirPC (int connectionID)
     {
         PC pc = new PC(connectionID, mapa);
-        pc.setPosition(x, y);
         listaPlayers.add(pc);
         mapaPlayers.put(pc.getConnectionID(), pc);
         Object añadirPC = new NetDTO.AñadirPPC(pc);

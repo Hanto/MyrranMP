@@ -46,7 +46,8 @@ public class SpellTooltip extends Group implements PropertyChangeListener
         this.caster = caster;
         this.controlador = controlador;
 
-        background = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_BARRASPELLS_Textura_Casillero));
+        background = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura("Casillero2"));
+        background.setColor(1f,1f,1f,0.95f);
         icono = new Image(RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRecursos(spell.getID()).getIcono());
         icono.addListener(new VentanaMoverListener(icono, this));
         tabla = new Table().bottom().left();
@@ -208,7 +209,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
         {
             Image frente2 = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_SPELLTOOLTIP_Talento));
             frente2.setSize((fondo.getWidth()/25)*(numTalentos > 50? 25 : numTalentos-25), fondo.getHeight());
-            frente2.setColor(255, 0, 0, 0.45f);
+            frente2.setColor(255, 0, 0, 0.55f);
             group.addActor(frente2);
         }
 

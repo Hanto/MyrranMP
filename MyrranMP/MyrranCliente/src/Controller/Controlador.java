@@ -108,7 +108,7 @@ public class Controlador implements ControladorUI
             mundo.getPlayer().setNivel(updatePlayer.nivel);
             mundo.getPlayer().setMaxHPs(updatePlayer.maxHPs);
             mundo.getPlayer().setActualHPs(updatePlayer.actualHPs);
-            mundo.getPlayer().setPosition(updatePlayer.x, updatePlayer.y);
+            //mundo.getPlayer().setPosition(updatePlayer.x, updatePlayer.y);
             mundo.getPlayer().setNumAnimacion(updatePlayer.numAnimacion);
         }
         else

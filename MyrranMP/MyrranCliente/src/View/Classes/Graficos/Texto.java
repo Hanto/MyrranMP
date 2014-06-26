@@ -3,6 +3,7 @@ package View.Classes.Graficos;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -121,14 +122,14 @@ public class Texto extends Actor
         stage.addActor(this);
         this.setColor(this.getColor().r, this.getColor().g, this.getColor().b, 0);
         this.addAction(Actions.sequence(Actions.fadeIn(duracion / 4), Actions.delay(duracion / 4 * 2), Actions.fadeOut(duracion / 4)));
-        this.addAction(Actions.sequence(Actions.moveBy(0f, 40f, duracion), Actions.removeActor()));
+        this.addAction(Actions.sequence(Actions.moveBy(0f, 40f, duracion, Interpolation.linear), Actions.removeActor()));
     }
 
     public void scrollingCombatText (Group group, float duracion)
     {
         this.setColor(this.getColor().r, this.getColor().g, this.getColor().b, 0);
         this.addAction(Actions.sequence(Actions.fadeIn(duracion / 4), Actions.delay(duracion / 4 * 2), Actions.fadeOut(duracion / 4)));
-        this.addAction(Actions.sequence(Actions.moveBy(0f, 40f, duracion), Actions.removeActor()));
+        this.addAction(Actions.sequence(Actions.moveBy(0f, 40f, duracion, Interpolation.sine), Actions.removeActor()));
         group.addActor(this);
     }
 

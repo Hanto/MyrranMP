@@ -22,8 +22,8 @@ public class PC extends AbstractModel implements MobPC, CasterConTalentos, Vulne
     protected int connectionID;                                 //ID de la conexion con el servidor
     protected MapaI mapaI;                                      //mapaI al que pertecene el Player
 
-    protected float x=0.0f;                                     //Coordenadas X:
-    protected float y=0.0f;                                     //Coordenadas Y:
+    protected float x;                                          //Coordenadas X:
+    protected float y;                                          //Coordenadas Y:
     protected int numAnimacion = 5;
 
     protected float velocidadMod=1.0f;                          //Modificadores de Velocidad: debido a Snares, a Sprints, Roots

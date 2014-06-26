@@ -51,7 +51,6 @@ public class AccionTooltipListener extends InputListener
 
             if (accion instanceof SeleccionarSpell)
             {
-                System.out.println("añadir Tooltip");
                 SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(accion.getID());
                 SpellTooltip tooltipMovible = new SpellTooltip(spell, accionIcono.getBarra().getCaster(), accionIcono.getControlador());
                 event.getStage().addActor(tooltipMovible);
