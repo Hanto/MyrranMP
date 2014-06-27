@@ -10,14 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7d314d5-d115-4c47-b321-a6ac893ae3ac" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCore/src/Interfaces/BDebuff/BDebuffI.java" afterPath="$PROJECT_DIR$/MyrranCore/src/Interfaces/BDebuff/BDebuffI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/Spell/Spell.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/Spell/Spell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/Spell.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/Spell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellI.java" afterPath="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SpellTooltip.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SpellTooltip.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\Google Drive\Programacion\IntelliJ IDEA\MyrranMP\MyrranCore\src\Interfaces\Spell\Skill.java" afterPath="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SkillI.java" />
     </list>
     <ignored path="MyrranServidor.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -229,13 +224,13 @@
           <file leaf-file-name="SpellTooltip.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SpellTooltip.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.40854225" vertical-offset="0" max-vertical-offset="2772">
-                  <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+                <state vertical-scroll-proportion="2.022284" vertical-offset="0" max-vertical-offset="2640">
+                  <caret line="223" column="50" selection-start-line="223" selection-start-column="50" selection-end-line="223" selection-end-column="50" />
                   <folding>
-                    <element signature="e#2772#2999#0" expanded="true" />
-                    <element signature="e#2988#2989#0" expanded="true" />
-                    <element signature="e#3028#3236#0" expanded="true" />
-                    <element signature="e#3225#3226#0" expanded="true" />
+                    <element signature="e#2181#2408#0" expanded="true" />
+                    <element signature="e#2397#2398#0" expanded="true" />
+                    <element signature="e#2437#2645#0" expanded="true" />
+                    <element signature="e#2634#2635#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -298,8 +293,8 @@
           <file leaf-file-name="SkillView.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.29266056" vertical-offset="0" max-vertical-offset="1090">
-                  <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.42385322" vertical-offset="0" max-vertical-offset="1090">
+                  <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -381,8 +376,8 @@
         <option value="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellI.java" />
         <option value="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/Spell.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/Spell/Spell.java" />
-        <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SpellTooltip.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java" />
+        <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SpellTooltip.java" />
       </list>
     </option>
   </component>
@@ -1904,7 +1899,11 @@
       <created>1403860353107</created>
       <updated>1403860353107</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="v1.385&#10;-Creada clase de apoyo SkillView para almacenar todos los textos graficos del SpellTooltip">
+      <created>1403868465213</created>
+      <updated>1403868465213</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1939,7 +1938,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329148" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.17668161" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1925" y="2" width="1352" height="1184" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.17668161" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1925" y="2" width="1352" height="1184" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32735425" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.50044763" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864675" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1974,7 +1973,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="v1.363 PlayerMouseKeys y PlayerGestures fusionado en keybinds que ahora se llama InputManager" />
     <MESSAGE value="v1.364 Pequeñas refactorizaciones, los inputprocessors se añaden desde el controller" />
     <MESSAGE value="v1.365 Debuffs cargan sus datos desde XML" />
     <MESSAGE value="v1.366 TipoSpell carga los datos desde XML, TipoSpellData suprimido" />
@@ -1999,11 +1997,12 @@
     <MESSAGE value="v1.382&#10;-Creacion ventana consola a la que se redirige la salida System.out.print&#10;-La ventana consola contiene metodos para escribir en ella directamente con formateo de texto en color y eligiendo tamaño de texto&#10;&#10;" />
     <MESSAGE value="v1.383&#10;-Ligero rediseño ventana TooltipSpells&#10;-Nuevo tipo de Debuff, Bomba, explota al cabo de X tiempo haciendo tanto daño como numero de stacks acumulados&#10;-&#10;" />
     <MESSAGE value="v1.384&#10;-Creada clase que se encarga de dibujar los cuadritos de los talentos del Tooltip, para que pueda actualizarse sin tener que redibujarse completamente, asi como para poder poner aumentar un monton de puntos de una tacada con solo poner el cursor hasta donde queremos los puntos y apretar el boton derecho&#10;-Se empieza la refactorizacion del codigo SpellTooltip para que no se reconstruya TODO el tooltip cada vez que hay un cambio, si no que solo se actualicen los campos que cambian&#10;-La clase texto no actualizaba su tamaño cada vez que se hacia un setTexto&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.384&#10;-Creada clase que se encarga de dibujar los cuadritos de los talentos del Tooltip, para que pueda actualizarse sin tener que redibujarse completamente, asi como para poder poner aumentar un monton de puntos de una tacada con solo poner el cursor hasta donde queremos los puntos y apretar el boton derecho&#10;-Se empieza la refactorizacion del codigo SpellTooltip para que no se reconstruya TODO el tooltip cada vez que hay un cambio, si no que solo se actualicen los campos que cambian&#10;-La clase texto no actualizaba su tamaño cada vez que se hacia un setTexto&#10;" />
+    <MESSAGE value="v1.385&#10;-Creada clase de apoyo SkillView para almacenar todos los textos graficos del SpellTooltip" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.385&#10;-Creada clase de apoyo SkillView para almacenar todos los textos graficos del SpellTooltip" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="544" />
+      <option name="time" value="545" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -2395,21 +2394,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29266056" vertical-offset="0" max-vertical-offset="1090">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.42385322" vertical-offset="0" max-vertical-offset="1090">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SpellTooltip.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40854225" vertical-offset="0" max-vertical-offset="2772">
-          <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+        <state vertical-scroll-proportion="2.022284" vertical-offset="0" max-vertical-offset="2640">
+          <caret line="223" column="50" selection-start-line="223" selection-start-column="50" selection-end-line="223" selection-end-column="50" />
           <folding>
-            <element signature="e#2772#2999#0" expanded="true" />
-            <element signature="e#2988#2989#0" expanded="true" />
-            <element signature="e#3028#3236#0" expanded="true" />
-            <element signature="e#3225#3226#0" expanded="true" />
+            <element signature="e#2181#2408#0" expanded="true" />
+            <element signature="e#2397#2398#0" expanded="true" />
+            <element signature="e#2437#2645#0" expanded="true" />
+            <element signature="e#2634#2635#0" expanded="true" />
           </folding>
         </state>
       </provider>
