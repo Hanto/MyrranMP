@@ -13,5 +13,7 @@ public interface ControladorBarraAccionI
     public void barraEliminarColumna (BarraAccionesI barra, int numColumnas);
     public void barraEliminarFila (BarraAccionesI barra, int numFilas);
 
-    public void enviarPlayerSetSkillTalento(String skillID, int statID, int valor);
+    public void decrementarSkillTalento(String skillID, int statID);
+    public void aumentarSkillTalento(String skillID, int statID);
+    public void setSkillTalento(String skillID, int statID, int valor);
 }

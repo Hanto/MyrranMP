@@ -146,7 +146,19 @@ public class Controlador implements ControladorUI
     {   ui.moverAccion(barraOrigen, posXOrigen, posYOrigen, barraDestino, posXDestino, posYDestino);}
     @Override public void barraAccionRebindear(BarraAccionesI barra, int posX, int posY, int keycode)
     {   ui.setKeyCode(barra, posX, posY, keycode);}
-    @Override public void enviarPlayerSetSkillTalento(String skillID, int statID, int valor)
+    @Override public void decrementarSkillTalento(String skillID, int statID)
+    {
+        int valor = mundo.getPlayer().getSkillTalentos(skillID, statID) -1;
+        Object enviarModificarSkillTalento = new NetDTO.ModificarSkillTalentoPPC(skillID, statID, valor);
+        enviarAServidor(enviarModificarSkillTalento);
+    }
+    @Override public void aumentarSkillTalento(String skillID, int statID)
+    {
+        int valor = mundo.getPlayer().getSkillTalentos(skillID, statID) +1;
+        Object enviarModificarSkillTalento = new NetDTO.ModificarSkillTalentoPPC(skillID, statID, valor);
+        enviarAServidor(enviarModificarSkillTalento);
+    }
+    @Override public void setSkillTalento(String skillID, int statID, int valor)
     {
         Object enviarModificarSkillTalento = new NetDTO.ModificarSkillTalentoPPC(skillID, statID, valor);
         enviarAServidor(enviarModificarSkillTalento);

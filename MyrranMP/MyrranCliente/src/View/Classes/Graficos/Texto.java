@@ -90,8 +90,10 @@ public class Texto extends Actor
         textoSombra.setText(texto);
         //por algun motivo si cambiamos el texto su tamaño no se actualiza, así que tenemos que generar un label getTipoSpellDAO con ese texto para calcular el tamaño
         Label ltexto = new Label(texto, estiloNormal);
-        textoNormal.setWidth(ltexto.getWidth());
-        textoSombra.setWidth(ltexto.getWidth());
+        textoNormal.setWidth(ltexto.getWidth() +relieveSombra);
+        textoSombra.setWidth(ltexto.getWidth() +relieveSombra);
+        this.setWidth(ltexto.getWidth() +relieveSombra);
+        this.setHeight(ltexto.getHeight() +relieveSombra);
         setCentrado (this.centradoHorizontal, this.centradoVertical);
     }
 

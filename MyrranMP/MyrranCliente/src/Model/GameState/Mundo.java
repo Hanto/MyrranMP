@@ -37,7 +37,7 @@ public class Mundo extends AbstractModel
     {
         player = new Player();
         mapa = new Mapa(player);
-        world = new World(new Vector2(0, -9.8f), false);
+        world = new World(new Vector2(0, 0), false);
     }
 
     //SE NOTIFICA:

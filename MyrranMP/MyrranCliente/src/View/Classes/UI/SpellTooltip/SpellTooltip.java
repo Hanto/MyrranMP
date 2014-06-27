@@ -1,4 +1,4 @@
-package View.Classes.UI;// Created by Hanto on 19/06/2014.
+package View.Classes.UI.SpellTooltip;// Created by Hanto on 19/06/2014.
 
 import Core.SkillStat;
 import DB.RSC;
@@ -23,7 +23,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class SpellTooltip extends Group implements PropertyChangeListener
 {
@@ -31,6 +33,30 @@ public class SpellTooltip extends Group implements PropertyChangeListener
     private SpellI spell;
     private CasterConTalentos caster;
     private ControladorBarraAccionI controlador;
+
+    private static class SkillStatsView
+    {
+        public Texto nombre;
+        public Texto valorBase;
+        public CasilleroTalentos casillero;
+        public Texto valorTotal;
+        public Texto nivel;
+        public Texto coste;
+        public Texto bono;
+        public Texto maximo;
+    }
+
+    private static class SkillView
+    {
+        public SkillStatsView[] filas;
+        public SkillView(int numSkillStats)
+        {
+            filas = new SkillStatsView[numSkillStats];
+            for (int i=0; i<numSkillStats; i++) filas[i] = new SkillStatsView();
+        }
+    }
+
+    private Map<String, SkillView> listaSkills = new HashMap<>();
 
     //View:
     private Image background;
@@ -47,7 +73,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
         this.controlador = controlador;
 
         background = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura("Casillero2"));
-        background.setColor(1f,1f,1f,0.95f);
+        background.setColor(1f,1f,1f,0.55f);
         icono = new Image(RSC.skillRecursosDAO.getSpellRecursosDAO().getSpellRecursos(spell.getID()).getIcono());
         icono.addListener(new VentanaMoverListener(icono, this));
         tabla = new Table().bottom().left().padLeft(4).padRight(4).padBottom(4);
@@ -62,8 +88,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
         {
             @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
             {
-                if (button == Input.Buttons.RIGHT)
-                {   eliminar(); }
+                if (button == Input.Buttons.RIGHT) { eliminar(); }
                 return true;
             }
         });
@@ -150,7 +175,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
     {
         Texto texto;
         BitmapFont fuente = RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres);
-        BitmapFont mini = RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente("10");
+        BitmapFont mini = RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente("11");
         SkillStat skillStat;
         DecimalFormat df = new DecimalFormat("0.00");
         DecimalFormatSymbols symbols = df.getDecimalFormatSymbols();
@@ -158,25 +183,37 @@ public class SpellTooltip extends Group implements PropertyChangeListener
         symbols.setDecimalSeparator('.');
         df.setDecimalFormatSymbols(symbols);
 
+        SkillView skillView = new SkillView(skill.getNumSkillStats());
+
         while (iterator.hasNext())
         {
             skillStat = iterator.next();
             //NOMBRE:
-            texto = new Texto(skillStat.getNombre(), fuente, Color.WHITE, Color.BLACK, Align.left, Align.bottom, 1);
+            texto = new Texto(skillStat.getNombre(), mini, Color.WHITE, Color.BLACK, Align.left, Align.bottom, 1);
             tabla.add(texto).height(texto.getHeight() - PAD).left().width(ANCHO_Descripcion > texto.getWidth() ? ANCHO_Descripcion : texto.getWidth()).bottom().padRight(4).padLeft(4);
             //VALOR BASE:
             texto = new Texto(df.format(skillStat.getValorBase()), fuente, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
             tabla.add(texto).height(texto.getHeight() - PAD).right().bottom().padRight(4);
             //CASILLERO
             int numTalentos = caster.getSkillTalentos(skill.getID(), skillStat.getID());
-            tabla.add(crearCasillero(skill.getID(), skillStat.getID())).left().top().padRight(4);
+
+
+            skillView.filas[skillStat.getID()].casillero = new CasilleroTalentos(controlador, skill.getID(), skillStat.getID(), numTalentos);
+
+            tabla.add(skillView.filas[skillStat.getID()].casillero).left().top().padRight(4);
 
             //VALOR CON TALENTOS: (redondeamos a 2 decimales maximo)
             texto = new Texto(df.format(skill.getTalentedSkillStat(caster, skillStat.getID())), fuente, Color.GREEN, Color.BLACK, Align.left, Align.bottom, 1);
             tabla.add(texto).height(texto.getHeight()-PAD).right().bottom().padRight(4);
+
+            skillView.filas[skillStat.getID()].valorTotal = texto;
+
             //NUMTALENTOS:
             texto = new Texto(Integer.toString(numTalentos), mini, Color.YELLOW, Color.BLACK, Align.left, Align.bottom, 1);
             tabla.add(texto).height(texto.getHeight() - PAD).right().bottom().padRight(4);
+
+            skillView.filas[skillStat.getID()].nivel = texto;
+
             //COSTE TALENTO:
             texto = new Texto(skillStat.getisMejorable() ? Integer.toString(skillStat.getCosteTalento()) : "-", mini, Color.YELLOW, Color.BLACK, Align.left, Align.bottom, 1);
             tabla.add(texto).height(texto.getHeight() - PAD).right().bottom().padRight(4).bottom();
@@ -189,66 +226,32 @@ public class SpellTooltip extends Group implements PropertyChangeListener
 
             tabla.row();
         }
+        listaSkills.put(skill.getID(), skillView);
     }
 
-    private Group crearCasillero(final String skillID, final int skillStatID)
-    {
-        Group group = new Group();
-
-        final int numTalentos = caster.getSkillTalentos(skillID, skillStatID);
-
-        Image fondo = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_SPELLTOOLTIP_TalentoFondo));
-        group.addActor(fondo);
-        group.setWidth(fondo.getWidth());
-        group.setHeight(fondo.getHeight());
-
-        Image frente = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_SPELLTOOLTIP_Talento));
-        frente.setSize((fondo.getWidth() / 25) * (numTalentos > 25 ? 25 : numTalentos), fondo.getHeight());
-        frente.setColor(255/255f, 180/255f, 0/255f, 0.75f);
-        group.addActor(frente);
-
-        if (numTalentos > 25)
-        {
-            Image frente2 = new Image(RSC.miscRecusosDAO.getMiscRecursosDAO().cargarTextura(MiscData.RECURSO_SPELLTOOLTIP_Talento));
-            frente2.setSize((fondo.getWidth()/25)*(numTalentos > 50? 25 : numTalentos-25), fondo.getHeight());
-            frente2.setColor(255, 0, 0, 0.55f);
-            group.addActor(frente2);
-        }
-
-        Actor quitarTalento = new Actor();
-        quitarTalento.setBounds(0, 0, fondo.getWidth()/2, fondo.getHeight());
-        quitarTalento.setColor(Color.RED);
-        group.addActor(quitarTalento);
-
-        Actor añadirTalento = new Actor();
-        añadirTalento.setBounds(fondo.getWidth()/2, 0, fondo.getWidth()/2, fondo.getHeight());
-        añadirTalento.setColor(Color.GREEN);
-        group.addActor(añadirTalento);
-
-        quitarTalento.addListener(new InputListener()
-        {
-            @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
-            {   controlador.enviarPlayerSetSkillTalento(skillID, skillStatID, numTalentos - 1); return true; }
-        });
-
-        añadirTalento.addListener(new InputListener()
-        {
-            @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
-            {   controlador.enviarPlayerSetSkillTalento(skillID, skillStatID, numTalentos + 1); return true; }
-        });
-
-        return group;
-    }
-
-    private void modificarSkillTalento(String skillID)
-    {
+    private void modificarSkillTalento(String skillID, int statID, int valor)
+    {/*
         synchronized (this.getStage())
         {
             if (spell.getID().equals(skillID))  { recrearTabla(); return; }
             Iterator<BDebuffI> debuffIIterator = spell.getDebuffsQueAplica();
             while (debuffIIterator.hasNext())
             {   if (debuffIIterator.next().getID().equals(skillID)) { recrearTabla(); return; }}
+        }*/
+        SkillView skillView = listaSkills.get(skillID);
+        if (skillView != null)
+        {
+            DecimalFormat df = new DecimalFormat("0.00");
+            DecimalFormatSymbols symbols = df.getDecimalFormatSymbols();
+
+            symbols.setDecimalSeparator('.');
+            df.setDecimalFormatSymbols(symbols);
+
+            skillView.filas[statID].nivel.setTexto(Integer.toString(valor));
+            skillView.filas[statID].casillero.setNumTalentos(valor);
+
         }
+        tabla.layout();
     }
 
     @Override public void propertyChange(PropertyChangeEvent evt)
@@ -256,7 +259,9 @@ public class SpellTooltip extends Group implements PropertyChangeListener
         if (evt.getNewValue() instanceof NetDTO.ModificarSkillTalentoPPC)
         {
             String skillID = ((NetDTO.ModificarSkillTalentoPPC) evt.getNewValue()).skillID;
-            modificarSkillTalento(skillID);
+            int statID = ((NetDTO.ModificarSkillTalentoPPC) evt.getNewValue()).statID;
+            int valor = ((NetDTO.ModificarSkillTalentoPPC) evt.getNewValue()).valor;
+            modificarSkillTalento(skillID, statID, valor);
         }
     }
 }

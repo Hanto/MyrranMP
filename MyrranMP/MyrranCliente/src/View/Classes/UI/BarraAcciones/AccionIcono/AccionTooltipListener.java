@@ -4,7 +4,7 @@ import DB.DAO;
 import Interfaces.Spell.SpellI;
 import Interfaces.UI.Acciones.AccionI;
 import Model.Classes.Acciones.TiposAccion.SeleccionarSpell;
-import View.Classes.UI.SpellTooltip;
+import View.Classes.UI.SpellTooltip.SpellTooltip;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
