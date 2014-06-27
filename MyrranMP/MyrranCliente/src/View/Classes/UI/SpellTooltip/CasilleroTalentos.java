@@ -2,7 +2,7 @@ package View.Classes.UI.SpellTooltip;// Created by Hanto on 27/06/2014.
 
 import DB.RSC;
 import Data.MiscData;
-import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
+import Interfaces.UI.BarraAcciones.ControladorSpellTooltipI;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -19,10 +19,10 @@ public class CasilleroTalentos extends Actor
     private int ancho50;
     private int numTalentos = 0;
 
-    private ControladorBarraAccionI controlador;
+    private ControladorSpellTooltipI controlador;
 
 
-    public CasilleroTalentos(final ControladorBarraAccionI controladorI, final String skillID, final int skillStatID, final int numTalentos)
+    public CasilleroTalentos(ControladorSpellTooltipI controladorI, final String skillID, final int skillStatID, int numTalentos)
     {
         this.controlador = controladorI;
 
@@ -64,7 +64,7 @@ public class CasilleroTalentos extends Actor
         ancho50 = ((int)getWidth()/25) * (numTalentos > 50 ? 25 : numTalentos - 25);
     }
 
-    public void draw (Batch batch, float alpha)
+    @Override public void draw (Batch batch, float alpha)
     {
         batch.setColor(getColor());
         batch.draw(fondo, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());

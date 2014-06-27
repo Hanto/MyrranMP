@@ -1,7 +1,7 @@
 package Interfaces.UI.BarraAcciones;// Created by Hanto on 14/05/2014.
 
 
-public interface ControladorBarraAccionI
+public interface ControladorBarraAccionI extends ControladorSpellTooltipI
 {
     public void añadirBarraAcciones(int filas, int columnas);
     public void eliminarBarraAcciones(BarraAccionesI barra);
@@ -12,8 +12,4 @@ public interface ControladorBarraAccionI
     public void barraAñadirFila (BarraAccionesI barra, int numFilas);
     public void barraEliminarColumna (BarraAccionesI barra, int numColumnas);
     public void barraEliminarFila (BarraAccionesI barra, int numFilas);
-
-    public void decrementarSkillTalento(String skillID, int statID);
-    public void aumentarSkillTalento(String skillID, int statID);
-    public void setSkillTalento(String skillID, int statID, int valor);
 }

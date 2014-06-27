@@ -7,7 +7,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import java.awt.*;
 
-public class Consola extends JFrame implements Runnable
+public class Consola extends JFrame //implements Runnable
 {
     private JScrollPane scrollPane;
     public JTextPane textPane;
@@ -51,8 +51,8 @@ public class Consola extends JFrame implements Runnable
     public void run()   {}
 
     public Consola()
-    {   //EvenQueue.invokeLater
-        new Thread(this);
+    {   //EventQueue.invokeLater(this);
+        //new Thread(this);
         initComponents();
         this.setVisible(true);
     }
@@ -67,7 +67,7 @@ public class Consola extends JFrame implements Runnable
             doc.insertString(doc.getLength(), string, saSet);
             textPane.setCaretPosition(doc.getLength());
         }
-        catch (Exception e) {}
+        catch (Exception e) {System.out.println("ERROR: Consola setText: "+ e); }
     }
 
 

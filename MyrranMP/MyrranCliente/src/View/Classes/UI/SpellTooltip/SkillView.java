@@ -16,15 +16,21 @@ public class SkillView
         public Texto maxTalentos;
     }
 
-    public Texto nombreSkill;
+    private Texto nombreSkill;
     private SkillStatsView[] skillStat;
-    public SkillStatsView getSkillStat(int statID)                              { return skillStat[statID]; }
 
+    public SkillStatsView getSkillStat(int statID)                              { return skillStat[statID]; }
+    public Texto getNombreSkill()                                               { return nombreSkill; }
     public Texto getNombre(int statID)                                          { return skillStat[statID].nombre; }
-    public Texto getTalentos(int statID)                                        { return skillStat[statID].talentos; }
+    public Texto getValorBase(int statID)                                       { return skillStat[statID].valorBase; }
     public CasilleroTalentos getCasilleroTalentos(int statID)                   { return skillStat[statID].casillero; }
     public Texto getValorTotal(int statID)                                      { return skillStat[statID].valorTotal; }
+    public Texto getTalentos(int statID)                                        { return skillStat[statID].talentos; }
+    public Texto getCosteTalento(int statID)                                    { return skillStat[statID].costeTalento; }
+    public Texto getBonoTalento(int statID)                                     { return skillStat[statID].bonoTalento; }
+    public Texto getMaxTalentos(int statID)                                     { return skillStat[statID].maxTalentos; }
 
+    public void setNombreSkill(Texto nombre)                                    { nombreSkill = nombre; }
     public void setNombre(int statID, Texto nombre)                             { skillStat[statID].nombre = nombre; }
     public void setValorBase(int statID, Texto valor)                           { skillStat[statID].valorBase = valor; }
     public void setCasilleroTalentos(int statID, CasilleroTalentos casillero)   { skillStat[statID].casillero = casillero; }

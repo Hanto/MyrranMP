@@ -8,13 +8,16 @@ import Interfaces.BDebuff.BDebuffI;
 import Interfaces.EntidadesPropiedades.CasterConTalentos;
 import Interfaces.Spell.SkillI;
 import Interfaces.Spell.SpellI;
-import Interfaces.UI.BarraAcciones.ControladorBarraAccionI;
+import Interfaces.UI.BarraAcciones.ControladorSpellTooltipI;
 import View.Classes.Graficos.Texto;
 import View.Classes.UI.Ventana.VentanaMoverListener;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -32,7 +35,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
     //Model:
     private SpellI spell;
     private CasterConTalentos caster;
-    private ControladorBarraAccionI controlador;
+    private ControladorSpellTooltipI controlador;
 
     //View:
     private Image background;
@@ -45,7 +48,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
     private int textoSobresalePorArriba;
 
 
-    public SpellTooltip(SpellI spell, CasterConTalentos caster, ControladorBarraAccionI controlador)
+    public SpellTooltip(SpellI spell, CasterConTalentos caster, ControladorSpellTooltipI controlador)
     {
         this.spell = spell;
         this.caster = caster;
@@ -92,15 +95,15 @@ public class SpellTooltip extends Group implements PropertyChangeListener
 
         Texto texto;
         BitmapFont fuenteNombre = RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente("20");
-        BitmapFont fuente = RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente(MiscData.FUENTE_Nombres);
+        BitmapFont fuente = RSC.fuenteRecursosDAO.getFuentesRecursosDAO().getFuente("10");
         SkillView skillView = new SkillView(spell.getNumSkillStats());
 
         //SPELL::
         texto = new Texto(spell.getNombre(), fuenteNombre, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
-        skillView.nombreSkill = texto;
+        skillView.setNombreSkill(texto);
         textoSobresalePorArriba = (int)(texto.getHeight()/2+2);
         texto.setTouchable(Touchable.disabled);
-        tabla.add(texto).left();
+        tabla.add(texto).left().padBottom(2);
         tabla.row();
 
         cabecera(tabla);
@@ -114,7 +117,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
             BDebuffI debuff = debuffIIterator.next();
             skillView = new SkillView(debuff.getNumSkillStats());
             texto = new Texto(debuff.getNombre()+":", fuente, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
-            skillView.nombreSkill = texto;
+            skillView.setNombreSkill(texto);
             tabla.add(texto).height(texto.getHeight() - PAD).left();
             tabla.row();
 
@@ -178,13 +181,16 @@ public class SpellTooltip extends Group implements PropertyChangeListener
         while (iterator.hasNext())
         {
             skillStat = iterator.next();
+
             //NOMBRE:
-            texto = new Texto(skillStat.getNombre(), mini, Color.WHITE, Color.BLACK, Align.left, Align.bottom, 1);
+            texto = new Texto(skillStat.getNombre(), mini,
+                    Color.WHITE, Color.BLACK, Align.left, Align.bottom, 1);
             skillView.setNombre(skillStat.getID(), texto);
             tabla.add(texto).height(texto.getHeight() - PAD).left().bottom();
 
             //VALOR BASE:
-            texto = new Texto(df.format(skillStat.getValorBase()), fuente, Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
+            texto = new Texto(df.format(skillStat.getValorBase()), fuente,
+                    Color.ORANGE, Color.BLACK, Align.left, Align.bottom, 1);
             skillView.setValorBase(skillStat.getID(), texto);
             tabla.add(texto).height(texto.getHeight() - PAD).right().bottom();
 
@@ -194,29 +200,34 @@ public class SpellTooltip extends Group implements PropertyChangeListener
             tabla.add(skillView.getCasilleroTalentos(skillStat.getID())).left().top();
 
             //VALOR CON TALENTOS: (redondeamos a 2 decimales maximo)
-            texto = new Texto(df.format(skill.getTalentedSkillStat(caster, skillStat.getID())), fuente, Color.GREEN, Color.BLACK, Align.left, Align.bottom, 1);
+            texto = new Texto(df.format(skill.getTalentedSkillStat(caster, skillStat.getID())), fuente,
+                    Color.GREEN, Color.BLACK, Align.left, Align.bottom, 1);
             skillView.setValorTotal(skillStat.getID(), texto);
             tabla.add(texto).height(texto.getHeight() - PAD).right().bottom();
 
             //NUMTALENTOS:
-            texto = new Texto(skillStat.getisMejorable() ? Integer.toString(numTalentos) : "-", mini, Color.YELLOW, Color.BLACK, Align.left, Align.bottom, 1);
+            texto = new Texto(skillStat.getisMejorable() ? Integer.toString(numTalentos) : "-", mini,
+                    Color.YELLOW, Color.BLACK, Align.left, Align.bottom, 1);
             skillView.setTalentos(skillStat.getID(), texto);
             tabla.add(texto).height(texto.getHeight() - PAD).right().bottom();
 
             //COSTE TALENTO:
-            texto = new Texto(skillStat.getisMejorable() ? Integer.toString(skillStat.getCosteTalento()) : "-", mini, Color.YELLOW, Color.BLACK, Align.left, Align.bottom, 1);
+            texto = new Texto(skillStat.getisMejorable() ? Integer.toString(skillStat.getCosteTalento()) : "-", mini,
+                    Color.YELLOW, Color.BLACK, Align.left, Align.bottom, 1);
             skillView.setCosteTalento(skillStat.getID(), texto);
-            tabla.add(texto).height(texto.getHeight() - PAD).right().bottom().bottom();
+            tabla.add(texto).height(texto.getHeight() - PAD).right().bottom();
 
             //BONO TALENTO:
-            texto = new Texto(skillStat.getisMejorable() ? Float.toString(skillStat.getBonoTalento()) : "-", mini, Color.YELLOW, Color.BLACK, Align.left, Align.bottom, 1);
+            texto = new Texto(skillStat.getisMejorable() ? Float.toString(skillStat.getBonoTalento()) : "-", mini,
+                    Color.YELLOW, Color.BLACK, Align.left, Align.bottom, 1);
             skillView.setBonoTalentos(skillStat.getID(), texto);
-            tabla.add(texto).height(texto.getHeight() - PAD).right().bottom().bottom();
+            tabla.add(texto).height(texto.getHeight() - PAD).right().bottom();
 
             //NUMTALENTOS MAXIMOS:
-            texto = new Texto(skillStat.getisMejorable() ? Integer.toString(skillStat.getTalentoMaximo()): "-", mini, Color.YELLOW, Color.BLACK, Align.left, Align.bottom, 1);
+            texto = new Texto(skillStat.getisMejorable() ? Integer.toString(skillStat.getTalentoMaximo()): "-", mini,
+                    Color.YELLOW, Color.BLACK, Align.left, Align.bottom, 1);
             skillView.setMaxTalentos(skillStat.getID(), texto);
-            tabla.add(texto).height(texto.getHeight() - PAD).right().bottom().bottom();
+            tabla.add(texto).height(texto.getHeight() - PAD).right().bottom();
 
             tabla.row();
         }
@@ -237,6 +248,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
 
             skillView.getTalentos(statID).setTexto(Integer.toString(valor));
             skillView.getCasilleroTalentos(statID).setNumTalentos(valor);
+
             skillView.getValorTotal(statID).setTexto(df.format(spell.getSkill(skillID).getTalentedSkillStat(caster, statID)));
             //Invalidate es lo que hace que la tabla recalcule las dimensiones de cada celda
             tabla.invalidate();
