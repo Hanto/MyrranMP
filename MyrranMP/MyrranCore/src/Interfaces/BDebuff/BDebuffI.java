@@ -4,11 +4,11 @@ package Interfaces.BDebuff;// Created by Hanto on 09/06/2014.
 import Core.SkillStat;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesPropiedades.Debuffeable;
-import Interfaces.Spell.Skill;
+import Interfaces.Spell.SkillI;
 
 import java.util.Iterator;
 
-public interface BDebuffI extends Skill
+public interface BDebuffI extends SkillI
 {
 //SET
     public void setID(String id);

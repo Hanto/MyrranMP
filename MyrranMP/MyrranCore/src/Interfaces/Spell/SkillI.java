@@ -5,7 +5,7 @@ import Interfaces.EntidadesPropiedades.Caster;
 
 import java.util.Iterator;
 
-public interface Skill
+public interface SkillI
 {
     public void setID(String id);
     public void setNombre (String nombre);

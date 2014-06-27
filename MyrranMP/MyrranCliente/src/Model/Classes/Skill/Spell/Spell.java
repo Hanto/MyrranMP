@@ -8,6 +8,7 @@ import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesPropiedades.CasterConTalentos;
 import Interfaces.EntidadesPropiedades.Debuffeable;
 import Interfaces.Model.AbstractModel;
+import Interfaces.Spell.SkillI;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
 
@@ -67,6 +68,21 @@ public class Spell extends AbstractModel implements SpellI
     public Spell (String tipoSpellID)
     {   this(DAO.tipoSpellDAOFactory.getTipoSpellDAO().getTipoSpell(tipoSpellID)); }
 
+    @Override public SkillI getSkill(String skillID)
+    {
+        if (id.equals(skillID)) return this;
+        else
+        {
+            Iterator<BDebuffI> debuffIIterator = getDebuffsQueAplica();
+            BDebuffI debuff;
+            while (debuffIIterator.hasNext())
+            {
+                debuff = debuffIIterator.next();
+                if (debuff.getID().equals(skillID)) { return debuff; }
+            }
+        }
+        return null;
+    }
 
     @Override public void añadirDebuff (BDebuffI debuff)
     {
