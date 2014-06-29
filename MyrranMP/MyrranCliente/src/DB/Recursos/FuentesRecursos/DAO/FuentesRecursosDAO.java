@@ -7,4 +7,5 @@ public interface FuentesRecursosDAO
 {
     public void salvarFuente(String nombreFuente, String nombreTextura, TextureAtlas atlas);
     public BitmapFont getFuente (String nombreFuente);
+    public void dispose();
 }

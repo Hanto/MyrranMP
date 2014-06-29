@@ -1,6 +1,7 @@
 package View;// Created by Hanto on 08/04/2014.
 
 import Controller.Controlador;
+import DB.RSC;
 import Model.GameState.Mundo;
 import Model.GameState.UI;
 import View.GameState.MundoView;
@@ -53,17 +54,11 @@ public class Vista
         batch.begin();
         batch.end();
 
-        synchronized (mundoView)
-        {
-            mundoView.act(delta);
-            mundoView.draw();
-        }
+        mundoView.act(delta);
+        mundoView.draw();
 
-        synchronized (uiView)
-        {
-            uiView.act(delta);
-            uiView.draw();
-        }
+        uiView.act(delta);
+        uiView.draw();
 
         uiView.setTextoFPS(Integer.toString(Gdx.graphics.getFramesPerSecond()) + "fps");
 
@@ -82,6 +77,8 @@ public class Vista
         mundoView.dispose();
         uiView.dispose();
         batch.dispose();
+        RSC.atlasRecursosDAO.getAtlasRecursosDAO().dispose();
+        RSC.fuenteRecursosDAO.getFuentesRecursosDAO().dispose();
     }
 
     public void aplicarZoom(int incrementoZoom)

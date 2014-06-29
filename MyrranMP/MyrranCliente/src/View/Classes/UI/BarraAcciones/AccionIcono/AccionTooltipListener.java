@@ -39,7 +39,7 @@ public class AccionTooltipListener extends InputListener
         if (pointer <0)
         {
             accionIcono.setTooltip(null);
-            if (tooltip != null) { tooltip.eliminar(); tooltip = null; }
+            if (tooltip != null) { tooltip.dispose(); tooltip = null; }
         }
     }
 

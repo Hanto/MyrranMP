@@ -92,7 +92,7 @@ public class NameplateView extends Actor implements PropertyChangeListener
         this.setBounds(0, 0, ancho, alto);
     }
 
-    public void eliminar()
+    public void dispose()
     {   model.eliminarObservador(this); }
 
     private void setHPsPercent ()

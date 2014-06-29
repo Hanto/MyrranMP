@@ -7,4 +7,5 @@ public interface AtlasRecursosDAO
 {
     public TextureAtlas getAtlas();
     public TextureRegion getTextura (String localizacion);
+    public void dispose();
 }

@@ -9,9 +9,12 @@ public class AtlasRecursosLocal implements AtlasRecursosDAO
     private TextureAtlas atlas = AtlasRecursosLocalDB.get().atlas;
 
 
-    public TextureAtlas getAtlas()
+    @Override public TextureAtlas getAtlas()
     {   return atlas; }
 
-    public TextureRegion getTextura (String localizacion)
+    @Override public TextureRegion getTextura (String localizacion)
     {   return (new TextureRegion(atlas.findRegion(localizacion))); }
+
+    @Override public void dispose()
+    {   atlas.dispose(); }
 }

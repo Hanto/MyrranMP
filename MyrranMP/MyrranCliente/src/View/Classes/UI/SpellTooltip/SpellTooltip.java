@@ -67,7 +67,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
         icono.addListener(new InputListener()
         {
             @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
-            {   if (button == Input.Buttons.RIGHT)  eliminar();  return true; }
+            {   if (button == Input.Buttons.RIGHT)  dispose();  return true; }
         });
 
         this.addListener(new InputListener()
@@ -81,7 +81,7 @@ public class SpellTooltip extends Group implements PropertyChangeListener
         caster.añadirObservador(this);
     }
 
-    public void eliminar()
+    public void dispose()
     {
         caster.eliminarObservador(this);
         if (this.getStage() != null) this.getStage().getRoot().removeActor(this);

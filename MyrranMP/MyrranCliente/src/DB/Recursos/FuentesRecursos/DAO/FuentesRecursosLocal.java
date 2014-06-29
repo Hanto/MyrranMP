@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
+import java.util.Iterator;
 import java.util.Map;
 
 public class FuentesRecursosLocal implements FuentesRecursosDAO
@@ -18,7 +19,12 @@ public class FuentesRecursosLocal implements FuentesRecursosDAO
         listaDeFuentes.put(nombreFuente, fuente);
     }
 
-    @Override
-    public BitmapFont getFuente(String nombreFuente)
+    @Override public BitmapFont getFuente(String nombreFuente)
     {   return listaDeFuentes.get(nombreFuente); }
+
+    @Override public void dispose()
+    {
+        Iterator<BitmapFont> iterator = listaDeFuentes.values().iterator();
+        while (iterator.hasNext()) iterator.next().dispose();
+    }
 }

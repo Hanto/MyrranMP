@@ -1,6 +1,7 @@
 package Controller;// Created by Hanto on 08/04/2014.
 
 import DTO.NetDTO;
+import com.badlogic.gdx.Gdx;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -21,12 +22,18 @@ public class Cliente extends Client
         //Para activar el log completo de mensajes:
         //Log.TRACE();
 
-        this.addListener(new Listener.ThreadedListener(new Listener()
-        {
-            public void connected (Connection con)   { }
-            public void received (Connection con, Object obj) { procesarMensajeServidor(con, obj);}
-            public void disconnected (Connection con) { }
-        }));
+        this.addListener
+            (new Listener.QueuedListener
+                (new Listener()
+                {
+                     @Override public void connected (Connection con)   { }
+                     @Override public void received (Connection con, Object obj) { procesarMensajeServidor(con, obj);}
+                     @Override public void disconnected (Connection con) { }
+                })
+            {
+                @Override protected void queue(Runnable runnable)
+                {   Gdx.app.postRunnable(runnable); }
+            });
 
         host = "localhost"; //(String) JOptionPane.showInputDialog(null, "Host:", "Connect to server", JOptionPane.QUESTION_MESSAGE, null, null, "localhost");
 
