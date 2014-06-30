@@ -9,22 +9,51 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Mobiles/Player.java" line="22" />
+    <bookmark url="file://$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Mobiles/Player.java" line="24" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7d314d5-d115-4c47-b321-a6ac893ae3ac" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MyrranCore/src/Core/Skills/SkillMod.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MyrranCore/src/Core/Skills/SkillPersonalizado.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MyrranCore/src/Interfaces/Skill/SkillPersonalizadoI.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MyrranCore/src/Core/Skills/SkillStat.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MyrranCore/src/Core/Skills/SpellPersonalizado.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellPersonalizadoI.java" />
+      <change type="DELETED" beforePath="D:\Google Drive\Programacion\IntelliJ IDEA\MyrranMP\MyrranCore\src\Core\SkillStat.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Google Drive\Programacion\IntelliJ IDEA\MyrranMP\MyrranCore\src\Core\SkillTalentos.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/AccionIcono/AccionTooltipListener.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/AccionIcono/AccionTooltipListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/DB/Recursos/AtlasRecursos/DAO/AtlasRecursosDAO.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/DB/Recursos/AtlasRecursos/DAO/AtlasRecursosDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/DB/Recursos/AtlasRecursos/DAO/AtlasRecursosLocal.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/DB/Recursos/AtlasRecursos/DAO/AtlasRecursosLocal.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/BDebuff/BDebuff.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/BDebuff/BDebuff.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/BDebuff.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/BDebuff.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCore/src/Interfaces/BDebuff/BDebuffI.java" afterPath="$PROJECT_DIR$/MyrranCore/src/Interfaces/BDebuff/BDebuffI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/TiposBDebuff/Bomba.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/TiposBDebuff/Bomba.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCore/src/Interfaces/EntidadesPropiedades/CasterConTalentos.java" afterPath="$PROJECT_DIR$/MyrranCore/src/Interfaces/EntidadesPropiedades/CasterConTalentos.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/Controller/Cliente.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/Controller/Cliente.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/DB/Recursos/FuentesRecursos/DAO/FuentesRecursosDAO.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/DB/Recursos/FuentesRecursos/DAO/FuentesRecursosDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/DB/Recursos/FuentesRecursos/DAO/FuentesRecursosLocal.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/DB/Recursos/FuentesRecursos/DAO/FuentesRecursosLocal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/NameplateView.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/NameplateView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/PCView.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/PCView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/PlayerView.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/PlayerView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/Controller/Controlador.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/Controller/Controlador.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Controller/Controlador.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Controller/Controlador.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/TiposSpell/Heal.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/TiposSpell/Heal.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/TiposBDebuff/Hot.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/TiposBDebuff/Hot.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCore/src/DTO/NetDTO.java" afterPath="$PROJECT_DIR$/MyrranCore/src/DTO/NetDTO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Mobiles/PC.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Mobiles/PC.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/View/PcView.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/View/PcView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Mobiles/Player.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Mobiles/Player.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Controller/Servidor.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Controller/Servidor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/Spell/Spell.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/Spell/Spell.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/Spell.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/Spell.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellI.java" afterPath="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SpellTooltip.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SpellTooltip.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/View/Vista.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/View/Vista.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/BDebuff/TipoBDebuff.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/BDebuff/TipoBDebuff.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/TipoBDebuff.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/TipoBDebuff.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCore/src/Interfaces/BDebuff/TipoBDebuffI.java" afterPath="$PROJECT_DIR$/MyrranCore/src/Interfaces/BDebuff/TipoBDebuffI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/DB/Datos/TipoBdDebuff/TipoBDebuffLocalDB.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/DB/Datos/TipoBdDebuff/TipoBDebuffLocalDB.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/DB/Datos/TipoBDebuff/TipoBDebuffLocalDB.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/DB/Datos/TipoBDebuff/TipoBDebuffLocalDB.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/Spell/TipoSpell.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/Spell/TipoSpell.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/TipoSpell.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/TipoSpell.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/TipoSpellI.java" afterPath="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/TipoSpellI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranCliente/src/DB/Datos/TipoSpell/TipoSpellLocalDB.java" afterPath="$PROJECT_DIR$/MyrranCliente/src/DB/Datos/TipoSpell/TipoSpellLocalDB.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyrranServidor/src/DB/Datos/TipoSpell/TipoSpellLocalDB.java" afterPath="$PROJECT_DIR$/MyrranServidor/src/DB/Datos/TipoSpell/TipoSpellLocalDB.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="D:\Google Drive\Programacion\IntelliJ IDEA\MyrranMP\MyrranCore\src\Interfaces\Spell\SkillI.java" afterPath="$PROJECT_DIR$/MyrranCore/src/Interfaces/Skill/SkillI.java" />
     </list>
     <ignored path="MyrranServidor.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,18 +83,8 @@
             <file leaf-file-name="UI.java" pinned="false" current="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Model/GameState/UI.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.0" vertical-offset="627" max-vertical-offset="693">
-                    <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="SkillTalentos.java" pinned="false" current="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/MyrranCore/src/Core/SkillTalentos.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.0" vertical-offset="363" max-vertical-offset="429">
-                    <caret line="33" column="0" selection-start-line="31" selection-start-column="5" selection-end-line="33" selection-end-column="0" />
+                  <state vertical-scroll-proportion="0.0" vertical-offset="429" max-vertical-offset="693">
+                    <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
                     <folding />
                   </state>
                 </provider>
@@ -74,18 +93,66 @@
             <file leaf-file-name="Spell.java" pinned="false" current="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/Spell.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.0" vertical-offset="759" max-vertical-offset="1386">
-                    <caret line="69" column="14" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="14" />
+                  <state vertical-scroll-proportion="0.0" vertical-offset="506" max-vertical-offset="1364">
+                    <caret line="46" column="49" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="49" />
                     <folding />
                   </state>
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="CasilleroTalentos.java" pinned="false" current="false" current-in-tab="true">
+            <file leaf-file-name="CasilleroTalentos.java" pinned="false" current="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/CasilleroTalentos.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.53417265" vertical-offset="0" max-vertical-offset="1112">
+                  <state vertical-scroll-proportion="0.0" vertical-offset="726" max-vertical-offset="957">
                     <caret line="66" column="14" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="SkillView.java" pinned="false" current="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="0.31683168" vertical-offset="0" max-vertical-offset="1111">
+                    <caret line="33" column="105" selection-start-line="33" selection-start-column="105" selection-end-line="33" selection-end-column="105" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="Controlador.java" pinned="false" current="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Controller/Controlador.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="0.0" vertical-offset="286" max-vertical-offset="737">
+                    <caret line="26" column="76" selection-start-line="26" selection-start-column="76" selection-end-line="26" selection-end-column="76" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="PC.java" pinned="false" current="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Mobiles/PC.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="0.0" vertical-offset="1001" max-vertical-offset="2299">
+                    <caret line="107" column="116" selection-start-line="107" selection-start-column="116" selection-end-line="107" selection-end-column="116" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="SkillStat.java" pinned="false" current="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/MyrranCore/src/Core/Skills/SkillStat.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="0.0" vertical-offset="22" max-vertical-offset="891">
+                    <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
                     <folding />
                   </state>
                 </provider>
@@ -104,51 +171,61 @@
     <splitter split-orientation="horizontal" split-proportion="0.49427083">
       <split-first>
         <leaf>
-          <file leaf-file-name="BarraAccionesView.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/BarraAccionesView.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="1331" max-vertical-offset="2673">
-                  <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AccionTooltipListener.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/AccionIcono/AccionTooltipListener.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="847">
-                  <caret line="30" column="116" selection-start-line="30" selection-start-column="116" selection-end-line="30" selection-end-column="116" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SpellTooltip.java" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="SpellTooltip.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SpellTooltip.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-1.39" vertical-offset="1551" max-vertical-offset="2651">
-                  <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="2761">
+                  <caret line="130" column="127" selection-start-line="130" selection-start-column="127" selection-end-line="130" selection-end-column="127" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Consola.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/MyrranCore/src/Core/Consola.java">
+          <file leaf-file-name="Spell.java" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/Spell/Spell.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="99" max-vertical-offset="1584">
-                  <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+                <state vertical-scroll-proportion="0.31655994" vertical-offset="6" max-vertical-offset="1166">
+                  <caret line="46" column="105" selection-start-line="46" selection-start-column="105" selection-end-line="46" selection-end-column="105" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="MyrranClient.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/MyrranCliente/src/zMain/MyrranClient.java">
+          <file leaf-file-name="SpellPersonalizado.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/MyrranCore/src/Core/Skills/SpellPersonalizado.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="209" max-vertical-offset="660">
-                  <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
+                  <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SpellI.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellI.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="473">
+                  <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SkillPersonalizado.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/MyrranCore/src/Core/Skills/SkillPersonalizado.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="539">
+                  <caret line="36" column="1" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="27" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SpellPersonalizadoI.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellPersonalizadoI.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="275">
+                  <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
                   <folding />
                 </state>
               </provider>
@@ -161,18 +238,8 @@
           <file leaf-file-name="Cliente.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Controller/Cliente.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1221">
+                <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1265">
                   <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Vista.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Vista.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="913">
-                  <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
@@ -181,48 +248,28 @@
           <file leaf-file-name="Controlador.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Controller/Controlador.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="1760" max-vertical-offset="1892">
-                  <caret line="160" column="80" selection-start-line="160" selection-start-column="14" selection-end-line="160" selection-end-column="80" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="297" max-vertical-offset="1947">
+                  <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Player.java" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Mobiles/Player.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.78" vertical-offset="374" max-vertical-offset="3223">
-                  <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="726" max-vertical-offset="3487">
+                  <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="PlayerView.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="PlayerView.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/PlayerView.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2035">
+                <state vertical-scroll-proportion="0.0" vertical-offset="605" max-vertical-offset="2035">
                   <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Texto.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/Graficos/Texto.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="1045" max-vertical-offset="2024">
-                  <caret line="95" column="42" selection-start-line="95" selection-start-column="42" selection-end-line="95" selection-end-column="42" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SkillView.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
-                  <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
                   <folding />
                 </state>
               </provider>
@@ -255,26 +302,9 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/MyrranCliente/src/Model/GameState/UI.java" />
-        <option value="$PROJECT_DIR$/MyrranCore/src/Data/MiscData.java" />
-        <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/BarraAccionesView.java" />
-        <option value="$PROJECT_DIR$/MyrranServidor/src/View/PcView.java" />
-        <option value="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Mobiles/Player.java" />
-        <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/Ventana/VentanaMoverListener.java" />
-        <option value="$PROJECT_DIR$/MyrranServidor/src/Controller/Servidor.java" />
-        <option value="$PROJECT_DIR$/MyrranServidor/src/Controller/Controlador.java" />
-        <option value="$PROJECT_DIR$/MyrranServidor/src/Model/GameState/Mundo.java" />
-        <option value="$PROJECT_DIR$/MyrranCore/src/DTO/NetDTO.java" />
-        <option value="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Mobiles/PC.java" />
-        <option value="$PROJECT_DIR$/MyrranCliente/src/Model/GameState/Consolas.java" />
-        <option value="$PROJECT_DIR$/MyrranCliente/src/Model/GameState/CustomOutputStream.java" />
-        <option value="$PROJECT_DIR$/MyrranCore/src/Core/CustomOutputStream.java" />
-        <option value="$PROJECT_DIR$/MyrranCliente/src/DB/Datos/BDebuff/BDebuffLocalDB.java" />
-        <option value="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/TiposBDebuff/Bomba.java" />
         <option value="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/TipoBDebuffFactory.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/BDebuff/TiposBDebuff/Bomba.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/BDebuff/TipoBDebuffFactory.java" />
-        <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/AccionIcono/AccionTooltipListener.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/AccionIcono/AccionIcono.java" />
         <option value="$PROJECT_DIR$/MyrranServidor/src/zMain/MyrranServer.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/Model/GameState/Mundo.java" />
@@ -282,14 +312,9 @@
         <option value="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/TiposBDebuff/Hot.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/Graficos/Texto.java" />
-        <option value="$PROJECT_DIR$/MyrranCliente/src/Controller/Controlador.java" />
-        <option value="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellI.java" />
-        <option value="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/Spell.java" />
-        <option value="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/Spell/Spell.java" />
         <option value="$PROJECT_DIR$/MyrranCore/src/Interfaces/UI/BarraAcciones/ControladorSpellTooltip.java" />
         <option value="$PROJECT_DIR$/MyrranCore/src/Interfaces/UI/BarraAcciones/ControladorSpellTooltipI.java" />
         <option value="$PROJECT_DIR$/MyrranCore/src/Interfaces/UI/BarraAcciones/ControladorBarraAccionI.java" />
-        <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java" />
         <option value="$PROJECT_DIR$/MyrranCore/src/Core/ConsolaOutputStream.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/CasilleroTalentos.java" />
         <option value="$PROJECT_DIR$/MyrranCore/src/Core/Consola.java" />
@@ -300,12 +325,34 @@
         <option value="$PROJECT_DIR$/MyrranCliente/src/DB/Recursos/AtlasRecursos/DAO/AtlasRecursosLocal.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/DB/Recursos/FuentesRecursos/DAO/FuentesRecursosDAO.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/DB/Recursos/FuentesRecursos/DAO/FuentesRecursosLocal.java" />
-        <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SpellTooltip.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/Controller/Cliente.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/View/Vista.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/PlayerView.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/NameplateView.java" />
         <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/PCView.java" />
+        <option value="$PROJECT_DIR$/MyrranCore/src/Core/SkillMods.java" />
+        <option value="$PROJECT_DIR$/MyrranCore/src/Core/SkillStat.java" />
+        <option value="$PROJECT_DIR$/MyrranCore/src/Core/SkillTalentos.java" />
+        <option value="$PROJECT_DIR$/MyrranCore/src/Core/SkillMod.java" />
+        <option value="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/BDebuff.java" />
+        <option value="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/BDebuff/BDebuff.java" />
+        <option value="$PROJECT_DIR$/MyrranServidor/src/Controller/Controlador.java" />
+        <option value="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/Spell.java" />
+        <option value="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellI.java" />
+        <option value="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/Spell/Spell.java" />
+        <option value="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SkillI.java" />
+        <option value="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SkillPersonalizadoI.java" />
+        <option value="$PROJECT_DIR$/MyrranCliente/src/Controller/Controlador.java" />
+        <option value="$PROJECT_DIR$/MyrranCliente/src/Model/GameState/UI.java" />
+        <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/AccionIcono/AccionTooltipListener.java" />
+        <option value="$PROJECT_DIR$/MyrranCore/src/Interfaces/EntidadesPropiedades/CasterConTalentos.java" />
+        <option value="$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Mobiles/PC.java" />
+        <option value="$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Mobiles/Player.java" />
+        <option value="$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellPersonalizadoI.java" />
+        <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java" />
+        <option value="$PROJECT_DIR$/MyrranCore/src/Core/SpellPersonalizado.java" />
+        <option value="$PROJECT_DIR$/MyrranCore/src/Core/SkillPersonalizado.java" />
+        <option value="$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SpellTooltip.java" />
       </list>
     </option>
   </component>
@@ -361,27 +408,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyrranMP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyrranMP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyrranCliente" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -530,36 +556,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Skill" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BDebuff" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TiposBDebuff" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyrranMP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyrranServidor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Classes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Mobiles" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
@@ -659,6 +655,24 @@
               <option name="myItemId" value="Interfaces" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Skill" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyrranMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyrranCore" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Interfaces" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -705,6 +719,24 @@
               <option name="myItemId" value="MyrranCore" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Interfaces" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BDebuff" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyrranMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyrranCore" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -717,6 +749,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyrranMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyrranCore" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Skills" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -811,6 +861,62 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="SpellTooltip" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyrranMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyrranCliente" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Classes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BarraAcciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyrranMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyrranCliente" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Classes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BarraAcciones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AccionIcono" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1096,6 +1202,27 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyrranMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyrranMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyrranCliente" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -1748,7 +1875,11 @@
       <created>1403881423528</created>
       <updated>1403881423528</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="v1.388&#10;-Todo lo que se procesa desde el hilo Multiplayer se encauza al hilo Libgdx en monotarea, para evitar problemas de sincronizacion, ya no hace falta sincronizar nada, puesto que todo se ejecuta despues del render method&#10;-creados metodos dispose para los DAO de las fuentes y el atlas, que deberan ser ejecutados por la vista al cerrar el programa">
+      <created>1404063375822</created>
+      <updated>1404063375822</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1777,13 +1908,12 @@
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32776803" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3174888" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3172232" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329148" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.329148" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="2365" y="0" width="651" height="1198" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.17668161" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1925" y="2" width="1352" height="1184" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.17668161" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1925" y="2" width="1348" height="1184" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32735425" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.50044763" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864675" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1793,13 +1923,14 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.15388711" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="-375" y="1" width="374" height="1159" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.23503521" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="3274" y="1" width="567" height="1194" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.23503521" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="3279" y="2" width="560" height="1194" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="644" y="419" width="670" height="450" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.329148" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="2365" y="0" width="651" height="1198" />
+      <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909244" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3994911" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1819,7 +1950,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="v1.366 TipoSpell carga los datos desde XML, TipoSpellData suprimido" />
     <MESSAGE value="v1.367 TipoBDebuff carga los Datos desde XML, si faltan por definir Skilstats salta error" />
     <MESSAGE value="v1.367 Refactorizaciones Varias, nuevo Spell Heal" />
     <MESSAGE value="v1.368 Debuffs y Auras ya funcionan en servidor" />
@@ -1844,11 +1974,12 @@
     <MESSAGE value="v1.385&#10;-Creada clase de apoyo SkillView para almacenar todos los textos graficos del SpellTooltip" />
     <MESSAGE value="v1.386&#10;-Refactorizacion completa spellTooltip para que use la clase auxiliar SkillView, ahora todos los campos quedan almacenados, si en un futuro cambia algun valor, se podra acceder a el y no tener que redibujar todo el tooltip" />
     <MESSAGE value="v1.387&#10;-La consola no es multiHilo para evitar problemas con Libgdx" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.387&#10;-La consola no es multiHilo para evitar problemas con Libgdx" />
+    <MESSAGE value="v1.388&#10;-Todo lo que se procesa desde el hilo Multiplayer se encauza al hilo Libgdx en monotarea, para evitar problemas de sincronizacion, ya no hace falta sincronizar nada, puesto que todo se ejecuta despues del render method&#10;-creados metodos dispose para los DAO de las fuentes y el atlas, que deberan ser ejecutados por la vista al cerrar el programa" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.388&#10;-Todo lo que se procesa desde el hilo Multiplayer se encauza al hilo Libgdx en monotarea, para evitar problemas de sincronizacion, ya no hace falta sincronizar nada, puesto que todo se ejecuta despues del render method&#10;-creados metodos dispose para los DAO de las fuentes y el atlas, que deberan ser ejecutados por la vista al cerrar el programa" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="545" />
+      <option name="time" value="554" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1856,209 +1987,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/TiposSpell/Heal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.04029304" vertical-offset="0" max-vertical-offset="1092">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/TiposBDebuff/Hot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16117217" vertical-offset="0" max-vertical-offset="1092">
-          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Data/MiscData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2662">
-          <caret line="15" column="63" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/MyrranCliente/lib/Java LibGDX/sources/gdx-sources.jar!/com/badlogic/gdx/scenes/scene2d/Actor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="429" max-vertical-offset="6567">
-          <caret line="41" column="80" selection-start-line="41" selection-start-column="80" selection-end-line="41" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/MyrranCliente/lib/Java LibGDX/sources/gdx-sources.jar!/com/badlogic/gdx/scenes/scene2d/Group.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="121" max-vertical-offset="3806">
-          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/DB/Datos/BDebuff/BDebuffLocalDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83761466" vertical-offset="0" max-vertical-offset="1090">
-          <caret line="96" column="37" selection-start-line="96" selection-start-column="37" selection-end-line="96" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Controller/Controlador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="692" max-vertical-offset="1804">
-          <caret line="160" column="80" selection-start-line="160" selection-start-column="14" selection-end-line="160" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22616823" vertical-offset="0" max-vertical-offset="1070">
-          <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/Spell/Spell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5651376" vertical-offset="0" max-vertical-offset="1188">
-          <caret line="70" column="14" selection-start-line="70" selection-start-column="14" selection-end-line="70" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/AccionIcono/AccionIcono.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14298978" vertical-offset="0" max-vertical-offset="1100">
-          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/Graficos/Texto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1914">
-          <caret line="95" column="42" selection-start-line="95" selection-start-column="42" selection-end-line="95" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Interfaces/UI/BarraAcciones/ControladorSpellTooltipI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06055046" vertical-offset="0" max-vertical-offset="1090">
-          <caret line="6" column="71" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Interfaces/UI/BarraAcciones/ControladorBarraAccionI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.031220436" vertical-offset="0" max-vertical-offset="1057">
-          <caret line="3" column="73" selection-start-line="3" selection-start-column="73" selection-end-line="3" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Core/ConsolaOutputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14824797" vertical-offset="0" max-vertical-offset="1113">
-          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Core/Consola.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1529">
-          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/zMain/MyrranClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCore/src/DTO/NetDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="957" max-vertical-offset="2585">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="69" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Controller/Servidor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1045">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Controller/Controlador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="715">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Model/GameState/Mundo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Mobiles/PC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="609" max-vertical-offset="2365">
-          <caret line="155" column="5" selection-start-line="155" selection-start-column="5" selection-end-line="155" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/View/PcView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="440" max-vertical-offset="2178">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Model/GameState/UI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Core/SkillTalentos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="418">
-          <caret line="33" column="0" selection-start-line="31" selection-start-column="5" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/Spell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1232">
-          <caret line="69" column="14" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/CasilleroTalentos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53417265" vertical-offset="0" max-vertical-offset="1112">
-          <caret line="66" column="14" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MyrranCliente/src/DB/Recursos/AccionRecursos/DAO/AccionRecursosDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08051235" vertical-offset="0" max-vertical-offset="1093">
           <caret line="10" column="101" selection-start-line="10" selection-start-column="101" selection-end-line="10" selection-end-column="101" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2066,7 +1998,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27172917" vertical-offset="0" max-vertical-offset="1093">
           <caret line="33" column="60" selection-start-line="33" selection-start-column="60" selection-end-line="33" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2074,7 +2005,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.040256176" vertical-offset="0" max-vertical-offset="1093">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2082,7 +2012,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08051235" vertical-offset="0" max-vertical-offset="1093">
           <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2090,7 +2019,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1610247" vertical-offset="0" max-vertical-offset="1093">
           <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2098,7 +2026,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08051235" vertical-offset="0" max-vertical-offset="1093">
           <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2106,7 +2033,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20128088" vertical-offset="0" max-vertical-offset="1093">
           <caret line="27" column="61" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2114,7 +2040,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.04074074" vertical-offset="0" max-vertical-offset="1080">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2122,7 +2047,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.040256176" vertical-offset="0" max-vertical-offset="1093">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2130,7 +2054,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.040256176" vertical-offset="0" max-vertical-offset="1694">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2138,7 +2061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.086916745" vertical-offset="139" max-vertical-offset="1232">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2146,7 +2068,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.04074074" vertical-offset="0" max-vertical-offset="1628">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2154,7 +2075,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.040256176" vertical-offset="0" max-vertical-offset="1093">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2162,15 +2082,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.040256176" vertical-offset="0" max-vertical-offset="1093">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/GameState/UIView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.039532796" vertical-offset="0" max-vertical-offset="1113">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2182,26 +2093,257 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java">
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/NameplateView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
-          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.34858188" vertical-offset="521" max-vertical-offset="1672">
+          <caret line="95" column="24" selection-start-line="95" selection-start-column="24" selection-end-line="95" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/PCView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43" vertical-offset="0" max-vertical-offset="1100">
+          <caret line="58" column="23" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/Graficos/Texto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="704" max-vertical-offset="1914">
+          <caret line="95" column="42" selection-start-line="95" selection-start-column="42" selection-end-line="95" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/zMain/MyrranClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13083257" vertical-offset="0" max-vertical-offset="1093">
+          <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Core/Consola.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1529">
+          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/BarraAccionesView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18" vertical-offset="1331" max-vertical-offset="2673">
+          <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Vista.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44281793" vertical-offset="0" max-vertical-offset="1093">
+          <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/BDebuff.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6880146" vertical-offset="106" max-vertical-offset="1199">
+          <caret line="89" column="97" selection-start-line="89" selection-start-column="97" selection-end-line="89" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/BDebuff/TiposBDebuff/Hot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.039532796" vertical-offset="0" max-vertical-offset="1113">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/TiposSpell/Heal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Interfaces/Skill/SkillI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1610247" vertical-offset="0" max-vertical-offset="1093">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/BDebuff/BDebuff.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.05032022" vertical-offset="0" max-vertical-offset="1093">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/GameState/UIView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.039568346" vertical-offset="0" max-vertical-offset="1112">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/AccionIcono/AccionIcono.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.04074074" vertical-offset="0" max-vertical-offset="1100">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/AccionIcono/AccionTooltipListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42268986" vertical-offset="0" max-vertical-offset="1093">
+          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Model/Classes/UI/BarraAcciones.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="2365">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Controller/Controlador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="1848">
+          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Interfaces/EntidadesPropiedades/CasterConTalentos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07906559" vertical-offset="0" max-vertical-offset="1113">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Controller/Cliente.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1221">
+        <state vertical-scroll-proportion="0.0" vertical-offset="77" max-vertical-offset="1221">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Vista.java">
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Mobiles/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="913">
-          <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="3267">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Interfaces/Skill/SkillPersonalizadoI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08051235" vertical-offset="0" max-vertical-offset="1093">
+          <caret line="8" column="134" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="134" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Core/Skills/SkillMod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18778077" vertical-offset="0" max-vertical-offset="1113">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="473">
+          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Interfaces/Spell/SpellPersonalizadoI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="275">
+          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Controller/Controlador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="726">
+          <caret line="26" column="76" selection-start-line="26" selection-start-column="76" selection-end-line="26" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Core/Skills/SkillStat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="891">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Mobiles/PC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1177" max-vertical-offset="2475">
+          <caret line="107" column="116" selection-start-line="107" selection-start-column="116" selection-end-line="107" selection-end-column="116" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Model/GameState/UI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
+          <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranServidor/src/Model/Classes/Skill/Spell/Spell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1210">
+          <caret line="46" column="49" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/CasilleroTalentos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="825">
+          <caret line="66" column="14" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SkillView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31683168" vertical-offset="0" max-vertical-offset="1111">
+          <caret line="33" column="105" selection-start-line="33" selection-start-column="105" selection-end-line="33" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Core/Skills/SpellPersonalizado.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyrranCore/src/Core/Skills/SkillPersonalizado.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="539">
+          <caret line="36" column="1" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -2214,42 +2356,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/NameplateView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34858188" vertical-offset="521" max-vertical-offset="1672">
-          <caret line="95" column="24" selection-start-line="95" selection-start-column="24" selection-end-line="95" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/Mobiles/PCView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43" vertical-offset="0" max-vertical-offset="1100">
-          <caret line="58" column="23" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/BarraAcciones/BarraAccionesView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1057" max-vertical-offset="2673">
-          <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MyrranCliente/src/View/Classes/UI/SpellTooltip/SpellTooltip.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.39" vertical-offset="1551" max-vertical-offset="2651">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="2761">
+          <caret line="130" column="127" selection-start-line="130" selection-start-column="127" selection-end-line="130" selection-end-column="127" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Mobiles/Player.java">
+    <entry file="file://$PROJECT_DIR$/MyrranCliente/src/Model/Classes/Skill/Spell/Spell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78" vertical-offset="374" max-vertical-offset="3223">
-          <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.31655994" vertical-offset="6" max-vertical-offset="1166">
+          <caret line="46" column="105" selection-start-line="46" selection-start-column="105" selection-end-line="46" selection-end-column="105" />
           <folding />
         </state>
       </provider>

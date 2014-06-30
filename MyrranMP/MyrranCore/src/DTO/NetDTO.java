@@ -25,8 +25,8 @@ public class NetDTO
         kryo.register(ModificarHPsPPC.class);
         kryo.register(EliminarPPC.class);
         kryo.register(CastearPPC.class);
-        kryo.register(AñadirSpellTalentosPPC.class);
-        kryo.register(ModificarSkillTalentoPPC.class);
+        kryo.register(AñadirSpellPersonalizadoPPC.class);
+        kryo.register(ModificarNumTalentosSkillPersonalizadoPPC.class);
 
 
         kryo.register(CastingTimePercent.class);
@@ -148,21 +148,21 @@ public class NetDTO
         {   this.castear = castear; targetX = x; targetY = y; }
     }
 
-    public static class AñadirSpellTalentosPPC
+    public static class AñadirSpellPersonalizadoPPC
     {
         public String spellID;
-        public AñadirSpellTalentosPPC() {}
-        public AñadirSpellTalentosPPC(SpellI spell)
+        public AñadirSpellPersonalizadoPPC() {}
+        public AñadirSpellPersonalizadoPPC(SpellI spell)
         {   this.spellID = spell.getID(); }
     }
 
-    public static class ModificarSkillTalentoPPC
+    public static class ModificarNumTalentosSkillPersonalizadoPPC
     {
         public String skillID;
         public int statID;
         public int valor;
-        public ModificarSkillTalentoPPC() {}
-        public ModificarSkillTalentoPPC(String skillID, int statID, int valor)
+        public ModificarNumTalentosSkillPersonalizadoPPC() {}
+        public ModificarNumTalentosSkillPersonalizadoPPC(String skillID, int statID, int valor)
         {   this.skillID = skillID; this.statID = statID; this.valor = valor; }
     }
 

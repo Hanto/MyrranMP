@@ -19,7 +19,7 @@ public class Bomba extends TipoBDebuff
     {
         if (aura.getTicksAplicados() == (int)aura.getDuracionMax()/ MiscData.BDEBUFF_DuracionTick)
         {
-            float daño = aura.getDebuff().getTalentedSkillStat(aura.getCaster(), STAT_Daño) * aura.getStacks();
+            float daño = aura.getDebuff().getValorTotal(aura.getCaster(), STAT_Daño) * aura.getStacks();
 
             if(aura.getTarget() instanceof Vulnerable)
             {((Vulnerable)aura.getTarget()).modificarHPs((int) -daño); }

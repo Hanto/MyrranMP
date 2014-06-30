@@ -1,7 +1,7 @@
 package Model.Classes.Skill.BDebuff;// Created by Hanto on 04/06/2014.
 
 
-import Core.SkillStat;
+import Core.Skills.SkillStat;
 import DB.DAO;
 import Interfaces.BDebuff.AuraI;
 import Interfaces.BDebuff.BDebuffI;
@@ -68,20 +68,17 @@ public class BDebuff implements BDebuffI
     public BDebuff (String tipoBDebuffID)
     {   this(DAO.tipoBDebuffDAOFactory.getTipoBDebuffDAO().getTipoBDebuff(tipoBDebuffID)); }
 
-    @Override public float getTalentedSkillStat(Caster caster, int statID)
+    @Override public float getValorTotal(Caster caster, int statID)
     {
         if (caster instanceof CasterConTalentos)
-        {
-            return getSkillStat(statID).getValorBase() +
-                    ((CasterConTalentos)caster).getSkillTalentos(id, statID) * getSkillStat(statID).getBonoTalento();
-        }
+        {   return ((CasterConTalentos)caster).getSkillPersonalizado(id).getValorTotal(statID); }
         else return getSkillStat(statID).getValorBase();
     }
 
     @Override public void aplicarDebuff(Caster caster, Debuffeable target)
     {
         AuraI aura = new Aura(this, caster, target);
-        aura.setDuracionMax(getTalentedSkillStat(caster, STAT_Duracion));
+        aura.setDuracionMax(getValorTotal(caster, STAT_Duracion));
         target.añadirAura(aura);
     }
 

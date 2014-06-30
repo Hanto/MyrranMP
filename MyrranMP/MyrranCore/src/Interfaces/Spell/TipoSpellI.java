@@ -1,6 +1,6 @@
 package Interfaces.Spell;// Created by Hanto on 09/06/2014.
 
-import Core.SkillStat;
+import Core.Skills.SkillStat;
 import Interfaces.EntidadesPropiedades.Caster;
 
 import java.util.Iterator;

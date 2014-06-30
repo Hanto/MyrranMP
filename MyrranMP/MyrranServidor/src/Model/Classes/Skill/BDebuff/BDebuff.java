@@ -3,7 +3,7 @@ package Model.Classes.Skill.BDebuff;// Created by Hanto on 04/06/2014.
 
 import DB.DAO;
 import Data.MiscData;
-import Core.SkillStat;
+import Core.Skills.SkillStat;
 import Interfaces.BDebuff.AuraI;
 import Interfaces.BDebuff.BDebuffI;
 import Interfaces.BDebuff.TipoBDebuffI;
@@ -84,13 +84,10 @@ public class BDebuff implements BDebuffI
         return null;
     }
 
-    @Override public float getTalentedSkillStat(Caster caster, int statID)
+    @Override public float getValorTotal(Caster caster, int statID)
     {
         if (caster instanceof CasterConTalentos)
-        {
-            return getSkillStat(statID).getValorBase() +
-                    ((CasterConTalentos)caster).getSkillTalentos(id, statID) * getSkillStat(statID).getBonoTalento();
-        }
+        {   return ((CasterConTalentos)caster).getSkillPersonalizado(id).getValorTotal(statID); }
         else return getSkillStat(statID).getValorBase();
     }
 
@@ -107,7 +104,7 @@ public class BDebuff implements BDebuffI
         else
         {
             aura = new Aura(this, caster, target);
-            aura.setDuracionMax(getTalentedSkillStat(caster, STAT_Duracion));
+            aura.setDuracionMax(getValorTotal(caster, STAT_Duracion));
             target.añadirAura(aura);
         }
     }

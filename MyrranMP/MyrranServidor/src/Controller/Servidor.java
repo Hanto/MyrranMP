@@ -71,12 +71,12 @@ public class Servidor extends Server
             controlador.cambiarParametrosSpell(con.getID(), parametros);
         }
 
-        if (obj instanceof NetDTO.ModificarSkillTalentoPPC)
+        if (obj instanceof NetDTO.ModificarNumTalentosSkillPersonalizadoPPC)
         {
             int conID = con.getID();
-            String skillID = ((NetDTO.ModificarSkillTalentoPPC) obj).skillID;
-            int statID = ((NetDTO.ModificarSkillTalentoPPC) obj).statID;
-            int valor = ((NetDTO.ModificarSkillTalentoPPC) obj).valor;
+            String skillID = ((NetDTO.ModificarNumTalentosSkillPersonalizadoPPC) obj).skillID;
+            int statID = ((NetDTO.ModificarNumTalentosSkillPersonalizadoPPC) obj).statID;
+            int valor = ((NetDTO.ModificarNumTalentosSkillPersonalizadoPPC) obj).valor;
             controlador.modificarSkillTalentoPC(conID, skillID, statID, valor);
         }
     }

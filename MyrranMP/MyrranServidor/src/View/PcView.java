@@ -134,9 +134,9 @@ public class PcView implements PropertyChangeListener
 
     private void setAnimacion(NetDTO.AnimacionPPC animacion)
     {   actualizarPlayersCercanos(animacion); }
-    private void modificarSkillTalento(NetDTO.ModificarSkillTalentoPPC skillTalento)
+    private void modificarSkillTalento(NetDTO.ModificarNumTalentosSkillPersonalizadoPPC skillTalento)
     {   actualizarPlayer(skillTalento); }
-    private void añadirSkillTalento(NetDTO.AñadirSpellTalentosPPC spell)
+    private void añadirSkillTalento(NetDTO.AñadirSpellPersonalizadoPPC spell)
     {   actualizarPlayer(spell); }
     private void modificarHPs(NetDTO.ModificarHPsPPC HPs)
     {   actualizarPlayersCercanos(HPs);
@@ -167,11 +167,11 @@ public class PcView implements PropertyChangeListener
         if (evt.getNewValue() instanceof NetDTO.EliminarPPC)
         {   eliminar((NetDTO.EliminarPPC)evt.getNewValue()); }
 
-        if (evt.getNewValue() instanceof NetDTO.AñadirSpellTalentosPPC)
-        {   añadirSkillTalento((NetDTO.AñadirSpellTalentosPPC)evt.getNewValue());}
+        if (evt.getNewValue() instanceof NetDTO.AñadirSpellPersonalizadoPPC)
+        {   añadirSkillTalento((NetDTO.AñadirSpellPersonalizadoPPC)evt.getNewValue());}
 
-        if (evt.getNewValue() instanceof NetDTO.ModificarSkillTalentoPPC)
-        {   modificarSkillTalento((NetDTO.ModificarSkillTalentoPPC)evt.getNewValue()); }
+        if (evt.getNewValue() instanceof NetDTO.ModificarNumTalentosSkillPersonalizadoPPC)
+        {   modificarSkillTalento((NetDTO.ModificarNumTalentosSkillPersonalizadoPPC)evt.getNewValue()); }
 
         if (isVisible())
         {

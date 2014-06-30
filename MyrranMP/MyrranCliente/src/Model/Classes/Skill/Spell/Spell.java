@@ -1,14 +1,14 @@
 package Model.Classes.Skill.Spell;
 // @author Ivan Delgado Huerta
 
-import Core.SkillStat;
+import Core.Skills.SkillStat;
 import DB.DAO;
 import Interfaces.BDebuff.BDebuffI;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesPropiedades.CasterConTalentos;
 import Interfaces.EntidadesPropiedades.Debuffeable;
 import Interfaces.Model.AbstractModel;
-import Interfaces.Spell.SkillI;
+import Interfaces.Skill.SkillI;
 import Interfaces.Spell.SpellI;
 import Interfaces.Spell.TipoSpellI;
 
@@ -44,6 +44,7 @@ public class Spell extends AbstractModel implements SpellI
     @Override public Iterator<SkillStat> getSkillStats()        { return Arrays.asList(skillStats).iterator(); }
     @Override public Iterator<BDebuffI> getDebuffsQueAplica()   { return listaDeDebuffsQueAplica.iterator(); }
     @Override public int getNumSkillStats()                     { return skillStats.length; }
+    @Override public int getNumDebuffsQueAplica()               { return listaDeDebuffsQueAplica.size(); }
 
 
 
@@ -95,13 +96,10 @@ public class Spell extends AbstractModel implements SpellI
 
     @Override public void aplicarDebuffs (Caster caster, Debuffeable target) {}
 
-    @Override public float getTalentedSkillStat(Caster caster, int statID)
+    @Override public float getValorTotal(Caster caster, int statID)
     {
         if (caster instanceof CasterConTalentos)
-        {
-            return getSkillStat(statID).getValorBase() +
-                    ((CasterConTalentos)caster).getSkillTalentos(id, statID) * getSkillStat(statID).getBonoTalento();
-        }
+        {   return ((CasterConTalentos)caster).getSkillPersonalizado(id).getValorTotal(statID); }
         else return getSkillStat(statID).getValorBase();
     }
 
@@ -110,7 +108,7 @@ public class Spell extends AbstractModel implements SpellI
         if (caster.isCasteando()) { }
         else 
         {   //Marcamos al personaje como Casteando, y actualizamos su tiempo de casteo con el que marque el Spell (Stat Slot 0)
-            caster.setTotalCastingTime(getTalentedSkillStat(caster, STAT_Cast));
+            caster.setTotalCastingTime(getValorTotal(caster, STAT_Cast));
         }
     }
 }

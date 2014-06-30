@@ -1,18 +1,20 @@
 package Model.Classes.Mobiles;// Created by Hanto on 07/04/2014.
 
 
-import Core.SkillTalentos;
+import Core.Skills.SkillPersonalizado;
+import Core.Skills.SpellPersonalizado;
 import DB.DAO;
 import DTO.NetDTO;
 import Interfaces.BDebuff.AuraI;
-import Interfaces.BDebuff.BDebuffI;
 import Interfaces.EntidadesPropiedades.CasterConTalentos;
 import Interfaces.EntidadesPropiedades.Debuffeable;
 import Interfaces.EntidadesPropiedades.Vulnerable;
 import Interfaces.EntidadesTipos.MobPC;
 import Interfaces.Geo.MapaI;
 import Interfaces.Model.AbstractModel;
+import Interfaces.Skill.SkillPersonalizadoI;
 import Interfaces.Spell.SpellI;
+import Interfaces.Spell.SpellPersonalizadoI;
 import Model.Classes.Geo.Mapa;
 
 import java.util.*;
@@ -47,7 +49,8 @@ public class PC extends AbstractModel implements MobPC, CasterConTalentos, Vulne
     protected Object parametrosSpell;
 
     private List<AuraI>listaDeAuras = new ArrayList<>();
-    private Map<String, SkillTalentos> talentos = new HashMap<>();
+    private Map<String, SkillPersonalizado> listaSkillsPersonalizados = new HashMap<>();
+    private Map<String, SpellPersonalizado> listaSpellsPersonalizados = new HashMap<>();
 
     //Constructor:
     public PC(int connectionID, Mapa mapa)
@@ -57,82 +60,75 @@ public class PC extends AbstractModel implements MobPC, CasterConTalentos, Vulne
     }
 
     //GET:
-    @Override public int getConnectionID ()                     { return connectionID; }
-    @Override public float getX()                               { return x; }
-    @Override public float getY()                               { return y; }
-    @Override public int getNumAnimacion()                      { return numAnimacion; }
-    @Override public float getVelocidadMod()                    { return velocidadMod; }
-    @Override public float getVelocidadMax()                    { return velocidadMax; }
-    @Override public double getDireccion()                      { return direccion; }
-    @Override public String getNombre()                         { return nombre; }
-    @Override public int getNivel()                             { return nivel; }
-    @Override public float getActualHPs()                       { return actualHPs; }
-    @Override public float getMaxHPs()                          { return maxHPs; }
-    @Override public MapaI getMapa()                            { return mapaI; }
-    @Override public boolean isCasteando()                      { if (actualCastingTime >0) return true; else return false; }
-    @Override public float getActualCastingTime()               { return actualCastingTime; }
-    @Override public float getTotalCastingTime()                { return totalCastingTime; }
-    @Override public String getSpellIDSeleccionado()            { return spellIDSeleccionado; }
-    @Override public Object getParametrosSpell()                { return parametrosSpell; }
+    @Override public int getConnectionID ()                             { return connectionID; }
+    @Override public float getX()                                       { return x; }
+    @Override public float getY()                                       { return y; }
+    @Override public int getNumAnimacion()                              { return numAnimacion; }
+    @Override public float getVelocidadMod()                            { return velocidadMod; }
+    @Override public float getVelocidadMax()                            { return velocidadMax; }
+    @Override public double getDireccion()                              { return direccion; }
+    @Override public String getNombre()                                 { return nombre; }
+    @Override public int getNivel()                                     { return nivel; }
+    @Override public float getActualHPs()                               { return actualHPs; }
+    @Override public float getMaxHPs()                                  { return maxHPs; }
+    @Override public MapaI getMapa()                                    { return mapaI; }
+    @Override public boolean isCasteando()                              { if (actualCastingTime >0) return true; else return false; }
+    @Override public float getActualCastingTime()                       { return actualCastingTime; }
+    @Override public float getTotalCastingTime()                        { return totalCastingTime; }
+    @Override public String getSpellIDSeleccionado()                    { return spellIDSeleccionado; }
+    @Override public Object getParametrosSpell()                        { return parametrosSpell; }
 
 
     //SET:
-    @Override public void setConnectionID (int connectionID)    { this.connectionID = connectionID; }
-    @Override public void setTotalCastingTime(float castingTime){ actualCastingTime = 0.01f; totalCastingTime = castingTime;}
-    @Override public void setVelocidaMod(float velocidadMod)    { this.velocidadMod = velocidadMod; }
-    @Override public void setVelocidadMax(float velocidadMax)   { this.velocidadMax = velocidadMax; }
-    @Override public void setDireccion(double direccion)        { this.direccion = direccion; }
-    @Override public void setSpellIDSeleccionado(String spellID){ spellIDSeleccionado = spellID; }
-    @Override public void setParametrosSpell(Object parametros) { parametrosSpell = parametros; }
-    @Override public void setNombre(String nombre)              { this.nombre = nombre; }
-    @Override public void setNivel(int nivel)                   { this.nivel = nivel; }
-    @Override public void añadirAura(AuraI aura)                { listaDeAuras.add(aura); }
-    @Override public void eliminarAura(AuraI aura)              { listaDeAuras.remove(aura); }
-    @Override public Iterator<AuraI> getAuras()                 { return listaDeAuras.iterator(); }
-    @Override public void setMaxHPs(float HPs)                  { maxHPs = HPs; }
-    @Override public void setActualHPs(float HPs)               { modificarHPs(HPs - actualHPs); }
-    @Override public int getSkillTalentos(String skillID, int statID)   { return (talentos.get(skillID) != null ? talentos.get(skillID).getTalento(statID) : 0); }
+    @Override public void setConnectionID (int connectionID)            { this.connectionID = connectionID; }
+    @Override public void setTotalCastingTime(float castingTime)        { actualCastingTime = 0.01f; totalCastingTime = castingTime;}
+    @Override public void setVelocidaMod(float velocidadMod)            { this.velocidadMod = velocidadMod; }
+    @Override public void setVelocidadMax(float velocidadMax)           { this.velocidadMax = velocidadMax; }
+    @Override public void setDireccion(double direccion)                { this.direccion = direccion; }
+    @Override public void setSpellIDSeleccionado(String spellID)        { spellIDSeleccionado = spellID; }
+    @Override public void setParametrosSpell(Object parametros)         { parametrosSpell = parametros; }
+    @Override public void setNombre(String nombre)                      { this.nombre = nombre; }
+    @Override public void setNivel(int nivel)                           { this.nivel = nivel; }
+    @Override public void añadirAura(AuraI aura)                        { listaDeAuras.add(aura); }
+    @Override public void eliminarAura(AuraI aura)                      { listaDeAuras.remove(aura); }
+    @Override public Iterator<AuraI> getAuras()                         { return listaDeAuras.iterator(); }
+    @Override public void setMaxHPs(float HPs)                          { maxHPs = HPs; }
+    @Override public void setActualHPs(float HPs)                       { modificarHPs(HPs - actualHPs); }
+    @Override public SkillPersonalizadoI getSkillPersonalizado(String skillID){ return listaSkillsPersonalizados.get(skillID); }
+    @Override public SpellPersonalizadoI getSpellPersonalizado(String spellID) { return listaSpellsPersonalizados.get(spellID); }
 
-    @Override public void añadirSpellTalentos(String spellID)
+    @Override public void añadirSkillsPersonalizados(String spellID)
     {
         SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellID);
-        if (spell == null) { System.out.println("ERROR: añadirSpellTalentos: spellID no encontrado: " + spellID ); return; }
+        if (spell == null) { System.out.println("ERROR: añadirSkillsPersonalizados: spellID no encontrado: " + spellID ); return; }
 
-        SkillTalentos spellTalentos = new SkillTalentos(spell);
-        talentos.put(spellTalentos.getId(), spellTalentos);
-        Iterator<BDebuffI> iterator = spell.getDebuffsQueAplica();
-        while (iterator.hasNext())
+        SpellPersonalizado spellPersonalizado = new SpellPersonalizado(spell);
+        listaSpellsPersonalizados.put(spellPersonalizado.getID(), spellPersonalizado);
+
+        listaSkillsPersonalizados.put(spellPersonalizado.getCustomSpell().getID(), spellPersonalizado.getCustomSpell());
+        Iterator<SkillPersonalizado> iterator = spellPersonalizado.getIteratorCustomDebuffsRW();
+        while(iterator.hasNext())
         {
-            SkillTalentos debuffTalentos = new SkillTalentos(iterator.next());
-            talentos.put(debuffTalentos.getId(), debuffTalentos);
-            Object añadirSpellTalentos = new NetDTO.AñadirSpellTalentosPPC(spell);
-            notificarActualizacion("añadirSpellTalentos", null, añadirSpellTalentos);
+            SkillPersonalizado skillPersonalizado = iterator.next();
+            listaSkillsPersonalizados.put(skillPersonalizado.getID(), skillPersonalizado);
         }
+
+        Object añadirSpellPersonalizado = new NetDTO.AñadirSpellPersonalizadoPPC(spell);
+        notificarActualizacion("añadirSkillsPersonalizados", null, añadirSpellPersonalizado);
     }
 
-    @Override public void setSkillTalento(String skillID, int statID, int valor)
+    @Override public void setNumTalentosSkillPersonalizado(String skillID, int statID, int valor)
     {
-        SkillTalentos skillTalentos = talentos.get(skillID);
-        if (skillTalentos == null) { System.out.println("ERROR: setSkillTalento, spellID no existe: " + skillID); return; }
+        SkillPersonalizado skillPersonalizado = listaSkillsPersonalizados.get(skillID);
+        if (skillPersonalizado == null) { System.out.println("ERROR: setNumTalentosSkillPersonalizado, spellID no existe: " + skillID); return; }
         else
         {
-            if (valor <0) { return; }
-            if (skillTalentos.getIsSpell())
-            {
-                SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(skillTalentos.getId());
-                int valormax = spell.getSkillStat(statID).getTalentoMaximo();
-                if (valor > valormax) return;
-            }
-            if (!skillTalentos.getIsSpell())
-            {
-                BDebuffI debuff = DAO.debuffDAOFactory.getBDebuffDAO().getBDebuff(skillTalentos.getId());
-                int valormax = debuff.getSkillStat(statID).getTalentoMaximo();
-                if (valor > valormax) return;
-            }
+            if (valor <0) return;
+            if (valor > skillPersonalizado.getTalentoMaximo(statID)) return;
         }
-        skillTalentos.setTalento(statID, valor);
-        Object modificarSkillTalento = new NetDTO.ModificarSkillTalentoPPC(skillID, statID, valor);
-        notificarActualizacion("setSkillTalento", null, modificarSkillTalento);
+        skillPersonalizado.setNumTalentos(statID, valor);
+        Object modificarNumTalentos = new NetDTO.ModificarNumTalentosSkillPersonalizadoPPC(skillID, statID, valor);
+        notificarActualizacion("setNumTalentosSkillPersonalizado", null, modificarNumTalentos);
     }
 
     @Override public void modificarHPs(float HPs)

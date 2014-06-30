@@ -1,10 +1,10 @@
 package Interfaces.BDebuff;// Created by Hanto on 09/06/2014.
 
 
-import Core.SkillStat;
+import Core.Skills.SkillStat;
 import Interfaces.EntidadesPropiedades.Caster;
 import Interfaces.EntidadesPropiedades.Debuffeable;
-import Interfaces.Spell.SkillI;
+import Interfaces.Skill.SkillI;
 
 import java.util.Iterator;
 
@@ -25,7 +25,7 @@ public interface BDebuffI extends SkillI
     public boolean isDebuff ();
     public byte getStacksMaximos ();
     public TipoBDebuffI getTipoBDebuff();
-    public float getTalentedSkillStat(Caster caster, int statID);
+    public float getValorTotal(Caster caster, int statID);
     public SkillStat getSkillStat(int statID);
     public Iterator<SkillStat> getSkillStats();
     public int getNumSkillStats();

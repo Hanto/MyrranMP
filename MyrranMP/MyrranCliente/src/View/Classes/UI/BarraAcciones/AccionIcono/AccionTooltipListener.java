@@ -1,7 +1,5 @@
 package View.Classes.UI.BarraAcciones.AccionIcono;// Created by Hanto on 19/06/2014.
 
-import DB.DAO;
-import Interfaces.Spell.SpellI;
 import Interfaces.UI.Acciones.AccionI;
 import Model.Classes.Acciones.TiposAccion.SeleccionarSpell;
 import View.Classes.UI.SpellTooltip.SpellTooltip;
@@ -27,8 +25,7 @@ public class AccionTooltipListener extends InputListener
 
             if (accion instanceof SeleccionarSpell && tooltip == null)
             {
-                SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(accion.getID());
-                tooltip = new SpellTooltip(spell, accionIcono.getBarra().getCaster(), accionIcono.getControlador());
+                tooltip = new SpellTooltip(accion.getID(), accionIcono.getBarra().getCaster(), accionIcono.getControlador());
                 accionIcono.setTooltip(tooltip);
             }
         }
@@ -51,8 +48,7 @@ public class AccionTooltipListener extends InputListener
 
             if (accion instanceof SeleccionarSpell)
             {
-                SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(accion.getID());
-                SpellTooltip tooltipMovible = new SpellTooltip(spell, accionIcono.getBarra().getCaster(), accionIcono.getControlador());
+                SpellTooltip tooltipMovible = new SpellTooltip(accion.getID(), accionIcono.getBarra().getCaster(), accionIcono.getControlador());
                 event.getStage().addActor(tooltipMovible);
                 Vector2 clickPos = getPosicionClick(event, x, y);
                 tooltipMovible.setPosition(clickPos.x +16 , clickPos.y +16 -tooltipMovible.getHeight());

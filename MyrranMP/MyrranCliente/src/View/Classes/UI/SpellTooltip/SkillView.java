@@ -1,5 +1,6 @@
 package View.Classes.UI.SpellTooltip;// Created by Hanto on 27/06/2014.
 
+import Interfaces.Skill.SkillPersonalizadoI;
 import View.Classes.Graficos.Texto;
 
 public class SkillView
@@ -40,9 +41,9 @@ public class SkillView
     public void setBonoTalentos(int statID, Texto bonoTalento)                  { skillStat[statID].bonoTalento = bonoTalento; }
     public void setMaxTalentos(int statID, Texto maxTalentos)                   { skillStat[statID].maxTalentos = maxTalentos; }
 
-    public SkillView(int numSkillStats)
+    public SkillView (SkillPersonalizadoI skill)
     {
-        skillStat = new SkillStatsView[numSkillStats];
-        for (int i=0; i<numSkillStats; i++) skillStat[i] = new SkillStatsView();
+        skillStat = new SkillStatsView[skill.getNumSkillStats()];
+        for (int i=0; i<skill.getNumSkillStats(); i++) skillStat[i] = new SkillStatsView();
     }
 }

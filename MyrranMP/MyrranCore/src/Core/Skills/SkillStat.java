@@ -1,4 +1,4 @@
-package Core;
+package Core.Skills;
 //* @author Ivan Delgado Huerta
 public class SkillStat
 {

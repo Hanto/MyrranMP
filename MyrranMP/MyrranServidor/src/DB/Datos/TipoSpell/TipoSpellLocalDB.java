@@ -1,7 +1,7 @@
 package DB.Datos.TipoSpell;// Created by Hanto on 17/04/2014.
 
 import Core.AbrirFichero;
-import Core.SkillStat;
+import Core.Skills.SkillStat;
 import Data.MiscData;
 import Interfaces.Spell.TipoSpellI;
 import Model.Classes.Skill.Spell.TipoSpell;

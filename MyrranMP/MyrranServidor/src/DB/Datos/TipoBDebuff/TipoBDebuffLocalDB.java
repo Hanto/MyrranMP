@@ -1,7 +1,7 @@
 package DB.Datos.TipoBDebuff;// Created by Hanto on 10/06/2014.
 
 import Core.AbrirFichero;
-import Core.SkillStat;
+import Core.Skills.SkillStat;
 import Data.MiscData;
 import Interfaces.BDebuff.TipoBDebuffI;
 import Model.Classes.Skill.BDebuff.TipoBDebuff;

@@ -17,7 +17,7 @@ public class Heal extends TipoSpell
     @Override public void ejecutarCasteo(SpellI spell, Caster caster, int targetX, int targetY)
     {
         int STAT_Curacion = 1;
-        float curacion = spell.getTalentedSkillStat(caster, STAT_Curacion);
+        float curacion = spell.getValorTotal(caster, STAT_Curacion);
 
         if (caster instanceof Vulnerable)
         {   ((Vulnerable)caster).modificarHPs(curacion); }

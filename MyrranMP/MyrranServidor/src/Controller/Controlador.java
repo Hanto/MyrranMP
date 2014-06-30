@@ -24,10 +24,11 @@ public class Controlador
     public void añadirPC (int connectionID)
     {   mundo.añadirPC(connectionID);
 
-        mundo.getPC(connectionID).añadirSpellTalentos("Heal");
-        mundo.getPC(connectionID).setSkillTalento("Heal", 0, 10);
-        mundo.getPC(connectionID).setSkillTalento("Heal", 1, 17);
-        mundo.getPC(connectionID).setSkillTalento("Hot", 1, 10);
+        mundo.getPC(connectionID).añadirSkillsPersonalizados("Terraformar");
+        mundo.getPC(connectionID).añadirSkillsPersonalizados("Heal");
+        mundo.getPC(connectionID).setNumTalentosSkillPersonalizado("Heal", 0, 10);
+        mundo.getPC(connectionID).setNumTalentosSkillPersonalizado("Heal", 1, 17);
+        mundo.getPC(connectionID).setNumTalentosSkillPersonalizado("Hot", 1, 10);
     }
 
     public void eliminarPC (int connectionID)
@@ -51,7 +52,7 @@ public class Controlador
     {   mundo.getPC(connectionID).setParametrosSpell(parametrosSpell); }
 
     public void modificarSkillTalentoPC(int connectionID, String skillID, int statID, int valor)
-    {   mundo.getPC(connectionID).setSkillTalento(skillID, statID, valor);}
+    {   mundo.getPC(connectionID).setNumTalentosSkillPersonalizado(skillID, statID, valor);}
 
 
 

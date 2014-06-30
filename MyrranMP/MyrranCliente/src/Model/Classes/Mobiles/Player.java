@@ -1,10 +1,10 @@
 package Model.Classes.Mobiles;// Created by Hanto on 10/04/2014.
 
-import Core.SkillTalentos;
+import Core.Skills.SkillPersonalizado;
+import Core.Skills.SpellPersonalizado;
 import DB.DAO;
 import DTO.NetDTO;
 import Interfaces.BDebuff.AuraI;
-import Interfaces.BDebuff.BDebuffI;
 import Interfaces.EntidadesPropiedades.CasterConTalentos;
 import Interfaces.EntidadesPropiedades.Debuffeable;
 import Interfaces.EntidadesPropiedades.Vulnerable;
@@ -12,7 +12,9 @@ import Interfaces.EntidadesTipos.MobPlayer;
 import Interfaces.Geo.MapaI;
 import Interfaces.Input.PlayerIOI;
 import Interfaces.Model.AbstractModel;
+import Interfaces.Skill.SkillPersonalizadoI;
 import Interfaces.Spell.SpellI;
+import Interfaces.Spell.SpellPersonalizadoI;
 import Model.DTO.PlayerDTO;
 import com.badlogic.gdx.utils.Array;
 
@@ -51,7 +53,8 @@ public class Player extends AbstractModel implements MobPlayer, CasterConTalento
     protected Object parametrosSpell;
 
     private Array<AuraI> listaDeAuras = new Array<>();
-    private Map<String, SkillTalentos> talentos = new HashMap<>();
+    private Map<String, SkillPersonalizado> listaSkillsPersonalizados = new HashMap<>();
+    private Map<String, SpellPersonalizado> listaSpellsPersonalizados = new HashMap<>();
 
     protected boolean irArriba = false;
     protected boolean irAbajo = false;
@@ -93,31 +96,34 @@ public class Player extends AbstractModel implements MobPlayer, CasterConTalento
     @Override public void eliminarAura(AuraI aura)                      { listaDeAuras.removeValue(aura, true); }
     @Override public Iterator<AuraI> getAuras()                         { return listaDeAuras.iterator(); }
     @Override public void setActualHPs (float hps)                      { modificarHPs(hps - actualHPs); }
-    @Override public int getSkillTalentos(String skillID, int statID)   { return (talentos.get(skillID) != null ? talentos.get(skillID).getTalento(statID) : 0); }
+    @Override public SkillPersonalizadoI getSkillPersonalizado(String skillID){ return listaSkillsPersonalizados.get(skillID); }
+    @Override public SpellPersonalizadoI getSpellPersonalizado(String spellID){ return listaSpellsPersonalizados.get(spellID); }
 
     //RECEPCION DATOS:
-    @Override public void añadirSpellTalentos(String spellID)
+    @Override public void añadirSkillsPersonalizados(String spellID)
     {
         SpellI spell = DAO.spellDAOFactory.getSpellDAO().getSpell(spellID);
-        if (spell == null) { System.out.println("ERROR: añadirSpellTalentos: spellID no encontrado: " + spellID ); return; }
+        if (spell == null) { System.out.println("ERROR: añadirSkillsPersonalizados: spellID no encontrado: " + spellID ); return; }
 
-        SkillTalentos spellTalentos = new SkillTalentos(spell);
-        talentos.put(spellTalentos.getId(), spellTalentos);
-        Iterator<BDebuffI> iterator = spell.getDebuffsQueAplica();
-        while (iterator.hasNext())
+        SpellPersonalizado spellPersonalizado = new SpellPersonalizado(spell);
+        listaSpellsPersonalizados.put(spellPersonalizado.getID(), spellPersonalizado);
+
+        listaSkillsPersonalizados.put(spellPersonalizado.getCustomSpell().getID(), spellPersonalizado.getCustomSpell());
+        Iterator<SkillPersonalizado> iterator = spellPersonalizado.getIteratorCustomDebuffsRW();
+        while(iterator.hasNext())
         {
-            SkillTalentos debuffTalentos = new SkillTalentos(iterator.next());
-            talentos.put(debuffTalentos.getId(), debuffTalentos);
+            SkillPersonalizado skillPersonalizado = iterator.next();
+            listaSkillsPersonalizados.put(skillPersonalizado.getID(), skillPersonalizado);
         }
     }
 
-    @Override public void setSkillTalento(String skillID, int statID, int valor)
+    @Override public void setNumTalentosSkillPersonalizado(String skillID, int statID, int valor)
     {
-        SkillTalentos skillTalentos = talentos.get(skillID);
-        if (skillTalentos == null) { System.out.println("ERROR: setSkillTalento, spellID no existe: " + skillID); return; }
-        skillTalentos.setTalento(statID, valor);
-        Object modificarSkillTalento = new NetDTO.ModificarSkillTalentoPPC(skillID, statID, valor);
-        notificarActualizacion("RECEPCION: setSkillTalento", null, modificarSkillTalento);
+        SkillPersonalizado skillPersonalizado = listaSkillsPersonalizados.get(skillID);
+        if (skillPersonalizado == null) { System.out.println("ERROR: setNumTalentosSkillPersonalizado, spellID no existe: " + skillID); return; }
+        skillPersonalizado.setNumTalentos(statID, valor);
+        Object modificarNumTalentos = new NetDTO.ModificarNumTalentosSkillPersonalizadoPPC(skillID, statID, valor);
+        notificarActualizacion("RECEPCION: setNumTalentosSkillPersonalizado", null, modificarNumTalentos);
     }
 
     @Override public void modificarHPs(float HPs)

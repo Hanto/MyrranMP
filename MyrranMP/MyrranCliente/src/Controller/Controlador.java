@@ -4,6 +4,7 @@ import DTO.NetDTO;
 import Interfaces.UI.BarraAcciones.BarraAccionesI;
 import Interfaces.UI.BarraAcciones.ListaAccionesI;
 import Interfaces.UI.ControladorUI;
+import Model.Classes.Acciones.AccionFactory;
 import Model.GameState.Mundo;
 import Model.GameState.UI;
 import View.Vista;
@@ -91,13 +92,17 @@ public class Controlador implements ControladorUI
         if (connectionID == mundo.getPlayer().getConnectionID()) {}
         else mundo.eliminarPC(connectionID);
     }
-    public void modificarSkillTalentoPCC(int connectionID, String skillID, int statID, int valor)
+    public void modificarnumTalentosSkillPersonalizadoCC(int connectionID, String skillID, int statID, int valor)
     {
-        if (connectionID == mundo.getPlayer().getConnectionID()) { mundo.getPlayer().setSkillTalento(skillID, statID, valor);}
+        if (connectionID == mundo.getPlayer().getConnectionID()) { mundo.getPlayer().setNumTalentosSkillPersonalizado(skillID, statID, valor);}
     }
-    public void añadirSkillTalentoPPC(int connectionID, String spellID)
+    public void añadirSkillPersonalizadoPPC(int connectionID, String spellID)
     {
-        if (connectionID == mundo.getPlayer().getConnectionID()) { mundo.getPlayer().añadirSpellTalentos(spellID); }
+        if (connectionID == mundo.getPlayer().getConnectionID())
+        {
+            mundo.getPlayer().añadirSkillsPersonalizados(spellID);
+            ui.getInputManager().añadirAccion(AccionFactory.accionSpell.SELECCIONARSPELL.nuevo(spellID));
+        }
     }
 
     public void actualizarPPC(NetDTO.ActualizarPPC updatePlayer)
@@ -148,19 +153,19 @@ public class Controlador implements ControladorUI
     {   ui.setKeyCode(barra, posX, posY, keycode);}
     @Override public void decrementarSkillTalento(String skillID, int statID)
     {
-        int valor = mundo.getPlayer().getSkillTalentos(skillID, statID) -1;
-        Object enviarModificarSkillTalento = new NetDTO.ModificarSkillTalentoPPC(skillID, statID, valor);
+        int valor = mundo.getPlayer().getSkillPersonalizado(skillID).getNumTalentos(statID) -1;
+        Object enviarModificarSkillTalento = new NetDTO.ModificarNumTalentosSkillPersonalizadoPPC(skillID, statID, valor);
         enviarAServidor(enviarModificarSkillTalento);
     }
     @Override public void aumentarSkillTalento(String skillID, int statID)
     {
-        int valor = mundo.getPlayer().getSkillTalentos(skillID, statID) +1;
-        Object enviarModificarSkillTalento = new NetDTO.ModificarSkillTalentoPPC(skillID, statID, valor);
+        int valor = mundo.getPlayer().getSkillPersonalizado(skillID).getNumTalentos(statID) +1;
+        Object enviarModificarSkillTalento = new NetDTO.ModificarNumTalentosSkillPersonalizadoPPC(skillID, statID, valor);
         enviarAServidor(enviarModificarSkillTalento);
     }
     @Override public void setSkillTalento(String skillID, int statID, int valor)
     {
-        Object enviarModificarSkillTalento = new NetDTO.ModificarSkillTalentoPPC(skillID, statID, valor);
+        Object enviarModificarSkillTalento = new NetDTO.ModificarNumTalentosSkillPersonalizadoPPC(skillID, statID, valor);
         enviarAServidor(enviarModificarSkillTalento);
     }
 }

@@ -1,6 +1,6 @@
 package Interfaces.BDebuff;// Created by Hanto on 09/06/2014.
 
-import Core.SkillStat;
+import Core.Skills.SkillStat;
 
 import java.util.Iterator;
 
